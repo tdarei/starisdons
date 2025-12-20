@@ -1,0 +1,21 @@
+{
+  "displayName": "Standard",
+  "fluxCapacitors": 0,
+  "fluxVents": 0,
+  "goalVariant": true,
+  "hullId": "station_domres_topleftleft",
+  "hullMods": [],
+  "permaMods": [],
+  "quality": 0,
+  "variantId": "station_domres_topleftleft_variant",
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0001": "harpoonpod"
+      }
+    }
+  ],
+  "wings": []
+}

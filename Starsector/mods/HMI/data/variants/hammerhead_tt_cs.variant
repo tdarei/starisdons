@@ -1,0 +1,53 @@
+{
+  "variantId": "hammerhead_tt_cs",
+  "hullId": "hammerhead_tt",
+  "displayName": "Close Support",
+  "goalVariant": false,
+  "fluxCapacitors": 4,
+  "fluxVents": 20,
+  "quality": 0.5,
+  "permaMods": [],
+  "hullMods": [
+    "targetingunit",
+    "advancedoptics"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 001": "hveldriver",
+        "WS 002": "hveldriver"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 003": "taclaser",
+        "WS 004": "taclaser",
+        "WS0001": "taclaser",
+        "WS0002": "taclaser"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0003": "heavyburst"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {}
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {}
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

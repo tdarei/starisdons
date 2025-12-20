@@ -1,0 +1,42 @@
+{
+	
+	# variantOverrides restricts hulls to listed variants and adjusts their probability
+	"variantOverrides":{
+	},
+	# multiplier for how often hulls show up in the faction's fleets
+	"hullFrequency":{
+		#"tags":{},
+		"hulls":{
+			"tahlan_Hresvelgr":0.5,
+			"tahlan_skyrend":0.5
+		},
+	},
+
+	"knownShips":{
+		"hulls":[
+			"tahlan_Kodai",
+			"tahlan_Defiance",
+			"tahlan_Hresvelgr",
+			"tahlan_skyrend",
+			"tahlan_nelson",
+		],
+	},
+	
+	"priorityShips":{
+		"hulls":[
+			"tahlan_skyrend"
+		],
+	},
+	
+	"knownWeapons":{
+		"weapons":[
+			"tahlan_armiger",
+			"tahlan_efreet",
+			"tahlan_amboss",
+			"tahlan_ryza",
+			"tahlan_mezoa",
+			"tahlan_vesuvio",
+		],
+	}
+
+},	

@@ -1,0 +1,52 @@
+{
+  "variantId": "hammerhead_tt_ion",
+  "hullId": "hammerhead_tt",
+  "displayName": "Ion",
+  "goalVariant": false,
+  "fluxCapacitors": 7,
+  "fluxVents": 20,
+  "quality": 0.5,
+  "permaMods": [],
+  "hullMods": [
+    "hardenedshieldemitter"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 001": "heavyac",
+        "WS 002": "heavyac"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 003": "ioncannon",
+        "WS 004": "ioncannon",
+        "WS0001": "ioncannon",
+        "WS0002": "ioncannon"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0003": "ionbeam"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {}
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {}
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

@@ -1,0 +1,33 @@
+{
+  "displayName": "Mining",
+  "fluxCapacitors": 10,
+  "fluxVents": 7,
+  "goalVariant": true,
+  "hullId": "lasher_hmi",
+  "hullMods": [
+    "blast_doors",
+    "surveying_equipment"
+  ],
+  "permaMods": [],
+  "quality": 0,
+  "variantId": "lasher_hmi_mining",
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0001": "hammer",
+        "WS0002": "hammer"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0003": "rock_launcher",
+        "WS0004": "rock_launcher"
+      }
+    }
+  ],
+  "wings": []
+}

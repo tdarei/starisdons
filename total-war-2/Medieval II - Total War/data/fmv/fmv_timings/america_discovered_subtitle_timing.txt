@@ -1,0 +1,6 @@
+<SYNC Start=200>
+<P Class=ENUSCC>America_Discovered_1
+<SYNC Stop=8400>
+<SYNC Start=8400>
+<P Class=ENUSCC>America_Discovered_2
+<SYNC Stop=23700>

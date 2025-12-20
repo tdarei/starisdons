@@ -1,0 +1,50 @@
+{
+  "animationType": "GLOW_AND_FLASH",
+  "autocharge": true,
+  "barrelMode": "ALTERNATING",
+  "fireSoundOne": "vulcan_cannon_fire",
+  "hardpointAngleOffsets": [
+    0
+  ],
+  "hardpointSprite": "graphics/weapons/med_frag_mg_hardpoint_recoil.png",
+  "hardpointOffsets": [
+    19,
+    0
+  ],
+  "hardpointGlowSprite": "graphics/weapons/med_frag_mg_hardpoint_glow.png",
+  "id": "med_frag_mg",
+    "glowColor": [
+    255,
+    199,
+    127,
+    255
+  ],
+  "muzzleFlashSpec": {
+    "length": 35,
+    "particleColor": [
+		255,
+		199,
+		127,
+		255
+    ],
+    "particleCount": 12,
+    "particleDuration": 0.15,
+    "particleSizeMin": 10,
+    "particleSizeRange": 16,
+    "spread": 5
+  },
+  "projectileSpecId": "heavyac_shot",
+  "size": "MEDIUM",
+  "specClass": "projectile",
+  "textureType": ROUGH,
+  "turretAngleOffsets": [
+    0
+  ],
+  "turretSprite": "graphics/weapons/med_frag_mg_turret_recoil.png",
+  "turretOffsets": [
+    22,
+    0
+  ],
+  "turretGlowSprite": "graphics/weapons/med_frag_mg_turret_glow.png",
+  "type": "BALLISTIC",
+}

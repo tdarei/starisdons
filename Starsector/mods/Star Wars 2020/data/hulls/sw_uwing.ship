@@ -1,0 +1,97 @@
+{
+  "hullName": "UT-60D U-wing Support Craft",
+  "hullId": "sw_uwing",
+  "hullSize": "FIGHTER",
+  "spriteName": "graphics/ships/fighters/sw_uwing.png",
+  "style": "HIGH_TECH",
+  "height": 87,
+  "width": 34,
+  "center": [17, 43.5],
+  "collisionRadius": 44.5,
+  "shieldCenter": [0, 0],
+  "shieldRadius": 45,
+  "viewOffset": 0,
+  "builtInMods": [
+    "sw_deflector_shield"
+  ],
+  "weaponSlots": [
+    {
+      "id": "WS0001",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": 0,
+      "locations": [14.5, 2.5]
+    },
+    {
+      "id": "WS0002",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": -0,
+      "locations": [14.5, -2.5]
+    },
+    {
+      "id": "WS0003",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "HIDDEN",
+      "arc": 180,
+      "angle": 90,
+      "locations": [-8, 11.5]
+    },
+    {
+      "id": "WS0004",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "HIDDEN",
+      "arc": 180,
+      "angle": -90,
+      "locations": [-8, -11.5]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-41, 12],
+      "length": 10,
+      "width": 5,
+      "angle": 180,
+      "contrailSize": 10,
+      "style": "HIGH_TECH"
+    },
+    {
+      "location": [-41, -12],
+      "length": 10,
+      "width": 5,
+      "angle": -180,
+      "contrailSize": 10,
+      "style": "HIGH_TECH"
+    }
+  ],
+  "bounds": [
+    13, -6.5,
+    43, -6.5,
+    43, -8.5,
+    14, -11.5,
+    -14, -11.5,
+    -18, -9.5,
+    -22, -14.5,
+    -37, -14.5,
+    -41, -13.5,
+    -41, -10.5,
+    -27, -6.5,
+    -27, 6.5,
+    -41, 10.5,
+    -41, 13.5,
+    -37, 14.5,
+    -22, 14.5,
+    -18, 9.5,
+    -14, 11.5,
+    14, 11.5,
+    43, 8.5,
+    43, 6.5,
+    13, 6.5
+  ]
+}

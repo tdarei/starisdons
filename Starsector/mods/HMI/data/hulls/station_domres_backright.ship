@@ -1,0 +1,70 @@
+{
+  "bounds": [
+    55,
+    16,
+    56,
+    -21.5,
+    -60,
+    -22,
+    -48,
+    19.5
+  ],
+  "builtInWings": [],
+  "center": [
+    34.5,
+    60.5
+  ],
+  "collisionRadius": 75,
+  "engineSlots": [],
+  "height": 121,
+  "hullId": "station_domres_backright",
+  "hullName": "Gun Section, Medium",
+  "hullSize": "DESTROYER",
+  "shieldCenter": [
+    0,
+    0
+  ],
+  "shieldRadius": 71.5,
+  "spriteName": "graphics/ships/domain_resurgent/hmidr_platform_backright.png",
+  "style": "LOW_TECH",
+  "viewOffset": 0,
+  "weaponSlots": [
+    {
+      "angle": -90,
+      "arc": 81,
+      "id": "WS0001",
+      "locations": [
+        36.5,
+        -2
+      ],
+      "mount": "TURRET",
+      "size": "LARGE",
+      "type": "BALLISTIC"
+    },
+    {
+      "angle": -90,
+      "arc": 86,
+      "id": "WS0002",
+      "locations": [
+        2.5,
+        -10
+      ],
+      "mount": "TURRET",
+      "size": "SMALL",
+      "type": "BALLISTIC"
+    },
+    {
+      "angle": -90,
+      "arc": 137,
+      "id": "WS0003",
+      "locations": [
+        -15.5,
+        -11.5
+      ],
+      "mount": "TURRET",
+      "size": "MEDIUM",
+      "type": "BALLISTIC"
+    }
+  ],
+  "width": 69
+}

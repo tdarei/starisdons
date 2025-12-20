@@ -1,0 +1,6 @@
+<SYNC Start=7200>
+<P Class=ENUSCC>Scottish_Intro_12
+<SYNC Stop=25700>
+<SYNC Start=53600>
+<P Class=ENUSCC>Scottish_Intro_13
+<SYNC Stop=66100>

@@ -1,0 +1,42 @@
+{
+  "variantId": "mule_hmi_heavy_pd",
+  "hullId": "mule_hmi_heavy",
+  "displayName": "Point Defense",
+  "goalVariant": true,
+  "fluxCapacitors": 5,
+  "fluxVents": 8,
+  "quality": 0,
+  "permaMods": [],
+  "hullMods": [
+    "turretgyros",
+    "armoredweapons"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 001": "swarmer",
+        "WS 002": "swarmer"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 004": "dualflak",
+        "WS 005": "vulcan",
+        "WS 006": "dualflak"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {}
+    }
+  ],
+  "modules": [],
+  "wings": [
+    "broadsword_wing"
+  ]
+}

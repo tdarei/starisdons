@@ -1,0 +1,25 @@
+{
+  "variantId": "remora_ak_standard",
+  "hullId": "remora_ak",
+  "displayName": "Standard",
+  "goalVariant": false,
+  "fluxCapacitors": 10,
+  "fluxVents": 3,
+  "quality": 0,
+  "permaMods": [],
+  "hullMods": [
+  ],
+  "weaponGroups": [
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0001": "pdlaser",
+        "WS0002": "pdlaser",
+        "WS0003": "pdlaser"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

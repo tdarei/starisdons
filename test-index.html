@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Index - Stellar AI Debugging</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #000 !important; color: #fff !important; font-family: Arial, sans-serif; padding: 2rem; max-width: 1200px; margin: 0 auto; display: block !important; visibility: visible !important; opacity: 1 !important; }
+        h1 { color: #ba944f; border-bottom: 2px solid #ba944f; padding-bottom: 1rem; margin-bottom: 1rem; }
+        .test-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+        .test-card { background: rgba(186, 148, 79, 0.1); border: 2px solid rgba(186, 148, 79, 0.3); border-radius: 12px; padding: 1.5rem; transition: all 0.3s ease; }
+        .test-card:hover { border-color: rgba(186, 148, 79, 0.6); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(186, 148, 79, 0.2); }
+        .test-card h2 { color: #ba944f; margin-top: 0; margin-bottom: 0.5rem; }
+        .test-card p { color: rgba(255, 255, 255, 0.8); line-height: 1.6; margin-bottom: 1rem; }
+        .test-link { display: inline-block; background: rgba(186, 148, 79, 0.3); border: 2px solid rgba(186, 148, 79, 0.5); color: #ba944f; padding: 0.75rem 1.5rem; text-decoration: none; border-radius: 8px; margin-top: 1rem; transition: all 0.3s ease; }
+        .test-link:hover { background: rgba(186, 148, 79, 0.5); transform: scale(1.05); }
+        .info-box { background: rgba(74, 222, 128, 0.1); border: 1px solid rgba(74, 222, 128, 0.3); padding: 1rem; border-radius: 8px; margin-top: 2rem; }
+        .info-box h3 { color: #4ade80; margin-bottom: 0.5rem; }
+        .info-box ol, .info-box ul { margin-left: 1.5rem; margin-top: 0.5rem; }
+        .info-box li { margin-bottom: 0.25rem; }
+        .info-box a { color: #ba944f; text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <h1> Stellar AI Debugging Test Pages</h1>
+    <p>Use these test pages to identify what's causing the stellar AI page to not load and buttons to not be clickable.</p>
+    <div class="test-grid">
+        <div class="test-card"><h2>Test 1: Minimal HTML</h2><p>No JavaScript, just basic HTML and CSS.</p><a href="test-stellar-ai-1-minimal.html" class="test-link">Open Test 1 </a></div>
+        <div class="test-card"><h2>Test 2: Without Loader</h2><p>All CSS and styles, but NO loader.js.</p><a href="test-stellar-ai-2-no-loader.html" class="test-link">Open Test 2 </a></div>
+        <div class="test-card"><h2>Test 3: Minimal Loader</h2><p>Uses loader-core-minimal.js instead of full loader.js.</p><a href="test-stellar-ai-3-minimal-loader.html" class="test-link">Open Test 3 </a></div>
+        <div class="test-card"><h2>Test 4: Full Loader</h2><p>Uses full loader.js (same as original).</p><a href="test-stellar-ai-4-full-loader.html" class="test-link">Open Test 4 </a></div>
+        <div class="test-card"><h2>Test 5: Pointer Events Fix</h2><p>Has CSS fixes to force pointer-events: auto.</p><a href="test-stellar-ai-5-pointer-events-fix.html" class="test-link">Open Test 5 </a></div>
+    </div>
+    <div class="info-box">
+        <h3> Testing Instructions:</h3>
+        <ol><li>Open each test page in your browser (localhost:8000)</li><li>Try clicking the buttons on each page</li><li>Check the browser console (F12) for any errors</li><li>Note which test pages work and which don't</li></ol>
+        <p style="margin-top: 1rem;"><strong>Direct URLs:</strong></p>
+        <ul><li><a href="http://localhost:8000/test-stellar-ai-1-minimal.html">Test 1</a></li><li><a href="http://localhost:8000/test-stellar-ai-2-no-loader.html">Test 2</a></li><li><a href="http://localhost:8000/test-stellar-ai-3-minimal-loader.html">Test 3</a></li><li><a href="http://localhost:8000/test-stellar-ai-4-full-loader.html">Test 4</a></li><li><a href="http://localhost:8000/test-stellar-ai-5-pointer-events-fix.html">Test 5</a></li></ul>
+    </div>
+    <script>document.body.style.display = 'block'; document.body.style.visibility = 'visible'; document.body.style.opacity = '1'; console.log(' Test index page loaded');</script>
+</body>
+</html>

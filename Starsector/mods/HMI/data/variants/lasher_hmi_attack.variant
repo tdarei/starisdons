@@ -1,0 +1,32 @@
+{
+  "displayName": "Attack",
+  "fluxCapacitors": 7,
+  "fluxVents": 5,
+  "goalVariant": true,
+  "hullId": "lasher_hmi",
+  "hullMods": [
+    "blast_doors"
+  ],
+  "permaMods": [],
+  "quality": 0,
+  "variantId": "lasher_hmi_attack",
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0001": "annihilator",
+        "WS0002": "annihilator"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0003": "lightdualac",
+        "WS0004": "lightdualac"
+      }
+    }
+  ],
+  "wings": []
+}

@@ -1,0 +1,22 @@
+{
+    "common": {
+        "loading": "Loading...",
+        "error": "Error",
+        "retry": "Retry"
+    },
+    "nav": {
+        "home": "Home",
+        "projects": "Projects",
+        "database": "Database",
+        "education": "Education"
+    },
+    "database": {
+        "title": "Exoplanet Database",
+        "subtitle": "Explore 9,564+ Celestial Bodies from the Kepler Archive",
+        "searchPlaceholder": "Search by planet name...",
+        "radius": "Radius",
+        "mass": "Mass",
+        "distance": "Distance",
+        "discoveryYear": "Disc. Year"
+    }
+}

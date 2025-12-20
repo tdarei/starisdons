@@ -1,0 +1,40 @@
+{
+  "variantId": "domres_bracket_std",
+  "hullId": "domres_bracket",
+  "displayName": "Escort",
+  "goalVariant": true,
+  "fluxCapacitors": 14,
+  "fluxVents": 0,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0007": "mark9"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0006": "heavymauler"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0001": "lightag",
+        "WS0002": "lightag",
+        "WS0003": "dualflak",
+        "WS0004": "dualflak",
+        "WS0005": "dualflak"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

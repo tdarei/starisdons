@@ -1,0 +1,50 @@
+{
+  "variantId": "hammerhead_hmi_mm_std",
+  "hullId": "hammerhead_hmi_mm",
+  "displayName": "Standard",
+  "goalVariant": false,
+  "fluxCapacitors": 19,
+  "fluxVents": 8,
+  "quality": 0,
+  "permaMods": [],
+  "hullMods": [
+    "auxiliarythrusters",
+    "reinforcedhull"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0001": "railgun",
+        "WS0002": "railgun"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0005": "heavymortar",
+        "WS0006": "heavymortar"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0003": "heatseeker",
+        "WS0004": "heatseeker"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0007": "vulcan",
+        "WS0008": "vulcan"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

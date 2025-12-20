@@ -1,0 +1,76 @@
+{
+  "variantId": "omegaslaught_attack",
+  "hullId": "omegaslaught",
+  "displayName": "Attack",
+  "goalVariant": false,
+  "fluxCapacitors": 40,
+  "fluxVents": 42,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": ["targetingunit",
+    "autorepair",
+    "magazines",
+    "hardenedshieldemitter"],
+  "weaponGroups": [
+    {
+        "autofire": false,
+        "mode": "LINKED",
+        "weapons": {
+            "WS 016": "vpdriver",
+            "WS 017": "vpdriver"
+        }
+    },
+    {
+        "autofire": true,
+        "mode": "LINKED",
+        "weapons": {
+            "WS 019": "rifttorpedo",
+        }
+    },
+    {
+        "autofire": true,
+        "mode": "LINKED",
+        "weapons": {
+            "WS 018": "riftcascade",
+            "WS 020": "riftcascade",
+            "WS 001": "disintegrator",
+            "WS 003": "disintegrator",
+        }
+    },
+    {
+        "autofire": true,
+        "mode": "LINKED",
+        "weapons": {
+            "WS 021": "resonatormrm",
+            "WS 022": "resonatormrm",
+            "WS 023": "resonatormrm",
+            "WS 024": "resonatormrm",
+        }
+    },
+    {
+        "autofire": true,
+        "mode": "LINKED",
+        "weapons": {
+            "WS 002": "shockrepeater",
+            "WS 004": "shockrepeater",
+            "WS 005": "minipulser",
+            "WS 006": "minipulser",
+            "WS 007": "minipulser",
+            "WS 008": "shockrepeater",
+            "WS 009": "shockrepeater",
+            "WS 010": "shockrepeater",
+            "WS 011": "shockrepeater",
+            "WS 012": "shockrepeater",
+            "WS 013": "shockrepeater",
+            "WS 014": "shockrepeater",
+            "WS 015": "shockrepeater",
+            "WS 026": "minipulser",
+            "WS 027": "minipulser",
+            "WS 028": "minipulser",
+            "WS 029": "minipulser"
+        }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

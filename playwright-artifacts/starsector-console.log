@@ -1,0 +1,618 @@
+[2025-12-17T22:04:58.229Z] config: BASE_URL=http://localhost:8095 PAGE_PATH=/starsector.html CAPTURE_MS=60000 url=http://localhost:8095/starsector.html expected_origin=http://localhost:8095
+[2025-12-17T22:04:58.640Z] framenavigated: http://localhost:8095/starsector.html
+[2025-12-17T22:04:58.645Z] console.log: [CheerpJ WASM] shim active true true true @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:04:58.647Z] console.log: [CheerpJ SharedWorker] shim active @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:04:58.647Z] console.log: [CheerpJ Worker] shim active @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:04:58.963Z] console.log: LWJGL Native JS Module Loading... VERIFIED RELOAD 1766009098962 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:04:58.965Z] console.log: [LWJGL] Registered natives count = 157  @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:04:58.966Z] console.log: CheerpJ: Loaded dummy javajpeg.js @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:04:58.977Z] console.log: Auth system initialized @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:04:58.980Z] page: after_goto url=http://localhost:8095/starsector.html origin=http://localhost:8095
+[2025-12-17T22:04:58.988Z] page: location.href=http://localhost:8095/starsector.html origin=http://localhost:8095 baseURI=http://localhost:8095/starsector.html
+[2025-12-17T22:04:59.187Z] console.log: LWJGL canvas created: JSHandle@node @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:04:59.188Z] console.log: === API PROBE START === @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:04:59.188Z] console.log: === API PROBE FINISHED === @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:04:59.497Z] console.log: [API PROBE] Range /Starsector/starsector-core/starfarer_obf_v2.jar -> 206 content-range=bytes 0-15/6029184 accept-ranges=bytes content-length=16 content-type=application/octet-stream @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:04:59.816Z] console.log: [API PROBE] Range /Starsector/starsector-core/lwjgl.jar -> 206 content-range=bytes 0-15/1053471 accept-ranges=bytes content-length=16 content-type=application/octet-stream @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:00.138Z] console.log: [API PROBE] Range /Starsector/starsector-core/log4j-1.2.9.jar -> 206 content-range=bytes 0-15/352291 accept-ranges=bytes content-length=16 content-type=application/octet-stream @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:00.456Z] console.log: [API PROBE] Range /cheerpj-natives/lwjgl-fixed.jar -> 206 content-range=bytes 0-15/1062228 accept-ranges=bytes content-length=16 content-type=application/octet-stream @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:00.456Z] console.log: Initializing CheerpJ... @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:01.056Z] console.log: [CheerpJ WASM] ensurePipe2 active @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:01.483Z] console.log: CheerpJ 4.2 initialized. @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:01.483Z] console.log:  Classpath Restored (No LWJGL): /app/overrides.jar:/app/cheerpj-natives/lwjgl-fixed.jar:/app/Starsector/starsector-core/starfarer_obf_v2.jar:/app/Starsector/starsector-core/fs.common_obf.jar:/app/Starsector/starsector-core/fs.sound_obf.jar:/app/Starsector/starsector-core/starfarer.api_v2.jar:/app/Starsector/starsector-core/xstream-1.4.10.jar:/app/Starsector/starsector-core/janino.jar:/app/Starsector/starsector-core/commons-compiler.jar:/app/Starsector/starsector-core/commons-compiler-jdk.jar:/app/Starsector/starsector-core/jogg-0.0.7.jar:/app/Starsector/starsector-core/jorbis-0.0.15.jar:/app/Starsector/starsector-core/json.jar:/app/Starsector/starsector-core/lwjgl.jar:/app/Starsector/starsector-core/lwjgl_util.jar:/app/Starsector/starsector-core/log4j-1.2.9.jar:/app/Starsector/starsector-core/jinput.jar:/app/Starsector/:/app/Starsector/starsector-core/:/app/stubs/ @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:01.483Z] console.log: [Setup] Re-enabling Legacy JS Mocks (Fallback for missing natives) @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:01.485Z] console.log:               ____ _                              _
+             / ___| |__   ___  ___ _ __ _ __     | |
+            | |   | '_ \ / _ \/ _ \ '__| '_ \ _  | |
+            | |___| | | |  __/  __/ |  | |_) | |_| |
+             \____|_| |_|\___|\___|_|  | .__/ \___/
+                                       |_|
+
+ CHEERPJ COMMUNITY EDITION - FOR PERSONAL AND NON-BUSINESS USE ONLY
+Any other use requires a license: https://cheerpj.com/docs/licensing
+ @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:01.487Z] console.log: CheerpJ display created: JSHandle@node @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:03.046Z] console.log: [Native Proxy] Java_java_lang_Object_getClass @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:03.047Z] console.log: [Native Proxy] Java_java_lang_Object_hashCode @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:03.047Z] console.log: [Native Proxy] Java_java_lang_Object_clone @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:03.048Z] console.log: [Native Proxy] Java_java_lang_Object_notify @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:03.048Z] console.log: [Native Proxy] Java_java_lang_Object_notifyAll @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:03.048Z] console.log: [Native Proxy] Java_java_lang_Object_wait @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:03.338Z] console.log: [Native Proxy] Java_java_lang_String_intern @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:03.816Z] console.log: [Native Proxy] Java_java_lang_Class_registerNatives @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:03.816Z] console.log: [Native Proxy] Java_java_lang_Class_forName0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:03.816Z] console.log: [Native Proxy] Java_java_lang_Class_isInstance @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:03.816Z] console.log: [Native Proxy] Java_java_lang_Class_isAssignableFrom @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:03.817Z] console.log: [Native Proxy] Java_java_lang_Class_isInterface @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:03.817Z] console.log: [Native Proxy] Java_java_lang_Class_isArray @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:03.817Z] console.log: [Native Proxy] Java_java_lang_Class_isPrimitive @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:03.817Z] console.log: [Native Proxy] Java_java_lang_Class_initClassName @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:03.817Z] console.log: [Native Proxy] Java_java_lang_Class_getSuperclass @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:03.817Z] console.log: [Native Proxy] Java_java_lang_Class_getInterfaces0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:03.817Z] console.log: [Native Proxy] Java_java_lang_Class_getModifiers @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:03.818Z] console.log: [Native Proxy] Java_java_lang_Class_getSigners @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:03.818Z] console.log: [Native Proxy] Java_java_lang_Class_setSigners @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:03.818Z] console.log: [Native Proxy] Java_java_lang_Class_getEnclosingMethod0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:03.818Z] console.log: [Native Proxy] Java_java_lang_Class_getDeclaringClass0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:03.818Z] console.log: [Native Proxy] Java_java_lang_Class_getSimpleBinaryName0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:03.819Z] console.log: [Native Proxy] Java_java_lang_Class_getProtectionDomain0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:03.819Z] console.log: [Native Proxy] Java_java_lang_Class_getPrimitiveClass @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:03.819Z] console.log: [Native Proxy] Java_java_lang_Class_getGenericSignature0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:03.819Z] console.log: [Native Proxy] Java_java_lang_Class_getRawAnnotations @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:03.819Z] console.log: [Native Proxy] Java_java_lang_Class_getRawTypeAnnotations @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:03.820Z] console.log: [Native Proxy] Java_java_lang_Class_getConstantPool @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:03.820Z] console.log: [Native Proxy] Java_java_lang_Class_getDeclaredFields0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:03.820Z] console.log: [Native Proxy] Java_java_lang_Class_getDeclaredMethods0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:03.820Z] console.log: [Native Proxy] Java_java_lang_Class_getDeclaredConstructors0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:03.820Z] console.log: [Native Proxy] Java_java_lang_Class_getDeclaredClasses0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:03.820Z] console.log: [Native Proxy] Java_java_lang_Class_getRecordComponents0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:03.821Z] console.log: [Native Proxy] Java_java_lang_Class_isRecord0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:03.821Z] console.log: [Native Proxy] Java_java_lang_Class_desiredAssertionStatus0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:03.821Z] console.log: [Native Proxy] Java_java_lang_Class_getNestHost0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:03.821Z] console.log: [Native Proxy] Java_java_lang_Class_getNestMembers0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:03.821Z] console.log: [Native Proxy] Java_java_lang_Class_isHidden @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:03.822Z] console.log: [Native Proxy] Java_java_lang_Class_getPermittedSubclasses0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:03.828Z] console.log: [Native Proxy] Java_java_lang_ClassLoader_registerNatives @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:03.828Z] console.log: [Native Proxy] Java_java_lang_ClassLoader_defineClass1 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:03.828Z] console.log: [Native Proxy] Java_java_lang_ClassLoader_defineClass2 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:03.828Z] console.log: [Native Proxy] Java_java_lang_ClassLoader_defineClass0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:03.829Z] console.log: [Native Proxy] Java_java_lang_ClassLoader_findBootstrapClass @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:03.829Z] console.log: [Native Proxy] Java_java_lang_ClassLoader_findLoadedClass0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:03.829Z] console.log: [Native Proxy] Java_java_lang_ClassLoader_retrieveDirectives @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.027Z] console.log: [Native Proxy] Java_java_lang_Thread_registerNatives @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.027Z] console.log: [Native Proxy] Java_java_lang_Thread_currentThread @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.027Z] console.log: [Native Proxy] Java_java_lang_Thread_yield @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.027Z] console.log: [Native Proxy] Java_java_lang_Thread_sleep @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.028Z] console.log: [Native Proxy] Java_java_lang_Thread_start0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.028Z] console.log: [Native Proxy] Java_java_lang_Thread_holdsLock @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.029Z] console.log: [Native Proxy] Java_java_lang_Thread_dumpThreads @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.029Z] console.log: [Native Proxy] Java_java_lang_Thread_getThreads @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.029Z] console.log: [Native Proxy] Java_java_lang_Thread_setPriority0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.029Z] console.log: [Native Proxy] Java_java_lang_Thread_stop0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.029Z] console.log: [Native Proxy] Java_java_lang_Thread_suspend0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.029Z] console.log: [Native Proxy] Java_java_lang_Thread_resume0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.030Z] console.log: [Native Proxy] Java_java_lang_Thread_interrupt0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.030Z] console.log: [Native Proxy] Java_java_lang_Thread_clearInterruptEvent @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.030Z] console.log: [Native Proxy] Java_java_lang_Thread_setNativeName @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.050Z] console.log: [Native Proxy] Java_java_lang_StackTraceElement_initStackTraceElements @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.050Z] console.log: [Native Proxy] Java_java_lang_StackTraceElement_initStackTraceElement @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.056Z] console.log: [Native Proxy] Java_java_lang_System_registerNatives @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.056Z] console.log: [Native Proxy] Java_java_lang_System_setIn0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.057Z] console.log: [Native Proxy] Java_java_lang_System_setOut0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.057Z] console.log: [Native Proxy] Java_java_lang_System_setErr0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.057Z] console.log: [Native Proxy] Java_java_lang_System_currentTimeMillis @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.058Z] console.log: [Native Proxy] Java_java_lang_System_nanoTime @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.058Z] console.log: [Native Proxy] Java_java_lang_System_arraycopy @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.058Z] console.log: [Native Proxy] Java_java_lang_System_identityHashCode @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.058Z] console.log: [Native Proxy] Java_java_lang_System_mapLibraryName @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.083Z] console.log: [Native Proxy] Java_java_lang_Float_floatToRawIntBits @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.084Z] console.log: [Native Proxy] Java_java_lang_Float_intBitsToFloat @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.087Z] console.log: [Native Proxy] Java_java_lang_Double_doubleToRawLongBits @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.087Z] console.log: [Native Proxy] Java_java_lang_Double_longBitsToDouble @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.095Z] console.log: [Native Proxy] Java_java_security_AccessController_getProtectionDomain @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.095Z] console.log: [Native Proxy] Java_java_security_AccessController_ensureMaterializedForStackWalk @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.095Z] console.log: [Native Proxy] Java_java_security_AccessController_getStackAccessControlContext @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.096Z] console.log: [Native Proxy] Java_java_security_AccessController_getInheritedAccessControlContext @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.103Z] console.log: [Native Proxy] Java_java_lang_reflect_Executable_getParameters0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.104Z] console.log: [Native Proxy] Java_java_lang_reflect_Executable_getTypeAnnotationBytes0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.367Z] console.log: [Native Proxy] Java_java_lang_invoke_MethodHandle_linkToInterface @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.367Z] console.log: [Native Proxy] Java_java_lang_invoke_MethodHandle_linkToNative @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.813Z] console.log: [Native Proxy] Java_jdk_internal_reflect_Reflection_getCallerClass @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.813Z] console.log: [Native Proxy] Java_jdk_internal_reflect_Reflection_getClassAccessFlags @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.813Z] console.log: [Native Proxy] Java_jdk_internal_reflect_Reflection_areNestMates @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.814Z] console.log: [Native Proxy] Java_jdk_internal_misc_CDS_isDumpingClassList0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.815Z] console.log: [Native Proxy] Java_jdk_internal_misc_CDS_isDumpingArchive0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.816Z] console.log: [Native Proxy] Java_jdk_internal_misc_CDS_isSharingEnabled0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.816Z] console.log: [Native Proxy] Java_jdk_internal_misc_CDS_logLambdaFormInvoker @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.816Z] console.log: [Native Proxy] Java_jdk_internal_misc_CDS_initializeFromArchive @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.816Z] console.log: [Native Proxy] Java_jdk_internal_misc_CDS_defineArchivedModules @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.816Z] console.log: [Native Proxy] Java_jdk_internal_misc_CDS_getRandomSeedForDumping @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.816Z] console.log: [Native Proxy] Java_jdk_internal_misc_CDS_dumpClassList @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.816Z] console.log: [Native Proxy] Java_jdk_internal_misc_CDS_dumpDynamicArchive @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.846Z] console.log: [Native Proxy] Java_java_lang_reflect_Field_getTypeAnnotationBytes0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.850Z] console.log: [Native Proxy] Java_java_lang_Module_defineModule0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.851Z] console.log: [Native Proxy] Java_java_lang_Module_addReads0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.851Z] console.log: [Native Proxy] Java_java_lang_Module_addExports0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.851Z] console.log: [Native Proxy] Java_java_lang_Module_addExportsToAll0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.851Z] console.log: [Native Proxy] Java_java_lang_Module_addExportsToAllUnnamed0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.865Z] console.log: [Native Proxy] Java_java_lang_Runtime_availableProcessors @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.865Z] console.log: [Native Proxy] Java_java_lang_Runtime_freeMemory @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.865Z] console.log: [Native Proxy] Java_java_lang_Runtime_totalMemory @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.866Z] console.log: [Native Proxy] Java_java_lang_Runtime_maxMemory @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.866Z] console.log: [Native Proxy] Java_java_lang_Runtime_gc @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.868Z] console.log: [Native Proxy] Java_jdk_internal_misc_Unsafe_putChar @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.868Z] console.log: [Native Proxy] Java_jdk_internal_misc_Unsafe_getUncompressedObject @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.869Z] console.log: [Native Proxy] Java_jdk_internal_misc_Unsafe_writeback0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.869Z] console.log: [Native Proxy] Java_jdk_internal_misc_Unsafe_writebackPreSync0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.869Z] console.log: [Native Proxy] Java_jdk_internal_misc_Unsafe_writebackPostSync0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.870Z] console.log: [Native Proxy] Java_jdk_internal_misc_Unsafe_compareAndExchangeReference @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.870Z] console.log: [Native Proxy] Java_jdk_internal_misc_Unsafe_compareAndExchangeInt @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.870Z] console.log: [Native Proxy] Java_jdk_internal_misc_Unsafe_compareAndExchangeLong @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.871Z] console.log: [Native Proxy] Java_jdk_internal_misc_Unsafe_getBooleanVolatile @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.871Z] console.log: [Native Proxy] Java_jdk_internal_misc_Unsafe_putByteVolatile @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.871Z] console.log: [Native Proxy] Java_jdk_internal_misc_Unsafe_getShortVolatile @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.872Z] console.log: [Native Proxy] Java_jdk_internal_misc_Unsafe_putShortVolatile @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.872Z] console.log: [Native Proxy] Java_jdk_internal_misc_Unsafe_getCharVolatile @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.873Z] console.log: [Native Proxy] Java_jdk_internal_misc_Unsafe_putCharVolatile @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.874Z] console.log: [Native Proxy] Java_jdk_internal_misc_Unsafe_getFloatVolatile @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.875Z] console.log: [Native Proxy] Java_jdk_internal_misc_Unsafe_fullFence @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.876Z] console.log: [Native Proxy] Java_jdk_internal_misc_Unsafe_getLoadAverage0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.885Z] console.log: [Native Proxy] Java_java_lang_ref_Reference_getAndClearReferencePendingList @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.885Z] console.log: [Native Proxy] Java_java_lang_ref_Reference_hasReferencePendingList @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.886Z] console.log: [Native Proxy] Java_java_lang_ref_Reference_waitForReferencePendingList @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.886Z] console.log: [Native Proxy] Java_java_lang_ref_Reference_refersTo0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.886Z] console.log: [Native Proxy] Java_java_lang_ref_Reference_clear0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.888Z] console.log: [Native Proxy] Java_java_lang_ref_PhantomReference_refersTo0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.890Z] console.log: [Native Proxy] Java_java_lang_Throwable_fillInStackTrace @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:04.896Z] console.log: [Native Proxy] Java_java_lang_NullPointerException_getExtendedNPEMessage @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:05.717Z] console.log: [Native Proxy] Java_jdk_internal_reflect_ConstantPool_getSize0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:05.717Z] console.log: [Native Proxy] Java_jdk_internal_reflect_ConstantPool_getClassAt0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:05.717Z] console.log: [Native Proxy] Java_jdk_internal_reflect_ConstantPool_getClassAtIfLoaded0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:05.717Z] console.log: [Native Proxy] Java_jdk_internal_reflect_ConstantPool_getClassRefIndexAt0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:05.718Z] console.log: [Native Proxy] Java_jdk_internal_reflect_ConstantPool_getMethodAt0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:05.718Z] console.log: [Native Proxy] Java_jdk_internal_reflect_ConstantPool_getMethodAtIfLoaded0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:05.718Z] console.log: [Native Proxy] Java_jdk_internal_reflect_ConstantPool_getFieldAt0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:05.718Z] console.log: [Native Proxy] Java_jdk_internal_reflect_ConstantPool_getFieldAtIfLoaded0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:05.719Z] console.log: [Native Proxy] Java_jdk_internal_reflect_ConstantPool_getMemberRefInfoAt0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:05.719Z] console.log: [Native Proxy] Java_jdk_internal_reflect_ConstantPool_getNameAndTypeRefIndexAt0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:05.719Z] console.log: [Native Proxy] Java_jdk_internal_reflect_ConstantPool_getNameAndTypeRefInfoAt0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:05.720Z] console.log: [Native Proxy] Java_jdk_internal_reflect_ConstantPool_getIntAt0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:05.720Z] console.log: [Native Proxy] Java_jdk_internal_reflect_ConstantPool_getLongAt0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:05.720Z] console.log: [Native Proxy] Java_jdk_internal_reflect_ConstantPool_getFloatAt0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:05.721Z] console.log: [Native Proxy] Java_jdk_internal_reflect_ConstantPool_getDoubleAt0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:05.721Z] console.log: [Native Proxy] Java_jdk_internal_reflect_ConstantPool_getStringAt0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:05.722Z] console.log: [Native Proxy] Java_jdk_internal_reflect_ConstantPool_getUTF8At0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:05.722Z] console.log: [Native Proxy] Java_jdk_internal_reflect_ConstantPool_getTagAt0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:05.730Z] console.log: [Native Proxy] Java_jdk_internal_util_SystemProps_00024Raw_vmProperties @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:05.730Z] console.log: [Native Proxy] Java_jdk_internal_util_SystemProps_00024Raw_platformProperties @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.073Z] requestfailed: GET http://localhost:8095/cheerpj/4.2/etc/localtime net::ERR_ABORTED
+[2025-12-17T22:05:06.088Z] console.log: [Native Proxy] Java_jdk_internal_misc_VM_latestUserDefinedLoader0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.088Z] console.log: [Native Proxy] Java_jdk_internal_misc_VM_getuid @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.088Z] console.log: [Native Proxy] Java_jdk_internal_misc_VM_geteuid @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.089Z] console.log: [Native Proxy] Java_jdk_internal_misc_VM_getgid @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.089Z] console.log: [Native Proxy] Java_jdk_internal_misc_VM_getegid @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.089Z] console.log: [Native Proxy] Java_jdk_internal_misc_VM_getNanoTimeAdjustment @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.089Z] console.log: [Native Proxy] Java_jdk_internal_misc_VM_getRuntimeArguments @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.089Z] console.log: [Native Proxy] Java_jdk_internal_misc_VM_initialize @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.106Z] console.log: [Native Proxy] Java_java_io_FileInputStream_open0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.107Z] console.log: [Native Proxy] Java_java_io_FileInputStream_read0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.107Z] console.log: [Native Proxy] Java_java_io_FileInputStream_readBytes @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.107Z] console.log: [Native Proxy] Java_java_io_FileInputStream_length0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.107Z] console.log: [Native Proxy] Java_java_io_FileInputStream_position0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.107Z] console.log: [Native Proxy] Java_java_io_FileInputStream_skip0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.108Z] console.log: [Native Proxy] Java_java_io_FileInputStream_available0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.108Z] console.log: [Native Proxy] Java_java_io_FileInputStream_initIDs @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.110Z] console.log: [Native Proxy] Java_java_io_FileDescriptor_sync @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.110Z] console.log: [Native Proxy] Java_java_io_FileDescriptor_initIDs @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.110Z] console.log: [Native Proxy] Java_java_io_FileDescriptor_getHandle @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.111Z] console.log: [Native Proxy] Java_java_io_FileDescriptor_getAppend @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.111Z] console.log: [Native Proxy] Java_java_io_FileDescriptor_close0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.114Z] console.log: [Native Proxy] Java_java_io_FileOutputStream_open0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.114Z] console.log: [Native Proxy] Java_java_io_FileOutputStream_write @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.114Z] console.log: [Native Proxy] Java_java_io_FileOutputStream_writeBytes @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.115Z] console.log: [Native Proxy] Java_java_io_FileOutputStream_initIDs @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.589Z] console.log: [Native Proxy] Java_jdk_internal_misc_ScopedMemoryAccess_closeScope0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.595Z] console.log: [Native Proxy] Java_jdk_internal_misc_Signal_findSignal0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.596Z] console.log: [Native Proxy] Java_jdk_internal_misc_Signal_handle0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.596Z] console.log: [Native Proxy] Java_jdk_internal_misc_Signal_raise0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.609Z] console.log: [Native Proxy] Java_java_io_UnixFileSystem_canonicalize0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.610Z] console.log: [Native Proxy] Java_java_io_UnixFileSystem_getBooleanAttributes0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.610Z] console.log: [Native Proxy] Java_java_io_UnixFileSystem_checkAccess @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.610Z] console.log: [Native Proxy] Java_java_io_UnixFileSystem_getLastModifiedTime @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.611Z] console.log: [Native Proxy] Java_java_io_UnixFileSystem_getLength @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.611Z] console.log: [Native Proxy] Java_java_io_UnixFileSystem_setPermission @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.611Z] console.log: [Native Proxy] Java_java_io_UnixFileSystem_createFileExclusively @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.611Z] console.log: [Native Proxy] Java_java_io_UnixFileSystem_delete0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.612Z] console.log: [Native Proxy] Java_java_io_UnixFileSystem_list @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.612Z] console.log: [Native Proxy] Java_java_io_UnixFileSystem_createDirectory @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.612Z] console.log: [Native Proxy] Java_java_io_UnixFileSystem_rename0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.613Z] console.log: [Native Proxy] Java_java_io_UnixFileSystem_setLastModifiedTime @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.613Z] console.log: [Native Proxy] Java_java_io_UnixFileSystem_setReadOnly @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.614Z] console.log: [Native Proxy] Java_java_io_UnixFileSystem_getSpace @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.614Z] console.log: [Native Proxy] Java_java_io_UnixFileSystem_getNameMax0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.614Z] console.log: [Native Proxy] Java_java_io_UnixFileSystem_initIDs @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.625Z] console.log: [Native Proxy] Java_java_lang_invoke_MethodHandleNatives_expand @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.626Z] console.log: [Native Proxy] Java_java_lang_invoke_MethodHandleNatives_getMemberVMInfo @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.626Z] console.log: [Native Proxy] Java_java_lang_invoke_MethodHandleNatives_setCallSiteTargetVolatile @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.626Z] console.log: [Native Proxy] Java_java_lang_invoke_MethodHandleNatives_copyOutBootstrapArguments @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.626Z] console.log: [Native Proxy] Java_java_lang_invoke_MethodHandleNatives_clearCallSiteContext @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.626Z] console.log: [Native Proxy] Java_java_lang_invoke_MethodHandleNatives_getNamedCon @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.631Z] console.log: [Native Proxy] Java_java_lang_invoke_VarHandle_getOpaque @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.631Z] console.log: [Native Proxy] Java_java_lang_invoke_VarHandle_setOpaque @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.631Z] console.log: [Native Proxy] Java_java_lang_invoke_VarHandle_getAcquire @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.632Z] console.log: [Native Proxy] Java_java_lang_invoke_VarHandle_compareAndExchange @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.632Z] console.log: [Native Proxy] Java_java_lang_invoke_VarHandle_compareAndExchangeAcquire @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.632Z] console.log: [Native Proxy] Java_java_lang_invoke_VarHandle_compareAndExchangeRelease @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.632Z] console.log: [Native Proxy] Java_java_lang_invoke_VarHandle_weakCompareAndSetPlain @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.632Z] console.log: [Native Proxy] Java_java_lang_invoke_VarHandle_weakCompareAndSetAcquire @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.633Z] console.log: [Native Proxy] Java_java_lang_invoke_VarHandle_getAndSetAcquire @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.633Z] console.log: [Native Proxy] Java_java_lang_invoke_VarHandle_getAndSetRelease @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.633Z] console.log: [Native Proxy] Java_java_lang_invoke_VarHandle_getAndAddAcquire @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.634Z] console.log: [Native Proxy] Java_java_lang_invoke_VarHandle_getAndAddRelease @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.634Z] console.log: [Native Proxy] Java_java_lang_invoke_VarHandle_getAndBitwiseOr @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.634Z] console.log: [Native Proxy] Java_java_lang_invoke_VarHandle_getAndBitwiseOrAcquire @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.635Z] console.log: [Native Proxy] Java_java_lang_invoke_VarHandle_getAndBitwiseOrRelease @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.635Z] console.log: [Native Proxy] Java_java_lang_invoke_VarHandle_getAndBitwiseAnd @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.638Z] console.log: [Native Proxy] Java_java_lang_invoke_VarHandle_getAndBitwiseAndAcquire @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.639Z] console.log: [Native Proxy] Java_java_lang_invoke_VarHandle_getAndBitwiseAndRelease @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.639Z] console.log: [Native Proxy] Java_java_lang_invoke_VarHandle_getAndBitwiseXor @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.640Z] console.log: [Native Proxy] Java_java_lang_invoke_VarHandle_getAndBitwiseXorAcquire @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.640Z] console.log: [Native Proxy] Java_java_lang_invoke_VarHandle_getAndBitwiseXorRelease @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.659Z] console.log: [Native Proxy] Java_java_lang_reflect_Array_getLength @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.660Z] console.log: [Native Proxy] Java_java_lang_reflect_Array_get @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.660Z] console.log: [Native Proxy] Java_java_lang_reflect_Array_getBoolean @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.660Z] console.log: [Native Proxy] Java_java_lang_reflect_Array_getByte @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.660Z] console.log: [Native Proxy] Java_java_lang_reflect_Array_getChar @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.660Z] console.log: [Native Proxy] Java_java_lang_reflect_Array_getShort @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.661Z] console.log: [Native Proxy] Java_java_lang_reflect_Array_getInt @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.661Z] console.log: [Native Proxy] Java_java_lang_reflect_Array_getLong @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.661Z] console.log: [Native Proxy] Java_java_lang_reflect_Array_getFloat @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.662Z] console.log: [Native Proxy] Java_java_lang_reflect_Array_getDouble @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.662Z] console.log: [Native Proxy] Java_java_lang_reflect_Array_set @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.662Z] console.log: [Native Proxy] Java_java_lang_reflect_Array_setBoolean @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.662Z] console.log: [Native Proxy] Java_java_lang_reflect_Array_setByte @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.663Z] console.log: [Native Proxy] Java_java_lang_reflect_Array_setChar @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.663Z] console.log: [Native Proxy] Java_java_lang_reflect_Array_setShort @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.663Z] console.log: [Native Proxy] Java_java_lang_reflect_Array_setInt @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.663Z] console.log: [Native Proxy] Java_java_lang_reflect_Array_setLong @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.663Z] console.log: [Native Proxy] Java_java_lang_reflect_Array_setFloat @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.664Z] console.log: [Native Proxy] Java_java_lang_reflect_Array_setDouble @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.665Z] console.log: [Native Proxy] Java_java_lang_reflect_Array_newArray @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.665Z] console.log: [Native Proxy] Java_java_lang_reflect_Array_multiNewArray @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.699Z] console.log: [Native Proxy] Java_java_lang_invoke_LambdaProxyClassArchive_addToArchive @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.700Z] console.log: [Native Proxy] Java_java_lang_invoke_LambdaProxyClassArchive_findFromArchive @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.719Z] console.log: [Native Proxy] Java_java_lang_StringUTF16_isBigEndian @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.726Z] console.log: [Native Proxy] Java_jdk_internal_reflect_NativeConstructorAccessorImpl_newInstance0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.752Z] console.log: [Native Proxy] Java_jdk_internal_loader_BootLoader_getSystemPackageNames @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.752Z] console.log: [Native Proxy] Java_jdk_internal_loader_BootLoader_getSystemPackageLocation @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.752Z] console.log: [Native Proxy] Java_jdk_internal_loader_BootLoader_setBootLoaderUnnamedModule0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.753Z] console.log: [Native Proxy] Java_jdk_internal_loader_NativeLibraries_load @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.754Z] console.log: [Native Proxy] Java_jdk_internal_loader_NativeLibraries_unload @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.754Z] console.log: [Native Proxy] Java_jdk_internal_loader_NativeLibraries_findBuiltinLib @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.754Z] console.log: [Native Proxy] Java_jdk_internal_loader_NativeLibraries_findEntry0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:06.838Z] console.log: [Native Proxy] Java_jdk_internal_reflect_NativeMethodAccessorImpl_invoke0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.560Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_getcwd @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.560Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_dup @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.561Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_open0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.561Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_openat0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.561Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_close0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.561Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_rewind @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.562Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_getlinelen @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.562Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_link0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.562Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_unlink0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.563Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_unlinkat0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.563Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_mknod0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.563Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_rename0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.564Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_renameat0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.566Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_mkdir0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.566Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_rmdir0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.566Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_readlink0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.566Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_realpath0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.566Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_symlink0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.566Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_stat0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.566Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_stat1 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.567Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_lstat0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.567Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_fstat @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.567Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_fstatat0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.567Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_chown0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.567Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_lchown0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.568Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_fchown @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.568Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_chmod0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.568Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_fchmod @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.568Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_utimes0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.569Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_futimes @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.569Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_futimens @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.569Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_lutimes0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.570Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_opendir0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.570Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_fdopendir @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.570Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_closedir @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.571Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_readdir @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.571Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_read @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.571Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_write @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.572Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_access0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.572Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_exists0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.572Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_getpwuid @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.573Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_getgrgid @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.573Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_getpwnam0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.574Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_getgrnam0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.574Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_statvfs0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.574Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_strerror @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.574Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_fgetxattr0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.574Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_fsetxattr0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.575Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_fremovexattr0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.575Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_flistxattr @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:07.576Z] console.log: [Native Proxy] Java_sun_nio_fs_UnixNativeDispatcher_init @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:08.299Z] console.log: [Native Proxy] Java_java_io_RandomAccessFile_open0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:08.299Z] console.log: [Native Proxy] Java_java_io_RandomAccessFile_read0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:08.299Z] console.log: [Native Proxy] Java_java_io_RandomAccessFile_readBytes @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:08.300Z] console.log: [Native Proxy] Java_java_io_RandomAccessFile_write0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:08.300Z] console.log: [Native Proxy] Java_java_io_RandomAccessFile_writeBytes @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:08.301Z] console.log: [Native Proxy] Java_java_io_RandomAccessFile_getFilePointer @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:08.301Z] console.log: [Native Proxy] Java_java_io_RandomAccessFile_seek0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:08.301Z] console.log: [Native Proxy] Java_java_io_RandomAccessFile_length @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:08.302Z] console.log: [Native Proxy] Java_java_io_RandomAccessFile_setLength @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:08.302Z] console.log: [Native Proxy] Java_java_io_RandomAccessFile_initIDs @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:08.306Z] console.log: [Native Proxy] Java_java_io_FileCleanable_cleanupClose0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:08.637Z] console.log: [Native Proxy] Java_jdk_internal_perf_Perf_attach @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:08.637Z] console.log: [Native Proxy] Java_jdk_internal_perf_Perf_detach @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:08.637Z] console.log: [Native Proxy] Java_jdk_internal_perf_Perf_createByteArray @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:08.638Z] console.log: [Native Proxy] Java_jdk_internal_perf_Perf_highResCounter @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:08.638Z] console.log: [Native Proxy] Java_jdk_internal_perf_Perf_highResFrequency @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:08.767Z] console.log: [Native Proxy] Java_java_util_zip_Inflater_initIDs @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:08.767Z] console.log: [Native Proxy] Java_java_util_zip_Inflater_init @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:08.768Z] console.log: [Native Proxy] Java_java_util_zip_Inflater_setDictionary @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:08.768Z] console.log: [Native Proxy] Java_java_util_zip_Inflater_setDictionaryBuffer @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:08.768Z] console.log: [Native Proxy] Java_java_util_zip_Inflater_inflateBytesBytes @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:08.769Z] console.log: [Native Proxy] Java_java_util_zip_Inflater_inflateBytesBuffer @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:08.769Z] console.log: [Native Proxy] Java_java_util_zip_Inflater_inflateBufferBytes @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:08.769Z] console.log: [Native Proxy] Java_java_util_zip_Inflater_inflateBufferBuffer @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:08.770Z] console.log: [Native Proxy] Java_java_util_zip_Inflater_getAdler @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:08.770Z] console.log: [Native Proxy] Java_java_util_zip_Inflater_reset @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:08.771Z] console.log: [Native Proxy] Java_java_util_zip_Inflater_end @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:14.028Z] console.log: [Native Proxy] Java_jdk_internal_jimage_NativeImageBuffer_getNativeMap @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:14.033Z] console.log: [Native Proxy] Java_java_util_concurrent_atomic_AtomicLong_VMSupportsCS8 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:14.041Z] console.log: [Native Proxy] Java_sun_nio_ch_FileChannelImpl_map0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:14.041Z] console.log: [Native Proxy] Java_sun_nio_ch_FileChannelImpl_unmap0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:14.041Z] console.log: [Native Proxy] Java_sun_nio_ch_FileChannelImpl_transferTo0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:14.042Z] console.log: [Native Proxy] Java_sun_nio_ch_FileChannelImpl_maxDirectTransferSize0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:14.042Z] console.log: [Native Proxy] Java_sun_nio_ch_FileChannelImpl_initIDs @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:14.044Z] console.log: [Native Proxy] Java_sun_nio_ch_IOUtil_randomBytes @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:14.045Z] console.log: [Native Proxy] Java_sun_nio_ch_IOUtil_makePipe @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:14.046Z] console.log: [Native Proxy] Java_sun_nio_ch_IOUtil_write1 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:14.046Z] console.log: [Native Proxy] Java_sun_nio_ch_IOUtil_drain @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:14.047Z] console.log: [Native Proxy] Java_sun_nio_ch_IOUtil_drain1 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:14.047Z] console.log: [Native Proxy] Java_sun_nio_ch_IOUtil_configureBlocking @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:14.047Z] console.log: [Native Proxy] Java_sun_nio_ch_IOUtil_fdVal @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:14.048Z] console.log: [Native Proxy] Java_sun_nio_ch_IOUtil_setfdVal @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:14.048Z] console.log: [Native Proxy] Java_sun_nio_ch_IOUtil_fdLimit @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:14.048Z] console.log: [Native Proxy] Java_sun_nio_ch_IOUtil_iovMax @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:14.049Z] console.log: [Native Proxy] Java_sun_nio_ch_IOUtil_initIDs @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:14.052Z] console.log: [Native Proxy] Java_sun_nio_ch_FileDispatcherImpl_read0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:14.053Z] console.log: [Native Proxy] Java_sun_nio_ch_FileDispatcherImpl_pread0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:14.053Z] console.log: [Native Proxy] Java_sun_nio_ch_FileDispatcherImpl_readv0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:14.053Z] console.log: [Native Proxy] Java_sun_nio_ch_FileDispatcherImpl_write0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:14.054Z] console.log: [Native Proxy] Java_sun_nio_ch_FileDispatcherImpl_pwrite0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:14.054Z] console.log: [Native Proxy] Java_sun_nio_ch_FileDispatcherImpl_writev0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:14.054Z] console.log: [Native Proxy] Java_sun_nio_ch_FileDispatcherImpl_force0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:14.055Z] console.log: [Native Proxy] Java_sun_nio_ch_FileDispatcherImpl_seek0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:14.056Z] console.log: [Native Proxy] Java_sun_nio_ch_FileDispatcherImpl_truncate0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:14.056Z] console.log: [Native Proxy] Java_sun_nio_ch_FileDispatcherImpl_size0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:14.056Z] console.log: [Native Proxy] Java_sun_nio_ch_FileDispatcherImpl_lock0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:14.056Z] console.log: [Native Proxy] Java_sun_nio_ch_FileDispatcherImpl_release0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:14.057Z] console.log: [Native Proxy] Java_sun_nio_ch_FileDispatcherImpl_close0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:14.057Z] console.log: [Native Proxy] Java_sun_nio_ch_FileDispatcherImpl_preClose0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:14.057Z] console.log: [Native Proxy] Java_sun_nio_ch_FileDispatcherImpl_dup0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:14.057Z] console.log: [Native Proxy] Java_sun_nio_ch_FileDispatcherImpl_closeIntFD @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:14.058Z] console.log: [Native Proxy] Java_sun_nio_ch_FileDispatcherImpl_canTransferToFromOverlappedMap0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:14.058Z] console.log: [Native Proxy] Java_sun_nio_ch_FileDispatcherImpl_setDirect0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:14.059Z] console.log: [Native Proxy] Java_sun_nio_ch_FileDispatcherImpl_init @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:14.077Z] console.log: [Native Proxy] Java_sun_nio_ch_NativeThread_current @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:14.077Z] console.log: [Native Proxy] Java_sun_nio_ch_NativeThread_signal @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:14.077Z] console.log: [Native Proxy] Java_sun_nio_ch_NativeThread_init @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:14.710Z] console.log: [Native Proxy] Java_com_leaningtech_jsobject_CheerpJJSObject_removeMember @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:14.711Z] console.log: [Native Proxy] Java_com_leaningtech_jsobject_CheerpJJSObject_getSlot @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:14.712Z] console.log: [Native Proxy] Java_com_leaningtech_jsobject_CheerpJJSObject_setSlot @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:14.729Z] console.log: [Native Proxy] Java_sun_awt_PlatformGraphicsInfo_getDefaultHeadlessMessage @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:17.373Z] console.log: [Native Proxy] Java_java_util_zip_CRC32_update @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:17.373Z] console.log: [Native Proxy] Java_java_util_zip_CRC32_updateBytes0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:17.374Z] console.log: [Native Proxy] Java_java_util_zip_CRC32_updateByteBuffer0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:18.321Z] console.log: [Native Proxy] Java_java_awt_Component_initIDs @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:18.321Z] console.log: [Native Proxy] Java_java_awt_Container_initIDs @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:18.992Z] console.log: [Native Proxy] Java_java_awt_AWTEvent_initIDs @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:25.413Z] requestfailed: GET http://localhost:8095/cheerpj/4.2/17/conf/jaxp.properties net::ERR_ABORTED
+[2025-12-17T22:05:26.729Z] requestfailed: GET http://localhost:8095/cheerpj/4.2/17/conf/jaxp.properties net::ERR_ABORTED
+[2025-12-17T22:05:29.155Z] response: 404 http://localhost:8095/Starsector/org/apache/log4j/PatternLayoutBeanInfo.class
+[2025-12-17T22:05:29.155Z] console.error: Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:8095/Starsector/org/apache/log4j/PatternLayoutBeanInfo.class:0:0
+[2025-12-17T22:05:29.370Z] response: 404 http://localhost:8095/Starsector/starsector-core/org/apache/log4j/PatternLayoutBeanInfo.class
+[2025-12-17T22:05:29.370Z] console.error: Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:8095/Starsector/starsector-core/org/apache/log4j/PatternLayoutBeanInfo.class:0:0
+[2025-12-17T22:05:29.475Z] response: 404 http://localhost:8095/stubs/org/apache/log4j/PatternLayoutBeanInfo.class
+[2025-12-17T22:05:29.475Z] console.error: Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:8095/stubs/org/apache/log4j/PatternLayoutBeanInfo.class:0:0
+[2025-12-17T22:05:29.690Z] response: 404 http://localhost:8095/Starsector/org/apache/log4j/PatternLayoutBeanInfo.class
+[2025-12-17T22:05:29.690Z] console.error: Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:8095/Starsector/org/apache/log4j/PatternLayoutBeanInfo.class:0:0
+[2025-12-17T22:05:29.799Z] response: 404 http://localhost:8095/Starsector/starsector-core/org/apache/log4j/PatternLayoutBeanInfo.class
+[2025-12-17T22:05:29.799Z] console.error: Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:8095/Starsector/starsector-core/org/apache/log4j/PatternLayoutBeanInfo.class:0:0
+[2025-12-17T22:05:29.995Z] response: 404 http://localhost:8095/stubs/org/apache/log4j/PatternLayoutBeanInfo.class
+[2025-12-17T22:05:29.995Z] console.error: Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:8095/stubs/org/apache/log4j/PatternLayoutBeanInfo.class:0:0
+[2025-12-17T22:05:30.117Z] response: 404 http://localhost:8095/Starsector/org/apache/log4j/LayoutBeanInfo.class
+[2025-12-17T22:05:30.117Z] console.error: Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:8095/Starsector/org/apache/log4j/LayoutBeanInfo.class:0:0
+[2025-12-17T22:05:30.313Z] response: 404 http://localhost:8095/Starsector/starsector-core/org/apache/log4j/LayoutBeanInfo.class
+[2025-12-17T22:05:30.313Z] console.error: Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:8095/Starsector/starsector-core/org/apache/log4j/LayoutBeanInfo.class:0:0
+[2025-12-17T22:05:30.436Z] response: 404 http://localhost:8095/stubs/org/apache/log4j/LayoutBeanInfo.class
+[2025-12-17T22:05:30.436Z] console.error: Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:8095/stubs/org/apache/log4j/LayoutBeanInfo.class:0:0
+[2025-12-17T22:05:30.632Z] response: 404 http://localhost:8095/Starsector/org/apache/log4j/LayoutBeanInfo.class
+[2025-12-17T22:05:30.632Z] console.error: Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:8095/Starsector/org/apache/log4j/LayoutBeanInfo.class:0:0
+[2025-12-17T22:05:30.755Z] response: 404 http://localhost:8095/Starsector/starsector-core/org/apache/log4j/LayoutBeanInfo.class
+[2025-12-17T22:05:30.755Z] console.error: Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:8095/Starsector/starsector-core/org/apache/log4j/LayoutBeanInfo.class:0:0
+[2025-12-17T22:05:30.952Z] response: 404 http://localhost:8095/stubs/org/apache/log4j/LayoutBeanInfo.class
+[2025-12-17T22:05:30.952Z] console.error: Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:8095/stubs/org/apache/log4j/LayoutBeanInfo.class:0:0
+[2025-12-17T22:05:31.286Z] response: 404 http://localhost:8095/Starsector/org/apache/log4j/LayoutCustomizer.class
+[2025-12-17T22:05:31.286Z] console.error: Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:8095/Starsector/org/apache/log4j/LayoutCustomizer.class:0:0
+[2025-12-17T22:05:31.408Z] response: 404 http://localhost:8095/Starsector/starsector-core/org/apache/log4j/LayoutCustomizer.class
+[2025-12-17T22:05:31.408Z] console.error: Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:8095/Starsector/starsector-core/org/apache/log4j/LayoutCustomizer.class:0:0
+[2025-12-17T22:05:31.606Z] response: 404 http://localhost:8095/stubs/org/apache/log4j/LayoutCustomizer.class
+[2025-12-17T22:05:31.606Z] console.error: Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:8095/stubs/org/apache/log4j/LayoutCustomizer.class:0:0
+[2025-12-17T22:05:31.713Z] response: 404 http://localhost:8095/Starsector/org/apache/log4j/LayoutCustomizer.class
+[2025-12-17T22:05:31.713Z] console.error: Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:8095/Starsector/org/apache/log4j/LayoutCustomizer.class:0:0
+[2025-12-17T22:05:31.926Z] response: 404 http://localhost:8095/Starsector/starsector-core/org/apache/log4j/LayoutCustomizer.class
+[2025-12-17T22:05:31.926Z] console.error: Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:8095/Starsector/starsector-core/org/apache/log4j/LayoutCustomizer.class:0:0
+[2025-12-17T22:05:32.019Z] response: 404 http://localhost:8095/stubs/org/apache/log4j/LayoutCustomizer.class
+[2025-12-17T22:05:32.019Z] console.error: Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:8095/stubs/org/apache/log4j/LayoutCustomizer.class:0:0
+[2025-12-17T22:05:32.231Z] response: 404 http://localhost:8095/Starsector/org/apache/log4j/PatternLayoutCustomizer.class
+[2025-12-17T22:05:32.231Z] console.error: Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:8095/Starsector/org/apache/log4j/PatternLayoutCustomizer.class:0:0
+[2025-12-17T22:05:32.338Z] response: 404 http://localhost:8095/Starsector/starsector-core/org/apache/log4j/PatternLayoutCustomizer.class
+[2025-12-17T22:05:32.338Z] console.error: Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:8095/Starsector/starsector-core/org/apache/log4j/PatternLayoutCustomizer.class:0:0
+[2025-12-17T22:05:32.551Z] response: 404 http://localhost:8095/stubs/org/apache/log4j/PatternLayoutCustomizer.class
+[2025-12-17T22:05:32.551Z] console.error: Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:8095/stubs/org/apache/log4j/PatternLayoutCustomizer.class:0:0
+[2025-12-17T22:05:32.658Z] response: 404 http://localhost:8095/Starsector/org/apache/log4j/PatternLayoutCustomizer.class
+[2025-12-17T22:05:32.658Z] console.error: Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:8095/Starsector/org/apache/log4j/PatternLayoutCustomizer.class:0:0
+[2025-12-17T22:05:32.872Z] response: 404 http://localhost:8095/Starsector/starsector-core/org/apache/log4j/PatternLayoutCustomizer.class
+[2025-12-17T22:05:32.872Z] console.error: Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:8095/Starsector/starsector-core/org/apache/log4j/PatternLayoutCustomizer.class:0:0
+[2025-12-17T22:05:32.978Z] response: 404 http://localhost:8095/stubs/org/apache/log4j/PatternLayoutCustomizer.class
+[2025-12-17T22:05:32.978Z] console.error: Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:8095/stubs/org/apache/log4j/PatternLayoutCustomizer.class:0:0
+[2025-12-17T22:05:32.999Z] console.log: [Native Proxy] Java_java_util_TimeZone_getSystemTimeZoneID @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:33.000Z] console.log: [Native Proxy] Java_java_util_TimeZone_getSystemGMTOffsetID @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:33.214Z] requestfailed: GET http://localhost:8095/cheerpj/4.2/etc/timezone net::ERR_ABORTED
+[2025-12-17T22:05:33.847Z] console.log: [Native Proxy] Java_java_awt_Color_initIDs @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:33.848Z] console.log: [Native Proxy] Java_java_awt_Toolkit_initIDs @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:35.186Z] requestfailed: GET http://localhost:8095/cheerpj/4.2/17/conf/accessibility.properties net::ERR_ABORTED
+[2025-12-17T22:05:42.321Z] console.log: 2025-12-17 22:05:42,315 [Thread-0] INFO  com.fs.starfarer.StarfarerLauncher  - Starting Starsector 0.98a-RC8 launcher
+ @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:42.324Z] console.log: 2025-12-17 22:05:42,321 [Thread-0] INFO  com.fs.starfarer.StarfarerLauncher  - Running in /app/Starsector
+ @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:42.326Z] console.log: 2025-12-17 22:05:42,324 [Thread-0] INFO  com.fs.starfarer.StarfarerLauncher  - OS: Linux 1.0
+ @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:42.327Z] console.log: 2025-12-17 22:05:42,326 [Thread-0] INFO  com.fs.starfarer.StarfarerLauncher  - Java version: 17.0.16-internal (32-bit)
+ @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:42.330Z] console.log: 2025-12-17 22:05:42,328 [Thread-0] INFO  com.fs.starfarer.StarfarerLauncher  - Max memory: 2048MB
+ @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:43.563Z] console.log: 2025-12-17 22:05:43,559 [Thread-0] INFO  com.fs.starfarer.loading.LoadingUtils  - Loading JSON from [/app/Starsector/mods_clean//enabled_mods.json]
+ @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:43.896Z] console.log: 2025-12-17 22:05:43,894 [Thread-0] INFO  com.fs.starfarer.settings.StarfarerSettings  - Loading settings
+ @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:43.904Z] console.log: 2025-12-17 22:05:43,902 [Thread-0] INFO  com.fs.starfarer.loading.LoadingUtils  - Loading JSON from [CLASSPATH: null (data/config/settings.json)]
+ @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:45.602Z] console.log: [Native Proxy] Java_java_util_prefs_FileSystemPreferences_lockFile0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:45.602Z] console.log: [Native Proxy] Java_java_util_prefs_FileSystemPreferences_unlockFile0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:45.602Z] console.log: [Native Proxy] Java_java_util_prefs_FileSystemPreferences_chmod @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:45.609Z] console.log: [Native Proxy] Java_java_lang_Shutdown_beforeHalt @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:45.609Z] console.log: [Native Proxy] Java_java_lang_Shutdown_halt0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:45.626Z] console.log: [Native Proxy] Java_java_lang_StackStreamFactory_checkStackWalkModes @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:45.627Z] console.log: [Native Proxy] Java_java_lang_StackStreamFactory_00024AbstractStackWalker_callStackWalk @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:45.627Z] console.log: [Native Proxy] Java_java_lang_StackStreamFactory_00024AbstractStackWalker_fetchStackFrames @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:45.650Z] console.log: [Native Proxy] Java_java_lang_StrictMath_sin @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:45.650Z] console.log: [Native Proxy] Java_java_lang_StrictMath_cos @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:45.650Z] console.log: [Native Proxy] Java_java_lang_StrictMath_tan @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:45.651Z] console.log: [Native Proxy] Java_java_lang_StrictMath_asin @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:45.652Z] console.log: [Native Proxy] Java_java_lang_StrictMath_acos @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:45.653Z] console.log: [Native Proxy] Java_java_lang_StrictMath_atan @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:45.653Z] console.log: [Native Proxy] Java_java_lang_StrictMath_log @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:45.654Z] console.log: [Native Proxy] Java_java_lang_StrictMath_log10 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:45.654Z] console.log: [Native Proxy] Java_java_lang_StrictMath_sqrt @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:45.654Z] console.log: [Native Proxy] Java_java_lang_StrictMath_IEEEremainder @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:45.655Z] console.log: [Native Proxy] Java_java_lang_StrictMath_atan2 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:45.655Z] console.log: [Native Proxy] Java_java_lang_StrictMath_sinh @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:45.656Z] console.log: [Native Proxy] Java_java_lang_StrictMath_cosh @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:45.657Z] console.log: [Native Proxy] Java_java_lang_StrictMath_tanh @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:45.657Z] console.log: [Native Proxy] Java_java_lang_StrictMath_expm1 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:45.657Z] console.log: [Native Proxy] Java_java_lang_StrictMath_log1p @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:45.739Z] console.log: Dec 17, 2025 10:05:45 PM java.util.prefs.FileSystemPreferences$1 run
+INFO: Created user preferences directory.
+ @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.423Z] console.log: [Native Proxy] Java_org_lwjgl_BufferUtils_zeroBuffer0 @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.423Z] console.log: [Native Proxy] Java_org_lwjgl_BufferUtils_getBufferAddress @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.738Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_nGetCurrentGammaRamp @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.738Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_nIsXrandrSupported @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.739Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_nIsXF86VidModeSupported @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.739Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_nIsNetWMFullscreenSupported @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.739Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_nLockAWT @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.740Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_nUnlockAWT @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.741Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_callErrorHandler @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.742Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_setErrorHandler @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.743Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_resetErrorHandler @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.743Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_synchronize @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.744Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_getErrorText @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.744Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_openDisplay @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.745Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_closeDisplay @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.745Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_nGetDefaultScreen @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.746Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_nUngrabKeyboard @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.746Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_nGrabKeyboard @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.747Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_nGrabPointer @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.747Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_nSetViewPort @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.747Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_nUngrabPointer @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.748Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_nDefineCursor @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.748Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_nCreateWindow @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.748Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_getRootWindow @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.749Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_hasProperty @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.749Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_getParentWindow @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.749Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_getChildCount @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.750Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_mapRaised @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.750Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_reparentWindow @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.751Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_nGetInputFocus @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.751Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_nSetInputFocus @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.751Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_nSetWindowSize @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.752Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_nGetX @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.753Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_nGetY @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.753Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_nGetWidth @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.753Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_nGetHeight @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.754Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_nDestroyWindow @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.754Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_nSwitchDisplayMode @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.754Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_nInternAtom @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.755Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_nGetGammaRampLength @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.755Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_nSetGammaRamp @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.756Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_nConvertToNativeRamp @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.756Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_nGetCurrentXRandrMode @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.756Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_nSetTitle @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.757Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_nSetClassHint @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.758Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_nReshape @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.758Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_nGetAvailableDisplayModes @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.759Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_nSync @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.759Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_nIconifyWindow @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.759Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_nGetNativeCursorCapabilities @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.760Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_nGetMinCursorSize @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.760Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_nGetMaxCursorSize @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.760Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_nCreateCursor @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.761Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_nCreateBlankCursor @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.761Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_nDestroyCursor @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.761Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_nGetPbufferCapabilities @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.762Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxDisplay_nSetWindowIcon @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.766Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxEvent_createEventBuffer @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.766Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxEvent_getPending @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.767Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxEvent_nSendEvent @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.767Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxEvent_nFilterEvent @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.768Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxEvent_nNextEvent @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.768Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxEvent_nGetType @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.769Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxEvent_nGetWindow @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.769Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxEvent_nSetWindow @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.770Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxEvent_nGetFocusMode @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.770Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxEvent_nGetFocusDetail @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.771Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxEvent_nGetClientMessageType @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.772Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxEvent_nGetClientData @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.772Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxEvent_nGetClientFormat @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.773Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxEvent_nGetButtonTime @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.773Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxEvent_nGetButtonState @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.773Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxEvent_nGetButtonType @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.774Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxEvent_nGetButtonButton @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.774Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxEvent_nGetButtonRoot @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.775Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxEvent_nGetButtonXRoot @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.775Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxEvent_nGetButtonYRoot @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.776Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxEvent_nGetButtonX @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.777Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxEvent_nGetButtonY @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.777Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxEvent_nGetKeyAddress @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.777Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxEvent_nGetKeyTime @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.778Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxEvent_nGetKeyType @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.778Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxEvent_nGetKeyKeyCode @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.778Z] console.log: [Native Proxy] Java_org_lwjgl_opengl_LinuxEvent_nGetKeyState @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.780Z] console.log: [LWJGL] native first - call Java_org_lwjgl_opengl_LinuxEvent_createEventBuffer  @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.785Z] console.log: [LWJGL] native first - call Java_org_lwjgl_opengl_LinuxDisplay_nLockAWT  @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.789Z] console.log: [Native Proxy] Java_java_lang_ProcessImpl_forkAndExec @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.789Z] console.log: [Native Proxy] Java_java_lang_ProcessImpl_init @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.797Z] console.log: [Native Proxy] Java_java_lang_ProcessEnvironment_environ @ http://localhost:8095/starsector.html:55:81
+[2025-12-17T22:05:46.801Z] console.warning: [cj3.js] shim __syscall_pipe2 @ http://localhost:8095/starsector.html:57:84
+[2025-12-17T22:05:58.992Z] ui: {"loading_hidden":true,"loading_status":"Starsector Running...","loading_substatus":"Launching Starsector Main Class","top_bar_visible":true,"error_visible":false,"error_message":"An error occurred while starting Starsector.","error_details":""}
+[2025-12-17T22:05:59.004Z] dom: {"canvasCount":1,"canvases":[{"tag":"CANVAS","id":"lwjgl","className":"","width":1280,"height":768,"clientWidth":1200,"clientHeight":720,"styleWidth":"100%","styleHeight":"100%","rect":{"x":-6,"y":0,"width":1200,"height":720},"gl":{"isContextLost":false,"version":"WebGL 2.0 (OpenGL ES 3.0 Chromium)","renderer":"WebKit WebGL","vendor":"WebKit"}}],"gameContainerRect":{"x":0,"y":0,"width":1280,"height":720},"lwjglCanvasElementPresent":true,"lwjglCanvasElementRect":{"x":-6,"y":0,"width":1200,"height":720},"lwjglFrameCount":0,"lwjglFrameLimit":0,"lwjglFbWidth":1000,"lwjglFbHeight":500}
+[2025-12-17T22:05:59.006Z] console.warning: [GroupMarkerNotSet(crbug.com/242999)!:A8401800A4050000]Automatic fallback to software WebGL has been deprecated. Please use the --enable-unsafe-swiftshader (about:flags#enable-unsafe-swiftshader) flag to opt in to lower security guarantees for trusted content. @ http://localhost:8095/starsector.html:0:0
+[2025-12-17T22:05:59.007Z] lwjgl: {"present":true,"totalUnique":2,"totalCalls":3,"top":[{"name":"Java_org_lwjgl_opengl_LinuxEvent_createEventBuffer","count":2},{"name":"Java_org_lwjgl_opengl_LinuxDisplay_nLockAWT","count":1}],"important":{}}
+[2025-12-17T22:05:59.028Z] console.warning: [.WebGL-0x4e2c000e0e00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels @ http://localhost:8095/starsector.html:0:0
+[2025-12-17T22:05:59.206Z] page: screenshot_copied C:\Users\adyba\adriano-to-the-star-clean\playwright-artifacts\starsector-final.png
+[2025-12-17T22:05:59.210Z] page: screenshot_saved C:\Users\adyba\adriano-to-the-star-clean\test-results\tests-e2e-starsector-conso-8ce3e-ures-console-logs-to-a-file\starsector-final.png
+[2025-12-17T22:05:59.211Z] summary: saw_missing_import_pipe2=false saw_cj3_shim_pipe2=true requests_to_8100=0 final_url=http://localhost:8095/starsector.html final_origin=http://localhost:8095 expected_origin=http://localhost:8095

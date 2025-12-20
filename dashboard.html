@@ -1,0 +1,1000 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dashboard - Adriano To The Star</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="pages-styles.css">
+    <link rel="stylesheet" href="groups-styles.css">
+    <link rel="stylesheet" href="loader-minimal.css">
+    <link rel="stylesheet" href="theme-styles.css">
+    <link rel="stylesheet" href="accessibility-styles.css">
+    <script src="loader.js"></script>
+    <script src="animations.js" defer></script>
+    <script src="navigation.js" defer></script>
+    <script src="cosmic-music-player.js" defer></script>
+    <script src="theme-toggle.js" defer></script>
+    <script src="accessibility.js" defer></script>
+
+    <style>
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .dashboard-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(20, 20, 30, 0.9));
+            border: 2px solid rgba(186, 148, 79, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(186, 148, 79, 0.6);
+            box-shadow: 0 10px 30px rgba(186, 148, 79, 0.2);
+        }
+
+        .stat-value {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ba944f;
+            margin: 1rem 0;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .claims-section {
+            margin-top: 3rem;
+        }
+
+        .claims-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .claim-card {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(20, 20, 30, 0.9));
+            border: 2px solid rgba(186, 148, 79, 0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .claim-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(186, 148, 79, 0.6);
+        }
+
+        .claim-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+
+        .claim-name {
+            font-size: 1.3rem;
+            color: #ba944f;
+            font-weight: 600;
+        }
+
+        .claim-certificate {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            background: rgba(186, 148, 79, 0.1);
+            padding: 0.3rem 0.6rem;
+            border-radius: 5px;
+        }
+
+        .claim-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .claim-detail-label {
+            opacity: 0.6;
+        }
+
+        .claim-detail-value {
+            color: #ba944f;
+            font-weight: 600;
+        }
+
+        .loading-message {
+            text-align: center;
+            padding: 3rem;
+            font-size: 1.2rem;
+            opacity: 0.7;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: rgba(186, 148, 79, 0.1);
+            border-radius: 15px;
+            border: 2px dashed rgba(186, 148, 79, 0.3);
+        }
+
+        .empty-state-icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+        }
+
+        .empty-state h3 {
+            color: #ba944f;
+            margin-bottom: 0.5rem;
+        }
+
+        .empty-state p {
+            opacity: 0.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            background: rgba(186, 148, 79, 0.2);
+            border: 2px solid rgba(186, 148, 79, 0.5);
+            border-radius: 10px;
+            color: #ba944f;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: rgba(186, 148, 79, 0.3);
+            border-color: rgba(186, 148, 79, 0.7);
+            transform: translateY(-2px);
+        }
+    </style>
+    <link rel="manifest" href="manifest.json">
+</head>
+
+<body>
+    <!-- Menu Toggle Button -->
+    <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">
+        <span class="menu-icon"></span>
+        <span class="menu-icon"></span>
+        <span class="menu-icon"></span>
+    </button>
+    <!-- Navigation -->
+
+    <!-- Loading Screen -->
+    <div id="loader" class="loader">
+        <div class="loader-content">
+            <div class="stars"></div>
+            <div class="planet"></div>
+            <div class="rocket"></div>
+            <h2>Loading Dashboard...</h2>
+        </div>
+    </div>
+
+    <main>
+        <section class="page-hero" data-entrance="fadeIn">
+            <h1 class="page-title" data-scroll-animate>📊 MY DASHBOARD</h1>
+            <p class="page-subtitle">Your Exoplanet Collection</p>
+        </section>
+
+        <section class="content-section">
+            <div class="content-container">
+                <div class="dashboard-container">
+                    <!-- Logged Out View -->
+                    <div id="logged-out-view" style="display: none;">
+                        <div class="login-container" data-entrance="fadeIn" style="max-width: 500px; margin: 0 auto;">
+                            <div class="login-content">
+                                <div class="login-icon">
+                                    <div class="icon-glow"></div>
+                                    <span class="icon-emoji">📊</span>
+                                </div>
+                                <h2 class="login-title">Dashboard Access</h2>
+                                <p class="login-subtitle">Log in to view your dashboard, claimed exoplanets, and member
+                                    statistics.</p>
+                                <div class="login-button-wrapper">
+                                    <button onclick="showModal('login-modal')" class="cosmic-login-button"
+                                        data-hover="lift">
+                                        <span class="button-glow"></span>
+                                        <span class="button-text">
+                                            <span class="button-icon">✨</span>
+                                            Log In
+                                            <span class="button-arrow">→</span>
+                                        </span>
+                                    </button>
+                                </div>
+                                <p class="login-footer">
+                                    Don't have an account?
+                                    <a href="#" onclick="showModal('register-modal')" class="register-link">
+                                        <span>Create one now</span>
+                                        <span class="link-underline"></span>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Logged In View -->
+                    <div id="logged-in-view" style="display: none;">
+                        <div class="dashboard-header">
+                            <h2 id="welcome-message">Welcome back!</h2>
+                            <p id="user-email"></p>
+                        </div>
+
+                        <!-- Statistics -->
+                        <div class="stats-grid" id="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-label">Total Claimed</div>
+                                <div class="stat-value" id="stat-total">0</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-label">Confirmed Planets</div>
+                                <div class="stat-value" id="stat-confirmed">0</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-label">Candidates</div>
+                                <div class="stat-value" id="stat-candidates">0</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-label">Earth-Like</div>
+                                <div class="stat-value" id="stat-earthlike">0</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-label">Gas Giants</div>
+                                <div class="stat-value" id="stat-gasgiants">0</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-label">Super-Earths</div>
+                                <div class="stat-value" id="stat-superearths">0</div>
+                            </div>
+                        </div>
+
+                        <!-- Discovery Leaderboard -->
+                        <div class="leaderboard-section" style="margin-top: 3rem;">
+                            <h2 style="text-align: center; margin-bottom: 2rem; color: #ba944f;">🏆 Discovery Leaderboard</h2>
+                            <div id="leaderboard-container"></div>
+                        </div>
+
+                        <!-- Planet Collections -->
+                        <div class="collections-section" style="margin-top: 3rem;">
+                            <h2 style="text-align: center; margin-bottom: 2rem; color: #ba944f;">📚 Your Collections</h2>
+                            <div id="collections-container"></div>
+                        </div>
+
+                        <!-- Achievements -->
+                        <div class="achievements-section" style="margin-top: 3rem;">
+                            <h2 style="text-align: center; margin-bottom: 2rem; color: #ba944f;">🏅 Your Achievements</h2>
+                            <div id="achievements-container"></div>
+                        </div>
+
+                        <!-- Analytics Dashboard Widgets -->
+                        <div class="analytics-section" style="margin-top: 3rem;">
+                            <h2 style="text-align: center; margin-bottom: 2rem; color: #ba944f;">📊 Analytics Dashboard</h2>
+                            <p id="ai-usage-summary-blurb" style="text-align: center; opacity: 0.75; font-size: 0.9rem; margin-top: -0.5rem; margin-bottom: 1.5rem;">
+                                AI tools like Stellar AI chat, smart search suggestions, and image analysis are monitored for usage and fairness.
+                                For detailed insights, open the full Analytics Dashboard or use the developer summaries below.
+                            </p>
+                            <div id="analytics-container"></div>
+                        </div>
+
+                        <!-- Customizable Dashboard -->
+                        <div class="customizable-dashboard-section" style="margin-top: 3rem;">
+                            <h2 style="text-align: center; margin-bottom: 2rem; color: #ba944f;">🎨 Customize Dashboard</h2>
+                            <div id="customizable-dashboard-container"></div>
+                        </div>
+
+                        <!-- Claimed Planets -->
+                        <div class="claims-section">
+                            <h2 style="text-align: center; margin-bottom: 2rem; color: #ba944f;">Your Claimed Exoplanets
+                            </h2>
+                            <div id="claims-container" class="loading-message">
+                                Loading your claims...
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 2rem; text-align: center; opacity: 0.7; font-size: 0.9rem;">
+                            <div style="display: inline-flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; align-items: center;">
+                                <button type="button" onclick="if(window.exportPerformanceMetrics){window.exportPerformanceMetrics();}else{console.warn('exportPerformanceMetrics helper not loaded');}"
+                                    style="padding: 0.5rem 1rem; border-radius: 8px; border: 1px solid rgba(186,148,79,0.5); background: rgba(0,0,0,0.5); color: #ba944f; cursor: pointer;">
+                                    📥 Export Performance Metrics (Dev)
+                                </button>
+                                <button type="button" onclick="if(window.showPerformanceSummary){window.showPerformanceSummary();}else{console.warn('showPerformanceSummary helper not loaded');}"
+                                    style="padding: 0.5rem 1rem; border-radius: 8px; border: 1px solid rgba(186,148,79,0.5); background: rgba(0,0,0,0.5); color: #ba944f; cursor: pointer;">
+                                    📊 Perf+Vitals Summary (Dev)
+                                </button>
+                                <button type="button" onclick="if(window.showAIUsageSummary){window.showAIUsageSummary();}else{console.warn('showAIUsageSummary helper not loaded');}"
+                                    style="padding: 0.5rem 1rem; border-radius: 8px; border: 1px solid rgba(186,148,79,0.5); background: rgba(0,0,0,0.5); color: #ba944f; cursor: pointer;">
+                                    🤖 AI Usage Summary (Dev)
+                                </button>
+                                <button type="button" onclick="if(window.showAIFairnessSummary){window.showAIFairnessSummary();}else{console.warn('showAIFairnessSummary helper not loaded');}"
+                                    style="padding: 0.5rem 1rem; border-radius: 8px; border: 1px solid rgba(186,148,79,0.5); background: rgba(0,0,0,0.5); color: #ba944f; cursor: pointer;">
+                                    ⚖️ AI Fairness Summary (Dev)
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>🔐 Member Login</h2>
+                <button class="close-modal" onclick="hideModal('login-modal')">×</button>
+            </div>
+            <form id="login-form" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label>Username or Email</label>
+                    <input type="text" id="login-username" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <button type="submit" class="submit-btn">Login</button>
+            </form>
+            <p class="form-footer">
+                Don't have an account? <a href="#"
+                    onclick="hideModal('login-modal'); showModal('register-modal');">Register</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="register-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>📝 Create Account</h2>
+                <button class="close-modal" onclick="hideModal('register-modal')">×</button>
+            </div>
+            <form id="register-form" onsubmit="handleRegister(event)">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="register-username" required minlength="3">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="register-email" required>
+                </div>
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="register-fullname">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="register-password" required minlength="8">
+                </div>
+                <button type="submit" class="submit-btn">Create Account</button>
+            </form>
+            <p class="form-footer">
+                Already have an account? <a href="#"
+                    onclick="hideModal('register-modal'); showModal('login-modal');">Login</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="supabase-config.js"></script>
+    <script src="auth-supabase.js" defer></script>
+    <script src="csrf-protection.js" defer></script>
+    <script src="security-audit-logging.js" defer></script>
+    
+    <!-- Dashboard Widgets -->
+    <script src="dashboard-widgets.js" defer></script>
+    <script src="analytics-dashboard-widgets.js" defer></script>
+    <script src="advanced-analytics-widgets.js" defer></script>
+    <script src="customizable-dashboard-layouts.js" defer></script>
+
+    <!-- Core Web Vitals & Performance Budgets -->
+    <script src="core-web-vitals-monitoring.js" defer></script>
+    <script src="core-web-vitals-dashboard.js" defer></script>
+    <script src="core-web-vitals-alerts.js" defer></script>
+    <script src="performance-budgets-system.js" defer></script>
+    <script src="performance-metrics-export.js" defer></script>
+
+    <link rel="stylesheet" href="dashboard-widgets-styles.css">
+    <link rel="stylesheet" href="members-styles.css">
+    <link rel="stylesheet" href="i18n-styles.css">
+
+    <script>
+        // Dashboard functionality
+        let dashboardData = null;
+
+        // Ensure showModal and hideModal functions are available
+        function showModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('active');
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function hideModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('active');
+                modal.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Check auth status on load
+        document.addEventListener('DOMContentLoaded', async function () {
+            // Hide loader first
+            const loader = document.getElementById('loader');
+            if (loader) {
+                loader.style.display = 'none';
+            }
+
+            // Wait for authManager to be available (since auth-supabase.js uses defer)
+            let attempts = 0;
+            while (typeof authManager === 'undefined' && attempts < 50) {
+                await new Promise(resolve => setTimeout(resolve, 100));
+                attempts++;
+            }
+
+            if (typeof authManager !== 'undefined') {
+                // Wait a bit more for auth manager to fully initialize
+                setTimeout(async () => {
+                    const user = authManager.getCurrentUser();
+                    const loggedOutView = document.getElementById('logged-out-view');
+                    const loggedInView = document.getElementById('logged-in-view');
+
+                    if (user && authManager.isAuthenticated()) {
+                        // User is logged in
+                        if (loggedOutView) loggedOutView.style.display = 'none';
+                        if (loggedInView) loggedInView.style.display = 'block';
+
+                        const welcomeMsg = document.getElementById('welcome-message');
+                        const userEmail = document.getElementById('user-email');
+                        if (welcomeMsg) {
+                            welcomeMsg.textContent = `Welcome back, ${user.username || user.fullName || 'Explorer'}!`;
+                        }
+                        if (userEmail && user.email) {
+                            userEmail.textContent = user.email;
+                        }
+                        await loadDashboard();
+                    } else {
+                        // User is not logged in
+                        if (loggedOutView) loggedOutView.style.display = 'block';
+                        if (loggedInView) loggedInView.style.display = 'none';
+                    }
+                }, 200);
+            } else {
+                // Auth manager not available, show logged out view
+                const loggedOutView = document.getElementById('logged-out-view');
+                const loggedInView = document.getElementById('logged-in-view');
+                if (loggedOutView) loggedOutView.style.display = 'block';
+                if (loggedInView) loggedInView.style.display = 'none';
+            }
+        });
+
+        // Load dashboard data
+        async function loadDashboard() {
+            console.log('📊 Loading dashboard data...');
+
+            if (!authManager || !authManager.isAuthenticated()) {
+                console.warn('⚠️ User not authenticated, showing empty state');
+                const container = document.getElementById('claims-container');
+                if (container) {
+                    container.innerHTML = `
+                        <div class="empty-state">
+                            <div class="empty-state-icon">🔒</div>
+                            <h3>Authentication Required</h3>
+                            <p>Please log in to view your dashboard</p>
+                        </div>
+                    `;
+                }
+                return;
+            }
+
+            // Check if we're on GitLab Pages (no backend available)
+            const isGitLabPages = window.location.hostname.includes('gitlab.io') ||
+                window.location.hostname.includes('gitlab-pages') ||
+                (window.location.hostname !== 'localhost' &&
+                    window.location.hostname !== '127.0.0.1');
+
+            if (isGitLabPages) {
+                console.log('🌐 GitLab Pages detected - Backend not available, showing local data');
+                showLocalDashboardData();
+                return;
+            }
+
+            // Try to load from backend (localhost only)
+            try {
+                console.log('🔌 Attempting to connect to backend server...');
+
+                // Get auth headers properly
+                const headers = authManager.getHeaders ? authManager.getHeaders() : {
+                    'Authorization': `Bearer ${authManager.token || ''}`
+                };
+
+                console.log('📡 Fetching dashboard stats from backend...');
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
+
+                const response = await fetch('http://localhost:3002/api/dashboard/stats', {
+                    headers: headers,
+                    signal: controller.signal
+                });
+
+                clearTimeout(timeoutId);
+
+                console.log('📥 Response received:', response.status, response.statusText);
+
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log('✅ Dashboard data loaded successfully:', data);
+
+                    if (data.success) {
+                        dashboardData = data;
+                        updateStats(data.stats);
+                        displayClaims(data.claims);
+                        // Initialize new dashboard features
+                        initializeDashboardFeatures();
+                        console.log('✓ Dashboard updated with backend data');
+                    } else {
+                        console.warn('⚠️ Backend returned success:false');
+                        showLocalDashboardData();
+                    }
+                } else {
+                    console.error('✗ Backend returned error status:', response.status);
+                    const errorText = await response.text();
+                    console.error('Error details:', errorText);
+                    showBackendError(response.status, errorText);
+                }
+            } catch (error) {
+                console.error('✗ Error loading dashboard:', error);
+                console.error('Error name:', error.name);
+                console.error('Error message:', error.message);
+                console.error('Error stack:', error.stack);
+
+                if (error.name === 'AbortError') {
+                    console.error('⏱️ Request timed out after 5 seconds');
+                    showBackendError('TIMEOUT', 'Backend server did not respond in time');
+                } else if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
+                    console.error('🌐 Network error - Backend server not reachable');
+                    showBackendError('NETWORK', 'Cannot reach backend server. Is it running?');
+                } else {
+                    showBackendError('UNKNOWN', error.message || 'Unknown error occurred');
+                }
+            }
+        }
+
+        // Show local dashboard data (for GitLab Pages or when backend is unavailable)
+        function showLocalDashboardData() {
+            console.log('📦 Loading local dashboard data...');
+
+            // Try to get claims from localStorage or sessionStorage
+            const localClaims = JSON.parse(localStorage.getItem('user_claims') || '[]');
+            const sessionClaims = JSON.parse(sessionStorage.getItem('pending_claims') || '[]');
+
+            console.log('Local claims found:', localClaims.length);
+            console.log('Session claims found:', sessionClaims.length);
+
+            // Update stats with local data
+            const localStats = {
+                totalClaimed: localClaims.length,
+                confirmedPlanets: localClaims.filter(c => c.status === 'CONFIRMED').length,
+                candidatePlanets: localClaims.filter(c => c.status === 'CANDIDATE').length,
+                earthLike: localClaims.filter(c => c.type === 'Earth-like').length,
+                gasGiants: localClaims.filter(c => c.type === 'Gas Giant').length,
+                superEarths: localClaims.filter(c => c.type === 'Super-Earth').length
+            };
+
+            updateStats(localStats);
+
+            // Initialize new dashboard features
+            initializeDashboardFeatures();
+
+            if (localClaims.length > 0) {
+                displayClaims(localClaims);
+            } else {
+                const container = document.getElementById('claims-container');
+                if (container) {
+                    container.innerHTML = `
+                        <div class="empty-state">
+                            <div class="empty-state-icon">🌌</div>
+                            <h3>No Claims Yet</h3>
+                            <p>Start exploring the database and claim your first exoplanet!</p>
+                            <a href="database.html" class="cta-button">Browse Database</a>
+                            <p style="margin-top: 1rem; opacity: 0.6; font-size: 0.9rem;">
+                                💡 Tip: Backend server is only needed for persistent storage. 
+                                Your claims are saved locally for now.
+                            </p>
+                        </div>
+                    `;
+                }
+            }
+        }
+
+        // Initialize dashboard features (leaderboard, collections, achievements)
+        function initializeDashboardFeatures() {
+            // Initialize leaderboard
+            if (window.planetDiscoveryLeaderboard) {
+                const leaderboardContainer = document.getElementById('leaderboard-container');
+                if (leaderboardContainer) {
+                    window.planetDiscoveryLeaderboard.renderLeaderboard('leaderboard-container');
+                }
+            }
+
+            // Initialize collections
+            if (window.planetCollectionShowcase) {
+                const collectionsContainer = document.getElementById('collections-container');
+                if (collectionsContainer) {
+                    const user = authManager?.getCurrentUser();
+                    window.planetCollectionShowcase.renderShowcase('collections-container', user?.id);
+                }
+            }
+
+            // Initialize achievements
+            if (window.planetDiscoveryAchievements) {
+                const achievementsContainer = document.getElementById('achievements-container');
+                if (achievementsContainer) {
+                    window.planetDiscoveryAchievements.renderAchievements('achievements-container');
+                }
+            }
+
+            // Initialize customizable dashboard
+            if (window.customizableDashboard) {
+                const dashboardContainer = document.getElementById('customizable-dashboard-container');
+                if (dashboardContainer) {
+                    window.customizableDashboard.renderDashboard('customizable-dashboard-container');
+                }
+            }
+
+            // Initialize export functionality
+            if (window.planetDiscoveryExport) {
+                const exportContainer = document.getElementById('export-container');
+                if (exportContainer) {
+                    window.planetDiscoveryExport.renderExport('export-container');
+                }
+            }
+
+            // Initialize discovery calendar
+            if (window.planetDiscoveryCalendar) {
+                const calendarContainer = document.getElementById('discovery-calendar-container');
+                if (calendarContainer) {
+                    window.planetDiscoveryCalendar.renderCalendar('discovery-calendar-container');
+                }
+            }
+        }
+
+        // Show backend error with detailed information
+        function showBackendError(status, details) {
+            console.error('🚨 Showing backend error:', status, details);
+
+            const container = document.getElementById('claims-container');
+            if (!container) return;
+
+            let errorMessage = 'Could not connect to the backend server.';
+            let errorDetails = '';
+            let troubleshooting = '';
+
+            if (status === 'TIMEOUT') {
+                errorMessage = 'Backend server timeout';
+                errorDetails = 'The server took too long to respond.';
+                troubleshooting = 'Check if the backend server is running and not overloaded.';
+            } else if (status === 'NETWORK') {
+                errorMessage = 'Cannot reach backend server';
+                errorDetails = 'Network connection failed.';
+                troubleshooting = 'Make sure the backend server is running on port 3002: <code>npm start</code> in the backend folder.';
+            } else if (status === 401 || status === 403) {
+                errorMessage = 'Authentication failed';
+                errorDetails = 'Your session may have expired.';
+                troubleshooting = 'Try logging out and logging back in.';
+            } else if (status === 404) {
+                errorMessage = 'Backend endpoint not found';
+                errorDetails = 'The dashboard API endpoint does not exist.';
+                troubleshooting = 'Check if the backend server has the dashboard routes configured.';
+            } else if (status === 500) {
+                errorMessage = 'Backend server error';
+                errorDetails = 'The server encountered an internal error.';
+                troubleshooting = 'Check the backend server logs for more details.';
+            } else if (status) {
+                errorMessage = `Backend error (${status})`;
+                errorDetails = details || 'An error occurred.';
+                troubleshooting = 'Check the browser console and backend logs for details.';
+            }
+
+            container.innerHTML = `
+                <div class="empty-state">
+                    <div class="empty-state-icon">⚠️</div>
+                    <h3>${errorMessage}</h3>
+                    <p style="margin: 1rem 0; opacity: 0.8;">${errorDetails}</p>
+                    ${troubleshooting ? `<p style="margin-top: 1rem; padding: 1rem; background: rgba(186, 148, 79, 0.1); border-radius: 8px; border-left: 3px solid #ba944f;">
+                        <strong>💡 Troubleshooting:</strong><br>
+                        ${troubleshooting}
+                    </p>` : ''}
+                    <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(0, 0, 0, 0.3); border-radius: 8px; font-size: 0.85rem; opacity: 0.7;">
+                        <strong>Debug Info:</strong><br>
+                        Status: ${status || 'Unknown'}<br>
+                        ${details ? `Details: ${details.substring(0, 100)}${details.length > 100 ? '...' : ''}` : ''}<br>
+                        Check browser console (F12) for more details.
+                    </div>
+                    <a href="database.html" class="cta-button" style="margin-top: 1.5rem;">Browse Database Instead</a>
+                </div>
+            `;
+        }
+
+        // Update statistics display
+        function updateStats(stats) {
+            const statTotal = document.getElementById('stat-total');
+            const statConfirmed = document.getElementById('stat-confirmed');
+            const statCandidates = document.getElementById('stat-candidates');
+            const statEarthlike = document.getElementById('stat-earthlike');
+            const statGasgiants = document.getElementById('stat-gasgiants');
+            const statSuperearths = document.getElementById('stat-superearths');
+
+            if (statTotal) statTotal.textContent = stats.totalClaimed || 0;
+            if (statConfirmed) statConfirmed.textContent = stats.confirmedPlanets || 0;
+            if (statCandidates) statCandidates.textContent = stats.candidatePlanets || 0;
+            if (statEarthlike) statEarthlike.textContent = stats.earthLike || 0;
+            if (statGasgiants) statGasgiants.textContent = stats.gasGiants || 0;
+            if (statSuperearths) statSuperearths.textContent = stats.superEarths || 0;
+        }
+
+        // Display claimed planets
+        function displayClaims(claims) {
+            const container = document.getElementById('claims-container');
+
+            if (!claims || claims.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">🌌</div>
+                        <h3>No Claims Yet</h3>
+                        <p>Start exploring the database and claim your first exoplanet!</p>
+                        <a href="database.html" class="cta-button">Browse Database</a>
+                    </div>
+                `;
+                return;
+            }
+
+            const claimsHTML = claims.map(claim => {
+                const planet = claim.planet || {};
+                const typeIcon = getPlanetIcon(planet.type || 'Unknown');
+
+                return `
+                    <div class="claim-card" data-entrance="slideUp">
+                        <div class="claim-header">
+                            <div class="claim-name">
+                                ${typeIcon} ${planet.kepler_name || planet.kepoi_name || `Kepler-${claim.kepid}`}
+                            </div>
+                            <div class="claim-certificate">
+                                ${claim.certificate?.number || 'CERT-' + claim.id}
+                            </div>
+                        </div>
+                        <div class="claim-details">
+                            <div>
+                                <div class="claim-detail-label">Status</div>
+                                <div class="claim-detail-value">${planet.status || 'UNKNOWN'}</div>
+                            </div>
+                            <div>
+                                <div class="claim-detail-label">Type</div>
+                                <div class="claim-detail-value">${planet.type || 'Unknown'}</div>
+                            </div>
+                            <div>
+                                <div class="claim-detail-label">Radius</div>
+                                <div class="claim-detail-value">${(planet.radius || 0).toFixed(2)}x 🌍</div>
+                            </div>
+                            <div>
+                                <div class="claim-detail-label">Claimed</div>
+                                <div class="claim-detail-value">${new Date(claim.claimedAt).toLocaleDateString()}</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            container.innerHTML = `<div class="claims-grid">${claimsHTML}</div>`;
+        }
+
+        // Get planet icon
+        function getPlanetIcon(type) {
+            const icons = {
+                'Earth-like': '🌍',
+                'Super-Earth': '🪐',
+                'Gas Giant': '🪐',
+                'Neptune-like': '🔵',
+                'Unknown': '🌌'
+            };
+            return icons[type] || '🌌';
+        }
+
+        // Login handler
+        async function handleLogin(event) {
+            event.preventDefault();
+
+            const usernameEl = document.getElementById('login-username');
+            const passwordEl = document.getElementById('login-password');
+
+            if (!usernameEl || !passwordEl) {
+                alert('Login form elements not found. Please refresh the page.');
+                return;
+            }
+
+            const username = usernameEl.value.trim();
+            const password = passwordEl.value;
+
+            if (!username || !password) {
+                alert('Please enter both username/email and password.');
+                return;
+            }
+
+            // Wait for authManager to be available
+            let attempts = 0;
+            while (typeof authManager === 'undefined' && attempts < 50) {
+                await new Promise(resolve => setTimeout(resolve, 100));
+                attempts++;
+            }
+
+            if (typeof authManager === 'undefined') {
+                alert('Authentication system not loaded. Please refresh the page.');
+                return;
+            }
+
+            try {
+                // Show loading state
+                const submitBtn = document.querySelector('#login-form button[type="submit"]');
+                if (submitBtn) {
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = 'Logging in...';
+                }
+
+                const result = await authManager.login(username, password);
+
+                if (result.success) {
+                    hideModal('login-modal');
+
+                    // Update UI immediately without reload
+                    const loggedOutView = document.getElementById('logged-out-view');
+                    const loggedInView = document.getElementById('logged-in-view');
+                    const user = authManager.getCurrentUser();
+
+                    if (loggedOutView) loggedOutView.style.display = 'none';
+                    if (loggedInView) loggedInView.style.display = 'block';
+
+                    const welcomeMsg = document.getElementById('welcome-message');
+                    const userEmail = document.getElementById('user-email');
+                    if (welcomeMsg && user) {
+                        welcomeMsg.textContent = `Welcome back, ${user.username || user.fullName || 'Explorer'}!`;
+                    }
+                    if (userEmail && user && user.email) {
+                        userEmail.textContent = user.email;
+                    }
+
+                    // Load dashboard data
+                    await loadDashboard();
+                } else {
+                    alert(result.error || 'Login failed. Please check your credentials.');
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Login';
+                    }
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                alert('An error occurred during login. Please try again.');
+                const submitBtn = document.querySelector('#login-form button[type="submit"]');
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Login';
+                }
+            }
+        }
+
+        // Register handler
+        async function handleRegister(event) {
+            event.preventDefault();
+            const usernameEl = document.getElementById('register-username');
+            const emailEl = document.getElementById('register-email');
+            const fullNameEl = document.getElementById('register-fullname');
+            const passwordEl = document.getElementById('register-password');
+
+            if (!usernameEl || !emailEl || !passwordEl) {
+                alert('Registration form elements not found. Please refresh the page.');
+                return;
+            }
+
+            const username = usernameEl.value;
+            const email = emailEl.value;
+            const fullName = fullNameEl ? fullNameEl.value : '';
+            const password = passwordEl.value;
+
+            if (!authManager) {
+                alert('Authentication system not loaded. Please refresh the page.');
+                return;
+            }
+
+            try {
+                // Show loading state
+                const submitBtn = document.querySelector('#register-form button[type="submit"]');
+                if (submitBtn) {
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = 'Creating account...';
+                }
+
+                const result = await authManager.register(username, email, password, fullName);
+
+                if (result.success) {
+                    hideModal('register-modal');
+
+                    // Update UI immediately without reload
+                    const loggedOutView = document.getElementById('logged-out-view');
+                    const loggedInView = document.getElementById('logged-in-view');
+                    const user = authManager.getCurrentUser();
+
+                    if (loggedOutView) loggedOutView.style.display = 'none';
+                    if (loggedInView) loggedInView.style.display = 'block';
+
+                    const welcomeMsg = document.getElementById('welcome-message');
+                    const userEmail = document.getElementById('user-email');
+                    if (welcomeMsg && user) {
+                        welcomeMsg.textContent = `Welcome, ${user.username || user.fullName || 'Explorer'}!`;
+                    }
+                    if (userEmail && user && user.email) {
+                        userEmail.textContent = user.email;
+                    }
+
+                    // Load dashboard data
+                    await loadDashboard();
+                } else {
+                    alert(result.error || 'Registration failed. Please try again.');
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Create Account';
+                    }
+                }
+            } catch (error) {
+                console.error('Registration error:', error);
+                alert('An error occurred during registration. Please try again.');
+                const submitBtn = document.querySelector('#register-form button[type="submit"]');
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Create Account';
+                }
+            }
+        }
+    </script>
+    <script src="pwa-loader.js"></script>
+    <script src="i18n.js" defer></script>
+    <script src="planet-discovery-leaderboard.js" defer></script>
+    <script src="planet-collection-showcase.js" defer></script>
+    <script src="planet-discovery-achievements.js" defer></script>
+    <script src="planet-discovery-export.js" defer></script>
+    <script src="planet-discovery-calendar.js" defer></script>
+</body>
+
+</html>

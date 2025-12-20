@@ -1,0 +1,110 @@
+{
+  "hullName": "Gozanti Class Assault Cruiser",
+  "hullId": "sw_gozanti",
+  "hullSize": "FRIGATE",
+  "spriteName": "graphics/ships/empire/sw_gozanti.png",
+  "style": "SW_IMPERIAL",
+  "height": 132,
+  "width": 60,
+  "center": [29.5, 66],
+  "collisionRadius": 63.5,
+  "shieldCenter": [0, -0],
+  "shieldRadius": 65.5,
+  "viewOffset": 0,
+  "builtInMods": [
+    "blast_doors",
+    "sw_targeting_computer",
+    "sw_deflector_shield"
+  ],
+  "weaponSlots": [
+    {
+      "id": "WS0001",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": 0,
+      "locations": [54.5, 4]
+    },
+    {
+      "id": "WS0002",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": -0,
+      "locations": [54.5, -4]
+    },
+    {
+      "id": "WS0003",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": 0,
+      "locations": [24.5, 16]
+    },
+    {
+      "id": "WS0004",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": -0,
+      "locations": [24.5, -16]
+    },
+    {
+      "id": "WS0005",
+      "size": "MEDIUM",
+      "type": "ENERGY",
+      "mount": "TURRET",
+      "arc": 360,
+      "angle": 0,
+      "locations": [-30.5, -0]
+    },
+    {
+      "id": "WS0006",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": -0,
+      "locations": [-30.5, 0]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-37.5, 18.5],
+      "length": 30,
+      "width": 10,
+      "angle": 180,
+      "contrailSize": 30,
+      "style": "HIGH_TECH"
+    },
+    {
+      "location": [-37.5, -18.5],
+      "length": 30,
+      "width": 10,
+      "angle": -180,
+      "contrailSize": 30,
+      "style": "HIGH_TECH"
+    }
+  ],
+  "bounds": [
+    62.5, -3.5,
+    26.5, -11,
+    26.5, -19,
+    -4, -19,
+    -30.5, -29.5,
+    -34, -27.5,
+    -34, -4.5,
+    -63.5, -0,
+    -34, 4.5,
+    -34, 27.5,
+    -30.5, 29.5,
+    -4, 19,
+    26.5, 19,
+    26.5, 11,
+    62.5, 3.5
+  ]
+}

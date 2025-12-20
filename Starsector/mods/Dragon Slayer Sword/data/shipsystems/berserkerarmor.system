@@ -1,0 +1,27 @@
+{
+	"id":"berserkerarmor",
+	"type":"ENGINE_MOD",
+	"aiType":"MANEUVERING_JETS",
+	
+	"statsScript":"data.shipsystems.scripts.ManeuveringJetsStats",
+	
+	"jitterColor":[100,45,45,85],
+	"jitterCopies":5,
+	"jitterMinRange":0,
+	"jitterRange":45,
+	"jitterRangeRadiusFraction":0,
+	
+	"flameoutOnImpactChance":0,
+
+	"clampTurnRateAfter":true,
+	"clampMaxSpeedAfter":false,
+
+	"useSound":"berserkerarmor_activate",
+        "loopSound":"system_maneuvering_jets_loop",
+	"outOfUsesSound":"engine_disabled",
+	"aiHints":{
+		"activeSpeedIncrease":50,
+		"burstMovementPotential":0,
+		"averageSpeedIncrease":25,
+	}
+}

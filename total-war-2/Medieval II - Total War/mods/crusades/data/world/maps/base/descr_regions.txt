@@ -1,0 +1,609 @@
+;
+; regions list
+;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+Constantinople_Province
+	Constantinople
+	byzantium
+	Greek_Rebels
+	118 131 33
+	explorers_guild, horde_target, jihad
+	0
+	8
+	religions { catholic 0 orthodox 95 islam 2 pagan 2 heretic 1 }
+Tbilisi_Province
+	Tbilisi
+	turks
+	Steppe_Rebels
+	199 31 143
+	explorers_guild
+	0
+	12
+	religions { catholic 0 orthodox 30 islam 50 pagan 10 heretic 10 }
+Sinope_Region
+	Sinope
+	byzantium
+	Armenian_Rebels
+	212 18 214
+	explorers_guild
+	0
+	8
+	religions { catholic 0 orthodox 60 islam 35 pagan 0 heretic 5 }
+Trebizond_Province
+	Trebizond
+	byzantium
+	Anatolian_Rebels
+	202 156 17
+	explorers_guild
+	0
+	8
+	religions { catholic 0 orthodox 65 islam 35 pagan 0 heretic 0 }
+Nicaea_Province
+	Nicaea
+	byzantium
+	Greek_Rebels
+	33 59 131
+	none
+	0
+	6
+	religions { catholic 0 orthodox 80 islam 15 pagan 3 heretic 2 }
+Theodoiopolis_Region
+	Theodosiopolis
+	turks
+	Armenian_Rebels
+	0 238 255
+	none
+	0
+	8
+	religions { catholic 3 orthodox 35 islam 60 pagan 0 heretic 2 }
+Yerevan_Province
+	Yerevan
+	turks
+	Armenian_Rebels
+	202 61 17
+	none
+	0
+	8
+	religions { catholic 0 orthodox 8 islam 80 pagan 7 heretic 5 }
+Ankara_Region
+	Ankara
+	turks
+	Armenian_Rebels
+	99 255 17
+	none
+	0
+	1
+	religions { catholic 3 orthodox 35 islam 60 pagan 0 heretic 2 }
+Malatya_Region
+	Malatya
+	turks
+	Armenian_Rebels
+	255 212 255
+	none
+	0
+	5
+	religions { catholic 43 orthodox 35 islam 20 pagan 0 heretic 2 }
+Caesarea_Province
+	Caesarea
+	turks
+	Anatolian_Rebels
+	177 58 148
+	none
+	0
+	6
+	religions { catholic 0 orthodox 15 islam 80 pagan 2 heretic 3 }
+Doryleum_Region
+	Doryleum
+	turks
+	Seljuk_Rebels
+	145 250 255
+	none
+	0
+	0
+	religions { catholic 3 orthodox 35 islam 60 pagan 0 heretic 2 }
+Iconium_Province
+	Iconium
+	turks
+	Anatolian_Rebels
+	17 165 202
+	none
+	0
+	4
+	religions { catholic 0 orthodox 15 islam 80 pagan 3 heretic 2 }
+Edessa_Province
+	Edessa
+	turks
+	Seljuk_Rebels
+	244 122 13
+	horde_target
+	0
+	3
+	religions { catholic 45 orthodox 25 islam 30 pagan 0 heretic 0 }
+Smyrna_Province
+	Smyrna
+	byzantium
+	Anatolian_Rebels
+	61 177 58
+	explorers_guild
+	0
+	6
+	religions { catholic 2 orthodox 60 islam 35 pagan 0 heretic 3 }
+Mosul_Province
+	Mosul
+	turks
+	Seljuk_Rebels
+	41 232 225
+	none
+	0
+	5
+	religions { catholic 0 orthodox 2 islam 85 pagan 0 heretic 13 }
+Adana_Province
+	Adana
+	turks
+	Armenian_Rebels
+	17 202 52
+	none
+	0
+	7
+	religions { catholic 0 orthodox 15 islam 80 pagan 3 heretic 2 }
+Aleppo_Province
+	Aleppo
+	turks
+	Seljuk_Rebels
+	175 171 244
+	none
+	0
+	4
+	religions { catholic 50 orthodox 12 islam 30 pagan 0 heretic 8 }
+Attaleia_Region
+	Attaleia
+	turks
+	Seljuk_Rebels
+	255 165 202
+	none
+	0
+	5
+	religions { catholic 3 orthodox 45 islam 50 pagan 0 heretic 2 }
+Baghdad_Province
+	Baghdad
+	egypt
+	Seljuk_Rebels
+	177 58 167
+	explorers_guild, horde_target, jihad
+	0
+	6
+	religions { catholic 0 orthodox 0 islam 90 pagan 0 heretic 10 }
+Antioch_Province
+	Antioch
+	turks
+	Seljuk_Rebels
+	13 244 165
+	horde_target, jihad
+	0
+	6
+	religions { catholic 65 orthodox 2 islam 25 pagan 0 heretic 8 }
+Takrit_Region
+	Takrit
+	turks
+	Arab_Rebels
+	0 58 167
+	none
+	0
+	3
+	religions { catholic 3 orthodox 15 islam 80 pagan 0 heretic 2 }
+Raqqa_Region
+	Raqqa
+	egypt
+	Arab_Rebels
+	118 174 13
+	none
+	0
+	5
+	religions { catholic 3 orthodox 15 islam 80 pagan 0 heretic 2 }
+Isle_of_Rhodes
+	Rhodes
+	byzantium
+	Greek_Rebels
+	131 33 77
+	explorers_guild
+	0
+	6
+	religions { catholic 0 orthodox 75 islam 15 pagan 10 heretic 0 }
+Northern_Cyprus
+	Nicosia
+	byzantium
+	Greek_Rebels
+	126 144 111
+	explorers_guild
+	0
+	8
+	religions { catholic 0 orthodox 80 islam 15 pagan 0 heretic 5 }
+Homs_Region
+	Homs
+	turks
+	Arab_Rebels
+	77 67 221
+	none
+	0
+	1
+	religions { catholic 53 orthodox 15 islam 30 pagan 0 heretic 2 }
+Isle_of_Crete
+	Iraklion
+	byzantium
+	Greek_Rebels
+	193 162 206
+	explorers_guild
+	0
+	6
+	religions { catholic 55 orthodox 40 islam 0 pagan 5 heretic 0 }
+Jedda_Province
+	Jedda
+	egypt
+	Arab_Rebels
+	13 171 244
+	none
+	0
+	3
+	religions { catholic 0 orthodox 0 islam 99 pagan 0 heretic 1 }
+Krak_de_Chavliers_Region
+	Krak_de_Chevaliers
+	turks
+	Arab_Rebels
+	255 255 107
+	st_johns_chapter_house, krak_de_chev
+	0
+	4
+	religions { catholic 95 orthodox 3 islam 0 pagan 0 heretic 2 }
+Damascus_Province
+	Damascus
+	turks
+	Arab_Rebels
+	244 203 14
+	swordsmiths_guild
+	0
+	4
+	religions { catholic 5 orthodox 10 islam 75 pagan 10 heretic 0 }
+Southern_Cyprus
+	Limassol
+	byzantium
+	Greek_Rebels
+	126 255 111
+	explorers_guild, limassol
+	0
+	8
+	religions { catholic 0 orthodox 80 islam 18 pagan 0 heretic 2 }
+Tripoli_Province
+	Tripoli
+	turks
+	Saharan_Rebels
+	202 17 48
+	st_johns_chapter_house
+	0
+	6
+	religions { catholic 45 orthodox 5 islam 35 pagan 10 heretic 5 }
+Baalbek_Region
+	Ballbek
+	turks
+	Arab_Rebels
+	166 164 166
+	st_johns_chapter_house
+	0
+	4
+	religions { catholic 23 orthodox 15 islam 60 pagan 0 heretic 2 }
+Tyre_Region
+	Tyre
+	egypt
+	Arab_Rebels
+	126 50 206
+	st_johns_chapter_house
+	0
+	6
+	religions { catholic 63 orthodox 15 islam 20 pagan 0 heretic 2 }
+Banyas_Region
+	Banyas
+	egypt
+	Arab_Rebels
+	244 109 246
+	none
+	0
+	4
+	religions { catholic 18 orthodox 15 islam 65 pagan 0 heretic 2 }
+Acre_Province
+	Acre
+	egypt
+	Arab_Rebels
+	33 131 128
+	templars_chapter_house, acre
+	0
+	6
+	religions { catholic 55 orthodox 5 islam 35 pagan 0 heretic 5 }
+Tribelands6
+	Arab_Camp_6
+	egypt
+	Arab_Rebels
+	164 0 208
+	none
+	0
+	2
+	religions { catholic 0 orthodox 0 islam 99 pagan 0 heretic 1 }
+Arsuf_Region
+	Arsuf
+	egypt
+	Fatimid_Rebels
+	128 88 88
+	templars_chapter_house
+	0
+	5
+	religions { catholic 48 orthodox 15 islam 35 pagan 0 heretic 2 }
+Kerak_Region
+	Kerak
+	egypt
+	Arab_Rebels
+	244 113 109
+	none
+	0
+	0
+	religions { catholic 43 orthodox 15 islam 40 pagan 0 heretic 2 }
+Jerusalem_Province
+	Jerusalem
+	egypt
+	Arab_Rebels
+	244 13 29
+	templars_chapter_house, st_johns_chapter_house, horde_target, jerusalem, jihad
+	0
+	8
+	religions { catholic 35 orthodox 23 islam 40 pagan 0 heretic 2 }
+Ascalon_Region
+	Ascalon
+	egypt
+	Arab_Rebels
+	35 244 13
+	templars_chapter_house
+	0
+	4
+	religions { catholic 43 orthodox 15 islam 40 pagan 0 heretic 2 }
+Siwa_Region
+	Siwa
+	egypt
+	Fatimid_Rebels
+	255 195 0
+	explorers_guild
+	0
+	4
+	religions { catholic 1 orthodox 5 islam 90 pagan 0 heretic 4 }
+Alexandria_Province
+	Alexandria
+	egypt
+	Fatimid_Rebels
+	244 13 214
+	explorers_guild
+	0
+	8
+	religions { catholic 0 orthodox 5 islam 80 pagan 5 heretic 10 }
+Dumyat_Region
+	Dumyat
+	egypt
+	Fatimid_Rebels
+	255 174 0
+	none
+	0
+	8
+	religions { catholic 0 orthodox 5 islam 93 pagan 0 heretic 2 }
+Tribelands3
+	Arab_Camp_3
+	egypt
+	Arab_Rebels
+	255 103 132
+	none
+	0
+	2
+	religions { catholic 0 orthodox 0 islam 99 pagan 0 heretic 1 }
+Tribelands2
+	Arab_Camp_2
+	egypt
+	Arab_Rebels
+	255 202 132
+	none
+	0
+	2
+	religions { catholic 0 orthodox 0 islam 99 pagan 0 heretic 1 }
+Cairo_Province
+	Cairo
+	egypt
+	Fatimid_Rebels
+	122 13 244
+	horde_target, jihad
+	0
+	10
+	religions { catholic 0 orthodox 5 islam 85 pagan 5 heretic 5 }
+Alia_Region
+	Alia
+	egypt
+	Fatimid_Rebels
+	130 240 90
+	none
+	0
+	4
+	religions { catholic 0 orthodox 5 islam 93 pagan 0 heretic 2 }
+Tabriz_Region
+	Tabriz
+	turks
+	Seljuk_Rebels
+	0 223 0
+	none
+	0
+	8
+	religions { catholic 0 orthodox 3 islam 96 pagan 0 heretic 1 }
+Alia_Region
+	Alia
+	egypt
+	Fatimid_Rebels
+	130 240 90
+	gold, america, teutonic_knights_chapter_house, no_pirates, no_brigands
+	0
+	2
+	religions { catholic 0 orthodox 5 islam 93 pagan 0 heretic 2 }
+Abydos_Region
+	Abydos
+	byzantium
+	Anatolian_Rebels
+	107 221 214
+	none
+	0
+	6
+	religions { catholic 0 orthodox 80 islam 20 pagan 0 heretic 0 }
+Palaeokastron_Region
+	Palaeokastron
+	byzantium
+	Anatolian_Rebels
+	231 59 131
+	none
+	0
+	4
+	religions { catholic 0 orthodox 75 islam 25 pagan 0 heretic 0 }
+Laodicea_Region
+	Laodiciea
+	byzantium
+	Anatolian_Rebels
+	255 240 46
+	none
+	0
+	3
+	religions { catholic 0 orthodox 65 islam 35 pagan 0 heretic 0 }
+Amorium_Region
+	Amorium
+	byzantium
+	Anatolian_Rebels
+	255 31 52
+	none
+	0
+	1
+	religions { catholic 0 orthodox 40 islam 58 pagan 0 heretic 2 }
+Alanya_Region
+	Alanya
+	turks
+	Anatolian_Rebels
+	255 221 255
+	none
+	0
+	5
+	religions { catholic 0 orthodox 75 islam 23 pagan 0 heretic 2 }
+Heraclea_Region
+	Heraclea
+	byzantium
+	Anatolian_Rebels
+	198 255 131
+	none
+	0
+	8
+	religions { catholic 0 orthodox 85 islam 10 pagan 0 heretic 5 }
+Kirsehir_Region
+	Kirsehir
+	turks
+	Anatolian_Rebels
+	65 40 255
+	none
+	0
+	3
+	religions { catholic 5 orthodox 35 islam 55 pagan 0 heretic 5 }
+Sebastea_Region
+	Sebastea
+	turks
+	Anatolian_Rebels
+	75 65 69
+	none
+	0
+	3
+	religions { catholic 5 orthodox 60 islam 30 pagan 0 heretic 5 }
+Corum_Region
+	Corum
+	byzantium
+	Anatolian_Rebels
+	139 130 46
+	none
+	0
+	2
+	religions { catholic 5 orthodox 60 islam 30 pagan 0 heretic 5 }
+Van_Region
+	Van
+	turks
+	Seljuk_Rebels
+	0 35 219
+	none
+	0
+	8
+	religions { catholic 0 orthodox 20 islam 78 pagan 0 heretic 2 }
+Diyabakir_Region
+	Diyabakir
+	turks
+	Seljuk_Rebels
+	240 227 82
+	none
+	0
+	4
+	religions { catholic 38 orthodox 8 islam 52 pagan 0 heretic 2 }
+Kirkuk_Region
+	Kirkuk
+	turks
+	Seljuk_Rebels
+	170 255 167
+	none
+	0
+	0
+	religions { catholic 0 orthodox 3 islam 95 pagan 0 heretic 2 }
+Kermanshah_Region
+	Kermanshah
+	turks
+	Seljuk_Rebels
+	227 246 48
+	none
+	0
+	4
+	religions { catholic 0 orthodox 3 islam 95 pagan 0 heretic 2 }
+Kufa_Region
+	Kufa
+	turks
+	Seljuk_Rebels
+	67 198 195
+	none
+	0
+	1
+	religions { catholic 0 orthodox 5 islam 93 pagan 0 heretic 2 }
+Qarisiya_Region
+	Qarisiya
+	turks
+	Seljuk_Rebels
+	118 0 13
+	none
+	0
+	3
+	religions { catholic 0 orthodox 5 islam 93 pagan 0 heretic 2 }
+Basra_Region
+	Al_Basrah
+	turks
+	Seljuk_Rebels
+	0 122 0
+	none
+	0
+	8
+	religions { catholic 0 orthodox 2 islam 96 pagan 0 heretic 2 }
+Suways_Region
+	Al_Suways
+	egypt
+	Fatimid_Rebels
+	107 105 109
+	none
+	0
+	2
+	religions { catholic 0 orthodox 5 islam 93 pagan 0 heretic 2 }
+Tanta_Region
+	Tanta
+	egypt
+	Fatimid_Rebels
+	0 88 0
+	none
+	0
+	8
+	religions { catholic 0 orthodox 5 islam 93 pagan 0 heretic 2 }
+

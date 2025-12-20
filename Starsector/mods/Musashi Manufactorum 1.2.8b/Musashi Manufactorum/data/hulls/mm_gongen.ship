@@ -1,0 +1,165 @@
+{
+  "hullName": "Gongen",
+  "hullId": "mm_gongen",
+  "hullSize": "CRUISER",
+  "spriteName": "graphics/mm/ships/mm_gongen.png",
+  "style": "HIGH_TECH",
+  "height": 370,
+  "width": 100,
+  "center": [50, 189],
+  "collisionRadius": 198.5,
+  "shieldCenter": [0, -0],
+  "shieldRadius": 195,
+  "viewOffset": 0,
+  "builtInMods": [
+    "mmstandardtargetingcore"
+  ],
+  "weaponSlots": [
+    {
+      "id": "WS0001",
+      "size": "MEDIUM",
+      "type": "HYBRID",
+      "mount": "TURRET",
+      "arc": 290,
+      "angle": 0,
+      "locations": [66, -0]
+    },
+    {
+      "id": "WS0003",
+      "size": "MEDIUM",
+      "type": "HYBRID",
+      "mount": "TURRET",
+      "arc": 240,
+      "angle": 180,
+      "locations": [-11.5, -0]
+    },
+    {
+      "id": "WS0006",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 200,
+      "angle": 91.5,
+      "locations": [1, 26]
+    },
+    {
+      "id": "WS0007",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 200,
+      "angle": -91.5,
+      "locations": [1, -26]
+    },
+    {
+      "id": "WS0002",
+      "size": "MEDIUM",
+      "type": "HYBRID",
+      "mount": "TURRET",
+      "arc": 305,
+      "angle": 0,
+      "locations": [111.5, -0]
+    },
+    {
+      "id": "WS0004",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 200,
+      "angle": -47,
+      "locations": [39, -17.5]
+    },
+    {
+      "id": "WS0008",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 200,
+      "angle": 47,
+      "locations": [39.5, 17.5]
+    },
+    {
+      "id": "WS0011",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 270,
+      "angle": -1.5,
+      "locations": [157, -0]
+    },
+    {
+      "id": "LB 1",
+      "size": "LARGE",
+      "type": "LAUNCH_BAY",
+      "mount": "HIDDEN",
+      "arc": 360,
+      "angle": 0,
+      "locations": [
+        -33.5, -2,
+        -76, -2,
+        -76, 28.5,
+        -33.5, 29
+      ]
+    },
+    {
+      "id": "WS0009",
+      "size": "MEDIUM",
+      "type": "HYBRID",
+      "mount": "TURRET",
+      "arc": 310,
+      "angle": 179.5,
+      "locations": [-144, -0]
+    },
+    {
+      "id": "WS0005",
+      "size": "MEDIUM",
+      "type": "HYBRID",
+      "mount": "TURRET",
+      "arc": 310,
+      "angle": 179.5,
+      "locations": [-108.5, -0]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-86.5, 35.5],
+      "length": 117,
+      "width": 17,
+      "angle": 180,
+      "contrailSize": 17,
+      "style": "HIGH_TECH"
+    },
+    {
+      "location": [-86.5, -35.5],
+      "length": 117,
+      "width": 17,
+      "angle": -180,
+      "contrailSize": 17,
+      "style": "HIGH_TECH"
+    },
+    {
+      "location": [-83.5, 43],
+      "length": 19.2106,
+      "width": 12.198831,
+      "angle": 159.5,
+      "contrailSize": 12.198831,
+      "style": "HIGH_TECH"
+    },
+    {
+      "location": [-83.5, -43],
+      "length": 19.2106,
+      "width": 12.198831,
+      "angle": -159.5,
+      "contrailSize": 12.198831,
+      "style": "HIGH_TECH"
+    }
+  ],
+  "bounds": [
+    182, -9,
+    -79.5, -44.5,
+    -184, -8.5,
+    -184, 9.5,
+    -79.5, 45.5,
+    182, 10
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "bounds": [
+    -9,
+    -11,
+    10,
+    -8,
+    10,
+    8,
+    -9,
+    11
+  ],
+  "builtInWeapons": {
+    "WS0001": "feeder_gun"
+  },
+  "builtInWings": [],
+  "center": [
+    10.5,
+    11
+  ],
+  "collisionRadius": 24,
+  "engineSlots": [
+    {
+      "angle": 180,
+      "contrailSize": 9,
+      "length": 9,
+      "location": [
+        -7,
+        -0
+      ],
+      "style": "HIGH_TECH",
+      "width": 9
+    }
+  ],
+  "height": 22,
+  "hullId": "drone_feeder",
+  "hullName": "Feeder Drone",
+  "hullSize": "FIGHTER",
+  "shieldCenter": [
+    0,
+    0
+  ],
+  "shieldRadius": 22.5,
+  "spriteName": "graphics/ships/mess/mess_light_drone.png",
+  "style": "HIGH_TECH",
+  "viewOffset": 0,
+  "weaponSlots": [
+    {
+      "angle": 0,
+      "arc": 360,
+      "id": "WS0001",
+      "locations": [
+        3,
+        -0
+      ],
+      "mount": "HIDDEN",
+      "size": "SMALL",
+      "type": "BUILT_IN"
+    }
+  ],
+  "width": 21
+}

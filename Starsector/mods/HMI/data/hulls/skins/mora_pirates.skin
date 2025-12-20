@@ -1,0 +1,34 @@
+{
+	"baseHullId":"mora",
+	"skinHullId":"mora_pirates",
+	"hullName":"Mora (P)",
+	"descriptionId":"mora",  # optional
+	"descriptionPrefix":"This ship has been heavily modified - and poorly maintained - by its pirate crew.",
+	"tags":["pirate_bp"],
+	"tech":"Pirate",
+	"systemId":"burndrive",
+	"baseValueMult":1.0,
+	"spriteName":"graphics/ships/mora/mora_p.png",
+	"removeWeaponSlots":[], 		# ids
+	"removeEngineSlots":[], 		# indices, as engine slots have no id in the .ship file
+	"removeBuiltInMods":[], 		# hullmod ids
+	"removeBuiltInWeapons":[], 		# weapon slot ids
+	"weaponSlotChanges":{
+		"WS 002":{
+            "type": "COMPOSITE",
+			"size": "MEDIUM",
+		},	
+		"WS 003":{
+            "type": "UNIVERSAL"
+		},	
+		"WS 004":{
+            "type": "UNIVERSAL"
+		}	
+	},
+	"builtInMods":[
+	"shielded_holds",
+    "hmi_moradebuff",	
+	],
+	"builtInWeapons":{
+    },
+}

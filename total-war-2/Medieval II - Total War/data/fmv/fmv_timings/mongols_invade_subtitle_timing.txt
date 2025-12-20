@@ -1,0 +1,9 @@
+<SYNC Start=2300>
+<P Class=ENUSCC>Mongols_Invade_1
+<SYNC Stop=8500>
+<SYNC Start=8500>
+<P Class=ENUSCC>Mongols_Invade_2
+<SYNC Stop=17100>
+<SYNC Start=17100>
+<P Class=ENUSCC>Mongols_Invade_3
+<SYNC Stop=21100>

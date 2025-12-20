@@ -1,0 +1,75 @@
+{
+  "variantId": "sw_victory_i_imperial",
+  "hullId": "sw_victory_i",
+  "displayName": "Imperial",
+  "goalVariant": true,
+  "fluxCapacitors": 15,
+  "fluxVents": 15,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "dedicated_targeting_core"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0001": "sw_dby827_dual_turbolaser_heavy",
+        "WS0002": "sw_dby827_dual_turbolaser_heavy",
+        "WS0003": "sw_dby827_dual_turbolaser_heavy",
+        "WS0004": "sw_dby827_dual_turbolaser_heavy",
+        "WS0005": "sw_dby827_dual_turbolaser_heavy",
+        "WS0006": "sw_dby827_dual_turbolaser_heavy",
+        "WS0007": "sw_dby827_dual_turbolaser_heavy",
+        "WS0008": "sw_dby827_dual_turbolaser_heavy",
+        "WS0009": "sw_dby827_dual_turbolaser_heavy"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0011": "sw_quad_turbolaser",
+        "WS0012": "sw_quad_turbolaser",
+        "WS0013": "sw_quad_turbolaser",
+        "WS0014": "sw_quad_turbolaser",
+        "WS0015": "sw_quad_turbolaser",
+        "WS0016": "sw_quad_turbolaser"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0017": "sw_concussion_missile_assault",
+        "WS0018": "sw_concussion_missile_assault",
+        "WS0019": "sw_concussion_missile_assault",
+        "WS0020": "sw_concussion_missile_assault",
+        "WS0021": "sw_concussion_missile_assault",
+        "WS0022": "sw_concussion_missile_assault",
+        "WS0023": "sw_concussion_missile_assault",
+        "WS0024": "sw_concussion_missile_assault"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0025": "sw_laser_cannon",
+        "WS0026": "sw_laser_cannon",
+        "WS0027": "sw_laser_cannon",
+        "WS0028": "sw_laser_cannon",
+        "WS0029": "sw_laser_cannon",
+        "WS0030": "sw_laser_cannon",
+        "WS0031": "sw_laser_cannon",
+        "WS0032": "sw_laser_cannon"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": [
+    "sw_tie_fighter_wing",
+    "sw_tie_interceptor_wing"
+  ]
+}

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planet Marketplace - Adriano To The Star</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Raleway:wght@200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="pages-styles.css">
+    <link rel="stylesheet" href="loader-minimal.css">
+    <link rel="stylesheet" href="marketplace-styles.css">
+    <link rel="stylesheet" href="theme-styles.css">
+    <link rel="stylesheet" href="accessibility-styles.css">
+    <link rel="stylesheet" href="i18n-styles.css">
+
+    <!-- Loading Screen -->
+    <script src="loader.js"></script>
+
+    <script src="i18n.js" defer></script>
+    <script src="animations.js" defer></script>
+    <script src="navigation.js" defer></script>
+    <script src="universal-graphics.js" defer></script>
+    <script src="cosmic-music-player.js" defer></script>
+    <script src="theme-toggle.js" defer></script>
+    <script src="accessibility.js" defer></script>
+    <link rel="manifest" href="manifest.json">
+</head>
+
+<body>
+    <!-- Menu Toggle Button -->
+    <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">
+        <span class="menu-icon"></span>
+        <span class="menu-icon"></span>
+        <span class="menu-icon"></span>
+    </button>
+    <main>
+        <!-- Page Hero -->
+        <section class="page-hero" data-entrance="fadeIn">
+            <h1 class="page-title" data-scroll-animate>PLANET MARKETPLACE</h1>
+            <p class="page-subtitle">Buy, Sell, and Trade Exoplanet Claims</p>
+        </section>
+
+        <!-- Marketplace Container -->
+        <section class="content-section" data-entrance="slideUp">
+            <div class="content-container">
+                <!-- Enhanced Marketplace Features -->
+                <div class="marketplace-features-bar" style="display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;">
+                    <button id="view-all-listings" class="marketplace-tab active" style="padding: 0.75rem 1.5rem; background: rgba(186, 148, 79, 0.2); border: 2px solid rgba(186, 148, 79, 0.5); border-radius: 10px; color: white; cursor: pointer; font-weight: 600;">
+                        📋 All Listings
+                    </button>
+                    <button id="view-rentals" class="marketplace-tab" style="padding: 0.75rem 1.5rem; background: rgba(74, 144, 226, 0.2); border: 2px solid rgba(74, 144, 226, 0.5); border-radius: 10px; color: white; cursor: pointer; font-weight: 600;">
+                        🏠 Rentals
+                    </button>
+                    <button id="view-investments" class="marketplace-tab" style="padding: 0.75rem 1.5rem; background: rgba(139, 92, 246, 0.2); border: 2px solid rgba(139, 92, 246, 0.5); border-radius: 10px; color: white; cursor: pointer; font-weight: 600;">
+                        📊 Investments
+                    </button>
+                    <button id="view-crowdfunding" class="marketplace-tab" style="padding: 0.75rem 1.5rem; background: rgba(74, 222, 128, 0.2); border: 2px solid rgba(74, 222, 128, 0.5); border-radius: 10px; color: white; cursor: pointer; font-weight: 600;">
+                        🚀 Crowdfunding
+                    </button>
+                </div>
+
+                <div id="marketplace-container">
+                    <!-- Marketplace will be initialized here -->
+                </div>
+
+                <!-- Additional Features Containers -->
+                <div id="rentals-container" style="display: none;"></div>
+                <div id="investments-container" style="display: none;"></div>
+                <div id="crowdfunding-container" style="display: none;"></div>
+                
+                <!-- Trading Notifications -->
+                <div id="trading-notifications-container" style="margin-top: 2rem;"></div>
+                
+                <!-- Trading Analytics -->
+                <div id="trading-analytics-container" style="margin-top: 2rem;"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Supabase Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
+    <script src="reputation-system.js"></script>
+    <!-- Stripe Payment Configuration -->
+    <script src="stripe-config.js"></script>
+    <script src="marketplace.js?v=20251214"></script>
+    <!-- Marketplace Scripts -->
+    <script src="planet-trading-marketplace.js?v=20251214" defer></script>
+    <script src="marketplace-payment-integration.js" defer></script>
+    <script src="planet-rental-leasing.js" defer></script>
+    <script src="planet-investment-portfolios.js" defer></script>
+    <script src="space-mission-crowdfunding.js" defer></script>
+    <script src="planet-trading-notifications.js" defer></script>
+    <script src="planet-trading-analytics.js" defer></script>
+    <script>
+        // Initialize Planet Trading Marketplace
+        (function() {
+            async function initMarketplace() {
+                try {
+                    if (window.useEnhancedMarketplaceInit) {
+                        return;
+                    }
+                    // Wait for dependencies to load
+                    if (typeof PlanetTradingMarketplace === 'undefined') {
+                        setTimeout(initMarketplace, 500);
+                        return;
+                    }
+                    
+                    const marketplace = new PlanetTradingMarketplace();
+                    await marketplace.init();
+                    
+                    // Render marketplace UI
+                    const container = document.getElementById('marketplace-container');
+                    if (container) {
+                        await marketplace.renderMarketplace(container);
+                        console.log('✅ Planet Trading Marketplace initialized and rendered');
+                    }
+                } catch (error) {
+                    console.error('❌ Error initializing Planet Trading Marketplace:', error);
+                    const container = document.getElementById('marketplace-container');
+                    if (container) {
+                        container.innerHTML = '<div class="error-message">Failed to initialize marketplace. Please refresh the page.</div>';
+                    }
+                }
+            }
+            
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', () => setTimeout(initMarketplace, 1000));
+            } else {
+                setTimeout(initMarketplace, 1000);
+            }
+        })();
+
+        // Ensure music player is visible
+        (function () {
+            function ensurePlayerVisible() {
+                const playerEl = document.getElementById('cosmic-music-player');
+                if (playerEl) {
+                    playerEl.style.display = 'block';
+                    playerEl.style.opacity = '1';
+                    playerEl.style.pointerEvents = 'auto';
+                    playerEl.style.visibility = 'visible';
+                } else {
+                    setTimeout(ensurePlayerVisible, 500);
+                }
+            }
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', () => setTimeout(ensurePlayerVisible, 1000));
+            } else {
+                setTimeout(ensurePlayerVisible, 1000);
+            }
+        })();
+
+        // Initialize Enhanced Marketplace when DOM is ready
+        (function () {
+            window.useEnhancedMarketplaceInit = true;
+            async function initMarketplace() {
+                try {
+                    // Wait for all marketplace components
+                    if (typeof Marketplace === 'undefined') {
+                        setTimeout(initMarketplace, 500);
+                        return;
+                    }
+                    
+                    const container = document.getElementById('marketplace-container');
+                    if (!container) {
+                        setTimeout(initMarketplace, 500);
+                        return;
+                    }
+                    
+                    // Initialize main marketplace
+                    const marketplace = window.marketplaceInstance || new Marketplace();
+                    window.marketplaceInstance = marketplace;
+                    await marketplace.init();
+                    console.log('✅ Marketplace initialized');
+
+                    // Initialize rental/leasing
+                    if (window.planetRentalLeasing) {
+                        const rentalsContainer = document.getElementById('rentals-container');
+                        if (rentalsContainer) {
+                            window.planetRentalLeasing.renderRentalUI('rentals-container');
+                        }
+                    }
+
+                    // Initialize investment portfolios
+                    if (window.planetInvestmentPortfolios) {
+                        const investmentsContainer = document.getElementById('investments-container');
+                        if (investmentsContainer) {
+                            window.planetInvestmentPortfolios.renderPortfolioUI('investments-container');
+                        }
+                    }
+
+                    // Initialize crowdfunding
+                    if (window.spaceMissionCrowdfunding) {
+                        const crowdfundingContainer = document.getElementById('crowdfunding-container');
+                        if (crowdfundingContainer) {
+                            window.spaceMissionCrowdfunding.renderCrowdfundingUI('crowdfunding-container');
+                        }
+                    }
+
+                    // Setup tab switching
+                    setupMarketplaceTabs();
+                    
+                    // Initialize trading notifications
+                    if (window.planetTradingNotifications) {
+                        const notificationsContainer = document.getElementById('trading-notifications-container');
+                        if (notificationsContainer) {
+                            window.planetTradingNotifications.renderNotifications('trading-notifications-container');
+                            // Request notification permission
+                            window.planetTradingNotifications.requestPermission();
+                        }
+                    }
+                    
+                    // Initialize trading analytics
+                    if (window.planetTradingAnalytics) {
+                        const analyticsContainer = document.getElementById('trading-analytics-container');
+                        if (analyticsContainer) {
+                            window.planetTradingAnalytics.renderAnalytics('trading-analytics-container');
+                        }
+                    }
+                    
+                } catch (error) {
+                    console.error('❌ Error initializing marketplace:', error);
+                }
+            }
+
+            function setupMarketplaceTabs() {
+                const tabs = {
+                    'view-all-listings': 'marketplace-container',
+                    'view-rentals': 'rentals-container',
+                    'view-investments': 'investments-container',
+                    'view-crowdfunding': 'crowdfunding-container'
+                };
+
+                Object.entries(tabs).forEach(([buttonId, containerId]) => {
+                    const btn = document.getElementById(buttonId);
+                    if (btn) {
+                        btn.addEventListener('click', () => {
+                            // Hide all containers
+                            Object.values(tabs).forEach(id => {
+                                const el = document.getElementById(id);
+                                if (el) el.style.display = 'none';
+                            });
+
+                            // Remove active class from all tabs
+                            document.querySelectorAll('.marketplace-tab').forEach(tab => {
+                                tab.classList.remove('active');
+                            });
+
+                            // Show selected container
+                            const selectedContainer = document.getElementById(containerId);
+                            if (selectedContainer) {
+                                selectedContainer.style.display = 'block';
+                            }
+
+                            // Add active class to clicked tab
+                            btn.classList.add('active');
+                        });
+                    }
+                });
+            }
+            
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', () => setTimeout(initMarketplace, 1000));
+            } else {
+                setTimeout(initMarketplace, 1000);
+            }
+        })();
+    </script>
+</body>
+
+</html>
+

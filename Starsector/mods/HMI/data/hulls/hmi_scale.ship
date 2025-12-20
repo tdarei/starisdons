@@ -1,0 +1,101 @@
+{
+  "hullName": "Scale Support Fighter",
+  "hullId": "hmi_scale",
+  "hullSize": "FIGHTER",
+  "spriteName": "graphics/ships/scale.png",
+  "style": "LOW_TECH",
+  "height": 45,
+  "width": 38,
+  "center": [19, 22.5],
+  "collisionRadius": 37,
+  "shieldCenter": [0, 0],
+  "shieldRadius": 35.5,
+  "viewOffset": 0,
+  "builtInMods": [
+    "hmi_fighteritu"
+  ],
+  "builtInWeapons": {
+    "WS0001": "mbeke_fighter",
+    "WS0002": "mbeke_fighter"
+  },
+  "weaponSlots": [
+    {
+      "id": "WS0001",
+      "size": "SMALL",
+      "type": "BUILT_IN",
+      "mount": "HIDDEN",
+      "arc": 10,
+      "angle": 0,
+      "locations": [21, 8]
+    },
+    {
+      "id": "WS0002",
+      "size": "SMALL",
+      "type": "BUILT_IN",
+      "mount": "HIDDEN",
+      "arc": 10,
+      "angle": -0,
+      "locations": [21, -8]
+    },
+    {
+      "id": "WS0003",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "HIDDEN",
+      "arc": 212,
+      "angle": 45,
+      "locations": [6, 11.5]
+    },
+    {
+      "id": "WS0004",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "HIDDEN",
+      "arc": 212,
+      "angle": -45,
+      "locations": [6, -11.5]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-21.5, 8],
+      "length": 15,
+      "width": 12,
+      "angle": 180,
+      "contrailSize": 12,
+      "style": "LOW_TECH"
+    },
+    {
+      "location": [-21.5, -8],
+      "length": 15,
+      "width": 12,
+      "angle": -180,
+      "contrailSize": 12,
+      "style": "LOW_TECH"
+    },
+    {
+      "location": [-1.5, 16],
+      "length": 6,
+      "width": 6,
+      "angle": 146.5,
+      "contrailSize": 6,
+      "style": "LOW_TECH"
+    },
+    {
+      "location": [-1.5, -16],
+      "length": 6,
+      "width": 6,
+      "angle": -146.5,
+      "contrailSize": 6,
+      "style": "LOW_TECH"
+    }
+  ],
+  "bounds": [
+    -22.5, -11,
+    4, -19.5,
+    22, -12,
+    22, 12,
+    4, 19.5,
+    -22.5, 11
+  ]
+}

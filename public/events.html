@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events - Adriano To The Star</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Raleway:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="pages-styles.css">
+    <link rel="stylesheet" href="loader-minimal.css">
+    <script src="loader.js"></script>
+    <script src="animations.js" defer></script>
+    <script src="navigation.js" defer></script>
+    <script src="universal-graphics.js" defer></script>
+    <script src="cosmic-music-player.js" defer></script>
+    <script src="i18n.js" defer></script>
+    <script src="theme-toggle.js" defer></script>
+    <script src="accessibility.js" defer></script>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="theme-styles.css">
+    <link rel="stylesheet" href="accessibility-styles.css">
+    <link rel="stylesheet" href="i18n-styles.css">
+</head>
+<body>
+    <!-- Menu Toggle Button -->
+    <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">
+        <span class="menu-icon"></span>
+        <span class="menu-icon"></span>
+        <span class="menu-icon"></span>
+    </button>
+    <main>
+        <section class="page-hero" data-entrance="fadeIn">
+            <h1 class="page-title" data-scroll-animate>Events</h1>
+            <p class="page-subtitle">Cosmic Gatherings and Space Enthusiast Meetups</p>
+        </section>
+
+        <section class="content-section" data-entrance="slideUp">
+            <div class="content-container">
+                <h1>Upcoming Events</h1>
+                
+                <div class="event-card" style="border: 1px solid rgba(255, 255, 255, 0.1); padding: 2rem; margin-top: 2rem; border-radius: 8px;">
+                    <img src="images/event-opening.png" alt="Andromeda Star Kepler Object Opening Ceremony" style="width: 100%; max-width: 400px; margin-bottom: 1.5rem; border-radius: 8px;">
+                    
+                    <h3>Andromeda Star Kepler Object Opening Ceremony</h3>
+                    
+                    <div class="event-details" style="margin-top: 1.5rem;">
+                        <p><strong>Date:</strong> Friday, 31 January 2025</p>
+                        <p><strong>Location:</strong> Online</p>
+                        <p style="margin-top: 1rem; opacity: 0.8;">Join us for the official opening ceremony of the Andromeda Star Kepler Object project.</p>
+                    </div>
+                    
+                    <button style="margin-top: 2rem; padding: 0.75rem 2rem; background: var(--gold-accent); color: black; border: none; border-radius: 4px; font-weight: 600; cursor: pointer;">
+                        More info
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2025 ADRIANO TO THE STAR</p>
+        <p><a href="index.html">Back to Home</a></p>
+    </footer>
+    <script src="pwa-loader.js"></script>
+</body>
+</html>
+

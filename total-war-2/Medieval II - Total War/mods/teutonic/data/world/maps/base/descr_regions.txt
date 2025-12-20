@@ -1,0 +1,671 @@
+;
+; regions list
+;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+Norway_Region
+	Akershus
+	denmark
+	Norse_Rebels
+	255 180 190
+	fish, timber, iron, spices
+	5
+	4
+	religions { catholic 90 orthodox 0 pagan 8 islam 0 heretic 2 }
+Central_Sweden
+	Uppsala
+	denmark
+	Norse_Rebels
+	252 245 42
+	fish, timber, iron, spices
+	5
+	4
+	religions { catholic 90 orthodox 0 pagan 10 islam 0 heretic 0 }
+Finland_Region
+	Abo
+	denmark
+	Norse_Rebels
+	66 47 85
+	fish, spices
+	5
+	4
+	religions { catholic 60 orthodox 20 pagan 20 islam 0 heretic 0 }
+Narva_Region
+	Narva
+	novgorod
+	Rus_Rebels
+	244 177 95
+	furs, iron
+	5
+	2
+	religions { catholic 10 orthodox 80 pagan 8 islam 0 heretic 2 }
+Novgorod_Region
+	Novgorod
+	novgorod
+	Rus_Rebels
+	73 255 95
+	furs, timber, iron
+	5
+	2
+	religions { catholic 4 orthodox 90 pagan 4 islam 0 heretic 2 }
+Reval_Region
+	Reval
+	novgorod
+	Rus_Rebels
+	221 54 95
+	fish, sugar
+	5
+	4
+	religions { catholic 50 orthodox 0 pagan 50 islam 0 heretic 0 }
+Arensburg_Region
+	Arensburg
+	lithuania
+	Livonian_Rebels
+	255 67 41
+	fish
+	5
+	5
+	religions { catholic 10 orthodox 5 pagan 80 islam 0 heretic 5 }
+Southern_Sweden
+	Goteborg
+	denmark
+	Norse_Rebels
+	29 65 42
+	timber, marble, spices
+	5
+	3
+	religions { catholic 95 orthodox 0 pagan 5 islam 0 heretic 0 }
+Parnu_Region
+	Pernau
+	lithuania
+	Livonian_Rebels
+	107 54 95
+	timber
+	5
+	5
+	religions { catholic 15 orthodox 20 pagan 60 islam 0 heretic 5 }
+North_Pskov_Region
+	Pskov
+	novgorod
+	Rus_Rebels
+	241 211 25
+	marble
+	5
+	4
+	religions { catholic 4 orthodox 80 pagan 14 islam 0 heretic 2 }
+Kalmar_Region
+	Kalmar
+	denmark
+	Norse_Rebels
+	179 65 42
+	fish, furs, spices
+	5
+	3
+	religions { catholic 90 orthodox 0 pagan 10 islam 0 heretic 0 }
+Denmark_Region
+	Aarhus
+	denmark
+	Norse_Rebels
+	232 41 55
+	fish, iron, textiles, spices, wool
+	5
+	5
+	religions { catholic 94 orthodox 0 pagan 0 islam 0 heretic 6 }
+Gotland
+	Visby
+	denmark
+	Norse_Rebels
+	52 198 41
+	spices
+	5
+	4
+	religions { catholic 80 orthodox 0 pagan 20 islam 0 heretic 0 }
+Livonia
+	Riga
+	novgorod
+	Rus_Rebels
+	58 177 95
+	marble, sugar, amber
+	5
+	6
+	religions { catholic 70 orthodox 25 pagan 5 islam 0 heretic 0 }
+Windau_Region
+	Windau
+	lithuania
+	Livonian_Rebels
+	187 179 52
+	timber, amber
+	5
+	4
+	religions { catholic 10 orthodox 8 pagan 82 islam 0 heretic 0 }
+Zealand
+	Roskilde
+	denmark
+	Norse_Rebels
+	202 255 42
+	fish, timber, textiles, wool
+	5
+	4
+	religions { catholic 94 orthodox 0 pagan 0 islam 0 heretic 6 }
+Corland
+	Dunaburg
+	novgorod
+	Rus_Rebels
+	221 177 95
+	marble
+	5
+	4
+	religions { catholic 2 orthodox 35 pagan 60 islam 0 heretic 3 }
+Siauliai_Region
+	Siauliai
+	poland
+	Polish_Rebels
+	41 41 52
+	sugar, coal
+	5
+	5
+	religions { catholic 0 orthodox 10 pagan 90 islam 0 heretic 0 }
+Palanga_Region
+	Palanga
+	lithuania
+	Livonian_Rebels
+	202 41 52
+	sugar, amber
+	5
+	5
+	religions { catholic 0 orthodox 10 pagan 90 islam 0 heretic 0 }
+Smolensk_Region
+	Smolensk
+	novgorod
+	Rus_Rebels
+	147 131 116
+	silver, furs
+	5
+	3
+	religions { catholic 0 orthodox 70 pagan 30 islam 0 heretic 0 }
+Vitebsk_Region
+	Vitebsk
+	novgorod
+	Rus_Rebels
+	131 33 125
+	silver
+	5
+	3
+	religions { catholic 0 orthodox 70 pagan 30 islam 0 heretic 0 }
+Konigsberg_Region
+	Konisberg
+	poland
+	Polish_Rebels
+	94 126 232
+	none
+	5
+	4
+	religions { catholic 40 orthodox 10 pagan 50 islam 0 heretic 0 }
+Lithuania
+	Vilnius
+	novgorod
+	Rus_Rebels
+	42 177 95
+	furs, timber, slaves
+	5
+	5
+	religions { catholic 0 orthodox 5 pagan 95 islam 0 heretic 0 }
+Kaunus_Region
+	Kaunus
+	lithuania
+	Livonian_Rebels
+	187 103 95
+	none
+	5
+	3
+	religions { catholic 5 orthodox 5 pagan 85 islam 0 heretic 5 }
+Northern_Germany
+	Hamburg
+	hre
+	German_Rebels
+	232 198 41
+	fish, grain, textiles
+	5
+	4
+	religions { catholic 94 orthodox 0 pagan 0 islam 0 heretic 6 }
+Stralsund_Region
+	Stralsund
+	hre
+	German_Rebels
+	35 84 41
+	sugar, spices
+	5
+	4
+	religions { catholic 94 orthodox 0 pagan 0 islam 0 heretic 6 }
+Pomerania
+	Danzig
+	poland
+	Polish_Rebels
+	203 41 232
+	fish, spices, amber
+	5
+	3
+	religions { catholic 30 orthodox 0 pagan 70 islam 0 heretic 0 }
+Minsk_Region
+	Minsk
+	novgorod
+	Rus_Rebels
+	227 71 95
+	timber
+	5
+	3
+	religions { catholic 0 orthodox 70 pagan 30 islam 0 heretic 0 }
+West_Pomerania
+	Stettin
+	poland
+	Polish_Rebels
+	170 84 41
+	textiles, sugar
+	5
+	4
+	religions { catholic 80 orthodox 0 pagan 15 islam 0 heretic 5 }
+Marienburg_Region
+	Marienburg
+	poland
+	Polish_Rebels
+	219 214 255
+	slaves
+	5
+	4
+	religions { catholic 90 orthodox 0 pagan 10 islam 0 heretic 0 }
+Hrodna_Region
+	Hrodna
+	lithuania
+	Livonian_Rebels
+	166 41 203
+	timber, iron
+	5
+	4
+	religions { catholic 0 orthodox 0 pagan 95 islam 0 heretic 5 }
+Chernigov_Region
+	Chernigov
+	novgorod
+	Rus_Rebels
+	61 90 83
+	timber, marble, textiles
+	5
+	5
+	religions { catholic 0 orthodox 80 pagan 20 islam 0 heretic 0 }
+Masovia
+	Jazdow
+	poland
+	Polish_Rebels
+	41 41 203
+	iron
+	5
+	6
+	religions { catholic 80 orthodox 5 pagan 15 islam 0 heretic 0 }
+Magdeburg_Region
+	Magdeburg
+	hre
+	German_Rebels
+	69 84 41
+	grain, wine, textiles, wool
+	5
+	5
+	religions { catholic 94 orthodox 0 pagan 0 islam 0 heretic 6 }
+Thorn_Region
+	Thorn
+	poland
+	Polish_Rebels
+	71 177 203
+	coal
+	5
+	3
+	religions { catholic 65 orthodox 0 pagan 30 islam 0 heretic 5 }
+Hannover_Region
+	Hannover
+	hre
+	German_Rebels
+	202 255 160
+	silver, timber, iron, wine, textiles, wool
+	5
+	4
+	religions { catholic 94 orthodox 0 pagan 0 islam 0 heretic 6 }
+West_Poland
+	Poznan
+	poland
+	Polish_Rebels
+	193 41 52
+	grain, slaves, coal
+	5
+	5
+	religions { catholic 85 orthodox 0 pagan 10 islam 0 heretic 5 }
+Turov_Region
+	Turov
+	lithuania
+	Livonian_Rebels
+	236 187 95
+	silver, coal
+	0
+	4
+	religions { catholic 0 orthodox 80 pagan 15 islam 0 heretic 5 }
+Plock_Region
+	Plock
+	poland
+	Polish_Rebels
+	225 41 203
+	slaves
+	5
+	3
+	religions { catholic 90 orthodox 0 pagan 8 islam 0 heretic 2 }
+Pinsk_Region
+	Pinsk
+	lithuania
+	Livonian_Rebels
+	107 71 95
+	timber, textiles
+	5
+	4
+	religions { catholic 0 orthodox 80 pagan 15 islam 0 heretic 5 }
+Kiev_Region
+	Kiev
+	poland
+	Polish_Rebels
+	33 131 116
+	iron, textiles, coal
+	5
+	6
+	religions { catholic 0 orthodox 90 pagan 5 islam 0 heretic 5 }
+Bohemia
+	Prague
+	hre
+	German_Rebels
+	58 150 177
+	gold, silver, wine
+	5
+	5
+	religions { catholic 94 orthodox 0 pagan 0 islam 0 heretic 6 }
+Southern_Poland
+	Cracow
+	poland
+	Polish_Rebels
+	177 78 58
+	grain, iron, coal
+	5
+	6
+	religions { catholic 94 orthodox 0 pagan 0 islam 0 heretic 6 }
+L_vov_Region
+	L_vov
+	lithuania
+	Livonian_Rebels
+	82 236 83
+	silver, coal
+	5
+	4
+	religions { catholic 70 orthodox 20 pagan 10 islam 0 heretic 0 }
+Hof_Region
+	Hof
+	hre
+	German_Rebels
+	103 0 0
+	none
+	0
+	1
+	religions { catholic 90 orthodox 0 pagan 10 islam 0 heretic 0 }
+Gorlitz_Region
+	Gorlitz
+	hre
+	German_Rebels
+	219 189 0
+	none
+	0
+	1
+	religions { catholic 90 orthodox 0 pagan 10 islam 0 heretic 0 }
+Potsdam_Region
+	Potsdam
+	hre
+	German_Rebels
+	134 189 0
+	none
+	0
+	3
+	religions { catholic 91 orthodox 0 pagan 9 islam 0 heretic 0 }
+Neustettin_Region
+	Neustettin
+	hre
+	Polish_Rebels
+	255 189 0
+	none
+	0
+	1
+	religions { catholic 85 orthodox 0 pagan 15 islam 0 heretic 0 }
+Koszalin_Region
+	Koszalin
+	hre
+	German_Rebels
+	120 189 0
+	none
+	0
+	1
+	religions { catholic 88 orthodox 0 pagan 12 islam 0 heretic 0 }
+Uelzen_Region
+	Uelzen
+	hre
+	German_Rebels
+	77 54 168
+	none
+	0
+	1
+	religions { catholic 95 orthodox 0 pagan 5 islam 0 heretic 0 }
+Halmstad_Region
+	Halmstad
+	denmark
+	Norse_Rebels
+	223 54 168
+	none
+	0
+	1
+	religions { catholic 90 orthodox 0 pagan 10 islam 0 heretic 0 }
+Hassleholm_Region
+	Hassleholm
+	denmark
+	Norse_Rebels
+	103 54 168
+	none
+	0
+	1
+	religions { catholic 90 orthodox 0 pagan 10 islam 0 heretic 0 }
+Skara_Region
+	Skara
+	denmark
+	Norse_Rebels
+	202 54 168
+	none
+	0
+	1
+	religions { catholic 85 orthodox 0 pagan 15 islam 0 heretic 0 }
+Tingvalla_Region
+	Tingvalla
+	denmark
+	Norse_Rebels
+	54 54 168
+	none
+	0
+	1
+	religions { catholic 80 orthodox 0 pagan 20 islam 0 heretic 0 }
+Agder_Region
+	Agder
+	denmark
+	Norse_Rebels
+	82 245 42
+	none
+	0
+	1
+	religions { catholic 80 orthodox 0 pagan 20 islam 0 heretic 0 }
+Klodzko_Region
+	Klodzko
+	hre
+	German_Rebels
+	206 4 248
+	none
+	0
+	1
+	religions { catholic 95 orthodox 0 pagan 5 islam 0 heretic 0 }
+Czestochowa_Region
+	Czestochowa
+	poland
+	Polish_Rebels
+	80 202 65
+	none
+	0
+	1
+	religions { catholic 90 orthodox 0 pagan 10 islam 0 heretic 0 }
+Przeworsk_Region
+	Przeworsk
+	poland
+	Polish_Rebels
+	217 202 65
+	none
+	0
+	1
+	religions { catholic 80 orthodox 0 pagan 20 islam 0 heretic 0 }
+Liuboml_Region
+	Liuboml
+	poland
+	Polish_Rebels
+	255 0 58
+	none
+	0
+	1
+	religions { catholic 50 orthodox 0 pagan 50 islam 0 heretic 0 }
+Bialystok_Region
+	Bialystok
+	poland
+	Polish_Rebels
+	56 147 58
+	none
+	0
+	1
+	religions { catholic 40 orthodox 0 pagan 60 islam 0 heretic 0 }
+Zhytomyr_Region
+	Zhytomyr
+	novgorod
+	Rus_Rebels
+	227 0 58
+	none
+	0
+	1
+	religions { catholic 50 orthodox 20 pagan 30 islam 0 heretic 0 }
+Chornobyl_Region
+	Chornobyl
+	novgorod
+	Rus_Rebels
+	80 219 58
+	none
+	0
+	1
+	religions { catholic 20 orthodox 60 pagan 20 islam 0 heretic 0 }
+Homyel_Region
+	Homyel
+	lithuania
+	Livonian_Rebels
+	250 0 183
+	none
+	0
+	1
+	religions { catholic 0 orthodox 15 pagan 85 islam 0 heretic 0 }
+Baranavichy_Region
+	Baranavichy
+	lithuania
+	Livonian_Rebels
+	139 212 183
+	none
+	0
+	1
+	religions { catholic 5 orthodox 15 pagan 80 islam 0 heretic 0 }
+Lida_Region
+	Lida
+	lithuania
+	Livonian_Rebels
+	80 255 255
+	none
+	0
+	1
+	religions { catholic 5 orthodox 10 pagan 85 islam 0 heretic 0 }
+Mglin_Region
+	Mglin
+	novgorod
+	Rus_Rebels
+	221 255 255
+	none
+	0
+	1
+	religions { catholic 0 orthodox 90 pagan 10 islam 0 heretic 0 }
+Mstislavl_Region
+	Mstislavl
+	novgorod
+	Rus_Rebels
+	65 255 255
+	none
+	0
+	1
+	religions { catholic 0 orthodox 70 pagan 30 islam 0 heretic 0 }
+Dokshitsy_Region
+	Dokshitsy
+	lithuania
+	Livonian_Rebels
+	164 225 255
+	none
+	0
+	1
+	religions { catholic 0 orthodox 1 pagan 99 islam 0 heretic 0 }
+Panevezys_Region
+	Panevezys
+	lithuania
+	Livonian_Rebels
+	71 12 242
+	none
+	0
+	1
+	religions { catholic 2 orthodox 3 pagan 95 islam 0 heretic 0 }
+Velikiye_Luki_Region
+	Velikiye_Luki
+	lithuania
+	Livonian_Rebels
+	242 12 242
+	none
+	0
+	1
+	religions { catholic 5 orthodox 35 pagan 60 islam 0 heretic 0 }
+Kholm_Region
+	Kholm
+	novgorod
+	Rus_Rebels
+	61 113 242
+	none
+	0
+	1
+	religions { catholic 0 orthodox 90 pagan 10 islam 0 heretic 0 }
+Zubstov_Region
+	Zubstov
+	novgorod
+	Rus_Rebels
+	202 113 242
+	coal
+	0
+	0
+	religions { catholic 0 orthodox 95 pagan 5 islam 0 heretic 0 }
+Olysta_Region
+	Olysta
+	lithuania
+	Livonian_Rebels
+	84 223 242
+	none
+	0
+	1
+	religions { catholic 15 orthodox 2 pagan 83 islam 0 heretic 0 }
+Tosno_Region
+	Tosno
+	novgorod
+	Rus_Rebels
+	255 223 242
+	furs
+	0
+	1
+	religions { catholic 15 orthodox 75 pagan 10 islam 0 heretic 0 }

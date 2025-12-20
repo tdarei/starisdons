@@ -1,0 +1,19 @@
+{
+	"portraits":{
+		"standard_female":[
+		"graphics/portraits/portrait_hmi_luddic_woman01.png",	
+		],
+	},
+	"hullFrequency":{
+		"hulls":{
+		"charlie":0.25,
+		"wobbie":0.25,
+		},
+	},
+	
+	"illegalCommodities":[
+		"red_water",
+		"mess_nano",
+		"hmi_crystal",
+	],
+},

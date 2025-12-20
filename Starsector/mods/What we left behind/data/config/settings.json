@@ -1,0 +1,65 @@
+ {
+ 	"ruleCommandPackages":[
+ 		"data.scripts.campaign.rulecmd",
+ 	],
+	
+	"plugins":{
+		"niko_MPC_coronaResistCombatScript":"data.scripts.everyFrames.combat.niko_MPC_coronaResistCombatScript",
+		"niko_MPC_satelliteSpawnerScript":"data.scripts.everyFrames.combat.niko_MPC_newSatelliteDeployerScript",
+		"niko_MPC_campaignPlugin":"data.scripts.campaign.plugins.niko_MPC_campaignPlugin",
+	},
+	"graphics":{
+		"intel":{
+			"niko_MPC_priceUpdate":"graphics/icons/intel/price_update.png",
+			"niko_MPC_magnetarIcon":"graphics/icons/intel/magnetaricon.png",
+		},
+		"illustrations":{
+			"niko_MPC_magnetar":"graphics/illustrations/magnetar.jpg"
+		},
+		"planets":{
+			"MPCatmosphere3":"graphics/planets/MPC_atmosphere3.png",
+			"MPCatmosphere3_red":"graphics/planets/MPC_atmosphere3Red.png",
+			"MPCatmosphere3_blue":"graphics/planets/MPC_atmosphere3Blue.png",
+			"MPCatmosphere3_green":"graphics/planets/MPC_atmosphere3Green.png",
+			"MPCshieldInnerRed":"graphics/planets/MPC_shieldInnerRed.png",
+			"MPCshieldInnerBlue":"graphics/planets/MPC_shieldInnerBlue.png",
+			"MPCshieldInnerGreen":"graphics/planets/MPC_shieldInnerGreen.png",
+		},
+		"events":{
+			"MPC_IAIIC_ICON":"graphics/icons/campaign/hostile_activity_start.png",
+			"MPC_IAIIC_START":"graphics/factions/MPC_IAIIC_crest.png",
+			"MPC_IAIIC_SABOTAGE":"graphics/icons/campaign/event_bad.png",
+			"MPC_IAIIC_ESCALATION":"graphics/icons/campaign/increased_defenses.png",
+			"MPC_IAIIC_BLOCKADE":"graphics/icons/markets/blockade.png",
+			"MPC_IAIIC_ALL_OR_NOTHING":"graphics/icons/campaign/hostile_activity4.png",
+			"MPC_IAIIC_PREP_START":"graphics/icons/campaign/event_bad.png",
+			"MPC_IAIIC_PREP_END":"graphics/icons/campaign/increased_defenses.png",
+			"MPC_IAIIC_BOMBARDMENT":"graphics/icons/missions/tactical_bombardment.png",
+		},
+	},
+	"stations":{
+		"MPC_hightech3":"graphics/stations/station_hightech3.png",
+	},
+	
+	"bonusXP":{
+		"niko_MPC_phaseThroughOptionThreshOne":0,
+		"niko_MPC_phaseThroughOptionThreshTwo":0,
+		"niko_MPC_phaseThroughOptionThreshThree":0,
+		
+		"niko_MPC_ecmOptionModThreshOne":0,
+		"niko_MPC_ecmOptionModThreshTwo":0,
+		"niko_MPC_ecmOptionModThreshThree":0,
+		"niko_MPC_ecmOptionModThreshFour":0,
+		
+		"MPC_pressAboutBM":1,
+		"MPC_seeBMContact":0,
+		"MPC_getDownPayment":0,
+		"MPC_suicide":0,
+	},
+
+	 "designTypeColors":{
+		 "Kanta's Favored":[200,0,0,255],
+		 "Domain Forbidden":[155,155,155,255],
+
+	 }
+ }

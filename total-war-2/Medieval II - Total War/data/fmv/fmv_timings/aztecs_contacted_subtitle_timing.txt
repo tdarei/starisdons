@@ -1,0 +1,6 @@
+<SYNC Start=400>
+<P Class=ENUSCC>Aztecs_Contacted_1
+<SYNC Stop=6800>
+<SYNC Start=10000>
+<P Class=ENUSCC>Aztecs_Contacted_2
+<SYNC Stop=32500>

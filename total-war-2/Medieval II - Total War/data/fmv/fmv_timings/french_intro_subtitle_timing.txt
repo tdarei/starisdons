@@ -1,0 +1,9 @@
+<SYNC Start=13100>
+<P Class=ENUSCC>French_Intro_1
+<SYNC Stop=27200>
+<SYNC Start=36600>
+<P Class=ENUSCC>French_Intro_4
+<SYNC Stop=51300>
+<SYNC Start=73900>
+<P Class=ENUSCC>French_Intro_5
+<SYNC Stop=85700>

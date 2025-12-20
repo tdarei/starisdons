@@ -1,0 +1,19 @@
+{
+	"baseHullId":"mule_hmi_heavy",
+	"skinHullId":"mule_hmi_heavy_mm",
+	"hullName":"Dromedary (MM)",
+	"descriptionId":"mule_hmi_heavy",
+	"spriteName":"graphics/ships/mule_hmi_heavy/mule_hmi_heavy_mm.png",
+	"descriptionPrefix":"This ship has been overhauled for fleet use by the Rimward Venture Trading Company, with a focus on bulk efficiency.",
+	"hints":["HIDE_IN_CODEX"],
+	"tags":["mercantile"],
+	"tech":"Merchant Marine",
+	"systemId":"burndrive",
+	"removeWeaponSlots":[], 		# ids
+	"removeEngineSlots":[], 		# indices, as engine slots have no id in the .ship file
+	"removeBuiltInMods":[], 		# hullmod ids
+	"removeBuiltInWeapons":[], 		# weapon slot ids
+	"builtInMods":["shielded_holds"],
+	"builtInWeapons":{
+    },
+}

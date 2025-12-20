@@ -1,0 +1,60 @@
+{
+  "bounds": [
+    13,
+    -16.5,
+    13.5,
+    1.5,
+    27,
+    17.5,
+    -21,
+    13.5,
+    -20.5,
+    -18
+  ],
+  "builtInWings": [],
+  "center": [
+    22.5,
+    26.5
+  ],
+  "collisionRadius": 41,
+  "engineSlots": [],
+  "height": 53,
+  "hullId": "station_domres_right",
+  "hullName": "Missile Section, Small",
+  "hullSize": "FRIGATE",
+  "shieldCenter": [
+    0,
+    0
+  ],
+  "shieldRadius": 40.5,
+  "spriteName": "graphics/ships/domain_resurgent/hmidr_platform_right.png",
+  "style": "LOW_TECH",
+  "viewOffset": 0,
+  "weaponSlots": [
+    {
+      "angle": -90,
+      "arc": 10,
+      "id": "WS0001",
+      "locations": [
+        -14.5,
+        -13
+      ],
+      "mount": "HARDPOINT",
+      "size": "MEDIUM",
+      "type": "MISSILE"
+    },
+    {
+      "angle": -90,
+      "arc": 10,
+      "id": "WS0002",
+      "locations": [
+        1.5,
+        -10.5
+      ],
+      "mount": "HARDPOINT",
+      "size": "MEDIUM",
+      "type": "MISSILE"
+    }
+  ],
+  "width": 45
+}

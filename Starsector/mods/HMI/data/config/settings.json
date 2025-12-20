@@ -1,0 +1,38 @@
+{
+
+    "graphics":{
+			"blueprint_packages":{
+			"hmi_package":"graphics/icons/cargo/hmi_pack.png",
+			"hmi_junk_package":"graphics/icons/cargo/hmi_junk_pack.png",
+			"hmi_tech_package":"graphics/icons/cargo/hmi_tech_pack.png",
+			"hmi_domres_package":"graphics/icons/cargo/hmi_domres_pack.png",
+			},
+
+		
+        "characters":{
+                "hmi_kidman":"graphics/portraits/hmi_kidman.png",
+				"hmi_gentle":"graphics/portraits/hmi_gentle.png",
+        },
+        "illustrations":{
+            "hmi_samiel":"graphics/illustrations/haunted.jpg",
+			"luddic_church":"graphics/illustrations/luddic_church.jpg",
+			"crystalline":"graphics/illustrations/crystal.jpg",
+			"facility_explosion":"graphics/illustrations/facility_explosion.jpg",
+		},
+		"fx":{
+			"trails_nia_trail_fuzzy":"graphics/trails/fx/nia_trails_zappy.png",
+		},
+
+		
+	},
+    	"designTypeColors":{
+		"Junker (HMI)":[196,62,0,255],
+		"HMI Modification":[55,80,0,255],
+		"HMI Techmined":[183,132,69,255],
+		"Mess Object":[173,165,183,255],
+		"Remnant Mess Object":[173,165,183,255],
+		"Autonomous Domain Resurgent":[208,0,255,255],
+		"Domain Resurgent":[148,86,160,255],
+		"Undeterminable":[0,255,199,255],
+	},
+}

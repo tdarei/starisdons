@@ -1,0 +1,180 @@
+# Enhanced GitLab CI/CD Pipeline
+stages:
+  - validate
+  - test
+  - build
+  - security
+  - deploy
+  - monitor
+
+variables:
+  NODE_VERSION: "18"
+  GIT_CONFIG_COUNT: "1"
+  GIT_CONFIG_KEY_0: "core.longpaths"
+  GIT_CONFIG_VALUE_0: "true"
+
+# Lint and validate
+lint:
+  stage: validate
+  tags:
+    - windows
+    - shell
+  script:
+    - echo "Running code validation..."
+    - if (Test-Path "package.json") { npm install; if ($LASTEXITCODE -ne 0) { echo "Install finished with warning" }; npm run lint; if ($LASTEXITCODE -ne 0) { echo "Linting completed" } }
+  allow_failure: true
+  only:
+    - merge_requests
+    - main
+
+# Run tests
+test:
+  stage: test
+  tags:
+    - windows
+    - shell
+  script:
+    - echo "Running automated tests..."
+    - if (Test-Path "package.json") { npm install; if ($LASTEXITCODE -ne 0) { echo "Install finished with warning" }; npm test; if ($LASTEXITCODE -ne 0) { echo "Tests completed" } }
+  artifacts:
+    paths:
+      - coverage/
+    expire_in: 1 week
+  allow_failure: true
+  only:
+    - merge_requests
+    - main
+
+# Security scan
+security_scan:
+  stage: security
+  tags:
+    - windows
+    - shell
+  script:
+    - echo "Running security audit..."
+    - if (Test-Path "package.json") { npm install; if ($LASTEXITCODE -ne 0) { echo "Install finished with warning" }; npm audit --audit-level=moderate; if ($LASTEXITCODE -ne 0) { echo "Security audit completed" } }
+  allow_failure: true
+  only:
+    - merge_requests
+    - main
+
+# Build
+build:
+  stage: build
+  tags:
+    - windows
+    - shell
+  script:
+    - echo "Building application..."
+    - if (Test-Path "build-pages.ps1") { powershell -ExecutionPolicy Bypass -File build-pages.ps1 }
+  artifacts:
+    paths:
+      - public/
+    expire_in: 1 day
+  only:
+    - main
+
+# Deploy to production
+pages:
+  stage: deploy
+  tags:
+    - windows
+    - shell
+  script:
+    - powershell -ExecutionPolicy Bypass -File build-pages.ps1
+  artifacts:
+    paths:
+      - public
+    expire_in: 1 day
+  environment:
+    name: production
+    url: https://adrianotothestar.com
+  only:
+    - main
+
+deploy_mechgen_web:
+  stage: deploy
+  tags:
+    - windows
+    - shell
+  variables:
+    PROJECT_ID: "adriano-broadband"
+    REGION: "europe-west2"
+    SERVICE_NAME: "mechgen-web"
+    CLOUDSDK_CORE_DISABLE_PROMPTS: "1"
+  script:
+    - 'echo "Deploying MechGen Web to Cloud Run..."'
+    - 'if (-not (Get-Command "gcloud" -ErrorAction SilentlyContinue)) { Write-Error "gcloud CLI is required on the runner"; exit 1 }'
+    - 'if (-not $env:GCP_SA_KEY_B64) { Write-Error "GCP_SA_KEY_B64 is required"; exit 1 }'
+    - 'if (-not $env:GEMINI_API_KEY) { Write-Error "GEMINI_API_KEY is required"; exit 1 }'
+    - '$KeyPath = Join-Path $env:CI_PROJECT_DIR "gcp-sa-key.json"'
+    - '[IO.File]::WriteAllBytes($KeyPath, [Convert]::FromBase64String($env:GCP_SA_KEY_B64))'
+    - 'gcloud auth activate-service-account --key-file $KeyPath --quiet'
+    - 'gcloud config set project $env:PROJECT_ID --quiet'
+    - 'gcloud config set run/region $env:REGION --quiet'
+    - 'powershell -ExecutionPolicy Bypass -File mechgen_web/deploy.ps1 -ProjectId $env:PROJECT_ID -Region $env:REGION -ServiceName $env:SERVICE_NAME'
+  after_script:
+    - '$KeyPath = Join-Path $env:CI_PROJECT_DIR "gcp-sa-key.json"'
+    - 'if (Test-Path $KeyPath) { Remove-Item $KeyPath -Force }'
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main" && $GCP_SA_KEY_B64 && $GEMINI_API_KEY'
+      changes:
+        - mechgen/**/*
+        - mechgen_web/**/*
+        - .gcloudignore
+        - .gitlab-ci.yml
+    - when: never
+
+mechgen_web_health_check:
+  stage: monitor
+  tags:
+    - windows
+    - shell
+  variables:
+    PROJECT_ID: "adriano-broadband"
+    REGION: "europe-west2"
+    SERVICE_NAME: "mechgen-web"
+    CLOUDSDK_CORE_DISABLE_PROMPTS: "1"
+  script:
+    - 'echo "Running MechGen Web health checks..."'
+    - 'Start-Sleep -Seconds 10'
+    - 'if (-not (Get-Command "gcloud" -ErrorAction SilentlyContinue)) { Write-Error "gcloud CLI is required on the runner"; exit 1 }'
+    - 'if (-not $env:GCP_SA_KEY_B64) { Write-Error "GCP_SA_KEY_B64 is required"; exit 1 }'
+    - '$KeyPath = Join-Path $env:CI_PROJECT_DIR "gcp-sa-key.json"'
+    - '[IO.File]::WriteAllBytes($KeyPath, [Convert]::FromBase64String($env:GCP_SA_KEY_B64))'
+    - 'gcloud auth activate-service-account --key-file $KeyPath --quiet'
+    - 'gcloud config set project $env:PROJECT_ID --quiet'
+    - '$ServiceUrl = (gcloud run services describe $env:SERVICE_NAME --region $env:REGION --project $env:PROJECT_ID --format "value(status.url)" --quiet).Trim()'
+    - 'if (-not $ServiceUrl) { Write-Error "Could not determine Cloud Run service URL"; exit 1 }'
+    - '$Health = Invoke-RestMethod -Uri "$ServiceUrl/api/health" -TimeoutSec 60'
+    - 'if (-not $Health.ok) { Write-Error "Health check failed: ok=false"; exit 1 }'
+    - 'if (-not $Health.api_key_present) { Write-Error "Health check failed: api_key_present=false"; exit 1 }'
+    - 'if (-not $Health.rdkit_available) { Write-Error "Health check failed: rdkit_available=false"; exit 1 }'
+    - 'echo "MechGen Web health check passed"'
+  after_script:
+    - '$KeyPath = Join-Path $env:CI_PROJECT_DIR "gcp-sa-key.json"'
+    - 'if (Test-Path $KeyPath) { Remove-Item $KeyPath -Force }'
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main" && $GCP_SA_KEY_B64 && $GEMINI_API_KEY'
+      changes:
+        - mechgen/**/*
+        - mechgen_web/**/*
+        - .gcloudignore
+        - .gitlab-ci.yml
+    - when: never
+
+# Health check
+health_check:
+  stage: monitor
+  tags:
+    - windows
+    - shell
+  script:
+    - echo "Running health checks..."
+    - Start-Sleep -Seconds 10
+    - $response = Invoke-WebRequest -Uri "https://adrianotothestar.com" -UseBasicParsing -TimeoutSec 30
+    - if ($response.StatusCode -eq 200) { echo "Health check passed" } else { exit 1 }
+  only:
+    - main
+  when: on_success

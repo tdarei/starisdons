@@ -1,0 +1,187 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Broadband Deal Checker - Adriano To The Star</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Raleway:wght@200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="pages-styles.css">
+    <link rel="stylesheet" href="loader-minimal.css">
+    <script src="loader.js"></script>
+    <link rel="stylesheet" href="broadband-checker-styles.css">
+    <link rel="stylesheet" href="cosmic-styles.css">
+    <script src="animations.js" defer></script>
+    <script src="navigation.js" defer></script>
+    <script src="cosmic-effects.js" defer></script>
+    <script src="cosmic-music-player.js" defer></script>
+    <script src="i18n.js" defer></script>
+    <script src="theme-toggle.js" defer></script>
+    <script src="accessibility.js" defer></script>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="theme-styles.css">
+    <link rel="stylesheet" href="accessibility-styles.css">
+    <link rel="stylesheet" href="i18n-styles.css">
+</head>
+
+<body>
+    <!-- Menu Toggle Button -->
+    <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">
+        <span class="menu-icon"></span>
+        <span class="menu-icon"></span>
+        <span class="menu-icon"></span>
+    </button>
+    <main>
+        <section class="page-hero" data-entrance="fadeIn">
+            <h1 class="page-title" data-scroll-animate>🌐 BROADBAND DEAL CHECKER</h1>
+            <p class="page-subtitle">Find the Best Broadband Deals Across 339+ UK Providers</p>
+        </section>
+
+        <!-- Search and Filter Section -->
+        <section class="content-section" data-entrance="slideUp">
+            <div class="content-container">
+                <div class="broadband-search-section">
+                    <div class="search-container">
+                        <input type="text" id="provider-search" placeholder="Search providers..." class="search-input">
+                        <button id="search-btn" class="search-button">🔍 Search</button>
+                    </div>
+
+                    <div class="filter-container">
+                        <label>Filter by:</label>
+                        <select id="speed-filter" class="filter-select">
+                            <option value="">All Speeds</option>
+                            <option value="fibre">Fibre</option>
+                            <option value="ultra-fast">Ultra-Fast (100+ Mbps)</option>
+                            <option value="gigabit">Gigabit (1000+ Mbps)</option>
+                        </select>
+                        <select id="type-filter" class="filter-select">
+                            <option value="">All Types</option>
+                            <option value="residential">Residential</option>
+                            <option value="business">Business</option>
+                            <option value="rural">Rural</option>
+                        </select>
+                        <select id="status-filter" class="filter-select">
+                            <option value="">All Status</option>
+                            <option value="active">✓ Active Only</option>
+                            <option value="with-price">💰 With Prices</option>
+                            <option value="offline">✗ Offline</option>
+                            <option value="ceased">🚫 Ceased Trading</option>
+                        </select>
+                        <button id="clear-filters" class="clear-button">Clear Filters</button>
+                        <button id="refresh-prices-btn" class="refresh-all-button" title="Refresh all prices using Live AI (unlimited requests)">
+                            🔄 Refresh All Prices
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Statistics Section -->
+        <section class="content-section" data-entrance="slideUp" data-entrance-delay="200">
+            <div class="content-container">
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <div class="stat-number" id="total-providers">300+</div>
+                        <div class="stat-label">Total Providers</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="available-providers">0</div>
+                        <div class="stat-label">Showing</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="active-providers">0</div>
+                        <div class="stat-label">✓ Active</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="gigabit-providers">0</div>
+                        <div class="stat-label">⚡ Gigabit</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="with-price-providers">0</div>
+                        <div class="stat-label">💰 With Prices</div>
+                    </div>
+                </div>
+                <p id="last-updated" style="text-align: center; color: rgba(255,255,255,0.5); font-size: 0.85rem; margin-top: 1rem;"></p>
+            </div>
+        </section>
+
+        <!-- Saved & History Sections -->
+        <section class="content-section" id="user-lists-section" style="display: none;" data-entrance="slideUp">
+            <div class="content-container">
+
+                <!-- Saved Providers -->
+                <div id="saved-providers-container" style="display: none; margin-bottom: 3rem;">
+                    <h2 class="section-title">⭐ Saved Providers</h2>
+                    <div id="saved-providers-list" class="provider-results"></div>
+                </div>
+
+                <!-- Recently Viewed -->
+                <div id="history-providers-container" style="display: none;">
+                    <h2 class="section-title">🕒 Recently Viewed</h2>
+                    <div id="history-providers-list" class="provider-results"></div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Provider Results Section -->
+        <section class="content-section" data-entrance="slideUp" data-entrance-delay="400">
+            <div class="content-container">
+                <h2 class="section-title">All Providers</h2>
+                <div id="provider-results" class="provider-results">
+                    <!-- Providers will be loaded here -->
+                </div>
+                <div id="loading-message" class="loading-message">
+                    <div class="spinner"></div>
+                    <p>Loading providers...</p>
+                </div>
+                <div id="no-results" class="no-results" style="display: none;">
+                    <p>No providers found matching your criteria.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Postcode Checker Section -->
+        <section class="content-section" data-entrance="slideUp" data-entrance-delay="600">
+            <div class="content-container">
+                <div class="postcode-checker">
+                    <h2 style="color: #ba944f; margin-bottom: 1.5rem;">📍 Check Availability by Postcode</h2>
+                    <div class="postcode-input-container">
+                        <input type="text" id="postcode-input" placeholder="Enter UK postcode (e.g., SW1A 1AA)"
+                            class="postcode-input" maxlength="10">
+                        <button id="check-postcode-btn" class="check-button">Check Availability</button>
+                    </div>
+                    <div id="postcode-results" class="postcode-results"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparison Bar -->
+        <div id="comparison-bar" class="comparison-bar">
+            <div class="comparison-content">
+                <div class="comparison-count">
+                    <span id="compare-count">0</span>/3 Selected
+                </div>
+                <div class="comparison-actions">
+                    <button id="clear-compare-btn" class="compare-btn secondary">Clear</button>
+                    <button id="view-compare-btn" class="compare-btn primary">Compare Now</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2025 ADRIANO TO THE STAR - I.T.A (Interstellar Travel Agency)</p>
+        <p><a href="index.html">Back to Home</a></p>
+    </footer>
+
+    <script src="broadband-checker.js" defer></script>
+    <script src="pwa-loader.js"></script>
+</body>
+
+</html>

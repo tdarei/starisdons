@@ -1,0 +1,66 @@
+{
+  "hullName": "Tie Fighter",
+  "hullId": "sw_tie_fighter",
+  "hullSize": "FIGHTER",
+  "spriteName": "graphics/ships/fighters/sw_tie_fighter.png",
+  "style": "SW_IMPERIAL",
+  "height": 34,
+  "width": 30,
+  "center": [15, 17],
+  "collisionRadius": 22,
+  "shieldCenter": [0, 0],
+  "shieldRadius": 22.5,
+  "viewOffset": 0,
+  "weaponSlots": [
+    {
+      "id": "WS0001",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": 0,
+      "locations": [4, 1]
+    },
+    {
+      "id": "WS0002",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": -0,
+      "locations": [4, -1]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-5.5, -0],
+      "length": 30,
+      "width": 10,
+      "angle": 180,
+      "contrailSize": 128,
+      "style": "LOW_TECH_FIGHTER"
+    }
+  ],
+  "bounds": [
+    4.5, -2.5,
+    1.5, -5.5,
+    1.5, -12.5,
+    15.5, -12.5,
+    15.5, -14.5,
+    -14.5, -14.5,
+    -14.5, -12.5,
+    -1.5, -12.5,
+    -1.5, -5.5,
+    -5.5, -2.5,
+    -5.5, 2.5,
+    -1.5, 5.5,
+    -1.5, 12.5,
+    -14.5, 12.5,
+    -14.5, 14.5,
+    15.5, 14.5,
+    15.5, 12.5,
+    1.5, 12.5,
+    1.5, 5.5,
+    4.5, 2.5
+  ]
+}

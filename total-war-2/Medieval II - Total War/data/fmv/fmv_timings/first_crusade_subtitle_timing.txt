@@ -1,0 +1,9 @@
+<SYNC Start=300>
+<P Class=ENUSCC>First_Crusade_1
+<SYNC Stop=10300>
+<SYNC Start=10400>
+<P Class=ENUSCC>First_Crusade_2
+<SYNC Stop=21700>
+<SYNC Start=21600>
+<P Class=ENUSCC>First_Crusade_3
+<SYNC Stop=36000>

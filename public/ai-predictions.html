@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Planet Discovery Predictions - Adriano To The Star</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Raleway:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="pages-styles.css">
+    <link rel="stylesheet" href="theme-styles.css">
+    <link rel="stylesheet" href="accessibility-styles.css">
+    <link rel="stylesheet" href="i18n-styles.css">
+    <script src="loader.js"></script>
+    <script src="navigation.js" defer></script>
+    <script src="theme-toggle.js" defer></script>
+</head>
+<body>
+    <!-- Menu Toggle Button -->
+    <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">
+        <span class="menu-icon"></span>
+        <span class="menu-icon"></span>
+        <span class="menu-icon"></span>
+    </button>
+    <main>
+        <section class="page-hero" data-entrance="fadeIn">
+            <h1 class="page-title">🤖 AI Planet Discovery Predictions</h1>
+            <p class="page-subtitle">Machine learning predictions for future planet discoveries</p>
+        </section>
+
+        <section class="content-section" data-entrance="slideUp">
+            <div class="content-container">
+                <div id="ai-predictions-container">
+                    <!-- AI Predictions will be initialized here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2025 ADRIANO TO THE STAR</p>
+        <p><a href="database.html">Back to Database</a> | <a href="index.html">Home</a></p>
+    </footer>
+
+    <script src="gemini-config.js"></script>
+    <script src="ai-planet-discovery-predictions.js" defer></script>
+    <script src="universal-graphics.js" defer></script>
+    <script src="i18n.js" defer></script>
+    <script src="cosmic-music-player.js" defer></script>
+    <script src="accessibility.js" defer></script>
+    <script>
+        (function() {
+            async function initAIPredictions() {
+                const container = document.getElementById('ai-predictions-container');
+                if (!container) {
+                    setTimeout(initAIPredictions, 500);
+                    return;
+                }
+                
+                try {
+                    let retries = 0;
+                    const maxRetries = 10;
+                    
+                    const checkAndInit = async () => {
+                        if (window.aiPredictions && typeof window.aiPredictions === 'function') {
+                            const predictions = window.aiPredictions();
+                            if (predictions && predictions.displayPredictions) {
+                                await predictions.displayPredictions('ai-predictions-container');
+                                console.log('✅ AI Planet Discovery Predictions initialized');
+                            } else if (retries < maxRetries) {
+                                retries++;
+                                setTimeout(checkAndInit, 500);
+                            }
+                        } else if (retries < maxRetries) {
+                            retries++;
+                            setTimeout(checkAndInit, 500);
+                        } else {
+                            console.warn('⚠️ AI Predictions not available after retries');
+                        }
+                    };
+                    
+                    checkAndInit();
+                } catch (error) {
+                    console.error('❌ Error initializing AI Predictions:', error);
+                }
+            }
+            
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initAIPredictions);
+            } else {
+                initAIPredictions();
+            }
+        })();
+    </script>
+</body>
+</html>
+

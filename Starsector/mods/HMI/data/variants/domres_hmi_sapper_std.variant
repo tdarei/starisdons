@@ -1,0 +1,41 @@
+{
+  "variantId": "domres_hmi_sapper_std",
+  "hullId": "domres_hmi_sapper",
+  "displayName": "Standard",
+  "goalVariant": true,
+  "fluxCapacitors": 5,
+  "fluxVents": 0,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "magazines",
+    "missleracks"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0005": "autopulse"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0003": "sabot",
+        "WS0004": "sabot"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0001": "miningblaster",
+        "WS0002": "miningblaster"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

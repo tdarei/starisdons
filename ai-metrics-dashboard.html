@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Model Performance Metrics - Adriano To The Star</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="pages-styles.css">
+    <link rel="stylesheet" href="loader-minimal.css">
+    <link rel="stylesheet" href="theme-styles.css">
+    <link rel="stylesheet" href="accessibility-styles.css">
+    <script src="loader.js"></script>
+    <script src="animations.js" defer></script>
+    <script src="navigation.js" defer></script>
+    <script src="cosmic-music-player.js" defer></script>
+    <script src="theme-toggle.js" defer></script>
+    <script src="accessibility.js" defer></script>
+    <script src="i18n.js" defer></script>
+    <script src="color-schemes.js" defer></script>
+</head>
+<body>
+    <!-- Menu Toggle Button -->
+    <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">
+        <span class="menu-icon"></span>
+        <span class="menu-icon"></span>
+        <span class="menu-icon"></span>
+    </button>
+    <div id="space-loader"></div>
+    
+    <div id="main">
+        <nav id="navigation-menu"></nav>
+        
+        <main class="page-content">
+            <div class="dashboard-container">
+                <div class="dashboard-header">
+                    <h1>🤖 AI Model Performance Metrics</h1>
+                    <p>Track performance, accuracy, and usage statistics for AI models</p>
+                </div>
+                
+                <div id="ai-metrics-container"></div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="ai-model-performance-metrics.js"></script>
+    <script>
+        try {
+            if (window.AIModelPerformanceMetrics && typeof window.AIModelPerformanceMetrics.prototype.trackEvent !== 'function') {
+                window.AIModelPerformanceMetrics.prototype.trackEvent = function(eventName, data = {}) {
+                    try {
+                        if (window.performanceMonitoring) {
+                            window.performanceMonitoring.recordMetric(`ai_model_metrics_${eventName}`, 1, data);
+                        }
+                    } catch (e) {}
+                };
+            }
+
+            if (typeof window.aiModelMetrics === 'function') {
+                if (typeof window.aiModelMetrics.refresh !== 'function') {
+                    window.aiModelMetrics.refresh = () => {
+                        const inst = window.aiModelMetrics();
+                        if (inst && typeof inst.refresh === 'function') inst.refresh();
+                    };
+                }
+                if (typeof window.aiModelMetrics.exportMetrics !== 'function') {
+                    window.aiModelMetrics.exportMetrics = () => {
+                        const inst = window.aiModelMetrics();
+                        if (inst && typeof inst.exportMetrics === 'function') inst.exportMetrics();
+                    };
+                }
+                if (typeof window.aiModelMetrics.exportMetricsCSV !== 'function') {
+                    window.aiModelMetrics.exportMetricsCSV = () => {
+                        const inst = window.aiModelMetrics();
+                        if (inst && typeof inst.exportMetricsCSV === 'function') inst.exportMetricsCSV();
+                    };
+                }
+            }
+        } catch (e) {}
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('ai-metrics-container');
+            if (container) {
+                let metrics = null;
+                if (typeof window.aiModelMetrics === 'function') {
+                    metrics = window.aiModelMetrics();
+                }
+                if (!metrics && typeof window.initAIModelMetrics === 'function') {
+                    try { metrics = window.initAIModelMetrics(); } catch (e) {}
+                }
+                if (metrics && typeof metrics.displayDashboard === 'function') {
+                    metrics.displayDashboard('ai-metrics-container');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+

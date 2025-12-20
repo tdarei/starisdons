@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Events Calendar - Adriano To The Star</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Raleway:wght@200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="pages-styles.css">
+    <link rel="stylesheet" href="loader-minimal.css">
+    <link rel="stylesheet" href="theme-styles.css">
+    <link rel="stylesheet" href="accessibility-styles.css">
+    <link rel="stylesheet" href="event-calendar-styles.css">
+
+    <!-- Loading Screen -->
+    <script src="loader.js"></script>
+
+    <script src="animations.js" defer></script>
+    <script src="navigation.js" defer></script>
+    <script src="universal-graphics.js" defer></script>
+    <script src="cosmic-music-player.js" defer></script>
+    <script src="theme-toggle.js" defer></script>
+    <script src="accessibility.js" defer></script>
+    <script src="keyboard-shortcuts.js" defer></script>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="i18n-styles.css">
+</head>
+
+<body>
+    <!-- Menu Toggle Button -->
+    <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">
+        <span class="menu-icon"></span>
+        <span class="menu-icon"></span>
+        <span class="menu-icon"></span>
+    </button>
+    <main>
+        <!-- Page Hero -->
+        <section class="page-hero" data-entrance="fadeIn">
+            <h1 class="page-title" data-scroll-animate>SPACE EVENTS CALENDAR</h1>
+            <p class="page-subtitle">Track launches, discoveries, and cosmic events</p>
+        </section>
+
+        <!-- Calendar Container -->
+        <section class="content-section" data-entrance="slideUp">
+            <div class="content-container">
+                <div id="event-calendar-container">
+                    <!-- Calendar will be initialized here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <p>&copy; 2025 ADRIANO TO THE STAR - I.T.A (Interstellar Travel Agency)</p>
+        <p><a href="index.html">Back to Home</a></p>
+    </footer>
+
+    <!-- Supabase Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
+    <script src="space-api-integrations.js"></script>
+    <script src="event-calendar.js"></script>
+    <script src="i18n.js" defer></script>
+    <script>
+        // Ensure music player is visible
+        (function () {
+            function ensurePlayerVisible() {
+                const playerEl = document.getElementById('cosmic-music-player');
+                if (playerEl) {
+                    playerEl.style.display = 'block';
+                    playerEl.style.opacity = '1';
+                    playerEl.style.pointerEvents = 'auto';
+                    playerEl.style.visibility = 'visible';
+                } else {
+                    setTimeout(ensurePlayerVisible, 500);
+                }
+            }
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', () => setTimeout(ensurePlayerVisible, 1000));
+            } else {
+                setTimeout(ensurePlayerVisible, 1000);
+            }
+        })();
+    </script>
+</body>
+
+</html>
+

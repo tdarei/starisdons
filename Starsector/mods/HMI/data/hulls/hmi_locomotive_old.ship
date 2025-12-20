@@ -1,0 +1,212 @@
+{
+  "hullName": "Locomotive",
+  "hullId": "hmi_locomotive_old",
+  "hullSize": "CAPITAL_SHIP",
+  "spriteName": "graphics/ships/locomotive/hmi_locomotive_core.png",
+  "style": "LOW_TECH",
+  "height": 182,
+  "width": 175,
+  "center": [87.5, 91],
+  "collisionRadius": 418,
+  "shieldCenter": [0, 0],
+  "shieldRadius": 408,
+  "viewOffset": 0,
+  "builtInMods": [
+    "junker",
+    "hmi_stationhull",
+    "advancedcore",
+    "operations_center",
+    "hmi_linkedhull",
+    "repair_gantry"
+  ],
+  "builtInWeapons": {
+    "WS0001": "pumm_cannon"
+  },
+  "weaponSlots": [
+    {
+      "id": "WS0001",
+      "size": "LARGE",
+      "type": "BUILT_IN",
+      "mount": "TURRET",
+      "arc": 145,
+      "angle": 0,
+      "locations": [59, -0]
+    },
+    {
+      "id": "WS0002",
+      "size": "SMALL",
+      "type": "MISSILE",
+      "mount": "TURRET",
+      "arc": 65,
+      "angle": 64.5,
+      "locations": [32, 46.5]
+    },
+    {
+      "id": "WS0003",
+      "size": "MEDIUM",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 238,
+      "angle": 133.5,
+      "locations": [-25, 33.5]
+    },
+    {
+      "id": "WS0004",
+      "size": "MEDIUM",
+      "type": "UNIVERSAL",
+      "mount": "TURRET",
+      "arc": 109,
+      "angle": 180,
+      "locations": [-59.5, -0]
+    },
+    {
+      "id": "WS0005",
+      "size": "MEDIUM",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 199,
+      "angle": -115,
+      "locations": [-33, -52]
+    },
+    {
+      "id": "WS0006",
+      "size": "MEDIUM",
+      "type": "LAUNCH_BAY",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": -90,
+      "locations": [
+        6, -68.5,
+        -8, -75,
+        16.5, -75
+      ]
+    },
+    {
+      "id": "WS0007",
+      "size": "MEDIUM",
+      "type": "LAUNCH_BAY",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 90,
+      "locations": [
+        3, 70.5,
+        -5.5, 75,
+        19.5, 74
+      ]
+    },
+    {
+      "id": "WS0008",
+      "size": "SMALL",
+      "type": "MISSILE",
+      "mount": "TURRET",
+      "arc": 93,
+      "angle": -69.5,
+      "locations": [39, -64.5]
+    },
+    {
+      "id": "WS0009",
+      "size": "SMALL",
+      "type": "MISSILE",
+      "mount": "TURRET",
+      "arc": 105,
+      "angle": -26,
+      "locations": [67, -44.5]
+    },
+    {
+      "id": "MODULE_UNDER",
+      "size": "LARGE",
+      "type": "STATION_MODULE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 0,
+      "locations": [5.5, -0],
+      "renderOrderMod": -1
+    },
+    {
+      "id": "MODULE_ENGINES",
+      "size": "LARGE",
+      "type": "STATION_MODULE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 180,
+      "locations": [-126, 0]
+    },
+    {
+      "id": "MODULE_GUN_LEFT",
+      "size": "LARGE",
+      "type": "STATION_MODULE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 0,
+      "locations": [113, 134]
+    },
+    {
+      "id": "MODULE_GUN_RIGHT",
+      "size": "LARGE",
+      "type": "STATION_MODULE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": -0,
+      "locations": [113, -134]
+    },
+    {
+      "id": "MODULE_FIGHTER_LEFT",
+      "size": "LARGE",
+      "type": "STATION_MODULE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 90,
+      "locations": [-36.5, 173]
+    },
+    {
+      "id": "MODULE_FIGHTER_RIGHT",
+      "size": "LARGE",
+      "type": "STATION_MODULE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": -90,
+      "locations": [-36.5, -173]
+    },
+	{
+      "id": "MODULE_FRONT",
+      "size": "LARGE",
+      "type": "STATION_MODULE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 0,
+      "locations": [213, -0]
+    }
+  ],
+  "engineSlots": [],
+  "bounds": [
+    -84, -8,
+    -89, -13,
+    -84.5, -37.5,
+    -72, -43.5,
+    -54, -71,
+    -28.5, -80.5,
+    -22.5, -74.5,
+    -17, -83,
+    23, -84,
+    29, -74.5,
+    44, -74,
+    54, -66.5,
+    73.5, -52,
+    78, -28.5,
+    89, -6.5,
+    89, 6.5,
+    78, 28.5,
+    78, 50,
+    66, 67.5,
+    46.5, 67,
+    29, 74.5,
+    27, 85.5,
+    -9, 88.5,
+    -15, 79,
+    -24, 78.5,
+    -54, 71,
+    -79.5, 41.5,
+    -91, 19.5,
+    -84, 8
+  ]
+}

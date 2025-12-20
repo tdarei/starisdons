@@ -1,0 +1,2760 @@
+ 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Otumba HISTORICAL BATTLE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;**********************************************************************************************
+
+script
+
+;;;;*************************************************************************************************
+;;;;	INITIALISE BATTLE
+;;;;*************************************************************************************************
+
+	prepare_for_battle
+	
+	while ! I_BattleStarted
+	end_while
+	
+;;;;*************************************************************************************************
+;;;;	LABEL UNITS
+;;;;*************************************************************************************************
+	
+;;;Spain
+	label_unit 0 0 0 cortes_general_1
+	label_unit 0 0 1 conquistadores_1
+	label_unit 0 0 2 conquistadores_2
+	label_unit 0 0 3 musketeers_1
+	label_unit 0 0 4 musketeers_2
+	label_unit 0 0 5 Pavise_Crossbowmen_1
+	label_unit 0 0 6 Sword_and_Buckler_1
+	label_unit 0 0 7 Sword_and_Buckler_2
+	label_unit 0 0 8 Tlaxcalan_merc_1
+	label_unit 0 0 9 Tlaxcalan_merc_2
+	label_unit 0 0 10 Tlaxcalan_merc_3
+	
+	
+;;;Aztecs Group a
+	label_unit 1 0 0 az_general_1a
+	label_unit 1 0 1 coyote_priests_1a
+	label_unit 1 0 2 az_archers_1a
+	label_unit 1 0 3 az_spearthrowers_1a
+	label_unit 1 0 4 arrow_warriors_1a
+	label_unit 1 0 5 arrow_warriors_2a
+	label_unit 1 0 6 az_archers_2a
+	label_unit 1 0 7 Cuahchiqueh_1a
+	label_unit 1 0 8 eagle_1a
+	label_unit 1 0 9 az_spearmen_1a
+	label_unit 1 0 10 az_warriors_1a
+	label_unit 1 0 11 az_warriors_2a
+	label_unit 1 0 12 az_peasants_1a
+	label_unit 1 0 13 az_peasants_2a
+	label_unit 1 0 14 az_peasants_3a
+	
+
+	
+;;;Aztec Group b
+	label_unit 1 1 0 az_general_1b
+	label_unit 1 1 1 az_archers_1b
+	label_unit 1 1 2 arrow_warriors_1b
+	label_unit 1 1 3 az_peasants_1b
+	label_unit 1 1 4 az_peasants_2b
+	label_unit 1 1 5 Cuahchiqueh_1b
+	label_unit 1 1 6 coyote_priests_1b
+	label_unit 1 1 7 az_spearmen_1b
+	label_unit 1 1 8 az_spearmen_2b
+
+;;;Aztec Group c	
+	label_unit 1 2 0 az_Leader_1c
+	label_unit 1 2 1 arrow_warriors_1c
+	label_unit 1 2 2 jag_warriors_1c
+	label_unit 1 2 3 jag_warriors_2c
+	label_unit 1 2 4 Cuahchiqueh_1c
+	label_unit 1 2 5 coyote_priests_1c
+ 
+;;;Aztec Group D (gate Keepers)	
+	;label_unit 1 3 0 az_gen_1d
+	
+	
+	ai_active_set off
+	
+;;;;*************************************************************************************************
+;;;;	DECLARE COUNTERS
+;;;;*************************************************************************************************
+
+	declare_counter engaged_az_general_1a
+	declare_counter engaged_coyote_priests_1a
+	declare_counter engaged_az_archers_1a
+	declare_counter engaged_az_spearthrowers_1a
+	declare_counter engaged_arrow_warriors_1a
+	declare_counter engaged_arrow_warriors_2a
+	declare_counter engaged_az_archers_2a
+	declare_counter engaged_Cuahchiqueh_1a
+	declare_counter engaged_eagle_1a
+	declare_counter engaged_az_spearmen_1a
+	declare_counter engaged_az_warriors_1a
+	declare_counter engaged_az_warriors_2a
+	declare_counter engaged_az_peasants_1a
+	declare_counter engaged_az_peasants_2a
+	declare_counter engaged_az_peasants_3a
+	declare_counter engaged_aztec_general_1r
+	declare_counter engaged_eagle_1r
+	declare_counter engaged_coyote_priests_1r
+	declare_counter engaged_eagle_2r
+	declare_counter engaged_arrow_warriors_1r
+	declare_counter engaged_az_general_1b
+	declare_counter engaged_az_archers_1b
+	declare_counter engaged_arrow_warriors_1b
+	declare_counter engaged_az_peasants_1b
+	declare_counter engaged_az_peasants_2b
+	declare_counter engaged_Cuahchiqueh_1b
+	declare_counter engaged_coyote_priests_1b
+	declare_counter engaged_az_spearmen_1b
+	declare_counter engaged_az_spearmen_2b
+	declare_counter engaged_az_Leader_1c
+	declare_counter engaged_arrow_warriors_1c
+	declare_counter engaged_jag_warriors_1c
+	declare_counter engaged_jag_warriors_2c
+	declare_counter engaged_Cuahchiqueh_1c
+	declare_counter engaged_coyote_priests_1c
+	declare_counter general_deaths
+	declare_counter Aztec_rout_1
+	declare_counter reinforcements
+	declare_counter play_charge_event_1
+	;declare_counter play_charge_event_2
+	declare_counter play_charge_event_3
+	declare_counter engaged_1
+	declare_counter start_battle
+	declare_counter victory_cry
+	declare_counter go_east_youngman
+	declare_counter already_lost
+;-----------------------------------------------------------------------------------------------------------
+	steal_esc_key on
+
+	monitor_event EscPressed TrueCondition
+		set_counter start_battle 1
+		terminate_monitor
+	end_monitor
+;-----------------------------------------------------------------------------------------------------------
+	
+;;;*************************************************************************************************
+;;;;	SETUP CAMERA AND UI FOR INTRO-turn it back to normal after playing with it
+;;;;*************************************************************************************************
+
+	enable_battle_notifications 0
+ 	suspend_unscripted_advice true
+	
+	camera_default_mode_set		tw
+	camera_restrictions_set off
+	disable_cursor							;prevent the player clicking
+	disable_shortcuts true
+	disable_shortcuts options_button false	;to allow the player to escape from the game	
+	disable_entire_ui
+	inhibit_camera_input true
+	disable_shortcuts toggle_pause_button false		;toggle_pause_button	PAUSE	P
+	enable_ui toggle_pause_button
+	hide_ui	
+	
+	set_music_state custom Aztec_Tension
+	
+;;;***************************************************************************************************
+;;;SETTING CAMERA BOOKMARKS FOR THE INTRO
+;;;*************************************************************************************************
+
+
+	set_camera_bookmark 1, -385.149, 145.554, 477.438		-385.122, 142.472, 487.038		; Aztec medaliion	(city shot pt1)-go to below 
+	set_camera_bookmark 2, -174.681, 109.546, -91.4897		-177.457, 107.085, -82.1386		; city view (city shot pt2)
+	set_camera_bookmark 3, 743.95, 96.0746, -490.755		743.164, 96.7736, -500.715		; In forest looking at spaniards (point 1)
+	set_camera_bookmark 4, 671.113, 97.5865, -487.763		 670.328, 98.2855, -497.723		; In forest looking closer at spaniards (point 2)
+	set_camera_bookmark 5, 784.326, 100.199, -507.89		783.965, 97.1169, -498.298		; Aztecs in forest distance pt1
+	set_camera_bookmark 6, 783.602, 97.2298, -488.632		783.244, 92.4201, -479.118		; Aztec in forest close up pt2
+	set_camera_bookmark 7, -716.547, 172.532, -828.267		-711.083, 164.853, -826.221		; Spanish on cliff top (point 1) 		
+	set_camera_bookmark 8, -694.325, 170.138, -819.946		-688.861, 162.459, -817.9		; Spanish on cliff top (point 2) 
+	set_camera_bookmark 9, -676.663, 161.425, -804.534		-669.471, 157.116, -799.595		; Spanish on cliff top (point 3)
+	set_camera_bookmark 10, -498.051, 76.998, -566.774		-494.346, 73.0557, -558.975		; shot of Aztecs
+	set_camera_bookmark 11, -747.757, 122.336, -750.522		-742.08, 123.392, -758.717		; Shot of Spanish going down hill	
+	set_camera_bookmark 12, -664.279, 158.682, -826.871		-661.707, 158.753, -836.532		; shot tlaxcalans
+	set_camera_bookmark 13, -685.248, 84.0711, -528.939		-677.758, 81.8721, -535.283 	; shot of cortes talking to tlaxcalans	
+	set_camera_bookmark 14,	756.446, 99.1269, -507.797		762.859, 95.6525, -515.092		; tlaxcalans going for help
+	set_camera_bookmark 15, 751.836, 104.104, -517.691		759.197, 98.8441, -518.304		; tlaxcalans going for help 2
+	set_camera_bookmark 16, -569.283, 92.0631, -613.782		-568.931, 88.6425, -604.612		; aztec army from Spanish view (point 1)
+	set_camera_bookmark 17, -582.758, 83.7877, -414.725		-585.48, 81.0287, -405.103		; aztec army (point 2)
+	set_camera_bookmark 18, -717.559, 84.1939, -527.737		-710.472, 83.0232, -521.065		; Cortes addressing men 1
+	set_camera_bookmark 19, -706.985, 84.5391, -532.417		-705.565, 83.3683, -522.788		; Cortes addressing men 2
+	set_camera_bookmark 20, -700.306, 83.9499, -526.337		-704.629, 83.5856, -517.333		; shot of cortes		
+	set_camera_bookmark 21, -618.103, 83.377, -587.502		-619.386, 81.0132, -577.674		; shot of musketeers
+	
+	
+
+
+;**********************************************************************************************
+;**********************************************************************************************
+;	BATTLE INTRO ***
+;**********************************************************************************************
+;*********************************************************************************************
+	monitor_conditions I_CompareCounter start_battle = 0
+
+	;;;Turn off fire at will from Spanish
+		unit_set_fire_at_will_mode musketeers_1 off 
+		unit_set_fire_at_will_mode musketeers_2 off
+		unit_set_fire_at_will_mode Pavise_Crossbowmen_1 off
+	;;;-------------------------------
+	;;;Sweeping shots of Aztec city
+	;;;-------------------------------
+		unit_set_formation_spacing jag_warriors_1c loose
+; 		unit_order_halt jag_warriors_1c
+		camera_position_at_bookmark 1 ; Aztec medaliion	(city shot pt1)-go to below 
+		battle_wait 2
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		camera_zoom_to_bookmark 2 40 ; city view (city shot pt2)
+		battle_wait 6
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+		play_sound_event OTUMBA_NARRATOR_1 tag = OTUMBA_NARRATOR_1 ;"1520, The New World."
+		
+		battle_wait 8
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+
+		
+	 	
+	 	unit_order_move_relative cortes_general_1 0 100
+	 	unit_order_move_relative musketeers_2 0 100
+	 	unit_order_move_relative Sword_and_Buckler_1 0 100
+	 	unit_order_move_relative Sword_and_Buckler_2 0 100
+	  
+	  	battle_wait 3
+
+		while I_CompareCounter start_battle = 1
+		end_while
+	 	
+	;;;--------------------------------------------	
+	;;; Spanish walking thru jungle being watched
+	;;;-------------------------------------------
+	 
+		camera_position_at_bookmark 3 ; In forest looking at spaniards (point 1)
+	 	battle_wait 1
+	 	
+		while I_CompareCounter start_battle = 1
+		end_while
+
+	 	play_sound_event OTUMBA_NARRATOR_2 tag = OTUMBA_NARRATOR_2 ;"Since fleeing the Aztec capital, Tenochtitlan, Hernán Cortés and his Spanish Conquistadors have been relentlessly pursued by Aztec warriors, keen to exact revenge for La Noche Triste ‘the sad night’."
+		
+	 	camera_zoom_to_bookmark 4 3 ; In forest looking closer at spaniards (point 2)
+	 	battle_wait 8
+
+		while I_CompareCounter start_battle = 1
+		end_while
+	 	
+	;------------------------------ 	
+	;;Aztecs in the jungle
+	;;;--------------------------- 	
+		camera_position_at_bookmark 5 ; Aztecs in forest distance pt1
+		
+	;;;move spanish into postion for next shot
+	 	unit_immediate_place cortes_general_1 -671.448, -799.751, 0 29.361
+	 	unit_immediate_place musketeers_2 -706.843, -822.494, 63 17.640
+	 	unit_immediate_place Sword_and_Buckler_1 -719.644, -812.166, 66 13.017
+	 	unit_immediate_place Sword_and_Buckler_2 -693.577, -816.555, 61 12.330p
+		
+	 	battle_wait 1
+	 	
+		while I_CompareCounter start_battle = 1
+		end_while
+
+	 	camera_zoom_to_bookmark 6 5 ; Aztec in forest close up pt2
+	 	battle_wait 2
+	 	
+		while I_CompareCounter start_battle = 1
+		end_while
+	 	
+	 	
+	;--------------------------------------------------------------------------
+	;;;Spanish Moving across mountain-distant shot +shots of Aztec in distance
+	;;;-----------------------------------------------------------------------
+	
+		
+		unit_order_move_relative Sword_and_Buckler_1 0 50
+		unit_order_move_relative Sword_and_Buckler_2 0 25
+		unit_order_move_relative musketeers_1 0 50
+		unit_order_move_relative musketeers_2 0 25
+		unit_order_move_relative Pavise_Crossbowmen_1 0 100
+		unit_order_move_relative Tlaxcalan_merc_1 0 100
+		battle_wait 4
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+
+		camera_position_at_bookmark 7 :Spanish on cliff top (point 1) ; Spanish on cliff top (point 1)
+		;battle_wait 1
+
+		while I_CompareCounter start_battle = 1
+		end_while
+
+		;;put aztec unit back in horde
+		unit_immediate_place jag_warriors_1c  -830.509, -830.362, 54 14.572
+		unit_set_formation_spacing jag_warriors_1c tight
+		battle_wait 2
+		while I_CompareCounter start_battle = 1
+		end_while
+
+		
+		play_sound_event OTUMBA_NARRATOR_3 tag = OTUMBA_NARRATOR_3 ;"On crossing the mountains overlooking the Otumba plains, Cortés and his men find an enormous Aztec host waiting for them in the valley below."
+		
+		camera_zoom_to_bookmark 8 7 ; Spanish on cliff top (point 2)
+		 
+		battle_wait 2
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+
+		camera_zoom_to_bookmark 9 10; Spanish on cliff top (point 3)
+		
+		
+		battle_wait 7
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+
+	;;;---------------------------		
+	;;;look at Aztecs
+	;;;---------------------------
+	
+		camera_position_at_bookmark 10 ; shot of Aztecs
+		battle_wait 1
+	;;move spanish for next shot while we check out the aztecs
+		unit_immediate_place cortes_general_1 -691.331, -708.756, 70 8
+		unit_immediate_place conquistadores_1 -645.924, -817.583, -83, 16
+		unit_immediate_place conquistadores_2 -669.589, -814.200, -83, 16
+		unit_immediate_place musketeers_1 -707.991, -806.601, -86 11.678
+		unit_immediate_place musketeers_2 -747.826, -760.533, 20 5.526
+		unit_immediate_place Pavise_Crossbowmen_1 -729.236, -801.819, -74 5.559
+		unit_immediate_place Sword_and_Buckler_1 733.605, -733.917, 46 8.879
+		unit_immediate_place Sword_and_Buckler_2 -715.139, -722.244, 63 9.337
+		unit_immediate_place Tlaxcalan_merc_1 -669.202, -700.387, 69 10.207	
+		unit_immediate_place Tlaxcalan_merc_2 -667.553, -828.800, 2 24.403
+		unit_immediate_place Tlaxcalan_merc_3 -685.758, -722.931, -28 23.810
+		
+	;;-------------------------------------------	
+	;;;Spanish making way down the mountain
+	;;;---------------------------------------
+	
+		unit_order_move_relative cortes_general_1 1 100
+		unit_order_move_relative conquistadores_1 0 100
+		unit_order_move_relative conquistadores_2 0 100
+		unit_order_move_relative musketeers_1 0 100
+		unit_order_move_relative musketeers_2 0 100
+		unit_order_move_relative Pavise_Crossbowmen_1 0 100
+		unit_order_move_relative Sword_and_Buckler_1 4 100
+		unit_order_move_relative Sword_and_Buckler_2 2 100
+		unit_order_move_relative Tlaxcalan_merc_1 1 100
+		battle_wait 2
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+
+		camera_position_at_bookmark 11 ; Shot of Spanish going down hill
+		battle_wait 2
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+
+		play_sound_event OTUMBA_NARRATOR_4 tag = OTUMBA_NARRATOR_4 ;"The Spaniards, suffering from hunger and disease, are exhausted."
+	
+	 
+		;;;move aztecs into battle position
+	
+		unit_immediate_place az_general_1a -614.168, -342.913, -169 25.338
+		unit_immediate_place coyote_priests_1a -638.926, -338.442, -171 22.226
+		unit_immediate_place az_archers_1a -555.677, -377.313, -172 96.769
+		unit_immediate_place az_spearthrowers_1a -620.556, -368.175, -173 66.613
+		unit_immediate_place arrow_warriors_1a  -668.448, -354.899, -172 75.920
+		unit_immediate_place arrow_warriors_2a -619.827, -362.539, -171 71.062
+		unit_immediate_place az_archers_2a -677.948, -361.220, -172 139.818
+		unit_immediate_place Cuahchiqueh_1a -547.577, -354.483, -170 35.198
+		unit_immediate_place eagle_1a -581.292, -348.557, -171 34.106
+		unit_immediate_place az_spearmen_1a -586.832, -367.984, -170 33.533
+		unit_immediate_place az_warriors_1a -693.437, -331.399, -172 34.559
+		unit_immediate_place az_warriors_2a -660.186, -335.812, -172 33.983
+		unit_immediate_place az_peasants_1a -608.311, -377.561, -173 37.985
+		unit_immediate_place az_peasants_2a -646.003, -373.946, -173 37.351
+		unit_immediate_place az_peasants_3a -683.948, -368.214, -173 37.436
+		unit_immediate_place az_general_1b -493.839, -331.467, -163 19.957
+		unit_immediate_place az_archers_1b -434.968, -393.870, -161 63.080
+		unit_immediate_place arrow_warriors_1b -495.209, -372.180, -166 50.440
+		unit_immediate_place az_peasants_1b -464.978, -399.612, -158 36.797p
+		unit_immediate_place az_peasants_2b -501.523, -385.040, -163 36.368
+		unit_immediate_place Cuahchiqueh_1b -513.015, -325.734, -163 23.29
+		unit_immediate_place coyote_priests_1b -473.000, -336.740, -164 22.296
+		unit_immediate_place az_spearmen_1b -467.636, -347.468, -163 32.902
+		unit_immediate_place az_spearmen_2b -498.852, -338.478, -164 32.71
+		
+		
+			battle_wait 6
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+	
+	;;------------------------------------------------------------------------------
+	;;;Shot of TLAXCALAN WARRIORS (	focus on Tlaxcalans-while moving other Spanish )	
+	;;;------------------------------------------------------------------------------	
+		
+		camera_position_at_bookmark 12 ; shot tlaxcalans
+		
+		play_sound_event OTUMBA_NARRATOR_5 tag = OTUMBA_NARRATOR_5 ;"However, the Spaniards, having made alliances with local tribes, are supported by Tlaxcalan warriors who have no love for their Aztec overlords."
+	
+	;;;move spanish into position for next shot while focussing on Tlax warriors
+		unit_immediate_place cortes_general_1 -685.160, -531.338, 105 21.463 
+		unit_immediate_place conquistadores_1 -709.674, -526.431, 103 24.468
+		unit_immediate_place conquistadores_2 -730.692, -523.474, 98 19.074
+		unit_immediate_place musketeers_1 -685.052, -549.974, 106 13.271
+		unit_immediate_place musketeers_2 -686.492, -562.091, 106 13.477
+		unit_immediate_place Pavise_Crossbowmen_1 -734.847, -507.213, 93 7.849
+		unit_immediate_place Sword_and_Buckler_1 -684.618, -519.995, 104 10.468
+		unit_immediate_place Sword_and_Buckler_2 -671.115, -553.406, 105 12.007
+		unit_immediate_place Tlaxcalan_merc_1 -680.196, -536.702, -49 11.394	
+		unit_immediate_place Tlaxcalan_merc_3 -756.212, -519.324, 108 12.130
+			battle_wait 3
+	
+		while I_CompareCounter start_battle = 1
+		end_while
+				
+	;;;SHOT CORTES TALKING TO TLAXCALANS
+	;;;--------------------------------------
+	 
+		unit_order_move_relative Sword_and_Buckler_2 0 80
+		unit_order_move_relative musketeers_1 0 80
+		unit_order_move_relative musketeers_2 0 80
+		
+		battle_wait 1
+
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		camera_position_at_bookmark 13 ;shot of cortes talking to Tlaxcalans
+		battle_wait 3
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+
+		 	;;move tlax unit from last shot into later shot position		
+		unit_immediate_place Tlaxcalan_merc_2 752.826, -511.110, 90, 9.759
+		unit_order_move_relative Tlaxcalan_merc_2 0 100 run
+		battle_wait 2
+
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+	;;;TLAX GOING FOR HELP
+	;;;---------------------
+		
+		
+		camera_position_at_bookmark 14 ; tlaxcalans going for help
+		battle_wait 1
+
+		while I_CompareCounter start_battle = 1
+		end_while
+
+		play_sound_event OTUMBA_NARRATOR_6 tag = OTUMBA_NARRATOR_6 ;"Indeed, some of Cortés' Tlaxcalan guides have gone for help from nearby tribes."
+		battle_wait 3
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+
+		camera_position_at_bookmark 15 ; tlaxcalans going for help 2
+		
+	;;;move spanish into position for next shot
+		unit_immediate_place cortes_general_1 -701.917, -520.408, -155 15 
+		unit_immediate_place conquistadores_1 -708.981, -551.643, 35 16
+		unit_immediate_place conquistadores_2 -653.805, -584.234, 40, 16
+		unit_immediate_place musketeers_1 -652.583, -576.105, 12 34
+		unit_immediate_place musketeers_2 -588.582, -607.823, 5, 34
+		unit_immediate_place Pavise_Crossbowmen_1 -700.698, -529.653, 39, 30
+		unit_immediate_place Sword_and_Buckler_1 -726.008, -513.958, 33, 24
+		unit_immediate_place Sword_and_Buckler_2 -527.099, -613.120, 63 24
+		unit_immediate_place Tlaxcalan_merc_1 -755.907, -491.947, 36 30
+		
+		
+		unit_immediate_place Tlaxcalan_merc_3 -684.074, -548.927, 38 33
+	
+		battle_wait 4
+
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+	;;;Shots of Aztecs meduim distance-zoom 
+	;;;------------------------------
+		camera_position_at_bookmark 16 ; aztec army from Spanish view (point 1)
+		;;;move tlax into next shot position
+		unit_immediate_place Tlaxcalan_merc_2 -510.360, -637.767, 16 38.130
+		battle_wait 1
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+
+		play_sound_event OTUMBA_NARRATOR_7 tag = OTUMBA_NARRATOR_7 ;"Even with allies, looking at the army below, Cortés and his men expect their final hour has arrived.
+		battle_wait 2
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+
+		camera_zoom_to_bookmark 17 99 ; aztec army (point 2)
+			
+		battle_wait 8
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+
+	;;;Cortes ADRESSING THE TROOPS
+	;;;------------------------------
+		camera_position_at_bookmark 18 ; Cortes addressing men
+		unit_taunt cortes_general_1
+		battle_wait 1
+
+		while I_CompareCounter start_battle = 1
+		end_while
+
+		play_sound_event OTUMBA_NARRATOR_8 tag = OTUMBA_NARRATOR_8 ;"Cortés speaks to his men, telling them that science and discipline will prevail against the vast number of Aztecs arrayed against them.
+		
+		;battle_wait 5
+
+; 		while I_CompareCounter start_battle = 1
+; 		end_while
+
+		camera_zoom_to_bookmark 19 2 ;; Cortes addressing men 2
+		unit_taunt Sword_and_Buckler_1
+		battle_wait 7
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+
+	;;;Various shots of SPANISH TROOPS
+	;;;--------------------------------
+			
+		camera_position_at_bookmark 20 ; shot of cortes
+		battle_wait 3
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+
+		;;move cortes to battle position
+		
+		play_sound_event OTUMBA_NARRATOR_9 tag = OTUMBA_NARRATOR_9 ;"The Spanish are armed with steel and gunpowder weapons. While the Aztecs, though fierce and skilled warriors, are armed only with weapons of wood, stone and obsidian.
+		battle_wait 1
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+
+		camera_position_at_bookmark 21 ; shot of musketeers
+		battle_wait 1
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+		unit_immediate_place cortes_general_1 -680.025, -566.314, 39 29.904
+		battle_wait 2
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+
+
+	;;;==========================
+	;;; NEW BOOKMARKS
+	;;;==========================
+		set_camera_bookmark 1, -596.652, 78.4698, -347.792		-593.82, 80.7762, -338.555		; aztec-eagle warriors close
+		set_camera_bookmark 2, -569.169, 79.104, -353.123		-563.511, 78.5564, -344.919		; aztec-cual close up
+		set_camera_bookmark 3, -679.848, 79.5984, -355.205		-677.226, 78.1526, -345.761		; aztec-arrow warriors zoom to battlefield
+		set_camera_bookmark 4, -700.352, 97.8106, -344.765		-695.962, 96.3648, -353.528		; battlefield
+		set_camera_bookmark 5, -493.078, 77.5183, -334.168		-492.432, 79.3025, -324.241		; chief 1
+		set_camera_bookmark 6, -272.142, 75.1797, -478.776		-262.55, 75.3272, -475.979		; chief 2
+		set_camera_bookmark 7, -623.117, 84.6192, -574.513		-630.193, 85.8168, -581.426		; shot of spanish tauniting
+		set_camera_bookmark 8  -649.041, 84.9559, -571.731		-647.148, 86.1535, -581.44		; shot of spanish taunting 2
+		set_camera_bookmark 9, -682.442, 86.36, -568.088		-677.805, 83.2833, -560.01		; field from behind hernan
+		set_camera_bookmark 10, -702.617, 152.834, -639.705		-697.057, 147.034, -632.759		; command view
+	;;;-----------------------------------------------------
+	;;;Various shots of Aztecs THEN zooming to battle field
+	;;;;----------------------------------------------------
+		camera_position_at_bookmark 1 ; aztec-eagle warriors close
+		battle_wait 4
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+
+		camera_position_at_bookmark 2 ; aztec-cual close up
+		battle_wait 4
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+
+		camera_position_at_bookmark 3 ;Aztec-arrow warriors
+		battle_wait 1
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		play_sound_event OTUMBA_NARRATOR_10 tag = OTUMBA_NARRATOR_10 ;"The Aztecs, without knowledge of horses in battle, have chosen to meet the Spaniards on Otumba’s open plains, rather than amongst the crags and forests that would have negated the awesome power of Cortés’ cavalry.
+		battle_wait 4
+		while I_CompareCounter start_battle = 1
+		end_while
+
+		camera_zoom_to_bookmark 4 10 ; battlefield
+		battle_wait 11
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+
+	;;;--------------------	
+	;;;;SHOTS OF CHIEFS
+	;;;;------------------
+	
+		camera_position_at_bookmark 5 ; chief 1
+		battle_wait 2
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+
+		play_sound_event OTUMBA_NARRATOR_11 tag = OTUMBA_NARRATOR_11 ;"Cortés instructs his men to target the many chiefs leading their men below.
+	 	battle_wait 3
+	 	
+		while I_CompareCounter start_battle = 1
+		end_while
+
+	 	camera_position_at_bookmark 6 ; chief 2
+	 	battle_wait 3
+	 	
+		while I_CompareCounter start_battle = 1
+		end_while
+
+	;---------------------------------------------------------------------------------------------------------------------------	
+	;;;SHOTS of Spanish taunting THEN ZOOM to View of armies and battle field THEN To above and behind Spanish "command view"	
+	;;;----------------------------------------------------------------------------------------------------------------------------	 
+		unit_taunt cortes_general_1
+		unit_taunt conquistadores_1
+		unit_taunt conquistadores_2
+		;unit_taunt musketeers_1
+		;unit_taunt musketeers_2
+		unit_taunt Pavise_Crossbowmen_1
+		unit_taunt Sword_and_Buckler_1
+		unit_taunt Sword_and_Buckler_2
+		unit_taunt Tlaxcalan_merc_1
+		unit_taunt Tlaxcalan_merc_2
+		unit_taunt Tlaxcalan_merc_3
+		
+		camera_position_at_bookmark 7 ; shot of spanish tauniting
+		battle_wait 2
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+
+		play_sound_event OTUMBA_NARRATOR_12 tag = OTUMBA_NARRATOR_12 ;After earnest prayers to Santiago, the Virgin Mother and God, Cortés and his men prepare for what will be a fight for survival.
+		battle_wait 3
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+
+		camera_zoom_to_bookmark 8 3 ; shot of spanish taunting 2
+		battle_wait 6
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+
+		camera_position_at_bookmark 9 ; field from behind hernan
+		battle_wait 2
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+
+		play_sound_event OTUMBA_NARRATOR_13 tag = OTUMBA_NARRATOR_13 ;"Only victory in the upcoming battle will allow Cortés and his men to see another day.
+		battle_wait 1
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+
+		camera_zoom_to_bookmark 10 20 ; command view
+		battle_wait 8
+
+		set_counter start_battle 1
+		
+		terminate_monitor
+	end_monitor
+
+;;;;*********************************************************************************************
+;;;; RE-ENABLE UI ready for battle
+;;;;***********************************************************************************************
+	monitor_conditions I_CompareCounter start_battle = 1
+
+		steal_esc_key off
+		camera_default_mode_set	user_pref	
+ 		show_ui
+ 		enable_cursor						;	enable player to click
+ 		disable_shortcuts false	
+ 		inhibit_camera_input false			;	Permit user to move camera.
+ 		enable_entire_ui
+ 		camera_restrictions_set on
+
+  		set_music_state tension
+ 		
+		battle_wait 1
+
+		set_camera_bookmark 10, -702.617, 152.834, -639.705		-697.057, 147.034, -632.759	; command view
+		camera_position_at_bookmark 10
+		
+		;;; teleport spanish to starting positions
+		unit_immediate_place cortes_general_1 -680.025, -566.314, 39 29.904
+		unit_immediate_place conquistadores_1 -708.981, -551.643, 35 16
+		unit_immediate_place conquistadores_2 -653.805, -584.234, 40, 16
+		unit_immediate_place musketeers_1 -652.583, -576.105, 12 34
+		unit_immediate_place musketeers_2 -588.582, -607.823, 5, 26
+		unit_immediate_place Pavise_Crossbowmen_1 -700.698, -529.653, 39, 30
+		unit_immediate_place Sword_and_Buckler_1 -726.008, -513.958, 33, 24
+		unit_immediate_place Sword_and_Buckler_2 -527.099, -613.120, 63 24
+		unit_immediate_place Tlaxcalan_merc_1 -755.907, -491.947, 36 30
+		unit_immediate_place Tlaxcalan_merc_3 -684.074, -548.927, 38 33
+		unit_immediate_place Tlaxcalan_merc_2 -510.360, -637.767, 16 38.130
+
+		;;;move aztecs into battle position
+		unit_immediate_place az_general_1a -614.168, -342.913, -169 25.338
+		unit_immediate_place coyote_priests_1a -638.926, -338.442, -171 22.226
+		unit_immediate_place az_archers_1a -555.677, -377.313, -172 96.769
+		unit_immediate_place az_spearthrowers_1a -620.556, -368.175, -173 66.613
+		unit_immediate_place arrow_warriors_1a  -668.448, -354.899, -172 75.920
+		unit_immediate_place arrow_warriors_2a -619.827, -362.539, -171 71.062
+		unit_immediate_place az_archers_2a -677.948, -361.220, -172 139.818
+		unit_immediate_place Cuahchiqueh_1a -547.577, -354.483, -170 35.198
+		unit_immediate_place eagle_1a -581.292, -348.557, -171 34.106
+		unit_immediate_place az_spearmen_1a -586.832, -367.984, -170 33.533
+		unit_immediate_place az_warriors_1a -693.437, -331.399, -172 34.559
+		unit_immediate_place az_warriors_2a -660.186, -335.812, -172 33.983
+		unit_immediate_place az_peasants_1a -608.311, -377.561, -173 37.985
+		unit_immediate_place az_peasants_2a -646.003, -373.946, -173 37.351
+		unit_immediate_place az_peasants_3a -683.948, -368.214, -173 37.436
+		unit_immediate_place az_general_1b -493.839, -331.467, -163 19.957
+		unit_immediate_place az_archers_1b -434.968, -393.870, -161 63.080
+		unit_immediate_place arrow_warriors_1b -495.209, -372.180, -166 50.440
+		unit_immediate_place az_peasants_1b -464.978, -399.612, -158 36.797p
+		unit_immediate_place az_peasants_2b -501.523, -385.040, -163 36.368
+		unit_immediate_place Cuahchiqueh_1b -513.015, -325.734, -163 23.29
+		unit_immediate_place coyote_priests_1b -473.000, -336.740, -164 22.296
+		unit_immediate_place az_spearmen_1b -467.636, -347.468, -163 32.902
+		unit_immediate_place az_spearmen_2b -498.852, -338.478, -164 32.71
+		unit_immediate_place jag_warriors_1c -283.625, -489.155, -99 21
+		unit_set_formation_spacing jag_warriors_1c tight		
+		ai_gta_plan_set 1 ATTACK_ALL
+			
+
+	;*********************************************************************************************  		
+	;***********************************************************************************************
+	; 	BATTLE ACTION START
+	;***********************************************************************************************
+	;**********************************************************************************************
+	
+;;;Set important characters morale to high to stop them running away and mucking game up
+			
+	unit_set_morale cortes_general_1 high
+	unit_set_morale az_general_1a high
+	unit_set_morale az_general_1b high
+	unit_set_morale az_Leader_1c high
+	
+		release_unit 	cortes_general_1
+		release_unit	conquistadores_1
+		release_unit	conquistadores_2
+		release_unit	musketeers_1
+		release_unit	musketeers_2
+		release_unit	Pavise_Crossbowmen_1
+		release_unit	Tlaxcalan_merc_1
+		release_unit	Tlaxcalan_merc_2
+		release_unit	Tlaxcalan_merc_3
+		release_unit	Sword_and_Buckler_1
+		release_unit	Sword_and_Buckler_2
+	
+	
+		
+	;;;Allow Aztec missile units to fire at will
+		unit_set_fire_at_will_mode az_archers_1a on
+		unit_set_fire_at_will_mode az_archers_2a on
+		unit_set_fire_at_will_mode az_spearthrowers_1a on
+		unit_set_fire_at_will_mode arrow_warriors_1a on
+		unit_set_fire_at_will_mode arrow_warriors_2a on
+		unit_set_fire_at_will_mode arrow_warriors_1b on
+		unit_set_fire_at_will_mode az_archers_1b on
+		unit_set_fire_at_will_mode arrow_warriors_1c on
+		
+		stop_sound_event OTUMBA_NARRATOR_1
+		stop_sound_event OTUMBA_NARRATOR_2
+		stop_sound_event OTUMBA_NARRATOR_3
+		stop_sound_event OTUMBA_NARRATOR_4
+		stop_sound_event OTUMBA_NARRATOR_5
+		stop_sound_event OTUMBA_NARRATOR_6
+		stop_sound_event OTUMBA_NARRATOR_7
+		stop_sound_event OTUMBA_NARRATOR_8
+		stop_sound_event OTUMBA_NARRATOR_9
+		stop_sound_event OTUMBA_NARRATOR_10
+		stop_sound_event OTUMBA_NARRATOR_11
+		stop_sound_event OTUMBA_NARRATOR_12
+		stop_sound_event OTUMBA_NARRATOR_13
+		
+		battle_wait 7
+	;;;Aztec peasants charge forward
+		unit_order_attack_unit az_peasants_1a musketeers_1 run
+		unit_order_attack_unit az_peasants_2a Pavise_Crossbowmen_1 run
+		unit_order_attack_unit az_peasants_3a Pavise_Crossbowmen_1 run
+		unit_order_attack_unit az_peasants_1b Tlaxcalan_merc_2 run
+		unit_order_attack_unit az_peasants_2b Tlaxcalan_merc_2 run
+		
+		battle_wait 15
+		
+	;;; Aztec missile units move into range and begin to fire	
+		unit_order_move_to_missile_range az_archers_1a Sword_and_Buckler_2 run
+		unit_order_move_to_missile_range az_archers_2a Tlaxcalan_merc_1 run
+		unit_order_move_to_missile_range az_spearthrowers_1a Tlaxcalan_merc_3 run
+		
+		battle_wait 6
+		
+		unit_order_move_to_missile_range arrow_warriors_1a Sword_and_Buckler_1 
+		unit_order_move_to_missile_range arrow_warriors_2a musketeers_1 run
+		unit_order_move_to_missile_range arrow_warriors_1b Sword_and_Buckler_2 run
+		unit_order_move_to_missile_range az_archers_1b Tlaxcalan_merc_2 run
+		
+		battle_wait 50
+	;;;Move melee units forward	
+		unit_order_move_relative az_spearmen_1b 0 80
+		unit_order_move_relative az_spearmen_2b 0 80
+		unit_order_move_relative coyote_priests_1b 0 80
+		unit_order_move_relative az_general_1b 0 80
+		unit_order_move_relative Cuahchiqueh_1b 0 80
+		unit_order_move_relative Cuahchiqueh_1a 0 80
+		unit_order_move_relative eagle_1a 0 80
+		unit_order_move_relative az_general_1a 0 80
+		unit_order_move_relative coyote_priests_1a 0 80
+		unit_order_move_relative az_warriors_1a 0 80
+		unit_order_move_relative az_warriors_2a 0 80
+		
+		
+		battle_wait 100
+	
+	;;Aztec melee units from A group move in	
+		unit_order_attack_unit Cuahchiqueh_1a conquistadores_2 
+		unit_order_attack_unit eagle_1a cortes_general_1 
+		unit_order_attack_unit az_general_1a cortes_general_1 
+		unit_order_attack_unit coyote_priests_1a conquistadores_1 run
+		unit_order_attack_unit az_warriors_1a Sword_and_Buckler_1 
+		unit_order_attack_unit az_warriors_2a conquistadores_1 run
+		unit_order_attack_unit az_spearmen_1a musketeers_1	
+		
+		battle_wait 40
+		
+
+		;;;Aztec melee units from B group move in	
+		unit_order_attack_unit az_spearmen_1b Tlaxcalan_merc_2 run
+		unit_order_attack_unit az_spearmen_2b Tlaxcalan_merc_2 run
+		unit_order_attack_unit coyote_priests_1b Sword_and_Buckler_2 
+		unit_order_attack_unit az_general_1b Sword_and_Buckler_2 
+		unit_order_attack_unit Cuahchiqueh_1b conquistadores_2 run
+		
+		unit_order_attack_unit arrow_warriors_1c Sword_and_Buckler_2 run
+	 	battle_wait 180
+	 	
+	 	
+	;;;Aztec Group c attacks
+	 	unit_order_attack_unit az_Leader_1c cortes_general_1
+		unit_order_attack_unit jag_warriors_1c cortes_general_1
+		unit_order_attack_unit jag_warriors_2c cortes_general_1
+		unit_order_attack_closest_unit Cuahchiqueh_1c 160
+		unit_order_attack_closest_unit coyote_priests_1c 160
+				
+		terminate_monitor
+	end_monitor
+	 
+;;;===================
+;;;Sound event list
+;;;===================	
+; 	sound_event_1 "Our men have slain the Aztec Chief! Hopefully, his men will soon lose heart!"
+; 	sound_event_2 "Dios Mio! General Cortez is slain! All is lost!"
+; 	sound_event_3 "Dios santo! The heathens bring more warriors to battle"
+; 	Sound_event_4 "O' gracias a Dios! Our reinforcements have arrived"
+; 	sound_event_5 "Por Santiago!"
+; 	sound_event_6 "Bueno! Keep after their Chiefs!"
+; 	sound_event_7 "There's more coming from the East!"
+; 	sound_event_8 "Por Santiago! Por Jesucristo!"
+; 	sound_event_9 "O' gracias a Dios! We have slain their leader!"
+; 	sound_event_10 "A ha! There is the leader of this host! Kill him and the other chiefs will be lost!"
+; 	sound_event_11 "Quickly! Guard Senor Cortez! Do not let him fall!"
+; 	sound_event_12 "Victory is ours! Let victory be a salve on our wounds proudly earned in the name of the Holy cross."-Player_victory_average 2 Mediterranean
+; 	sound_event_13 "May the Lord All Mighty have mercy on our souls! Our foes' victory could not be greater!" -player_defeat-crushing 2 mediterranean
+
+
+;;;----------------------------------------------
+;;;Sound events
+;;;---------------------------------------------
+
+;;;Stops sound_event_7 "There's more coming from the East!" triggering if C group is already engaged or if player is actually east of group c
+
+	monitor_conditions I_UnitStatus az_Leader_1c moving
+	and I_CompareCounter engaged_1 = 0
+	and I_CompareCounter go_east_youngman = 0
+	play_sound_event Otumba_Sergeant_7 tag = Otumba_Sergeant_7 ;"There's more coming from the East!"
+	;camera_zoom_to_unit az_Leader_1c
+	terminate_monitor
+	end_monitor
+
+;;;Say this the first time Cihaucu is engaged
+ 	monitor_conditions I_IsUnitEngaged az_Leader_1c
+		set_counter engaged_1 1
+		end_monitor
+		
+	monitor_conditions I_CompareCounter engaged_1 = 1
+	play_sound_event Otumba_Sergeant_10 tag = Otumba_Sergeant_10 ;"A ha! There is the leader of this host! Kill him and the other chiefs will be lost!"
+	camera_zoom_to_unit az_Leader_1c
+		terminate_monitor
+	end_monitor
+
+;;;if Cihaucu dies
+	monitor_conditions not I_CharacterExists Cihaucu
+		play_sound_event Otumba_Sergeant_1 tag = Otumba_Sergeant_1 ;"Our men have slain the Aztec Chief! Hopefully, his men will soon lose heart!"
+		terminate_monitor
+	end_monitor
+
+;;;Make Hernan's unit say "por....." when charging
+		monitor_conditions I_UnitStatus cortes_general_1 charging
+		and I_CompareCounter play_charge_event_3 = 0
+		
+ 		play_sound_event Otumba_Sergeant_8 tag = Otumba_Sergeant_8 ;Por Santiago! Por Jesucristo!"
+		set_counter play_charge_event_3 1	
+		end_monitor
+
+;;;call out warning if Hernan's unit gets down to 50%
+	monitor_conditions I_PercentageUnitKilled cortes_general_1 > 45 ;"guard ..." etc
+		and I_CharacterExists Hernan Cortes
+		play_sound_event Otumba_Sergeant_11 tag = Otumba_Sergeant_11
+	terminate_monitor
+	end_monitor	
+
+
+;;;make conquistadores_1 say "for por santiago" when they charge
+		monitor_conditions I_UnitStatus conquistadores_1 charging
+		and I_CompareCounter play_charge_event_1 = 0
+		battle_wait 4
+ 		play_sound_event Otumba_Sergeant_5 tag = Otumba_Sergeant_5 ;"Por Santiago!"
+		set_counter play_charge_event_1 1	
+		end_monitor
+		
+;;;make conquistadores_2 say "for por santiago" when they charge
+; 		monitor_conditions I_UnitStatus conquistadores_2 charging
+; 		and I_CompareCounter play_charge_event_2 = 0
+; 		
+;  		play_sound_event Otumba_Sergeant_5 tag = Otumba_Sergeant_5 ;"Por Santiago!"
+; 		set_counter play_charge_event_2 1	
+; 		end_monitor
+
+; ;;;Encouragement to keep going after chiefs
+
+; 	monitor_conditions I_CompareCounter general_deaths = 1
+; 		battle_wait 5
+;   		play_sound_event Otumba_Sergeant_6 tag = Otumba_Sergeant_6 ; "Bueno! Keep after their Chiefs!"
+;   		terminate_monitor
+; 	end_monitor
+  		
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;BATTLE COMMANDS & CONDITIONS
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
+
+	ai_gta_plan_set 1 ATTACK_ALL
+
+;;; Sends units normally left behind if player hides in the corner 
+
+	label_location 200, 847 east_line_a
+	label_location 200, -847 east_line_b
+	
+	monitor_conditions I_UnitDistanceFromLine cortes_general_1 east_line_a east_line_b < -3
+	and I_CompareCounter reinforcements > 0
+	inc_counter go_east_youngman 1
+	release_unit az_spearthrowers_1a
+	release_unit arrow_warriors_1a
+	release_unit arrow_warriors_2a
+	release_unit az_archers_2a
+	release_unit az_peasants_1a
+	release_unit az_archers_1a
+	release_unit az_archers_1b
+	release_unit arrow_warriors_1b
+			terminate_monitor
+	end_monitor
+
+		
+;;;Keeps track of how many Aztec generals have died
+	
+	monitor_conditions not I_CharacterExists Cuitlahuac
+		inc_counter general_deaths 1
+		play_sound_event Otumba_Sergeant_6 tag = Otumba_Sergeant_6 ; "Bueno! Keep after their Chiefs!"	
+		terminate_monitor
+	end_monitor
+	
+	monitor_conditions not I_CharacterExists Tlalchiac
+		inc_counter general_deaths 1
+		play_sound_event Otumba_Sergeant_6 tag = Otumba_Sergeant_6 ; "Bueno! Keep after their Chiefs!"	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions not I_CharacterExists Ahexotl
+		inc_counter general_deaths 1
+		play_sound_event Otumba_Sergeant_6 tag = Otumba_Sergeant_6 ; "Bueno! Keep after their Chiefs!"	
+		terminate_monitor
+	end_monitor
+		
+
+;;;Checks if Leader is dead-if he is +2 or more generals then Aztecs rout
+
+	monitor_conditions not I_CharacterExists Cihaucu
+		and I_CompareCounter general_deaths > 1
+		and I_CompareCounter already_lost = 0
+		battle_wait 6	
+		play_sound_event Otumba_Win
+		inc_counter victory_cry 1
+				battle_wait 2
+		unit_set_morale az_general_1a routing
+		unit_set_morale coyote_priests_1a routing
+		unit_set_morale az_archers_1a routing
+		unit_set_morale az_spearthrowers_1a routing
+		unit_set_morale arrow_warriors_1a routing
+		unit_set_morale arrow_warriors_2a routing
+		unit_set_morale	az_archers_2a routing
+		unit_set_morale	Cuahchiqueh_1a routing
+		unit_set_morale	eagle_1a routing
+		unit_set_morale	az_spearmen_1a routing
+		unit_set_morale	az_warriors_1a routing
+		unit_set_morale	az_warriors_2a routing
+		unit_set_morale	az_peasants_1a routing
+		unit_set_morale	az_peasants_2a routing
+		unit_set_morale	az_peasants_3a routing
+		unit_set_morale az_general_1b routing
+		unit_set_morale az_archers_1b routing
+		unit_set_morale arrow_warriors_1b routing
+		unit_set_morale	az_peasants_1b routing
+		unit_set_morale	az_peasants_2b routing
+		unit_set_morale	Cuahchiqueh_1b routing
+		unit_set_morale	coyote_priests_1b routing
+		unit_set_morale	az_spearmen_1b routing
+		unit_set_morale	az_spearmen_2b routing
+		unit_set_morale	az_Leader_1c routing
+		unit_set_morale	arrow_warriors_1c routing
+		unit_set_morale	jag_warriors_1c routing
+		unit_set_morale jag_warriors_2c routing
+		unit_set_morale	Cuahchiqueh_1c routing
+		unit_set_morale coyote_priests_1c routing
+		
+		
+		terminate_monitor
+	end_monitor
+
+;;;;Stops peasants who break before melee and then rally from going Idle	
+;;;;-----------------------------------------------------------------------
+
+	monitor_conditions I_UnitStatus az_peasants_1a idling
+	and I_PercentageUnitKilled az_peasants_1a > 5
+	release_unit az_peasants_1a
+	terminate_monitor 
+	end_monitor
+	
+	monitor_conditions I_UnitStatus az_peasants_2a idling
+	and I_PercentageUnitKilled az_peasants_2a > 5
+	release_unit az_peasants_2a 
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitStatus az_peasants_3a idling
+	and I_PercentageUnitKilled az_peasants_3a > 5
+	release_unit az_peasants_3a
+	terminate_monitor 
+	end_monitor
+	
+	monitor_conditions I_UnitStatus az_peasants_1b idling
+	and I_PercentageUnitKilled az_peasants_1b > 5
+	release_unit az_peasants_1b
+	terminate_monitor 
+	end_monitor
+	
+	monitor_conditions I_UnitStatus az_peasants_2b idling
+	and I_PercentageUnitKilled az_peasants_2b > 5
+	release_unit az_peasants_2b 
+	terminate_monitor
+	end_monitor
+	
+		
+;;;;-----------------------------------------------------------------------------	
+;;;;Prevents units getting stuck on ready after they are engaged with target and/or other unit
+;;;;------------------------------------------------------------------------------
+		
+	
+	monitor_conditions I_UnitStatus az_general_1a ready
+	and I_CompareCounter engaged_az_general_1a > 0
+	release_unit az_general_1a
+	terminate_monitor 
+	end_monitor
+	
+	monitor_conditions I_UnitStatus coyote_priests_1a ready
+	and I_CompareCounter engaged_coyote_priests_1a > 0
+	release_unit coyote_priests_1a 
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitStatus az_archers_1a ready
+	and I_CompareCounter engaged_az_archers_1a > 0
+	release_unit az_archers_1a
+	terminate_monitor 
+	end_monitor
+	
+	monitor_conditions I_UnitStatus az_spearthrowers_1a ready
+	and I_CompareCounter engaged_az_spearthrowers_1a > 0
+	release_unit az_spearthrowers_1a
+	terminate_monitor 
+	end_monitor
+	
+	monitor_conditions I_UnitStatus arrow_warriors_1a ready
+	and I_CompareCounter engaged_arrow_warriors_1a > 0
+	release_unit arrow_warriors_1a
+	terminate_monitor 
+	end_monitor
+	
+	monitor_conditions I_UnitStatus arrow_warriors_2a ready
+	and I_CompareCounter engaged_arrow_warriors_2a > 0
+	release_unit arrow_warriors_2a
+	terminate_monitor 
+	end_monitor
+	
+	monitor_conditions I_UnitStatus az_archers_2a ready
+	and I_CompareCounter engaged_az_archers_2a > 0
+	release_unit az_archers_2a
+	terminate_monitor 
+	end_monitor
+	
+	monitor_conditions I_UnitStatus Cuahchiqueh_1a ready
+	and I_CompareCounter engaged_Cuahchiqueh_1a > 0
+	release_unit Cuahchiqueh_1a
+	terminate_monitor 
+	end_monitor
+	
+	monitor_conditions I_UnitStatus eagle_1a ready
+	and I_CompareCounter engaged_eagle_1a > 0
+	release_unit eagle_1a
+	terminate_monitor 
+	end_monitor
+	
+	monitor_conditions I_UnitStatus az_spearmen_1a ready
+	and I_CompareCounter engaged_az_spearmen_1a > 0
+	release_unit az_spearmen_1a
+	terminate_monitor 
+	end_monitor
+	
+	monitor_conditions I_UnitStatus az_warriors_1a ready
+	and I_CompareCounter engaged_az_warriors_1a > 0
+	release_unit az_warriors_1a
+	terminate_monitor 
+	end_monitor
+	
+	monitor_conditions I_UnitStatus az_warriors_2a ready
+	and I_CompareCounter engaged_az_warriors_2a > 0
+	release_unit az_warriors_2a
+	terminate_monitor 
+	end_monitor
+	
+	monitor_conditions I_UnitStatus az_peasants_1a ready
+	and I_CompareCounter engaged_az_peasants_1a > 0
+	release_unit az_peasants_1a
+	terminate_monitor 
+	end_monitor
+	
+	monitor_conditions I_UnitStatus az_peasants_2a ready
+	and I_CompareCounter engaged_az_peasants_2a > 0
+	release_unit az_peasants_2a
+	terminate_monitor 
+	end_monitor
+	
+	monitor_conditions I_UnitStatus az_peasants_3a ready
+	and I_CompareCounter engaged_az_peasants_3a > 0
+	release_unit az_peasants_3a 
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitStatus az_general_1b ready
+	and I_CompareCounter engaged_az_general_1b > 0
+	release_unit az_general_1b
+	terminate_monitor 
+	end_monitor
+	
+	monitor_conditions I_UnitStatus az_archers_1b ready
+	and I_CompareCounter engaged_az_archers_1b > 0
+	release_unit az_archers_1b
+	terminate_monitor 
+	end_monitor
+
+	monitor_conditions I_UnitStatus arrow_warriors_1b ready
+	and I_CompareCounter engaged_arrow_warriors_1b > 0
+	release_unit arrow_warriors_1b
+	terminate_monitor 
+	end_monitor
+	
+	monitor_conditions I_UnitStatus az_peasants_1b ready
+	and I_CompareCounter engaged_az_peasants_1b > 0
+	release_unit az_peasants_1b
+	terminate_monitor 
+	end_monitor
+	
+	monitor_conditions I_UnitStatus az_peasants_2b ready
+	and I_CompareCounter engaged_az_peasants_2b > 0
+	release_unit az_peasants_2b
+	terminate_monitor 
+	end_monitor
+	
+	monitor_conditions I_UnitStatus Cuahchiqueh_1b ready
+	and I_CompareCounter engaged_Cuahchiqueh_1b > 0
+	release_unit Cuahchiqueh_1b
+	terminate_monitor 
+	end_monitor
+	
+	monitor_conditions I_UnitStatus az_spearmen_1b ready
+	and I_CompareCounter engaged_az_spearmen_1b > 0
+	release_unit az_spearmen_1b
+	terminate_monitor 
+	end_monitor
+	
+	monitor_conditions I_UnitStatus az_spearmen_2b ready
+	and I_CompareCounter engaged_az_spearmen_2b > 0
+	release_unit az_spearmen_2b
+	terminate_monitor 
+	end_monitor
+	
+	monitor_conditions I_UnitStatus az_Leader_1c ready
+	and I_CompareCounter engaged_az_Leader_1c > 0
+	release_unit az_Leader_1c
+	terminate_monitor 
+	end_monitor
+	
+	monitor_conditions I_UnitStatus arrow_warriors_1c ready
+	and I_CompareCounter engaged_arrow_warriors_1c > 0
+	release_unit arrow_warriors_1c
+	terminate_monitor 
+	end_monitor
+	
+	monitor_conditions I_UnitStatus jag_warriors_1c ready
+	and I_CompareCounter engaged_jag_warriors_1c > 0
+	release_unit jag_warriors_1c
+	terminate_monitor 
+	end_monitor
+	
+	monitor_conditions I_UnitStatus jag_warriors_2c ready
+	and I_CompareCounter engaged_jag_warriors_2c > 0
+	release_unit jag_warriors_2c
+	terminate_monitor 
+	end_monitor
+	
+	monitor_conditions I_UnitStatus Cuahchiqueh_1c ready
+	and I_CompareCounter engaged_Cuahchiqueh_1c > 0
+	release_unit Cuahchiqueh_1c
+	terminate_monitor 
+	end_monitor
+	
+	monitor_conditions I_UnitStatus coyote_priests_1c ready
+	and I_CompareCounter engaged_coyote_priests_1c > 0
+	release_unit coyote_priests_1c
+	terminate_monitor 
+	end_monitor
+	
+;;;Prevents units going idle after they are engaged with target and/or other unit
+
+	monitor_conditions I_IsUnitEngaged az_general_1a
+	inc_counter engaged_az_general_1a 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_IsUnitIdle az_general_1a
+	and I_CompareCounter engaged_az_general_1a > 0
+	release_unit az_general_1a
+	terminate_monitor 
+	end_monitor
+	
+	
+	
+	monitor_conditions I_IsUnitEngaged coyote_priests_1a
+	inc_counter engaged_coyote_priests_1a 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_IsUnitIdle coyote_priests_1a
+	and I_CompareCounter engaged_coyote_priests_1a > 0
+	release_unit coyote_priests_1a
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitStatus az_archers_1a, missiles_firing
+		inc_counter engaged_az_archers_1a 1
+		terminate_monitor
+	end_monitor
+			
+	monitor_conditions I_IsUnitEngaged az_archers_1a
+		inc_counter engaged_az_archers_1a 1
+		terminate_monitor
+	end_monitor
+		monitor_conditions I_IsUnitIdle az_archers_1a
+	and I_CompareCounter engaged_az_archers_1a > 0
+	release_unit az_archers_1a
+	terminate_monitor 
+	end_monitor
+	
+	monitor_conditions I_UnitStatus az_spearthrowers_1a, missiles_firing
+		inc_counter engaged_az_archers_1a 1
+		terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_IsUnitEngaged az_spearthrowers_1a
+		inc_counter engaged_az_spearthrowers_1a 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_IsUnitIdle az_spearthrowers_1a
+	and I_CompareCounter engaged_az_spearthrowers_1a > 0
+	release_unit az_spearthrowers_1a
+	terminate_monitor 
+	end_monitor
+	
+	
+	monitor_conditions I_UnitStatus arrow_warriors_1a, missiles_firing
+		inc_counter engaged_arrow_warriors_1a 1
+		terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_IsUnitEngaged arrow_warriors_1a
+		inc_counter engaged_arrow_warriors_1a 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_IsUnitIdle arrow_warriors_1a
+	and I_CompareCounter engaged_arrow_warriors_1a > 0
+	release_unit arrow_warriors_1a
+	terminate_monitor 
+	end_monitor
+	
+	
+	monitor_conditions I_UnitStatus arrow_warriors_2a, missiles_firing
+		inc_counter engaged_arrow_warriors_2a 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_IsUnitEngaged arrow_warriors_2a
+		inc_counter engaged_arrow_warriors_2a 1
+		terminate_monitor
+	end_monitor
+ 		monitor_conditions I_IsUnitIdle arrow_warriors_2a
+	and I_CompareCounter engaged_arrow_warriors_2a > 0
+	release_unit arrow_warriors_2a
+	terminate_monitor 
+	end_monitor
+	
+	
+	monitor_conditions I_UnitStatus az_archers_2a, missiles_firing
+		inc_counter engaged_az_archers_2a 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_IsUnitEngaged az_archers_2a
+		inc_counter engaged_az_archers_2a 1
+		terminate_monitor
+	end_monitor
+ 		monitor_conditions I_IsUnitIdle az_archers_2a
+	and I_CompareCounter engaged_az_archers_2a > 0
+	release_unit az_archers_2a
+	terminate_monitor 
+	end_monitor
+
+
+	monitor_conditions I_IsUnitEngaged Cuahchiqueh_1a
+		inc_counter engaged_Cuahchiqueh_1a 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_IsUnitIdle Cuahchiqueh_1a
+	and I_CompareCounter engaged_Cuahchiqueh_1a > 0
+	release_unit Cuahchiqueh_1a
+	terminate_monitor 
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitEngaged eagle_1a
+		inc_counter engaged_eagle_1a 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_IsUnitIdle eagle_1a
+	and I_CompareCounter engaged_eagle_1a > 0
+	release_unit eagle_1a
+	terminate_monitor 
+	end_monitor
+	
+		
+	monitor_conditions I_IsUnitEngaged az_spearmen_1a
+		inc_counter engaged_az_spearmen_1a 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_IsUnitIdle az_spearmen_1a
+	and I_CompareCounter engaged_az_spearmen_1a > 0
+	release_unit az_spearmen_1a
+	terminate_monitor 
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitEngaged az_warriors_1a
+		inc_counter engaged_az_warriors_1a 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_IsUnitIdle az_warriors_1a
+	and I_CompareCounter engaged_az_warriors_1a > 0
+	release_unit az_warriors_1a
+	terminate_monitor 
+	end_monitor
+	
+		
+	monitor_conditions I_IsUnitEngaged az_warriors_2a
+		inc_counter engaged_az_warriors_2a 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_IsUnitIdle az_warriors_2a
+	and I_CompareCounter engaged_az_warriors_2a > 0
+	release_unit az_warriors_2a
+	terminate_monitor 
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitEngaged az_peasants_1a
+		inc_counter engaged_az_peasants_1a 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_IsUnitIdle az_peasants_1a
+	and I_CompareCounter engaged_az_peasants_1a > 0
+	release_unit az_peasants_1a
+	terminate_monitor 
+	end_monitor	
+	
+	
+	monitor_conditions I_IsUnitEngaged az_peasants_2a
+		inc_counter engaged_az_peasants_2a 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_IsUnitIdle az_peasants_2a
+	and I_CompareCounter engaged_az_peasants_2a > 0
+	release_unit az_peasants_2a
+	terminate_monitor 
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitEngaged az_peasants_3a
+		inc_counter engaged_az_peasants_3a 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_IsUnitIdle az_peasants_3a
+	and I_CompareCounter engaged_az_peasants_3a > 0
+	release_unit az_peasants_3a
+	terminate_monitor 
+	end_monitor
+	
+		
+	monitor_conditions I_IsUnitEngaged az_general_1b
+		inc_counter engaged_az_general_1b 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_IsUnitIdle az_general_1b
+	and I_CompareCounter engaged_az_general_1b > 0
+	release_unit az_general_1b
+	terminate_monitor 
+	end_monitor	
+	
+	
+	monitor_conditions I_UnitStatus az_archers_1b, missiles_firing
+		inc_counter engaged_az_archers_1b 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_IsUnitEngaged az_archers_1b
+		inc_counter engaged_az_archers_1b 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_IsUnitIdle az_archers_1b
+	and I_CompareCounter engaged_az_archers_1b > 0
+	release_unit az_archers_1b
+	terminate_monitor 
+	end_monitor	
+	
+	
+	monitor_conditions I_UnitStatus arrow_warriors_1b, missiles_firing
+		inc_counter engaged_arrow_warriors_1b 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_IsUnitEngaged arrow_warriors_1b
+		inc_counter engaged_arrow_warriors_1b 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_IsUnitIdle arrow_warriors_1b
+	and I_CompareCounter engaged_arrow_warriors_1b > 0
+	release_unit arrow_warriors_1b
+	terminate_monitor 
+	end_monitor	
+	
+	
+	monitor_conditions I_IsUnitEngaged az_peasants_1b
+		inc_counter engaged_az_peasants_1b 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_IsUnitIdle az_peasants_1b
+	and I_CompareCounter engaged_az_peasants_1b > 0
+	release_unit az_peasants_1b
+	terminate_monitor 
+	end_monitor	
+	
+	
+	monitor_conditions I_IsUnitEngaged az_peasants_1b
+		inc_counter engaged_az_peasants_1b 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_IsUnitIdle az_peasants_1b
+	and I_CompareCounter engaged_az_peasants_1b > 0
+	release_unit az_peasants_1b
+	terminate_monitor 
+	end_monitor	
+	
+	
+	monitor_conditions I_IsUnitEngaged Cuahchiqueh_1b
+		inc_counter engaged_Cuahchiqueh_1b 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_IsUnitIdle Cuahchiqueh_1b
+	and I_CompareCounter engaged_Cuahchiqueh_1b > 0
+	release_unit Cuahchiqueh_1b
+	terminate_monitor 
+	end_monitor	
+	
+	
+	monitor_conditions I_IsUnitEngaged coyote_priests_1b
+		inc_counter engaged_coyote_priests_1b 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_IsUnitIdle coyote_priests_1b
+	and I_CompareCounter engaged_coyote_priests_1b > 0
+	release_unit coyote_priests_1b
+	terminate_monitor 
+	end_monitor	
+	
+	
+	monitor_conditions I_IsUnitEngaged az_spearmen_1b
+		inc_counter engaged_az_spearmen_1b 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_IsUnitIdle az_spearmen_1b
+	and I_CompareCounter engaged_az_spearmen_1b > 0
+	release_unit az_spearmen_1b
+	terminate_monitor 
+	end_monitor	
+	
+	
+	monitor_conditions I_IsUnitEngaged az_spearmen_2b
+		inc_counter engaged_az_spearmen_2b 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_IsUnitIdle az_spearmen_2b
+	and I_CompareCounter engaged_az_spearmen_2b > 0
+	release_unit az_spearmen_2b
+	terminate_monitor 
+	end_monitor	
+	
+		
+	monitor_conditions I_IsUnitEngaged az_Leader_1c
+		inc_counter engaged_az_Leader_1c 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_IsUnitIdle az_Leader_1c
+	and I_CompareCounter engaged_az_Leader_1c > 0
+	release_unit az_Leader_1c
+	terminate_monitor 
+	end_monitor	
+	
+	
+	monitor_conditions I_UnitStatus arrow_warriors_1c, missiles_firing
+		inc_counter engaged_arrow_warriors_1c 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_IsUnitEngaged arrow_warriors_1c
+		inc_counter engaged_arrow_warriors_1c 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_IsUnitIdle arrow_warriors_1c
+	and I_CompareCounter engaged_arrow_warriors_1c > 0
+	release_unit arrow_warriors_1c
+	terminate_monitor 
+	end_monitor	
+	
+	
+	monitor_conditions I_IsUnitEngaged jag_warriors_1c
+		inc_counter engaged_jag_warriors_1c 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_IsUnitIdle jag_warriors_1c
+	and I_CompareCounter engaged_jag_warriors_1c > 0
+	release_unit jag_warriors_1c
+	terminate_monitor 
+	end_monitor	
+	
+	
+	monitor_conditions I_IsUnitEngaged jag_warriors_2c
+		inc_counter engaged_jag_warriors_2c 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_IsUnitIdle jag_warriors_2c
+	and I_CompareCounter engaged_jag_warriors_2c > 0
+	release_unit jag_warriors_2c
+	terminate_monitor 
+	end_monitor	
+	
+	
+	monitor_conditions I_IsUnitEngaged Cuahchiqueh_1c
+		inc_counter engaged_Cuahchiqueh_1c 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_IsUnitIdle Cuahchiqueh_1c
+	and I_CompareCounter engaged_Cuahchiqueh_1c > 0
+	release_unit Cuahchiqueh_1c
+	terminate_monitor 
+	end_monitor	
+	
+	
+	monitor_conditions I_IsUnitEngaged coyote_priests_1c
+		inc_counter engaged_coyote_priests_1c 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_IsUnitIdle coyote_priests_1c
+	and I_CompareCounter engaged_coyote_priests_1c > 0
+	release_unit coyote_priests_1c
+	terminate_monitor 
+	end_monitor	
+	
+	
+	
+	
+		
+;;;make units keep routing if < 35% left
+;---------------------------------------
+  monitor_conditions I_IsUnitRouting az_general_1a
+ 		and I_PercentageUnitKilled az_general_1a > 40
+ 		unit_set_morale az_general_1a routing
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting coyote_priests_1a
+ 		and I_PercentageUnitKilled coyote_priests_1a > 65
+ 		unit_set_morale coyote_priests_1a routing
+	
+		terminate_monitor
+	end_monitor
+	
+
+	monitor_conditions I_IsUnitRouting az_archers_1a
+ 		and I_PercentageUnitKilled az_archers_1a > 50
+ 		unit_set_morale az_archers_1a routing
+	
+		terminate_monitor
+	end_monitor	
+	
+		
+	monitor_conditions I_IsUnitRouting az_spearthrowers_1a
+		and I_PercentageUnitKilled az_spearthrowers_1a > 50 		
+		unit_set_morale az_spearthrowers_1a routing
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting arrow_warriors_1a
+		and I_PercentageUnitKilled arrow_warriors_1a > 65
+		unit_set_morale arrow_warriors_1a routing
+	
+		terminate_monitor
+	end_monitor
+	
+	
+		monitor_conditions I_IsUnitRouting arrow_warriors_2a
+		and I_PercentageUnitKilled arrow_warriors_2a > 65 		
+		unit_set_morale arrow_warriors_2a routing
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting az_archers_2a
+		and I_PercentageUnitKilled az_archers_2a > 50
+		unit_set_morale az_archers_2a routing
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting Cuahchiqueh_1a
+		and I_PercentageUnitKilled Cuahchiqueh_1a > 65
+ 		unit_set_morale Cuahchiqueh_1a routing
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting eagle_1a
+		and I_PercentageUnitKilled eagle_1a > 65
+		unit_set_morale eagle_1a routing
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting az_spearmen_1a
+		and I_PercentageUnitKilled az_spearmen_1a > 50 		
+		unit_set_morale az_spearmen_1a routing
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting az_warriors_1a
+		and I_PercentageUnitKilled az_warriors_1a > 50 	
+		unit_set_morale az_warriors_1a routing
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting az_warriors_2a
+		and I_PercentageUnitKilled az_warriors_2a > 50 	
+		unit_set_morale az_warriors_2a routing
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting az_peasants_1a
+		and I_PercentageUnitKilled az_peasants_1a > 40		
+		unit_set_morale az_peasants_1a routing	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting az_peasants_2a
+		and I_PercentageUnitKilled az_peasants_2a > 40		
+		unit_set_morale az_peasants_2a routing
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting az_peasants_3a
+		and I_PercentageUnitKilled az_peasants_3a > 40		
+		unit_set_morale az_peasants_3a routing
+	
+		terminate_monitor
+	end_monitor
+	
+		
+	monitor_conditions I_IsUnitRouting az_general_1b
+		and I_PercentageUnitKilled az_general_1b > 65
+		unit_set_morale az_general_1b routing
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting az_archers_1b
+		and I_PercentageUnitKilled az_archers_1b > 40
+		unit_set_morale az_archers_1b routing
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting arrow_warriors_1b
+		and I_PercentageUnitKilled arrow_warriors_1b > 65
+ 		unit_set_morale arrow_warriors_1b routing
+	
+		terminate_monitor
+	end_monitor	
+		
+	
+	monitor_conditions I_IsUnitRouting az_peasants_1b
+		and I_PercentageUnitKilled az_peasants_1b > 40		
+		unit_set_morale az_peasants_1b routing
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting az_peasants_2b
+		and I_PercentageUnitKilled az_peasants_2b > 40
+		unit_set_morale az_peasants_2b routing
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting Cuahchiqueh_1b
+		and I_PercentageUnitKilled Cuahchiqueh_1b > 65
+		unit_set_morale Cuahchiqueh_1b routing
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting coyote_priests_1b
+		and I_PercentageUnitKilled coyote_priests_1b > 65
+		unit_set_morale coyote_priests_1b routing
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting az_spearmen_1b
+		and I_PercentageUnitKilled az_spearmen_1b > 50
+	unit_set_morale az_spearmen_1b routing
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting az_spearmen_2b
+		and I_PercentageUnitKilled az_spearmen_2b > 50
+		unit_set_morale az_spearmen_2b routing
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting az_Leader_1c
+		and I_PercentageUnitKilled az_Leader_1c > 65
+		unit_set_morale az_Leader_1c routing
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting arrow_warriors_1c
+		and I_PercentageUnitKilled arrow_warriors_1c > 65
+		unit_set_morale arrow_warriors_1c routing
+	
+		terminate_monitor
+	end_monitor	
+
+
+	monitor_conditions I_IsUnitRouting jag_warriors_1c
+		and I_PercentageUnitKilled jag_warriors_1c > 65
+	unit_set_morale jag_warriors_1c routing
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting jag_warriors_2c
+		and I_PercentageUnitKilled jag_warriors_2c > 65
+		unit_set_morale jag_warriors_2c routing
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting Cuahchiqueh_1c
+		and I_PercentageUnitKilled Cuahchiqueh_1c > 65
+		unit_set_morale Cuahchiqueh_1c routing
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting coyote_priests_1c
+		and I_PercentageUnitKilled coyote_priests_1c > 65
+		unit_set_morale coyote_priests_1c routing
+	
+		terminate_monitor
+	end_monitor	
+
+
+	
+	
+;;;;make Aztec units engage if enemy close by
+;----------------------------------------------
+	monitor_conditions I_UnitEnemyUnitInRadius az_general_1a 25
+	
+		unit_order_attack_closest_unit az_general_1a 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius coyote_priests_1a 25
+	
+		unit_order_attack_closest_unit coyote_priests_1a 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius az_archers_1a 25
+	
+		unit_order_attack_closest_unit az_archers_1a 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius az_spearthrowers_1a 25
+	
+		unit_order_attack_closest_unit az_spearthrowers_1a 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius arrow_warriors_1a 25
+	
+		unit_order_attack_closest_unit arrow_warriors_1a 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+		monitor_conditions I_UnitEnemyUnitInRadius arrow_warriors_2a 25
+	
+		unit_order_attack_closest_unit arrow_warriors_2a 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius az_archers_2a 25
+	
+		unit_order_attack_closest_unit az_archers_2a 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius Cuahchiqueh_1a 25
+	
+		unit_order_attack_closest_unit Cuahchiqueh_1a 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius eagle_1a 25
+	
+		unit_order_attack_closest_unit eagle_1a 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitEnemyUnitInRadius az_spearmen_1a 25
+	
+		unit_order_attack_closest_unit az_spearmen_1a 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius az_warriors_1a 25
+	
+		unit_order_attack_closest_unit az_warriors_1a 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius az_warriors_2a 25
+	
+		unit_order_attack_closest_unit az_warriors_2a 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius az_peasants_1a 25
+	
+		unit_order_attack_closest_unit az_peasants_1a 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius az_peasants_2a 25
+	
+		unit_order_attack_closest_unit az_peasants_2a 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius az_peasants_3a 25
+	
+		unit_order_attack_closest_unit az_peasants_3a 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius az_general_1b 25
+	
+		unit_order_attack_closest_unit az_general_1b 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius az_archers_1b 25
+	
+		unit_order_attack_closest_unit az_archers_1b 180 run
+	
+		terminate_monitor
+	end_monitor	
+	
+	
+monitor_conditions I_UnitEnemyUnitInRadius arrow_warriors_1b 25
+	
+		unit_order_attack_closest_unit arrow_warriors_1b 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius az_peasants_1b 25
+	
+		unit_order_attack_closest_unit az_peasants_1b 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius az_peasants_2b 25
+	
+		unit_order_attack_closest_unit az_peasants_2b 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius Cuahchiqueh_1b 25
+	
+		unit_order_attack_closest_unit Cuahchiqueh_1b 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius coyote_priests_1b 25
+	
+		unit_order_attack_closest_unit coyote_priests_1b 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+		monitor_conditions I_UnitEnemyUnitInRadius az_spearmen_1b 25
+	
+		unit_order_attack_closest_unit az_spearmen_1b 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius az_spearmen_2b 25
+	
+		unit_order_attack_closest_unit az_spearmen_2b 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius az_Leader_1c 25
+	
+		unit_order_attack_closest_unit az_Leader_1c 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius arrow_warriors_1c 25
+	
+		unit_order_attack_closest_unit arrow_warriors_1c 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitEnemyUnitInRadius arrow_warriors_1c 25
+	
+		unit_order_attack_closest_unit arrow_warriors_1c 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius jag_warriors_1c 10
+	
+		unit_order_attack_closest_unit jag_warriors_1c 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius jag_warriors_2c 10
+	
+		unit_order_attack_closest_unit jag_warriors_2c 70 run
+	
+		terminate_monitor
+	end_monitor
+	
+		
+	monitor_conditions I_UnitEnemyUnitInRadius Cuahchiqueh_1c 25
+	
+		unit_order_attack_closest_unit Cuahchiqueh_1c 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius coyote_priests_1c 25
+	
+		unit_order_attack_closest_unit coyote_priests_1c 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+;;;;------------------------------------------------------
+;;;; Count Aztec routers-After ???? units rout the whole army routs	
+;;;;-------------------------------------------------------------------	
+	 monitor_conditions I_IsUnitRouting az_general_1a
+ 		inc_counter Aztec_rout_1 1
+			terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting coyote_priests_1a
+ 		inc_counter Aztec_rout_1 1
+			terminate_monitor
+	end_monitor
+	
+
+	monitor_conditions I_IsUnitRouting az_archers_1a
+ 		inc_counter Aztec_rout_1 1
+		terminate_monitor
+	end_monitor	
+	
+		
+	monitor_conditions I_IsUnitRouting az_spearthrowers_1a
+		inc_counter Aztec_rout_1 1
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting arrow_warriors_1a
+		inc_counter Aztec_rout_1 1
+		terminate_monitor
+	end_monitor
+	
+	
+		monitor_conditions I_IsUnitRouting arrow_warriors_2a
+		inc_counter Aztec_rout_1 1
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting az_archers_2a
+		inc_counter Aztec_rout_1 1
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting Cuahchiqueh_1a
+		inc_counter Aztec_rout_1 1
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting eagle_1a
+		inc_counter Aztec_rout_1 1
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting az_spearmen_1a
+		inc_counter Aztec_rout_1 1
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting az_warriors_1a
+		inc_counter Aztec_rout_1 1
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting az_warriors_2a
+		inc_counter Aztec_rout_1 1
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting az_peasants_1a
+		inc_counter Aztec_rout_1 1
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting az_peasants_2a
+		inc_counter Aztec_rout_1 1
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting az_peasants_3a
+		inc_counter Aztec_rout_1 1
+		terminate_monitor
+	end_monitor
+		
+	monitor_conditions I_IsUnitRouting az_general_1b
+		inc_counter Aztec_rout_1 1
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting az_archers_1b
+		inc_counter Aztec_rout_1 1
+		terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_IsUnitRouting arrow_warriors_1b
+		inc_counter Aztec_rout_1 1
+		terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_IsUnitRouting az_peasants_1b
+		inc_counter Aztec_rout_1 1
+		terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_IsUnitRouting az_peasants_2b
+		inc_counter Aztec_rout_1 1
+		terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_IsUnitRouting Cuahchiqueh_1b
+		inc_counter Aztec_rout_1 1
+		terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_IsUnitRouting coyote_priests_1b
+		inc_counter Aztec_rout_1 1
+		terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_IsUnitRouting az_spearmen_1b
+		inc_counter Aztec_rout_1 1
+		terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_IsUnitRouting az_spearmen_2b
+		inc_counter Aztec_rout_1 1
+		terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_IsUnitRouting az_Leader_1c
+		inc_counter Aztec_rout_1 1
+		terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_IsUnitRouting arrow_warriors_1c
+		inc_counter Aztec_rout_1 1
+		terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_IsUnitRouting jag_warriors_1c
+		inc_counter Aztec_rout_1 1
+		terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_IsUnitRouting jag_warriors_2c
+		inc_counter Aztec_rout_1 1
+		terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_IsUnitRouting Cuahchiqueh_1c
+		inc_counter Aztec_rout_1 1
+		terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_IsUnitRouting coyote_priests_1c
+		inc_counter Aztec_rout_1 1
+		terminate_monitor
+	end_monitor
+	
+; 	monitor_conditions I_IsUnitRouting az_gen_1d
+; 		inc_counter Aztec_rout_1 1
+; 		terminate_monitor
+; 	end_monitor
+	
+
+		
+	monitor_conditions I_CompareCounter Aztec_rout_1 > 31
+			and I_CompareCounter victory_cry = 0 
+			;rout all Aztec off the map
+			play_sound_event Otumba_Win
+				battle_wait 8
+			unit_set_morale az_general_1a routing
+			unit_set_morale coyote_priests_1a routing
+			unit_set_morale az_archers_1a routing
+			unit_set_morale az_spearthrowers_1a routing
+			unit_set_morale arrow_warriors_1a routing
+			unit_set_morale arrow_warriors_2a routing
+			unit_set_morale az_archers_2a routing
+			unit_set_morale Cuahchiqueh_1a routing
+			unit_set_morale eagle_1a routing
+			unit_set_morale az_spearmen_1a routing
+			unit_set_morale az_warriors_1a routing
+			unit_set_morale az_warriors_2a routing
+			unit_set_morale az_peasants_1a routing
+			unit_set_morale az_peasants_2a routing
+			unit_set_morale az_peasants_3a routing
+; 			unit_set_morale aztec_general_1r routing
+; 			unit_set_morale eagle_1r routing
+; 			unit_set_morale coyote_priests_1r routing
+; 			unit_set_morale eagle_2r routing
+; 			unit_set_morale arrow_warriors_1r routing
+			unit_set_morale az_general_1b routing
+			unit_set_morale az_archers_1b routing
+			unit_set_morale arrow_warriors_1b routing
+			unit_set_morale az_peasants_1b routing
+			unit_set_morale az_peasants_2b routing
+			unit_set_morale Cuahchiqueh_1b routing
+			unit_set_morale coyote_priests_1b routing
+			unit_set_morale az_spearmen_1b routing
+			unit_set_morale az_spearmen_2b routing
+			unit_set_morale az_Leader_1c routing
+			unit_set_morale arrow_warriors_1c routing
+			unit_set_morale jag_warriors_1c routing
+			unit_set_morale jag_warriors_2c routing
+			unit_set_morale Cuahchiqueh_1c routing
+			unit_set_morale coyote_priests_1c routing
+;			unit_set_morale az_gen_1d routing
+				terminate_monitor
+			end_monitor		
+	
+;------------------------------------------------------------------
+;IF HERNAN DIES THE SPANISH ARMY ROUTS AND THE PLAYER LOSES (DELAY ROUT BY 7 SECONDS)	
+;-------------------------------------------------------------------------------
+
+	monitor_conditions not I_CharacterExists Hernan Cortes
+	inc_counter already_lost 1
+		play_sound_event Otumba_Sergeant_2 tag = Otumba_Sergeant_2 ;"Dios Mio! General Cortez is slain! All is lost!"
+				battle_wait 7
+		play_sound_event Otumba_Lose
+		battle_wait 6
+		unit_set_morale	cortes_general_1 routing
+		unit_set_morale	conquistadores_1 routing
+		unit_set_morale	conquistadores_2 routing
+		unit_set_morale	musketeers_1 routing
+		unit_set_morale	musketeers_2 routing
+		unit_set_morale	Pavise_Crossbowmen_1 routing
+		unit_set_morale	Tlaxcalan_merc_1 routing
+		unit_set_morale	Tlaxcalan_merc_2 routing
+		unit_set_morale	Tlaxcalan_merc_3 routing
+		unit_set_morale	Sword_and_Buckler_1 routing
+		unit_set_morale	Sword_and_Buckler_2 routing
+; 		unit_set_morale	Tlaxcalan_merc_1r routing
+; 		unit_set_morale	Tlaxcalan_merc_2r routing
+; 		unit_set_morale dis_conquist_1a routing
+		terminate_monitor
+	end_monitor	
+	
+	
+	monitor_event BattleReinforcementsArrive
+	inc_counter reinforcements 1
+		end_monitor
+;;;--------------------------------------------------------
+;;;REINFORCEMENTS		
+;;;--------------------------------------------------------
+	
+;;;Labels and gives orders & conditions to Aztec reinforcements
+	monitor_conditions	I_CompareCounter reinforcements > 0
+	;battle_wait 8
+		;;;;Aztec reinforcements	
+		label_unit 1 3 0 aztec_general_1r
+		label_unit 1 3 1 eagle_1r
+		label_unit 1 3 2 coyote_priests_1r
+		label_unit 1 3 3 eagle_2r
+		label_unit 1 3 4 arrow_warriors_1r
+		;camera_zoom_to_unit aztec_general_1r
+		play_sound_event Otumba_Sergeant_3 tag = Otumba_Sergeant_3 ;"Dios santo! The heathens bring more warriors to battle"
+		
+	
+		terminate_monitor
+	end_monitor
+	
+;;;Create morale state for Aztec reinforcements	
+	
+monitor_conditions	I_CompareCounter reinforcements > 0
+	unit_set_morale aztec_general_1r high
+	terminate_monitor
+	end_monitor
+
+	
+	
+;;;Set up and run engagement counters for reinforcements	
+	monitor_conditions	I_CompareCounter reinforcements > 0
+	and I_IsUnitEngaged aztec_general_1r
+	inc_counter engaged_aztec_general_1r 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions	I_CompareCounter reinforcements > 0
+	and I_IsUnitEngaged eagle_1r
+	inc_counter engaged_eagle_1r 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions	I_CompareCounter reinforcements > 0
+	and I_IsUnitEngaged coyote_priests_1r
+	inc_counter engaged_coyote_priests_1r 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions	I_CompareCounter reinforcements > 0
+	and I_IsUnitEngaged eagle_2r
+	inc_counter engaged_eagle_2r 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions	I_CompareCounter reinforcements > 0
+	and I_IsUnitEngaged arrow_warriors_1r
+	inc_counter engaged_arrow_warriors_1r 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter reinforcements > 0
+	and I_UnitStatus arrow_warriors_1r, missiles_firing
+		inc_counter engaged_arrow_warriors_1r 1
+		terminate_monitor
+	end_monitor
+	 		
+	
+;;;Make Aztec reinforcements rout if Spanish victory conditions are met
+
+	monitor_conditions I_CompareCounter reinforcements > 0
+	and not I_CharacterExists Cihaucu
+	and I_CompareCounter general_deaths > 2
+	
+		unit_set_morale	aztec_general_1r routing
+		unit_set_morale	eagle_1r routing
+		unit_set_morale coyote_priests_1r routing
+		unit_set_morale eagle_2r routing routing
+		unit_set_morale arrow_warriors_1r routing
+		terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter reinforcements > 0
+	and I_CompareCounter Aztec_rout_1 > 31
+	
+		unit_set_morale	aztec_general_1r routing
+		unit_set_morale	eagle_1r routing
+		unit_set_morale coyote_priests_1r routing
+		unit_set_morale eagle_2r routing routing
+		unit_set_morale arrow_warriors_1r routing
+		terminate_monitor
+	end_monitor
+
+
+	
+	;;;Make Aztec reinforcment units attack
+	
+	monitor_conditions I_CompareCounter reinforcements > 0
+	
+		unit_order_attack_unit aztec_general_1r cortes_general_1 run
+		terminate_monitor
+		end_monitor
+		
+	monitor_conditions I_CompareCounter reinforcements > 0
+
+		unit_order_attack_unit coyote_priests_1r cortes_general_1 run
+		terminate_monitor
+		end_monitor
+		
+	monitor_conditions I_CompareCounter reinforcements > 0
+	
+		unit_order_attack_closest_unit arrow_warriors_1r 180 run
+		terminate_monitor
+		end_monitor
+		
+	monitor_conditions I_CompareCounter reinforcements > 0
+	
+		unit_order_attack_closest_unit eagle_2r 180 run
+		terminate_monitor
+		end_monitor
+		
+	monitor_conditions I_CompareCounter reinforcements > 0
+		
+		unit_order_attack_closest_unit eagle_1r 180 run
+		terminate_monitor
+		end_monitor
+		
+		;;;stops them getting stuck at ready after combat
+	
+	monitor_conditions I_CompareCounter reinforcements > 0
+	and I_UnitStatus aztec_general_1r ready
+	and I_CompareCounter engaged_aztec_general_1r > 0
+	release_unit aztec_general_1r 
+	end_monitor
+	
+	monitor_conditions I_CompareCounter reinforcements > 0
+	and I_UnitStatus eagle_1r ready
+	and I_CompareCounter engaged_eagle_1r > 0
+	release_unit eagle_1r 
+	end_monitor
+	
+	monitor_conditions I_CompareCounter reinforcements > 0
+	and I_UnitStatus coyote_priests_1r ready
+	and I_CompareCounter engaged_coyote_priests_1r > 0
+	release_unit coyote_priests_1r 
+	end_monitor
+	
+	monitor_conditions I_CompareCounter reinforcements > 0
+	and I_UnitStatus eagle_2r ready
+	and I_CompareCounter engaged_eagle_2r > 0
+	release_unit eagle_2r 
+	end_monitor
+	
+	monitor_conditions I_CompareCounter reinforcements > 0
+	and I_UnitStatus arrow_warriors_1r ready
+	and I_CompareCounter engaged_arrow_warriors_1r > 0
+	release_unit arrow_warriors_1r
+	end_monitor
+	
+	
+	;;;stops them going Idle after combat
+	monitor_conditions I_CompareCounter reinforcements > 0
+	and I_IsUnitEngaged aztec_general_1r
+		inc_counter engaged_aztec_general_1r 1
+		terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter reinforcements > 0
+	and I_IsUnitIdle aztec_general_1r
+	and I_CompareCounter engaged_aztec_general_1r > 0
+	release_unit aztec_general_1r 
+	end_monitor	
+	
+	
+	monitor_conditions I_CompareCounter reinforcements > 0
+	and I_IsUnitEngaged eagle_1r
+		inc_counter engaged_eagle_1r 1
+		terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter reinforcements > 0
+	and I_IsUnitIdle eagle_1r
+	and I_CompareCounter engaged_eagle_1r > 0
+	release_unit eagle_1r 
+	end_monitor
+	
+	
+	monitor_conditions I_CompareCounter reinforcements > 0
+	and I_IsUnitEngaged coyote_priests_1r
+		inc_counter engaged_coyote_priests_1r 1
+		terminate_monitor
+	end_monitor
+		monitor_conditions I_CompareCounter reinforcements > 0
+	and I_IsUnitIdle coyote_priests_1r
+	and I_CompareCounter engaged_coyote_priests_1r > 0
+	release_unit coyote_priests_1r 
+	end_monitor
+	
+	
+	monitor_conditions I_CompareCounter reinforcements > 0
+	and I_IsUnitEngaged eagle_2r
+	 	inc_counter engaged_eagle_2r 1
+		terminate_monitor
+	end_monitor
+	 	monitor_conditions I_CompareCounter reinforcements > 0
+	and I_IsUnitIdle eagle_2r
+	and I_CompareCounter engaged_eagle_2r > 0
+	release_unit eagle_2r 
+	end_monitor
+	
+	
+	monitor_conditions I_CompareCounter reinforcements > 0
+	and I_IsUnitEngaged arrow_warriors_1r
+		inc_counter engaged_arrow_warriors_1r 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_CompareCounter reinforcements > 0
+	and I_IsUnitIdle arrow_warriors_1r
+	and I_CompareCounter engaged_arrow_warriors_1r > 0
+	release_unit arrow_warriors_1r 
+	end_monitor
+	
+	;;;keep routing if 65% are killed
+	monitor_conditions I_CompareCounter reinforcements > 0
+	and I_IsUnitRouting aztec_general_1r
+		and I_PercentageUnitKilled aztec_general_1r > 65
+		unit_set_morale aztec_general_1r routing
+	
+		terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter reinforcements > 0
+	and I_IsUnitRouting arrow_warriors_1r
+		and I_PercentageUnitKilled arrow_warriors_1r > 65
+	unit_set_morale arrow_warriors_1r routing
+	
+		terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter reinforcements > 0
+	and I_IsUnitRouting coyote_priests_1r
+		and I_PercentageUnitKilled coyote_priests_1r > 65
+ 		unit_set_morale coyote_priests_1r routing
+	
+		terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter reinforcements > 0
+	and I_IsUnitRouting eagle_1r
+		and I_PercentageUnitKilled eagle_1r > 65
+ 		unit_set_morale eagle_1r routing
+	
+		terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_CompareCounter reinforcements > 0
+	and I_IsUnitRouting eagle_2r
+		and I_PercentageUnitKilled eagle_2r > 65
+ 		unit_set_morale eagle_2r routing
+	
+		terminate_monitor
+	end_monitor	
+	
+	;;;Incase enemy is near
+	monitor_conditions I_CompareCounter reinforcements > 0
+	and I_UnitEnemyUnitInRadius aztec_general_1r 100
+	
+		unit_order_attack_closest_unit aztec_general_1r 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_CompareCounter reinforcements > 0
+	and I_UnitEnemyUnitInRadius eagle_1r 100
+	
+		unit_order_attack_closest_unit eagle_1r 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_CompareCounter reinforcements > 0
+	and I_UnitEnemyUnitInRadius coyote_priests_1r 100
+	
+		unit_order_attack_closest_unit coyote_priests_1r 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_CompareCounter reinforcements > 0
+	and I_UnitEnemyUnitInRadius eagle_2r 100
+	
+		unit_order_attack_closest_unit eagle_2r 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_CompareCounter reinforcements > 0
+	and I_UnitEnemyUnitInRadius arrow_warriors_1r 100
+	
+		unit_order_attack_closest_unit arrow_warriors_1r 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	;;;Counters for if these units rout
+	monitor_conditions I_CompareCounter reinforcements > 0
+	and I_IsUnitRouting aztec_general_1r
+		inc_counter Aztec_rout_1 1
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_CompareCounter reinforcements > 0
+	and I_IsUnitRouting eagle_1r
+		inc_counter Aztec_rout_1 1
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_CompareCounter reinforcements > 0
+	and I_IsUnitRouting coyote_priests_1r
+		inc_counter Aztec_rout_1 1
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_CompareCounter reinforcements > 0
+	and I_IsUnitRouting eagle_2r
+		inc_counter Aztec_rout_1 1
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_CompareCounter reinforcements > 0
+	and I_IsUnitRouting arrow_warriors_1r
+		inc_counter Aztec_rout_1 1
+		terminate_monitor
+	end_monitor
+	
+	
+	;;;Labels and gives orders/conditions to Spanish reinforcements	
+	monitor_conditions	I_CompareCounter reinforcements = 2
+		;;;;Spanish reinforcments	
+		label_unit 0 1 0 dis_conquist_1a
+		label_unit 0 1 1 Tlaxcalan_merc_1r
+		label_unit 0 1 2 Tlaxcalan_merc_2r
+		;camera_zoom_to_unit dis_conquist_1a
+		play_sound_event Otumba_Sergeant_4 tag = Otumba_Sergeant_4 ;"O' gracias a Dios! Our reinforcements have arrived"
+		;;;units will rout if Hernan dies
+
+		terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter reinforcements = 2
+		and not I_CharacterExists Hernan Cortes
+		
+				battle_wait 9
+		
+			unit_set_morale	Tlaxcalan_merc_1r routing
+			unit_set_morale	Tlaxcalan_merc_2r routing
+			unit_set_morale dis_conquist_1a routing
+		terminate_monitor
+	end_monitor
+		
+	
+
+	
+	
+	
+	
+	
+	
+	
+;;;;*************************************************************************************************
+;;;; END OF BATTLE
+;;;;*************************************************************************************************
+				
+while I_InBattle
+	end_while
+
+end_script

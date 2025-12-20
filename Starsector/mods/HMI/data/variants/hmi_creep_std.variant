@@ -1,0 +1,61 @@
+{
+  "variantId": "hmi_creep_std",
+  "hullId": "hmi_creep",
+  "displayName": "Rookie",
+  "goalVariant": true,
+  "fluxCapacitors": 20,
+  "fluxVents": 8,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "frontshield",
+    "blast_doors"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0004": "typhoon"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0001": "kane_missile",
+        "WS0002": "kane_missile"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0003": "chaingun",
+        "WS0005": "heavyac",
+        "WS0006": "heavyac",
+        "WS0007": "lightmortar",
+        "WS0008": "lightmortar",
+        "WS0009": "lightac",
+        "WS0010": "burstlightag",
+        "WS0011": "lightdualac"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0012": "vulcan"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0013": "burst_ml"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

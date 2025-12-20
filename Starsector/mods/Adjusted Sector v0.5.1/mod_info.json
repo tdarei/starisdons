@@ -1,0 +1,9 @@
+{
+	"id":"Adjusted Sector",
+	"name":"Adjusted Sector",
+	"author":"NerzhulAI",
+	"version":"0.5.1",
+	"description":"Make your game last forever (or rather, until the next Vayra's sector update). Change the size of your sector, amount of constellations. Make 50% of your sector consists of remnants, or make no remnants at all. Spawn 50 cryoslepers, make tons of research and mining stations. You in charge of your game.",
+    "gameVersion":"0.95.1a-RC6",
+	"jars":["jars/source.jar"],
+}

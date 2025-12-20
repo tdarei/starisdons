@@ -1,0 +1,261 @@
+{
+  "bounds": [
+    143,
+    -5,
+    95.5,
+    44.5,
+    60,
+    45.5,
+    31,
+    76,
+    7,
+    73,
+    -25.5,
+    91,
+    -55,
+    81.5,
+    -60,
+    70,
+    -98.5,
+    56,
+    -98,
+    41.5,
+    -116.5,
+    32,
+    -117,
+    7,
+    -105,
+    0.5,
+    -142,
+    -31,
+    -135.5,
+    -48,
+    -111.5,
+    -65.5,
+    -70,
+    -69,
+    -56.5,
+    -58.5,
+    -23,
+    -66.5,
+    -9,
+    -46.5,
+    -0.5,
+    -66,
+    2.5,
+    -91.5,
+    34.5,
+    -87.5,
+    48,
+    -66,
+    69.5,
+    -52,
+    75,
+    -61.5,
+    103,
+    -40,
+    124.5,
+    -53
+  ],
+  "builtInMods": [
+	"reduced_explosion",
+    "advancedcore",
+    "eccm",
+    "magazines",
+    "missleracks",
+    "pointdefenseai",
+    "turretgyros"
+  ],
+  "builtInWeapons": {
+    "WS0001": "tachyonlance",
+    "WS0002": "pdburst",
+    "WS0003": "sabotpod",
+    "WS0004": "pdburst",
+    "WS0005": "pdburst",
+    "WS0006": "heavyneedler",
+    "WS0007": "taclaser",
+    "WS0008": "taclaser",
+    "WS0009": "taclaser",
+    "WS0010": "ionbeam",
+    "WS0011": "hil",
+    "WS0012": "heavyburst"
+  },
+  "builtInWings": [],
+  "center": [
+    89.5,
+    141
+  ],
+  "collisionRadius": 154.5,
+  "engineSlots": [
+    {
+      "angle": 180,
+      "contrailSize": 50,
+      "length": 90.5,
+      "location": [
+        -115,
+        19
+      ],
+      "style": "COBRA_BOMBER",
+      "width": 50
+    }
+  ],
+  "height": 282,
+  "hullId": "hmi_spookyboi_left",
+  "hullName": "Capital Horror",
+  "hullSize": "CAPITAL_SHIP",
+  "shieldCenter": [
+    0,
+    0
+  ],
+  "shieldRadius": 160.5,
+  "spriteName": "graphics/ships/mess/hmi_spookyboi_left.png",
+  "style": "LOW_TECH",
+  "viewOffset": 0,
+  "weaponSlots": [
+    {
+      "angle": 63.5,
+      "arc": 222,
+      "id": "WS0001",
+      "locations": [
+        107,
+        -11.5
+      ],
+      "mount": "TURRET",
+      "size": "LARGE",
+      "type": "BUILT_IN"
+    },
+    {
+      "angle": 74,
+      "arc": 134,
+      "id": "WS0002",
+      "locations": [
+        57,
+        35.5
+      ],
+      "mount": "TURRET",
+      "size": "SMALL",
+      "type": "BUILT_IN"
+    },
+    {
+      "angle": 0,
+      "arc": 10,
+      "id": "WS0003",
+      "locations": [
+        48,
+        52.5
+      ],
+      "mount": "HARDPOINT",
+      "size": "MEDIUM",
+      "type": "BUILT_IN"
+    },
+    {
+      "angle": 90,
+      "arc": 132,
+      "id": "WS0004",
+      "locations": [
+        21,
+        65.5
+      ],
+      "mount": "TURRET",
+      "size": "SMALL",
+      "type": "BUILT_IN"
+    },
+    {
+      "angle": 49.5,
+      "arc": 153,
+      "id": "WS0005",
+      "locations": [
+        -9,
+        58.5
+      ],
+      "mount": "TURRET",
+      "size": "SMALL",
+      "type": "BUILT_IN"
+    },
+    {
+      "angle": 90,
+      "arc": 200,
+      "id": "WS0006",
+      "locations": [
+        -36.5,
+        61.5
+      ],
+      "mount": "TURRET",
+      "size": "MEDIUM",
+      "type": "BUILT_IN"
+    },
+    {
+      "angle": 90,
+      "arc": 131,
+      "id": "WS0007",
+      "locations": [
+        -25,
+        33.5
+      ],
+      "mount": "TURRET",
+      "size": "SMALL",
+      "type": "BUILT_IN"
+    },
+    {
+      "angle": 34.5,
+      "arc": 123,
+      "id": "WS0008",
+      "locations": [
+        1,
+        25.5
+      ],
+      "mount": "TURRET",
+      "size": "SMALL",
+      "type": "BUILT_IN"
+    },
+    {
+      "angle": 0,
+      "arc": 119,
+      "id": "WS0009",
+      "locations": [
+        9,
+        1.5
+      ],
+      "mount": "TURRET",
+      "size": "SMALL",
+      "type": "BUILT_IN"
+    },
+    {
+      "angle": 38.5,
+      "arc": 127,
+      "id": "WS0010",
+      "locations": [
+        -8.5,
+        -23.5
+      ],
+      "mount": "TURRET",
+      "size": "MEDIUM",
+      "type": "BUILT_IN"
+    },
+    {
+      "angle": 180,
+      "arc": 360,
+      "id": "WS0011",
+      "locations": [
+        -25.5,
+        7.5
+      ],
+      "mount": "TURRET",
+      "size": "LARGE",
+      "type": "BUILT_IN"
+    },
+    {
+      "angle": -170,
+      "arc": 218,
+      "id": "WS0012",
+      "locations": [
+        -123.5,
+        -35.5
+      ],
+      "mount": "TURRET",
+      "size": "MEDIUM",
+      "type": "BUILT_IN"
+    }
+  ],
+  "width": 179
+}

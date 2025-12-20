@@ -1,0 +1,4396 @@
+script
+
+		; *********************************************************************************************
+		;	Battle of Hastings
+		; *********************************************************************************************
+		
+		
+			prepare_for_battle		; This must be *BEFORE* defining labels
+		
+;----------------
+;NORMANS, ALLIANCE 0
+;-------------------
+
+ 	label_unit 0 0 0 william
+	label_unit 0 0 1 knights1
+	label_unit 0 0 2 knights2
+	label_unit 0 0 3 knights3
+	label_unit 0 0 4 knights4
+	label_unit 0 0 5 knights5
+	label_unit 0 0 6 knights6
+	label_unit 0 0 7 infantry1
+	label_unit 0 0 8 infantry2
+	label_unit 0 0 9 infantry3
+	label_unit 0 0 10 infantry4
+	label_unit 0 0 11 infantry5
+	label_unit 0 0 12 infantry6
+	label_unit 0 0 13 infantry7
+	label_unit 0 0 14 infantry8
+	label_unit 0 0 15 infantry9
+	label_unit 0 0 16 archer1
+	label_unit 0 0 17 archer2
+	label_unit 0 0 18 archer3
+	label_unit 0 0 19 archer4
+	
+;---------------------------------
+;ENGLISH, ALLIANCE 1
+;---------------------------------	
+	
+	label_unit 1 0 0 harold
+	label_unit 1 0 1 huscarl1_(leofwine)
+	label_unit 1 0 2 huscarl2_(gyrth)
+	label_unit 1 0 3 huscarl3_(centre)
+	label_unit 1 0 4 huscarl4_(bodyguard)
+	label_unit 1 0 5 fyrd1
+	label_unit 1 0 6 fyrd2
+	label_unit 1 0 7 fyrd3
+	label_unit 1 0 8 fyrd4
+	label_unit 1 0 9 fyrd5
+	label_unit 1 0 10 fyrd6
+	label_unit 1 0 11 fyrd7
+	label_unit 1 0 12 fyrd8
+	label_unit 1 0 13 fyrd9
+	label_unit 1 0 14 fyrd10
+	label_unit 1 0 15 fyrd11
+	label_unit 1 0 16 fyrd12
+	label_unit 1 0 17 fyrd13
+	label_unit 1 0 18 fyrd_militia1
+	label_unit 1 0 19 fyrd_militia2
+
+
+		; *********************************************************************************************
+		;	COUNTERS
+		; *********************************************************************************************
+
+	
+			declare_counter battle_start
+			declare_counter intro_sequence		;	Kicks off intro sequence
+			declare_counter player_not_escape
+			declare_counter leofwine_dead
+			declare_counter gyrth_dead
+			declare_counter harold_dead
+			declare_counter harold_rout_lock
+
+			declare_counter fyrd_militia1_committed 
+			declare_counter fyrd9_committed 
+			declare_counter fyrd10_committed 
+			declare_counter fyrd12_committed 
+			declare_counter fyrd13_committed 
+			declare_counter fyrd_militia2_committed 
+			
+			declare_counter flanks_attacked
+			declare_counter get_on_with_it
+			
+			declare_counter redden_the_earth
+			declare_counter no_mercy
+			
+			declare_counter attack_right_prompt
+			declare_counter attack_left_prompt
+
+			declare_counter william_breaks_through
+			declare_counter knights1_breaks_through
+			declare_counter knights2_breaks_through
+			declare_counter knights3_breaks_through
+			declare_counter knights4_breaks_through
+			declare_counter knights5_breaks_through
+			declare_counter knights6_breaks_through
+			declare_counter infantry1_breaks_through
+			declare_counter infantry2_breaks_through
+			declare_counter infantry3_breaks_through
+			declare_counter infantry4_breaks_through
+			declare_counter infantry5_breaks_through
+			declare_counter infantry6_breaks_through
+			declare_counter infantry7_breaks_through
+			declare_counter infantry8_breaks_through
+			declare_counter infantry9_breaks_through
+
+			declare_counter fyrd1_last_stand
+			declare_counter fyrd2_last_stand
+			declare_counter fyrd3_last_stand
+			
+			declare_counter shieldwall_compromised
+			declare_counter morale_lock_gyrth
+			declare_counter morale_lock_leofwine
+			declare_counter prompt_check
+			declare_counter attack_right_prompt_check
+			declare_counter attack_left_prompt_check
+
+
+
+
+
+;			label_location	523, 544 tripwire_left		;in front of shield wall
+;			label_location	755, 377 tripwire_right
+
+
+;			label_location	484, 619 tripwire2_left		;behind english second rank
+;			label_location	731, 452 tripwire2_right
+			
+			label_location	523, 547 tripwire_left		;in front of shield wall
+			label_location	755, 391 tripwire_right
+
+
+			label_location	504, 583 tripwire2_left		;behind english second rank
+			label_location	743, 420 tripwire2_right
+
+
+			label_location	445, 563 tripwire3_left		;bottom of slope
+			label_location	810, 291 tripwire3_right
+
+
+
+
+		;-----------------------------------------------------------------------------------------------------------
+		;-----------------------------------------------------------------------------------------------------------
+		;			OPEN SCRIPT SECTION
+		;-----------------------------------------------------------------------------------------------------------
+		;-----------------------------------------------------------------------------------------------------------
+		
+			camera_default_mode_set tw
+		
+;			disable_cursor						;prevent the player clicking
+			suspend_unscripted_advice true
+;			disable_shortcuts true		
+;			disable_entire_ui
+;			inhibit_camera_input true
+
+
+
+
+	
+		
+			set_counter intro_sequence 1	;	kicks off intro sequence
+		
+			while ! I_BattleStarted					; battle_wait FOR DEPLOYMENT
+			end_while
+		
+;			hide_ui
+		
+;		 	camera_restrictions_set off
+		
+		
+			;-----------------------------------------------------------------------------------------------------------
+			;-----------------------------------------------------------------------------------------------------------
+			;-----------------------------------------------------------------------------------------------------------
+			;-----------------------------------------------------------------------------------------------------------
+			;		ESCAPE KEY HANDLER
+			;-----------------------------------------------------------------------------------------------------------
+			;-----------------------------------------------------------------------------------------------------------
+			;-----------------------------------------------------------------------------------------------------------
+			;-----------------------------------------------------------------------------------------------------------
+				steal_esc_key
+		
+				;	Allows user to skip intro and jump straight to the battle by pressing the ESC key.
+				monitor_event EscPressed TrueCondition
+					set_counter battle_start 1
+				
+					terminate_monitor
+				end_monitor
+			;-----------------------------------------------------------------------------------------------------------
+		
+		
+		
+			;**********************************************************************************************************
+			;**********************************************************************************************************
+			;************************************** BATTLE MONITORS ***************************************************
+			;**********************************************************************************************************
+			;**********************************************************************************************************
+
+			
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;LOCK AI MORALE IF PLAYER IGNORES ORDERS
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;			
+			
+	monitor_conditions I_CompareCounter flanks_attacked < 1
+	and I_CompareCounter shieldwall_compromised > 0
+		unit_set_morale fyrd1 firm
+		unit_set_morale fyrd2 firm
+		unit_set_morale fyrd3 firm
+		unit_set_morale fyrd4 firm
+		unit_set_morale fyrd5 firm
+		unit_set_morale fyrd6 firm
+		unit_set_morale fyrd7 firm
+		unit_set_morale fyrd8 firm
+		unit_set_morale fyrd9 firm
+		unit_set_morale fyrd10 firm
+		unit_set_morale fyrd11 firm
+		unit_set_morale fyrd12 firm
+		unit_set_morale fyrd13 firm
+		inc_counter harold_rout_lock 1
+	terminate_monitor
+	end_monitor
+
+						
+			
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;HAS PLAYER ATTEMPTED AN ATTACK ON THE FLANKS?
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+	monitor_conditions I_IsUnitEngaged huscarl1_(leofwine)
+		inc_counter flanks_attacked 1
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_IsUnitEngaged huscarl2_(gyrth)
+		inc_counter flanks_attacked 1
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_IsUnitUnderFire huscarl1_(leofwine)
+		inc_counter flanks_attacked 1
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_IsUnitUnderFire huscarl2_(gyrth)
+		inc_counter flanks_attacked 1
+	terminate_monitor
+	end_monitor
+	
+	
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;URGE PLAYER ON IF THEY DON'T ATTACK THE FLANKS 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+	monitor_conditions I_CompareCounter battle_start > 0
+		battle_wait 60
+		set_counter prompt_check 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter battle_start > 0
+		battle_wait 120
+		set_counter prompt_check 2
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter battle_start > 0
+		battle_wait 180
+		set_counter prompt_check 3
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter prompt_check > 0
+		and I_CompareCounter flanks_attacked < 1
+		inc_counter get_on_with_it 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter prompt_check > 1
+		and I_CompareCounter flanks_attacked < 1
+		inc_counter get_on_with_it 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter prompt_check > 2
+		and I_CompareCounter flanks_attacked < 1
+		inc_counter get_on_with_it 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter get_on_with_it > 0
+	and I_CompareCounter shieldwall_compromised < 1		
+		play_sound_event Hastings_Sergeant_2 tag = Hastings_Sergeant_2
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_CompareCounter get_on_with_it > 1
+		and I_CompareCounter shieldwall_compromised < 1		
+		play_sound_event Hastings_Sergeant_2 tag = Hastings_Sergeant_2
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_CompareCounter get_on_with_it > 2
+		and I_CompareCounter shieldwall_compromised < 1		
+		play_sound_event Hastings_Sergeant_2 tag = Hastings_Sergeant_2
+	terminate_monitor
+	end_monitor
+		
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; IS LEOFWINE DEAD?
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+	monitor_conditions I_PercentageUnitKilled huscarl1_(leofwine) > 5
+		set_counter leofwine_dead 1
+	terminate_monitor
+	end_monitor
+		
+	monitor_conditions I_CompareCounter leofwine_dead > 0
+	and I_CompareCounter shieldwall_compromised < 1		
+		play_sound_event Hastings_Sergeant_3 tag = Hastings_Sergeant_3
+	terminate_monitor
+	end_monitor
+	
+	
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;URGE PLAYER ON IF THEY FAIL TO ATTACK LEOFWINE'S INFANTRY
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+	monitor_conditions I_CompareCounter leofwine_dead > 0
+		battle_wait 60
+		inc_counter attack_right_prompt_check 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter attack_right_prompt_check > 0
+	and I_CompareCounter redden_the_earth < 1
+		inc_counter attack_right_prompt 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter attack_right_prompt > 0
+	and I_CompareCounter shieldwall_compromised < 1
+		play_sound_event Hastings_Sergeant_4 tag = Hastings_Sergeant_4
+	terminate_monitor
+	end_monitor	
+	
+	
+	
+	monitor_conditions I_CompareCounter leofwine_dead > 0
+		battle_wait 120
+		inc_counter attack_right_prompt_check 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter attack_right_prompt_check > 1
+	and I_CompareCounter redden_the_earth < 1
+		inc_counter attack_right_prompt 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter attack_right_prompt > 1
+	and I_CompareCounter shieldwall_compromised < 1
+		play_sound_event Hastings_Sergeant_4 tag = Hastings_Sergeant_4
+	terminate_monitor
+	end_monitor	
+	
+	
+	
+	monitor_conditions I_CompareCounter leofwine_dead > 0
+		battle_wait 180
+		inc_counter attack_right_prompt_check 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter attack_right_prompt_check > 2
+	and I_CompareCounter redden_the_earth < 1
+		inc_counter attack_right_prompt 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter attack_right_prompt > 2
+	and I_CompareCounter shieldwall_compromised < 1
+		play_sound_event Hastings_Sergeant_4 tag = Hastings_Sergeant_4
+	terminate_monitor
+	end_monitor
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; NORMAN INFANTRY RETREATING FROM RIGHT OF BATTLE LINE ARE PURSUED IF LEOFWINE IS DEAD
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+
+
+
+;;;;;INFANTRY 1
+
+
+
+	monitor_conditions I_CompareCounter leofwine_dead > 0
+		and I_IsUnitEngagedWithUnit infantry1 huscarl1_(leofwine)			
+		unit_order_attack_unit fyrd1 infantry1 run
+		unit_order_attack_unit fyrd2 infantry1 run
+		unit_order_attack_unit fyrd3 infantry1 run
+		set_counter redden_the_earth 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd1 loose
+		unit_set_formation_spacing fyrd2 loose
+		unit_set_formation_spacing fyrd3 loose
+	terminate_monitor
+	end_monitor
+
+
+	monitor_conditions I_CompareCounter leofwine_dead > 0
+		and I_IsUnitEngagedWithUnit infantry1 fyrd1			
+		unit_order_attack_unit fyrd1 infantry1 run
+		unit_order_attack_unit fyrd2 infantry1 run
+		unit_order_attack_unit fyrd3 infantry1 run
+		set_counter redden_the_earth 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd1 loose
+		unit_set_formation_spacing fyrd2 loose
+		unit_set_formation_spacing fyrd3 loose
+	terminate_monitor
+	end_monitor
+
+
+	monitor_conditions I_CompareCounter leofwine_dead > 0
+		and I_IsUnitEngagedWithUnit infantry1 fyrd2			
+		unit_order_attack_unit fyrd1 infantry1 run
+		unit_order_attack_unit fyrd2 infantry1 run
+		unit_order_attack_unit fyrd3 infantry1 run
+		set_counter redden_the_earth 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd1 loose
+		unit_set_formation_spacing fyrd2 loose
+		unit_set_formation_spacing fyrd3 loose
+	terminate_monitor
+	end_monitor
+
+
+	monitor_conditions I_CompareCounter leofwine_dead > 0
+		and I_IsUnitEngagedWithUnit infantry1 fyrd3
+		unit_order_attack_unit fyrd1 infantry1 run
+		unit_order_attack_unit fyrd2 infantry1 run
+		unit_order_attack_unit fyrd3 infantry1 run
+		set_counter redden_the_earth 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd1 loose
+		unit_set_formation_spacing fyrd2 loose
+		unit_set_formation_spacing fyrd3 loose
+	terminate_monitor
+	end_monitor
+
+
+
+
+;;;;;INFANTRY 2
+
+
+	monitor_conditions I_CompareCounter leofwine_dead > 0
+		and I_IsUnitEngagedWithUnit infantry2 huscarl1_(leofwine)			
+		unit_order_attack_unit fyrd1 infantry2 run
+		unit_order_attack_unit fyrd2 infantry2 run
+		unit_order_attack_unit fyrd3 infantry2 run
+		set_counter redden_the_earth 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd1 loose
+		unit_set_formation_spacing fyrd2 loose
+		unit_set_formation_spacing fyrd3 loose
+	terminate_monitor
+	end_monitor
+
+
+	monitor_conditions I_CompareCounter leofwine_dead > 0
+		and I_IsUnitEngagedWithUnit infantry2 fyrd1			
+		unit_order_attack_unit fyrd1 infantry2 run
+		unit_order_attack_unit fyrd2 infantry2 run
+		unit_order_attack_unit fyrd3 infantry2 run
+		set_counter redden_the_earth 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd1 loose
+		unit_set_formation_spacing fyrd2 loose
+		unit_set_formation_spacing fyrd3 loose
+	terminate_monitor
+	end_monitor
+
+
+	monitor_conditions I_CompareCounter leofwine_dead > 0
+		and I_IsUnitEngagedWithUnit infantry2 fyrd2			
+		unit_order_attack_unit fyrd1 infantry2 run
+		unit_order_attack_unit fyrd2 infantry2 run
+		unit_order_attack_unit fyrd3 infantry2 run
+		set_counter redden_the_earth 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd1 loose
+		unit_set_formation_spacing fyrd2 loose
+		unit_set_formation_spacing fyrd3 loose
+	terminate_monitor
+	end_monitor
+
+
+	monitor_conditions I_CompareCounter leofwine_dead > 0
+		and I_IsUnitEngagedWithUnit infantry2 fyrd3			
+		unit_order_attack_unit fyrd1 infantry2 run
+		unit_order_attack_unit fyrd2 infantry2 run
+		unit_order_attack_unit fyrd3 infantry2 run
+		set_counter redden_the_earth 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd1 loose
+		unit_set_formation_spacing fyrd2 loose
+		unit_set_formation_spacing fyrd3 loose
+	terminate_monitor
+	end_monitor
+
+
+
+
+;;;;;INFANTRY 3
+
+
+	monitor_conditions I_CompareCounter leofwine_dead > 0
+		and I_IsUnitEngagedWithUnit infantry3 huscarl1_(leofwine)			
+		unit_order_attack_unit fyrd1 infantry3 run
+		unit_order_attack_unit fyrd2 infantry3 run
+		unit_order_attack_unit fyrd3 infantry3 run
+		set_counter redden_the_earth 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd1 loose
+		unit_set_formation_spacing fyrd2 loose
+		unit_set_formation_spacing fyrd3 loose
+	terminate_monitor
+	end_monitor
+
+
+	monitor_conditions I_CompareCounter leofwine_dead > 0
+		and I_IsUnitEngagedWithUnit infantry3 fyrd1			
+		unit_order_attack_unit fyrd1 infantry3 run
+		unit_order_attack_unit fyrd2 infantry3 run
+		unit_order_attack_unit fyrd3 infantry3 run
+		set_counter redden_the_earth 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd1 loose
+		unit_set_formation_spacing fyrd2 loose
+		unit_set_formation_spacing fyrd3 loose
+	terminate_monitor
+	end_monitor
+
+
+
+	monitor_conditions I_CompareCounter leofwine_dead > 0
+		and I_IsUnitEngagedWithUnit infantry3 fyrd2			
+		unit_order_attack_unit fyrd1 infantry3 run
+		unit_order_attack_unit fyrd2 infantry3 run
+		unit_order_attack_unit fyrd3 infantry3 run
+		set_counter redden_the_earth 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd1 loose
+		unit_set_formation_spacing fyrd2 loose
+		unit_set_formation_spacing fyrd3 loose
+	terminate_monitor
+	end_monitor
+
+
+
+	monitor_conditions I_CompareCounter leofwine_dead > 0
+		and I_IsUnitEngagedWithUnit infantry3 fyrd3			
+		unit_order_attack_unit fyrd1 infantry3 run
+		unit_order_attack_unit fyrd2 infantry3 run
+		unit_order_attack_unit fyrd3 infantry3 run
+		set_counter redden_the_earth 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd1 loose
+		unit_set_formation_spacing fyrd2 loose
+		unit_set_formation_spacing fyrd3 loose
+	terminate_monitor
+	end_monitor
+
+
+
+
+;;;;;INFANTRY 4
+
+
+	monitor_conditions I_CompareCounter leofwine_dead > 0
+		and I_IsUnitEngagedWithUnit infantry4 huscarl1_(leofwine)			
+		unit_order_attack_unit fyrd1 infantry4 run
+		unit_order_attack_unit fyrd2 infantry4 run
+		unit_order_attack_unit fyrd3 infantry4 run
+		set_counter redden_the_earth 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd1 loose
+		unit_set_formation_spacing fyrd2 loose
+		unit_set_formation_spacing fyrd3 loose
+	terminate_monitor
+	end_monitor
+
+
+	monitor_conditions I_CompareCounter leofwine_dead > 0
+		and I_IsUnitEngagedWithUnit infantry4 fyrd1			
+		unit_order_attack_unit fyrd1 infantry4 run
+		unit_order_attack_unit fyrd2 infantry4 run
+		unit_order_attack_unit fyrd3 infantry4 run
+		set_counter redden_the_earth 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd1 loose
+		unit_set_formation_spacing fyrd2 loose
+		unit_set_formation_spacing fyrd3 loose
+	terminate_monitor
+	end_monitor
+
+
+
+	monitor_conditions I_CompareCounter leofwine_dead > 0
+		and I_IsUnitEngagedWithUnit infantry4 fyrd2			
+		unit_order_attack_unit fyrd1 infantry4 run
+		unit_order_attack_unit fyrd2 infantry4 run
+		unit_order_attack_unit fyrd3 infantry4 run
+		set_counter redden_the_earth 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd1 loose
+		unit_set_formation_spacing fyrd2 loose
+		unit_set_formation_spacing fyrd3 loose
+	terminate_monitor
+	end_monitor
+
+
+
+	monitor_conditions I_CompareCounter leofwine_dead > 0
+		and I_IsUnitEngagedWithUnit infantry4 fyrd3			
+		unit_order_attack_unit fyrd1 infantry4 run
+		unit_order_attack_unit fyrd2 infantry4 run
+		unit_order_attack_unit fyrd3 infantry4 run
+		set_counter redden_the_earth 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd1 loose
+		unit_set_formation_spacing fyrd2 loose
+		unit_set_formation_spacing fyrd3 loose
+	terminate_monitor
+	end_monitor
+
+
+
+
+;;;;;INFANTRY 5
+
+
+	monitor_conditions I_CompareCounter leofwine_dead > 0
+		and I_IsUnitEngagedWithUnit infantry5 huscarl1_(leofwine)			
+		unit_order_attack_unit fyrd1 infantry5 run
+		unit_order_attack_unit fyrd2 infantry5 run
+		unit_order_attack_unit fyrd3 infantry5 run
+		set_counter redden_the_earth 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd1 loose
+		unit_set_formation_spacing fyrd2 loose
+		unit_set_formation_spacing fyrd3 loose
+	terminate_monitor
+	end_monitor
+
+
+
+	monitor_conditions I_CompareCounter leofwine_dead > 0
+		and I_IsUnitEngagedWithUnit infantry5 fyrd1			
+		unit_order_attack_unit fyrd1 infantry5 run
+		unit_order_attack_unit fyrd2 infantry5 run
+		unit_order_attack_unit fyrd3 infantry5 run
+		set_counter redden_the_earth 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd1 loose
+		unit_set_formation_spacing fyrd2 loose
+		unit_set_formation_spacing fyrd3 loose
+	terminate_monitor
+	end_monitor
+
+
+
+	monitor_conditions I_CompareCounter leofwine_dead > 0
+		and I_IsUnitEngagedWithUnit infantry5 fyrd2			
+		unit_order_attack_unit fyrd1 infantry5 run
+		unit_order_attack_unit fyrd2 infantry5 run
+		unit_order_attack_unit fyrd3 infantry5 run
+		set_counter redden_the_earth 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd1 loose
+		unit_set_formation_spacing fyrd2 loose
+		unit_set_formation_spacing fyrd3 loose
+	terminate_monitor
+	end_monitor
+
+
+
+	monitor_conditions I_CompareCounter leofwine_dead > 0
+		and I_IsUnitEngagedWithUnit infantry5 fyrd3			
+		unit_order_attack_unit fyrd1 infantry5 run
+		unit_order_attack_unit fyrd2 infantry5 run
+		unit_order_attack_unit fyrd3 infantry5 run
+		set_counter redden_the_earth 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd1 loose
+		unit_set_formation_spacing fyrd2 loose
+		unit_set_formation_spacing fyrd3 loose
+	terminate_monitor
+	end_monitor
+
+
+
+
+;;;;;INFANTRY 6
+
+
+	monitor_conditions I_CompareCounter leofwine_dead > 0
+		and I_IsUnitEngagedWithUnit infantry6 huscarl1_(leofwine)			
+		unit_order_attack_unit fyrd1 infantry6 run
+		unit_order_attack_unit fyrd2 infantry6 run
+		unit_order_attack_unit fyrd3 infantry6 run
+		set_counter redden_the_earth 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd1 loose
+		unit_set_formation_spacing fyrd2 loose
+		unit_set_formation_spacing fyrd3 loose
+	terminate_monitor
+	end_monitor
+
+
+	monitor_conditions I_CompareCounter leofwine_dead > 0
+		and I_IsUnitEngagedWithUnit infantry6 fyrd1			
+		unit_order_attack_unit fyrd1 infantry6 run
+		unit_order_attack_unit fyrd2 infantry6 run
+		unit_order_attack_unit fyrd3 infantry6 run
+		set_counter redden_the_earth 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd1 loose
+		unit_set_formation_spacing fyrd2 loose
+		unit_set_formation_spacing fyrd3 loose
+	terminate_monitor
+	end_monitor
+
+
+
+	monitor_conditions I_CompareCounter leofwine_dead > 0
+		and I_IsUnitEngagedWithUnit infantry6 fyrd2			
+		unit_order_attack_unit fyrd1 infantry6 run
+		unit_order_attack_unit fyrd2 infantry6 run
+		unit_order_attack_unit fyrd3 infantry6 run
+		set_counter redden_the_earth 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd1 loose
+		unit_set_formation_spacing fyrd2 loose
+		unit_set_formation_spacing fyrd3 loose
+	terminate_monitor
+	end_monitor
+
+
+
+	monitor_conditions I_CompareCounter leofwine_dead > 0
+		and I_IsUnitEngagedWithUnit infantry6 fyrd3			
+		unit_order_attack_unit fyrd1 infantry6 run
+		unit_order_attack_unit fyrd2 infantry6 run
+		unit_order_attack_unit fyrd3 infantry6 run
+		set_counter redden_the_earth 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd1 loose
+		unit_set_formation_spacing fyrd2 loose
+		unit_set_formation_spacing fyrd3 loose
+	terminate_monitor
+	end_monitor
+
+
+
+
+;;;;;INFANTRY 7
+
+
+	monitor_conditions I_CompareCounter leofwine_dead > 0
+		and I_IsUnitEngagedWithUnit infantry7 huscarl1_(leofwine)			
+		unit_order_attack_unit fyrd1 infantry7 run
+		unit_order_attack_unit fyrd2 infantry7 run
+		unit_order_attack_unit fyrd3 infantry7 run
+		set_counter redden_the_earth 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd1 loose
+		unit_set_formation_spacing fyrd2 loose
+		unit_set_formation_spacing fyrd3 loose
+	terminate_monitor
+	end_monitor
+
+
+
+	monitor_conditions I_CompareCounter leofwine_dead > 0
+		and I_IsUnitEngagedWithUnit infantry7 fyrd1			
+		unit_order_attack_unit fyrd1 infantry7 run
+		unit_order_attack_unit fyrd2 infantry7 run
+		unit_order_attack_unit fyrd3 infantry7 run
+		set_counter redden_the_earth 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd1 loose
+		unit_set_formation_spacing fyrd2 loose
+		unit_set_formation_spacing fyrd3 loose
+	terminate_monitor
+	end_monitor
+
+
+
+	monitor_conditions I_CompareCounter leofwine_dead > 0
+		and I_IsUnitEngagedWithUnit infantry7 fyrd2			
+		unit_order_attack_unit fyrd1 infantry7 run
+		unit_order_attack_unit fyrd2 infantry7 run
+		unit_order_attack_unit fyrd3 infantry7 run
+		set_counter redden_the_earth 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd1 loose
+		unit_set_formation_spacing fyrd2 loose
+		unit_set_formation_spacing fyrd3 loose
+	terminate_monitor
+	end_monitor
+
+
+
+	monitor_conditions I_CompareCounter leofwine_dead > 0
+		and I_IsUnitEngagedWithUnit infantry7 fyrd3			
+		unit_order_attack_unit fyrd1 infantry7 run
+		unit_order_attack_unit fyrd2 infantry7 run
+		unit_order_attack_unit fyrd3 infantry7 run
+		set_counter redden_the_earth 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd1 loose
+		unit_set_formation_spacing fyrd2 loose
+		unit_set_formation_spacing fyrd3 loose
+	terminate_monitor
+	end_monitor
+
+
+
+
+;;;;;INFANTRY 8
+
+
+	monitor_conditions I_CompareCounter leofwine_dead > 0
+		and I_IsUnitEngagedWithUnit infantry8 huscarl1_(leofwine)			
+		unit_order_attack_unit fyrd1 infantry8 run
+		unit_order_attack_unit fyrd2 infantry8 run
+		unit_order_attack_unit fyrd3 infantry8 run
+		set_counter redden_the_earth 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd1 loose
+		unit_set_formation_spacing fyrd2 loose
+		unit_set_formation_spacing fyrd3 loose
+	terminate_monitor
+	end_monitor
+
+
+
+
+	monitor_conditions I_CompareCounter leofwine_dead > 0
+		and I_IsUnitEngagedWithUnit infantry8 fyrd1			
+		unit_order_attack_unit fyrd1 infantry8 run
+		unit_order_attack_unit fyrd2 infantry8 run
+		unit_order_attack_unit fyrd3 infantry8 run
+		set_counter redden_the_earth 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd1 loose
+		unit_set_formation_spacing fyrd2 loose
+		unit_set_formation_spacing fyrd3 loose
+	terminate_monitor
+	end_monitor
+
+
+
+	monitor_conditions I_CompareCounter leofwine_dead > 0
+		and I_IsUnitEngagedWithUnit infantry8 fyrd2			
+		unit_order_attack_unit fyrd1 infantry8 run
+		unit_order_attack_unit fyrd2 infantry8 run
+		unit_order_attack_unit fyrd3 infantry8 run
+		set_counter redden_the_earth 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd1 loose
+		unit_set_formation_spacing fyrd2 loose
+		unit_set_formation_spacing fyrd3 loose
+	terminate_monitor
+	end_monitor
+
+
+
+	monitor_conditions I_CompareCounter leofwine_dead > 0
+		and I_IsUnitEngagedWithUnit infantry8 fyrd3			
+		unit_order_attack_unit fyrd1 infantry8 run
+		unit_order_attack_unit fyrd2 infantry8 run
+		unit_order_attack_unit fyrd3 infantry8 run
+		set_counter redden_the_earth 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd1 loose
+		unit_set_formation_spacing fyrd2 loose
+		unit_set_formation_spacing fyrd3 loose
+	terminate_monitor
+	end_monitor
+
+
+
+
+;;;;;INFANTRY 9
+
+
+	monitor_conditions I_CompareCounter leofwine_dead > 0
+		and I_IsUnitEngagedWithUnit infantry9 huscarl1_(leofwine)			
+		unit_order_attack_unit fyrd1 infantry9 run
+		unit_order_attack_unit fyrd2 infantry9 run
+		unit_order_attack_unit fyrd3 infantry9 run
+		set_counter redden_the_earth 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd1 loose
+		unit_set_formation_spacing fyrd2 loose
+		unit_set_formation_spacing fyrd3 loose
+	terminate_monitor
+	end_monitor
+
+
+
+
+	monitor_conditions I_CompareCounter leofwine_dead > 0
+		and I_IsUnitEngagedWithUnit infantry9 fyrd1			
+		unit_order_attack_unit fyrd1 infantry9 run
+		unit_order_attack_unit fyrd2 infantry9 run
+		unit_order_attack_unit fyrd3 infantry9 run
+		set_counter redden_the_earth 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd1 loose
+		unit_set_formation_spacing fyrd2 loose
+		unit_set_formation_spacing fyrd3 loose
+	terminate_monitor
+	end_monitor
+
+
+
+	monitor_conditions I_CompareCounter leofwine_dead > 0
+		and I_IsUnitEngagedWithUnit infantry9 fyrd2			
+		unit_order_attack_unit fyrd1 infantry9 run
+		unit_order_attack_unit fyrd2 infantry9 run
+		unit_order_attack_unit fyrd3 infantry9 run
+		set_counter redden_the_earth 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd1 loose
+		unit_set_formation_spacing fyrd2 loose
+		unit_set_formation_spacing fyrd3 loose
+	terminate_monitor
+	end_monitor
+
+
+
+	monitor_conditions I_CompareCounter leofwine_dead > 0
+		and I_IsUnitEngagedWithUnit infantry9 fyrd3			
+		unit_order_attack_unit fyrd1 infantry9 run
+		unit_order_attack_unit fyrd2 infantry9 run
+		unit_order_attack_unit fyrd3 infantry9 run
+		set_counter redden_the_earth 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd1 loose
+		unit_set_formation_spacing fyrd2 loose
+		unit_set_formation_spacing fyrd3 loose
+	terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_CompareCounter redden_the_earth > 0
+		play_sound_event Hastings_Sergeant_7 tag = Hastings_Sergeant_7
+		battle_wait 2
+		inc_counter redden_the_earth 1
+	terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_CompareCounter redden_the_earth > 1
+		and I_IsUnitIdle fyrd1
+		unit_order_attack_closest_unit fyrd1 180 run
+	terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_CompareCounter redden_the_earth > 1
+		and I_IsUnitIdle fyrd2
+		unit_order_attack_closest_unit fyrd2 180 run
+	terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_CompareCounter redden_the_earth > 1
+		and I_IsUnitIdle fyrd3
+		unit_order_attack_closest_unit fyrd3 180 run
+	terminate_monitor
+	end_monitor
+	
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; IS GYRTH DEAD?
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+	monitor_conditions I_PercentageUnitKilled huscarl2_(gyrth) > 5
+		set_counter gyrth_dead 1
+	terminate_monitor
+	end_monitor
+		
+	monitor_conditions I_CompareCounter gyrth_dead > 0
+	and I_CompareCounter shieldwall_compromised < 1		
+		play_sound_event Hastings_Sergeant_5 tag = Hastings_Sergeant_5
+	terminate_monitor
+	end_monitor
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;URGE PLAYER ON IF THEY FAIL TO ATTACK GYRTH'S INFANTRY
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	
+	
+	
+	monitor_conditions I_CompareCounter gyrth_dead > 0
+		battle_wait 60
+		inc_counter attack_left_prompt_check 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter attack_left_prompt_check > 0
+	and I_CompareCounter no_mercy < 1
+		inc_counter attack_left_prompt 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter attack_left_prompt > 0
+	and I_CompareCounter shieldwall_compromised < 1
+		play_sound_event Hastings_Sergeant_6 tag = Hastings_Sergeant_6
+	terminate_monitor
+	end_monitor	
+	
+	
+	
+	monitor_conditions I_CompareCounter gyrth_dead > 0
+		battle_wait 120
+		inc_counter attack_left_prompt_check 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter attack_left_prompt_check > 1
+	and I_CompareCounter no_mercy < 1
+		inc_counter attack_left_prompt 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter attack_left_prompt > 1
+	and I_CompareCounter shieldwall_compromised < 1
+		play_sound_event Hastings_Sergeant_6 tag = Hastings_Sergeant_6
+	terminate_monitor
+	end_monitor	
+	
+	
+	
+	monitor_conditions I_CompareCounter gyrth_dead > 0
+		battle_wait 180
+		inc_counter attack_left_prompt_check 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter attack_left_prompt_check > 2
+	and I_CompareCounter no_mercy < 1
+		inc_counter attack_left_prompt 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter attack_left_prompt > 2
+	and I_CompareCounter shieldwall_compromised < 1
+		play_sound_event Hastings_Sergeant_6 tag = Hastings_Sergeant_6
+	terminate_monitor
+	end_monitor
+	
+	
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; NORMAN INFANTRY RETREATING FROM LEFT OF BATTLE LINE ARE PURSUED IF GYRTH IS DEAD
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+
+
+
+;;;;;INFANTRY 1
+
+
+	monitor_conditions I_CompareCounter gyrth_dead > 0
+		and I_IsUnitEngagedWithUnit infantry1 huscarl2_(gyrth)			
+		unit_order_attack_unit fyrd6 infantry1 run
+		unit_order_attack_unit fyrd7 infantry1 run
+		unit_order_attack_unit fyrd8 infantry1 run
+		set_counter no_mercy 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd6 loose
+		unit_set_formation_spacing fyrd7 loose
+		unit_set_formation_spacing fyrd8 loose
+	terminate_monitor
+	end_monitor
+
+
+
+
+
+	monitor_conditions I_CompareCounter gyrth_dead > 0
+		and I_IsUnitEngagedWithUnit infantry1 fyrd6					
+		unit_order_attack_unit fyrd6 infantry1 run
+		unit_order_attack_unit fyrd7 infantry1 run
+		unit_order_attack_unit fyrd8 infantry1 run
+		set_counter no_mercy 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd6 loose
+		unit_set_formation_spacing fyrd7 loose
+		unit_set_formation_spacing fyrd8 loose
+	terminate_monitor
+	end_monitor
+
+
+
+	monitor_conditions I_CompareCounter gyrth_dead > 0
+		and I_IsUnitEngagedWithUnit infantry1 fyrd7			
+		unit_order_attack_unit fyrd6 infantry1 run
+		unit_order_attack_unit fyrd7 infantry1 run
+		unit_order_attack_unit fyrd8 infantry1 run
+		set_counter no_mercy 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd6 loose
+		unit_set_formation_spacing fyrd7 loose
+		unit_set_formation_spacing fyrd8 loose
+	terminate_monitor
+	end_monitor
+
+
+
+	monitor_conditions I_CompareCounter gyrth_dead > 0
+		and I_IsUnitEngagedWithUnit infantry1 fyrd8			
+		unit_order_attack_unit fyrd6 infantry1 run
+		unit_order_attack_unit fyrd7 infantry1 run
+		unit_order_attack_unit fyrd8 infantry1 run
+		set_counter no_mercy 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd6 loose
+		unit_set_formation_spacing fyrd7 loose
+		unit_set_formation_spacing fyrd8 loose
+	terminate_monitor
+	end_monitor
+
+
+
+;;;;;INFANTRY 2
+
+
+	monitor_conditions I_CompareCounter gyrth_dead > 0
+		and I_IsUnitEngagedWithUnit infantry2 huscarl2_(gyrth)			
+		unit_order_attack_unit fyrd6 infantry2 run
+		unit_order_attack_unit fyrd7 infantry2 run
+		unit_order_attack_unit fyrd8 infantry2 run
+		set_counter no_mercy 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd6 loose
+		unit_set_formation_spacing fyrd7 loose
+		unit_set_formation_spacing fyrd8 loose
+	terminate_monitor
+	end_monitor
+
+
+
+
+	monitor_conditions I_CompareCounter gyrth_dead > 0
+		and I_IsUnitEngagedWithUnit infantry2 fyrd6			
+		unit_order_attack_unit fyrd6 infantry2 run
+		unit_order_attack_unit fyrd7 infantry2 run
+		unit_order_attack_unit fyrd8 infantry2 run
+		set_counter no_mercy 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd6 loose
+		unit_set_formation_spacing fyrd7 loose
+		unit_set_formation_spacing fyrd8 loose
+	terminate_monitor
+	end_monitor
+
+
+
+	monitor_conditions I_CompareCounter gyrth_dead > 0
+		and I_IsUnitEngagedWithUnit infantry2 fyrd7			
+		unit_order_attack_unit fyrd6 infantry2 run
+		unit_order_attack_unit fyrd7 infantry2 run
+		unit_order_attack_unit fyrd8 infantry2 run
+		set_counter no_mercy 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd6 loose
+		unit_set_formation_spacing fyrd7 loose
+		unit_set_formation_spacing fyrd8 loose
+	terminate_monitor
+	end_monitor
+
+
+
+	monitor_conditions I_CompareCounter gyrth_dead > 0
+		and I_IsUnitEngagedWithUnit infantry2 fyrd8			
+		unit_order_attack_unit fyrd6 infantry2 run
+		unit_order_attack_unit fyrd7 infantry2 run
+		unit_order_attack_unit fyrd8 infantry2 run
+		set_counter no_mercy 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd6 loose
+		unit_set_formation_spacing fyrd7 loose
+		unit_set_formation_spacing fyrd8 loose
+	terminate_monitor
+	end_monitor
+
+
+
+
+;;;;;INFANTRY 3
+
+
+	monitor_conditions I_CompareCounter gyrth_dead > 0
+		and I_IsUnitEngagedWithUnit infantry3 huscarl2_(gyrth)			
+		unit_order_attack_unit fyrd6 infantry3 run
+		unit_order_attack_unit fyrd7 infantry3 run
+		unit_order_attack_unit fyrd8 infantry3 run
+		set_counter no_mercy 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd6 loose
+		unit_set_formation_spacing fyrd7 loose
+		unit_set_formation_spacing fyrd8 loose
+	terminate_monitor
+	end_monitor
+
+
+
+
+
+	monitor_conditions I_CompareCounter gyrth_dead > 0
+		and I_IsUnitEngagedWithUnit infantry3 fyrd6			
+		unit_order_attack_unit fyrd6 infantry3 run
+		unit_order_attack_unit fyrd7 infantry3 run
+		unit_order_attack_unit fyrd8 infantry3 run
+		set_counter no_mercy 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd6 loose
+		unit_set_formation_spacing fyrd7 loose
+		unit_set_formation_spacing fyrd8 loose
+	terminate_monitor
+	end_monitor
+
+
+
+	monitor_conditions I_CompareCounter gyrth_dead > 0
+		and I_IsUnitEngagedWithUnit infantry3 fyrd7			
+		unit_order_attack_unit fyrd6 infantry3 run
+		unit_order_attack_unit fyrd7 infantry3 run
+		unit_order_attack_unit fyrd8 infantry3 run
+		set_counter no_mercy 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd6 loose
+		unit_set_formation_spacing fyrd7 loose
+		unit_set_formation_spacing fyrd8 loose
+	terminate_monitor
+	end_monitor
+
+
+
+	monitor_conditions I_CompareCounter gyrth_dead > 0
+		and I_IsUnitEngagedWithUnit infantry3 fyrd8			
+		unit_order_attack_unit fyrd6 infantry3 run
+		unit_order_attack_unit fyrd7 infantry3 run
+		unit_order_attack_unit fyrd8 infantry3 run
+		set_counter no_mercy 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd6 loose
+		unit_set_formation_spacing fyrd7 loose
+		unit_set_formation_spacing fyrd8 loose
+	terminate_monitor
+	end_monitor
+
+
+
+
+;;;;;INFANTRY 4
+
+
+	monitor_conditions I_CompareCounter gyrth_dead > 0
+		and I_IsUnitEngagedWithUnit infantry4 huscarl2_(gyrth)			
+		unit_order_attack_unit fyrd6 infantry4 run
+		unit_order_attack_unit fyrd7 infantry4 run
+		unit_order_attack_unit fyrd8 infantry4 run
+		set_counter no_mercy 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd6 loose
+		unit_set_formation_spacing fyrd7 loose
+		unit_set_formation_spacing fyrd8 loose
+	terminate_monitor
+	end_monitor
+
+
+
+
+	monitor_conditions I_CompareCounter gyrth_dead > 0
+		and I_IsUnitEngagedWithUnit infantry4 fyrd6			
+		unit_order_attack_unit fyrd6 infantry4 run
+		unit_order_attack_unit fyrd7 infantry4 run
+		unit_order_attack_unit fyrd8 infantry4 run
+		set_counter no_mercy 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd6 loose
+		unit_set_formation_spacing fyrd7 loose
+		unit_set_formation_spacing fyrd8 loose
+	terminate_monitor
+	end_monitor
+
+
+
+	monitor_conditions I_CompareCounter gyrth_dead > 0
+		and I_IsUnitEngagedWithUnit infantry4 fyrd7			
+		unit_order_attack_unit fyrd6 infantry4 run
+		unit_order_attack_unit fyrd7 infantry4 run
+		unit_order_attack_unit fyrd8 infantry4 run
+		set_counter no_mercy 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd6 loose
+		unit_set_formation_spacing fyrd7 loose
+		unit_set_formation_spacing fyrd8 loose
+	terminate_monitor
+	end_monitor
+
+
+
+	monitor_conditions I_CompareCounter gyrth_dead > 0
+		and I_IsUnitEngagedWithUnit infantry4 fyrd8			
+		unit_order_attack_unit fyrd6 infantry4 run
+		unit_order_attack_unit fyrd7 infantry4 run
+		unit_order_attack_unit fyrd8 infantry4 run
+		set_counter no_mercy 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd6 loose
+		unit_set_formation_spacing fyrd7 loose
+		unit_set_formation_spacing fyrd8 loose
+	terminate_monitor
+	end_monitor
+
+
+
+
+;;;;;INFANTRY 5
+
+
+	monitor_conditions I_CompareCounter gyrth_dead > 0
+		and I_IsUnitEngagedWithUnit infantry1 huscarl2_(gyrth)			
+		unit_order_attack_unit fyrd6 infantry5 run
+		unit_order_attack_unit fyrd7 infantry5 run
+		unit_order_attack_unit fyrd8 infantry5 run
+		set_counter no_mercy 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd6 loose
+		unit_set_formation_spacing fyrd7 loose
+		unit_set_formation_spacing fyrd8 loose
+	terminate_monitor
+	end_monitor
+
+
+
+
+	monitor_conditions I_CompareCounter gyrth_dead > 0
+		and I_IsUnitEngagedWithUnit infantry5 fyrd6			
+		unit_order_attack_unit fyrd6 infantry5 run
+		unit_order_attack_unit fyrd7 infantry5 run
+		unit_order_attack_unit fyrd8 infantry5 run
+		set_counter no_mercy 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd6 loose
+		unit_set_formation_spacing fyrd7 loose
+		unit_set_formation_spacing fyrd8 loose
+	terminate_monitor
+	end_monitor
+
+
+
+	monitor_conditions I_CompareCounter gyrth_dead > 0
+		and I_IsUnitEngagedWithUnit infantry5 fyrd7			
+		unit_order_attack_unit fyrd6 infantry5 run
+		unit_order_attack_unit fyrd7 infantry5 run
+		unit_order_attack_unit fyrd8 infantry5 run
+		set_counter no_mercy 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd6 loose
+		unit_set_formation_spacing fyrd7 loose
+		unit_set_formation_spacing fyrd8 loose
+	terminate_monitor
+	end_monitor
+
+
+
+	monitor_conditions I_CompareCounter gyrth_dead > 0
+		and I_IsUnitEngagedWithUnit infantry5 fyrd8			
+		unit_order_attack_unit fyrd6 infantry5 run
+		unit_order_attack_unit fyrd7 infantry5 run
+		unit_order_attack_unit fyrd8 infantry5 run
+		set_counter no_mercy 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd6 loose
+		unit_set_formation_spacing fyrd7 loose
+		unit_set_formation_spacing fyrd8 loose
+	terminate_monitor
+	end_monitor
+
+
+
+
+;;;;;INFANTRY 6
+
+
+	monitor_conditions I_CompareCounter gyrth_dead > 0
+		and I_IsUnitEngagedWithUnit infantry6 huscarl2_(gyrth)			
+		unit_order_attack_unit fyrd6 infantry6 run
+		unit_order_attack_unit fyrd7 infantry6 run
+		unit_order_attack_unit fyrd8 infantry6 run
+		set_counter no_mercy 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd6 loose
+		unit_set_formation_spacing fyrd7 loose
+		unit_set_formation_spacing fyrd8 loose
+	terminate_monitor
+	end_monitor
+
+
+
+
+	monitor_conditions I_CompareCounter gyrth_dead > 0
+		and I_IsUnitEngagedWithUnit infantry6 fyrd6			
+		unit_order_attack_unit fyrd6 infantry6 run
+		unit_order_attack_unit fyrd7 infantry6 run
+		unit_order_attack_unit fyrd8 infantry6 run
+		set_counter no_mercy 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd6 loose
+		unit_set_formation_spacing fyrd7 loose
+		unit_set_formation_spacing fyrd8 loose
+	terminate_monitor
+	end_monitor
+
+
+
+	monitor_conditions I_CompareCounter gyrth_dead > 0
+		and I_IsUnitEngagedWithUnit infantry6 fyrd7			
+		unit_order_attack_unit fyrd6 infantry6 run
+		unit_order_attack_unit fyrd7 infantry6 run
+		unit_order_attack_unit fyrd8 infantry6 run
+		set_counter no_mercy 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd6 loose
+		unit_set_formation_spacing fyrd7 loose
+		unit_set_formation_spacing fyrd8 loose
+	terminate_monitor
+	end_monitor
+
+
+
+	monitor_conditions I_CompareCounter gyrth_dead > 0
+		and I_IsUnitEngagedWithUnit infantry6 fyrd8			
+		unit_order_attack_unit fyrd6 infantry6 run
+		unit_order_attack_unit fyrd7 infantry6 run
+		unit_order_attack_unit fyrd8 infantry6 run
+		set_counter no_mercy 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd6 loose
+		unit_set_formation_spacing fyrd7 loose
+		unit_set_formation_spacing fyrd8 loose
+	terminate_monitor
+	end_monitor
+
+
+
+
+;;;;;INFANTRY 7
+
+
+	monitor_conditions I_CompareCounter gyrth_dead > 0
+		and I_IsUnitEngagedWithUnit infantry7 huscarl2_(gyrth)			
+		unit_order_attack_unit fyrd6 infantry7 run
+		unit_order_attack_unit fyrd7 infantry7 run
+		unit_order_attack_unit fyrd8 infantry7 run
+		set_counter no_mercy 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd6 loose
+		unit_set_formation_spacing fyrd7 loose
+		unit_set_formation_spacing fyrd8 loose
+	terminate_monitor
+	end_monitor
+
+
+
+
+	monitor_conditions I_CompareCounter gyrth_dead > 0
+		and I_IsUnitEngagedWithUnit infantry7 fyrd6			
+		unit_order_attack_unit fyrd6 infantry7 run
+		unit_order_attack_unit fyrd7 infantry7 run
+		unit_order_attack_unit fyrd8 infantry7 run
+		set_counter no_mercy 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd6 loose
+		unit_set_formation_spacing fyrd7 loose
+		unit_set_formation_spacing fyrd8 loose
+	terminate_monitor
+	end_monitor
+
+
+
+	monitor_conditions I_CompareCounter gyrth_dead > 0
+		and I_IsUnitEngagedWithUnit infantry7 fyrd7			
+		unit_order_attack_unit fyrd6 infantry7 run
+		unit_order_attack_unit fyrd7 infantry7 run
+		unit_order_attack_unit fyrd8 infantry7 run
+		set_counter no_mercy 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd6 loose
+		unit_set_formation_spacing fyrd7 loose
+		unit_set_formation_spacing fyrd8 loose
+	terminate_monitor
+	end_monitor
+
+
+
+	monitor_conditions I_CompareCounter gyrth_dead > 0
+		and I_IsUnitEngagedWithUnit infantry7 fyrd8			
+		unit_order_attack_unit fyrd6 infantry7 run
+		unit_order_attack_unit fyrd7 infantry7 run
+		unit_order_attack_unit fyrd8 infantry7 run
+		set_counter no_mercy 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd6 loose
+		unit_set_formation_spacing fyrd7 loose
+		unit_set_formation_spacing fyrd8 loose
+	terminate_monitor
+	end_monitor
+
+
+
+
+;;;;;INFANTRY 8
+
+
+	monitor_conditions I_CompareCounter gyrth_dead > 0
+		and I_IsUnitEngagedWithUnit infantry8 huscarl2_(gyrth)			
+		unit_order_attack_unit fyrd6 infantry8 run
+		unit_order_attack_unit fyrd7 infantry8 run
+		unit_order_attack_unit fyrd8 infantry8 run
+		set_counter no_mercy 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd6 loose
+		unit_set_formation_spacing fyrd7 loose
+		unit_set_formation_spacing fyrd8 loose
+	terminate_monitor
+	end_monitor
+
+
+
+
+	monitor_conditions I_CompareCounter gyrth_dead > 0
+		and I_IsUnitEngagedWithUnit infantry8 fyrd6			
+		unit_order_attack_unit fyrd6 infantry8 run
+		unit_order_attack_unit fyrd7 infantry8 run
+		unit_order_attack_unit fyrd8 infantry8 run
+		set_counter no_mercy 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd6 loose
+		unit_set_formation_spacing fyrd7 loose
+		unit_set_formation_spacing fyrd8 loose
+	terminate_monitor
+	end_monitor
+
+
+
+	monitor_conditions I_CompareCounter gyrth_dead > 0
+		and I_IsUnitEngagedWithUnit infantry8 fyrd7			
+		unit_order_attack_unit fyrd6 infantry8 run
+		unit_order_attack_unit fyrd7 infantry8 run
+		unit_order_attack_unit fyrd8 infantry8 run
+		set_counter no_mercy 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd6 loose
+		unit_set_formation_spacing fyrd7 loose
+		unit_set_formation_spacing fyrd8 loose
+	terminate_monitor
+	end_monitor
+
+
+
+	monitor_conditions I_CompareCounter gyrth_dead > 0
+		and I_IsUnitEngagedWithUnit infantry8 fyrd8			
+		unit_order_attack_unit fyrd6 infantry8 run
+		unit_order_attack_unit fyrd7 infantry8 run
+		unit_order_attack_unit fyrd8 infantry8 run
+		set_counter no_mercy 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd6 loose
+		unit_set_formation_spacing fyrd7 loose
+		unit_set_formation_spacing fyrd8 loose
+	terminate_monitor
+	end_monitor
+
+
+
+
+;;;;;INFANTRY 9
+
+
+	monitor_conditions I_CompareCounter gyrth_dead > 0
+		and I_IsUnitEngagedWithUnit infantry9 huscarl2_(gyrth)			
+		unit_order_attack_unit fyrd6 infantry9 run
+		unit_order_attack_unit fyrd7 infantry9 run
+		unit_order_attack_unit fyrd8 infantry9 run
+		set_counter no_mercy 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd6 loose
+		unit_set_formation_spacing fyrd7 loose
+		unit_set_formation_spacing fyrd8 loose
+	terminate_monitor
+	end_monitor
+
+
+
+
+	monitor_conditions I_CompareCounter gyrth_dead > 0
+		and I_IsUnitEngagedWithUnit infantry9 fyrd6			
+		unit_order_attack_unit fyrd6 infantry9 run
+		unit_order_attack_unit fyrd7 infantry9 run
+		unit_order_attack_unit fyrd8 infantry9 run
+		set_counter no_mercy 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd6 loose
+		unit_set_formation_spacing fyrd7 loose
+		unit_set_formation_spacing fyrd8 loose
+	terminate_monitor
+	end_monitor
+
+
+
+	monitor_conditions I_CompareCounter gyrth_dead > 0
+		and I_IsUnitEngagedWithUnit infantry9 fyrd7			
+		unit_order_attack_unit fyrd6 infantry9 run
+		unit_order_attack_unit fyrd7 infantry9 run
+		unit_order_attack_unit fyrd8 infantry9 run
+		set_counter no_mercy 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd6 loose
+		unit_set_formation_spacing fyrd7 loose
+		unit_set_formation_spacing fyrd8 loose
+	terminate_monitor
+	end_monitor
+
+
+
+	monitor_conditions I_CompareCounter gyrth_dead > 0
+		and I_IsUnitEngagedWithUnit infantry9 fyrd8					
+		unit_order_attack_unit fyrd6 infantry9 run
+		unit_order_attack_unit fyrd7 infantry9 run
+		unit_order_attack_unit fyrd8 infantry9 run
+		set_counter no_mercy 1
+		battle_wait 15
+		unit_set_formation_spacing fyrd6 loose
+		unit_set_formation_spacing fyrd7 loose
+		unit_set_formation_spacing fyrd8 loose
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter no_mercy > 0
+		play_sound_event Hastings_Sergeant_8 tag = Hastings_Sergeant_8
+		battle_wait 2
+		inc_counter no_mercy 1
+	terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_CompareCounter no_mercy > 1
+		and I_IsUnitIdle fyrd6
+		unit_order_attack_closest_unit fyrd6 180 run
+	terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_CompareCounter no_mercy > 1
+		and I_IsUnitIdle fyrd7
+		unit_order_attack_closest_unit fyrd7 180 run
+	terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_CompareCounter no_mercy > 1
+		and I_IsUnitIdle fyrd8
+		unit_order_attack_closest_unit fyrd8 180 run
+	terminate_monitor
+	end_monitor
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; ENGLISH RESERVES FILL GAPS IN LINE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+
+
+
+	monitor_conditions I_UnitDistanceFromLine fyrd1 tripwire_left tripwire_right > 1
+		unit_order_move_to_orientation fyrd_militia1 556, 533, 22, -146 run
+		unit_order_move_to_orientation fyrd9 578, 518, 23, -146 run
+		unit_order_move_to_orientation fyrd10 600, 503, 26, -146 run
+		set_counter fyrd_militia1_committed 1
+	terminate_monitor
+	end_monitor 
+
+	monitor_conditions I_UnitDistanceFromLine fyrd2 tripwire_left tripwire_right > 1
+		unit_order_move_to_orientation fyrd_militia1 556, 533, 22, -146 run
+		unit_order_move_to_orientation fyrd9 578, 518, 23, -146 run
+		unit_order_move_to_orientation fyrd10 600, 503, 26, -146 run
+		set_counter fyrd9_committed 1
+	terminate_monitor
+	end_monitor 
+
+	monitor_conditions I_UnitDistanceFromLine fyrd3 tripwire_left tripwire_right > 1
+		unit_order_move_to_orientation fyrd_militia1 556, 533, 22, -146 run
+		unit_order_move_to_orientation fyrd9 578, 518, 23, -146 run
+		unit_order_move_to_orientation fyrd10 600, 503, 26, -146 run
+		set_counter fyrd10_committed 1
+	terminate_monitor
+	end_monitor 
+
+	monitor_conditions I_UnitDistanceFromLine fyrd6 tripwire_left tripwire_right > 1
+		unit_order_move_to_orientation fyrd12 673, 453, 23, -146 run
+		unit_order_move_to_orientation fyrd13 693, 440, 23, -146 run
+		unit_order_move_to_orientation fyrd_militia2 713, 427, 22, -146 run
+		set_counter fyrd12_committed 1
+	terminate_monitor
+	end_monitor 
+
+	monitor_conditions I_UnitDistanceFromLine fyrd7 tripwire_left tripwire_right > 1
+		unit_order_move_to_orientation fyrd12 673, 453, 23, -146 run
+		unit_order_move_to_orientation fyrd13 693, 440, 23, -146 run
+		unit_order_move_to_orientation fyrd_militia2 713, 427, 22, -146 run
+		set_counter fyrd13_committed 1
+	terminate_monitor
+	end_monitor 
+
+	monitor_conditions I_UnitDistanceFromLine fyrd8 tripwire_left tripwire_right > 1
+		unit_order_move_to_orientation fyrd12 673, 453, 23, -146 run
+		unit_order_move_to_orientation fyrd13 693, 440, 23, -146 run
+		unit_order_move_to_orientation fyrd_militia2 713, 427, 22, -146 run
+		set_counter fyrd_militia2_committed 1
+	terminate_monitor
+	end_monitor 
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; HAROLD NO LONGER INVULNERABLE AFTER 40% OF HIS GUARD ARE DEAD
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;	monitor_conditions I_PercentageUnitKilled harold > 40
+;		console_command vulnerable_general Harold Godwinson
+;	terminate_monitor
+;	end_monitor 
+
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; UNITS REACT IF REAR TRIPWIRE IS CROSSED
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;;;;WILLIAM
+
+
+	monitor_conditions I_UnitDistanceFromLine william tripwire2_left tripwire2_right < 1
+;		and I_UnitDistanceFromPosition william 664.859, 505.641 < 20
+			set_counter william_breaks_through 1		
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter william_breaks_through > 0
+		and I_CompareCounter fyrd_militia1_committed < 1
+		unit_order_attack_unit fyrd_militia1 william run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter william_breaks_through > 0
+		and I_CompareCounter fyrd9_committed < 1
+		unit_order_attack_unit fyrd9 william run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter william_breaks_through > 0
+		and I_CompareCounter fyrd10_committed < 1
+		unit_order_attack_unit fyrd10 william run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter william_breaks_through > 0
+		unit_order_attack_unit fyrd11 william run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter william_breaks_through > 0
+		and I_CompareCounter fyrd12_committed < 1
+		unit_order_attack_unit fyrd12 william run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter william_breaks_through > 0
+		and I_CompareCounter fyrd13_committed < 1
+		unit_order_attack_unit fyrd13 william run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter william_breaks_through > 0
+		and I_CompareCounter fyrd_militia2_committed < 1
+		unit_order_attack_unit fyrd_militia2 william run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter william_breaks_through > 0
+		and I_UnitDistanceFromPosition william 660 511 < 40
+		unit_order_attack_unit huscarl4_(bodyguard) william run
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter william_breaks_through > 0
+		and I_UnitDistanceFromPosition william 660 511 < 30
+		unit_order_attack_unit harold william run
+	terminate_monitor
+	end_monitor
+
+
+
+;;;;KNIGHTS1
+
+
+	monitor_conditions I_UnitDistanceFromLine knights1 tripwire2_left tripwire2_right < 1
+;		and I_UnitDistanceFromPosition knights1 664.859, 505.641 < 20
+			set_counter knights1_breaks_through 1		
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights1_breaks_through > 0
+		and I_CompareCounter fyrd_militia1_committed < 1
+		unit_order_attack_unit fyrd_militia1 knights1 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights1_breaks_through > 0
+		and I_CompareCounter fyrd9_committed < 1
+		unit_order_attack_unit fyrd9 knights1 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights1_breaks_through > 0
+		and I_CompareCounter fyrd10_committed < 1
+		unit_order_attack_unit fyrd10 knights1 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights1_breaks_through > 0
+		unit_order_attack_unit fyrd11 knights1 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights1_breaks_through > 0
+		and I_CompareCounter fyrd12_committed < 1
+		unit_order_attack_unit fyrd12 knights1 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights1_breaks_through > 0
+		and I_CompareCounter fyrd13_committed < 1
+		unit_order_attack_unit fyrd13 knights1 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights1_breaks_through > 0
+		and I_CompareCounter fyrd_militia2_committed < 1
+		unit_order_attack_unit fyrd_militia2 knights1 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights1_breaks_through > 0
+		and I_UnitDistanceFromPosition knights1 660 511 < 40
+		unit_order_attack_unit huscarl4_(bodyguard) knights1 run
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter knights1_breaks_through > 0
+		and I_UnitDistanceFromPosition knights1 660 511 < 30
+		unit_order_attack_unit harold knights1 run
+	terminate_monitor
+	end_monitor
+
+
+
+;;;;KNIGHTS2
+
+
+	monitor_conditions I_UnitDistanceFromLine knights2 tripwire2_left tripwire2_right < 1
+;		and I_UnitDistanceFromPosition knights2 664.859, 505.641 < 20
+			set_counter knights2_breaks_through 1		
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights2_breaks_through > 0
+		and I_CompareCounter fyrd_militia1_committed < 1
+		unit_order_attack_unit fyrd_militia1 knights2 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights2_breaks_through > 0
+		and I_CompareCounter fyrd9_committed < 1
+		unit_order_attack_unit fyrd9 knights2 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights2_breaks_through > 0
+		and I_CompareCounter fyrd10_committed < 1
+		unit_order_attack_unit fyrd10 knights2 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights2_breaks_through > 0
+		unit_order_attack_unit fyrd11 knights2 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights2_breaks_through > 0
+		and I_CompareCounter fyrd12_committed < 1
+		unit_order_attack_unit fyrd12 knights2 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights2_breaks_through > 0
+		and I_CompareCounter fyrd13_committed < 1
+		unit_order_attack_unit fyrd13 knights2 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights2_breaks_through > 0
+		and I_CompareCounter fyrd_militia2_committed < 1
+		unit_order_attack_unit fyrd_militia2 knights2 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights2_breaks_through > 0
+		and I_UnitDistanceFromPosition knights2 660 511 < 40
+		unit_order_attack_unit huscarl4_(bodyguard) knights2 run
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter knights2_breaks_through > 0
+		and I_UnitDistanceFromPosition knights2 660 511 < 30
+		unit_order_attack_unit harold knights2 run
+	terminate_monitor
+	end_monitor
+
+
+
+;;;;KNIGHTS3
+
+
+	monitor_conditions I_UnitDistanceFromLine knights3 tripwire2_left tripwire2_right < 1
+;		and I_UnitDistanceFromPosition knights3 664.859, 505.641 < 20
+			set_counter knights3_breaks_through 1		
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights3_breaks_through > 0
+		and I_CompareCounter fyrd_militia1_committed < 1
+		unit_order_attack_unit fyrd_militia1 knights3 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights3_breaks_through > 0
+		and I_CompareCounter fyrd9_committed < 1
+		unit_order_attack_unit fyrd9 knights3 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights3_breaks_through > 0
+		and I_CompareCounter fyrd10_committed < 1
+		unit_order_attack_unit fyrd10 knights3 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights3_breaks_through > 0
+		unit_order_attack_unit fyrd11 knights3 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights3_breaks_through > 0
+		and I_CompareCounter fyrd12_committed < 1
+		unit_order_attack_unit fyrd12 knights3 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights3_breaks_through > 0
+		and I_CompareCounter fyrd13_committed < 1
+		unit_order_attack_unit fyrd13 knights3 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights3_breaks_through > 0
+		and I_CompareCounter fyrd_militia2_committed < 1
+		unit_order_attack_unit fyrd_militia2 knights3 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights3_breaks_through > 0
+		and I_UnitDistanceFromPosition knights3 660 511 < 40
+		unit_order_attack_unit huscarl4_(bodyguard) knights3 run
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter knights3_breaks_through > 0
+		and I_UnitDistanceFromPosition knights3 660 511 < 30
+		unit_order_attack_unit harold knights3 run
+	terminate_monitor
+	end_monitor
+
+
+
+;;;;KNIGHTS4
+
+
+	monitor_conditions I_UnitDistanceFromLine knights4 tripwire2_left tripwire2_right < 1
+;		and I_UnitDistanceFromPosition knights4 664.859, 505.641 < 20
+			set_counter knights4_breaks_through 1		
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights4_breaks_through > 0
+		and I_CompareCounter fyrd_militia1_committed < 1
+		unit_order_attack_unit fyrd_militia1 knights4 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights4_breaks_through > 0
+		and I_CompareCounter fyrd9_committed < 1
+		unit_order_attack_unit fyrd9 knights4 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights4_breaks_through > 0
+		and I_CompareCounter fyrd10_committed < 1
+		unit_order_attack_unit fyrd10 knights4 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights4_breaks_through > 0
+		unit_order_attack_unit fyrd11 knights4 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights4_breaks_through > 0
+		and I_CompareCounter fyrd12_committed < 1
+		unit_order_attack_unit fyrd12 knights4 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights4_breaks_through > 0
+		and I_CompareCounter fyrd13_committed < 1
+		unit_order_attack_unit fyrd13 knights4 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights4_breaks_through > 0
+		and I_CompareCounter fyrd_militia2_committed < 1
+		unit_order_attack_unit fyrd_militia2 knights4 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights4_breaks_through > 0
+		and I_UnitDistanceFromPosition knights4 660 511 < 40
+		unit_order_attack_unit huscarl4_(bodyguard) knights4 run
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter knights4_breaks_through > 0
+		and I_UnitDistanceFromPosition knights4 660 511 < 30
+		unit_order_attack_unit harold knights4 run
+	terminate_monitor
+	end_monitor
+
+
+
+;;;;KNIGHTS5
+
+
+	monitor_conditions I_UnitDistanceFromLine knights5 tripwire2_left tripwire2_right < 1
+;		and I_UnitDistanceFromPosition knights5 664.859, 505.641 < 20
+			set_counter knights5_breaks_through 1		
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights5_breaks_through > 0
+		and I_CompareCounter fyrd_militia1_committed < 1
+		unit_order_attack_unit fyrd_militia1 knights5 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights5_breaks_through > 0
+		and I_CompareCounter fyrd9_committed < 1
+		unit_order_attack_unit fyrd9 knights5 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights5_breaks_through > 0
+		and I_CompareCounter fyrd10_committed < 1
+		unit_order_attack_unit fyrd10 knights5 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights5_breaks_through > 0
+		unit_order_attack_unit fyrd11 knights5 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights5_breaks_through > 0
+		and I_CompareCounter fyrd12_committed < 1
+		unit_order_attack_unit fyrd12 knights5 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights5_breaks_through > 0
+		and I_CompareCounter fyrd13_committed < 1
+		unit_order_attack_unit fyrd13 knights5 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights5_breaks_through > 0
+		and I_CompareCounter fyrd_militia2_committed < 1
+		unit_order_attack_unit fyrd_militia2 knights5 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights5_breaks_through > 0
+		and I_UnitDistanceFromPosition knights5 660 511 < 40
+		unit_order_attack_unit huscarl4_(bodyguard) knights5 run
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter knights5_breaks_through > 0
+		and I_UnitDistanceFromPosition knights5 660 511 < 30
+		unit_order_attack_unit harold knights5 run
+	terminate_monitor
+	end_monitor
+
+
+
+;;;;KNIGHTS6
+
+
+	monitor_conditions I_UnitDistanceFromLine knights6 tripwire2_left tripwire2_right < 1
+;		and I_UnitDistanceFromPosition knights6 664.859, 505.641 < 20
+			set_counter knights6_breaks_through 1		
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights6_breaks_through > 0
+		and I_CompareCounter fyrd_militia1_committed < 1
+		unit_order_attack_unit fyrd_militia1 knights6 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights6_breaks_through > 0
+		and I_CompareCounter fyrd9_committed < 1
+		unit_order_attack_unit fyrd9 knights6 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights6_breaks_through > 0
+		and I_CompareCounter fyrd10_committed < 1
+		unit_order_attack_unit fyrd10 knights6 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights6_breaks_through > 0
+		unit_order_attack_unit fyrd11 knights6 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights6_breaks_through > 0
+		and I_CompareCounter fyrd12_committed < 1
+		unit_order_attack_unit fyrd12 knights6 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights6_breaks_through > 0
+		and I_CompareCounter fyrd13_committed < 1
+		unit_order_attack_unit fyrd13 knights6 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights6_breaks_through > 0
+		and I_CompareCounter fyrd_militia2_committed < 1
+		unit_order_attack_unit fyrd_militia2 knights6 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights6_breaks_through > 0
+		and I_UnitDistanceFromPosition knights6 660 511 < 40
+		unit_order_attack_unit huscarl4_(bodyguard) knights6 run
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter knights6_breaks_through > 0
+		and I_UnitDistanceFromPosition knights6 660 511 < 30
+		unit_order_attack_unit harold knights6 run
+	terminate_monitor
+	end_monitor
+
+
+
+;;;;INFANTRY1
+
+
+	monitor_conditions I_UnitDistanceFromLine infantry1 tripwire2_left tripwire2_right < 1
+;		and I_UnitDistanceFromPosition infantry1 664.859, 505.641 < 20
+			set_counter infantry1_breaks_through 1		
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry1_breaks_through > 0
+		and I_CompareCounter fyrd_militia1_committed < 1
+		unit_order_attack_unit fyrd_militia1 infantry1 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry1_breaks_through > 0
+		and I_CompareCounter fyrd9_committed < 1
+		unit_order_attack_unit fyrd9 infantry1 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry1_breaks_through > 0
+		and I_CompareCounter fyrd10_committed < 1
+		unit_order_attack_unit fyrd10 infantry1 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry1_breaks_through > 0
+		unit_order_attack_unit fyrd11 infantry1 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry1_breaks_through > 0
+		and I_CompareCounter fyrd12_committed < 1
+		unit_order_attack_unit fyrd12 infantry1 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry1_breaks_through > 0
+		and I_CompareCounter fyrd13_committed < 1
+		unit_order_attack_unit fyrd13 infantry1 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry1_breaks_through > 0
+		and I_CompareCounter fyrd_militia2_committed < 1
+		unit_order_attack_unit fyrd_militia2 infantry1 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry1_breaks_through > 0
+		and I_UnitDistanceFromPosition infantry1 660 511 < 40
+		unit_order_attack_unit huscarl4_(bodyguard) infantry1 run
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter infantry1_breaks_through > 0
+		and I_UnitDistanceFromPosition infantry1 660 511 < 30
+		unit_order_attack_unit harold infantry1 run
+	terminate_monitor
+	end_monitor
+
+
+
+;;;;INFANTRY2
+
+
+	monitor_conditions I_UnitDistanceFromLine infantry2 tripwire2_left tripwire2_right < 1
+;		and I_UnitDistanceFromPosition infantry2 664.859, 505.641 < 20
+			set_counter infantry2_breaks_through 1		
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry2_breaks_through > 0
+		and I_CompareCounter fyrd_militia1_committed < 1
+		unit_order_attack_unit fyrd_militia1 infantry2 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry2_breaks_through > 0
+		and I_CompareCounter fyrd9_committed < 1
+		unit_order_attack_unit fyrd9 infantry2 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry2_breaks_through > 0
+		and I_CompareCounter fyrd10_committed < 1
+		unit_order_attack_unit fyrd10 infantry2 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry2_breaks_through > 0
+		unit_order_attack_unit fyrd11 infantry2 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry2_breaks_through > 0
+		and I_CompareCounter fyrd12_committed < 1
+		unit_order_attack_unit fyrd12 infantry2 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry2_breaks_through > 0
+		and I_CompareCounter fyrd13_committed < 1
+		unit_order_attack_unit fyrd13 infantry2 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry2_breaks_through > 0
+		and I_CompareCounter fyrd_militia2_committed < 1
+		unit_order_attack_unit fyrd_militia2 infantry2 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry2_breaks_through > 0
+		and I_UnitDistanceFromPosition infantry2 660 511 < 40
+		unit_order_attack_unit huscarl4_(bodyguard) infantry2 run
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter infantry2_breaks_through > 0
+		and I_UnitDistanceFromPosition infantry2 660 511 < 30
+		unit_order_attack_unit harold infantry2 run
+	terminate_monitor
+	end_monitor
+
+
+
+;;;;INFANTRY3
+
+
+	monitor_conditions I_UnitDistanceFromLine infantry3 tripwire2_left tripwire2_right < 1
+;		and I_UnitDistanceFromPosition infantry3 664.859, 505.641 < 20
+			set_counter infantry3_breaks_through 1		
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry3_breaks_through > 0
+		and I_CompareCounter fyrd_militia1_committed < 1
+		unit_order_attack_unit fyrd_militia1 infantry3 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry3_breaks_through > 0
+		and I_CompareCounter fyrd9_committed < 1
+		unit_order_attack_unit fyrd9 infantry3 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry3_breaks_through > 0
+		and I_CompareCounter fyrd10_committed < 1
+		unit_order_attack_unit fyrd10 infantry3 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry3_breaks_through > 0
+		unit_order_attack_unit fyrd11 infantry3 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry3_breaks_through > 0
+		and I_CompareCounter fyrd12_committed < 1
+		unit_order_attack_unit fyrd12 infantry3 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry3_breaks_through > 0
+		and I_CompareCounter fyrd13_committed < 1
+		unit_order_attack_unit fyrd13 infantry3 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry3_breaks_through > 0
+		and I_CompareCounter fyrd_militia2_committed < 1
+		unit_order_attack_unit fyrd_militia2 infantry3 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry3_breaks_through > 0
+		and I_UnitDistanceFromPosition infantry3 660 511 < 40
+		unit_order_attack_unit huscarl4_(bodyguard) infantry3 run
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter infantry3_breaks_through > 0
+		and I_UnitDistanceFromPosition infantry3 660 511 < 30
+		unit_order_attack_unit harold infantry3 run
+	terminate_monitor
+	end_monitor
+
+
+
+;;;;INFANTRY4
+
+
+	monitor_conditions I_UnitDistanceFromLine infantry4 tripwire2_left tripwire2_right < 1
+;		and I_UnitDistanceFromPosition infantry4 664.859, 505.641 < 20
+			set_counter infantry4_breaks_through 1		
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry4_breaks_through > 0
+		and I_CompareCounter fyrd_militia1_committed < 1
+		unit_order_attack_unit fyrd_militia1 infantry4 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry4_breaks_through > 0
+		and I_CompareCounter fyrd9_committed < 1
+		unit_order_attack_unit fyrd9 infantry4 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry4_breaks_through > 0
+		and I_CompareCounter fyrd10_committed < 1
+		unit_order_attack_unit fyrd10 infantry4 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry4_breaks_through > 0
+		unit_order_attack_unit fyrd11 infantry4 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry4_breaks_through > 0
+		and I_CompareCounter fyrd12_committed < 1
+		unit_order_attack_unit fyrd12 infantry4 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry4_breaks_through > 0
+		and I_CompareCounter fyrd13_committed < 1
+		unit_order_attack_unit fyrd13 infantry4 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry4_breaks_through > 0
+		and I_CompareCounter fyrd_militia2_committed < 1
+		unit_order_attack_unit fyrd_militia2 infantry4 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry4_breaks_through > 0
+		and I_UnitDistanceFromPosition infantry4 660 511 < 40
+		unit_order_attack_unit huscarl4_(bodyguard) infantry4 run
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter infantry4_breaks_through > 0
+		and I_UnitDistanceFromPosition infantry4 660 511 < 30
+		unit_order_attack_unit harold infantry4 run
+	terminate_monitor
+	end_monitor
+
+
+
+;;;;INFANTRY5
+
+
+	monitor_conditions I_UnitDistanceFromLine infantry5 tripwire2_left tripwire2_right < 1
+;		and I_UnitDistanceFromPosition infantry5 664.859, 505.641 < 20
+			set_counter infantry5_breaks_through 1		
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry5_breaks_through > 0
+		and I_CompareCounter fyrd_militia1_committed < 1
+		unit_order_attack_unit fyrd_militia1 infantry5 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry5_breaks_through > 0
+		and I_CompareCounter fyrd9_committed < 1
+		unit_order_attack_unit fyrd9 infantry5 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry5_breaks_through > 0
+		and I_CompareCounter fyrd10_committed < 1
+		unit_order_attack_unit fyrd10 infantry5 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry5_breaks_through > 0
+		unit_order_attack_unit fyrd11 infantry5 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry5_breaks_through > 0
+		and I_CompareCounter fyrd12_committed < 1
+		unit_order_attack_unit fyrd12 infantry5 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry5_breaks_through > 0
+		and I_CompareCounter fyrd13_committed < 1
+		unit_order_attack_unit fyrd13 infantry5 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry5_breaks_through > 0
+		and I_CompareCounter fyrd_militia2_committed < 1
+		unit_order_attack_unit fyrd_militia2 infantry5 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry5_breaks_through > 0
+		and I_UnitDistanceFromPosition infantry5 660 511 < 40
+		unit_order_attack_unit huscarl4_(bodyguard) infantry5 run
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter infantry5_breaks_through > 0
+		and I_UnitDistanceFromPosition infantry5 660 511 < 30
+		unit_order_attack_unit harold infantry5 run
+	terminate_monitor
+	end_monitor
+
+
+
+;;;;INFANTRY6
+
+
+	monitor_conditions I_UnitDistanceFromLine infantry6 tripwire2_left tripwire2_right < 1
+;		and I_UnitDistanceFromPosition infantry6 664.859, 505.641 < 20
+			set_counter infantry6_breaks_through 1		
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry6_breaks_through > 0
+		and I_CompareCounter fyrd_militia1_committed < 1
+		unit_order_attack_unit fyrd_militia1 infantry6 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry6_breaks_through > 0
+		and I_CompareCounter fyrd9_committed < 1
+		unit_order_attack_unit fyrd9 infantry6 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry6_breaks_through > 0
+		and I_CompareCounter fyrd10_committed < 1
+		unit_order_attack_unit fyrd10 infantry6 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry6_breaks_through > 0
+		unit_order_attack_unit fyrd11 infantry6 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry6_breaks_through > 0
+		and I_CompareCounter fyrd12_committed < 1
+		unit_order_attack_unit fyrd12 infantry6 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry6_breaks_through > 0
+		and I_CompareCounter fyrd13_committed < 1
+		unit_order_attack_unit fyrd13 infantry6 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry6_breaks_through > 0
+		and I_CompareCounter fyrd_militia2_committed < 1
+		unit_order_attack_unit fyrd_militia2 infantry6 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry6_breaks_through > 0
+		and I_UnitDistanceFromPosition infantry6 660 511 < 40
+		unit_order_attack_unit huscarl4_(bodyguard) infantry6 run
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter infantry6_breaks_through > 0
+		and I_UnitDistanceFromPosition infantry6 660 511 < 30
+		unit_order_attack_unit harold infantry6 run
+	terminate_monitor
+	end_monitor
+
+
+
+;;;;INFANTRY7
+
+
+	monitor_conditions I_UnitDistanceFromLine infantry7 tripwire2_left tripwire2_right < 1
+;		and I_UnitDistanceFromPosition infantry7 664.859, 505.641 < 20
+			set_counter infantry7_breaks_through 1		
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry7_breaks_through > 0
+		and I_CompareCounter fyrd_militia1_committed < 1
+		unit_order_attack_unit fyrd_militia1 infantry7 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry7_breaks_through > 0
+		and I_CompareCounter fyrd9_committed < 1
+		unit_order_attack_unit fyrd9 infantry7 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry7_breaks_through > 0
+		and I_CompareCounter fyrd10_committed < 1
+		unit_order_attack_unit fyrd10 infantry7 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry7_breaks_through > 0
+		unit_order_attack_unit fyrd11 infantry7 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry7_breaks_through > 0
+		and I_CompareCounter fyrd12_committed < 1
+		unit_order_attack_unit fyrd12 infantry7 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry7_breaks_through > 0
+		and I_CompareCounter fyrd13_committed < 1
+		unit_order_attack_unit fyrd13 infantry7 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry7_breaks_through > 0
+		and I_CompareCounter fyrd_militia2_committed < 1
+		unit_order_attack_unit fyrd_militia2 infantry7 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry7_breaks_through > 0
+		and I_UnitDistanceFromPosition infantry7 660 511 < 40
+		unit_order_attack_unit huscarl4_(bodyguard) infantry7 run
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter infantry7_breaks_through > 0
+		and I_UnitDistanceFromPosition infantry7 660 511 < 30
+		unit_order_attack_unit harold infantry7 run
+	terminate_monitor
+	end_monitor
+
+
+
+;;;;INFANTRY8
+
+
+	monitor_conditions I_UnitDistanceFromLine infantry8 tripwire2_left tripwire2_right < 1
+;		and I_UnitDistanceFromPosition infantry8 664.859, 505.641 < 20
+			set_counter infantry8_breaks_through 1		
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry8_breaks_through > 0
+		and I_CompareCounter fyrd_militia1_committed < 1
+		unit_order_attack_unit fyrd_militia1 infantry8 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry8_breaks_through > 0
+		and I_CompareCounter fyrd9_committed < 1
+		unit_order_attack_unit fyrd9 infantry8 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry8_breaks_through > 0
+		and I_CompareCounter fyrd10_committed < 1
+		unit_order_attack_unit fyrd10 infantry8 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry8_breaks_through > 0
+		unit_order_attack_unit fyrd11 infantry8 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry8_breaks_through > 0
+		and I_CompareCounter fyrd12_committed < 1
+		unit_order_attack_unit fyrd12 infantry8 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry8_breaks_through > 0
+		and I_CompareCounter fyrd13_committed < 1
+		unit_order_attack_unit fyrd13 infantry8 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry8_breaks_through > 0
+		and I_CompareCounter fyrd_militia2_committed < 1
+		unit_order_attack_unit fyrd_militia2 infantry8 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry8_breaks_through > 0
+		and I_UnitDistanceFromPosition infantry8 660 511 < 40
+		unit_order_attack_unit huscarl4_(bodyguard) infantry8 run
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter infantry8_breaks_through > 0
+		and I_UnitDistanceFromPosition infantry8 660 511 < 30
+		unit_order_attack_unit harold infantry8 run
+	terminate_monitor
+	end_monitor
+
+
+
+;;;;INFANTRY9
+
+
+	monitor_conditions I_UnitDistanceFromLine infantry9 tripwire2_left tripwire2_right < 1
+;		and I_UnitDistanceFromPosition infantry9 664.859, 505.641 < 20
+			set_counter infantry9_breaks_through 1		
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry9_breaks_through > 0
+		and I_CompareCounter fyrd_militia1_committed < 1
+		unit_order_attack_unit fyrd_militia1 infantry9 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry9_breaks_through > 0
+		and I_CompareCounter fyrd9_committed < 1
+		unit_order_attack_unit fyrd9 infantry9 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry9_breaks_through > 0
+		and I_CompareCounter fyrd10_committed < 1
+		unit_order_attack_unit fyrd10 infantry9 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry9_breaks_through > 0
+		unit_order_attack_unit fyrd11 infantry9 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry9_breaks_through > 0
+		and I_CompareCounter fyrd12_committed < 1
+		unit_order_attack_unit fyrd12 infantry9 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry9_breaks_through > 0
+		and I_CompareCounter fyrd13_committed < 1
+		unit_order_attack_unit fyrd13 infantry9 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry9_breaks_through > 0
+		and I_CompareCounter fyrd_militia2_committed < 1
+		unit_order_attack_unit fyrd_militia2 infantry9 run
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter infantry9_breaks_through > 0
+		and I_UnitDistanceFromPosition infantry9 660 511 < 40
+		unit_order_attack_unit huscarl4_(bodyguard) infantry9 run
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter infantry9_breaks_through > 0
+		and I_UnitDistanceFromPosition infantry9 660 511 < 30
+		unit_order_attack_unit harold infantry9 run
+	terminate_monitor
+	end_monitor
+	
+
+	
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; RELEASE ENGLISH TO AI WHEN MORE THAN 2 NORMAN UNITS HAVE GOT IN BEHIND SHIELD WALL
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;	
+	
+		
+	
+	
+	monitor_conditions I_CompareCounter william_breaks_through > 0
+		inc_counter shieldwall_compromised 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter knights1_breaks_through > 0
+		inc_counter shieldwall_compromised 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter knights2_breaks_through > 0
+		inc_counter shieldwall_compromised 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter knights3_breaks_through > 0
+		inc_counter shieldwall_compromised 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter knights4_breaks_through > 0
+		inc_counter shieldwall_compromised 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter knights5_breaks_through > 0
+		inc_counter shieldwall_compromised 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter knights6_breaks_through > 0
+		inc_counter shieldwall_compromised 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter infantry1_breaks_through > 0
+		inc_counter shieldwall_compromised 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter infantry2_breaks_through > 0
+		inc_counter shieldwall_compromised 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter infantry3_breaks_through > 0
+		inc_counter shieldwall_compromised 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter infantry4_breaks_through > 0
+		inc_counter shieldwall_compromised 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter infantry5_breaks_through > 0
+		inc_counter shieldwall_compromised 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter infantry6_breaks_through > 0
+		inc_counter shieldwall_compromised 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter infantry7_breaks_through > 0
+		inc_counter shieldwall_compromised 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter infantry8_breaks_through > 0
+		inc_counter shieldwall_compromised 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter infantry9_breaks_through > 0
+		inc_counter shieldwall_compromised 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter shieldwall_compromised > 2
+		release_unit harold	
+		release_unit fyrd1
+		release_unit fyrd2
+		release_unit fyrd3
+		release_unit fyrd4
+		release_unit fyrd5
+		release_unit fyrd6
+		release_unit fyrd7
+		release_unit fyrd8
+		release_unit fyrd9
+		release_unit fyrd10
+		release_unit fyrd11
+		release_unit fyrd12
+		release_unit fyrd13
+		release_unit fyrd_militia1
+		release_unit fyrd_militia2
+		release_unit huscarl1_(leofwine)
+		release_unit huscarl2_(gyrth)
+		release_unit huscarl3_(centre)
+		release_unit huscarl4_(bodyguard)
+	terminate_monitor
+	end_monitor
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; UNITS ON SAXON RIGHT MAKE LAST STAND ON HILLOCK IF CUT OFF BY CAVALRY
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;;;;FYRD1
+
+
+	monitor_conditions I_UnitDistanceFromLine fyrd1 tripwire3_left tripwire3_right > 1
+		and I_UnitDistanceFromUnit fyrd1 william < 50
+		unit_order_move fyrd1 511, 488 run
+		set_counter fyrd1_last_stand 1
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_UnitDistanceFromLine fyrd1 tripwire3_left tripwire3_right > 1
+		and I_UnitDistanceFromUnit fyrd1 knights1 < 50
+		unit_order_move fyrd1 511, 488 run
+		set_counter fyrd1_last_stand 1
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_UnitDistanceFromLine fyrd1 tripwire3_left tripwire3_right > 1
+		and I_UnitDistanceFromUnit fyrd1 knights2 < 50
+		unit_order_move fyrd1 511, 488 run
+		set_counter fyrd1_last_stand 1
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_UnitDistanceFromLine fyrd1 tripwire3_left tripwire3_right > 1
+		and I_UnitDistanceFromUnit fyrd1 knights2 < 50
+		unit_order_move fyrd1 511, 488 run
+		set_counter fyrd1_last_stand 1
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_UnitDistanceFromLine fyrd1 tripwire3_left tripwire3_right > 1
+		and I_UnitDistanceFromUnit fyrd1 knights2 < 50
+		unit_order_move fyrd1 511, 488 run
+		set_counter fyrd1_last_stand 1
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_UnitDistanceFromLine fyrd1 tripwire3_left tripwire3_right > 1
+		and I_UnitDistanceFromUnit fyrd1 knights2 < 50
+		unit_order_move fyrd1 511, 488 run
+		set_counter fyrd1_last_stand 1
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_UnitDistanceFromLine fyrd1 tripwire3_left tripwire3_right > 1
+		and I_UnitDistanceFromUnit fyrd1 knights2 < 50
+		unit_order_move fyrd1 511, 488 run
+		set_counter fyrd1_last_stand 1
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_UnitDistanceFromPosition fyrd1 511, 488 < 5
+		and I_CompareCounter fyrd1_last_stand > 0
+		unit_order_halt fyrd1
+		inc_counter fyrd1_last_stand 1
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter fyrd1_last_stand > 1
+		and I_UnitEnemyUnitInRadius fyrd1 10
+		unit_order_attack_closest_unit fyrd1 180 run
+	terminate_monitor
+	end_monitor
+
+
+;;;;FYRD2
+
+
+	monitor_conditions I_UnitDistanceFromLine fyrd2 tripwire3_left tripwire3_right > 1
+		and I_UnitDistanceFromUnit fyrd2 william < 50
+		unit_order_move fyrd2 511, 488 run
+		set_counter fyrd2_last_stand 1
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_UnitDistanceFromLine fyrd2 tripwire3_left tripwire3_right > 1
+		and I_UnitDistanceFromUnit fyrd2 knights1 < 50
+		unit_order_move fyrd2 511, 488 run
+		set_counter fyrd2_last_stand 1
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_UnitDistanceFromLine fyrd2 tripwire3_left tripwire3_right > 1
+		and I_UnitDistanceFromUnit fyrd2 knights2 < 50
+		unit_order_move fyrd2 511, 488 run
+		set_counter fyrd2_last_stand 1
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_UnitDistanceFromLine fyrd2 tripwire3_left tripwire3_right > 1
+		and I_UnitDistanceFromUnit fyrd2 knights2 < 50
+		unit_order_move fyrd2 511, 488 run
+		set_counter fyrd2_last_stand 1
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_UnitDistanceFromLine fyrd2 tripwire3_left tripwire3_right > 1
+		and I_UnitDistanceFromUnit fyrd2 knights2 < 50
+		unit_order_move fyrd2 511, 488 run
+		set_counter fyrd2_last_stand 1
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_UnitDistanceFromLine fyrd2 tripwire3_left tripwire3_right > 1
+		and I_UnitDistanceFromUnit fyrd2 knights2 < 50
+		unit_order_move fyrd2 511, 488 run
+		set_counter fyrd2_last_stand 1
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_UnitDistanceFromLine fyrd2 tripwire3_left tripwire3_right > 1
+		and I_UnitDistanceFromUnit fyrd2 knights2 < 50
+		unit_order_move fyrd2 511, 488 run
+		set_counter fyrd2_last_stand 1
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_UnitDistanceFromPosition fyrd2 511, 488 < 5
+		and I_CompareCounter fyrd2_last_stand > 0
+		unit_order_halt fyrd2
+		inc_counter fyrd2_last_stand 1
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter fyrd2_last_stand > 1
+		and I_UnitEnemyUnitInRadius fyrd2 10
+		unit_order_attack_closest_unit fyrd2 180 run
+	terminate_monitor
+	end_monitor
+
+
+;;;;FYRD3
+
+
+	monitor_conditions I_UnitDistanceFromLine fyrd3 tripwire3_left tripwire3_right > 1
+		and I_UnitDistanceFromUnit fyrd3 william < 50
+		unit_order_move fyrd3 511, 488 run
+		set_counter fyrd3_last_stand 1
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_UnitDistanceFromLine fyrd3 tripwire3_left tripwire3_right > 1
+		and I_UnitDistanceFromUnit fyrd3 knights1 < 50
+		unit_order_move fyrd3 511, 488 run
+		set_counter fyrd3_last_stand 1
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_UnitDistanceFromLine fyrd3 tripwire3_left tripwire3_right > 1
+		and I_UnitDistanceFromUnit fyrd3 knights2 < 50
+		unit_order_move fyrd3 511, 488 run
+		set_counter fyrd3_last_stand 1
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_UnitDistanceFromLine fyrd3 tripwire3_left tripwire3_right > 1
+		and I_UnitDistanceFromUnit fyrd3 knights2 < 50
+		unit_order_move fyrd3 511, 488 run
+		set_counter fyrd3_last_stand 1
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_UnitDistanceFromLine fyrd3 tripwire3_left tripwire3_right > 1
+		and I_UnitDistanceFromUnit fyrd3 knights2 < 50
+		unit_order_move fyrd3 511, 488 run
+		set_counter fyrd3_last_stand 1
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_UnitDistanceFromLine fyrd3 tripwire3_left tripwire3_right > 1
+		and I_UnitDistanceFromUnit fyrd3 knights2 < 50
+		unit_order_move fyrd3 511, 488 run
+		set_counter fyrd3_last_stand 1
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_UnitDistanceFromLine fyrd3 tripwire3_left tripwire3_right > 1
+		and I_UnitDistanceFromUnit fyrd3 knights2 < 50
+		unit_order_move fyrd3 511, 488 run
+		set_counter fyrd3_last_stand 1
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_UnitDistanceFromPosition fyrd3 511, 488 < 5
+		and I_CompareCounter fyrd3_last_stand > 0
+		unit_order_halt fyrd3
+		inc_counter fyrd3_last_stand 1
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter fyrd3_last_stand > 1
+		and I_UnitEnemyUnitInRadius fyrd3 10
+		unit_order_attack_closest_unit fyrd3 180 run
+	terminate_monitor
+	end_monitor
+
+	
+	
+	
+	
+	
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; ROUTING ENGLISH UNITS KEEP ON ROUTING
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;	
+
+
+	monitor_conditions I_IsUnitRouting fyrd1
+		unit_set_morale fyrd1 routing
+	terminate_monitor
+	end_monitor
+		
+	monitor_conditions I_IsUnitRouting fyrd2
+		unit_set_morale fyrd2 routing
+	terminate_monitor
+	end_monitor
+		
+	monitor_conditions I_IsUnitRouting fyrd3
+		unit_set_morale fyrd3 routing
+	terminate_monitor
+	end_monitor
+		
+	monitor_conditions I_IsUnitRouting fyrd4
+		unit_set_morale fyrd4 routing
+	terminate_monitor
+	end_monitor
+		
+	monitor_conditions I_IsUnitRouting fyrd5
+		unit_set_morale fyrd5 routing
+	terminate_monitor
+	end_monitor
+		
+	monitor_conditions I_IsUnitRouting fyrd6
+		unit_set_morale fyrd6 routing
+	terminate_monitor
+	end_monitor
+		
+	monitor_conditions I_IsUnitRouting fyrd7
+		unit_set_morale fyrd7 routing
+	terminate_monitor
+	end_monitor
+		
+	monitor_conditions I_IsUnitRouting fyrd8
+		unit_set_morale fyrd8 routing
+	terminate_monitor
+	end_monitor
+		
+	monitor_conditions I_IsUnitRouting fyrd9
+		unit_set_morale fyrd9 routing
+	terminate_monitor
+	end_monitor
+		
+	monitor_conditions I_IsUnitRouting fyrd10
+		unit_set_morale fyrd10 routing
+	terminate_monitor
+	end_monitor
+		
+	monitor_conditions I_IsUnitRouting fyrd11
+		unit_set_morale fyrd11 routing
+	terminate_monitor
+	end_monitor
+		
+	monitor_conditions I_IsUnitRouting fyrd12
+		unit_set_morale fyrd12 routing
+	terminate_monitor
+	end_monitor
+		
+	monitor_conditions I_IsUnitRouting fyrd13
+		unit_set_morale fyrd13 routing
+	terminate_monitor
+	end_monitor
+		
+	monitor_conditions I_IsUnitRouting fyrd_militia1
+		unit_set_morale fyrd_militia1 routing
+	terminate_monitor
+	end_monitor
+		
+	monitor_conditions I_IsUnitRouting fyrd_militia2
+		unit_set_morale fyrd_militia2 routing
+	terminate_monitor
+	end_monitor
+		
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; ENGLISH LEG IT WHEN 40% OF THEM ARE DEAD (ALL BAR HUSCARLS AND HAROLD)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;	
+	
+			
+	
+;	monitor_conditions I_PercentageOfArmyKilled 1 0 > 40
+;		and I_PercentageOfArmyKilled 0 0 < 50			
+;		unit_set_morale fyrd1 routing
+;		unit_set_morale fyrd2 routing 
+;		unit_set_morale fyrd3 routing 
+;		unit_set_morale fyrd4 routing 
+;		unit_set_morale fyrd5 routing 
+;		unit_set_morale fyrd6 routing 
+;		unit_set_morale fyrd7 routing 
+;		unit_set_morale fyrd8 routing 
+;		unit_set_morale fyrd9 routing 					
+;		unit_set_morale fyrd10 routing 
+;		unit_set_morale fyrd11 routing 
+;		unit_set_morale fyrd12 routing 
+;		unit_set_morale fyrd13 routing 
+;		unit_set_morale fyrd_militia1 routing 
+;		unit_set_morale fyrd_militia2 routing 	
+;	terminate_monitor
+;	end_monitor	
+	
+
+	
+	
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; IS HAROLD DEAD?
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+	monitor_conditions not I_CharacterExists Harold Godwinson
+		set_counter harold_dead 1
+		battle_wait 8
+		play_sound_event Hastings_Sergeant_9 tag = Hastings_Sergeant_9
+	terminate_monitor
+	end_monitor	
+	
+
+	
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; FYRD ROUTS WHEN HAROLD DIES
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;		
+	
+	monitor_conditions I_CompareCounter harold_dead > 0	
+	and I_CompareCounter harold_rout_lock < 1	
+		unit_set_morale fyrd1 routing
+		unit_set_morale fyrd2 routing 
+		unit_set_morale fyrd3 routing 
+		unit_set_morale fyrd4 routing 
+		unit_set_morale fyrd5 routing 
+		unit_set_morale fyrd6 routing 
+		unit_set_morale fyrd7 routing 
+		unit_set_morale fyrd8 routing 
+		unit_set_morale fyrd9 routing 					
+		unit_set_morale fyrd10 routing 
+		unit_set_morale fyrd11 routing 
+		unit_set_morale fyrd12 routing 
+		unit_set_morale fyrd13 routing 
+		unit_set_morale fyrd_militia1 routing 
+		unit_set_morale fyrd_militia2 routing 	
+	terminate_monitor
+	end_monitor	
+	
+	
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; HOUSECARLS MAKE FINAL STAND OVER HAROLD'S BODY WHEN HE DIES
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;	
+			
+	monitor_conditions I_CompareCounter harold_dead > 0	
+		unit_order_move_to_orientation huscarl1_(leofwine) 647.269, 513.008, 15, -58	run
+		unit_order_move_to_orientation huscarl2_(gyrth) 674.246, 511.602, 15, 118 run
+		unit_order_move_to_orientation huscarl3_(centre) 660.071, 522.474, 15, 31 run
+		unit_order_move_to_orientation huscarl4_(bodyguard) 661.904, 500.978, 15, -146 run
+	terminate_monitor
+	end_monitor
+	
+	
+	
+	
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;TRIGGER MASS-ROUT IF WILLIAM BOTTLES IT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+	monitor_conditions I_IsUnitRouting william
+		battle_wait 5
+		unit_set_morale knights1 routing
+		unit_set_morale knights2 routing
+		unit_set_morale knights3 routing
+		unit_set_morale knights4 routing
+		unit_set_morale knights5 routing
+		unit_set_morale knights6 routing
+		unit_set_morale infantry1 routing
+		unit_set_morale infantry2 routing
+		unit_set_morale infantry3 routing
+		unit_set_morale infantry4 routing
+		unit_set_morale infantry5 routing
+		unit_set_morale infantry6 routing
+		unit_set_morale infantry7 routing
+		unit_set_morale infantry8 routing
+		unit_set_morale infantry9 routing
+		unit_set_morale archer1 routing
+		unit_set_morale archer2 routing
+		unit_set_morale archer3 routing
+		unit_set_morale archer4 routing
+	terminate_monitor
+	end_monitor	
+	
+	
+
+			
+
+;unit	harold		0, 664.859, 505.641, -149, 15.000
+;unit	huscarl1_(leofwine)		1, 548.915, 538.675, -146, 15.000
+;unit	huscarl2_(gyrth)		2, 737.061, 411.376, -146, 15.000
+;unit	huscarl3_(centre)		3, 644.360, 472.998, -146, 15.000
+;unit	huscarl4_(bodyguard)		4, 660.043, 497.907, -146, 15.000
+;unit	fyrd1		5, 570.235, 523.611, -145, 26.000
+;unit	fyrd2		6, 590.884, 509.291, -146, 26.000
+;unit	fyrd3		7, 611.607, 495.140, -146, 26.000
+;unit	fyrd4		8, 632.565, 481.148, -146, 26.000
+;unit	fyrd5		9, 664.815, 459.418, -146, 26.000
+;unit	fyrd6		10, 684.315, 446.198, -146, 26.000
+;unit	fyrd7		11, 705.544, 432.029, -146, 26.000
+;unit	fyrd8		12, 725.059, 419.178, -146, 26.000
+;unit	fyrd9		13, 605.482, 518.770, -146, 18.000
+;unit	fyrd10		14, 630.321, 502.603, -146, 18.000
+;unit	fyrd11		15, 654.355, 486.142, -146, 18.000
+;unit	fyrd12		16, 677.294, 470.089, -146, 18.000
+;unit	fyrd13		17, 699.696, 455.150, -146, 18.000
+;unit	fyrd_militia1		18, 579.730, 536.121, -146, 18.000
+;unit	fyrd_militia2		19, 725.727, 437.384, -146, 18.000
+
+
+
+
+
+
+;----------------
+;NORMANS, ALLIANCE 0
+;-------------------
+
+; 	label_unit 0 0 0 william
+;	label_unit 0 0 1 knights1
+;	label_unit 0 0 2 knights2
+;	label_unit 0 0 3 knights3
+;	label_unit 0 0 4 knights4
+;	label_unit 0 0 5 knights5
+;	label_unit 0 0 6 knights6
+;	label_unit 0 0 7 infantry1
+;	label_unit 0 0 8 infantry2
+;	label_unit 0 0 9 infantry3
+;	label_unit 0 0 10 infantry4
+;	label_unit 0 0 11 infantry5
+;	label_unit 0 0 12 infantry6
+;	label_unit 0 0 13 infantry7
+;	label_unit 0 0 14 infantry8
+;	label_unit 0 0 15 infantry9
+;	label_unit 0 0 16 archer1
+;	label_unit 0 0 17 archer2
+;	label_unit 0 0 18 archer3
+;	label_unit 0 0 19 archer4
+	
+;---------------------------------
+;ENGLISH, ALLIANCE 1
+;---------------------------------	
+	
+;	label_unit 1 0 0 harold
+;	label_unit 1 0 1 huscarl1_(leofwine)
+;	label_unit 1 0 2 huscarl2_(gyrth)
+;	label_unit 1 0 3 huscarl3_(centre)
+;	label_unit 1 0 4 huscarl4_(bodyguard)
+;	label_unit 1 0 5 fyrd1
+;	label_unit 1 0 6 fyrd2
+;	label_unit 1 0 7 fyrd3
+;	label_unit 1 0 8 fyrd4
+;	label_unit 1 0 9 fyrd5
+;	label_unit 1 0 10 fyrd6
+;	label_unit 1 0 11 fyrd7
+;	label_unit 1 0 12 fyrd8
+;	label_unit 1 0 13 fyrd9
+;	label_unit 1 0 14 fyrd10
+;	label_unit 1 0 15 fyrd11
+;	label_unit 1 0 16 fyrd12
+;	label_unit 1 0 17 fyrd13
+;	label_unit 1 0 18 fyrd_militia1
+;	label_unit 1 0 19 fyrd_militia2
+;
+;
+;
+
+			; *********************************************************************************************
+			;	Start of battle - BATTLESTART MONITOR	(Transfer control to player)
+			;	Start of battle - BATTLESTART MONITOR	(Transfer control to player)
+			;	Start of battle - BATTLESTART MONITOR	(Transfer control to player)
+			;	Start of battle - BATTLESTART MONITOR	(Transfer control to player)
+			;	Start of battle - BATTLESTART MONITOR	(Transfer control to player)
+			;	Start of battle - BATTLESTART MONITOR	(Transfer control to player)
+			;	Start of battle - BATTLESTART MONITOR	(Transfer control to player)
+			;	Start of battle - BATTLESTART MONITOR	(Transfer control to player)
+			;	Start of battle - BATTLESTART MONITOR	(Transfer control to player)
+			; *********************************************************************************************
+		
+			monitor_conditions I_CompareCounter battle_start = 1
+
+				hiding_enabled_set true
+		
+				steal_esc_key off
+
+			; *********************************************************************************************
+			;	Stop the intro narration
+			; *********************************************************************************************
+
+stop_sound_event HASTINGS_NARRATOR_1 
+stop_sound_event HASTINGS_NARRATOR_2a
+stop_sound_event HASTINGS_NARRATOR_2b
+stop_sound_event HASTINGS_NARRATOR_2c
+stop_sound_event HASTINGS_NARRATOR_2d
+stop_sound_event HASTINGS_NARRATOR_3
+stop_sound_event HASTINGS_NARRATOR_4
+stop_sound_event HASTINGS_NARRATOR_5
+stop_sound_event HASTINGS_NARRATOR_6
+stop_sound_event HASTINGS_NARRATOR_7
+stop_sound_event HASTINGS_NARRATOR_8
+stop_sound_event HASTINGS_NARRATOR_9
+; stop_sound_event HASTINGS_NARRATOR_10
+
+
+
+
+	
+;set_camera_bookmark 19, 459.993, 107.487, 319.194 450.87, 107.789, 323.289		;opening shot
+;set_camera_bookmark 20, 512.575, 115.955, 323.96 519.186, 113.038, 331.456		;pan to william
+;set_camera_bookmark 1, 533.042, 87.7326, 365.417 540.61, 88.5847, 371.226		;pan back from duke
+;set_camera_bookmark 19, 533.042, 87.7326, 365.417 540.61, 88.5847, 371.226		;teh Duke
+;set_camera_bookmark 20, 447.621, 110.781, 299.85 455.189, 111.633, 305.659		;pan back from duke
+set_camera_bookmark 1, 542.156, 89.0309, 360.426 549.732, 88.4568, 366.953		;duke from behind
+;set_camera_bookmark 2, 525.816, 96.2725, 346.348 533.279, 93.7418, 352.777		;battlestart
+set_camera_bookmark 2, 529.648, 123.539, 310.987 533.566, 118.692, 318.162
+
+
+
+
+
+
+
+
+
+camera_position_at_bookmark 1			;opening shot
+
+;;	unit_immediate_place william 545.519, 360.608, 33, 17.000
+;	unit_immediate_place knights1 464.282, 413.268, 33, 20.000
+;	unit_immediate_place knights2 492.178, 396.824, 33, 20.000
+;	unit_immediate_place knights3 518.962, 378.771, 33, 20.000
+;	unit_immediate_place knights4 567.561, 346.730, 33, 20.000
+;	unit_immediate_place knights5 593.300, 328.655, 33, 20.000
+;	unit_immediate_place knights6 618.888, 311.812, 33, 20.000 
+;	unit_immediate_place infantry1 497.976, 424.772, 33, 16.000
+;	unit_immediate_place infantry2 514.718, 414.307, 33, 16.000
+;	unit_immediate_place infantry3 530.769, 403.950, 33, 16.000
+;	unit_immediate_place infantry4 547.391, 393.265, 33, 16.000
+;	unit_immediate_place infantry5 563.566, 382.989, 33, 16.000
+;	unit_immediate_place infantry6 579.434, 372.364, 33, 16.000
+;	unit_immediate_place infantry7 595.229, 361.732, 33, 16.000
+;	unit_immediate_place infantry8 611.409, 351.092, 33, 16.000
+;	unit_immediate_place infantry9 627.574, 340.195, 33, 16.000
+;	unit_immediate_place archer1 505.123, 434.847, 33, 36.000
+;	unit_immediate_place archer2 544.194, 409.057, 33, 36.000
+;	unit_immediate_place archer3 582.343, 383.219, 33, 36.000
+;	unit_immediate_place archer4 621.837, 356.844, 33, 36.000
+	
+	unit_immediate_place william 545.519, 360.608, 33, 13.000
+	unit_immediate_place knights1 464.282, 413.268, 33, 15.000
+	unit_immediate_place knights2 492.178, 396.824, 33, 15.000
+	unit_immediate_place knights3 518.962, 378.771, 33, 15.000
+	unit_immediate_place knights4 567.561, 346.730, 33, 15.000
+	unit_immediate_place knights5 593.300, 328.655, 33, 15.000
+	unit_immediate_place knights6 618.888, 311.812, 33, 15.000 
+	unit_immediate_place infantry1 497.976, 424.772, 33, 16.000
+	unit_immediate_place infantry2 514.718, 414.307, 33, 16.000
+	unit_immediate_place infantry3 530.769, 403.950, 33, 16.000
+	unit_immediate_place infantry4 547.391, 393.265, 33, 16.000
+	unit_immediate_place infantry5 563.566, 382.989, 33, 16.000
+	unit_immediate_place infantry6 579.434, 372.364, 33, 16.000
+	unit_immediate_place infantry7 595.229, 361.732, 33, 16.000
+	unit_immediate_place infantry8 611.409, 351.092, 33, 16.000
+	unit_immediate_place infantry9 627.574, 340.195, 33, 16.000
+	unit_immediate_place archer1 505.123, 434.847, 33, 36.000
+	unit_immediate_place archer2 544.194, 409.057, 33, 36.000
+	unit_immediate_place archer3 582.343, 383.219, 33, 36.000
+	unit_immediate_place archer4 621.837, 356.844, 33, 36.000
+
+	
+	
+	
+		
+	unit_immediate_place harold 664.859, 505.641, -149, 15.000
+	unit_immediate_place huscarl1_(leofwine) 548.915, 538.675, -146, 15.000
+	unit_immediate_place huscarl2_(gyrth) 737.061, 411.376, -146, 15.000
+	unit_immediate_place huscarl3_(centre) 644.360, 472.998, -146, 15.000
+	unit_immediate_place huscarl4_(bodyguard) 660.043, 497.907, -146, 15.000
+	unit_immediate_place fyrd1 570.235, 523.611, -145, 26.000
+	unit_immediate_place fyrd2 590.884, 509.291, -146, 26.000
+	unit_immediate_place fyrd3 611.607, 495.140, -146, 26.000
+	unit_immediate_place fyrd4 632.565, 481.148, -146, 26.000
+	unit_immediate_place fyrd5 664.815, 459.418, -146, 26.000
+	unit_immediate_place fyrd6 684.315, 446.198, -146, 26.000
+	unit_immediate_place fyrd7 705.544, 432.029, -146, 26.000
+	unit_immediate_place fyrd8 725.059, 419.178, -146, 26.000
+	unit_immediate_place fyrd9 605.482, 518.770, -146, 18.000
+	unit_immediate_place fyrd10 630.321, 502.603, -146, 18.000
+	unit_immediate_place fyrd11 654.355, 486.142, -146, 18.000
+	unit_immediate_place fyrd12 677.294, 470.089, -146, 18.000
+	unit_immediate_place fyrd13 699.696, 455.150, -146, 18.000
+	unit_immediate_place fyrd_militia1 579.730, 536.121, -146, 18.000
+	unit_immediate_place fyrd_militia2 725.727, 437.384, -146, 18.000
+
+	;;;; release player's units
+ 	release_unit william
+ 	release_unit knights1
+ 	release_unit knights2
+ 	release_unit knights3
+ 	release_unit knights4
+ 	release_unit knights5
+ 	release_unit knights6
+ 	release_unit infantry1
+ 	release_unit infantry2
+ 	release_unit infantry3
+ 	release_unit infantry4
+ 	release_unit infantry5
+ 	release_unit infantry6
+ 	release_unit infantry7
+ 	release_unit infantry8
+ 	release_unit infantry9
+ 	unit_set_skirmish_mode archer1 off
+ 	unit_set_skirmish_mode archer2 off
+ 	unit_set_skirmish_mode archer3 off
+ 	unit_set_skirmish_mode archer4 off
+ 	release_unit archer1
+ 	release_unit archer2
+ 	release_unit archer3
+ 	release_unit archer4
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; HAROLD IS INVULNERABLE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;		console_command invulnerable_general Harold Godwinson
+
+
+
+
+
+
+
+
+battle_wait 1
+
+camera_zoom_to_bookmark 2 10  			;pan to william
+
+	
+
+
+
+battle_wait 6				
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; RE-ENABLE UI ETC.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+		
+				show_ui
+		
+				enable_cursor						;enable player to click
+				disable_shortcuts false	
+				inhibit_camera_input false			;	Permit user to move camera.
+				enable_entire_ui
+		
+				camera_restrictions_set on
+				camera_default_mode_set user_pref
+				camera_event_cuts_active_set off
+	
+				set_music_state tension			;tension, mobilize, battle
+
+	
+		;	suspend_unscripted_advice false
+
+		
+	;		steal_esc_key off
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; ENGLISH HOUSCARLS WILL FIGHT TO THE LAST MAN
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+	unit_set_morale harold firm
+	unit_set_morale huscarl1_(leofwine) firm
+	unit_set_morale huscarl2_(gyrth) firm
+	unit_set_morale huscarl3_(centre) firm
+	unit_set_morale huscarl4_(bodyguard) firm
+
+
+
+;kill_unit huscarl1_(leofwine)
+;kill_unit huscarl3_(centre)
+;kill_unit huscarl4_(bodyguard)
+;kill_unit fyrd11
+;kill_unit fyrd10
+;kill_unit fyrd12
+;kill_unit fyrd4
+;kill_unit fyrd5
+
+unit_taunt harold
+unit_taunt huscarl1_(leofwine)
+unit_taunt huscarl2_(gyrth)
+unit_taunt huscarl3_(centre)
+unit_taunt huscarl4_(bodyguard)
+unit_taunt fyrd1
+unit_taunt fyrd2
+unit_taunt fyrd3
+unit_taunt fyrd4
+unit_taunt fyrd5
+unit_taunt fyrd6
+unit_taunt fyrd7
+unit_taunt fyrd8
+unit_taunt fyrd9
+unit_taunt fyrd10
+unit_taunt fyrd11
+unit_taunt fyrd12
+unit_taunt fyrd13
+unit_taunt fyrd_militia1
+unit_taunt fyrd_militia2
+
+
+
+;unit_order_move_relative fyrd11 0 10 run
+;unit_order_move_relative fyrd1 0 10 run
+;unit_order_move_relative fyrd2 0 10 run
+;unit_order_move_relative fyrd3 0 10 run
+;unit_order_move_relative fyrd6 0 10 run
+;unit_order_move_relative fyrd7 0 10 run
+;unit_order_move_relative fyrd8 0 10 run
+
+		
+ 
+
+
+
+ 
+		
+
+
+battle_wait 5
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; "ATTACK THE FLANKS"
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+play_sound_event Hastings_Sergeant_1 tag = Hastings_Sergeant_1
+
+
+;kill_unit harold
+
+;unit_taunt harold
+;unit_taunt huscarl1_(leofwine)
+;unit_taunt huscarl2_(gyrth)
+;unit_taunt huscarl3_(centre)
+;unit_taunt huscarl4_(bodyguard)
+;unit_taunt fyrd1
+;unit_taunt fyrd2
+;unit_taunt fyrd3
+;unit_taunt fyrd4
+;unit_taunt fyrd5
+;unit_taunt fyrd6
+;unit_taunt fyrd7
+;unit_taunt fyrd8
+;unit_taunt fyrd9
+;unit_taunt fyrd10
+;unit_taunt fyrd11
+;unit_taunt fyrd12
+;unit_taunt fyrd13
+;unit_taunt fyrd_militia1
+;unit_taunt fyrd_militia2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+;	label_unit 1 0 0 harold
+;	label_unit 1 0 1 huscarl1_(leofwine)
+;	label_unit 1 0 2 huscarl2_(gyrth)
+;	label_unit 1 0 3 huscarl3_(centre)
+;	label_unit 1 0 4 huscarl4_(bodyguard)
+;	label_unit 1 0 5 fyrd1
+;	label_unit 1 0 6 fyrd2
+;	label_unit 1 0 7 fyrd3
+;	label_unit 1 0 8 fyrd4
+;	label_unit 1 0 9 fyrd5
+;	label_unit 1 0 10 fyrd6
+;	label_unit 1 0 11 fyrd7
+;	label_unit 1 0 12 fyrd8
+;	label_unit 1 0 13 fyrd9
+;	label_unit 1 0 14 fyrd10
+;	label_unit 1 0 15 fyrd11
+;	label_unit 1 0 16 fyrd12
+;	label_unit 1 0 17 fyrd13
+;	label_unit 1 0 18 fyrd_militia1
+;	label_unit 1 0 19 fyrd_militia2
+
+
+
+	;		camera_restrictions_set on
+
+; 		suspend_unscripted_advice false
+
+		;		steal_esc_key off
+
+
+
+
+			
+
+
+
+			terminate_monitor
+			end_monitor	
+	
+		
+			; *********************************************************************************************
+			; ********************* END OF BATTLE START MONITOR *******************************************
+			; *********************************************************************************************
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+			; *********************************************************************************************
+			; *********************************************************************************************
+			;			Intro sequence - INTRO MONITOR
+			;			Intro sequence - INTRO MONITOR
+			;			Intro sequence - INTRO MONITOR
+			;			Intro sequence - INTRO MONITOR
+			;			Intro sequence - INTRO MONITOR
+			;			Intro sequence - INTRO MONITOR
+			;			Intro sequence - INTRO MONITOR
+			;			Intro sequence - INTRO MONITOR
+			;			Intro sequence - INTRO MONITOR
+			; *********************************************************************************************
+			; *********************************************************************************************
+		
+		
+			monitor_conditions I_CompareCounter intro_sequence = 1
+		
+		
+		
+				; *********************************************************************************************
+				;	Start sequence
+				; *********************************************************************************************
+		
+		
+				battle_default_camera
+    camera_restrictions_set off
+    disable_cursor      ;prevent the player clicking
+    disable_entire_ui
+    disable_shortcuts true
+    disable_shortcuts toggle_pause_button false  ;toggle_pause_button PAUSE P
+    enable_ui toggle_pause_button
+    inhibit_camera_input true	;false
+    hide_ui
+				
+				set_music_state custom Euro_Tension
+		
+;				; this will tell music tracker to play the specified custom music event
+;			set_music_state tension  		;tension, mobilize, battle
+;		
+;		
+;				hiding_enabled_set true
+;		
+;				while I_CompareCounter battle_start = 1		; PLAYER CAN ESCAPE
+;				end_while									; PLAYER CAN ESCAPE
+;		
+;
+
+
+
+
+
+   
+ 
+
+		set_camera_bookmark 1, 462.546, 84.6695, 319.883 469.112, 87.4942, 326.989		;caldbec hill
+		set_camera_bookmark 2, 658.371, 118.114, 511.178 651.111, 117.048, 504.316		;caldbec hill side view
+		set_camera_bookmark 3, 690.367, 116.28, 778.658 681.212, 117.977, 782.653		;harold
+		set_camera_bookmark 18, 696.581, 117.123, 786.858 690.913, 118.311, 778.628		;harold wormseye view
+		set_camera_bookmark 4, 717.773, 91.4074, -40.4962 726.303, 92.2204, -45.7027	;william marches by
+		set_camera_bookmark 20, 719.036, 92.5825, -43.819 722.391, 92.8208, -34.5824	;william from behind
+		set_camera_bookmark 19, 708.174, 117.065, 732.057 700.575, 117.961, 738.498		;harold 
+		set_camera_bookmark 5, 746.394, 115.157, -153.865 744.984, 112.716, -143.967	;norman column makes for caldbec hill
+		set_camera_bookmark 6, 674.486, 110.044, 640.538 674.641, 113.227, 650.315		;harold's column marches head-on
+		set_camera_bookmark 7, 702.462, 92.3655, 25.5703 712.115, 94.1987, 27.9543		;norman column side view
+		set_camera_bookmark 8, 642.664, 93.759, 164.052 643.675, 95.2078, 173.95		;cav sight the shieldwall
+		set_camera_bookmark 9, 711.039, 116.961, 421.158 708.717, 116.218, 430.817		;the shieldwall
+		set_camera_bookmark 10, 502.461, 103.183, 508.799 503.776, 102.569, 499.033 	;normans move to start positions
+		set_camera_bookmark 11, 467.659, 88.6667, 377.493 475.143, 88.8111, 383.633		;over normans toward shieldwall
+		set_camera_bookmark 12, 559.277, 92.3156, 380.507 551.19, 90.5767, 375.228		;teh Duke!
+		set_camera_bookmark 13, 530.135, 88.5339, 365.487 536.279, 88.7406, 373.117		;behind duke toward shieldwall
+		set_camera_bookmark 14, 594.377, 115.981, 531.351 591.063, 115.648, 521.935		;shieldwall gives normans a nasty taunting
+		set_camera_bookmark 15, 703.473, 114.735, 429.69 701.593, 114.344, 439.228		;taunting closeup
+		set_camera_bookmark 16, 440.33, 135.102, 555.14 447.44, 132.696, 548.15			;overview of both armies
+		set_camera_bookmark 17, 533.042, 87.7326, 365.417 540.61, 88.5847, 371.226		;teh Duke
+		set_camera_bookmark 21, 598.198, 116.122, 533.111 595.571, 115.887, 523.841		;view from the shieldwall
+
+
+
+
+
+
+
+
+
+
+
+
+	define_unit_group	group1	william knights1 knights2 knights3 knights4 knights5 knights6 infantry1 infantry2 infantry3 infantry4 infantry5 infantry6 infantry7 infantry8 infantry9 archer1 archer2 archer3 archer4
+	
+	define_unit_group	group2	harold huscarl1_(leofwine) huscarl2_(gyrth) huscarl3_(centre) huscarl4_(bodyguard) fyrd1 fyrd2 fyrd3 fyrd4 fyrd5 fyrd6 fyrd7 fyrd8 fyrd9 fyrd10 fyrd11 fyrd12 fyrd13 fyrd_militia1 fyrd_militia2
+
+
+
+
+	camera_position_at_bookmark 1           			;caldbec hill
+
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+
+	battle_wait 0.1
+		
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	unit_group_order_relative_move_formed group2 0 100
+	
+	battle_wait 2
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+		play_sound_event HASTINGS_NARRATOR_1 tag = HASTINGS_NARRATOR_1
+	
+	
+		
+	battle_wait 3
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	camera_position_at_bookmark 2						;caldbec hill side view
+	
+	battle_wait 4
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	camera_position_at_bookmark 3 							;harold
+	
+
+	
+	play_sound_event HASTINGS_NARRATOR_2a tag = HASTINGS_NARRATOR_2a
+	
+	unit_group_order_relative_move_formed group1 0 100	
+		
+	battle_wait 3
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	camera_position_at_bookmark 18						;harold wormseye view	
+		
+;	battle_wait 1.7
+	battle_wait 3
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	camera_position_at_bookmark 4						;william marches by
+	
+	battle_wait 1
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	play_sound_event HASTINGS_NARRATOR_2b tag = HASTINGS_NARRATOR_2b
+	
+	battle_wait 2
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+
+set_camera_bookmark 1, 648.863, 113.449, 732.754 656.96, 115.482, 738.565			;saxons marching
+set_camera_bookmark 2, 685.153, 115.82, 712.073 677.768, 110.177, 711.066			;saxons marching again
+set_camera_bookmark 3, 692.332, 116.107, 486.845 689.229, 118.324, 496.35			;saxon column from blasted oak
+set_camera_bookmark 4, 537.417, 88.751, 367.808 529.331, 87.0121, 362.529			;duke closeup
+	
+	
+
+
+
+
+
+	
+			
+	camera_position_at_bookmark 20						;william overhead
+	
+	battle_wait 2
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	camera_position_at_bookmark 19						;harold 
+	
+	battle_wait 1
+	
+	play_sound_event HASTINGS_NARRATOR_2c tag = HASTINGS_NARRATOR_2c
+	
+	battle_wait 4
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	camera_position_at_bookmark 1 						;saxons marching
+		
+	battle_wait 5
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	camera_position_at_bookmark 2						;saxons marching again
+
+
+	battle_wait 1	
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	play_sound_event HASTINGS_NARRATOR_2d tag = HASTINGS_NARRATOR_2d
+	
+	battle_wait 4.5	
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	camera_position_at_bookmark 5						;norman column marches for caldbec hill
+	
+	battle_wait 4
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	camera_position_at_bookmark 6						;harolds column marches head-on
+	
+	battle_wait 1
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+		play_sound_event HASTINGS_NARRATOR_3 tag = HASTINGS_NARRATOR_3
+	
+		
+			
+	battle_wait 4
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	camera_position_at_bookmark 3 							;saxon column from blasted oak
+
+set_camera_bookmark 1, 674.492, 116.398, 739.792 674.788, 115.775, 729.819			;saxons march under camera	
+
+
+	
+	unit_group_order_relative_move_formed group1 0 100
+	
+	battle_wait 5
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+		
+	camera_position_at_bookmark 1						;saxons march under camera	
+	
+	battle_wait 3
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP	
+	
+	camera_position_at_bookmark 7						;norman column side view
+	
+	battle_wait 1
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	unit_immediate_place harold 664.859, 505.641, -149, 15.000
+	unit_immediate_place huscarl1_(leofwine) 548.915, 538.675, -146, 15.000
+	unit_immediate_place huscarl2_(gyrth) 737.061, 411.376, -146, 15.000
+	unit_immediate_place huscarl3_(centre) 644.360, 472.998, -146, 15.000
+	unit_immediate_place huscarl4_(bodyguard) 660.043, 497.907, -146, 15.000
+	unit_immediate_place fyrd1 570.235, 523.611, -145, 26.000
+	unit_immediate_place fyrd2 590.884, 509.291, -146, 26.000
+	unit_immediate_place fyrd3 611.607, 495.140, -146, 26.000
+	unit_immediate_place fyrd4 632.565, 481.148, -146, 26.000
+	unit_immediate_place fyrd5 664.815, 459.418, -146, 26.000
+	unit_immediate_place fyrd6 684.315, 446.198, -146, 26.000
+	unit_immediate_place fyrd7 705.544, 432.029, -146, 26.000
+	unit_immediate_place fyrd8 725.059, 419.178, -146, 26.000
+	unit_immediate_place fyrd9 605.482, 518.770, -146, 18.000
+	unit_immediate_place fyrd10 630.321, 502.603, -146, 18.000
+	unit_immediate_place fyrd11 654.355, 486.142, -146, 18.000
+	unit_immediate_place fyrd12 677.294, 470.089, -146, 18.000
+	unit_immediate_place fyrd13 699.696, 455.150, -146, 18.000
+	unit_immediate_place fyrd_militia1 579.730, 536.121, -146, 18.000
+	unit_immediate_place fyrd_militia2 725.727, 437.384, -146, 18.000
+	
+	unit_immediate_place knights1 660.147, 165.654, -43, 20
+	;unit_immediate_place knights2 682.551, 141.604, -43, 20
+	
+	battle_wait 1
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	play_sound_event HASTINGS_NARRATOR_4 tag = HASTINGS_NARRATOR_4
+	
+	
+	unit_order_move knights1 592 265 run
+	;unit_order_move_relative knights2 0 100 run
+	
+	battle_wait 1
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	unit_order_halt knights1
+	;unit_order_halt knights2
+	
+	battle_wait 2
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	camera_position_at_bookmark 8						;cav sight shieldwall	
+	
+	battle_wait 1
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	camera_zoom_to_bookmark 9 10						;the shieldwall
+	
+	battle_wait 7.5
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	camera_position_at_bookmark 9						;the shieldwall
+	
+	undefine_unit_group group1
+	undefine_unit_group group2
+	
+	unit_immediate_place william 530.867, 331.003, 33, 15
+	unit_immediate_place knights1 449.630, 383.663, 33, 20
+	unit_immediate_place knights2 477.526, 367.219, 33, 20
+	unit_immediate_place knights3 504.310, 349.166, 33, 20
+	unit_immediate_place knights4 552.909, 317.125, 33, 20.000
+	unit_immediate_place knights5 578.648, 299.050, 33, 20.000
+	unit_immediate_place knights6 604.236, 282.207, 33, 20.000
+	unit_immediate_place infantry1 483.324, 395.167, 33, 16.000
+	unit_immediate_place infantry2 500.066, 384.702, 33, 16.000
+	unit_immediate_place infantry3 516.117, 374.345, 33, 16.000
+	unit_immediate_place infantry4 532.739, 363.660, 33, 16.000
+	unit_immediate_place infantry5 548.914, 353.384, 33, 16.000
+	unit_immediate_place infantry6 564.782, 342.759, 33, 16.000
+	unit_immediate_place infantry7 580.577, 332.127, 33, 16.000
+	unit_immediate_place infantry8 596.757, 321.487, 33, 16.000
+	unit_immediate_place infantry9 612.922, 310.590, 33, 16.000
+	unit_immediate_place archer1 490.471, 405.242, 33, 36.000
+	unit_immediate_place archer2 529.542, 379.452, 33, 36.000
+	unit_immediate_place archer3 567.691, 353.614, 33, 36.000
+	unit_immediate_place archer4 607.185, 327.239, 33, 36.000
+	
+	battle_wait 0.1
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	unit_order_move_to_orientation  archer1 505.123, 434.847, 36.000, 33 run
+	unit_order_move_to_orientation  archer2 544.194, 409.057, 36.000, 33 run
+	unit_order_move_to_orientation  archer3 582.343, 383.219, 36.000, 33 run
+	unit_order_move_to_orientation  archer4 621.837, 356.844, 36.000, 33 run
+	
+	battle_wait 2
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	play_sound_event HASTINGS_NARRATOR_5 tag = HASTINGS_NARRATOR_5
+	
+	
+	
+	battle_wait 3
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	camera_position_at_bookmark 21					;view from shieldwall
+	
+	battle_wait 3
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+;	unit_order_move_to_orientation  william 545.519, 360.608, 15, 33
+;	unit_order_move_to_orientation  knights1 464.282, 413.268, 20.000, 33
+;	unit_order_move_to_orientation  knights2 492.178, 396.824, 20.000, 33
+;	unit_order_move_to_orientation  knights3 518.962, 378.771, 20.000, 33
+;	unit_order_move_to_orientation  knights4 567.561, 346.730, 20.000, 33
+;	unit_order_move_to_orientation  knights5 593.300, 328.655, 20.000, 33
+;	unit_order_move_to_orientation  knights6 618.888, 311.812, 20.000, 33
+	
+	unit_order_move_to_orientation  william 545.519, 360.608, 13, 33
+	unit_order_move_to_orientation  knights1 464.282, 413.268, 15.000, 33
+	unit_order_move_to_orientation  knights2 492.178, 396.824, 15.000, 33
+	unit_order_move_to_orientation  knights3 518.962, 378.771, 15.000, 33
+	unit_order_move_to_orientation  knights4 567.561, 346.730, 15.000, 33
+	unit_order_move_to_orientation  knights5 593.300, 328.655, 15.000, 33
+	unit_order_move_to_orientation  knights6 618.888, 311.812, 15.000, 33
+	unit_order_move_to_orientation  infantry1 497.976, 424.772, 16.000, 33 ;run
+	unit_order_move_to_orientation  infantry2 514.718, 414.307, 16.000, 33 ;run
+	unit_order_move_to_orientation  infantry3 530.769, 403.950, 16.000, 33 ;run
+	unit_order_move_to_orientation  infantry4 547.391, 393.265, 16.000, 33 ;run
+	unit_order_move_to_orientation  infantry5 563.566, 382.989, 16.000, 33 ;run
+	unit_order_move_to_orientation  infantry6 579.434, 372.364, 16.000, 33 ;run
+	unit_order_move_to_orientation  infantry7 595.229, 361.732, 16.000, 33 ;run
+	unit_order_move_to_orientation  infantry8 611.409, 351.092, 16.000, 33 ;run
+	unit_order_move_to_orientation  infantry9 627.574, 340.195, 16.000, 33 ;run
+	
+	
+	battle_wait 4
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	camera_position_at_bookmark 10						;normans move to battlestarts
+	
+	battle_wait 1
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	play_sound_event HASTINGS_NARRATOR_6 tag = HASTINGS_NARRATOR_6
+	
+	
+	
+	battle_wait 5
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+;	unit_order_move_to_orientation  william 545.519, 360.608, 25.000, 33 run
+;	unit_order_move_to_orientation  knights1 464.282, 413.268, 30.000, 33 run
+;	unit_order_move_to_orientation  knights2 492.178, 396.824, 30.000, 33 run
+;	unit_order_move_to_orientation  knights3 518.962, 378.771, 30.000, 33 run
+;	unit_order_move_to_orientation  knights4 567.561, 346.730, 30.000, 33 run
+;	unit_order_move_to_orientation  knights5 593.300, 328.655, 30.000, 33 run
+;	unit_order_move_to_orientation  knights6 618.888, 311.812, 30.000, 33 run
+	
+	
+;	battle_wait 5
+	
+	camera_position_at_bookmark 11						;over normans toward shieldwall
+	
+	battle_wait 1
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	play_sound_event HASTINGS_NARRATOR_7 tag = HASTINGS_NARRATOR_7
+	
+	
+	
+	battle_wait 9
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	camera_position_at_bookmark 12						;teh Duke!
+	
+	battle_wait 1
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	camera_zoom_to_bookmark 4 2							;duke closeup
+	
+	play_sound_event HASTINGS_NARRATOR_8 tag = HASTINGS_NARRATOR_8
+	
+	
+	
+	battle_wait 6
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	camera_position_at_bookmark 13						;behind duke toward shieldwall
+	
+	unit_taunt harold
+	unit_taunt huscarl1_(leofwine)
+	unit_taunt huscarl2_(gyrth)
+	unit_taunt huscarl3_(centre)
+	unit_taunt huscarl4_(bodyguard)
+	unit_taunt fyrd1
+	unit_taunt fyrd2
+	unit_taunt fyrd3
+	unit_taunt fyrd4
+	unit_taunt fyrd5
+	unit_taunt fyrd6
+	unit_taunt fyrd7
+	unit_taunt fyrd8
+	unit_taunt fyrd9
+	unit_taunt fyrd10
+	unit_taunt fyrd11
+	unit_taunt fyrd12
+	unit_taunt fyrd13
+	unit_taunt fyrd_militia1
+	unit_taunt fyrd_militia2
+	
+	battle_wait 5
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	camera_position_at_bookmark 15						;taunting closeup
+	
+	battle_wait 1
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	unit_immediate_place william 545.519, 360.608, 33, 13.000
+	unit_immediate_place knights1 464.282, 413.268, 33, 15.000
+	unit_immediate_place knights2 492.178, 396.824, 33, 15.000
+	unit_immediate_place knights3 518.962, 378.771, 33, 15.000
+	unit_immediate_place knights4 567.561, 346.730, 33, 15.000
+	unit_immediate_place knights5 593.300, 328.655, 33, 15.000
+	unit_immediate_place knights6 618.888, 311.812, 33, 15.000 
+	unit_immediate_place infantry1 497.976, 424.772, 33, 16.000
+	unit_immediate_place infantry2 514.718, 414.307, 33, 16.000
+	unit_immediate_place infantry3 530.769, 403.950, 33, 16.000
+	unit_immediate_place infantry4 547.391, 393.265, 33, 16.000
+	unit_immediate_place infantry5 563.566, 382.989, 33, 16.000
+	unit_immediate_place infantry6 579.434, 372.364, 33, 16.000
+	unit_immediate_place infantry7 595.229, 361.732, 33, 16.000
+	unit_immediate_place infantry8 611.409, 351.092, 33, 16.000
+	unit_immediate_place infantry9 627.574, 340.195, 33, 16.000
+	unit_immediate_place archer1 505.123, 434.847, 33, 36.000
+	unit_immediate_place archer2 544.194, 409.057, 33, 36.000
+	unit_immediate_place archer3 582.343, 383.219, 33, 36.000
+	unit_immediate_place archer4 621.837, 356.844, 33, 36.000
+	
+	
+	
+	unit_taunt harold
+	unit_taunt huscarl1_(leofwine)
+	unit_taunt huscarl2_(gyrth)
+	unit_taunt huscarl3_(centre)
+	unit_taunt huscarl4_(bodyguard)
+	unit_taunt fyrd1
+	unit_taunt fyrd2
+	unit_taunt fyrd3
+	unit_taunt fyrd4
+	unit_taunt fyrd5
+	unit_taunt fyrd6
+	unit_taunt fyrd7
+	unit_taunt fyrd8
+	unit_taunt fyrd9
+	unit_taunt fyrd10
+	unit_taunt fyrd11
+	unit_taunt fyrd12
+	unit_taunt fyrd13
+	unit_taunt fyrd_militia1
+	unit_taunt fyrd_militia2
+	
+	
+	
+	play_sound_event HASTINGS_NARRATOR_9 tag = HASTINGS_NARRATOR_9
+	
+	
+	
+	battle_wait 5
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	camera_position_at_bookmark 14						;shieldwall gives normans a nasty taunting
+	
+	battle_wait 6
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	camera_position_at_bookmark 16						;overview of both armies
+	
+	battle_wait 1
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	
+	
+	play_sound_event HASTINGS_NARRATOR_10 tag = HASTINGS_NARRATOR_10
+	
+;set_camera_bookmark 1, 533.042, 87.7326, 365.417 540.61, 88.5847, 371.226		;pan back from duke
+set_camera_bookmark 1, 542.156, 89.0309, 360.426 549.732, 88.4568, 366.953	
+	battle_wait 3
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	camera_position_at_bookmark 1						;teh duke
+;pause_battle
+
+;	battle_wait 1
+	battle_wait 6
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+;	camera_zoom_to_bookmark 1 5							;pan back from duke
+	
+;	battle_wait 9
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+		
+	
+	
+	
+
+		
+				set_counter player_not_escape 1	  
+				set_counter battle_start 1	  
+
+
+
+
+
+
+		
+			terminate_monitor
+			end_monitor
+		
+		
+		
+			; *********************************************************************************************
+			; ********************* END OF INTRO SEQUENCE MONITOR *****************************************
+			; *********************************************************************************************
+		
+
+	while I_InBattle
+	end_while
+
+end_script
+
+

@@ -1,0 +1,93 @@
+{
+  "hullName": "RZ-1 A-wing",
+  "hullId": "sw_awing",
+  "hullSize": "FIGHTER",
+  "spriteName": "graphics/ships/fighters/sw_awing.png",
+  "style": "LOW_TECH",
+  "height": 41,
+  "width": 30,
+  "center": [15, 20.5],
+  "collisionRadius": 23,
+  "shieldCenter": [0, 0],
+  "shieldRadius": 23.5,
+  "viewOffset": 0,
+  "builtInMods": [
+    "sw_deflector_shield"
+  ],
+  "weaponSlots": [
+    {
+      "id": "WS0001",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": 0,
+      "locations": [4, 14]
+    },
+    {
+      "id": "WS0002",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": -0,
+      "locations": [4, -14]
+    },
+    {
+      "id": "WS0003",
+      "size": "SMALL",
+      "type": "MISSILE",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": 0,
+      "locations": [20, 3]
+    },
+    {
+      "id": "WS0004",
+      "size": "SMALL",
+      "type": "MISSILE",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": -0,
+      "locations": [20, -3]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-18, 7],
+      "length": 5,
+      "width": 5,
+      "angle": 180,
+      "contrailSize": 10,
+      "style": "LOW_TECH"
+    },
+    {
+      "location": [-18, -7],
+      "length": 5,
+      "width": 5,
+      "angle": -180,
+      "contrailSize": 10,
+      "style": "LOW_TECH"
+    }
+  ],
+  "bounds": [
+    20, -4.5,
+    15, -4.5,
+    3, -11.5,
+    3, -14.5,
+    -4, -14.5,
+    -4, -9.5,
+    -20, -9.5,
+    -20, -4.5,
+    -15, -4.5,
+    -15, 4.5,
+    -20, 4.5,
+    -20, 9.5,
+    -4, 9.5,
+    -4, 14.5,
+    3, 14.5,
+    3, 11.5,
+    15, 4.5,
+    20, 4.5
+  ]
+}

@@ -1,0 +1,39 @@
+[33m00bd11b[m perf: Optimize page loading performance - reduce scripts and improve loader
+[33ma4918d5[m fix: Add data-i18n attributes to index.html for language switching functionality
+[33m17d63f8[m Fix duplicate script include and add comprehensive API keys documentation
+[33m7524c81[m feat: Add comprehensive low/medium priority features - PWA enhancements, virtual scrolling, lazy loading, accessibility, error handling, mobile optimization, responsive layouts, AI habitability enhancement, payment integration, database performance optimization
+[33m758a960[m Feature: Add NASA Mission Simulations - All major LOW priority features complete
+[33m6393d0f[m Feature: Add Blockchain NFT Integration and AI Habitability Analysis - More LOW priority features complete
+[33m8fa3956[m Feature: Add Planet Surface Visualization, Orbital Mechanics Simulation, AR Planet Viewing, and Planet Trading Marketplace - More LOW priority features complete
+[33m94ab00c[m Feature: Add ESA integration, enhance SpaceX API, and improve theme toggle with multiple themes - More LOW priority features complete
+[33m9706a71[m Feature: Enhance VR mode with hand tracking and teleportation, add Two-Factor Authentication - MEDIUM/LOW priority features complete
+[33m389e812[m Feature: Enhance 3D visualization, add user analytics, and NASA API integration - MEDIUM/LOW priority features
+[33m93b1528[m Add new utility features: Password Generator, Unit Converter, and Timer & Stopwatch
+[33mca8b59e[m Resolve merge conflict: prefer GitLab repo version
+[33m1df2481[m[33m ([m[1;35mrefs/stash[m[33m)[m On main: Local feature updates before pull
+[33mc13bed6[m Comprehensive code review, documentation, and feature foundations
+[33m7fe86e4[m Add bookmark manager, quick notes, reading progress, and notification center features
+[33m3b20a18[m Fix i18n language switcher and add advanced search features with autocomplete
+[33m2a928c1[m Fix navigation menu visibility, add code review, and implement user feedback system
+[33m834bdf7[m Add advanced features and fix code logic issues
+[33mb06516b[m Add advanced features and fix code logic issues
+[33m7242377[m Implement high and medium priority features: i18n multi-language support, rate limiting, and code splitting
+[33m46b553e[m Implement medium and low priority features: Dashboard widgets, Statistics, Trends, Lazy loading, AI descriptions, NL queries, API cache
+[33m8edb2db[m Implement high priority features: Animation controls, User analytics, 2FA, Security enhancements
+[33meee9be3[m Implement low priority features: Theme toggle, Analytics, Keyboard shortcuts, Accessibility, Education, Color schemes
+[33m84a2b9f[m Fix duplicate scripts in index.html, add music player script to about.html, fix extra div in games.html
+[33m343550f[m chore: bust caches for supabase scripts
+[33m35896b4[m feat: wire mailing list modal to supabase
+[33mbaa587d[m Restore corrupted index.html header and structure
+[33m10af675[m Fix broken index.html header and add Ruffle integration script
+[33m70b147b[m Restore menu button via navigation.js and ensure loader presence on all pages
+[33ma0e392b[m Restore navigation menu to all pages
+[33m63c6947[m Implement PWA features and ensure loader consistency across all pages
+[33me5e3dc3[m Restored missing HTML header in index.html
+[33mbb197bb[m Fix broken header in index.html
+[33md2e217f[m Add loading screen (loader.js) and fix title on homepage
+[33m70ac8a4[m Add missing animations and music player scripts to homepage
+[33ma865cda[m Implement 3D planet visualization and fix homepage styling
+[33m4712af4[m Implement Progressive Web App (PWA) features
+[33mea40aca[m Add real mailing list modal with email subscription form
+[33me26c5f9[m Fresh repository: All large files removed, ready for external media project

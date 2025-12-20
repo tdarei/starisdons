@@ -1,0 +1,34 @@
+{
+  "variantId": "domres_picket_attack2",
+  "hullId": "domres_picket",
+  "displayName": "Attack",
+  "goalVariant": false,
+  "fluxCapacitors": 10,
+  "fluxVents": 0,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "armoredweapons",
+    "heavyarmor",
+    "reinforcedhull"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 002": "shredder"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 001": "lightag",
+        "WS 003": "lightag"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

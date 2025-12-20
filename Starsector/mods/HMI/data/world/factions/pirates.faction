@@ -1,0 +1,45 @@
+{
+	"shipNameSources":{
+		"HAZARD":1,
+	},
+	"hullFrequency":{
+		"tags":{
+			"hmi_bp":5,
+			"hmi_junk_bp":0.1,
+		},
+		"hulls":{
+		"mulligan":0,
+		"mulligan_pirates":10,
+		"fishkill":0.1,
+		"junk":0.1,
+		"hmi_locomotive":0.05,	
+		"dominator_P":0.5,	
+		},
+	},
+		"shipsWhenImporting":{
+		"tags":["hmi_bp", "hmi_junk_bp"],
+	},
+	"knownShips":{
+		"tags":["hmi_bp", "hmi_junk_bp"],
+		"hulls":[
+		"junk",
+		"fishkill",
+		"brasher",
+		"hmi_locomotive",		
+		],
+	},
+	
+	"knownFighters":{
+		"tags":["hmi_bp"],
+	},		
+	"knownWeapons":{
+		"tags":["hmi_bp"],
+		"weapons":[
+		"rad_gun",],
+	},	
+	
+},
+
+
+
+

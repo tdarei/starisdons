@@ -1,0 +1,6 @@
+<SYNC Start=73000>
+<P Class=ENUSCC>Venice_Outro_Win_1
+<SYNC Stop=86900>
+<SYNC Start=35000>
+<P Class=ENUSCC>Venice_Outro_Win_2
+<SYNC Stop=52200>

@@ -1,0 +1,13 @@
+{
+  "displayName": "Standard",
+  "fluxCapacitors": 0,
+  "fluxVents": 0,
+  "goalVariant": true,
+  "hullId": "station_domres_toprightright",
+  "hullMods": [],
+  "permaMods": [],
+  "quality": 0,
+  "variantId": "station_domres_toprightright_variant",
+  "weaponGroups": [],
+  "wings": []
+}

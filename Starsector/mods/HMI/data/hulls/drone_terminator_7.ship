@@ -1,0 +1,74 @@
+{
+  "bounds": [
+    13,
+    0,
+    -3,
+    8,
+    -6,
+    0,
+    -3,
+    -8
+  ],
+  "builtInMods": [
+    "no_weapon_flux"
+  ],
+  "builtInWings": [],
+  "center": [
+    10,
+    10
+  ],
+  "collisionRadius": 20,
+  "engineSlots": [
+    {
+      "angle": 180,
+      "contrailSize": 21,
+      "length": 34.5,
+      "location": [
+        -5,
+        -0
+      ],
+      "style": "CUSTOM",
+      "styleId": "Terminator_purple",
+      "width": 21
+    }
+  ],
+  "height": 24,
+  "hullId": "drone_terminator_7",
+  "hullName": "Terminator Drone (Mk VII)",
+  "hullSize": "FIGHTER",
+  "shieldCenter": [
+    2,
+    0
+  ],
+  "shieldRadius": 15,
+  "spriteName": "graphics/ships/drones/drone_phase.png",
+  "style": "HIGH_TECH",
+  "viewOffset": 0,
+  "weaponSlots": [
+    {
+      "angle": 0,
+      "arc": 352,
+      "id": "WS 001",
+      "locations": [
+        7,
+        0
+      ],
+      "mount": "HIDDEN",
+      "size": "MEDIUM",
+      "type": "ENERGY"
+    },
+    {
+      "angle": 0,
+      "arc": 360,
+      "id": "WS 002",
+      "locations": [
+        2,
+        0
+      ],
+      "mount": "HIDDEN",
+      "size": "SMALL",
+      "type": "ENERGY"
+    }
+  ],
+  "width": 20
+}

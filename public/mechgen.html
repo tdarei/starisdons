@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark">
+    <title>MechGen | Adriano To The Star</title>
+    <link rel="stylesheet" href="fonts/fonts.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="navigation.js" defer></script>
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        main {
+            min-height: 100vh;
+            padding: 100px 20px 20px;
+            box-sizing: border-box;
+        }
+
+        .mechgen-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .mechgen-header {
+            margin-bottom: 18px;
+        }
+
+        .mechgen-header h1 {
+            margin: 0 0 8px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .mechgen-header p {
+            margin: 0;
+            opacity: 0.8;
+            line-height: 1.5;
+        }
+
+        .mechgen-frame {
+            width: 100%;
+            height: calc(100vh - 220px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            background: rgba(0, 0, 0, 0.25);
+        }
+
+        .mechgen-note {
+            margin-top: 14px;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.95rem;
+            opacity: 0.8;
+        }
+
+        code {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 2px 6px;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div class="mechgen-container">
+            <div class="mechgen-header">
+                <h1>MechGen</h1>
+                <p>
+                    MechGen runs as a local Python service. This page embeds the MechGen UI from the running backend.
+                </p>
+            </div>
+
+            <div class="mechgen-note" style="margin-top: 0;">
+                <div style="display:flex; flex-wrap: wrap; gap: 10px; align-items: center;">
+                    <label for="mechgen-backend-url" style="min-width: 120px;">Backend URL</label>
+                    <input id="mechgen-backend-url" type="text" placeholder="http://localhost:8001/" style="flex: 1; min-width: 240px; padding: 10px 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.18); background: rgba(0,0,0,0.35); color: #fff; outline: none;" />
+                    <button id="mechgen-connect" type="button" style="padding: 10px 14px; border-radius: 10px; border: 1px solid rgba(186,148,79,0.5); background: rgba(186,148,79,0.2); color: #ba944f; cursor: pointer; font-weight: 600;">Connect</button>
+                    <button id="mechgen-reset" type="button" style="padding: 10px 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.18); background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.85); cursor: pointer;">Reset</button>
+                    <a id="mechgen-open" href="#" target="_blank" rel="noopener noreferrer" style="padding: 10px 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.18); background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.85); text-decoration: none;">Open</a>
+                </div>
+                <div id="mechgen-status" style="margin-top: 10px; color: rgba(255,255,255,0.75);"></div>
+            </div>
+
+            <iframe id="mechgen-frame" class="mechgen-frame" title="MechGen Web"></iframe>
+
+            <div class="mechgen-note">
+                Start the backend (from the repo root):
+                <br>
+                <code>python -m uvicorn mechgen_web.app.main:app --reload --port 8001</code>
+                <br>
+                Then set <code>GEMINI_API_KEY</code> in <code>.env</code>.
+            </div>
+        </div>
+    </main>
+
+    <script>
+        (function () {
+            var frame = document.getElementById('mechgen-frame');
+            if (!frame) return;
+
+            var input = document.getElementById('mechgen-backend-url');
+            var connectBtn = document.getElementById('mechgen-connect');
+            var resetBtn = document.getElementById('mechgen-reset');
+            var openLink = document.getElementById('mechgen-open');
+            var status = document.getElementById('mechgen-status');
+
+            function setStatus(message, color) {
+                if (!status) return;
+                status.textContent = message || '';
+                status.style.color = color || 'rgba(255,255,255,0.75)';
+            }
+
+            function normalizeUrl(raw) {
+                var u = (raw || '').trim();
+                if (!u) return '';
+                if (!/^https?:\/\//i.test(u)) {
+                    u = 'http://' + u;
+                }
+                if (!u.endsWith('/')) u += '/';
+                return u;
+            }
+
+            function isLocalBackendUrl(u) {
+                return /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?\//i.test(u);
+            }
+
+            function applyUrl(raw) {
+                var u = normalizeUrl(raw);
+
+                if (input) input.value = u;
+
+                if (openLink) {
+                    if (u) {
+                        openLink.href = u;
+                        openLink.style.pointerEvents = 'auto';
+                        openLink.style.opacity = '1';
+                    } else {
+                        openLink.href = '#';
+                        openLink.style.pointerEvents = 'none';
+                        openLink.style.opacity = '0.65';
+                    }
+                }
+
+                if (!u) {
+                    frame.style.display = 'none';
+                    setStatus('Enter a backend URL and click Connect. You can also pass ?mechgen_url=... in the page URL.', 'rgba(255,255,255,0.75)');
+                    return;
+                }
+
+                try { localStorage.setItem('MECHGEN_WEB_URL', u); } catch (e) { }
+
+                frame.style.display = '';
+                frame.src = u;
+
+                if (window.location.protocol === 'https:' && u.startsWith('http://')) {
+                    setStatus('Connected, but this page is HTTPS. Some browsers may block an HTTP backend in the iframe. Use HTTPS or click Open.', 'rgba(255, 193, 7, 0.95)');
+                } else {
+                    setStatus('Connected: ' + u, '#ba944f');
+                }
+            }
+
+            var isLocalHost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+            var params = new URLSearchParams(window.location.search || '');
+            var paramUrl = (params.get('mechgen_url') || params.get('backend') || '').trim();
+            var storedUrl = '';
+            try { storedUrl = (localStorage.getItem('MECHGEN_WEB_URL') || '').trim(); } catch (e) { }
+            var defaultUrl = isLocalHost ? 'http://localhost:8001/' : 'https://mechgen-web-l44zsrcfva-nw.a.run.app/';
+            var initialUrl = (window.MECHGEN_WEB_URL || paramUrl || storedUrl || defaultUrl || '').trim();
+
+            if (connectBtn) {
+                connectBtn.addEventListener('click', function () {
+                    applyUrl(input ? input.value : '');
+                });
+            }
+
+            if (resetBtn) {
+                resetBtn.addEventListener('click', function () {
+                    try { localStorage.removeItem('MECHGEN_WEB_URL'); } catch (e) { }
+                    if (input) input.value = '';
+                    applyUrl('');
+                });
+            }
+
+            applyUrl(initialUrl);
+        })();
+    </script>
+</body>
+
+</html>

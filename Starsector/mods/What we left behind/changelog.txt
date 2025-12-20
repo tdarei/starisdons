@@ -1,0 +1,752 @@
+5.0.0BETAa
+NOT SAVE COMPATIBLE
+
+Magnetar guardian now has rift torps
+    You asked for this
+Magnetar guard fleets now ignore your comms
+
+Historian now has WWLB dialogue
+Certain dialog options now adjust your ethos
+
+The world now reacts to your exploration in the magnetar system
+    The hegemony will get angry if you use a fractal core in a colony
+        This triggers a end-game crisis, so be ready
+
+Spearhead health and speed buffed
+
+Minecart/Pickhead buffed
+
+4.0.0
+NOT SAVE COMPATIBLE
+
+!!SATELLITE FP AND DERELICT ESCORT SPAWN ON PATROL DEFAULTS CHANGED! RESET LUNASETTINGS TO DEFAULT!!
+
+Magnetar terrain tooltip now tells you when the next pulse is
+You can now plot a course onto things while hacking
+    This includes the hack target!
+Interdict progress needed for full protection reduced to 60%
+    Timing is easier
+
+The quest can now only start if the galatia questline is done
+
+Testing grounds mission turned into a real mission
+
+New weapon: Heavy flak cannon
+    Large ballistic
+    1 second fire delay
+    Blast radius is huge - can wipe out entire fighter wings
+
+Derelict escorts no longer have a invisible burn mult, instead...
+New ship: Ramjet-Class Tug
+    Frigate
+    Derelict - Only spawns in derelict escort fleets
+        Always makes sure they have at least 19 burn in sustained burn
+    Has a juiced up drive field stabilizer that increases burn an extra +1 if sustained burn is active
+
+    More expensive to run than the Ox
+
+New ship: Spearhead-Class Battletug
+    Cruiser
+
+    Has everything the ramjet has, as well as a drive field stabilizer (so +3 burn in total)
+    Ship system - Interdiction array
+        Disables a number of enemy engines
+
+    QUITE expensive to run - 34 supplies a month
+
+Outguard resprited and redesigned
+
+New wings
+    Pickhead-Class Drone Interceptor
+
+        3000 engagement range
+        4 front-facing mining lasers
+        Low health
+        Fast replacement rate
+
+        Used in the outguard exclusively
+    Minecart-Class Cargo Shuttle
+
+        2000 engaegment range
+
+        4 wide-arc vulcans and 1 scatter missile
+        Very high HP (2000)
+        Medium replacement rate
+
+        Used in the outguard
+        Intended use: Brick
+
+Pinprick rebalanced to lose lock on close misses
+
+Fixed a rare crash on sector gen
+
+Renamed slaved omega core to fractal core
+
+Fixed a bug where baryon emitters would appear as being unbuildable
+Planetary baryon emitters now have upkeep
+
+By default, FRCs no longer spawn escorts on patrols
+
+3.10.0
+NOT SAVE COMPATIBLE IF YOU HAVE A OVERGROWN NANOFORGE ITEM - DELETE IT AND READD IT TO UPDATE
+
+Fixes a bug where the Kanta onslaught and atlas could be obtained through arms dealers
+Condensed overgrown nanoforge "installed in" into one word
+
+Design types now have proper colors
+
+Overgrown nanoforge rebalanced
+    Item
+        All modifiers are now either flat or a mult, no inbetween
+            Except the production budget mod
+        Fleet size mult is now 3x, down from 5x
+            Same for production budget mult
+        Upkeep reduced
+        Now increases market hazard rating
+    Condition
+        Spreading, culling, etc. now 30% slower
+            If you want that item, you have to work for it
+
+Repositioned magnetar to be away from RAT's abyss
+Amount of omega weapons in magnetar heavily reduced
+    Special fleets no longer drop their weapons
+Magnetar mothership fleet made stronger
+
+Satellite weapons redesigned
+    Now missile-centric
+    Only one loadout
+        Pilums on the core, a devil torpedo on the connector, and 6 pinpricks across the combat modules (and 2 hurricanes)
+
+New weapons
+    Only found on satellites
+
+    Devil-class VRLT (Very long-ranged torpedo)
+        Large mount
+        3000 HE
+        12000 Range
+        Moderately fast
+        Horrible tracking
+        Long cooldown
+
+        Artillery - Your backline ships fire it and it will invariably reach an enemy target (it might not hit)
+
+    Pinprick-class VRLM
+        Medium mount
+        Bursts of 8
+        220 Frag
+        12000 Range
+        Moderate cooldown
+
+        Extreme speed and okay tracking
+
+        Long-ranged pressure - Either used to kill ships with stripped armor, or pressure ships to keep shields up
+
+Fixed a bug where the overgrown nanoforge focus button didnt appear
+
+Fixed all instances of kanta being not capitalized
+
+3.9.0
+
+Added a lunalib setting for condensing all overgrown nanoforge intel into one tab
+
+3.8.0
+
+Added a lunalib setting for disabling the generation of the magnetar system
+Fixed a bug where slaved omega cores would crash the game if applied to a market with upkeep-less industries
+
+3.7.1
+SAVE COMPATIBLE
+
+Fixes a crash with the warlords warship hullmod (WHY CANT YOU EXCEED 9 HIGHLIGHTS???)
+Stellar shields now clarify that you can click on them to automatically shelter behind them
+Clarifies how the pulse blocking works in the magnetar intel
+Clarifies how the astronomical barrier projector works
+
+Fixed a bug where the astronomical barrier projector would say you have too many baryon emitters and still let you build
+
+3.7.0
+SAVE COMPATIBLE
+
+The funny core
+    Increased range-matching boost from 250 to 300
+    Gave it a special combat chatter personality
+    New colony skill: +1 max industry
+Magnetar defenders
+   Captains are now of the appropriate level
+   Reduced autofit randomization chance
+   AI cores now fully integrated
+
+   Omega ships now take more points from the fleet they generated in
+
+   Mothership defenders now have more ships
+   Mothership now has an extra missile wing
+   Reasioning: Destroying the mothership removes the fleet spawns, making it a lot easier to traverse the system
+
+Fixed a bug where magnetar pulses would get the wrong params and cause a save load crash
+Renamed the magnetar quest stages so it tells you to find the artifact rather than the system
+
+Kanta atlas mk2 now has 300% accel/decel speed
+
+3.6.0:
+SAVE COMPATIBLE
+
+Rebranded to "what we left behind"
+
+Run niko_MPC_genSpecialContent if updating
+
+Fixed a rare crash with derelict escorts
+
+Adds a terrifying secret
+    Adds questline that points you to it - requires wormhole scanner and level 14
+
+3.5.0:
+PROBABLY SAVE COMPATIBLE? DEPENDS ON IF YOU HVAE A BARYON EMITTER ANYWHERE
+
+Make sure to run niko_MPC_genSpecialContent if updating
+
+Derelict escort
+    Fleets may now enter abyssal hyperspace
+
+Defense Satellites
+    Accessability decrement: 30% -> 10%
+        Was arbitrary all this time, I just think its too high
+
+    Variants reworked to get rid of machine guns in favor of either more HE or frag
+    Num bays reduced to 2
+
+    Weapon arcs reworked - now have a very notable blindspot behind the core
+
+    Frontal plates size changed to cruiser, connector module changed to frigate
+    Removed frontal armor plating, because it was honest to god pointless
+    Swarm variant removed pending refactor
+    Plate overclocked targetting duration: 5s -> 7s
+
+Hyperspace Bipartisan
+    Hazard rating: +75% -> +50%
+        Its super rare, it should be better
+
+General
+    Removed the duplication of transponder and go dark abilities
+        Added code to remove the abilities for this version only
+    Skulioda FP: 70 -> 100
+    Projected solar shielding energy reduction: 10% -> 30%
+    Projected solar shielding description updated
+
+    Nerfed baryon emitters can now randomly generate
+        Reflavored baryon emitters while I was at it
+        You can generate these through niko_MPC_genSpecialContent if updating
+    Baryon emitters now only have 90% protection
+        50% for the ones that can randomly spawn
+    Baryon emitter icons are now properly transparent
+    Baryon emitters, as well as the pristine research station, now properly apply their effect in-combat
+        MCTE users may rejoice
+
+3.4.0:
+SAVE COMPATIBLE
+
+Overgrown Nanoforge
+    Clarified that overgrown nanoforges give a very powerful item when culled
+    Added a button to the core UI that toggles the built-in commodity weighting
+        TLDR is that supply adjustments previously had a super high chance of picking a commodity the nanoforge already produces
+        Now you can toggle it
+    Can now generate with indevo's ship components
+
+Ultra-Magnetic fields
+    Fixed a bug where ultra-magnetic fields would have null names (and cause crashes)
+
+Derelict Escort
+    Colonized FP increased to 50
+    Timeout increased to 60 days
+
+    Changes the derelict escort target names to be generic, to not spoil what theyre following
+        Close-range escorting still says the name since its pretty obvious most of the time
+
+    Escort fleets now force the simulation of fleets they escort
+        Otherwise, youll never see a trade fleet in the core worlds with an escort
+        Can be disabled in lunalib if save bloat/performance is a problem
+
+    Added a lunasetting to disallow escorts from spawning on patrols
+
+    Added new ability AI to escort fleets
+        Will now go dark if their target has gone dark
+        Will keep transponder onto the state of their target's transponder
+
+Mod interactions
+    Conditions now properly interact with AOTD industries
+    Special treatment in a few cases for the military garrison (overgrown nanoforges, toteliacs)
+
+3.3.3:
+SAVE COMPATIBLE
+
+Fixed a bug where XIV legions would spawn with custom smods (fuck)
+    If XIV legions are still spawning with this variant after updating, try running niko_MPC_genericCommand
+    You can test this by running AddShip legion_xiv_Elite and investigating the ship the game adds to your fleet
+
+Reduced spawnrate of FTC districts, spy arrays, meson fields and hypermagnetic fields
+
+3.3.2:
+SAVE COMPATABLE
+
+New condition: Frontier reinforcement center
+    Fairly rare
+    Prioritizes un-inhabitable planets over inhabitable ones
+
+    Spawns a small escort fleet for all friendly/trade fleets in system
+        Scales with fleet size
+        The fleets follow for 30-35 days with no distance limit
+        The fleets have a huge burn bonus so they can always keep up with their target
+        Will join their targets in combat
+
+        Basically, Tiandong two
+
+    Has a timeout period between fleets to prevent fleet spam
+    Once fleets are done and returning, they ignore all fleets
+        You cant get infinite felet strength this way, sorry
+
+    Decreases accessability significantly
+    Somewhat increases accessability of all friendly markets in-system
+        Not just your own
+
+    +25% hazard rating
+
+Fixed a bug with satellite discovery
+Made a satellite debug string more clear
+Clarified that the error toggle is in lunasettings
+
+Toteliac food production increased by 1
+
+Skulioda's variant has been changed to wreak havoc on MCTE users
+    I'm the author of MCTE, I get to do this
+    Only applies if MCTE is enabled as well as the relevant effect
+    Prepare yourself for thumpers, needlers, and talons
+    Skolioda is now reckless to facilitate this
+        Again, MCTE has to be enabled
+
+Reduced the size of Skulioda's fleet as well as the num of defender fleets
+
+The baryon field structure now has a little upkeep
+
+Reduced the hyperspace topography value of ultra magfields and meson fields
+
+3.3.1:
+SAVE COMPATIBLE
+
+Fixes being able to scan ANY jump point as a bipartisan jump point
+Fixes UNGP storm rider not applying to bipartisan hyperstorms
+
+3.3.0:
+SAVE COMPATIBLE
+
+New condition: Toteliac Habitat
+    Carnivorous fauna
+    Alpha predators, extremely invasive
+    +50% hazard
+    Military bases suppress the hazard rating and generate food/luxury goods, as long as supplies/fuel are in good supply
+
+    Only generates on worlds that could feasibly harbor these creatures
+    As such, they are rare, at 99% of worlds are uninhabitable wastelands
+        Even on habitable worlds they are uncommon
+
+STC districts
+    Discover value reduced
+
+Spy Arrays
+    Discover value reduced
+
+Added config for satellites blocking same-faction fleets
+    Defaults to off
+
+Ultra-Magnetic Field
+    Now reduces refining upkeep by 80%
+    Thematic
+
+Hyperspace Bipartisan
+    No longer spawns on habitable worlds
+        How can you survive exposure to a goddamn hypercloud
+    Added clarification to the condition tooltip showing what effects are disabled upon leaving the hypercloud
+        Also hints that a planetary shield works
+
+Added a secret in the deep expanse of space
+    Tip: Bring your sunscreen, because they already have SPF 2000
+    Made a save before this? Don't worry, just run niko_MPC_genSpecialContent
+
+Fixed typos
+
+3.2.0:
+PROBABLY SAVE COMPATIBLE
+
+New terrain: Meson field
+    Magfield-like: Same texture, has storms, is a ring
+    Colored piss yellow
+    Has a wider orbit than magfields so they dont overlap
+
+    Spawns randomly via procgen
+
+    The normal meson field significantly increases the sensor profile of any fleets inside it
+    Meson storms are small, long-lasting, and have a fun little effect:
+    Instead of increasing sensor profile, they decrease it and massively increase sensor strength
+        Risk reward system: You find one in a remnant system and try to get into the storm to sensor burst and see everything around you
+
+All terrain can now be scanned for hyperspace topography
+    Hyperspace bipartisan
+        Scan the jump points, the clouds are weirdly inconsistant
+    Ultramagnetic field
+    Meson field
+
+New command: niko_MPC_findTerrainWithId
+FindPlanetsWithCondition changed to niko_MPC_findPlanetsWithCondition
+
+Anti-Asteroid Satellites
+    Added a ability to ground battles: Satellite Barrage
+    Requires friendly satellites over the planet
+    Single industry target
+    For three turns, damages enemy units on the target industry and forces them to be reorganized for at least one turn
+        This reduces their outputted damage and makes them unable to move out of the industry
+        Basically, suppressive fire
+
+    Long cooldown
+    No global cooldown - can be used in conjunction with other abilities
+
+Hyperspace Bipartisan
+    Slipstream detection radius no longer scales on pop size, is now a flat 7 ly
+    Planetary shields now make the market count as not being in the clouds
+
+STC districts
+    Spawn rate reduced
+    Changed defense increase to mult for simplicity
+
+Spy arrays
+    Spawn rate reduced
+    Changed defense increase to mult for simplicity
+    Stealth bonus is now 0.5x - thats half the detected-at range baby
+
+Ultramagnetic field
+    Changed defense increase to mult for simplicity
+
+Updated tips
+
+LunaSettings separated into sections
+
+Bug fixes
+    Fixed a bug where indevo arty stations could be fought in an inappropiate setting by engaging defense satellites
+        Fixed a crash caused by this
+        Defense satellites now take lower rules priority than arty stations
+    Adjust defense overgrown nanoforge effect should now generate
+
+3.1.1:
+SAVE COMPATABLE
+
+Junk handlers no longer try to exceed the maximum amount of junk structures defined in industries (Caused a crash before)
+
+3.1.0:
+PROBABLY SAVE COMPATABLE?
+
+Four new conditions
+    Hyperspace Bipartisan
+        A rift between realspace and hyperspace
+        Creates a ring of deep hyperspace in the planet orbits path
+            Does its best to predict all possible positions the planet could be at if the orbit is recursive
+            If no orbit, just spawns a ring around the planet
+        Spawns a jump point that tightly orbits around the planets radius
+
+        Significantly increases slipstream detection radius, increasing with pop size
+        Significantly increases defense rating
+        +75% hazard, +50% access
+        +3 volatiles production
+
+        Very very rare
+
+    Hypermagnetic field
+        Spawns a massive magnetic field that storms a lot
+            Good for hiding in hostile systems
+
+        Significantly increases defense rating
+        +50% hazard, -25% access
+        Makes mining convert half its ore/rare ore output into metals/transplutonics
+
+        Very rare
+
+    Pre-Collapse STC Districts
+        +3 slipstream detection radius
+        +100 defense rating
+        +1 max burn and +350 sensor range to all friendly/trade fleets in system
+
+        Uncommon
+
+    Pre-Collapse Spy Arrays
+        +200 defense rating
+        +1 stability
+
+        0.7x sensor profile to all friendly/trade fleets in system
+
+        Uncommon
+
+Bug fixes
+    Overgrown nanoforge icon is now properly sized
+
+Satellites
+    2 ways to bypass satellites as things like smuggling were just impossible in places like raesvelg
+
+    Phase Ships
+        Based on the percent of phase ships in your fleet, you have 5 modes
+            Sub 30%-Cant bypass
+            30%+: 3 SP
+            50%+: 2 SP
+            70%+: 1 SP
+            95%+: 0 SP
+
+    ECM
+        Based on the ECM percent of the fleet
+            Yes, the ECM skill works
+            <10%: Cant bypass
+            >10%: 3 SP
+            >=25%: 2 SP
+            >=40%: 1 SP
+
+        Reduces rep with the market owner, massively increases smuggling suspicion, and sends fleets to investigate you
+        Easier to get than phase percent so harsher
+
+Settings
+    Most settings converted to lunasettings
+    Extra overgrown nanoforge options added
+
+General
+    Conditions made more common, across the board
+    Put a .kra file in a compressed archive, massively reducing the mod's filesize
+
+3.0.3:
+Removes the niko_MPC_convertObjectsToEnum command, the game should now automatically fix the bug
+
+3.0.2:
+Fixes intel crashes, use niko_MPC_convertObjectsToEnum command if updating from previous versions
+Makes overgrown nanoforges a bit rarer
+Overgrown nanoforges have 1 less intel tab
+
+3.0.1:
+Update to Starsector 0.97a
+
+3.0.0:
+INCOMPATABLE WITH PREVIOUS SAVES
+Update to Starsector 0.96a-RC10
+
+New condition: Overgrown Nanoforge:
+    A old abandoned industial nanoforge, endlessly expanding in a grey-goo scenario. 
+Adds industry: Overgrown Nanoforge
+    Has a inherent costless and demandless output of goods
+    Will continuously generate structures that augment it's stats
+        Ex. A structure that increases the industry's supply output by 3, but increases upkeep by 2000 credits.
+        A structure that increases accessibility, but lowers fuel output by 1.
+    These structures do not instantly deconstruct, and the process of creation cannot be instantly stopped
+        It takes time and money to do so
+    Prior to construction, the effects of the structures become progressively more known as it nears the end
+        Encourages you to make early judgements on if you want to start destroying it before it's made, at less cost
+    
+    The main industry is only destroyable once all connected structures are destroyed
+        Once destroyed, you receive a unique nanoforge item that massively increases commodity output of any structure it's inserted into,
+        but has various negative effects
+        If installed in heavy industry, increases faction-wide fleet size by 400% but reduces ship quality by 400% as well
+    The growths cease to grow and benefits are unapplied if the visible structure amount exceeds the vanilla cap
+        Sorry grand sector
+    At max structures (NOT ABOVE!), growths will begin to destroy and overtake existing structures
+        A really needy bonsai tree
+        Encourages you to stay on top of it
+        Always targets pop&infra last
+            If it is destroyed, the market decivs
+    Effects
+        Alter Supply: Increases/Decreases core industry output of a random commodity by x amount
+        Alter hazard: Increases hazard by x
+        Alter accessability: Decreases accessability by x
+        Alter stability: Decreases stability by x
+        Alter defense: Decreases ground defense by x
+        Spawn hostile fleets: Periodically spawns a friendly/hostile derelict fleet (no guardians) that patrols the system, up to x fp
+
+    This encourages you to treat this as a sort of bonsai tree, constantly minmaxing the effects, minimizing negatives, maximizing positives
+    Extremely rare - only 1-2 if any will spawn in a given game
+
+Anti-Asteroid Satellites:
+
+Bugfixes
+    Fixed a rare bug taht caused a crash in campaign due to ai
+
+Num of satellites per planet reduced to 2
+    FAR less oppressive, now, yet still very helpful
+
+Ships
+    Overclocked targetting (Frontal plate system) now 1. Overloads for far longer 2. Lasts for far less
+    Infinite range removed from core and connector, replaced with a long-lasting infintie range system that doesnt overload
+        Works on a cycle of, say, 23 secs of infinite range and 7 secs of normal
+        Gives you a bit of breathing room
+    Harpoon MRM small removed from most variants, as it was way too spammy
+    All weapons either now have secondary or primary PD capabilties
+        PD_ALSO and PD tags respectively
+    Variants
+        Standard
+            Rebalanced the frontal plates to be far more ballistics-focused
+            To compensate for the lost OP, the left plate now has harpoon doubles
+        Ordnance
+            Replaced annihilator pods with jackhammer/typhoon respectively
+            Variant weight drastically reduced
+        Beamer
+            Replaced most missiles with DEMs
+            Variant weight moderately reduced
+        Shielded
+            Connector module Locust replaced with hellbore to reduce spam
+            Variant weight slightly reduced
+        New:
+        Blaster
+            Overfluxed, overgunned
+            Energy focus
+            Plasma cannons, heavy blasters, and antimatter blasters
+            Fucking terrifying -- But with a very small variant spawn chance
+        Mining
+            About 20 mining blasters in total, is capable of stripping armor off anything
+            General mining theme
+            Pretty rare
+    Core
+        Do not fire through added - modules will no longer fire through the core, enhancing flank capabilities
+        Weapons adjusted in general
+    Core/Connector
+        Max recoil of weapons reduced to 10%
+            Sounds like a buff, but is actually a fat nerf as it makes it way easier to dodge projectiles
+
+2.1.1a:
+SAVE COMPATABLE
+SOme misc balance changes, such as reducing the time the superheavy damper is active for, increasing targetting overclock cooldown, switching the ordnance locust to a hurricane
+
+2.1.1:
+SAVE COMPATABLE
+
+Satellites significantly buffed: Heavy combat modules now have the system "Overclocked Targetting", which multiples weapon range by a factor of 100 for ~10 seconds, before overloading the module for 10 seconds. Has custom AI so that it doesn't activate when it's fighting a nearby ship. The satellites were a little sucky at their role as a long-ranged artillery platform, and this will significantly alleviate that flaw.
+Core given "Superheavy damper field", a damepr field that reduces damage taken by 90% but only lasts for 2.5 seconds, has a 1 second cooldown, has 2 charges, and takes a while to recharge. The intent is to give cores a small amount of survivability against strike attacks, so you cant just rush in and burst it down. You're forced to at least hit it for 2.5 seconds, and at worst, 6 full seconds.
+Heavy combat modules have been given armored weapon mounts.
+Their beams are now modded weapons, that have instant travel time. This makes the beamer varient scary.
+Raised DP/FP to 60.
+Swarm variant is more common and now is composed almost entirely out of wasps. https://fractalsoftworks.com/forum/Smileys/default/smiley.gif
+
+Misc. cleanup
+
+2.1.0a
+Removes magiclib dependency
+
+2.1.0
+MAYBE SAVE COMPATABLE I DONT REMEMBER
+Makes satellites work a bit more consistantly
+Raesvelg now starts with satellites (You can generate satellites on planets via the config)
+Hopefully fixed an edge case crash
+
+2.0.0
+NOT SAVE COMPATBLE
+Massively refactors most of the mod
+Fixed a few critical bugs
+Fixed a few misc bugs
+Changed some satellite stats
+Game should be significantly more stable
+
+1.0.5a
+LIKELY SAVE COMPATABLE
+
+Fixes up a few things from the last updates and polishes it
+
+1.0.5
+
+HOPEFULLY SAVE COMPATBLE
+
+Laid very initial groundwork for next condition
+Made a workaround for a bug that caused a crash when a game was loaded
+
+1.0.4
+INCOMPATABLE WITH PREVIOUS SAVES
+
+Added a few config options for discovering every satellite at once
+Added a stopgap for the satellite fleet drift issue by forcing the satellite fleet on fleets interacting with the planet to orbit the planet
+Improved station digging code so that it almost always finds the satellite entity and returns important data, even if the entity we interact with isnt a station
+Added a lot more debug code that should hopefully catch and resolve scenarios where entity is null apon application of the satellite condition
+Improved code for fighting your own faction's satellites to use a better method
+Increased satellite sensor profile to 3 from 1
+
+Backend:
+Documented campaignplugin heavily
+Misc documentation and annotations
+Misc nullchecks
+Misc naming improvements
+Deleted unneccessary files, renamed a few to be more descriptive and accurate
+
+1.0.3
+Added a few config options for enabling/disabling a few features
+Reworked some of the backend
+Satellites now always defend markets and stations if you interact with them
+Upgraded debugging
+More station compatibility
+
+1.0.2
+Fixed NPE on fighting station markets
+
+1.0.1
+Fixed NPE on simulation
+Removed weapons from the game, they were unused
+Added tips
+Satellites can no longer turn
+Most likely save compatable? Probably?
+
+1.0.0
+
+Release
+Satellites no longer spawn in core worlds.
+Fixed up some combat AI.
+Polished some things
+Fixed the console command
+
+1.1.0_beta:
+
+Added a new console command, FindPlanetsWithConditionId (conditionId). Lists all planets in the game with a given condition. Syntax: FindPlanetsWithConditionId (conditionId)
+
+1.0.0_beta:
+
+Finishing up the beta stage. All major bugs seem to have vanished and functionality has never been better.
+Added a new very rare swarm variant. This one will kick your ass.
+
+0.0.6_beta:
+Adds a bunch of questionably balanced variants. Fixes a few bugs. Reduces satellite DP to one to hopefully let their allies deploy more ships.
+
+0.0.5_beta:
+Reworked a lot of the backend. Improved a lot of ***, although in a way that makes me unhappy.
+
+Next update will probably be a huge quality pass.
+
+0.0.4_beta:
+Fixed a few crashes.
+
+Improved polish further.
+Buffed satellites FP.
+Buffed satellite range.
+Nearly perfects fleet interception.
+
+More misc changes. All in all, its way more playable now.
+
+0.0.3_beta:
+Fixed a few crashes.
+Improved the functionality of hostile fleet interception. It now works. Somewhat.
+
+You can now fight your own colony's satellites.
+Improved the description of the condition.
+Added illustrations that arent placeholders.
+
+Misc polish and ***.
+
+0.0.2_beta:
+Fixed a NPE when loading saves. Hopefully.
+
+Please tell me if you get any strange crashes at random, I found a possible hole in the logic of my design (I am assuming many variables will not be null, they may be).
+
+0.0.1_beta:
+Satellite balance: Nerfed the range of the satellites, reduced the number of the satellites, reduced the amount of harpoons on the heavy combat modules, reduced the health/armor of the heavy combat modules. Satellites now start at 70% CR.
+
+New features: Untested framework for fleets being attacked by satellites if the fleets want to attack the planet.
+
+New description for satellites. New sprite for satellites in orbit of entities.
+Cleaned up some backend code.
+
+Many more misc changes I won't be assed to document until release.
+
+0.0.0_beta:
+Beta release

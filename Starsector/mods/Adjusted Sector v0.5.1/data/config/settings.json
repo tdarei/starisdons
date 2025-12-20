@@ -1,0 +1,76 @@
+{
+	
+	"plugins":{		
+		"newGameSectorProcGen":"data.campaign.procgen.SectorProcGenMod",
+	},
+	#Change the number below to increase or decrease the size of the Sector
+	#"sectorWidth":164000,
+	#"sectorHeight":104000,
+	#"sectorConstellationSize":2000,
+	#"sectorConstellationCellSize":10,
+	"sectorWidth":164000,
+	"sectorHeight":104000,
+	"AdjustedSectorConstellationCount":200,
+	"AdjustedSectorConstellationSize":750,
+	"AdjustedSectorConstellationCellSize":7,
+
+	"sectorConstellationRemnantMin":35,
+	"sectorConstellationRemnantMax":65,
+	"sectorConstellationRemnantSkipProb":0,
+	
+	"sectorRemnantPresenceLow":0,
+	"sectorRemnantPresenceMed":1,
+
+	"sectorConstellationRuinsMin":35,
+	"sectorConstellationRuinsMax":50,
+	
+	"sectorDerelictMotherships":4,
+	"sectorDerelictCryosleepers":12,
+	
+	# this field controls the amount of Coronal Taps, default = 2
+	"sectorCoronalTaps":12,
+
+	# this fields control the amount of Gates outside of Core Worlds, default is 15 and 20
+	"minNonCoreGatesInSectorMod":25,
+	"maxNonCoreGatesInSectorMod":40,
+
+	# this fields control the amount of XIV Legion-class ships you can encounter outside of the Core Worlds, default is 2, 3, 1, 2
+	"XIV_LEGION_NON_SALVAGEBLE_MIN":0,
+	"XIV_LEGION_NON_SALVAGEBLE_MAX":0,
+	"XIV_LEGION_SALVAGEBLE_MIN":20,
+	"XIV_LEGION_SALVAGEBLE_MAX":40,
+
+	#Random number of arcs apply to map
+	#Vanilla value 20
+	"AdjustedSectorRndArcs":20,
+
+	#Generate hyperstorms options.
+	#"true" for generating hyperstorms for BIG map, "false" to generate default-sized hyperstorms.
+	#Disclameer - might not work properly in "false" state if Nexerelin isn't updated (v0.10.5 or older) but enabled
+	"AdjustedSectorHS":false,
+
+	#Accessibility will be base - 1 at that many light-years from center of mass
+	#"accessibilityDistFromCOM":50,
+	#"accessibilitySameFactionBonus":0.50,
+	"accessibilityDistFromCOM":50,
+	"accessibilitySameFactionBonus":0.50,
+
+	#If SAD is enabled, you can change the amount of SAD-themed constellations
+	#"SanguinaryAnarchisticDefectors_sectorConstellationMin_AS":4,
+	#"SanguinaryAnarchisticDefectors_sectorConstellationMax_AS":6,
+	"SanguinaryAnarchisticDefectors_sectorConstellationMin_AS":15,
+	"SanguinaryAnarchisticDefectors_sectorConstellationMax_AS":30,
+
+	#If DME is enabled, as well as random generated blade breaker systems, you can change the amount of said BB-themed constellations.
+	#"BladeBreakerThemed_ConstellationMin_AS":3,
+	#"BladeBreakerThemed_ConstellationMax_AS":5,
+	#"BladeBreakerThemed_ConstellationSkipProb_AS":0.75,
+	"BladeBreakerThemed_ConstellationMin_AS":25,
+	"BladeBreakerThemed_ConstellationMax_AS":30,
+	"BladeBreakerThemed_ConstellationSkipProb_AS":0,
+
+	#If Prv Starworks is enabled, as well as random generated Agni systems, you can change the amount of said Agni-themed constellations.
+	"AgniThemed_ConstellationMin_AS":25,
+	"AgniThemed_ConstellationMax_AS":30,
+	"AgniThemed_ConstellationSkip_AS":0,
+}

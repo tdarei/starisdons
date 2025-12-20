@@ -1,0 +1,60 @@
+{
+  "id": "sw_dual_turbolaser_heavy",
+  "specClass": "projectile",
+  "projectileSpecId": "sw_greenlaser3",
+  "type": "ENERGY",
+  "size": "MEDIUM",
+  "turretSprite": "graphics/weapons/sw_heavy_dual_turbolaser_turret_base.png",
+  "turretGunSprite": "graphics/weapons/sw_heavy_dual_turbolaser_turret_recoil.png",
+  "hardpointSprite": "graphics/weapons/sw_heavy_dual_turbolaser_hardpoint_base.png",
+  #"hardpointGunSprite": "graphics/weapons/sw_heavy_dual_turbolaser_hardpoint_recoil.png",
+  "renderAboveAllWeapons": 0,
+  "glowColor": [
+    0,
+    200,
+    0,
+    255
+  ],
+  "visualRecoil": 3,
+  "renderHints": [
+    RENDER_BARREL_BELOW
+  ],
+  "turretOffsets": [
+    10,
+    1,
+    10,
+    -1
+  ],
+  "turretAngleOffsets": [
+    0,
+    0
+  ],
+  "hardpointOffsets": [
+    11,
+    1,
+    11,
+    -1
+  ],
+  "hardpointAngleOffsets": [
+    0,
+    0
+  ],
+  "barrelMode": "ALTERNATING_BURST",
+  "animationType": "GLOW_AND_FLASH",
+  "muzzleFlashSpec": {
+    "length": 5,
+    "spread": 3,
+    "particleSizeMin": 10,
+    "particleSizeRange": 10,
+    "particleDuration": 0.12,
+    "particleCount": 10,
+    "particleColor": [
+      0,
+      250,
+      0,
+      200
+    ]
+  },
+  "textureType": ROUGH,
+  "fireSoundTwo": "sw_sound_heavy_dual_turbolaser"
+}

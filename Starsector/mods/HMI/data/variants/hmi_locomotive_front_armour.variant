@@ -1,0 +1,64 @@
+{
+  "variantId": "hmi_locomotive_front_armour",
+  "hullId": "hmi_locomotive_front",
+  "displayName": "Cowcatcher",
+  "goalVariant": true,
+  "fluxCapacitors": 25,
+  "fluxVents": 24,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "armoredweapons",
+    "reinforcedhull"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0001": "hammerrack",
+        "WS0002": "hammerrack"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0015": "mark9"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0016": "gravitonbeam"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0007": "hveldriver",
+        "WS0008": "hveldriver"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0003": "vulcan",
+        "WS0004": "vulcan",
+        "WS0005": "vulcan",
+        "WS0006": "vulcan",
+        "WS0009": "dualflak",
+        "WS0010": "dualflak",
+        "WS0011": "vulcan",
+        "WS0012": "vulcan",
+        "WS0013": "devastator",
+        "WS0014": "devastator"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

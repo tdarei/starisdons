@@ -1,0 +1,8 @@
+{
+	#enter the id of a pre-generated entity and a key word to generate satellites onto it
+	#valid keys: DERELICT
+	"entitiesToAddSatellitesTo": {
+		#"sindria":"DERELICT",
+		"raesvelg":"DERELICT",
+	},
+}

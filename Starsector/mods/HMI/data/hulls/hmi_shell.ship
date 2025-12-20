@@ -1,0 +1,94 @@
+{
+  "bounds": [
+    -12.5,
+    -14.5,
+    14,
+    -15,
+    14,
+    15,
+    -12.5,
+    14.5
+  ],
+  "builtInMods": [
+    "hmi_fighteritu"
+  ],
+  "builtInWings": [],
+  "center": [
+    15,
+    14
+  ],
+  "collisionRadius": 29.5,
+  "engineSlots": [
+    {
+      "angle": 180,
+      "contrailSize": 7,
+      "length": 6,
+      "location": [
+        -12,
+        10
+      ],
+      "style": "LOW_TECH_FIGHTER",
+      "width": 7
+    },
+    {
+      "angle": -180,
+      "contrailSize": 7,
+      "length": 6,
+      "location": [
+        -12,
+        -10
+      ],
+      "style": "LOW_TECH_FIGHTER",
+      "width": 7
+    },
+    {
+      "angle": 180,
+      "contrailSize": 9,
+      "length": 12.5,
+      "location": [
+        -12.5,
+        6
+      ],
+      "style": "LOW_TECH",
+      "width": 9
+    },
+    {
+      "angle": -180,
+      "contrailSize": 9,
+      "length": 12.5,
+      "location": [
+        -12.5,
+        -6
+      ],
+      "style": "LOW_TECH",
+      "width": 9
+    }
+  ],
+  "height": 28,
+  "hullId": "hmi_shell",
+  "hullName": "Shell",
+  "hullSize": "FIGHTER",
+  "shieldCenter": [
+    0,
+    0
+  ],
+  "shieldRadius": 28,
+  "spriteName": "graphics/ships/hmi_shell.png",
+  "style": "LOW_TECH",
+  "viewOffset": 0,
+  "weaponSlots": [
+    {
+      "angle": -90,
+      "arc": 278,
+      "id": "WS0001",
+      "locations": [
+        -1,
+        -0
+      ],
+      "mount": "TURRET",
+      "size": "SMALL",
+      "type": "BALLISTIC"
+    }
+  ],
+  "width": 30
+}

@@ -1,0 +1,55 @@
+{
+  "variantId": "ascendate_assault",
+  "hullId": "ascendate",
+  "displayName": "Assault",
+  "goalVariant": true,
+  "fluxCapacitors": 10,
+  "fluxVents": 5,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "auxiliarythrusters"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0008": "tpc_hmi"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0005": "pulselaser",
+        "WS0006": "pulselaser"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0001": "lightdualac",
+        "WS0002": "lightdualac"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0003": "pdburst",
+        "WS0004": "pdburst"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0007": "gravitonbeam"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

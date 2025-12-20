@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starsector - Access Portal</title>
+    <link rel="icon" type="image/x-icon" href="images/ita_logo.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0a0a15 0%, #1a1a2e 50%, #16213e 100%);
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            overflow: hidden;
+        }
+
+        /* Animated starfield background */
+        .starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background:
+                radial-gradient(2px 2px at 20% 30%, #fff, transparent),
+                radial-gradient(2px 2px at 40% 70%, #fff, transparent),
+                radial-gradient(1px 1px at 90% 40%, #fff, transparent),
+                radial-gradient(2px 2px at 70% 90%, #fff, transparent),
+                radial-gradient(1px 1px at 30% 50%, #fff, transparent),
+                radial-gradient(2px 2px at 60% 20%, #fff, transparent),
+                radial-gradient(1px 1px at 10% 80%, #fff, transparent),
+                radial-gradient(2px 2px at 80% 60%, #fff, transparent),
+                radial-gradient(1px 1px at 50% 10%, #fff, transparent);
+            animation: twinkle 4s infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        .login-container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 420px;
+            padding: 40px;
+            background: rgba(10, 10, 20, 0.85);
+            border: 1px solid rgba(100, 150, 255, 0.2);
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            box-shadow:
+                0 25px 50px rgba(0, 0, 0, 0.5),
+                0 0 100px rgba(50, 100, 200, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .logo-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo-section h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #64b5f6 0%, #90caf9 50%, #fff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .logo-section p {
+            color: #607d8b;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+        }
+
+        .input-group label {
+            display: block;
+            color: #90a4ae;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 16px 20px;
+            background: rgba(20, 30, 50, 0.8);
+            border: 1px solid rgba(100, 150, 255, 0.2);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #64b5f6;
+            box-shadow: 0 0 20px rgba(100, 150, 255, 0.2);
+        }
+
+        .input-group input::placeholder {
+            color: #455a64;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #1565c0 0%, #1976d2 50%, #42a5f5 100%);
+            border: none;
+            border-radius: 12px;
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(25, 118, 210, 0.4);
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(25, 118, 210, 0.5);
+        }
+
+        .login-btn:active {
+            transform: translateY(0);
+        }
+
+        .login-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .error-msg {
+            background: rgba(244, 67, 54, 0.15);
+            border: 1px solid rgba(244, 67, 54, 0.3);
+            color: #ef5350;
+            padding: 12px 16px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .error-msg.visible {
+            display: block;
+            animation: shake 0.5s ease;
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            20%,
+            60% {
+                transform: translateX(-10px);
+            }
+
+            40%,
+            80% {
+                transform: translateX(10px);
+            }
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 25px;
+            color: #546e7a;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #90a4ae;
+        }
+
+        /* Loading spinner */
+        .spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-left: 10px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="starfield"></div>
+
+    <div class="login-container">
+        <div class="logo-section">
+            <h1>Starsector</h1>
+            <p>Space Combat Simulator</p>
+        </div>
+
+        <div id="errorMsg" class="error-msg">
+            Invalid access code. Please try again.
+        </div>
+
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="password">Access Code</label>
+                <input type="password" id="password" placeholder="Enter your access code"
+                    autocomplete="current-password" required>
+            </div>
+
+            <button type="submit" class="login-btn" id="loginBtn">
+                <span>Launch</span>
+                <div class="spinner" id="spinner"></div>
+            </button>
+        </form>
+
+        <a href="index.html" class="back-link">← Return to Main Site</a>
+    </div>
+
+    <script src="starsector-auth.js"></script>
+    <script>
+        // Check if already logged in
+        document.addEventListener('DOMContentLoaded', () => {
+            // Wait for auth system to initialize
+            setTimeout(() => {
+                if (StarsectorAuth.isAuthenticated()) {
+                    window.location.href = 'starsector.html';
+                }
+            }, 100);
+        });
+
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const password = document.getElementById('password').value;
+            const errorMsg = document.getElementById('errorMsg');
+            const loginBtn = document.getElementById('loginBtn');
+            const spinner = document.getElementById('spinner');
+
+            // Show loading state
+            loginBtn.disabled = true;
+            spinner.style.display = 'inline-block';
+            errorMsg.classList.remove('visible');
+
+            // Small delay for UX
+            await new Promise(r => setTimeout(r, 500));
+
+            const success = await StarsectorAuth.login(password);
+
+            if (success) {
+                window.location.href = 'starsector.html';
+            } else {
+                errorMsg.classList.add('visible');
+                loginBtn.disabled = false;
+                spinner.style.display = 'none';
+                document.getElementById('password').value = '';
+                document.getElementById('password').focus();
+            }
+        });
+    </script>
+</body>
+
+</html>

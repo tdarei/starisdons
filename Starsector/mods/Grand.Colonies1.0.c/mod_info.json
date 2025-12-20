@@ -1,0 +1,10 @@
+{
+    "id": "GrandColonies",
+    "name": "Grand.Colonies",
+    "author": "SirHartley",
+    "version": "1.0.b",
+    "description": "Adds 12 additional building slots to a colony, via page toggle.",
+    "gameVersion": "0.95a",
+    "jars":["jars/GrandColonies.jar"],
+    "modPlugin":"com.fs.starfarer.api.plugins.GrandColonies_modPlugin",
+}

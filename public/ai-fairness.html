@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI & Fairness - Adriano To The Star</title>
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="pages-styles.css">
+    <link rel="stylesheet" href="loader-minimal.css">
+    <link rel="stylesheet" href="theme-styles.css">
+    <link rel="stylesheet" href="accessibility-styles.css">
+    <link rel="stylesheet" href="i18n-styles.css">
+
+    <script src="loader.js"></script>
+    <script src="animations.js" defer></script>
+    <script src="navigation.js" defer></script>
+    <script src="cosmic-music-player.js" defer></script>
+    <script src="theme-toggle.js" defer></script>
+    <script src="accessibility.js" defer></script>
+    <script src="monitoring-audits.js" defer></script>
+
+    <link rel="manifest" href="manifest.json">
+</head>
+
+<body>
+    <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">
+        <span class="menu-icon"></span>
+        <span class="menu-icon"></span>
+        <span class="menu-icon"></span>
+    </button>
+
+    <main>
+        <section class="page-hero" data-entrance="fadeIn">
+            <h1 class="page-title" data-scroll-animate>AI &amp; Fairness</h1>
+            <p class="page-subtitle">How Adriano To The Star uses AI and monitors fairness</p>
+        </section>
+
+        <section class="content-section" data-entrance="slideUp">
+            <div class="content-container" style="max-width: 960px; margin: 0 auto;">
+                <h2 style="color: #ba944f; margin-bottom: 1rem;">Where AI Is Used</h2>
+                <p style="opacity: 0.85; line-height: 1.8;">
+                    This site uses AI in a few focused places to enhance the experience:
+                </p>
+                <ul style="margin-left: 1.5rem; line-height: 1.8; opacity: 0.9;">
+                    <li><strong>Stellar AI chat:</strong> conversational assistant for cosmic questions.</li>
+                    <li><strong>Smart search suggestions:</strong> AI-powered suggestions in the exoplanet database.</li>
+                    <li><strong>Natural-language search:</strong> "Ask in plain language" for planet discovery.</li>
+                    <li><strong>Image analysis:</strong> basic computer-vision helpers for astronomy-themed content.</li>
+                </ul>
+
+                <h2 style="color: #ba944f; margin: 2rem 0 1rem;">What We Log &amp; Why</h2>
+                <p style="opacity: 0.85; line-height: 1.8;">
+                    AI interactions are logged through a dedicated AI usage logger so we can understand how features
+                    are used and improve reliability and safety over time. Typical log entries include:
+                </p>
+                <ul style="margin-left: 1.5rem; line-height: 1.8; opacity: 0.9;">
+                    <li><strong>Feature name:</strong> for example <code>stellar-ai</code>, <code>planet-search</code>,
+                        or <code>planet-search-ai-suggestions</code>.</li>
+                    <li><strong>Model identifier:</strong> which backend model or UI flow handled the request.</li>
+                    <li><strong>Context:</strong> high-level metadata such as success/failure and optional fairness
+                        metrics. Raw conversation content is not required for these metrics.</li>
+                </ul>
+
+                <h2 style="color: #ba944f; margin: 2rem 0 1rem;">Fairness &amp; Governance Signals</h2>
+                <p style="opacity: 0.85; line-height: 1.8;">
+                    Agent 3 and Agent 4 introduced several governance-focused signals that are reused across features:
+                </p>
+                <ul style="margin-left: 1.5rem; line-height: 1.8; opacity: 0.9;">
+                    <li><strong>Text classification governance:</strong> user text can be classified with a
+                        <code>source</code> tag (for example <code>planet-search</code>,
+                        <code>planet-search-nl</code>, or <code>stellar-ai</code>) so that
+                        sensitive patterns can be monitored consistently.</li>
+                    <li><strong>AI usage + fairness metadata:</strong> many AI events attach a
+                        <code>fairness</code> object that summarizes simple bias metrics or
+                        model health, especially for experimental features.</li>
+                    <li><strong>Bias detection helpers:</strong> synthetic tests can be run through a dedicated
+                        bias-detection utility to produce small <code>fairnessSummary</code> objects that are
+                        logged alongside AI usage.</li>
+                </ul>
+
+                <h2 style="color: #ba944f; margin: 2rem 0 1rem;">Developer Views &amp; Exports</h2>
+                <p style="opacity: 0.85; line-height: 1.8;">
+                    For developers and maintainers, there are several built-in tools to inspect AI behavior:
+                </p>
+                <ul style="margin-left: 1.5rem; line-height: 1.8; opacity: 0.9;">
+                    <li><strong>Analytics Dashboard cards:</strong> the Analytics Dashboard page includes
+                        <em>AI Usage Overview</em> and <em>AI Fairness Overview</em> cards that summarize
+                        recent events by feature, model, and fairness coverage.</li>
+                    <li><strong>My Dashboard dev buttons:</strong> logged-in users see developer buttons to export
+                        performance metrics and show AI usage / AI fairness summaries in the console.</li>
+                    <li><strong>Fairness exports:</strong> a dedicated fairness export helper can generate JSON
+                        snapshots of recent fairness-related events for offline analysis.</li>
+                </ul>
+
+                <h2 style="color: #ba944f; margin: 2rem 0 1rem;">Monitoring &amp; Safety Posture</h2>
+                <p style="opacity: 0.85; line-height: 1.8;">
+                    Monitoring scripts help ensure heavy analytics are placed on the right pages and that
+                    core AI governance features are available where AI is used. Developer helpers include:
+                </p>
+                <ul style="margin-left: 1.5rem; line-height: 1.8; opacity: 0.9;">
+                    <li><code>runMonitoringPlacementAudit()</code> – checks which monitoring and AI scripts are
+                        loaded on the current page.</li>
+                    <li><code>runRateLimitingAudit()</code> – summarizes rate limits and feature flags for
+                        exports and RUM behavior.</li>
+                    <li><code>runAIFeaturePresenceAudit()</code> – reports which AI and governance components
+                        (usage logging, text classification, bias detection, etc.) are present.</li>
+                    <li><code>logAISafetyPostureSummary()</code> – prints a one-line summary of whether
+                        the most important AI governance features are available on the page.</li>
+                </ul>
+
+                <p style="opacity: 0.8; margin-top: 2rem; line-height: 1.8;">
+                    For more implementation detail, see the developer documents
+                    <code>AGENT-3-AI-GOVERNANCE-NOTES.md</code> and <code>AGENT-4-WRAP-UP.md</code> in the
+                    project repository.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2025 ADRIANO TO THE STAR - I.T.A (Interstellar Travel Agency)</p>
+        <p><a href="index.html">Back to Home</a></p>
+    </footer>
+</body>
+
+</html>

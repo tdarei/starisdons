@@ -1,0 +1,296 @@
+
+; historical events and when they occur
+;
+; Events are followed by a category, and a label
+; labels are used as lookups into historic_events.txt for title and body strings,
+; and also as image names for the event picture
+;
+; Currently supported categories are:
+; counter  - just increase a counter
+; historic - Just generates a message and increase a counter
+; volcano  - triggers a volcano if there is one on the map at the position specified
+; plague   - triggers a plague in settlements at the specified positions
+; emergent_faction - triggers the emergence of the given faction.  This faction must be marked
+;	as emergent in descr_strat.txt
+;
+; event descriptions are followed by a date (year as offset from starting date) or a date range
+; and either a list of positions, or list of regions.  Each position/region specification must appear on
+; a seperate line below the date
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;  EVENT LIST  ;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+event	historic 	first_mechanical_clock
+date	22
+
+event	historic	first_eyeglasses
+date	28
+
+event	historic	gunpowder_discovered
+date	30 40
+movie	event/gunpowder_invented.bik
+
+event	historic	football_banned
+date	56
+
+event	historic	first_sawmill
+date	70
+
+event	historic	first_public_clock
+date	76
+
+event	historic	science_weather_forecast
+date	78
+
+; ------------ CORE GAME EVENT --------------
+event	plague 		black_death_hits
+date	89
+position	122, 25		;Canterbury
+position	110, 31		;London
+position	106, 20		;Arundel
+position	96, 23		;Winchester
+position	96, 34		;Oxford
+position	124, 48		;Norwich
+position	107, 42		;fort
+movie	event/black_death.bik
+
+event	plague		black_death_1
+date 	90
+position	122, 25		;Canterbury
+position	110, 31		;London
+position	106, 20		;Arundel
+position	96, 23		;Winchester
+position	96, 34		;Oxford
+position	124, 48		;Norwich
+position	103, 48		;Nottingham
+position	85, 44		;Shrewsbury
+position	83, 33		;Gloucester
+position	84, 20		;Shaftsbury
+position	60, 15		;Launceston
+position	76, 31		;Cardiff
+position	66, 38		;Pembroke
+position	78, 46		;Montgomery
+position	68, 57		;Caernarvon
+position	82, 61		;Chester
+position	108, 57		;Lincoln
+position	101, 72		;York
+position	83, 71		;Lancaster
+position	96, 89		;Newcastle Upon Tyne
+position	82, 87		;Carlisle
+position	75, 91		;Dumfries
+position	83, 105		;Edinburgh
+position	71, 104		;Glasgow
+position	76, 111		;Stirling
+position	81, 113		;Perth
+position	91, 124		;Aberdeen
+position	78, 134		;Inverness
+position	85, 147		;Wick
+position	88, 158		;Kirkwall
+position	56, 148		;Stronoway
+position	56, 137		;Skye
+position	66, 123		;Inverlochly
+position	56, 116		;Mull
+position	61, 112		;Dunstaffnage
+position	52, 107		;Islay
+position	62, 100		;Arran
+position	67, 77		;Castle Town
+position	44, 95		;Derry		
+position	43, 69		;Trim
+position	48, 63		;Dublin
+position	22, 43		;Cork
+position	22, 69		;Athenry
+position	22, 57		;Tipperary
+position	51, 79		;Downpatrick
+position	36, 88		;Lifford
+position	78, 144		;fort
+position	73, 127		;fort
+position	86, 118		;fort
+position	87, 98		;fort
+position	32, 88		;fort
+position	40, 87  	;fort
+position	40, 72		;fort
+position	70, 96		;fort
+position	94, 95		;fort
+position	86, 77		;fort
+position	83, 90		;fort
+position	28, 70		;fort
+position	95, 62		;fort
+position	90, 70		;fort
+position	105, 67		;fort
+position	95, 80 		;fort
+position	42, 61		;fort
+position	26, 58 		;fort
+position	74, 62		;fort
+position	90, 59 		;fort
+position	102, 53		;fort
+position	107, 42 	;fort
+position	73, 47 		;fort
+position	92, 43 		;fort
+position	82, 47 		;fort
+position	25, 45 		;fort
+position	119, 44		;fort
+position	69, 36		;fort
+position	98, 42 		;fort
+position	83, 36 		;fort
+position	95, 31 		;fort
+position	99, 20 		;fort
+position	103, 25 	;fort
+position	71, 20 		;fort
+position	103, 25 	;fort
+
+
+event	plague 		black_death_2
+date	92
+position	122, 25		;Canterbury
+position	110, 31		;London
+position	106, 20		;Arundel
+position	96, 23		;Winchester
+position	96, 34		;Oxford
+position	124, 48		;Norwich
+position	103, 48		;Nottingham
+position	85, 44		;Shrewsbury
+position	83, 33		;Gloucester
+position	84, 20		;Shaftsbury
+position	60, 15		;Launceston
+position	76, 31		;Cardiff
+position	66, 38		;Pembroke
+position	78, 46		;Montgomery
+position	68, 57		;Caernarvon
+position	82, 61		;Chester
+position	108, 57		;Lincoln
+position	101, 72		;York
+position	83, 71		;Lancaster
+position	96, 89		;Newcastle Upon Tyne
+position	82, 87		;Carlisle
+position	75, 91		;Dumfries
+position	83, 105		;Edinburgh
+position	71, 104		;Glasgow
+position	76, 111		;Stirling
+position	81, 113		;Perth
+position	91, 124		;Aberdeen
+position	78, 134		;Inverness
+position	85, 147		;Wick
+position	88, 158		;Kirkwall
+position	56, 148		;Stronoway
+position	56, 137		;Skye
+position	66, 123		;Inverlochly
+position	56, 116		;Mull
+position	61, 112		;Dunstaffnage
+position	52, 107		;Islay
+position	62, 100		;Arran
+position	67, 77		;Castle Town
+position	44, 95		;Derry		
+position	43, 69		;Trim
+position	48, 63		;Dublin
+position	22, 43		;Cork
+position	22, 69		;Athenry
+position	22, 57		;Tipperary
+position	51, 79		;Downpatrick
+position	36, 88		;Lifford
+position	78, 144		;fort
+position	73, 127		;fort
+position	86, 118		;fort
+position	87, 98		;fort
+position	32, 88		;fort
+position	40, 87  	;fort
+position	40, 72		;fort
+position	70, 96		;fort
+position	94, 95		;fort
+position	86, 77		;fort
+position	83, 90		;fort
+position	28, 70		;fort
+position	95, 62		;fort
+position	90, 70		;fort
+position	105, 67		;fort
+position	95, 80 		;fort
+position	42, 61		;fort
+position	26, 58 		;fort
+position	74, 62		;fort
+position	90, 59 		;fort
+position	102, 53		;fort
+position	107, 42 	;fort
+position	73, 47 		;fort
+position	92, 43 		;fort
+position	82, 47 		;fort
+position	25, 45 		;fort
+position	119, 44		;fort
+position	69, 36		;fort
+position	98, 42 		;fort
+position	83, 36 		;fort
+position	95, 31 		;fort
+position	99, 20 		;fort
+position	103, 25 	;fort
+position	71, 20 		;fort
+position	103, 25 	;fort
+
+event	plague 		black_death_3
+date	94
+position	122, 25		;Canterbury
+position	110, 31		;London
+position	106, 20		;Arundel
+position	96, 23		;Winchester
+position	96, 34		;Oxford
+position	124, 48		;Norwich
+position	103, 48		;Nottingham
+position	85, 44		;Shrewsbury
+position	83, 33		;Gloucester
+position	84, 20		;Shaftsbury
+position	60, 15		;Launceston
+position	76, 31		;Cardiff
+position	66, 38		;Pembroke
+position	78, 46		;Montgomery
+position	68, 57		;Caernarvon
+position	82, 61		;Chester
+position	108, 57		;Lincoln
+position	101, 72		;York
+position	83, 71		;Lancaster
+position	96, 89		;Newcastle Upon Tyne
+position	82, 87		;Carlisle
+position	75, 91		;Dumfries
+position	83, 105		;Edinburgh
+position	71, 104		;Glasgow
+position	76, 111		;Stirling
+position	81, 113		;Perth
+position	91, 124		;Aberdeen
+position	48, 63		;Dublin
+
+event	plague 		black_death_4
+date	96
+position	122, 25		;Canterbury
+position	110, 31		;London
+position	96, 34		;Oxford
+position	124, 48		;Norwich
+position	103, 48		;Nottingham
+position	68, 57		;Caernarvon
+position	101, 72		;York
+position	81, 113		;Perth
+position	83, 105		;Edinburgh
+position	48, 63		;Dublin
+
+event	historic	first_blast_furnace
+date	92
+
+event	historic	grote_mandenke
+date	104
+
+event	historic	first_piano
+date	120
+
+event	historic	first_oil_painting
+date	162
+
+event	historic	science_de_docta_ignorantia
+date	186
+
+event	historic	first_printing_press
+date	196
+
+event	historic	malleus_maleficarum
+date	228
+
+event	historic	science_da_vinci_ornithopter
+date	234
+
+event	historic	first_watch
+date	252

@@ -1,0 +1,3 @@
+The beeg sword does not spawn naturally. It's an otherwordly item afterall.
+
+You'll need "Console Commands" mod and type in "addship berserksword"

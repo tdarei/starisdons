@@ -1,0 +1,6 @@
+<SYNC Start=12700>
+<P Class=ENUSCC>Russia_Intro_11
+<SYNC Stop=25700>
+<SYNC Start=52900>
+<P Class=ENUSCC>Russia_Intro_12
+<SYNC Stop=66000>

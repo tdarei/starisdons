@@ -1,0 +1,59 @@
+{
+  "variantId": "dominator_hmi_p_std",
+  "hullId": "dominator_hmi_p",
+  "displayName": "Attack",
+  "goalVariant": false,
+  "fluxCapacitors": 30,
+  "fluxVents": 3,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "missleracks",
+    "blast_doors"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 012": "mark9",
+        "WS 013": "mark9"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 014": "annihilatorpod",
+        "WS 015": "annihilatorpod",
+        "WS 016": "annihilatorpod"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 003": "harpoon",
+        "WS 005": "harpoon"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 002": "vulcan",
+        "WS 004": "vulcan",
+        "WS 006": "vulcan",
+        "WS 010": "flak",
+        "WS 011": "flak"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {}
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

@@ -1,0 +1,88 @@
+{
+  "bounds": [
+    60,
+    -36.5,
+    44,
+    -16,
+    25,
+    44,
+    -52,
+    45,
+    -58,
+    19,
+    -58,
+    -24,
+    31,
+    -46.5
+  ],
+  "builtInWings": [],
+  "center": [
+    54.5,
+    69.5
+  ],
+  "collisionRadius": 86.5,
+  "engineSlots": [],
+  "height": 139,
+  "hullId": "station_domres_left",
+  "hullName": "Missile Section, Large",
+  "hullSize": "DESTROYER",
+  "shieldCenter": [
+    0,
+    0
+  ],
+  "shieldRadius": 83,
+  "spriteName": "graphics/ships/domain_resurgent/hmidr_platform_left.png",
+  "style": "LOW_TECH",
+  "viewOffset": 0,
+  "weaponSlots": [
+    {
+      "angle": 88.5,
+      "arc": 20,
+      "id": "WS0001",
+      "locations": [
+        -32.5,
+        28.5
+      ],
+      "mount": "HARDPOINT",
+      "size": "LARGE",
+      "type": "MISSILE"
+    },
+    {
+      "angle": 91,
+      "arc": 10,
+      "id": "WS0002",
+      "locations": [
+        9.5,
+        28.5
+      ],
+      "mount": "HARDPOINT",
+      "size": "LARGE",
+      "type": "MISSILE"
+    },
+    {
+      "angle": 112,
+      "arc": 261,
+      "id": "WS0003",
+      "locations": [
+        28.5,
+        -6.5
+      ],
+      "mount": "TURRET",
+      "size": "SMALL",
+      "type": "MISSILE"
+    },
+    {
+      "angle": 72.5,
+      "arc": 277,
+      "id": "WS0004",
+      "locations": [
+        32.5,
+        -27.5
+      ],
+      "mount": "TURRET",
+      "size": "MEDIUM",
+      "type": "MISSILE"
+    }
+  ],
+  "width": 109
+}

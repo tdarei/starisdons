@@ -1,0 +1,117 @@
+{
+  "hullName": "TIE/ph Phantom",
+  "hullId": "sw_tie_phantom",
+  "hullSize": "FIGHTER",
+  "spriteName": "graphics/ships/fighters/sw_tie_phantom.png",
+  "style": "SW_IMPERIAL",
+  "height": 64,
+  "width": 36,
+  "center": [18, 32],
+  "collisionRadius": 32,
+  "shieldCenter": [0, 0],
+  "shieldRadius": 32.5,
+  "viewOffset": 0,
+  "weaponSlots": [
+    {
+      "id": "WS0001",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": 0,
+      "locations": [-4.5, 4.5]
+    },
+    {
+      "id": "WS0002",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": -0,
+      "locations": [-4.5, -4.5]
+    },
+    {
+      "id": "WS0003",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": 0,
+      "locations": [29.5, 7.5]
+    },
+    {
+      "id": "WS0004",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": -0,
+      "locations": [29.5, -7.5]
+    },
+    {
+      "id": "WS0005",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": 0,
+      "locations": [31.5, -0]
+    },
+    {
+      "id": "WS0006",
+      "size": "SMALL",
+      "type": "MISSILE",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": 0,
+      "locations": [-10.5, 6]
+    },
+    {
+      "id": "WS0007",
+      "size": "SMALL",
+      "type": "MISSILE",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": -0,
+      "locations": [-10.5, -6]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-30.5, 4],
+      "length": 30,
+      "width": 10,
+      "angle": 180,
+      "contrailSize": 128,
+      "style": "CUSTOM",
+      "styleId": "COBRA_BOMBER"
+    },
+    {
+      "location": [-30.5, -4],
+      "length": 30,
+      "width": 10,
+      "angle": -180,
+      "contrailSize": 128,
+      "style": "CUSTOM",
+      "styleId": "COBRA_BOMBER"
+    }
+  ],
+  "bounds": [
+    31.5, -1.5,
+    30.5, -7.5,
+    -9.5, -17.5,
+    -21.5, -17.5,
+    -23.5, -12.5,
+    -27.5, -11.5,
+    -27.5, -8.5,
+    -30.5, -4.5,
+    -30.5, 4.5,
+    -27.5, 8.5,
+    -27.5, 11.5,
+    -23.5, 12.5,
+    -21.5, 17.5,
+    -9.5, 17.5,
+    30.5, 7.5,
+    31.5, 1.5
+  ]
+}

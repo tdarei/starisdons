@@ -1,0 +1,40 @@
+norway
+hold_regions London Perth Dublin Caernarvon Castle_Town
+take_regions 35
+outlive ;wales
+short_campaign hold_regions London Perth Dublin Caernarvon Castle_Town
+take_regions 25
+outlive ;wales
+
+scotland
+hold_regions Edinburgh Castle_Town Glasgow Kirkwall Skye Isle_of_Islay
+take_regions 35
+outlive ;wales
+short_campaign hold_regions Edinburgh Castle_Town Glasgow Kirkwall Skye Isle_of_Islay
+take_regions 25
+outlive ;wales
+
+england
+hold_regions
+take_regions 46
+outlive wales
+short_campaign hold_regions London Caernarvon Edinburgh Dublin
+take_regions 35
+outlive wales
+
+ireland
+hold_regions Dublin Trim
+take_regions 35
+outlive ;scotland
+short_campaign hold_regions Dublin Trim
+take_regions 25
+outlive ;scotland
+
+wales
+hold_regions Caernarvon Dublin London
+take_regions 35
+outlive england
+short_campaign hold_regions Caernarvon Dublin London
+take_regions 25
+outlive england
+

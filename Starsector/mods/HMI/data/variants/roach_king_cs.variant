@@ -1,0 +1,78 @@
+{
+  "variantId": "roach_king_cs",
+  "hullId": "roach_king",
+  "displayName": "Close Support",
+  "goalVariant": true,
+  "fluxCapacitors": 24,
+  "fluxVents": 30,
+  "quality": 0,
+  "permaMods": [
+    "comp_hull",
+    "comp_armor"
+  ],
+  "hullMods": [
+    "dedicated_targeting_core",
+    "insulatedengine",
+    "frontshield",
+    "junk2",
+    "turretgyros",
+    "stabilizedshieldemitter",
+    "magazines"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0015": "mark_iv"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0004": "seth_med",
+        "WS0005": "seth_med",
+        "WS0006": "seth_sml",
+        "WS0024": "seth_sml",
+        "WS0025": "seth_sml",
+        "WS0026": "seth_sml"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0003": "heavymauler",
+        "WS0009": "heavymauler",
+        "WS0018": "heavymauler"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0017": "gravitonbeam"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0001": "lightdualmg",
+        "WS0002": "lightdualmg",
+        "WS0010": "flak",
+        "WS0011": "vulcan",
+        "WS0013": "vulcan",
+        "WS0014": "vulcan",
+        "WS0016": "vulcan",
+        "WS0019": "flak",
+        "WS0023": "flak",
+        "WS0027": "lightmg",
+        "WS0028": "lightmg"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

@@ -1,0 +1,6 @@
+<SYNC Start=8400>
+<P Class=ENUSCC>Moors_Intro_13
+<SYNC Stop=25600>
+<SYNC Start=52700>
+<P Class=ENUSCC>Moors_Intro_14
+<SYNC Stop=66000>

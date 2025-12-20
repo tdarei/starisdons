@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test LiveKit Section</title>
+    <style>
+        body {
+            background: #1a1a1a;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .test-section {
+            background: rgba(186, 148, 79, 0.2);
+            border: 2px solid #ba944f;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+        h1 { color: #ba944f; }
+    </style>
+</head>
+<body>
+    <h1>🧪 LiveKit Section Test</h1>
+    <p>If you can see this, the HTML file is loading correctly.</p>
+    
+    <div class="test-section">
+        <h2>🎙️ LiveKit Integration Section</h2>
+        <p>This is a test to verify the LiveKit section appears.</p>
+        <p><strong>Status:</strong> <span id="status">Checking...</span></p>
+    </div>
+    
+    <script>
+        document.getElementById('status').textContent = '✅ Page loaded successfully!';
+        console.log('✅ Test page loaded');
+    </script>
+</body>
+</html>
+

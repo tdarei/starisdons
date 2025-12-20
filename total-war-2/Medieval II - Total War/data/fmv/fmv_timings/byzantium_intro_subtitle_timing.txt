@@ -1,0 +1,6 @@
+<SYNC Start=8600>
+<P Class=ENUSCC>Byzantium_Intro_10
+<SYNC Stop=25300>
+<SYNC Start=54000>
+<P Class=ENUSCC>Byzantium_Intro_11
+<SYNC Stop=66300>

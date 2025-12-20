@@ -1,0 +1,2885 @@
+;
+; Hastings Prologue script
+;
+script
+
+	declare_prologue	;;;; ensures only prologue related stuff happens
+
+	set_music_state	custom Prologue_Campaign_Battle_Music	
+	
+	;;;;;;;;;;;;;; insert battle of hastings script here ;;;;;;;;;;;;;;;;;;;;;;
+
+		;;;; init
+		prepare_for_battle
+
+	;;;;**********************************************************************************************
+	;;;;	wait for end deployement
+	;;;;**********************************************************************************************
+	
+		while ! I_BattleStarted
+		end_while
+					
+		camera_default_mode_set		tw
+		camera_restrictions_set off
+		lock_camera_restrictions_set on		
+		disable_cursor						;prevent the player clicking
+		disable_entire_ui
+		disable_shortcuts true
+		disable_shortcuts toggle_pause_button false		;toggle_pause_button	PAUSE	P
+		enable_ui toggle_pause_button
+		disable_shortcuts card_manager true
+		disable_shortcuts object_manager false
+		inhibit_camera_input true
+		hide_ui
+	
+	;;;Rufus' troops
+		label_unit 0 0 0 general_rufus				;Rufus
+		label_unit 0 0 1 rufus_cavalry
+		label_unit 0 0 2 rufus_archers
+		label_unit 0 0 3 rufus_infantry
+	
+	;;;William's troops
+		label_unit 0 1 0 general_william	;William	563.142, 334.421, 35
+	
+		;archers
+		label_unit 0 1 1 william_archers_1	; 511.900, 438.046, 37
+		label_unit 0 1 2 william_archers_2	; 545.857, 413.778, 37
+		label_unit 0 1 3 william_archers_3	; 573.517, 391.584, 36
+		label_unit 0 1 4 william_archers_4	; 600.604, 371.300, 38
+		label_unit 0 1 17 william_archers_5 ; 625.084, 352.529, 34
+		label_unit 0 1 18 william_archers_6	; 650.977, 334.906, 37
+	
+		;infantry
+		label_unit 0 1 5 william_infantry_1	; 510.742, 425.101, 36
+		label_unit 0 1 6 william_infantry_2 ; 538.373, 404.460, 36
+		label_unit 0 1 7 william_infantry_3 ; 566.061, 384.290, 37
+		label_unit 0 1 8 william_infantry_4 ; 592.321, 364.090, 35
+		label_unit 0 1 15 william_infantry_5 ; 618.711, 345.675, 35
+		label_unit 0 1 16 william_infantry_6 ; 645.465, 327.465, 36
+	
+		;cavalry
+		label_unit 0 1 9 william_cavalry_1	; 504.434, 408.523, 37
+		label_unit 0 1 10 william_cavalry_2	; 530.720, 389.300, 34
+		label_unit 0 1 11 william_cavalry_3	; 558.610, 371.254, 34
+		label_unit 0 1 12 william_cavalry_4	; 585.334, 353.170, 33
+		label_unit 0 1 13 william_cavalry_5 ; 612.189, 335.549, 38
+		label_unit 0 1 14 william_cavalry_6	; 638.803, 316.293, 34
+			
+	;;;Harold's troops
+		label_unit 1 0 0 general_harold		;Harold		642.340, 492.689, -144
+	
+		;front row
+		;left
+		label_unit 1 0 17 harold_front_1 ; 585.309, 505.715, -149
+		label_unit 1 0 16 harold_front_2 ; 602.605, 494.957, -148
+		label_unit 1 0 13 harold_front_3 ; 619.373, 483.891, -146
+		;centre
+		label_unit 1 0 12 harold_front_4 ; 636.192, 472.402, -145
+		label_unit 1 0 6 harold_front_5 ; 650.830, 463.641, -149
+		label_unit 1 0 1 harold_front_6 ; 665.069, 454.399, -147
+		;right
+		label_unit 1 0 11 harold_front_7 ; 681.721, 443.662, -147
+		label_unit 1 0 10 harold_front_8 ; 699.288, 432.481, -147
+		label_unit 1 0 4 harold_front_9 ; 714.094, 423.756, -148
+			
+		;back row
+		;left
+		label_unit 1 0 19 harold_back_1 ; 584.176, 532.453, -148
+		label_unit 1 0 15 harold_back_2 ; 599.317, 521.874, -145
+		label_unit 1 0 14 harold_back_3 ; 615.285, 510.959, -146
+		label_unit 1 0 9 harold_back_4 ; 629.579, 500.803, -144
+		;right
+		label_unit 1 0 8 harold_back_5 ; 657.576, 481.965, -146
+		label_unit 1 0 5 harold_back_6 ; 672.232, 471.149, -144
+		label_unit 1 0 7 harold_back_7 ; 687.504, 460.775, -146
+		label_unit 1 0 18 harold_back_8 ; 702.241, 450.005, -143
+			
+		;;;Saxon reinforcements
+		label_unit 1 0 2 saxon_reinforcements_1
+		label_unit 1 0 3 saxon_reinforcements_2
+	
+	;;;;*************************************************************************************************
+	;;;;		Battle of Hastings Counters
+	;;;;*************************************************************************************************
+	
+		declare_counter start_tutorial
+		declare_counter Completed_Battle_Camera_Moves
+		declare_counter Battle_Camera_Zoom
+		declare_counter Monitor_Run_Button
+		declare_counter Toggle_Run_Pressed
+		declare_counter Order_Halt_Pressed
+		declare_counter Monitor_Halt_Button
+		declare_counter Ctrl_A_Pressed
+		declare_counter Enter_Pressed
+		declare_counter Saxon_Reinforcements
+		declare_counter Monitor_Zoom
+		declare_counter Monitor_Camera
+		declare_counter Monitor_Select_All
+		declare_counter Monitor_Deselect_All
+		declare_counter Monitor_Halt_2
+		declare_counter Monitor_Movement
+		declare_counter Main_Battle
+		declare_counter Opened_Postbattle_Scroll
+		declare_counter Opened_Quit_Scroll
+		declare_counter Opened_End_Battle_Scroll
+		declare_counter Go_To_Main_Battle
+		declare_counter Progress_Main_Battle
+		declare_counter Units_In_Position
+		declare_counter Units_Ordered_Across_Bridge
+		declare_counter Units_Across_Bridge
+		declare_counter saxon_rout
+		declare_counter battle_won
+		declare_counter intro_archers_attack
+		declare_counter move_all_position
+		declare_counter spearmen_flashing
+		declare_counter No_Infantry
+		declare_counter No_Archers
+		declare_counter No_Cavalry
+		declare_counter archers_form_up
+		declare_counter infantry_form_up
+		declare_counter cavalry_form_up
+		declare_counter rufus_form_up
+		declare_counter spearmen_engaged
+		declare_counter player_destroyed
+		declare_counter Front_3_Rout
+		declare_counter saxons_1_dead
+		declare_counter saxons_2_dead
+		declare_counter kill_harold
+		declare_counter William_A3_Rout
+
+;-----------------------------------------------------------------------------------------------------------
+		steal_esc_key on
+	
+		monitor_event EscPressed TrueCondition
+			inc_counter start_tutorial 1
+		end_monitor
+;-----------------------------------------------------------------------------------------------------------
+		
+	;;;;**********************************************************************************************
+	;;;; SETTING CAMERA BOOKMARKS FOR THE BATTLE
+	;;;;**********************************************************************************************
+
+		set_camera_bookmark 1,	263.24, 243.805, 368.706		258.277, 239.872, 376.389		; view of where to move rufus
+		set_camera_bookmark 2,	308.546, 263.312, 350.502		268.177, 236.791, 386.669		; view of where to move cavalry
+		set_camera_bookmark 3,	298.736, 264.817, 426.42		291.421, 258.947, 430.32		; view of where to move all units
+		set_camera_bookmark 4,	262.742, 238.149, 374.116		257.684, 235.012, 382.454		; this is rufus
+ 		set_camera_bookmark 5,	561.375, 232.603, 334.853		567.543, 232.608, 342.722		; hastings
+ 		
+		set_camera_bookmark 6, 269.257, 268.344, 368.227		322.697, 235.724, 377.268		; across bridge
+		set_camera_bookmark 7, 368.319, 263.136, 412.081		420.894, 235.189, 398.911		; form-up pos
+								
+		set_camera_bookmark 8, 641.945, 265.7, 499.752			636.158, 266.37, 491.67		;saxon banner
+		set_camera_bookmark 9, 644.993, 260.061, 492.939		636.008, 258.624, 488.998	;king harold
+		set_camera_bookmark 10, 654.29, 267.988, 501.274		647.803, 265.387, 494.298	;saxon army
+
+		set_camera_bookmark 11, 673.927, 262.089, 440.321		669.933, 260.592, 449.413	;shieldwall
+		set_camera_bookmark 12, 654.88, 306.653, 380.177		655.898, 302.584, 389.143	;road to london
+				
+	;;;;**********************************************************************************************
+	;;;; SET FIRE AT WILL OFF
+	;;;;**********************************************************************************************
+		
+		invulnerable_general Rufus						;stops Rufus getting killed
+		invulnerable_general William						;stops William getting killed
+		invulnerable_general Harold Godwinson				;stops Harold getting killed too soon
+	
+		suspend_unscripted_advice true
+		
+	;;;;**********************************************************************************************
+	;;;;	TURN THE AI OFF. REMEMBER TO TURN ON AGAIN WHEN YOU ARE READY FOR IT 
+	;;;;**********************************************************************************************
+	
+		ai_active_set off
+		
+	;*********************************************************************************************
+	;*********************************************************************************************
+	;;;;;;;;;;;;; CINEMATIC FIRST BATTLE START ::: THIS IS WHERE THE ACTUAL ACTION STARTS
+	;*********************************************************************************************
+	;*********************************************************************************************
+	
+		set_music_state custom Hastings_Tutorial_Tension
+
+		
+		monitor_conditions I_CompareCounter start_tutorial = 0
+			
+		;*********************************************************************************************
+		;	SHOW MAIN BATTLE FIRST - WILLIAM VS HAROLD
+		;*********************************************************************************************
+
+ 			camera_begin hastings_intro
+				
+			;camera_position_at_bookmark 5			;CAMERA START POSITION
+			battle_wait 1
+			
+			;Hastings, 1066
+			play_sound_event TUTORIAL_NARRATOR_1 tag = tutorial_hastings_1		;3.6
+			battle_wait 5.6
+
+			while I_CompareCounter start_tutorial > 0
+			end_while
+			
+			;camera_position_at_bookmark 8		;saxon flag
+			battle_wait 1
+
+			while I_CompareCounter start_tutorial > 0
+			end_while
+
+			;camera_zoom_to_bookmark 9 100			;king harold
+			;The Saxon King Harold takes up a strong defensive position on Calbec Hill.
+			play_sound_event TUTORIAL_NARRATOR_2 tag = tutorial_hastings_2		;6.2
+			battle_wait 8.2
+
+			while I_CompareCounter start_tutorial > 0
+			end_while
+	
+			;camera_zoom_to_bookmark 10			;saxon army
+			battle_wait 1
+
+			while I_CompareCounter start_tutorial > 0
+			end_while
+			
+			;His men form the legendary Saxon shieldwall, blocking the road to London and forcing a frontal attack from the Normans.
+			play_sound_event TUTORIAL_NARRATOR_3 tag = tutorial_hastings_3	;9.7
+			battle_wait 2
+
+			while I_CompareCounter start_tutorial > 0
+			end_while
+
+			;camera_position_at_bookmark 11			;shieldwall
+			battle_wait 2
+			
+			while I_CompareCounter start_tutorial > 0
+			end_while
+
+			;camera_zoom_to_bookmark 12 10			;road to london
+			battle_wait 6.7
+			
+			while I_CompareCounter start_tutorial > 0
+			end_while
+			
+			;; Norman army bookmarks
+			set_camera_bookmark 11, 559.23, 232.2358, 335.57		567.789, 230.7249, 340.602		;william
+			set_camera_bookmark 12, 548.864, 235.602, 336.696		557.995, 235.1192, 340.694		;flag
+			set_camera_bookmark 13, 580.334, 236.6126, 344.051		588.382, 235.1017, 349.866		;three lines
+			
+			set_camera_bookmark 14, 618.396, 238.3074, 366.628	608.625, 238.412, 365.009		;william's army
+			set_camera_bookmark 15, 612.82, 234.513, 364.563		603.137, 235.4169, 362.492	;archers left
+			set_camera_bookmark 16, 601.216, 234.1069, 373.766	600.169, 235.0108, 363.92		;archers right
+			set_camera_bookmark 17, 590.841, 232.9813, 367.891	581.663, 233.8852, 364.174		;infantry left
+			set_camera_bookmark 18, 567.062, 232.1308, 386.483	565.007, 233.0347, 376.797		;infantry right
+			set_camera_bookmark 19, 553.188, 231.9008, 378.932	543.651, 232.8047, 376.27		;cavalry left
+			set_camera_bookmark 20, 506.267, 231.4291, 414.332	508.094, 232.333, 404.601		;cavalry right
+			set_camera_bookmark 21, 513.395, 231.2814, 430.861	522.994, 233.8299, 432.567		;archers attack
+			
+			;camera_position_at_bookmark 12	;flag
+			battle_wait 1
+
+			while I_CompareCounter start_tutorial > 0
+			end_while
+
+			;camera_zoom_to_bookmark 11 100	;william
+			battle_wait 1
+	
+			while I_CompareCounter start_tutorial > 0
+			end_while
+
+			;William waits patiently with ranks of archers, infantry and cavalry, ready to launch a three-waved attack.	
+			play_sound_event TUTORIAL_NARRATOR_4 tag = tutorial_hastings_4		;8.6
+			battle_wait 3
+			
+			while I_SoundPlaying tutorial_hastings_4
+			end_while
+			
+			;camera_zoom_to_bookmark 13	;3 lines
+			battle_wait 2
+
+			while I_CompareCounter start_tutorial > 0
+			end_while
+			
+			;camera_position_at_bookmark 14	;william's army
+			battle_wait 1
+			
+			while I_CompareCounter start_tutorial > 0
+			end_while
+
+			;camera_zoom_to_bookmark 15	;archers left
+			battle_wait 1
+
+			while I_CompareCounter start_tutorial > 0
+			end_while
+			
+			;camera_zoom_to_bookmark 16 5	;archers right
+			;He has archers to weaken the shieldwall from afar,
+			play_sound_event TUTORIAL_NARRATOR_5 tag = tutorial_hastings_5		;3.6
+			battle_wait 6
+			
+			while I_CompareCounter start_tutorial > 0
+			end_while
+
+			;camera_zoom_to_bookmark 17	;infantry left
+			battle_wait 3
+
+			while I_CompareCounter start_tutorial > 0
+			end_while
+
+			;camera_zoom_to_bookmark 18 5	;infantry right
+			;spearmen to engage the enemy in close combat,
+			play_sound_event TUTORIAL_NARRATOR_6 tag = tutorial_hastings_6		;3.4
+			battle_wait 8
+	
+			while I_CompareCounter start_tutorial > 0
+			end_while
+
+			;camera_zoom_to_bookmark 19	;cavalry left
+			battle_wait 3
+			
+			while I_CompareCounter start_tutorial > 0
+			end_while
+
+			;camera_zoom_to_bookmark 20 10	;cavalry right
+			;and cavalry to drive through the enemy and run down deserters.
+			play_sound_event TUTORIAL_NARRATOR_7 tag = tutorial_hastings_7		;5.6
+
+			battle_wait 10
+	
+			while I_CompareCounter start_tutorial > 0
+			end_while
+	
+			;camera_position_at_bookmark 11 ;william
+			battle_wait 2
+			
+			while I_CompareCounter start_tutorial > 0
+			end_while
+			
+			;William gives his order for the first wave.
+			play_sound_event TUTORIAL_NARRATOR_8 tag = tutorial_hastings_8		;3.3
+			battle_wait 0.3
+
+			while I_CompareCounter start_tutorial > 0
+			end_while
+					
+			unit_order_attack_unit william_archers_6 harold_front_9
+			battle_wait 2
+
+			while I_CompareCounter start_tutorial > 0
+			end_while
+
+			play_sound_event Hastings_Tutorial_General_1
+			battle_wait 1
+			
+			while I_CompareCounter start_tutorial > 0
+			end_while
+			
+			unit_order_attack_unit william_archers_1 harold_front_1
+			unit_order_attack_unit william_archers_2 harold_front_3
+			unit_order_attack_unit william_archers_3 harold_front_4
+			unit_order_attack_unit william_archers_4 harold_front_5
+			unit_order_attack_unit william_archers_5 harold_front_7
+			battle_wait 1
+			
+			while I_CompareCounter start_tutorial > 0
+			end_while
+			
+			;camera_position_at_bookmark 21 ;archers attack
+			;His archers raise their bows and fire into the shieldwall.
+			play_sound_event TUTORIAL_NARRATOR_9 tag = tutorial_hastings_9		;4.6
+			battle_wait 13.6
+			
+			while I_CompareCounter start_tutorial > 0
+			end_while
+
+			set_music_state custom Hastings_Tutorial_Mobilize			
+			battle_wait 2
+
+			while I_CompareCounter start_tutorial > 0
+			end_while
+				
+			;camera_position_at_bookmark 5 ;hastings
+			;The battle for the English throne begins!
+			play_sound_event TUTORIAL_NARRATOR_10 tag = tutorial_hastings_10		;4.1
+			battle_wait 2.1
+
+			unit_order_attack_unit william_archers_6 harold_front_9
+			battle_wait 2
+			
+			play_sound_event Hastings_Tutorial_General_3
+						
+ 			camera_end hastings_intro
+						
+			set_counter start_tutorial 1
+			
+			terminate_monitor
+		end_monitor
+		
+		monitor_conditions I_CompareCounter start_tutorial = 1
+
+			steal_esc_key on
+
+			;move rufus into position
+			unit_order_move_to_orientation general_rufus 258.32104 387.243648 8 -63.533932
+			unit_order_move_to_orientation rufus_archers 290.359488 378.835456 6 -83.117064
+			unit_order_move_to_orientation rufus_infantry 301.558176 378.885152 7 -85.215456
+			unit_order_move_to_orientation rufus_cavalry 274.578336 382.343456 8 -71.471552
+			battle_wait 1
+
+			while I_CompareCounter start_tutorial > 1
+			end_while
+
+			;start saxon reinforcements moving
+			unit_order_move saxon_reinforcements_1 -27 495
+			unit_order_move saxon_reinforcements_2 -46 481
+
+			battle_wait 0.5
+			
+			stop_sound_event tutorial_hastings_1
+			stop_sound_event tutorial_hastings_2
+			stop_sound_event tutorial_hastings_3
+			stop_sound_event tutorial_hastings_4
+			stop_sound_event tutorial_hastings_5
+			stop_sound_event tutorial_hastings_6
+			stop_sound_event tutorial_hastings_7
+			stop_sound_event tutorial_hastings_8
+			stop_sound_event tutorial_hastings_9
+			stop_sound_event tutorial_hastings_10
+
+			while I_CompareCounter start_tutorial > 1
+			end_while
+
+			;go to rufus
+			camera_track_unit rufus_infantry back 20 7
+		
+			battle_wait 2
+
+			while I_CompareCounter start_tutorial > 1
+			end_while
+			
+			;William's favoured son, Rufus, moves into position to guard against Saxon reinforcements, and awaits his father's call to battle.
+			play_sound_event TUTORIAL_NARRATOR_11 tag = tutorial_hastings_11
+			while I_SoundPlaying tutorial_hastings_11			;8.4
+			end_while
+
+			while I_CompareCounter start_tutorial > 1
+			end_while
+
+			battle_wait 2
+
+			while I_CompareCounter start_tutorial > 1
+			end_while
+	
+		;*********************************************************************************************
+		;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+		;	PLAYER'S ISOLATED FOR LEARNING
+		;	PAN TO RUFUS' ARMY
+		;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+		;*********************************************************************************************
+	
+		;*********************************************************************************************
+		;	MEET THE BATTLE ADVISOR
+		;*********************************************************************************************
+
+			advance_advice_thread Prologue_Hastings_Battle_Advisor_Thread		;ADVICE: Military Advisor  #11000#
+			
+			set_counter Progress_Main_Battle 1
+			
+			while not I_AdvisorSpeechPlaying
+				and I_AdvisorVisible
+			end_while
+	
+			while I_CompareCounter start_tutorial > 1
+			end_while
+
+			while I_AdvisorSpeechPlaying
+				and I_AdvisorVisible
+			end_while
+			
+		;*********************************************************************************************
+		;	WAIT HERE FOR NOW
+		;*********************************************************************************************
+
+			while I_CompareCounter start_tutorial > 1
+			end_while
+		
+			advance_advice_thread Prologue_Hastings_Wait_Here_Thread			;ADVICE: Lay in Wait #11001#
+		
+			while not I_AdvisorSpeechPlaying
+				and I_AdvisorVisible
+			end_while
+			
+			while I_AdvisorSpeechPlaying
+				and I_AdvisorVisible
+			end_while
+
+			;zoom in on Rufus
+			camera_zoom_to_bookmark 4
+			
+			battle_wait 3
+			
+			set_counter start_tutorial 2
+			
+			terminate_monitor
+		end_monitor
+			
+		monitor_conditions I_CompareCounter start_tutorial = 2
+
+			steal_esc_key off
+
+			unit_set_fire_at_will_mode	rufus_archers off
+			unit_set_fire_at_will_mode	william_archers_1 off
+			unit_set_fire_at_will_mode	william_archers_2 off
+			unit_set_fire_at_will_mode	william_archers_3 off
+			unit_set_fire_at_will_mode	william_archers_4 off
+			unit_set_fire_at_will_mode	william_archers_5 off
+			unit_set_fire_at_will_mode	william_archers_6 off
+			unit_set_skirmish_mode rufus_archers off
+			unit_set_skirmish_mode william_archers_1 off
+			unit_set_skirmish_mode william_archers_2 off
+			unit_set_skirmish_mode william_archers_3 off
+			unit_set_skirmish_mode william_archers_4 off
+			unit_set_skirmish_mode william_archers_5 off
+			unit_set_skirmish_mode william_archers_6 off
+			unit_set_morale harold_front_3 high
+			
+			;start saxon reinforcements moving
+			unit_order_move saxon_reinforcements_1 -27 495 run
+			unit_order_move saxon_reinforcements_2 -46 481 run
+			
+			;restrict player's clickable area
+			battle_restrict_clickable_area 248, 376, 272, 400
+
+		;*********************************************************************************************
+		;	SELECT RUFUS
+		;*********************************************************************************************
+			
+			battle_wait 1
+			
+			stop_sound_event tutorial_hastings_1
+			stop_sound_event tutorial_hastings_2
+			stop_sound_event tutorial_hastings_3
+			stop_sound_event tutorial_hastings_4
+			stop_sound_event tutorial_hastings_5
+			stop_sound_event tutorial_hastings_6
+			stop_sound_event tutorial_hastings_7
+			stop_sound_event tutorial_hastings_8
+			stop_sound_event tutorial_hastings_9
+			stop_sound_event tutorial_hastings_10
+			stop_sound_event tutorial_hastings_11
+
+			;teleport rufus' units
+; 			unit_immediate_place general_rufus 258.32104 387.243648 -63.533932 8
+			unit_immediate_place general_rufus 257.700128 386.62208 -63.533932 8
+			unit_order_halt general_rufus
+			
+			unit_immediate_place rufus_archers 290.359488 378.835456 -83.117064 6
+			unit_immediate_place rufus_infantry 301.558176 378.885152 -85.215456 7
+			unit_immediate_place rufus_cavalry 274.578336 382.343456 -71.471552 8
+
+			;zoom in on Rufus
+			camera_position_at_bookmark 4
+			
+		 	set_music_state custom Hastings_Tutorial_Tension				
+				
+			battle_wait 1
+			unit_immediate_place rufus_cavalry 274.578336 382.343456 -71.471552 8
+			
+			point_at_unit_pos general_rufus
+		 	enable_cursor
+
+			advance_advice_thread Prologue_Hastings_Select_Rufus_Thread			;ADVICE: Select Rufus #11002#
+	
+			terminate_monitor
+		end_monitor
+	
+	;*********************************************************************************************
+	;	RUFUS SELECTED
+	;*********************************************************************************************
+		
+		monitor_conditions I_UnitSelected general_rufus
+		
+			remove_battle_map_arrow
+	
+			advance_advice_thread Prologue_Hastings_Generals_Thread			;ADVICE: Generals #11003#
+	
+			while not I_AdvisorSpeechPlaying
+				and I_AdvisorVisible
+			end_while
+		
+			while I_AdvisorSpeechPlaying
+				and I_AdvisorVisible
+			end_while
+			
+			;flash position to move to
+			point_at_location 232, 405
+	
+			camera_zoom_to_bookmark 1
+
+			battle_restrict_clickable_area 224, 376, 272, 424
+
+			advance_advice_thread Prologue_Hastings_Move_General_Thread		;ADVICE: Movement #11004#
+	
+			set_counter Monitor_Movement 1
+	
+			terminate_monitor
+		end_monitor
+		
+	;*********************************************************************************************
+	;	RUFUS IN POSITION
+	;*********************************************************************************************
+		
+		monitor_conditions I_UnitDistanceFromPosition general_rufus 232 405 < 20
+			and I_CompareCounter Monitor_Movement = 1
+		
+			remove_battle_map_arrow
+	 		camera_restrictions_set on
+	 		inhibit_camera_input false			;	Permit user to move camera.
+ 			camera_default_mode_set		rts
+
+ 			;;;; object manager - hide_gui, show_console, screen_grab
+; 			disable_shortcuts object_manager false
+
+			;;;; radar - inc_scale, dec_scale, toggle_unit_visibility
+ 			disable_shortcuts radar false
+			
+			;;;; help_scroll - show_help
+; 			disable_shortcuts help_scroll false
+			
+; 			camera	;step_fwd_fast, rot_u, rot_d, cam_up, cam_down, toggle_move_fast, accel, decel, rot_l, rot_r, step_l, step_r, step_fwd, step_bck
+			disable_shortcuts camera false			
+
+			;;;;; battle ui
+			disable_shortcuts battle_ui false
+			
+			advance_advice_thread Prologue_Hastings_Move_View_RTS_Thread		;ADVICE: Move View #11005#
+	
+			set_counter Monitor_Camera 1
+			
+			terminate_monitor
+		end_monitor
+		
+	;*********************************************************************************************
+	;	MONITOR CAMERA MOVEMENT
+	;*********************************************************************************************
+
+; 			step_fwd_fast
+		
+		monitor_event ShortcutTriggered ShortcutTriggered camera rot_l		;MOVE LEFT
+			and I_CompareCounter Monitor_Camera = 1
+			inc_counter Completed_Battle_Camera_Moves 1
+			terminate_monitor
+		end_monitor
+	
+		monitor_event ShortcutTriggered ShortcutTriggered camera rot_r		;MOVE RIGHT
+			and I_CompareCounter Monitor_Camera = 1
+			inc_counter Completed_Battle_Camera_Moves 1
+			terminate_monitor
+		end_monitor
+	
+		monitor_event ShortcutTriggered ShortcutTriggered camera step_l		;ROTATE LEFT
+			and I_CompareCounter Monitor_Camera = 1
+			inc_counter Completed_Battle_Camera_Moves 1
+			terminate_monitor
+		end_monitor
+	
+		monitor_event ShortcutTriggered ShortcutTriggered camera step_r		;ROTATE RIGHT
+			and I_CompareCounter Monitor_Camera = 1
+			inc_counter Completed_Battle_Camera_Moves 1
+			terminate_monitor
+		end_monitor
+	
+		monitor_event ShortcutTriggered ShortcutTriggered camera step_fwd	;MOVE UP
+			and I_CompareCounter Monitor_Camera = 1
+			inc_counter Completed_Battle_Camera_Moves 1
+			terminate_monitor
+		end_monitor
+	
+		monitor_event ShortcutTriggered ShortcutTriggered camera step_bck	;MOVE DOWN
+			and I_CompareCounter Monitor_Camera = 1
+			inc_counter Completed_Battle_Camera_Moves 1
+			terminate_monitor
+		end_monitor
+	
+		monitor_event ShortcutTriggered ShortcutTriggered camera rot_u		;ZOOM OUT
+			and I_CompareCounter Monitor_Camera = 1
+			inc_counter Completed_Battle_Camera_Moves 1
+			terminate_monitor
+		end_monitor
+	
+		monitor_event ShortcutTriggered ShortcutTriggered camera rot_d	;ZOOM IN
+			and I_CompareCounter Monitor_Camera = 1
+			inc_counter Completed_Battle_Camera_Moves 1
+			terminate_monitor
+		end_monitor
+	
+	;;;;*************************************************************************************************
+	;;;; THEY MOVED THE CAMERA
+	;;;;*************************************************************************************************
+	
+		monitor_conditions I_CompareCounter Completed_Battle_Camera_Moves > 2
+	
+			;wait until advice finishes
+			while I_AdvisorSpeechPlaying 
+				and I_AdvisorVisible
+			end_while
+			
+			;centre camera on Rufus in case they didn't
+			camera_zoom_to_unit general_rufus
+
+	 		show_ui
+	 		enable_entire_ui
+
+			;;;; battle_ui_extras - intellizoom, freelook
+ 			;disable_shortcuts battle_ui_extras false
+	 		
+			disable_shortcuts players_army_button false
+
+			disable_ui toggle_formation_tightness	;C
+			disable_ui toggle_fire_at_will		;A
+			disable_ui toggle_skirmish			;S
+			disable_ui toggle_defend			;D
+			disable_ui toggle_run				;R
+			disable_ui toggle_special_ability	;F
+			disable_ui order_withdraw			;W
+			disable_ui formation_1				;1	SHIFT
+			disable_ui formation_2				;2	SHIFT
+			disable_ui formation_3				;3	SHIFT
+			disable_ui formation_4				;4	SHIFT
+			disable_ui formation_5				;5	SHIFT
+			disable_ui formation_6				;6	SHIFT
+			disable_ui formation_7				;7	SHIFT
+			disable_ui formation_8				;8	SHIFT
+			disable_ui order_halt				;BACKSPACE
+			disable_ui orders_group				;G
+			disable_ui faster_button
+			disable_ui slower_button
+			disable_ui toggle_auto_link_up
+			disable_ui show_hide_group_formations
+			
+ 			advance_advice_thread Prologue_Hastings_Tilt_Camera_RTS_Thread	;ADVICE: Camera Tilt #11054#
+							
+			while not I_AdvisorSpeechPlaying
+				and I_AdvisorVisible
+			end_while
+	
+			while I_AdvisorSpeechPlaying
+				and I_AdvisorVisible
+			end_while
+
+			battle_wait 3
+
+			;The panel at the bottom of the screen shows a map of the battlefield, an indicator of your progress in the battle, 
+			;controls for the pace of the battle, your general and troops, as well as options and commands for your selected forces.			
+			advance_advice_thread Prologue_Hastings_Battle_HUD_Thread	;ADVICE: Battle Interface #11008#
+
+			while not I_AdvisorSpeechPlaying
+				and I_AdvisorVisible
+			end_while
+
+			battle_wait 2
+
+			if I_AdvisorSpeechPlaying and I_AdvisorVisible
+				ui_flash_start radar
+				battle_wait 3
+			end_if
+			
+			if I_AdvisorSpeechPlaying and I_AdvisorVisible
+				ui_flash_start strength_bar
+				battle_wait 3
+			end_if
+			
+			if I_AdvisorSpeechPlaying and I_AdvisorVisible
+				ui_flash_start slower_button
+				battle_wait 1
+			end_if
+			
+			if I_AdvisorSpeechPlaying and I_AdvisorVisible
+				ui_flash_start faster_button
+				battle_wait 1
+			end_if
+			
+			if I_AdvisorSpeechPlaying and I_AdvisorVisible
+				ui_flash_start toggle_pause_button
+				battle_wait 1
+			end_if
+			
+			if I_AdvisorSpeechPlaying and I_AdvisorVisible
+				point_at_unit_card general_rufus
+				battle_wait 1.5
+			end_if
+			
+			if I_AdvisorSpeechPlaying and I_AdvisorVisible
+				point_at_unit_card rufus_cavalry
+				battle_wait 1
+			end_if
+ 			
+; 			if I_AdvisorSpeechPlaying and I_AdvisorVisible
+; 				battle_wait 0.5
+; 				point_at_unit_card rufus_archers
+; 			end_if
+; 			
+; 			if I_AdvisorSpeechPlaying and I_AdvisorVisible
+; 				battle_wait 0.5
+; 				point_at_unit_card rufus_infantry
+; 			end_if
+			
+			if I_AdvisorSpeechPlaying and I_AdvisorVisible
+				ui_flash_start players_army_button
+			end_if
+			
+			while I_AdvisorSpeechPlaying
+				and I_AdvisorVisible
+			end_while
+			
+			ui_flash_stop
+			
+			battle_wait 1
+			
+			;show cavalry card
+			point_at_unit_card rufus_cavalry
+			
+			;click on cavalry's unit card
+			advance_advice_thread Prologue_Hastings_Select_Cavalry_Card_Thread	;ADVICE: Character Cards #11006#
+	
+			set_counter Monitor_Camera 0
+			
+			set_counter Progress_Main_Battle 2
+			
+			terminate_monitor
+		end_monitor
+	 
+	;;;;*************************************************************************************************
+	;;;; PLAYER SELECTS CAVALRY
+	;;;;*************************************************************************************************
+		
+		monitor_conditions I_UnitSelected rufus_cavalry
+			and I_CompareCounter Progress_Main_Battle = 2
+		
+			ui_flash_stop
+		
+			;show cavalry card
+			point_at_unit_card rufus_cavalry
+	
+			;double left click to pan to unit
+			advance_advice_thread Prologue_Hastings_Double_Click_To_Pan_Thread	;ADVICE: Pan to Unit #11007#
+			
+			terminate_monitor
+		end_monitor
+	
+	;;;;*************************************************************************************************
+	;;;; PLAYER PANS TO CAVALRY
+	;;;;*************************************************************************************************
+		
+		monitor_conditions I_IsCameraZoomingToUnit rufus_cavalry
+			and I_CompareCounter Progress_Main_Battle = 2
+		
+			ui_flash_stop
+		
+			battle_wait 2
+			
+			point_at_location 251, 513
+	
+ 			camera_default_mode_set		tw
+			camera_zoom_to_bookmark 2
+			
+			;double right-click on target to run
+			advance_advice_thread Prologue_Hastings_Cavalry_Run_Thread			;ADVICE: Moving Quickly #11009#
+
+			;restrict player's clickable area
+ 			battle_restrict_clickable_area 223, 368, 311, 528
+
+ 			battle_wait 3
+ 			camera_default_mode_set		rts
+ 									
+			terminate_monitor
+		end_monitor
+	
+	;;;;*************************************************************************************************
+	;;;; PLAYER ORDERS CAVALRY TO RUN
+	;;;;*************************************************************************************************
+		
+		monitor_conditions I_UnitDistanceFromPosition rufus_cavalry 251 513 < 80
+			and I_CompareCounter Progress_Main_Battle = 2
+	
+			set_counter Monitor_Run_Button 1
+			
+			ui_flash_stop
+
+			;;; disable pause button temporarily
+			disable_shortcuts toggle_pause_button true		;toggle_pause_button	PAUSE	P
+			disable_ui toggle_pause_button
+			
+			;press speed button to slow down cavalry
+			advance_advice_thread Prologue_Hastings_Change_Unit_Speed_Thread	;ADVICE: Changing Speed #11011#
+			
+; 			toggle_run					R
+			enable_ui toggle_run
+			disable_shortcuts toggle_run false
+			ui_flash_start toggle_run
+	
+			battle_wait 0.5
+			
+			pause_battle
+			
+			terminate_monitor
+		end_monitor
+		
+	;;;;*************************************************************************************************
+	;;;; PLAYER SLOWS DOWN CAVALRY
+	;;;;*************************************************************************************************
+		
+		monitor_event ButtonPressed ButtonPressed toggle_run
+			and I_UnitSelected rufus_cavalry
+			and I_CompareCounter Monitor_Run_Button = 1
+			
+			ui_flash_stop
+			
+			set_counter Toggle_Run_Pressed 1
+		
+			terminate_monitor
+		end_monitor
+		
+		monitor_conditions I_CompareCounter Toggle_Run_Pressed = 1
+			
+			disable_shortcuts toggle_pause_button false		;toggle_pause_button	PAUSE	P
+			enable_ui toggle_pause_button
+; 			battle_wait 0.5
+; 			call_object_shortcut toggle_pause_button
+; 			battle_wait 0.5
+			battle_set_speed 1
+			
+			;don't tire units
+			advance_advice_thread Prologue_Hastings_Walking_Is_Better_Thread 	;ADVICE: Energy to Fight #11010#	
+
+			;start saxon reinforcements moving
+			unit_immediate_place saxon_reinforcements_1 -27 495 0
+			unit_immediate_place saxon_reinforcements_2 -46 481 0
+			
+			;walk saxons towards player's units
+			unit_order_move saxon_reinforcements_1 74, 522
+			unit_order_move saxon_reinforcements_2 58, 524		
+			
+			terminate_monitor
+		end_monitor
+	
+	;;;;*************************************************************************************************
+	;;;; CAVALRY REACHES TARGET
+	;;;;*************************************************************************************************
+		
+		monitor_conditions I_UnitDistanceFromPosition rufus_cavalry 251 513 < 30
+			and I_CompareCounter Monitor_Movement = 1
+			
+			set_counter Monitor_Halt_Button 1
+	
+; 			order_halt					BACKSPACE
+			enable_ui order_halt
+			disable_shortcuts order_halt false
+			ui_flash_start order_halt
+			
+			;press halt button
+			advance_advice_thread Prologue_Hastings_Halt_Orders_Thread			;ADVICE: Halt Orders #11012#
+	
+			terminate_monitor
+		end_monitor
+	
+	;;;;*************************************************************************************************
+	;;;; PLAYER PRESSES HALT
+	;;;;*************************************************************************************************
+		
+		monitor_event ButtonPressed ButtonPressed order_halt
+			and I_CompareCounter Monitor_Halt_Button = 1
+		
+			ui_flash_stop
+			
+			set_counter Order_Halt_Pressed 1
+		
+		end_monitor
+	
+		monitor_conditions I_CompareCounter Order_Halt_Pressed = 1
+	
+			set_counter Monitor_Halt_Button 0
+		
+			remove_battle_map_arrow		
+			
+			;allow to use selection shortcuts
+			disable_shortcuts card_manager select_all false
+			disable_shortcuts card_manager deselect_all false
+			disable_shortcuts card_manager select_next false
+			disable_shortcuts card_manager select_prev false
+			disable_shortcuts card_manager select_infantry false
+			disable_shortcuts card_manager select_cavalry false
+			disable_shortcuts card_manager select_missile false
+			disable_shortcuts card_manager select_melee false
+			disable_shortcuts card_manager orders_group true
+
+			;select all units
+			advance_advice_thread Prologue_Hastings_Select_All_Units_Thread		;ADVICE: Select All Units #11013#
+	
+			set_counter Monitor_Select_All 1
+							
+			terminate_monitor	
+		end_monitor
+	
+	;;;;*************************************************************************************************
+	;;;; ALL PLAYER UNITS SELECTED
+	;;;;*************************************************************************************************
+	
+		monitor_conditions I_SpecificUnitsSelected general_rufus rufus_infantry rufus_archers rufus_cavalry
+			and I_CompareCounter Monitor_Select_All = 1
+		
+			point_at_location 213, 445
+
+ 			camera_default_mode_set		tw
+			camera_zoom_to_bookmark 3
+
+			set_counter Progress_Main_Battle 3
+						
+			;move units to highlighted area
+			advance_advice_thread Prologue_Hastings_Move_All_Units_Thread		;ADVICE: Move All Units #11014#
+
+			;restrict player's clickable area
+ 			battle_restrict_clickable_area 192, 368, 311, 520
+
+ 			battle_wait 4
+ 			camera_default_mode_set		rts
+ 						
+			terminate_monitor
+		end_monitor
+		
+		monitor_conditions I_UnitOrderedToPosition rufus_cavalry 213 445 < 40
+			and I_CompareCounter Progress_Main_Battle = 3
+		
+			inc_counter move_all_position 1
+			
+			terminate_monitor
+		end_monitor
+
+		monitor_conditions I_UnitOrderedToPosition rufus_infantry 213 445 < 40
+			and I_CompareCounter Progress_Main_Battle = 3
+		
+			inc_counter move_all_position 1
+			
+			terminate_monitor
+		end_monitor
+
+		monitor_conditions I_UnitOrderedToPosition rufus_archers 213 445 < 40
+			and I_CompareCounter Progress_Main_Battle = 3
+		
+			inc_counter move_all_position 1
+			
+			terminate_monitor
+		end_monitor
+
+		monitor_conditions I_UnitOrderedToPosition general_rufus 213 445 < 40
+			and I_CompareCounter Progress_Main_Battle = 3
+		
+			inc_counter move_all_position 1
+			
+			terminate_monitor
+		end_monitor
+
+		monitor_conditions I_CompareCounter move_all_position = 4
+			and I_CompareCounter Progress_Main_Battle = 3
+
+			advance_advice_thread Prologue_Hastings_Click_And_Drag_Thread		;ADVICE: Move into Formation #11056#
+	 		
+			terminate_monitor
+		end_monitor	
+
+		
+	;;;;*************************************************************************************************
+	;;;; ALL UNITS IN POSITION
+	;;;;*************************************************************************************************
+		
+		monitor_conditions I_UnitDistanceFromPosition rufus_infantry 213 445 < 40
+			and I_UnitDistanceFromPosition rufus_archers 213 445 < 40
+			and I_UnitDistanceFromPosition rufus_cavalry 213 445 < 40
+			and I_UnitDistanceFromPosition general_rufus 213 445 < 40
+			and I_CompareCounter Monitor_Movement = 1
+	
+			remove_battle_map_arrow
+
+ 			camera_default_mode_set		tw
+	
+			camera_zoom_to_unit general_rufus
+			advance_advice_thread Prologue_Hastings_Banners_Thread	;ADVICE: Troop Banners #11016#
+			while not I_AdvisorSpeechPlaying
+				and I_AdvisorVisible
+			end_while
+	
+			battle_wait 3
+ 			camera_default_mode_set		rts
+			
+			while I_AdvisorSpeechPlaying
+				and I_AdvisorVisible
+			end_while
+			
+			battle_wait 2
+			
+			;press enter to deselect units
+			advance_advice_thread Prologue_Hastings_Deselect_All_Units_Thread	;ADVICE: Deselect All Units #11015#
+			
+			set_counter Monitor_Deselect_All 1
+					
+			terminate_monitor
+		end_monitor
+		
+	;;;;*************************************************************************************************
+	;;;; PLAYER PRESSED ENTER
+	;;;;*************************************************************************************************	
+	
+		monitor_conditions not I_UnitSelected general_rufus 
+			and not I_UnitSelected rufus_infantry
+			and not I_UnitSelected rufus_archers
+			and not I_UnitSelected rufus_cavalry
+			and I_CompareCounter Monitor_Deselect_All = 1
+	
+			;walk saxons towards player's units
+			unit_order_move saxon_reinforcements_1 123, 485
+			unit_order_move saxon_reinforcements_2 103, 497		
+			
+			battle_wait 1
+			
+			camera_track_unit saxon_reinforcements_1 front 20 7
+	
+		 	set_music_state custom Hastings_Tutorial_Mobilize	
+			
+			advance_advice_thread Prologue_Hastings_Saxon_Reinforcements_Thread		;ADVICE: Saxon Reinforcements! #11020#
+	
+			while not I_AdvisorSpeechPlaying
+				and I_AdvisorVisible
+			end_while
+	
+			while I_AdvisorSpeechPlaying
+				and I_AdvisorVisible
+			end_while
+	
+			battle_wait 2
+	
+			;pan back to archers
+ 			camera_default_mode_set		tw
+			camera_zoom_to_unit rufus_archers		
+	
+			;select archers
+			point_at_unit_card rufus_archers
+			advance_advice_thread Prologue_Hastings_Select_Archers_Thread			;ADVICE: Select your Archers #11021#
+			point_at_unit_pos rufus_archers
+	
+			battle_wait 5
+ 			camera_default_mode_set		rts
+			
+			set_counter Saxon_Reinforcements 1		
+					
+			terminate_monitor
+		end_monitor
+		
+	;;;;*************************************************************************************************
+	;;;; ARCHERS SELECTED, SAXON REINFORCEMENTS
+	;;;;*************************************************************************************************
+		
+		monitor_conditions I_UnitSelected rufus_archers
+			and I_CompareCounter Saxon_Reinforcements = 1
+	
+			ui_flash_stop
+			remove_battle_map_arrow
+			
+			camera_track_unit saxon_reinforcements_1 front 20 7
+	
+			;attack saxons with archers
+			advance_advice_thread Prologue_Hastings_Attack_With_Archers_Thread		;ADVICE: Attack with Archers #11022#
+
+			;restrict player's clickable area
+ 			battle_restrict_clickable_area 47, 416, 255, 544
+				
+			battle_wait 3
+			
+			set_counter Saxon_Reinforcements 2
+			
+			terminate_monitor
+		end_monitor
+		
+		monitor_conditions not I_IsUnitIdle rufus_archers
+			and I_CompareCounter Saxon_Reinforcements = 2
+			and I_CompareCounter Progress_Main_Battle < 5
+			
+			battle_wait 1
+			
+ 			if I_CompareCounter Progress_Main_Battle < 5
+				camera_default_mode_set		tw
+				camera_zoom_to_unit rufus_archers		
+				
+				;archers are firing - see the icon
+				advance_advice_thread Prologue_Hastings_Archers_Firing_Thread		;ADVICE: Archers Firing #11062#
+	
+				battle_wait 5
+	 			camera_default_mode_set		rts
+	 		end_if
+				
+			while I_AdvisorSpeechPlaying
+				and I_AdvisorVisible
+			end_while
+
+			battle_wait 2
+	
+ 			if I_CompareCounter Progress_Main_Battle < 5
+				unit_order_attack_unit saxon_reinforcements_1 rufus_infantry
+		
+	 			camera_default_mode_set		tw
+				camera_zoom_to_unit rufus_infantry
+						
+				;attack with infantry
+				point_at_unit_card rufus_infantry
+				point_at_unit_pos rufus_infantry
+				set_counter spearmen_flashing 1
+				
+				advance_advice_thread Prologue_Hastings_Attack_With_Infantry_Thread		;ADVICE: Attack with Infantry #11025#		
+		
+				battle_wait 4
+	 			camera_default_mode_set		rts
+	 		end_if
+			
+			terminate_monitor
+		end_monitor
+		
+		monitor_conditions I_UnitSelected rufus_infantry
+			and I_CompareCounter spearmen_flashing = 1
+			
+			ui_flash_stop
+			remove_battle_map_arrow
+			
+			terminate_monitor
+		end_monitor
+		
+	;;;;*************************************************************************************************
+	;;;; THEY ATTACKED WITH INFANTRY
+	;;;;*************************************************************************************************
+	
+		monitor_conditions I_IsUnitEngagedWithUnit rufus_infantry saxon_reinforcements_1
+			
+			set_counter spearmen_engaged 1
+		
+			terminate_monitor
+		end_monitor
+		
+		monitor_conditions I_CompareCounter spearmen_engaged = 1
+			and I_CompareCounter Progress_Main_Battle < 5
+		
+			ui_flash_stop
+	
+			if not I_IsUnitIdle rufus_archers
+				;archers cause friendly fire
+	 			camera_default_mode_set		tw
+				camera_zoom_to_unit rufus_archers
+				advance_advice_thread Prologue_Hastings_Friendly_Fire_Thread			;ADVICE: Friendly Fire #10124#		
+				battle_wait 2
+			
+				if I_AdvisorSpeechPlaying and I_AdvisorVisible
+					point_at_unit_card rufus_archers
+					point_at_unit_pos rufus_archers
+					battle_wait 3
+				end_if
+	 			camera_default_mode_set		rts
+				
+				if I_AdvisorSpeechPlaying and I_AdvisorVisible
+					battle_wait 2
+				end_if
+				
+				remove_battle_map_arrow
+				ui_flash_stop
+				
+				if I_AdvisorSpeechPlaying and I_AdvisorVisible and not I_IsUnitIdle rufus_archers
+					ui_flash_start order_halt
+					set_counter Monitor_Halt_2 1
+				end_if
+				
+				while I_AdvisorSpeechPlaying
+					and I_AdvisorVisible
+				end_while
+	
+				ui_flash_stop
+						
+				battle_wait 2
+			end_if
+
+		;;;;*************************************************************************************************
+		;;;; ZOOM IN ON ACTION
+		;;;;*************************************************************************************************	
+			
+			while I_AdvisorSpeechPlaying
+				and I_AdvisorVisible
+			end_while
+				
+			;check player not called into main battle
+; 			if I_CompareCounter Progress_Main_Battle < 5
+			if I_CompareCounter saxons_2_dead = 0
+	 			
+				;zoom in on action
+				advance_advice_thread Prologue_Hastings_Zoom_On_Action_Thread			;ADVICE: Zoom in on Action #11026#
+		
+				while not I_AdvisorSpeechPlaying
+					and I_AdvisorVisible
+				end_while
+		
+				while I_AdvisorSpeechPlaying
+					and I_AdvisorVisible
+				end_while
+	
+				battle_wait 3
+			end_if
+	
+		;;;;*************************************************************************************************
+		;;;; UNIT STATUS
+		;;;;*************************************************************************************************
+	
+			while I_AdvisorSpeechPlaying
+				and I_AdvisorVisible
+			end_while
+			
+			;check player not called into main battle
+; 			if I_CompareCounter Progress_Main_Battle < 5
+			if I_CompareCounter saxons_2_dead = 0
+				;mouse over units
+				advance_advice_thread Prologue_Hastings_Unit_Status_Thread				;ADVICE: Unit Status #11028#
+			end_if
+				
+			battle_wait 30
+			
+			if not I_IsUnitRouting saxon_reinforcements_1
+				unit_set_morale saxon_reinforcements_1 routing
+			end_if
+	
+			terminate_monitor
+		end_monitor
+	
+	;;;;*************************************************************************************************
+	;;;; THEY PRESSED THE HALT BUTTON
+	;;;;*************************************************************************************************
+	
+		monitor_event ButtonPressed ButtonPressed order_halt
+			and I_CompareCounter Monitor_Halt_2 = 1
+		
+			ui_flash_stop
+			
+			terminate_monitor
+		end_monitor
+
+	;;;;*************************************************************************************************
+	;;;; WHEN SAXON REINFORCEMENTS 1 RETREAT
+	;;;;*************************************************************************************************
+		
+		monitor_conditions I_IsUnitRouting saxon_reinforcements_1
+			set_counter saxons_1_dead 1		
+			terminate_monitor
+		end_monitor
+		
+		monitor_conditions I_IsUnitRouting saxon_reinforcements_2
+			set_counter saxons_2_dead 1		
+			terminate_monitor
+		end_monitor
+		
+		monitor_conditions I_UnitDestroyed saxon_reinforcements_1
+			set_counter saxons_1_dead 1		
+			terminate_monitor
+		end_monitor
+		
+		monitor_conditions I_UnitDestroyed saxon_reinforcements_1
+			set_counter saxons_2_dead 1		
+			terminate_monitor
+		end_monitor
+	
+		monitor_conditions I_CompareCounter saxons_1_dead = 1
+			and I_CompareCounter saxons_2_dead = 0
+	
+			battle_wait 2
+			
+			;wait for advice to play out first
+			while I_AdvisorSpeechPlaying 
+				and I_AdvisorVisible
+			end_while	
+						
+			unit_order_move saxon_reinforcements_2 175 454
+			camera_track_unit saxon_reinforcements_2 front 20 7
+
+			if I_CompareCounter No_Cavalry = 0
+				point_at_unit_card rufus_cavalry
+				;charge with cavalry
+				advance_advice_thread Prologue_Hastings_Run_Down_With_Cavalry_Thread	;ADVICE: Cavalry Charge #11027#
+			end_if
+	
+			set_counter Progress_Main_Battle 4
+			
+			terminate_monitor
+		end_monitor
+			
+		monitor_conditions I_UnitSelected rufus_cavalry
+			and I_CompareCounter saxons_1_dead = 1
+ 			and I_CompareCounter Progress_Main_Battle = 4
+ 			and I_CompareCounter Go_To_Main_Battle = 0
+			
+			ui_flash_stop
+			battle_wait 1
+
+			while not I_IsUnitMoving rufus_cavalry
+			end_while
+	
+			battle_wait 1
+			
+			camera_track_unit rufus_cavalry back 20 7
+		
+			terminate_monitor
+		end_monitor
+		
+	;;;;*************************************************************************************************
+	;;;; WHEN SAXON REINFORCEMENTS DEFEATED
+	;;;;*************************************************************************************************
+	
+		monitor_conditions I_CompareCounter saxons_1_dead = 1
+			and I_CompareCounter saxons_2_dead = 1
+		
+			;pan to main battle
+			;-battle has been going all day, the end is near, casualties on both sides
+	
+			while I_AdvisorSpeechPlaying 
+				and I_AdvisorVisible
+			end_while	
+			
+			battle_wait 4
+			
+			while I_AdvisorSpeechPlaying 
+				and I_AdvisorVisible
+			end_while	
+			set_counter Progress_Main_Battle 5
+			
+			battle_wait 2
+
+			set_camera_bookmark 1, 559.23, 232.2358, 335.57		567.789, 230.7249, 340.602		;william
+
+			ui_flash_stop
+			remove_battle_map_arrow
+			
+			inhibit_camera_input 		true
+			camera_default_mode_set		tw
+			camera_restrictions_set off
+
+			;snap camera to main battle
+			camera_position_at_bookmark 1
+			play_sound_event Hastings_Tutorial_General_2
+
+			battle_wait 1
+						
+			advance_advice_thread Prologue_Hastings_Called_Into_Main_Battle_Thread	;ADVICE: Join the Battle #11029#
+			
+			while not I_AdvisorSpeechPlaying
+				and I_AdvisorVisible
+			end_while
+	
+			while I_AdvisorSpeechPlaying
+				and I_AdvisorVisible
+			end_while
+	
+			battle_wait 2
+						
+			camera_zoom_to_unit general_rufus
+			
+			inc_counter Go_To_Main_Battle 1
+			
+			;cross the bridge
+			advance_advice_thread Prologue_Hastings_Cross_The_Bridge_Thread			;ADVICE: Cross the Bridge #11030#
+			
+			;let the player click out of their zone now
+;  			battle_restrict_clickable_area 32, 352, 431, 591
+ 			battle_restrict_clickable_area 384, 360, 424, 400
+			;424, 360, 384, 400
+ 			
+ 			battle_wait 11
+
+			;point at other side of bridge
+			point_at_location 405, 380
+			
+			camera_zoom_to_bookmark 6
+			
+			battle_wait 4
+
+			camera_default_mode_set		rts
+			inhibit_camera_input 		false
+			camera_restrictions_set 	on
+							
+			terminate_monitor
+		end_monitor
+
+	;;;;*************************************************************************************************
+	;;;; ON THEIR WAY - SPEED UP THE GAME
+	;;;;*************************************************************************************************
+		
+		monitor_conditions I_CompareCounter Units_Ordered_Across_Bridge = 4
+			and I_CompareCounter Go_To_Main_Battle = 1
+
+; 			toggle_speed				T CTRL
+			disable_shortcuts timeline_control false		;toggle_speed
+			enable_ui faster_button
+			enable_ui slower_button
+			
+			ui_flash_start faster_button
+			
+			set_counter Progress_Main_Battle 6
+			
+	 		advance_advice_thread Prologue_Hastings_Battle_Speed_Bridge_Thread			;ADVICE: Battle Speed #11044#
+	 		
+			terminate_monitor
+		end_monitor
+		
+		;monitor game speed set to x3 and stop flashing faster button
+		monitor_conditions I_BattleSpeed = 3
+		
+			ui_flash_stop
+		
+			terminate_monitor
+		end_monitor
+		
+	;;;;*************************************************************************************************
+	;;;; NEAR DESTINATION - SLOW DOWN THE GAME
+	;;;;*************************************************************************************************
+	
+		monitor_conditions I_UnitOrderedToPosition rufus_cavalry 405 380 < 75
+			and I_CompareCounter Go_To_Main_Battle = 1
+		
+			inc_counter Units_Ordered_Across_Bridge 1
+			
+			terminate_monitor
+		end_monitor
+
+		monitor_conditions I_UnitOrderedToPosition rufus_infantry 405 380 < 75
+			and I_CompareCounter Go_To_Main_Battle = 1
+		
+			inc_counter Units_Ordered_Across_Bridge 1
+			
+			terminate_monitor
+		end_monitor
+
+		monitor_conditions I_UnitOrderedToPosition rufus_archers 405 380 < 75
+			and I_CompareCounter Go_To_Main_Battle = 1
+		
+			inc_counter Units_Ordered_Across_Bridge 1
+			
+			terminate_monitor
+		end_monitor
+
+		monitor_conditions I_UnitOrderedToPosition general_rufus 405 380 < 75
+			and I_CompareCounter Go_To_Main_Battle = 1
+		
+			inc_counter Units_Ordered_Across_Bridge 1
+			
+			terminate_monitor
+		end_monitor
+
+
+		monitor_conditions I_UnitDistanceFromPosition general_rufus 405 380 < 80
+			and I_CompareCounter Go_To_Main_Battle = 1
+
+			ui_flash_stop
+
+	 		ui_flash_start slower_button
+	 		advance_advice_thread Prologue_Hastings_Slow_Speed_Thread					;ADVICE: Normal Speed #11046#
+	 		
+			terminate_monitor
+		end_monitor	
+		
+		monitor_conditions I_BattleSpeed = 1
+			and I_CompareCounter Go_To_Main_Battle = 1
+		
+			ui_flash_stop
+		
+			terminate_monitor
+		end_monitor
+			
+	;;;;*************************************************************************************************
+	;;;; PLAYER UNITS ACROSS THE BRIDGE
+	;;;;*************************************************************************************************
+
+		monitor_conditions I_UnitDistanceFromPosition rufus_cavalry 405 380 < 40
+			and I_CompareCounter Go_To_Main_Battle = 1
+		
+			inc_counter Units_Across_Bridge 1
+			
+			terminate_monitor
+		end_monitor
+
+		monitor_conditions I_UnitDistanceFromPosition rufus_infantry 405 380 < 40
+			and I_CompareCounter Go_To_Main_Battle = 1
+		
+			inc_counter Units_Across_Bridge 1
+			
+			terminate_monitor
+		end_monitor
+
+		monitor_conditions I_UnitDistanceFromPosition rufus_archers 405 380 < 40
+			and I_CompareCounter Go_To_Main_Battle = 1
+		
+			inc_counter Units_Across_Bridge 1
+			
+			terminate_monitor
+		end_monitor
+
+		monitor_conditions I_UnitDistanceFromPosition general_rufus 405 380 < 40
+			and I_CompareCounter Go_To_Main_Battle = 1
+		
+			inc_counter Units_Across_Bridge 1
+			
+			terminate_monitor
+		end_monitor
+	
+		monitor_conditions I_CompareCounter Units_Across_Bridge = 4
+			and I_CompareCounter Go_To_Main_Battle = 1
+
+			ui_flash_stop
+			remove_battle_map_arrow
+			
+			battle_wait 1
+
+			;slow down battle
+			battle_set_speed 1
+							
+			set_counter Main_Battle 1
+	
+			inhibit_camera_input 		true
+			camera_default_mode_set		tw
+			camera_restrictions_set 	off
+			;;; disable time controls for now
+			disable_shortcuts timeline_control true		;toggle_speed
+			disable_ui faster_button
+			disable_ui slower_button
+			battle_set_speed 1
+			
+			point_at_location 489, 456
+			
+			;move units into formation
+			advance_advice_thread Prologue_Hastings_Move_Into_Position_Thread		;ADVICE: Move into Position #11032#
+
+			;restrict player's clickable area
+ 			battle_restrict_clickable_area 384, 353, 512, 480
+	
+			camera_zoom_to_bookmark 7
+			
+			battle_wait 3
+			
+			camera_default_mode_set		rts
+			inhibit_camera_input 		false
+			camera_restrictions_set 	on
+			;;; return speed controls
+			disable_shortcuts timeline_control false		;toggle_speed
+			enable_ui faster_button
+			enable_ui slower_button
+			
+			if I_CompareCounter No_Archers = 0
+			
+				;point at location to move archers
+				point_at_unit_card rufus_archers
+
+				while I_CompareCounter archers_form_up = 0
+				end_while
+				
+				ui_flash_stop
+				remove_battle_map_arrow
+				
+			end_if
+			
+			battle_wait 2
+			
+			;resume the battle when you are ready
+			if I_CompareCounter No_Infantry = 0
+			
+				;where to move infantry
+				point_at_location 482, 444
+				
+				advance_advice_thread Prologue_Hastings_Move_Into_Position_2_Thread			;ADVICE: Move into Position #11033#
+				
+				point_at_unit_card rufus_infantry
+				
+				while I_CompareCounter infantry_form_up = 0
+ 				end_while
+
+				ui_flash_stop
+				remove_battle_map_arrow
+
+			end_if
+			
+			battle_wait 2
+			
+			if I_CompareCounter No_Cavalry = 0
+			
+				point_at_location 474, 432
+			
+				advance_advice_thread Prologue_Hastings_Move_Into_Position_4_Thread			;ADVICE: Move into Position #11033#
+				
+				point_at_unit_card rufus_cavalry
+				
+				while I_CompareCounter cavalry_form_up = 0
+ 				end_while
+
+				ui_flash_stop
+				remove_battle_map_arrow
+				
+			end_if
+
+			battle_wait 2
+
+	 		;move general into position advice
+	 		advance_advice_thread Prologue_Hastings_Move_Into_Position_3_Thread			;ADVICE: Move Rufus into Position #11043#		
+	
+			point_at_location 465, 408
+			point_at_unit_card general_rufus
+
+			while I_CompareCounter rufus_form_up = 0
+ 			end_while
+			
+			ui_flash_stop
+			remove_battle_map_arrow
+	
+			battle_wait 5
+			
+			ui_flash_start toggle_pause_button
+			advance_advice_thread Prologue_Hastings_Pause_Game_Thread			;ADVICE: Issuing Orders #11048#
+			
+			battle_wait 1
+			pause_battle
+			ui_flash_stop
+			
+			battle_wait 1
+
+			;;; saxons attack normans to rout
+			unit_order_attack_unit harold_front_7 william_archers_6 run
+			unit_order_attack_unit harold_front_8 william_infantry_6 run
+			unit_order_attack_unit harold_front_9 william_cavalry_6 run
+			
+			ui_flash_start faster_button
+			advance_advice_thread Prologue_Hastings_Battle_Speed_Form_Up_Thread			;ADVICE: Battle Speed #11045#
+			
+			terminate_monitor
+		end_monitor
+
+		monitor_conditions I_UnitOrderedToPosition rufus_archers 489 456 < 20
+
+			set_counter archers_form_up 1
+		
+			terminate_monitor
+		end_monitor
+	
+		monitor_conditions I_UnitOrderedToPosition rufus_infantry 482 444 < 20
+
+			set_counter infantry_form_up 1
+		
+			terminate_monitor
+		end_monitor
+
+		monitor_conditions I_UnitOrderedToPosition rufus_cavalry 474 432 < 20
+
+			set_counter cavalry_form_up 1
+		
+			terminate_monitor
+		end_monitor
+
+		monitor_conditions I_UnitOrderedToPosition general_rufus 465 408 < 20
+
+			set_counter rufus_form_up 1
+		
+			terminate_monitor
+		end_monitor
+
+				
+		;stop flashing faster button when speed set to x3
+		monitor_conditions I_BattleSpeed = 3
+			and I_CompareCounter Go_To_Main_Battle = 1
+		
+			ui_flash_stop
+		
+			terminate_monitor
+		end_monitor
+		
+	;;;;*************************************************************************************************
+	;;;; PLAYER UNITS IN FORMATION
+	;;;;*************************************************************************************************
+	
+		monitor_conditions I_UnitDistanceFromPosition rufus_cavalry 473, 430 < 20
+			and I_CompareCounter Main_Battle = 1
+		
+			inc_counter Units_In_Position 1
+			
+			terminate_monitor
+		end_monitor
+
+		monitor_conditions I_UnitDistanceFromPosition rufus_infantry 482, 444 < 20
+			and I_CompareCounter Main_Battle = 1
+		
+			inc_counter Units_In_Position 1
+			
+			terminate_monitor
+		end_monitor
+
+		monitor_conditions I_UnitDistanceFromPosition rufus_archers 489, 456 < 20
+			and I_CompareCounter Main_Battle = 1
+		
+			inc_counter Units_In_Position 1
+			
+			terminate_monitor
+		end_monitor
+	
+		monitor_conditions I_CompareCounter No_Cavalry = 1
+
+			inc_counter Units_In_Position 1
+			inc_counter Units_Ordered_Across_Bridge 1
+			inc_counter Units_Across_Bridge 1
+
+			terminate_monitor
+		end_monitor		
+
+		monitor_conditions I_CompareCounter No_Infantry = 1
+
+			inc_counter Units_In_Position 1
+			inc_counter Units_Ordered_Across_Bridge 1
+			inc_counter Units_Across_Bridge 1
+
+			terminate_monitor
+		end_monitor		
+
+		monitor_conditions I_CompareCounter No_Archers = 1
+
+			inc_counter Units_In_Position 1
+			inc_counter Units_Ordered_Across_Bridge 1
+			inc_counter Units_Across_Bridge 1
+
+			terminate_monitor
+		end_monitor		
+					
+		monitor_conditions I_CompareCounter Units_In_Position = 3
+			and I_CompareCounter player_destroyed < 2
+	
+			remove_battle_map_arrow
+			ui_flash_stop
+		
+			battle_wait 1
+
+			;slow down battle
+			battle_set_speed 1
+			
+			while I_AdvisorSpeechPlaying
+				and I_AdvisorVisible
+			end_while
+			
+			;lock the camera for movie sequence
+			inhibit_camera_input 		true
+			camera_default_mode_set		tw
+			camera_restrictions_set 	off
+			;;; disable speed controls			
+			disable_shortcuts timeline_control true		;toggle_speed
+			disable_ui faster_button
+			disable_ui slower_button
+			battle_set_speed 1
+			
+		 	set_music_state custom Hastings_Tutorial_Battle	
+
+			set_camera_bookmark 1, 	662.954, 244.588, 269.912		654.61, 236.597, 295.836
+; 			camera_zoom_to_bookmark 1
+			camera_position_at_bookmark 1
+
+			battle_wait 1
+			
+			;some of normans flee
+			unit_set_morale william_infantry_6 routing
+			unit_set_morale william_archers_6 routing
+			unit_set_morale william_cavalry_6 routing
+
+			;morale and routing
+			advance_advice_thread Prologue_Hastings_Normans_Flee_Thread				;ADVICE: Normans are Fleeing! #11034#
+			
+			while not I_AdvisorSpeechPlaying
+				and I_AdvisorVisible
+			end_while
+
+			battle_wait 2
+			
+			;move saxons back into position if not routing
+			if not I_IsUnitRouting harold_front_7
+				unit_order_move_to_orientation harold_front_7 681.721 443.662 17 -147
+			end_if
+			
+			if not I_IsUnitRouting harold_front_8
+				unit_order_move_to_orientation harold_front_8 699.288 432.481 17 -147
+			end_if
+			
+			if not I_IsUnitRouting harold_front_9
+				unit_order_move_to_orientation harold_front_9 714.094 423.756 17 -148
+			end_if
+	
+			while I_AdvisorSpeechPlaying
+				and I_AdvisorVisible
+			end_while
+
+			battle_wait 3
+	
+			if I_CompareCounter No_Infantry = 0
+				unit_order_attack_unit harold_front_3 rufus_infantry
+			end_if
+			
+			if I_CompareCounter No_Infantry = 1
+				and I_CompareCounter No_Cavalry = 0
+				unit_order_attack_unit harold_front_3 rufus_cavalry
+			end_if			
+			
+			unit_order_attack_unit harold_front_4 william_infantry_3
+			unit_order_attack_unit harold_front_5 william_infantry_4
+			unit_order_attack_unit harold_front_6 william_infantry_5
+
+			;english peasants break rank and run at fleeing normans
+			camera_track_unit harold_front_3 front 20 7
+				
+			advance_advice_thread Prologue_Hastings_Peasants_Charging_Thread		;ADVICE: Peasants are Charging! #11035#
+			
+			while not I_AdvisorSpeechPlaying
+				and I_AdvisorVisible
+			end_while
+			
+			while I_AdvisorSpeechPlaying
+				and I_AdvisorVisible
+			end_while
+			
+			battle_wait 1
+			
+			;restrict player's clickable area
+ 			battle_restrict_clickable_area 384, 353, 590, 492
+	
+			if I_CompareCounter No_Archers = 0
+ 				camera_zoom_to_unit rufus_archers
+				advance_advice_thread Prologue_Hastings_Fire_On_Peasants_Thread		;ADVICE: Fire on the Peasants! #11036#
+				battle_wait 5
+ 				point_at_unit_pos harold_front_3
+ 			end_if
+	
+			;unlock the camera
+			camera_default_mode_set		rts
+			inhibit_camera_input 		false
+			camera_restrictions_set 	on
+			;;; return speed controls
+			disable_shortcuts timeline_control false		;toggle_speed
+			enable_ui faster_button
+			enable_ui slower_button
+
+			;get will's archers to fire on the peasants
+			unit_order_attack_unit william_archers_4 harold_front_4
+			unit_order_attack_unit william_archers_5 harold_front_5
+			
+			terminate_monitor
+		end_monitor
+			
+	;;;;*************************************************************************************************
+	;;;; PLAYER ATTACKS WITH ARCHERS
+	;;;;*************************************************************************************************
+		
+		monitor_conditions I_UnitStatus rufus_archers, missiles_firing
+			and I_CompareCounter Main_Battle = 1
+			and I_CompareCounter Front_3_Rout = 0
+	
+			remove_battle_map_arrow
+
+			while I_AdvisorSpeechPlaying
+				and I_AdvisorVisible
+			end_while
+			
+			advance_advice_thread Prologue_Hastings_Using_Archers_Thread		;ADVICE: Using Archers #11037#
+			
+			terminate_monitor
+		end_monitor
+			
+	;;;;*************************************************************************************************
+	;;;; SAXONS NEAR PLAYER'S INFANTRY
+	;;;;*************************************************************************************************
+		
+		monitor_conditions I_UnitDistanceFromUnit rufus_infantry harold_front_3 < 85
+			and I_CompareCounter No_Infantry = 0
+
+			while I_AdvisorSpeechPlaying
+				and I_AdvisorVisible
+			end_while
+						
+ 			camera_default_mode_set		tw
+			camera_zoom_to_unit rufus_infantry
+			advance_advice_thread Prologue_Hastings_Infantry_Attack_Peasants_Thread		;ADVICE: Attack with Infantry #11038#
+		
+			battle_wait 4
+ 			camera_default_mode_set		rts
+			
+ 			while not I_IsUnitEngagedWithUnit rufus_infantry harold_front_3
+ 			end_while
+ 			
+ 			battle_wait 5
+ 			unit_unset_morale harold_front_3
+ 			
+			terminate_monitor
+		end_monitor
+
+	;;;;*************************************************************************************************
+	;;;; ATTACK THE SHIELD WALL
+	;;;;*************************************************************************************************
+			
+		monitor_conditions I_UnitDestroyed harold_front_3
+			and I_CompareCounter Main_Battle = 1
+
+			set_counter Front_3_Rout 1
+			
+			terminate_monitor
+		end_monitor
+		
+		monitor_conditions I_IsUnitRouting harold_front_3
+			and I_CompareCounter Main_Battle = 1
+
+			set_counter Front_3_Rout 1
+
+			terminate_monitor
+		end_monitor
+	
+		monitor_conditions I_CompareCounter Front_3_Rout = 1
+
+			remove_battle_map_arrow
+			
+			;;; shoot at harold
+			set_counter kill_harold 1
+			
+			battle_wait 10
+			
+			while I_AdvisorSpeechPlaying
+				and I_AdvisorVisible
+			end_while
+			
+			if I_CompareCounter No_Archers = 0
+				advance_advice_thread Prologue_Hastings_Attack_Shield_Wall_Thread		;ADVICE: Attack the Shield Wall! #11039#
+			end_if
+
+			;restrict player's clickable area
+ 			battle_restrict_clickable_area 384, 353, 604, 515
+	
+			while not I_AdvisorSpeechPlaying
+				and I_AdvisorVisible
+			end_while
+	
+			battle_wait 4
+			
+			;circle unit to fire at
+			if I_CompareCounter No_Archers = 0
+				point_at_unit_pos harold_front_2
+			end_if
+	
+			while I_AdvisorSpeechPlaying
+				and I_AdvisorVisible
+			end_while
+
+			battle_wait 5
+
+			remove_battle_map_arrow
+
+			;script death of harold
+; 			battle_wait 15
+
+			terminate_monitor
+		end_monitor
+
+		monitor_conditions I_UnitDestroyed william_archers_3
+			and I_CompareCounter Main_Battle = 1
+
+			set_counter William_A3_Rout 1
+			
+			terminate_monitor
+		end_monitor
+		
+		monitor_conditions I_IsUnitRouting william_archers_3
+			and I_CompareCounter Main_Battle = 1
+
+			set_counter William_A3_Rout 1
+
+			terminate_monitor
+		end_monitor
+		
+		monitor_conditions I_CompareCounter kill_harold = 1
+		
+			;get these guys to attack harold
+			unit_order_attack_unit william_archers_3 general_harold run ;harold_front_4
+
+			battle_wait 40
+
+			if I_CompareCounter William_A3_Rout = 0
+				while I_UnitStatus william_archers_3, missiles_firing
+				end_while
+				
+				while not I_UnitStatus william_archers_3, missiles_firing
+				end_while
+			end_if
+
+			battle_wait 3
+			
+;;;;;;;;;;;;;;;;;;;;cinematic moment for death of harold;;;;;;;;;;;;;;;;;;;;;;;
+
+ 			inhibit_camera_input true
+			camera_default_mode_set		tw
+			camera_restrictions_set 	off
+
+;  			set_camera_bookmark 9, 		644.427, 260.042, 493.286	638.171, 255.673, 486.146		;kill harold
+			set_camera_bookmark 9, 		644.788, 260.383, 493.698	638.532, 256.014, 486.558		;kill harold
+			set_camera_bookmark 10, 	645.268, 261.932, 498.066	645.64, 257.465, 488.571		;behind harold
+						
+			camera_position_at_bookmark 9
+			battle_wait 3
+			
+			;kill general harold
+			vulnerable_general Harold Godwinson				;stops Harold getting killed too soon
+			kill_character Harold Godwinson
+	
+			battle_wait 2
+			
+			camera_zoom_to_bookmark 10
+			
+			advance_advice_thread Prologue_Hastings_King_Harold_Dead_Thread		;ADVICE: King Harold is Dead! #11040#
+
+			unit_set_morale harold_front_1 routing
+			unit_set_morale harold_front_2 routing
+			unit_set_morale harold_front_7 routing
+			unit_set_morale harold_front_8 routing
+			unit_set_morale harold_front_9 routing
+			unit_set_morale harold_back_1 routing
+			unit_set_morale harold_back_2 routing
+			unit_set_morale harold_back_7 routing
+			unit_set_morale harold_back_8 routing
+					
+			while not I_AdvisorSpeechPlaying
+				and I_AdvisorVisible
+			end_while
+	
+			while I_AdvisorSpeechPlaying
+				and I_AdvisorVisible
+			end_while
+	
+			battle_wait 1
+			
+			camera_default_mode_set 	rts
+			inhibit_camera_input 		false
+			camera_restrictions_set 	on
+			
+;;;;;;;;;;;;;;;;;;;;end cinematic moment;;;;;;;;;;;;;;;;;;;;;;;
+			
+			;destroy these units
+			kill_unit saxon_reinforcements_1
+			kill_unit saxon_reinforcements_2
+	
+			;chase them routers
+			battle_wait 2
+	
+			;remove restrictions
+ 			battle_restrict_clickable_area
+
+			if I_CompareCounter No_Cavalry = 0				
+ 				camera_default_mode_set		tw
+				camera_zoom_to_unit rufus_cavalry
+				advance_advice_thread Prologue_Hastings_Chase_Routers_Thread		;ADVICE: Chase the Routers! #11041#
+					
+				while not I_AdvisorSpeechPlaying
+					and I_AdvisorVisible
+				end_while
+		
+				battle_wait 4
+	 			camera_default_mode_set		rts
+				
+				while I_AdvisorSpeechPlaying
+					and I_AdvisorVisible
+				end_while
+
+			end_if
+	
+			battle_wait 3
+			
+			;front 1 2 (8 9)
+			;back  1 2 7 8
+ 			unit_order_attack_unit william_cavalry_1 harold_front_1
+			unit_order_attack_unit william_cavalry_2 harold_front_2
+			unit_order_attack_unit william_cavalry_3 harold_back_2
+			unit_order_attack_unit william_cavalry_4 harold_back_7
+ 			unit_order_attack_unit william_cavalry_5 harold_back_8
+	
+			unit_order_attack_unit william_infantry_1 harold_back_1
+			unit_order_attack_unit william_infantry_2 harold_back_2
+			unit_order_attack_unit william_infantry_3 harold_front_2
+			unit_order_attack_unit william_infantry_4 harold_back_7
+			unit_order_attack_unit william_infantry_5 harold_back_8	
+	
+			battle_wait 10
+
+			ui_flash_start radar				
+			advance_advice_thread Prologue_Hastings_Radar_Thread				;ADVICE: Radar #11060#
+; 			advance_advice_thread Prologue_Hastings_Radar_Alt_Thread				;ADVICE: Radar #11060#
+			
+			while not I_AdvisorSpeechPlaying
+				and I_AdvisorVisible
+			end_while
+	
+			while I_AdvisorSpeechPlaying
+				and I_AdvisorVisible
+			end_while
+			ui_flash_stop
+		
+			ai_active_set on
+	
+			battle_wait 2
+				
+			set_camera_bookmark 1, 	657.023, 263.844, 495.797		648.862, 260.925, 492.07		;huscarls
+ 			camera_default_mode_set		tw
+ 			inhibit_camera_input true
+			camera_restrictions_set 	off
+			camera_position_at_bookmark 1
+			
+			enable_ui toggle_formation_tightness
+			enable_ui toggle_defend
+			enable_ui toggle_skirmish
+			enable_ui toggle_fire_at_will
+			enable_ui toggle_special_ability
+
+			disable_shortcuts toggle_formation_tightness false
+			disable_shortcuts toggle_defend false
+			disable_shortcuts toggle_skirmish false
+			disable_shortcuts toggle_fire_at_will false
+			disable_shortcuts toggle_special_ability false
+
+			advance_advice_thread Prologue_Hastings_Attack_Huscarls_Thread		;ADVICE: Finish Them! #11047#
+
+			while not I_AdvisorSpeechPlaying
+				and I_AdvisorVisible
+			end_while
+	
+			while I_AdvisorSpeechPlaying
+				and I_AdvisorVisible
+			end_while
+
+  			inhibit_camera_input false
+			camera_default_mode_set		rts
+			camera_restrictions_set 	on
+			lock_camera_restrictions_set off
+
+			terminate_monitor
+		end_monitor
+	
+		monitor_conditions I_IsUnitUnderFire harold_front_2
+			and I_CompareCounter Main_Battle = 1
+		
+			remove_battle_map_arrow
+			
+			terminate_monitor
+		end_monitor
+		
+	;;;;*************************************************************************************************
+	;;;; WHEN PLAYER IS ATTACKING SAXON THEIGNS WITH INFANTRY
+	;;;;*************************************************************************************************	
+		
+		monitor_conditions I_IsUnitEngagedWithUnit rufus_infantry harold_front_3
+			and I_CompareCounter Main_Battle = 1
+		
+			battle_wait 5
+		
+			;send a unit to help them out
+			unit_order_attack_unit william_infantry_1 harold_front_3
+		
+			terminate_monitor
+		end_monitor
+
+	;;;;*************************************************************************************************
+	;;;; IF PLAYER ATTACKS SAXON THEIGNS WITH CAVALRY
+	;;;;*************************************************************************************************	
+
+		monitor_conditions I_IsUnitEngagedWithUnit rufus_cavalry harold_front_3
+			and I_CompareCounter Main_Battle = 1
+		
+			;send a unit to help them out
+			unit_order_attack_unit william_infantry_1 harold_front_3
+		
+			terminate_monitor
+		end_monitor
+				
+	;;;;*************************************************************************************************
+	;;;; POST BATTLE SCROLL
+	;;;;*************************************************************************************************
+		
+		;post battle scroll opened or closed
+		monitor_event ScrollOpened ScrollOpened post_battle_scroll
+			set_counter Opened_Postbattle_Scroll 1
+		end_monitor
+	
+		monitor_event ScrollClosed ScrollClosed post_battle_scroll
+			set_counter Opened_Postbattle_Scroll 0
+		end_monitor
+	
+		;when the post-battle scroll is opened
+		monitor_conditions I_CompareCounter Opened_Postbattle_Scroll = 1
+			and I_CompareCounter battle_won = 1
+	
+ 			advance_advice_thread Prologue_Hastings_Post_Battle_Thread			;ADVICE: Review the Battle #11050#
+;  			advance_advice_thread Prologue_Hastings_Post_Battle_Demo_Thread			;ADVICE: Review the Battle #11050#
+	
+			terminate_monitor
+		end_monitor
+		
+	;*********************************************************************************************
+	;	IF UNITS ROUT - KEEP ON ROUTING
+	;*********************************************************************************************
+
+		monitor_conditions I_IsUnitRouting general_harold
+			unit_set_morale general_harold routing
+			inc_counter saxon_rout 1
+			terminate_monitor
+		end_monitor		
+				
+		monitor_conditions I_IsUnitRouting harold_front_1
+			unit_set_morale harold_front_1 routing
+			terminate_monitor
+		end_monitor		
+
+		monitor_conditions I_IsUnitRouting harold_front_2
+			unit_set_morale harold_front_2 routing
+			terminate_monitor
+		end_monitor		
+
+		monitor_conditions I_IsUnitRouting harold_front_3
+			unit_set_morale harold_front_3 routing
+			terminate_monitor
+		end_monitor		
+
+		monitor_conditions I_IsUnitRouting harold_front_4
+			unit_set_morale harold_front_4 routing
+			terminate_monitor
+		end_monitor		
+
+		monitor_conditions I_IsUnitRouting harold_front_5
+			unit_set_morale harold_front_5 routing
+			terminate_monitor
+		end_monitor		
+
+		monitor_conditions I_IsUnitRouting harold_front_6
+			unit_set_morale harold_front_6 routing
+			terminate_monitor
+		end_monitor		
+
+		monitor_conditions I_IsUnitRouting harold_front_7
+			unit_set_morale harold_front_7 routing
+			terminate_monitor
+		end_monitor		
+
+		monitor_conditions I_IsUnitRouting harold_front_8
+			unit_set_morale harold_front_8 routing
+			terminate_monitor
+		end_monitor		
+
+		monitor_conditions I_IsUnitRouting harold_front_9
+			unit_set_morale harold_front_9 routing
+			terminate_monitor
+		end_monitor		
+						
+		monitor_conditions I_IsUnitRouting harold_back_1
+			unit_set_morale harold_back_1 routing
+			terminate_monitor
+		end_monitor		
+	
+		monitor_conditions I_IsUnitRouting harold_back_2
+			unit_set_morale harold_back_2 routing
+			terminate_monitor
+		end_monitor		
+		
+		monitor_conditions I_IsUnitRouting harold_back_3
+			unit_set_morale harold_back_3 routing
+			inc_counter saxon_rout 1
+			terminate_monitor
+		end_monitor		
+		
+		monitor_conditions I_IsUnitRouting harold_back_4
+			unit_set_morale harold_back_4 routing
+			inc_counter saxon_rout 1
+			terminate_monitor
+		end_monitor		
+		
+		monitor_conditions I_IsUnitRouting harold_back_5
+			unit_set_morale harold_back_5 routing
+			inc_counter saxon_rout 1
+			terminate_monitor
+		end_monitor		
+		
+		monitor_conditions I_IsUnitRouting harold_back_6
+			unit_set_morale harold_back_6 routing
+			inc_counter saxon_rout 1
+			terminate_monitor
+		end_monitor		
+		
+		monitor_conditions I_IsUnitRouting harold_back_7
+			unit_set_morale harold_back_7 routing
+			terminate_monitor
+		end_monitor		
+		
+		monitor_conditions I_IsUnitRouting harold_back_8
+			unit_set_morale harold_back_8 routing
+			terminate_monitor
+		end_monitor		
+
+		monitor_conditions I_IsUnitRouting saxon_reinforcements_1
+			unit_set_morale saxon_reinforcements_1 routing
+			terminate_monitor
+		end_monitor		
+
+		monitor_conditions I_IsUnitRouting saxon_reinforcements_2
+			unit_set_morale saxon_reinforcements_2 routing
+			terminate_monitor
+		end_monitor		
+		
+		monitor_conditions I_CompareCounter saxon_rout = 5
+		
+			set_counter battle_won 1
+			
+			battle_wait 20
+
+			while I_AdvisorSpeechPlaying
+				and I_AdvisorVisible
+			end_while
+		
+			unit_set_morale general_harold routing
+			unit_set_morale harold_front_1 routing
+			unit_set_morale harold_front_2 routing
+			unit_set_morale harold_front_3 routing
+			unit_set_morale harold_front_4 routing
+			unit_set_morale harold_front_5 routing
+			unit_set_morale harold_front_6 routing
+			unit_set_morale harold_front_7 routing
+			unit_set_morale harold_front_8 routing
+			unit_set_morale harold_front_9 routing
+			unit_set_morale harold_back_1 routing
+			unit_set_morale harold_back_2 routing
+			unit_set_morale harold_back_3 routing
+			unit_set_morale harold_back_4 routing
+			unit_set_morale harold_back_5 routing
+			unit_set_morale harold_back_6 routing
+			unit_set_morale harold_back_7 routing
+			unit_set_morale harold_back_8 routing
+			
+			terminate_monitor
+		end_monitor
+		
+	;*********************************************************************************************
+	;	IF THE PLAYER LOSES TWO UNITS - END THE BATTLE
+	;	IF THE PLAYER LOSES RUFUS - END THE BATTLE
+	;*********************************************************************************************
+
+		;routing
+		monitor_conditions I_IsUnitRouting rufus_cavalry
+			and I_CompareCounter No_Cavalry = 0
+			set_counter No_Cavalry 1
+			inc_counter player_destroyed 1
+		end_monitor		
+
+		monitor_conditions I_IsUnitRouting rufus_infantry
+			and I_CompareCounter No_Infantry = 0
+			set_counter No_Infantry 1
+			inc_counter player_destroyed 1
+		end_monitor		
+
+		monitor_conditions I_IsUnitRouting rufus_archers
+			and I_CompareCounter No_Archers = 0
+			set_counter No_Archers 1
+			inc_counter player_destroyed 1
+		end_monitor		
+
+		;not routing
+		monitor_conditions not I_IsUnitRouting rufus_cavalry
+			and not I_UnitDestroyed rufus_cavalry
+			and I_CompareCounter No_Cavalry = 1
+			set_counter No_Cavalry 0
+			inc_counter player_destroyed -1
+		end_monitor		
+
+		monitor_conditions not I_IsUnitRouting rufus_infantry
+			and not I_UnitDestroyed rufus_infantry
+			and I_CompareCounter No_Infantry = 1
+			set_counter No_Infantry 0
+			inc_counter player_destroyed -1
+		end_monitor		
+
+		monitor_conditions not I_IsUnitRouting rufus_archers
+			and not I_UnitDestroyed rufus_archers
+			and I_CompareCounter No_Archers = 1
+			set_counter No_Archers 0
+			inc_counter player_destroyed -1
+		end_monitor		
+
+		;destroyed
+		monitor_conditions I_UnitDestroyed rufus_cavalry
+			and I_CompareCounter No_Cavalry = 0
+			set_counter No_Cavalry 1
+			inc_counter player_destroyed 1
+			terminate_monitor
+		end_monitor		
+
+		monitor_conditions I_UnitDestroyed rufus_infantry
+			and I_CompareCounter No_Infantry = 0
+			set_counter No_Infantry 1
+			inc_counter player_destroyed 1
+			terminate_monitor
+		end_monitor		
+
+		monitor_conditions I_UnitDestroyed rufus_archers
+			and I_CompareCounter No_Archers = 0
+			set_counter No_Archers 1
+			inc_counter player_destroyed 1
+			terminate_monitor
+		end_monitor		
+		
+		;end it if rufus routs
+		monitor_conditions I_IsUnitRouting general_rufus
+			set_counter player_destroyed 4
+			terminate_monitor
+		end_monitor
+
+		monitor_conditions I_UnitDestroyed general_rufus
+			set_counter player_destroyed 4
+			terminate_monitor
+		end_monitor
+				
+		monitor_conditions I_CompareCounter player_destroyed > 1
+		
+			unit_set_morale general_rufus routing
+			unit_set_morale rufus_infantry routing
+			unit_set_morale rufus_cavalry routing
+			unit_set_morale rufus_archers routing
+			unit_set_morale general_william routing
+			unit_set_morale william_archers_1 routing
+			unit_set_morale william_archers_2 routing
+			unit_set_morale william_archers_3 routing
+			unit_set_morale william_archers_4 routing
+			unit_set_morale william_archers_5 routing
+			unit_set_morale william_archers_6 routing
+			unit_set_morale william_infantry_1 routing
+			unit_set_morale william_infantry_2 routing
+			unit_set_morale william_infantry_3 routing
+			unit_set_morale william_infantry_4 routing
+			unit_set_morale william_infantry_5 routing
+			unit_set_morale william_infantry_6 routing
+			unit_set_morale william_cavalry_1 routing
+			unit_set_morale william_cavalry_2 routing
+			unit_set_morale william_cavalry_3 routing
+			unit_set_morale william_cavalry_4 routing
+			unit_set_morale william_cavalry_5 routing
+			unit_set_morale william_cavalry_6 routing
+
+			terminate_monitor
+		end_monitor
+		
+	;*********************************************************************************************
+	;	MAIN BATTLE IN BACKGROUND - ATTACK WITH ARCHERS
+	;*********************************************************************************************
+		
+		monitor_conditions I_CompareCounter Progress_Main_Battle = 1
+		
+			unit_order_attack_unit william_archers_1 harold_front_1
+			unit_order_attack_unit william_archers_2 harold_front_3
+			unit_order_attack_unit william_archers_3 harold_front_4
+			unit_order_attack_unit william_archers_4 harold_front_5
+			unit_order_attack_unit william_archers_5 harold_front_7
+			unit_order_attack_unit william_archers_6 harold_front_9
+		
+			battle_wait 60
+	
+; 			unit_immediate_place william_archers_1 511.900 438.046 37
+; 			unit_immediate_place william_archers_2 545.857 413.778 37
+; 			unit_immediate_place william_archers_3 573.517 391.584 36
+; 			unit_immediate_place william_archers_4 600.604 371.300 38
+; 			unit_immediate_place william_archers_5 625.084 352.529 34
+; 			unit_immediate_place william_archers_6 650.977 334.906 37
+	
+			unit_order_halt william_archers_1
+			unit_order_halt william_archers_2
+			unit_order_halt william_archers_3
+			unit_order_halt william_archers_4
+			unit_order_halt william_archers_5
+			unit_order_halt william_archers_6
+	
+			unit_immediate_place harold_front_1 585.309 505.715 -149
+			unit_immediate_place harold_front_2 602.605 494.957 -148
+			unit_immediate_place harold_front_3 619.373 483.891 -146
+			unit_immediate_place harold_front_4 636.192 472.402 -145
+			unit_immediate_place harold_front_5 650.830 463.641 -149
+			unit_immediate_place harold_front_6 665.069 454.399 -147
+			unit_immediate_place harold_front_7 681.721 443.662 -147
+			unit_immediate_place harold_front_8 699.288 432.481 -147
+			unit_immediate_place harold_front_9 714.094 423.756 -148
+	
+			unit_order_halt harold_front_1
+			unit_order_halt harold_front_2
+			unit_order_halt harold_front_3
+			unit_order_halt harold_front_4
+			unit_order_halt harold_front_5
+			unit_order_halt harold_front_6
+			unit_order_halt harold_front_7
+			unit_order_halt harold_front_8
+			unit_order_halt harold_front_9
+			
+			terminate_monitor
+		end_monitor
+		
+	;*********************************************************************************************
+	;	MAIN BATTLE IN BACKGROUND - ATTACK WITH INFANTRY
+	;*********************************************************************************************
+		
+		monitor_conditions I_CompareCounter Progress_Main_Battle = 2
+	
+			unit_order_attack_unit william_infantry_1 harold_front_1
+			unit_order_attack_unit william_infantry_2 harold_front_2
+			unit_order_attack_unit william_infantry_3 harold_front_5
+			unit_order_attack_unit william_infantry_4 harold_front_6
+			unit_order_attack_unit william_infantry_5 harold_front_8
+			unit_order_attack_unit william_infantry_6 harold_front_9		
+	
+			battle_wait 60
+
+			unit_order_halt william_infantry_1
+			unit_order_halt william_infantry_2
+			unit_order_halt william_infantry_3
+			unit_order_halt william_infantry_4
+			unit_order_halt william_infantry_5
+			unit_order_halt william_infantry_6
+
+			unit_order_move_to_orientation william_infantry_1 510.742 425.101 24 36
+			unit_order_move_to_orientation william_infantry_2 538.373 404.460 24 36
+			unit_order_move_to_orientation william_infantry_3 566.061 384.290 24 37
+			unit_order_move_to_orientation william_infantry_4 592.321 364.090 24 35
+			unit_order_move_to_orientation william_infantry_5 618.711 345.675 24 35
+			unit_order_move_to_orientation william_infantry_6 645.465 327.465 24 36
+
+			unit_immediate_place harold_front_1 585.309 505.715 -149
+			unit_immediate_place harold_front_2 602.605 494.957 -148
+			unit_immediate_place harold_front_3 619.373 483.891 -146
+			unit_immediate_place harold_front_4 636.192 472.402 -145
+			unit_immediate_place harold_front_5 650.830 463.641 -149
+			unit_immediate_place harold_front_6 665.069 454.399 -147
+			unit_immediate_place harold_front_7 681.721 443.662 -147
+			unit_immediate_place harold_front_8 699.288 432.481 -147
+			unit_immediate_place harold_front_9 714.094 423.756 -148
+	
+			unit_order_halt harold_front_1
+			unit_order_halt harold_front_2
+			unit_order_halt harold_front_3
+			unit_order_halt harold_front_4
+			unit_order_halt harold_front_5
+			unit_order_halt harold_front_6
+			unit_order_halt harold_front_7
+			unit_order_halt harold_front_8
+			unit_order_halt harold_front_9
+
+; 			battle_wait 65
+; 			
+; 			unit_immediate_place william_infantry_1 510.742 425.101 36
+; 			unit_immediate_place william_infantry_2 538.373 404.460 36
+; 			unit_immediate_place william_infantry_3 566.061 384.290 37
+; 			unit_immediate_place william_infantry_4 592.321 364.090 35
+; 			unit_immediate_place william_infantry_5 618.711 345.675 35
+; 			unit_immediate_place william_infantry_6	645.465 327.465 36
+			
+			terminate_monitor
+		end_monitor
+		
+	;*********************************************************************************************
+	;	MAIN BATTLE IN BACKGROUND - ATTACK WITH CAVALRY
+	;*********************************************************************************************
+		
+		monitor_conditions I_CompareCounter Progress_Main_Battle = 3
+		
+			unit_order_attack_unit william_cavalry_1 harold_front_2 run
+			unit_order_attack_unit william_cavalry_2 harold_front_3 run
+			unit_order_attack_unit william_cavalry_3 harold_front_4 run
+			unit_order_attack_unit william_cavalry_4 harold_front_6 run
+			unit_order_attack_unit william_cavalry_5 harold_front_7 run
+			unit_order_attack_unit william_cavalry_6 harold_front_8 run
+	
+			battle_wait 15
+	
+			unit_order_halt william_cavalry_1
+			unit_order_halt william_cavalry_2
+			unit_order_halt william_cavalry_3
+			unit_order_halt william_cavalry_4
+			unit_order_halt william_cavalry_5
+			unit_order_halt william_cavalry_6
+
+			unit_order_move_to_orientation william_cavalry_1 504.434 408.523 16 37 run
+			unit_order_move_to_orientation william_cavalry_2 530.720 389.300 16 34 run
+			unit_order_move_to_orientation william_cavalry_3 558.610 371.254 16 34 run
+			unit_order_move_to_orientation william_cavalry_4 585.334 353.170 16 33 run
+			unit_order_move_to_orientation william_cavalry_5 612.189 335.549 16 38 run
+			unit_order_move_to_orientation william_cavalry_6 638.803 316.293 16 34 run
+
+			unit_immediate_place harold_front_1 585.309 505.715 -149
+			unit_immediate_place harold_front_2 602.605 494.957 -148
+			unit_immediate_place harold_front_3 619.373 483.891 -146
+			unit_immediate_place harold_front_4 636.192 472.402 -145
+			unit_immediate_place harold_front_5 650.830 463.641 -149
+			unit_immediate_place harold_front_6 665.069 454.399 -147
+			unit_immediate_place harold_front_7 681.721 443.662 -147
+			unit_immediate_place harold_front_8 699.288 432.481 -147
+			unit_immediate_place harold_front_9 714.094 423.756 -148
+			
+			unit_order_halt harold_front_1
+			unit_order_halt harold_front_2
+			unit_order_halt harold_front_3
+			unit_order_halt harold_front_4
+			unit_order_halt harold_front_5
+			unit_order_halt harold_front_6
+			unit_order_halt harold_front_7
+			unit_order_halt harold_front_8
+			unit_order_halt harold_front_9
+
+; 			battle_wait 20
+; 			
+; 			unit_immediate_place william_cavalry_1 504.434 408.523 37
+; 			unit_immediate_place william_cavalry_2 530.720 389.300 34
+; 			unit_immediate_place william_cavalry_3 558.610 371.254 34
+; 			unit_immediate_place william_cavalry_4 585.334 353.170 33
+; 			unit_immediate_place william_cavalry_5 612.189 335.549 38
+; 			unit_immediate_place william_cavalry_6 638.803 316.293 34
+			
+			terminate_monitor
+		end_monitor
+		
+	;*********************************************************************************************
+	;	MAIN BATTLE IN BACKGROUND - ATTACK WITH ARCHERS
+	;*********************************************************************************************
+		
+		monitor_conditions I_CompareCounter Progress_Main_Battle = 4
+	
+			unit_order_attack_unit william_archers_1 harold_front_1
+			unit_order_attack_unit william_archers_2 harold_front_3
+			unit_order_attack_unit william_archers_3 harold_front_4
+			unit_order_attack_unit william_archers_4 harold_front_5
+			unit_order_attack_unit william_archers_5 harold_front_7
+			unit_order_attack_unit william_archers_6 harold_front_9
+	
+			battle_wait 60
+	
+; 			unit_immediate_place william_archers_1 511.900 438.046 37
+; 			unit_immediate_place william_archers_2 545.857 413.778 37
+; 			unit_immediate_place william_archers_3 573.517 391.584 36
+; 			unit_immediate_place william_archers_4 600.604 371.300 38
+; 			unit_immediate_place william_archers_5 625.084 352.529 34
+; 			unit_immediate_place william_archers_6 650.977 334.906 37
+					
+			unit_order_halt william_archers_1
+			unit_order_halt william_archers_2
+			unit_order_halt william_archers_3
+			unit_order_halt william_archers_4
+			unit_order_halt william_archers_5
+			unit_order_halt william_archers_6
+	
+			unit_immediate_place harold_front_1 585.309 505.715 -149
+			unit_immediate_place harold_front_2 602.605 494.957 -148
+			unit_immediate_place harold_front_3 619.373 483.891 -146
+			unit_immediate_place harold_front_4 636.192 472.402 -145
+			unit_immediate_place harold_front_5 650.830 463.641 -149
+			unit_immediate_place harold_front_6 665.069 454.399 -147
+			unit_immediate_place harold_front_7 681.721 443.662 -147
+			unit_immediate_place harold_front_8 699.288 432.481 -147
+			unit_immediate_place harold_front_9 714.094 423.756 -148
+			
+			unit_order_halt harold_front_1
+			unit_order_halt harold_front_2
+			unit_order_halt harold_front_3
+			unit_order_halt harold_front_4
+			unit_order_halt harold_front_5
+			unit_order_halt harold_front_6
+			unit_order_halt harold_front_7
+			unit_order_halt harold_front_8
+			unit_order_halt harold_front_9
+					
+			terminate_monitor
+		end_monitor
+		
+	;*********************************************************************************************
+	;	MAIN BATTLE IN BACKGROUND - ATTACK WITH INFANTRY
+	;*********************************************************************************************
+		
+		monitor_conditions I_CompareCounter Progress_Main_Battle = 5
+	
+			unit_order_attack_unit william_infantry_1 harold_front_1
+			unit_order_attack_unit william_infantry_2 harold_front_2
+			unit_order_attack_unit william_infantry_3 harold_front_5
+			unit_order_attack_unit william_infantry_4 harold_front_6
+			unit_order_attack_unit william_infantry_5 harold_front_8
+			unit_order_attack_unit william_infantry_6 harold_front_9	
+			
+			battle_wait 60		;change timing so player doesn't see teleport
+	
+			unit_order_halt william_infantry_1
+			unit_order_halt william_infantry_2
+			unit_order_halt william_infantry_3
+			unit_order_halt william_infantry_4
+			unit_order_halt william_infantry_5
+			unit_order_halt william_infantry_6
+
+			unit_order_move_to_orientation william_infantry_1 510.742 425.101 24 36
+			unit_order_move_to_orientation william_infantry_2 538.373 404.460 24 36
+			unit_order_move_to_orientation william_infantry_3 566.061 384.290 24 37
+			unit_order_move_to_orientation william_infantry_4 592.321 364.090 24 35
+			unit_order_move_to_orientation william_infantry_5 618.711 345.675 24 35
+			unit_order_move_to_orientation william_infantry_6 645.465 327.465 24 36
+
+			unit_immediate_place harold_front_1 585.309 505.715 -149
+			unit_immediate_place harold_front_2 602.605 494.957 -148
+			unit_immediate_place harold_front_3 619.373 483.891 -146
+			unit_immediate_place harold_front_4 636.192 472.402 -145
+			unit_immediate_place harold_front_5 650.830 463.641 -149
+			unit_immediate_place harold_front_6 665.069 454.399 -147
+			unit_immediate_place harold_front_7 681.721 443.662 -147
+			unit_immediate_place harold_front_8 699.288 432.481 -147
+			unit_immediate_place harold_front_9 714.094 423.756 -148
+	
+			unit_order_halt harold_front_1
+			unit_order_halt harold_front_2
+			unit_order_halt harold_front_3
+			unit_order_halt harold_front_4
+			unit_order_halt harold_front_5
+			unit_order_halt harold_front_6
+			unit_order_halt harold_front_7
+			unit_order_halt harold_front_8
+			unit_order_halt harold_front_9
+
+			battle_wait 50
+			
+			unit_order_move harold_front_7 709 327
+			unit_order_move harold_front_8 709 327
+			unit_order_move harold_front_9 709 327
+
+; 			battle_wait 15
+; 			
+; 			unit_immediate_place william_infantry_1 510.742 425.101 36
+; 			unit_immediate_place william_infantry_2 538.373 404.460 36
+; 			unit_immediate_place william_infantry_3 566.061 384.290 37
+; 			unit_immediate_place william_infantry_4 592.321 364.090 35
+; 			unit_immediate_place william_infantry_5 618.711 345.675 35
+; 			unit_immediate_place william_infantry_6	645.465 327.465 36
+
+			terminate_monitor
+		end_monitor
+
+		monitor_conditions I_CompareCounter Units_Across_Bridge = 4
+		
+			while I_UnitDistanceFromPosition harold_front_9 709 327 > 10
+			end_while
+
+			if I_CompareCounter Units_In_Position < 3
+				unit_order_move harold_front_7 690 303
+				unit_order_move harold_front_8 685 293
+				unit_order_move harold_front_9 675 283
+			end_if
+			
+			terminate_monitor
+		end_monitor
+		
+	;;;;*************************************************************************************************
+	;;;; END OF BATTLE
+	;;;;*************************************************************************************************
+					
+		while I_InBattle
+		end_while
+
+end_script
+

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark">
+    <title>Experimental Projects | Adriano To The Stars</title>
+    <meta name="description" content="Experimental Roadmap 2025 for Adriano To The Stars.">
+    <link rel="icon" type="image/x-icon" href="images/ita_logo.png">
+
+    <!-- Fonts & Core Styles -->
+    <link rel="stylesheet" href="fonts/fonts.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="projects.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Orbitron:wght@400;700;900&family=Exo+2:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Navigation & Core Scripts -->
+    <script src="navigation.js" defer></script>
+    <script src="projects-catalog.js" defer></script>
+    <script src="projects-experimental.js" defer></script>
+    <script src="cosmic-music-player.js" defer async></script>
+</head>
+
+<body>
+
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">
+        <span class="menu-icon"></span>
+        <span class="menu-icon"></span>
+        <span class="menu-icon"></span>
+    </button>
+
+    <main id="main" tabindex="-1">
+
+        <!-- Hero Section -->
+        <header class="experimental-hero" id="top">
+            <!-- Logo Absolute Positioned -->
+            <a href="index.html" style="position: absolute; top: 30px; left: 30px; z-index: 20;">
+                <img src="images/ita_logo.png" alt="ITA Logo" class="ita-logo">
+            </a>
+
+            <div class="hero-content">
+                <h1 class="hero-title">Beyond The Browser</h1>
+                <p class="hero-subtitle">Experimental Roadmap 2025</p>
+                <a href="#phase1" class="scrolldown-indicator" aria-label="Scroll to Phase 1">▼</a>
+            </div>
+
+            <div id="particles-js" aria-hidden="true"></div>
+        </header>
+
+        <section class="catalog-controls" aria-label="Project catalog">
+            <div class="catalog-controls-inner">
+                <nav class="phase-nav" aria-label="Phase navigation">
+                    <a href="#phase1" data-section="phase1">Phase 1</a>
+                    <a href="#phase2" data-section="phase2">Phase 2</a>
+                    <a href="#phase3" data-section="phase3">Phase 3</a>
+                    <a href="#phase4" data-section="phase4">Phase 4</a>
+                    <a href="#phase5" data-section="phase5">Phase 5</a>
+                    <a href="#code-lab" data-section="code-lab">Code Lab</a>
+                </nav>
+
+                <form class="catalog-filters" id="catalog-filters" role="search">
+                    <div class="filter-group">
+                        <label class="filter-label" for="project-search">Search</label>
+                        <input id="project-search" name="q" type="search" autocomplete="off" placeholder="Search projects...">
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="filter-label" for="phase-filter">Phase</label>
+                        <select id="phase-filter" name="phase">
+                            <option value="">All phases</option>
+                            <option value="phase1">Phase 1</option>
+                            <option value="phase2">Phase 2</option>
+                            <option value="phase3">Phase 3</option>
+                            <option value="phase4">Phase 4</option>
+                            <option value="phase5">Phase 5</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="filter-label" for="tech-filter">Tech</label>
+                        <select id="tech-filter" name="tech">
+                            <option value="">All tech</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group filter-group-checkbox">
+                        <label class="filter-checkbox">
+                            <input id="favorites-only" type="checkbox">
+                            Favorites
+                        </label>
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="filter-label" for="sort-filter">Sort</label>
+                        <select id="sort-filter" name="sort">
+                            <option value="default">Default</option>
+                            <option value="title-asc">Title A–Z</option>
+                            <option value="title-desc">Title Z–A</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group filter-group-actions">
+                        <button type="button" id="reset-filters" class="reset-filters">Reset</button>
+                    </div>
+                </form>
+
+                <div id="results-count" class="results-count" aria-live="polite"></div>
+                <div id="no-results" class="no-results" hidden>No projects match your filters.</div>
+            </div>
+        </section>
+
+        <!-- Phase 1 -->
+        <section class="phase-section" id="phase1">
+            <div class="phase-header">
+                <div class="phase-number" aria-hidden="true">01</div>
+                <h2 class="phase-title">The Quantum Web</h2>
+                <p>Compute Shaders & Physics</p>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <span class="card-tech-tag">WebGPU</span>
+                    <h3 class="card-title">Galaxy N-Body Sim</h3>
+                    <p class="card-description">Simulating 100,000+ stars interacting gravitationally in real-time using
+                        parallel GPU compute shaders.</p>
+                    <div class="limit-badge">⚠ Limit: GLSL/WGSL Shader Optimization</div>
+                    <a href="experimental/webgpu-galaxy/galaxy-sim.html" class="launch-btn"
+                        style="display: inline-block; margin-top: 1rem; color: #ba944f; text-decoration: none; border: 1px solid #ba944f; padding: 0.5rem 1rem; border-radius: 4px;">Launch
+                        Simulation</a>
+                </div>
+                <div class="project-card">
+                    <span class="card-tech-tag">WebAssembly / Rust</span>
+                    <h3 class="card-title">Procedural Planets</h3>
+                    <p class="card-description">Generating entire geological terrain maps (height, moisture, biome) in
+                        milliseconds via Rust-compiled Wasm.</p>
+                    <div class="limit-badge">⚠ Limit: Multithreading & Memory</div>
+                    <a href="experimental/procedural-planets/index.html" class="launch-btn"
+                        style="display: inline-block; margin-top: 1rem; color: #4ade80; text-decoration: none; border: 1px solid #4ade80; padding: 0.5rem 1rem; border-radius: 4px;">Generate</a>
+                </div>
+                <div class="project-card">
+                    <span class="card-tech-tag">WebGL 2.0</span>
+                    <h3 class="card-title">Fluid Nebula</h3>
+                    <p class="card-description">Interactive 3D nebulae reacting to solar winds, solving Navier-Stokes
+                        equations in the browser.</p>
+                    <div class="limit-badge">⚠ Limit: Real-time Physics</div>
+                    <a href="experimental/fluid-nebula/index.html" class="launch-btn"
+                        style="display: inline-block; margin-top: 1rem; color: #60a5fa; text-decoration: none; border: 1px solid #60a5fa; padding: 0.5rem 1rem; border-radius: 4px;">Simulate</a>
+                </div>
+                <div class="project-card">
+                    <span class="card-tech-tag">WebGPU Compute</span>
+                    <h3 class="card-title">Real-Time Path Tracer</h3>
+                    <p class="card-description">Hardware-accelerated Monte Carlo raytracing with dynamic global illumination
+                        and metalness/roughness.</p>
+                    <div class="limit-badge">⚠ Limit: GPU TFLOPS</div>
+                    <a href="experimental/raytracing-sim/index.html" class="launch-btn"
+                        style="display: inline-block; margin-top: 1rem; color: #ff3333; text-decoration: none; border: 1px solid #ff3333; padding: 0.5rem 1rem; border-radius: 4px;">Launch
+                        Simulation</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Phase 2 -->
+        <section class="phase-section" id="phase2">
+            <div class="phase-header">
+                <div class="phase-number" aria-hidden="true">02</div>
+                <h2 class="phase-title">Sentient Browser</h2>
+                <p>Local AI & Neural Networks</p>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <span class="card-tech-tag">WebLLM</span>
+                    <h3 class="card-title">"HAL" Ship Computer</h3>
+                    <p class="card-description">A full Llama-3-8b model running entirely client-side via WebGPU.
+                        Conversations with the database.</p>
+                    <div class="limit-badge">⚠ Limit: VRAM Allocation</div>
+                    <a href="experimental/sentient-browser/hal-interface.html" class="launch-btn"
+                        style="display: inline-block; margin-top: 1rem; color: #ff3333; text-decoration: none; border: 1px solid #ff3333; padding: 0.5rem 1rem; border-radius: 4px;">Initialize
+                        Core</a>
+                </div>
+                <div class="project-card">
+                    <span class="card-tech-tag">Web Speech API</span>
+                    <h3 class="card-title">Voice Command Bridge</h3>
+                    <p class="card-description">"Computer, warp to Kepler-186f." Complete voice control of the star map and
+                        navigation.</p>
+                    <div class="limit-badge">⚠ Limit: Noise Cancellation</div>
+                    <a href="experimental/sentient-browser/hal-interface.html" class="launch-btn"
+                        style="display: inline-block; margin-top: 1rem; color: #facc15; text-decoration: none; border: 1px solid #facc15; padding: 0.5rem 1rem; border-radius: 4px;">Open
+                        Bridge</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Phase 3 -->
+        <section class="phase-section" id="phase3">
+            <div class="phase-header">
+                <div class="phase-number" aria-hidden="true">03</div>
+                <h2 class="phase-title">Holographic Interface</h2>
+                <p>Immersive WebXR</p>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <span class="card-tech-tag">WebXR VR</span>
+                    <h3 class="card-title">Surface Exploration</h3>
+                    <p class="card-description">Walk on the surface of procedurally generated exoplanets in 6DoF Virtual
+                        Reality.</p>
+                    <div class="limit-badge">⚠ Limit: 90Hz Framerate Consistency</div>
+                    <a href="experimental/holographic-xr/surface-explorer.html" class="launch-btn"
+                        style="display: inline-block; margin-top: 1rem; color: #4ade80; text-decoration: none; border: 1px solid #4ade80; padding: 0.5rem 1rem; border-radius: 4px;">Enter
+                        VR</a>
+                </div>
+                <div class="project-card">
+                    <span class="card-tech-tag">WebXR AR</span>
+                    <h3 class="card-title">AR Star Chart</h3>
+                    <p class="card-description">Point your phone at the night sky to overlay known exoplanet data on real
+                        stars.</p>
+                    <div class="limit-badge">⚠ Limit: Sensor Fusion Drift</div>
+                    <a href="experimental/holographic-xr/ar-star-chart.html" class="launch-btn"
+                        style="display: inline-block; margin-top: 1rem; color: #fbbf24; text-decoration: none; border: 1px solid #fbbf24; padding: 0.5rem 1rem; border-radius: 4px;">Start
+                        AR</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Phase 4 -->
+        <section class="phase-section" id="phase4">
+            <div class="phase-header">
+                <div class="phase-number" aria-hidden="true">04</div>
+                <h2 class="phase-title">Connected Cosmos</h2>
+                <p>P2P & Real-Time</p>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <span class="card-tech-tag">WebTransport</span>
+                    <h3 class="card-title">Interstellar Radio</h3>
+                    <p class="card-description">Ultra-low latency multiplayer ship positioning using QUIC datagrams.</p>
+                    <div class="limit-badge">⚠ Limit: UDP Packet Loss</div>
+                    <a href="experimental/connected-cosmos/cosmic-radio.html" class="launch-btn"
+                        style="display: inline-block; margin-top: 1rem; color: #facc15; text-decoration: none; border: 1px solid #facc15; padding: 0.5rem 1rem; border-radius: 4px;">Tune
+                        In</a>
+                </div>
+                <div class="project-card">
+                    <span class="card-tech-tag">WebRTC</span>
+                    <h3 class="card-title">P2P Data Mesh</h3>
+                    <p class="card-description">Users acting as nodes to distribute planet data chunks, reducing server
+                        load.</p>
+                    <div class="limit-badge">⚠ Limit: NAT Traversal</div>
+                    <a href="experimental/connected-cosmos/p2p-network.html" class="launch-btn"
+                        style="display: inline-block; margin-top: 1rem; color: #60a5fa; text-decoration: none; border: 1px solid #60a5fa; padding: 0.5rem 1rem; border-radius: 4px;">Join
+                        Mesh</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Phase 5 -->
+        <section class="phase-section" id="phase5">
+            <div class="phase-header">
+                <div class="phase-number" aria-hidden="true">05</div>
+                <h2 class="phase-title">Native Integration</h2>
+                <p>OS-Level Features</p>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <span class="card-tech-tag">File System API</span>
+                    <h3 class="card-title">Captain's Log</h3>
+                    <p class="card-description">Save mission logs, screenshots, and discovered data directly to your local
+                        Documents folder.</p>
+                    <div class="limit-badge">⚠ Limit: Permissions UX</div>
+                    <a href="experimental/native-integration/captains-log.html" class="launch-btn"
+                        style="display: inline-block; margin-top: 1rem; color: #007acc; text-decoration: none; border: 1px solid #007acc; padding: 0.5rem 1rem; border-radius: 4px;">Open
+                        Editor</a>
+                </div>
+                <div class="project-card">
+                    <span class="card-tech-tag">WebSerial API</span>
+                    <h3 class="card-title">Hardware Telemetry</h3>
+                    <p class="card-description">Connect physical Arduino/ESP32 devices to control thrusters or display hull
+                        status.</p>
+                    <div class="limit-badge">⚠ Limit: Serial Protocol Sync</div>
+                    <a href="experimental/native-integration/telemetry.html" class="launch-btn"
+                        style="display: inline-block; margin-top: 1rem; color: #4af626; text-decoration: none; border: 1px solid #4af626; padding: 0.5rem 1rem; border-radius: 4px;">Connect</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Code Lab -->
+        <section class="code-lab-section" id="code-lab">
+            <div class="phase-header">
+                <h2 class="phase-title" style="font-size: 2rem;">/// SYSTEM CODE LAB ///</h2>
+                <p>Accessing core documentation...</p>
+            </div>
+
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-dot" style="background: #ff5f56;"></div>
+                    <div class="terminal-dot" style="background: #ffbd2e;"></div>
+                    <div class="terminal-dot" style="background: #27c93f;"></div>
+                    <span style="margin-left: 10px; font-size: 0.8rem; color: #888;">index.html - Documentation</span>
+                </div>
+                <div class="terminal-body">
+                    <span class="code-line"><span class="code-comment">&lt;!-- Semantic Structure --&gt;</span></span>
+                    <span class="code-line"><span class="code-keyword">&lt;dialog</span> <span
+                            class="code-function">open</span><span class="code-keyword">&gt;</span></span>
+                    <span class="code-line"> <span class="code-keyword">&lt;p&gt;</span>Using the native Dialog API for
+                        accessible modals<span class="code-keyword">&lt;/p&gt;</span></span>
+                    <span class="code-line"><span class="code-keyword">&lt;/dialog&gt;</span></span>
+                    <br>
+                    <span class="code-line"><span class="code-comment">&lt;!-- CSS Houdini --&gt;</span></span>
+                    <span class="code-line"><span class="code-keyword">if</span> (<span
+                            class="code-string">'paintWorklet'</span> <span class="code-keyword">in</span> <span
+                            class="code-function">CSS</span>) {</span>
+                    <span class="code-line"> <span class="code-function">CSS</span>.paintWorklet.<span
+                            class="code-function">addModule</span>(<span
+                            class="code-string">'starfield-worklet.js'</span>);</span>
+                    <span class="code-line">}</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer" style="text-align: center; padding: 2rem; border-top: 1px solid #333;">
+        <p>ADRIANO TO THE STARS | EXPERIMENTAL DIVISION</p>
+    </footer>
+
+</body>
+
+</html>

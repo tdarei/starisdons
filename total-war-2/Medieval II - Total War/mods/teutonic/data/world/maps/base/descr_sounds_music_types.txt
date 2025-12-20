@@ -1,0 +1,118 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; This file should be in the same folder as descr_regions.txt 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;; M2 faction list ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; NORTH
+; england normans denmark scotland hre saxons france
+
+; EAST
+; hungary russia poland
+
+; SOUTH
+; byzantium portugal spain milan venice sicily papal_states slave
+
+; ME
+; turks moors egypt mongols timurids
+
+; MESO
+; aztecs
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+
+
+;; TEUTONIC MOD
+
+music_type northern_european, eastern_european
+
+	regions Norway_Region Central_Sweden Finland_Region Narva_Region Novgorod_Region Reval_Region Arensburg_Region Southern_Sweden Parnu_Region North_Pskov_Region
+	regions Kalmar_Region Denmark_Region Gotland Livonia Windau_Region Zealand Corland Siauliai_Region Palanga_Region Smolensk_Region Vitebsk_Region Konigsberg_Region
+	regions Lithuania Kaunus_Region Northern_Germany Stralsund_Region Pomerania Minsk_Region West_Pomerania Marienburg_Region Hrodna_Region Chernigov_Region Masovia
+	regions Magdeburg_Region Thorn_Region Hannover_Region West_Poland Turov_Region Plock_Region Pinsk_Region Kiev_Region Bohemia Southern_Poland L_vov_Region Hof_Region
+	regions Gorlitz_Region Potsdam_Region Neustettin_Region Koszalin_Region Uelzen_Region Halmstad_Region Hassleholm_Region Skara_Region Tingvalla_Region Agder_Region
+	regions Klodzko_Region Czestochowa_Region Przeworsk_Region Liuboml_Region Bialystok_Region Zhytomyr_Region Chornobyl_Region Homyel_Region Baranavichy_Region
+	regions Lida_Region Mglin_Region Mstislavl_Region Dokshitsy_Region Panevezys_Region Velikiye_Luki_Region Kholm_Region Zubstov_Region Olysta_Region Tosno_Region
+
+	factions teutonic_order lithuania denmark novgorod hre poland norway kalmar_union slave
+
+
+
+
+	
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;	
+;; un-commented so Custom Battle music would work	- removed SLAVE from South Euro
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;	
+	
+	
+music_type eastern_european
+
+	; hungary
+	regions Iasi_Province Budapest_Province Bran_Province Bucharest_Province Sofia_Province
+	regions Zagreb_Province Ragusa_Province
+
+	; russia
+	regions Novgorod_Province Moscow_Province Riga_Province Volga-Bulgar_Province Smolensk_Province
+	regions Ryazan_Province Sarkel_Province Kiev_Province
+
+	; poland
+	regions Vilnius_Province Thorn_Province Halych_Province Cracow_Province Breslau_Province
+
+	factions hungary russia 
+
+music_type southern_european
+
+	; portugal
+	regions Lisbon_Province
+
+	; spain
+	regions Leon_Province Toledo_Province Pamplona_Province Zaragoza_Province Valencia_Province
+
+	; milan
+	regions Milan_Province Florence_Province Genoa_Province Ajaccio_Province Cagliari_Province
+
+	; venice
+	regions Venice_Province Bologna_Province
+
+	; sicily
+	regions Naples_Province Palermo_Province
+
+	;papal_states
+	regions Roman_Province
+
+	; byzantium
+	regions Caffa_Province Trebizond_Province Constantinople_Province Thessalonica_Province Nicaea_Province
+	regions Durazzo_Province Smyrna_Province Corinth_Province Isle_of_Cyprus Isle_of_Rhodes
+	regions Isle_of_Crete
+	
+	factions byzantium portugal spain milan venice sicily papal_states  
+
+music_type middle_eastern
+
+	; turks
+	regions Tbilisi_Province Yerevan_Province Caesarea_Province Baghdad_Province Iconium_Province
+	regions Mosul_Province Edessa_Province Adana_Province Antioch_Province Aleppo_Province
+	regions Acre_Province Jerusalem_Province Jedda_Province
+
+	; moors
+	regions Cordoba_Province Granada_Province Marrakesh_Province Algiers_Province Tunis_Province
+	regions Damascus_Province Timbuktu_Province Arguin_Province
+
+	; egypt
+	regions Gaza_Province Tripoli_Province Alexandria_Province Cairo_Province Dongola_Province
+
+	factions turks moors egypt mongols timurids
+
+music_type mesoamerican
+
+	; aztecs
+	regions North_America Caribbean_Isles Cholula_Province Tlaxcala_Province Tenochtitlan_Province
+	regions Brazil
+
+	factions aztecs
+
+
+
+
+

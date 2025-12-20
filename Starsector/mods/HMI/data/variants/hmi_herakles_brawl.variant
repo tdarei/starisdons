@@ -1,0 +1,69 @@
+{
+  "displayName": "Brawler",
+  "fluxCapacitors": 0,
+  "fluxVents": 45,
+  "goalVariant": true,
+  "hullId": "hmi_herakles",
+  "hullMods": [
+    "heavyarmor",
+    "insulatedengine",
+    "armoredweapons",
+    "unstable_injector",
+    "missleracks"
+  ],
+  "permaMods": [],
+  "quality": 0,
+  "variantId": "hmi_herakles_brawl",
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0001": "hellbore"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0008": "cyclone",
+        "WS0009": "cyclone"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0002": "heavyac",
+        "WS0003": "heavyac",
+        "WS0004": "heavyac",
+        "WS0005": "heavyac",
+        "WS0006": "heavyac",
+        "WS0007": "heavyac"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0010": "harpoon",
+        "WS0011": "harpoon",
+        "WS0012": "harpoon",
+        "WS0013": "harpoon"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0014": "lightdualmg",
+        "WS0015": "lightdualmg",
+        "WS0016": "lightdualmg",
+        "WS0017": "lightdualmg",
+        "WS0018": "flak",
+        "WS0019": "flak"
+      }
+    }
+  ],
+  "wings": []
+}

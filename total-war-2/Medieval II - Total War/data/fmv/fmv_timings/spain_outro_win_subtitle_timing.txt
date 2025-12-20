@@ -1,0 +1,6 @@
+<SYNC Start=2200>
+<P Class=ENUSCC>Spain_Outro_Win_1
+<SYNC Stop=14100>
+<SYNC Start=35000>
+<P Class=ENUSCC>Spain_Outro_Win_2
+<SYNC Stop=54900>

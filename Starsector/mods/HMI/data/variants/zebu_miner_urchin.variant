@@ -1,0 +1,55 @@
+{
+  "displayName": "Urchin",
+  "fluxCapacitors": 17,
+  "fluxVents": 0,
+  "goalVariant": false,
+  "hullId": "zebu",
+  "hullMods": [
+    "junk3"
+  ],
+  "permaMods": [
+    "degraded_engines",
+    "fragile_subsystems",
+    "glitched_sensors"
+  ],
+  "quality": 0,
+  "variantId": "zebu_miner_urchin",
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0001": "mining_gen"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0002": "mining_gen"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0003": "mining_gen"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0004": "mining_gen"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0005": "hammer"
+      }
+    }
+  ],
+  "wings": []
+}

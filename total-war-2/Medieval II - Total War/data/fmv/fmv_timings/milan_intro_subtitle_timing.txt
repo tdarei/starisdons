@@ -1,0 +1,6 @@
+<SYNC Start=6200>
+<P Class=ENUSCC>Milan_Intro_13
+<SYNC Stop=26000>
+<SYNC Start=52100>
+<P Class=ENUSCC>Milan_Intro_14
+<SYNC Stop=66100>

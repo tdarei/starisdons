@@ -1,0 +1,42 @@
+{
+  "variantId": "domres_berserker_atttack",
+  "hullId": "domres_berserker",
+  "displayName": "Attack",
+  "goalVariant": true,
+  "fluxCapacitors": 0,
+  "fluxVents": 0,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "safetyoverrides"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 007": "dick_cannon"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 003": "chaingun",
+        "WS 005": "chaingun"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 001": "lightmg",
+        "WS 002": "lightmg",
+        "WS 006": "lightmg",
+        "WS 008": "lightmg"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

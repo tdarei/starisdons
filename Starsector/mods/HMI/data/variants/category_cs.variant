@@ -1,0 +1,33 @@
+{
+  "variantId": "category_cs",
+  "hullId": "category",
+  "displayName": "Close Support",
+  "goalVariant": true,
+  "fluxCapacitors": 8,
+  "fluxVents": 3,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "turretgyros"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0003": "heavymauler",
+        "WS0004": "heavymauler"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0001": "railgun",
+        "WS0002": "railgun"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

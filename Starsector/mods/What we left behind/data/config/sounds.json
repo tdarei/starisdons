@@ -1,0 +1,96 @@
+{
+	
+	#collapseopen MUSIC
+	"music":{
+		"MPC_phaseSystemAmbience":[
+			{"file":"MPC_contactWithTheUnknown.ogg","source":"sounds/music","volume":0.8},
+		],
+		"MPC_phaseDemonAmbience":[
+			{"file":"MPC_contactWithTheUnknownTwo.ogg","source":"sounds/music","volume":0.8},
+		],
+		
+	# collapseclose
+	},
+	
+	"MPC_punch":{
+		"sounds":[
+			{"file":"sounds/MPC_punch.ogg","pitch":1.0,"volume":1.0},
+		],
+	},
+	
+	"MPC_superheavyDamperStart":[
+		{"file":"sounds/sfx_systems/damper_field_activate.ogg","pitch":0.7,"volume":1.2},
+	],
+		
+	"MPC_superheavyDamperLoop":[
+		{"file":"sounds/sfx_systems/damper_field_loop.ogg","pitch":0.7,"volume":1.2},
+	],
+	"MPC_superheavyDamperStop":[
+		{"file":"sounds/sfx_systems/damper_field_deactivate.ogg","pitch":0.7,"volume":1.0},
+	],
+	
+	"MPC_overclockedTargettingStart":{
+		"sounds":[
+			{"file":"sounds/sfx_interface/ui_income_report_positive.ogg","pitch":1,"volume":0.2},
+		],
+	},
+
+	"MPC_overclockedTargettingLoop":{
+		"sounds":[
+			{"file":"sounds/sfx_abilities/ability-interdiction_pulse_charge.ogg","pitch":1,"volume":0.4},
+		],
+	},
+	"MPC_overclockedTargettingStop":{
+		"sounds":[
+			{"file":"sounds/sfx_interface/ui_income_report_negative.ogg","pitch":1,"volume":0.2},
+		],
+	},
+	
+	"MPC_rapidEMP":{
+		"sounds":[
+			{"file":"sounds/MPC_rapidEMP.ogg","pitch":1,"volume":1}
+		],
+	},
+	"MPC_energyFieldDisabled":{
+		"sounds":[
+			{"file":"sounds/MPC_energyFieldDisabled.ogg","pitch":0.6,"volume":1.2}
+		],
+	},
+	
+	"MPC_explosion":{
+		"sounds":[
+			{"file":"sounds/MPC_explosion.ogg","pitch":1,"volume":1}
+		],
+	},
+	
+	# FLAK
+	"MPC_heavyFlak_fire": {
+		"sounds":[
+			{"file":"sounds/weapons/MPC_heavyFlakFire.ogg","pitch":1,"volume":1.2},
+		],
+	},
+	"MPC_heavyFlakExplosion":{ # when a flak shot's proximity fuse is triggered and it explodes
+		"sounds":[
+			{"file":"sounds/sfx_impacts/explosion_missile_01.ogg","pitch":1.2,"volume":0.8},
+		],
+	},	
+	"MPC_IAIIC_INTEL_START":{
+		"sounds":[
+			{"file":"sounds/MPC_IAIICAlert.ogg", "pitch":1.0,"volume":0.6},
+		],
+	},
+	
+	# TACHYON PIKE
+	#"MPC_tachyonPike_charge": {
+		#"sounds":[
+			#{"file":"sounds/weapons/MPC_tachyonPikeCharge.ogg", "pitch":1.0,"volume":1.0},
+		#],
+	#},
+	#"MPC_tachyonPike_fire": {
+		#"sounds":[
+			#{"file":"sounds/weapons/MPC_tachyonPikeFire.ogg", "pitch":1.0,"volume":1.0},
+		#],
+	#},
+
+
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimal Test</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: #fff;
+            color: #000;
+            overflow: auto !important;
+        }
+        #test-content {
+            padding: 20px;
+            background: #f0f0f0;
+            border: 2px solid #000;
+        }
+    </style>
+</head>
+<body class="loaded">
+    <div id="test-content">
+        <h1>✅ MINIMAL TEST PAGE</h1>
+        <p>If you can see this, the page is loading!</p>
+        <p>Time: <span id="time"></span></p>
+    </div>
+    <script>
+        document.getElementById('time').textContent = new Date().toLocaleTimeString();
+        console.log('✅ Minimal test page loaded successfully!');
+    </script>
+</body>
+</html>
+

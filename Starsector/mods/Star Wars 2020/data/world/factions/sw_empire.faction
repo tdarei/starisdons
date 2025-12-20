@@ -1,0 +1,280 @@
+{
+	id:"sw_empire",
+	"color":[205,205,205,255],
+	"displayName":"Empire",
+	"displayNameWithArticle":"the Empire",
+	"displayNameLong":"Galactic Empire",   
+    	"displayNameLongWithArticle":"the Galactic Empire",  
+	"logo":"graphics/factions/sw_empire_flag.png",
+	"crest":"graphics/factions/sw_empire_crest.png",
+	"shipNamePrefix":"Imperial",
+	"shipNameSources":{
+		"STARWARS":2,
+		"ROMAN":1,
+		"GREEK":1,
+	},
+	"names":{
+		"old english":1,
+		"future":1,
+		"myth":1,	
+	},
+	"hullFrequency":{
+		"tags":{
+		},
+		"hulls":{
+		},
+	},
+	"variantOverrides":{
+		"sw_quasar_imperial":10,
+		"sw_acclamator_imperial":10,
+		"sw_ton_falk_imperial":10,
+		"sw_carrack_imperial":10,
+		"sw_immobilizer_imperial":10,
+		"sw_dreadnought_heavy":10,
+		"sw_victory_i_imperial":10,
+		"sw_neutron_star_imperial":10,
+		"sw_ipv1_imperial":10,
+		"sw_gozanti_imperial":10,
+		"sw_imperial_i_imperial":10,
+		"sw_secutor_imperial":10,
+		"sw_broadside_cruiser_imperial":10,
+	},
+	# ships the faction gets access to when importing S&W out-of-faction
+	"shipsWhenImporting":{
+		"tags":["base_bp", "midline_bp", "hightech_bp"],
+		"hulls":[
+		],
+	},
+
+	"knownShips":{
+		"tags":["empire", "star_wars"],
+		"hulls":[
+		],
+	},
+	"priorityShips":{
+		"tags":[],
+		"hulls":[
+			
+		],
+	},
+	"knownFighters":{
+		"tags":["empire"],
+		"fighters":[
+		],
+	},
+	"priorityFighters":{
+		"tags":[],
+		"fighters":[
+		],
+	},
+	"knownWeapons":{
+		"tags":["sw_missile_bp", "empire_bp"],
+		"weapons":[			
+		],
+	},
+	"priorityWeapons":{
+		"tags":[],
+		"weapons":[
+		],
+	},
+	"knownHullMods":{
+		"tags":["base_bp", "lowtech_bp", "midline_bp", "hightech_bp", "star_wars", "empire"],
+		"hullMods":[
+			"advancedshieldemitter", # accelerated
+			"advancedoptics",
+			"turretgyros",
+			"augmentedengines",
+			"eccm",
+			"ecm",
+			"expanded_deck_crew",
+			"magazines",
+			"missleracks",
+			"extendedshieldemitter",
+			"frontemitter",
+			"frontshield",  # makeshift
+			"hardenedshieldemitter",
+			"insulatedengine",
+			"pointdefenseai",
+			"targetingunit",
+			"nav_relay",
+			"adaptiveshields", # omni
+			"operations_center",
+			"fluxbreakers",
+			"stabilizedshieldemitter",
+			"hiressensors",
+			"efficiency_overhaul",
+		],
+	},
+	"factionDoctrine":{
+		"warships":5,
+		"carriers":2,
+		"phaseShips":1,
+		
+		"officerQuality":4,
+		"shipQuality":4,
+		"numShips":1,
+		
+		"shipSize":4,
+		
+		"aggression":4,
+		
+		"combatFreighterProbability":0.25,      				# instead of some portion of the freighters in a fleet
+		"combatFreighterCombatUseFraction":0.25,  				# as part of the normal combat lineup
+		"combatFreighterCombatUseFractionWhenPriority":0.5,   # as part of normal combat lineup, when marked as priority ship
+		"autofitRandomizeProbability":0.33,
+		
+		"commanderSkillsShuffleProbability":0.5,
+		"commanderSkills":[
+			"crew_training",
+			"officer_training",
+			"electronic_warfare",
+			"weapon_drills",			
+			"flux_regulation",			
+		],
+	},
+	"illegalCommodities":[
+		"drugs",
+		"organs",	
+	],
+	"music":{
+		"theme":"music_hegemony_market_neutral",
+		"market_neutral":"music_hegemony_market_neutral",
+		"market_hostile":"music_hegemony_market_hostile",
+		"market_friendly":"music_hegemony_market_friendly",
+		"encounter_neutral":"music_hegemony_encounter_neutral",
+		"encounter_hostile":"music_hegemony_encounter_hostile",
+		"encounter_friendly":"music_hegemony_encounter_friendly",
+	},
+	"internalComms":"sw_empire_internal",
+
+	"portraits":{
+		"standard_male":[			
+			"graphics/portraits/empire/Tie_Pilot.png",
+			"graphics/portraits/empire/Walker_Pilot.png",
+			"graphics/portraits/empire/Sand_Trooper.png",
+			"graphics/portraits/empire/Snow_Trooper.png",
+			"graphics/portraits/empire/Storm_Trooper.png",
+			"graphics/portraits/empire/Imperial_Officer.png",
+			"graphics/portraits/empire/Imperial_Officer6.png",
+			"graphics/portraits/empire/Imperial_Officer8.png",
+			"graphics/portraits/empire/Ozzel.png",
+			"graphics/portraits/empire/Pett1.png",
+			"graphics/portraits/empire/Pett2.png",
+			"graphics/portraits/empire/Veers1.png",
+			"graphics/portraits/empire/Veers2.png",
+			"graphics/portraits/empire/Vader.png",						
+			"graphics/portraits/empire/Moff_Tarkin.png",
+			"graphics/portraits/empire/Wullf1.png",
+			"graphics/portraits/empire/Sarn.png",
+			"graphics/portraits/empire/Gilad_Pellaeon1.png",
+			"graphics/portraits/empire/Gilad_Pellaeon2.png",
+			"graphics/portraits/empire/Gilad_Pellaeon3.png",
+			"graphics/portraits/empire/Gilad_Pellaeon4.png",
+			"graphics/portraits/empire/Inquisitor1.png",
+			"graphics/portraits/empire/Inquisitor2.png",
+			"graphics/portraits/empire/Inquisitor3.png",
+			"graphics/portraits/empire/Inquisitor4.png",
+			"graphics/portraits/empire/Moff_Gideon1.png",
+			"graphics/portraits/empire/Moff_Gideon2.png",
+			"graphics/portraits/chiss/Thrawn5.png",
+			"graphics/portraits/chiss/Thrawn6.png",
+			"graphics/portraits/chiss/Thrawn7.png",		
+		],
+		"standard_female":[
+			"graphics/portraits/Med_Droid.png",
+			"graphics/portraits/Mara_Jade1.png",
+			"graphics/portraits/Mara_Jade2.png",
+			"graphics/portraits/empire/Imperial_Officer1.png",
+			"graphics/portraits/empire/Imperial_Officer2.png",
+			"graphics/portraits/empire/Imperial_Officer3.png",
+			"graphics/portraits/empire/Imperial_Officer4.png",
+			"graphics/portraits/empire/Imperial_Officer5.png",
+			"graphics/portraits/empire/Imperial_Officer7.png",
+			"graphics/portraits/empire/Natasi_Dalaa1.png",
+			"graphics/portraits/empire/Juno_Eclipse.png",
+			"graphics/portraits/empire/Tie_Pilot1.png",
+			"graphics/portraits/empire/Dedra_Meero1.png",
+			"graphics/portraits/empire/Dedra_Meero2.png",
+			"graphics/portraits/empire/Morgan_Elsbeth1.png",
+			"graphics/portraits/empire/Morgan_Elsbeth2.png",
+		],
+	},
+	"ranks":{
+		"ranks":{
+			"factionLeader":{"name":"Emperor"},	
+			"spaceSailor":{"name":"Ensign"},
+			"spaceChief":{"name":"Junior Lieutenant"},
+			"spaceEnsign":{"name":"Senior Lieutenant"},
+			"spaceLieutenant":{"name":"Commander"},
+			"spaceCommander":{"name":"Captain"},
+			"spaceCaptain":{"name":"Vice Admiral"},
+			"spaceAdmiral":{"name":"Admiral"},
+			"spaceMarshal":{"name":"Grand Admiral"},
+			
+			"groundPrivate":{"name":"Corporal"},
+			"groundSergeant":{"name":"Sergeant"},
+			"groundLieutenant":{"name":"Lieutenant"},
+			"groundCaptain":{"name":"Commandant"},
+			"groundMajor":{"name":"Major"},
+			"groundColonel":{"name":"Colonel"},
+			"groundGeneral":{"name":"General"},
+		},
+		"posts":{
+			"factionLeader":{"name":"Emperor"},
+			"sithLord":{"name":"Sith Lord"},
+			"patrolCommander":{"name":"Vice Amiral"},
+			"fleetCommander":{"name":"Amiral"},
+			"baseCommander":{"name":"Moff"},
+			"administrator":{"name":"Grand Moff"},
+			
+			"portmaster":{"name":"Port Commander"},
+			
+			"investigator":{"name":"Imperial Security Bureau Agent"},
+			"specialAgent":{"name":"Inquisitor"},
+		},
+	},
+	"voices":{
+		"LOW":{
+			"soldier":10,
+			"faithful":5,		
+			"spacer":5,
+		},
+		"MEDIUM":{
+			"soldier":10,
+			"official":5,
+		},
+		"HIGH":{
+			"soldier":5,
+			"official":10,
+			"aristo":3,
+		},
+	},
+	"custom":{
+		"offersCommissions":true,
+		"engagesInHostilities":true,
+		"buysAICores":true,
+		"AICoreValueMult":2,
+		"AICoreRepMult":2,
+		"buysSurveyData":true,
+		"hostilityImpactOnGrowth":true,
+		"caresAboutAtrocities":true,
+		"punitiveExpeditionData":{
+			"vsCompetitors":true,
+			"vsFreePort":false,
+			"canBombard":true,
+			"territorial":true,
+		},
+	},
+	"fleetTypeNames":{
+		"smallTrader":"Trading Convoy",
+		"trade":"Trading Fleet",
+		"tradeLiner":"Personal Transport Convoy",
+		"patrolSmall":"Planet Patrol Fleet",
+		"patrolMedium":"Border Patrol Fleet",
+		"patrolLarge":"Sector Patrol Fleet",
+		"mercBountyHunter":"Bounty Hunter Fleet",
+		"inspectionFleet":"Recon Fleet",
+		"taskForce":"Principal Force Fleet",
+		"battlestation":"Defense Platform",
+	},	
+},

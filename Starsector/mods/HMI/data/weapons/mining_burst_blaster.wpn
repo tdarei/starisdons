@@ -1,0 +1,55 @@
+{
+  "collisionClass": "RAY",
+  "collisionClassByFighter": "RAY_FIGHTER",
+  "coreColor": [
+    255,
+    255,
+    255,
+    255
+  ],
+  "fireSoundOne": "heavy_burst_laser_fire",
+  "fringeColor": [
+    125,
+    0,
+    0,
+    255
+  ],
+  "glowColor": [
+    255,
+    100,
+    100,
+    255
+  ],
+  "hardpointAngleOffsets": [
+    0
+  ],
+  "hardpointGlowSprite": "graphics/weapons/burstheavy_hardpoint_base_glow.png",
+  "hardpointOffsets": [
+    17,
+    0
+  ],
+  "hardpointSprite": "graphics/weapons/burstheavy_hardpoint_base.png",
+  "hitGlowRadius": 0,
+  "id": "mining_burst_blaster",
+  "pierceSet": [
+    PROJECTILE_FF,
+    PROJECTILE_NO_FF,
+    PROJECTILE_FIGHTER
+  ],
+  "pixelsPerTexel": 5,
+  "size": "MEDIUM",
+  "specClass": "beam",
+  "textureScrollSpeed": 128,
+  "textureType": ROUGH,
+  "turretAngleOffsets": [
+    0
+  ],
+  "turretGlowSprite": "graphics/weapons/burstheavy_turret_base_glow.png",
+  "turretOffsets": [
+    13.5,
+    0
+  ],
+  "turretSprite": "graphics/weapons/burstheavy_turret_base.png",
+  "type": "ENERGY",
+  "width": 28
+}

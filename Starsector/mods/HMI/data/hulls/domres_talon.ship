@@ -1,0 +1,69 @@
+{
+  "bounds": [
+    12,
+    2.5,
+    -5,
+    12,
+    -5,
+    -11.5,
+    12,
+    -3.5
+  ],
+  "builtInWings": [],
+  "center": [
+    14,
+    10
+  ],
+  "collisionRadius": 16,
+  "engineSlots": [
+    {
+      "angle": 180,
+      "contrailSize": 64,
+      "length": 24,
+      "location": [
+        -7.5,
+        5
+      ],
+      "style": "LOW_TECH",
+      "width": 8
+    },
+    {
+      "angle": 180,
+      "contrailSize": 64,
+      "length": 24,
+      "location": [
+        -7.5,
+        -5
+      ],
+      "style": "LOW_TECH",
+      "width": 8
+    }
+  ],
+  "height": 25,
+  "hullId": "domres_talon",
+  "hullName": "Talon (DomRes)",
+  "hullSize": "FIGHTER",
+  "shieldCenter": [
+    0,
+    -0
+  ],
+  "shieldRadius": 16,
+  "spriteName": "graphics/ships/domain_resurgent/hmidr_talon.png",
+  "style": "LOW_TECH",
+  "viewOffset": 0,
+  "weaponSlots": [
+    {
+      "angle": 0,
+      "arc": 5,
+      "id": "WS 003",
+      "locations": [
+        8.5,
+        0
+      ],
+      "mount": "HIDDEN",
+      "size": "MEDIUM",
+      "type": "BALLISTIC"
+    }
+  ],
+  "width": 27
+}

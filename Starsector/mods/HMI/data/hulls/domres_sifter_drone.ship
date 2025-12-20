@@ -1,0 +1,45 @@
+{
+  "hullName": "Sifter Scavenger (DomRes)",
+  "hullId": "domres_sifter_drone",
+  "hullSize": "FIGHTER",
+  "spriteName": "graphics/ships/domain_resurgent/hmidr_sifter.png",
+  "style": "LOW_TECH",
+  "height": 24,
+  "width": 21,
+  "center": [10.5, 12],
+  "collisionRadius": 21,
+  "shieldCenter": [0, 0],
+  "shieldRadius": 19.5,
+  "viewOffset": 0,
+  "weaponSlots": [
+    {
+      "id": "WS0001",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "HIDDEN",
+      "arc": 10,
+      "angle": 0,
+      "locations": [0, -3.5]
+    },
+    {
+      "id": "WS0002",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "HIDDEN",
+      "arc": 10,
+      "angle": 0,
+      "locations": [0, 3.5]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-10.5, -0],
+      "length": 13,
+      "width": 13,
+      "angle": 180,
+      "contrailSize": 13,
+      "style": "LOW_TECH"
+    }
+  ],
+  "bounds": []
+}

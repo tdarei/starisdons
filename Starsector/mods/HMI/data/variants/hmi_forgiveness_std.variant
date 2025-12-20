@@ -1,0 +1,63 @@
+{
+  "variantId": "hmi_forgiveness_std",
+  "hullId": "hmi_forgiveness",
+  "displayName": "Prototype",
+  "goalVariant": true,
+  "fluxCapacitors": 10,
+  "fluxVents": 18,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "hardened_subsystems"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 004": "lightneedler",
+        "WS 009": "lrpdlaser",
+        "WS 010": "lrpdlaser",
+        "WS0001": "tachyonlance",
+        "WS0002": "tachyonlance"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 001": "sabotpod",
+        "WS 002": "sabotpod"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 003": "lightneedler",
+        "WS 005": "lightneedler",
+        "WS 006": "lightneedler"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 007": "gravitonbeam",
+        "WS 008": "gravitonbeam"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 011": "lrpdlaser",
+        "WS 012": "lrpdlaser",
+        "WS0003": "heavyburst",
+        "WS0004": "heavyburst"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

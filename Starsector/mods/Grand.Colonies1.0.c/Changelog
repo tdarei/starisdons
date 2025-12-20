@@ -1,0 +1,11 @@
+1.0.c
+Added - Indicator showing if page toggle is possible
+Adjusted - now also toggles the page if "Q" is pressed instead of "q"
+
+1.0.b
+Fixed - No longer crashes if a market is abandoned
+Fixed - No longer crashes if a market is founded, changed, then transferred
+
+1.0.a
+
+Added - Initial Release

@@ -1,0 +1,57 @@
+{
+  "id": "sw_dual_ion_cannon",
+  "specClass": "projectile",
+  "projectileSpecId": "sw_laser_ion_shot",
+  "type": "ENERGY",
+  "size": "MEDIUM",
+  "turretSprite": "graphics/weapons/sw_dby827_heavy_turbolaser_turret_base.png",
+  "turretGunSprite": "graphics/weapons/sw_dby827_heavy_turbolaser_turret_recoil.png",
+  "hardpointSprite": "graphics/weapons/sw_dby827_heavy_turbolaser_hardpoint_base.png",
+  "glowColor": [
+    255,
+    230,
+    230,
+    255
+  ],
+  "visualRecoil": 2,
+  "renderHints": [
+    RENDER_BARREL_BELOW
+  ],
+  "turretOffsets": [
+    5,
+    3.5,
+    5,
+    -3.5
+  ],
+  "turretAngleOffsets": [
+    0,
+    0
+  ],
+  "hardpointOffsets": [
+    8,
+    3.5,
+    8,
+    -3.5
+  ],
+  "hardpointAngleOffsets": [
+    0,
+    0
+  ],
+  "barrelMode": "ALTERNATING",
+  "animationType": "GLOW_AND_FLASH",
+  "muzzleFlashSpec": {
+    "length": 5,
+    "spread": 3,
+    "particleSizeMin": 10,
+    "particleSizeRange": 10,
+    "particleDuration": 0.12,
+    "particleCount": 12,
+    "particleColor": [
+      255,
+      205,
+      255,
+      200
+    ]
+  },
+  "fireSoundTwo": "sw_sound_ion_cannon"
+}

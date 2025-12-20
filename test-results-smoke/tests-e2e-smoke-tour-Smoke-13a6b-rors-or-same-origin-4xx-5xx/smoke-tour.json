@@ -1,0 +1,3680 @@
+[
+  {
+    "page": "home",
+    "url": "http://localhost:8000/index.html",
+    "logs": {
+      "console": [
+        {
+          "type": "log",
+          "text": "🔗 Navigation menu initialized!"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Cosmic Music Player Script Loaded"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Document ready, initializing immediately"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Cosmic Music Player: Initializing (attempt 1)..."
+        },
+        {
+          "type": "log",
+          "text": "🎵 Document ready state: interactive"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Body exists: true"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Player exists: false"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Total tracks: 19"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Track URLs: [Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object]"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Loading saved state..."
+        },
+        {
+          "type": "log",
+          "text": "🔄 DEBUG loadPlayerState called"
+        },
+        {
+          "type": "log",
+          "text": "🔍 DEBUG loadPlayerState - Retrieved from sessionStorage: {savedState: null, savedStateLength: 0, savedStateType: object, allKeys: Array(0)}"
+        },
+        {
+          "type": "warning",
+          "text": "⚠️ WARNING: No saved state found in sessionStorage! {sessionStorageKeys: Array(0), hasCosmicPlayerState: false}"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Injecting player HTML..."
+        },
+        {
+          "type": "log",
+          "text": "🎵 Injecting player HTML into body..."
+        },
+        {
+          "type": "log",
+          "text": "✅ Player HTML injected successfully!"
+        },
+        {
+          "type": "log",
+          "text": "✅ Player element exists: true"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Initializing player for: Track 1: Cosmic Journey"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Base URL: http://localhost:8000"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Full URL: http://localhost:8000/audio/cosmic-journey.mp3"
+        },
+        {
+          "type": "log",
+          "text": "🎵 DEBUG initPlayer - pendingState: undefined"
+        },
+        {
+          "type": "log",
+          "text": "🎵 DEBUG initPlayer - Saved pendingState for restoration: null"
+        },
+        {
+          "type": "log",
+          "text": "📊 Track display updated: Track 1 of 19"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Setting up event listeners..."
+        },
+        {
+          "type": "log",
+          "text": "✅ Navigation persistence enabled"
+        },
+        {
+          "type": "log",
+          "text": "🎵 CosmicMusicPlayer: Constructor complete!"
+        },
+        {
+          "type": "log",
+          "text": "✅ Cosmic Music Player initialized successfully!"
+        },
+        {
+          "type": "log",
+          "text": "🔄 Load start: Track 1: Cosmic Journey"
+        },
+        {
+          "type": "log",
+          "text": "📊 Track display updated: Track 1 of 19"
+        },
+        {
+          "type": "log",
+          "text": "✅ Loaded 19 tracks from audio manifest."
+        },
+        {
+          "type": "log",
+          "text": "✅ Track metadata loaded: {name: Track 1: Cosmic Journey, duration: 4:50, size: Buffered}"
+        },
+        {
+          "type": "log",
+          "text": "ℹ️ DEBUG loadedmetadata - No restoration (pendingState or duration not available): {hasPendingState: false, hasDuration: true, durationValid: true}"
+        },
+        {
+          "type": "log",
+          "text": "📊 Track display updated: Track 1 of 19"
+        },
+        {
+          "type": "log",
+          "text": "✅ Track ready to play: Track 1: Cosmic Journey (1/19)"
+        },
+        {
+          "type": "log",
+          "text": "✅ Track fully buffered and ready: Track 1: Cosmic Journey"
+        },
+        {
+          "type": "log",
+          "text": "🎵 DEBUG canplaythrough - Current audio state: {currentTime: 0, duration: 290.899604, pendingState: undefined, pendingStateRestored: false}"
+        },
+        {
+          "type": "log",
+          "text": "ℹ️ No pendingState to restore in canplaythrough"
+        },
+        {
+          "type": "log",
+          "text": "✅ Player HTML verified in DOM"
+        },
+        {
+          "type": "warning",
+          "text": "[GroupMarkerNotSet(crbug.com/242999)!:A840180004370000]Automatic fallback to software WebGL has been deprecated. Please use the --enable-unsafe-swiftshader (about:flags#enable-unsafe-swiftshader) flag to opt in to lower security guarantees for trusted content."
+        },
+        {
+          "type": "warning",
+          "text": "[.WebGL-0x45f40070c700]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+        },
+        {
+          "type": "warning",
+          "text": "[.WebGL-0x45f40070c700]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+        },
+        {
+          "type": "warning",
+          "text": "[.WebGL-0x45f40070c700]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+        },
+        {
+          "type": "warning",
+          "text": "[.WebGL-0x45f40070c700]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"
+        },
+        {
+          "type": "log",
+          "text": "📊 Track display updated: Track 1 of 19"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Window loaded, checking player..."
+        },
+        {
+          "type": "log",
+          "text": "✅ ServiceWorker registration successful with scope:  http://localhost:8000/"
+        },
+        {
+          "type": "warning",
+          "text": "🛡️ Safety Valve triggered: Forcing page visibility"
+        }
+      ],
+      "pageErrors": [],
+      "requestFailures": [],
+      "badResponses": [],
+      "allBadResponses": [],
+      "undefinedDiagnostics": {
+        "resources": [],
+        "elements": [],
+        "styleAttributes": [],
+        "computedStyles": [],
+        "cssRules": []
+      }
+    },
+    "pwa": {
+      "supported": true,
+      "hasRegistration": true,
+      "scope": "http://localhost:8000/",
+      "scriptUrl": "http://localhost:8000/sw.js"
+    }
+  },
+  {
+    "page": "database",
+    "url": "http://localhost:8000/database.html",
+    "logs": {
+      "console": [
+        {
+          "type": "log",
+          "text": "🐞 Critical Debug Banner Initialized"
+        },
+        {
+          "type": "log",
+          "text": "🚀 MINIMAL LOADER STARTING"
+        },
+        {
+          "type": "log",
+          "text": "✅ MINIMAL LOADER INITIALIZED - Page will unblock within 1 second"
+        },
+        {
+          "type": "warning",
+          "text": "⚠️ Stripe public key not found. Payment features will be disabled."
+        },
+        {
+          "type": "log",
+          "text": "🚀 Safe Loader: Initializing..."
+        },
+        {
+          "type": "log",
+          "text": "✅ Safe Loader: Page visibility ensured"
+        },
+        {
+          "type": "log",
+          "text": "🔗 Navigation menu initialized!"
+        },
+        {
+          "type": "log",
+          "text": "🌟 Universal Graphics System Activated!"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Cosmic Music Player Script Loaded"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Document ready, initializing immediately"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Cosmic Music Player: Initializing (attempt 1)..."
+        },
+        {
+          "type": "log",
+          "text": "🎵 Document ready state: interactive"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Body exists: true"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Player exists: false"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Total tracks: 19"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Track URLs: [Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object]"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Loading saved state..."
+        },
+        {
+          "type": "log",
+          "text": "🔄 DEBUG loadPlayerState called"
+        },
+        {
+          "type": "log",
+          "text": "🔍 DEBUG loadPlayerState - Retrieved from sessionStorage: {savedState: null, savedStateLength: 0, savedStateType: object, allKeys: Array(0)}"
+        },
+        {
+          "type": "warning",
+          "text": "⚠️ WARNING: No saved state found in sessionStorage! {sessionStorageKeys: Array(0), hasCosmicPlayerState: false}"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Injecting player HTML..."
+        },
+        {
+          "type": "log",
+          "text": "🎵 Injecting player HTML into body..."
+        },
+        {
+          "type": "log",
+          "text": "✅ Player HTML injected successfully!"
+        },
+        {
+          "type": "log",
+          "text": "✅ Player element exists: true"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Initializing player for: Track 1: Cosmic Journey"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Base URL: http://localhost:8000"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Full URL: http://localhost:8000/audio/cosmic-journey.mp3"
+        },
+        {
+          "type": "log",
+          "text": "🎵 DEBUG initPlayer - pendingState: undefined"
+        },
+        {
+          "type": "log",
+          "text": "🎵 DEBUG initPlayer - Saved pendingState for restoration: null"
+        },
+        {
+          "type": "log",
+          "text": "📊 Track display updated: Track 1 of 19"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Setting up event listeners..."
+        },
+        {
+          "type": "log",
+          "text": "✅ Navigation persistence enabled"
+        },
+        {
+          "type": "log",
+          "text": "🎵 CosmicMusicPlayer: Constructor complete!"
+        },
+        {
+          "type": "log",
+          "text": "✅ Cosmic Music Player initialized successfully!"
+        },
+        {
+          "type": "log",
+          "text": "⌨️ Keyboard Shortcuts initialized"
+        },
+        {
+          "type": "log",
+          "text": "✅ Supabase client initialized"
+        },
+        {
+          "type": "log",
+          "text": "✅ Supabase initialized"
+        },
+        {
+          "type": "log",
+          "text": "✅ Supabase initialized"
+        },
+        {
+          "type": "log",
+          "text": "📡 Exoplanet SDK initialized. Type \"new ExoplanetSDK()\" to explore."
+        },
+        {
+          "type": "log",
+          "text": "🎵 Cosmic Music Player Script Loaded"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Document ready, initializing immediately"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Cosmic Music Player: Initializing (attempt 1)..."
+        },
+        {
+          "type": "log",
+          "text": "🎵 Document ready state: interactive"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Body exists: true"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Player exists: true"
+        },
+        {
+          "type": "log",
+          "text": "ℹ️ Music player already exists on page"
+        },
+        {
+          "type": "log",
+          "text": "🔄 Load start: Track 1: Cosmic Journey"
+        },
+        {
+          "type": "log",
+          "text": "✅ kepler_data_parsed.js loaded"
+        },
+        {
+          "type": "log",
+          "text": "✨ Initializing Optimized Database System..."
+        },
+        {
+          "type": "log",
+          "text": "🚀 Loading Kepler database..."
+        },
+        {
+          "type": "log",
+          "text": "✅ Loaded 9564 exoplanets from Kepler database"
+        },
+        {
+          "type": "log",
+          "text": "LargeExoplanetLoader initialized (minimal placeholder)"
+        },
+        {
+          "type": "log",
+          "text": "🔍 Trying to load large dataset from: data/exoplanets.jsonl"
+        },
+        {
+          "type": "log",
+          "text": "LargeExoplanetLoader: No large dataset to load"
+        },
+        {
+          "type": "log",
+          "text": "📊 Statistics calculated: 9,564 total exoplanets"
+        },
+        {
+          "type": "log",
+          "text": "   - Confirmed: 2,746"
+        },
+        {
+          "type": "log",
+          "text": "   - Candidates: 1,979"
+        },
+        {
+          "type": "log",
+          "text": "💾 No user logged in, skipping local claims load"
+        },
+        {
+          "type": "log",
+          "text": "✅ Database ready with 9564 planets!"
+        },
+        {
+          "type": "log",
+          "text": "🚀 Loading Kepler database..."
+        },
+        {
+          "type": "log",
+          "text": "✅ Loaded 9564 exoplanets from Kepler database"
+        },
+        {
+          "type": "log",
+          "text": "LargeExoplanetLoader initialized (minimal placeholder)"
+        },
+        {
+          "type": "log",
+          "text": "🔍 Trying to load large dataset from: data/exoplanets.jsonl"
+        },
+        {
+          "type": "log",
+          "text": "LargeExoplanetLoader: No large dataset to load"
+        },
+        {
+          "type": "log",
+          "text": "📊 Statistics calculated: 9,564 total exoplanets"
+        },
+        {
+          "type": "log",
+          "text": "   - Confirmed: 2,746"
+        },
+        {
+          "type": "log",
+          "text": "   - Candidates: 1,979"
+        },
+        {
+          "type": "log",
+          "text": "💾 No user logged in, skipping local claims load"
+        },
+        {
+          "type": "log",
+          "text": "🔍 Trying to load large dataset from: data/exoplanets.json"
+        },
+        {
+          "type": "log",
+          "text": "LargeExoplanetLoader: No large dataset to load"
+        },
+        {
+          "type": "log",
+          "text": "🔍 Trying to load large dataset from: data/exoplanets.json"
+        },
+        {
+          "type": "log",
+          "text": "LargeExoplanetLoader: No large dataset to load"
+        },
+        {
+          "type": "log",
+          "text": "⚠️ Large dataset file not found or timed out. Using Kepler data only."
+        },
+        {
+          "type": "log",
+          "text": "⚠️ Large dataset file not found or timed out. Using Kepler data only."
+        },
+        {
+          "type": "log",
+          "text": "📊 Using Kepler database only"
+        },
+        {
+          "type": "log",
+          "text": "📊 Statistics calculated: 9,564 total exoplanets"
+        },
+        {
+          "type": "log",
+          "text": "   - Confirmed: 2,746"
+        },
+        {
+          "type": "log",
+          "text": "   - Candidates: 1,979"
+        },
+        {
+          "type": "log",
+          "text": "📊 Using Kepler database only"
+        },
+        {
+          "type": "log",
+          "text": "📊 Statistics calculated: 9,564 total exoplanets"
+        },
+        {
+          "type": "log",
+          "text": "   - Confirmed: 2,746"
+        },
+        {
+          "type": "log",
+          "text": "   - Candidates: 1,979"
+        },
+        {
+          "type": "log",
+          "text": "🔭 Telescope Data Feeds initialized"
+        },
+        {
+          "type": "log",
+          "text": "🚀 NASA API Integration initialized"
+        },
+        {
+          "type": "log",
+          "text": "🌍 AI Habitability Analysis initialized"
+        },
+        {
+          "type": "log",
+          "text": "🌍 ESA API Integration initialized"
+        },
+        {
+          "type": "log",
+          "text": "📡 Fetching space news..."
+        },
+        {
+          "type": "log",
+          "text": "✅ Loaded 4 news articles"
+        },
+        {
+          "type": "log",
+          "text": "⭐ Interactive Star Maps initialized"
+        },
+        {
+          "type": "log",
+          "text": "🚀 SpaceX API Integration initialized"
+        },
+        {
+          "type": "log",
+          "text": "📡 Starting polling for updates..."
+        },
+        {
+          "type": "log",
+          "text": "🔔 Real-time notifications system initialized"
+        },
+        {
+          "type": "log",
+          "text": "📜 Database Visualization Features script loaded"
+        },
+        {
+          "type": "log",
+          "text": "🚀 Initializing Database Visualization Features..."
+        },
+        {
+          "type": "log",
+          "text": "📡 Main: Project SETI Worker launched"
+        },
+        {
+          "type": "log",
+          "text": "🌌 Galactic Events System initialized"
+        },
+        {
+          "type": "log",
+          "text": "⚔️ Tactical Combat System Initialized"
+        },
+        {
+          "type": "log",
+          "text": "🌦️ Planet Weather Simulation initialized"
+        },
+        {
+          "type": "log",
+          "text": "🤖 AI Game Master initialized"
+        },
+        {
+          "type": "log",
+          "text": "👻 Soul Engine Initialized"
+        },
+        {
+          "type": "log",
+          "text": "🏛️ Galactic Senate System Initialized"
+        },
+        {
+          "type": "log",
+          "text": "📜 Galactic History System observing universe..."
+        },
+        {
+          "type": "log",
+          "text": "🤝 Diplomatic AI Initialized. Relationships neutral."
+        },
+        {
+          "type": "log",
+          "text": "🚛 Supply Chain Logistics Initialized"
+        },
+        {
+          "type": "log",
+          "text": "🛣️ New Trade Route established: Mining Outpost Alpha -> Terra Prime (Helium-3)"
+        },
+        {
+          "type": "log",
+          "text": "🛣️ New Trade Route established: Terra Prime -> Shipyard Beta (Nanocarbon)"
+        },
+        {
+          "type": "warning",
+          "text": "⚠️ No Web3 wallet detected. NFT features will be limited."
+        },
+        {
+          "type": "log",
+          "text": "🔗 Blockchain & NFT Integration initialized"
+        },
+        {
+          "type": "log",
+          "text": "🚀 NASA Mission Simulations initialized"
+        },
+        {
+          "type": "log",
+          "text": "📱 PWA Enhancements initialized"
+        },
+        {
+          "type": "log",
+          "text": "📜 Virtual Scrolling initialized"
+        },
+        {
+          "type": "log",
+          "text": "🔄 Lazy Loading Manager initialized"
+        },
+        {
+          "type": "log",
+          "text": "Bundle Analysis: {total: 192, sizes: Array(0), async: 1, defer: 186}"
+        },
+        {
+          "type": "warning",
+          "text": "Consider code splitting: Too many scripts loaded"
+        },
+        {
+          "type": "log",
+          "text": "♿ Accessibility enhancements initialized"
+        },
+        {
+          "type": "log",
+          "text": "📐 Optimizing for desktop breakpoint"
+        },
+        {
+          "type": "log",
+          "text": "📐 Responsive Layout Optimizer initialized"
+        },
+        {
+          "type": "log",
+          "text": "🔗 Navigation menu already initialized"
+        },
+        {
+          "type": "log",
+          "text": "💳 Marketplace Payment Integration initialized"
+        },
+        {
+          "type": "log",
+          "text": "✨ Initializing Optimized Database System..."
+        },
+        {
+          "type": "log",
+          "text": "🚀 Loading Kepler database..."
+        },
+        {
+          "type": "log",
+          "text": "✅ Loaded 9564 exoplanets from Kepler database"
+        },
+        {
+          "type": "log",
+          "text": "LargeExoplanetLoader initialized (minimal placeholder)"
+        },
+        {
+          "type": "log",
+          "text": "🔍 Trying to load large dataset from: data/exoplanets.jsonl"
+        },
+        {
+          "type": "log",
+          "text": "LargeExoplanetLoader: No large dataset to load"
+        },
+        {
+          "type": "log",
+          "text": "📊 Statistics calculated: 9,564 total exoplanets"
+        },
+        {
+          "type": "log",
+          "text": "   - Confirmed: 2,746"
+        },
+        {
+          "type": "log",
+          "text": "   - Candidates: 1,979"
+        },
+        {
+          "type": "log",
+          "text": "💾 No user logged in, skipping local claims load"
+        },
+        {
+          "type": "log",
+          "text": "✅ Database ready with 9564 planets!"
+        },
+        {
+          "type": "log",
+          "text": "🔄 Re-adding visualization buttons..."
+        },
+        {
+          "type": "log",
+          "text": "🔍 Trying to load large dataset from: data/exoplanets.json"
+        },
+        {
+          "type": "log",
+          "text": "LargeExoplanetLoader: No large dataset to load"
+        },
+        {
+          "type": "log",
+          "text": "⚠️ Large dataset file not found or timed out. Using Kepler data only."
+        },
+        {
+          "type": "log",
+          "text": "📊 Using Kepler database only"
+        },
+        {
+          "type": "log",
+          "text": "📊 Statistics calculated: 9,564 total exoplanets"
+        },
+        {
+          "type": "log",
+          "text": "   - Confirmed: 2,746"
+        },
+        {
+          "type": "log",
+          "text": "   - Candidates: 1,979"
+        },
+        {
+          "type": "log",
+          "text": "🔄 Re-adding visualization buttons..."
+        },
+        {
+          "type": "log",
+          "text": "PWA Loader Core Minimal initialized (placeholder)"
+        },
+        {
+          "type": "log",
+          "text": "✅ Social Sharing initialized"
+        },
+        {
+          "type": "log",
+          "text": "✅ User Data Export/Import initialized"
+        },
+        {
+          "type": "log",
+          "text": "💎 Planet Rarity Calculator initialized"
+        },
+        {
+          "type": "log",
+          "text": "📊 Planet Comparison Matrix initialized"
+        },
+        {
+          "type": "log",
+          "text": "🔍 Planet Discovery Search History initialized"
+        },
+        {
+          "type": "log",
+          "text": "📡 Planet Discovery Feed initialized"
+        },
+        {
+          "type": "log",
+          "text": "📈 Planet Discovery Statistics Widget initialized"
+        },
+        {
+          "type": "log",
+          "text": "📱 Planet Social Sharing initialized"
+        },
+        {
+          "type": "log",
+          "text": "📤 Planet Discovery Export initialized"
+        },
+        {
+          "type": "log",
+          "text": "🗺️ Planet Discovery Map Visualization initialized"
+        },
+        {
+          "type": "log",
+          "text": "🔔 Planet Discovery Notifications initialized"
+        },
+        {
+          "type": "log",
+          "text": "📊 Planet Claim Statistics initialized"
+        },
+        {
+          "type": "log",
+          "text": "📈 Popular Planet Trends initialized"
+        },
+        {
+          "type": "log",
+          "text": "🔭 Discovery Rate Tracking initialized"
+        },
+        {
+          "type": "log",
+          "text": "⚖️ Planet Comparison Enhancements initialized"
+        },
+        {
+          "type": "log",
+          "text": "📰 Real-time Space News Feed initialized"
+        },
+        {
+          "type": "log",
+          "text": "📚 Interactive Astronomy Courses initialized"
+        },
+        {
+          "type": "log",
+          "text": "🎓 Planet Discovery Tutorials initialized"
+        },
+        {
+          "type": "log",
+          "text": "🎮 Educational Games initialized"
+        },
+        {
+          "type": "log",
+          "text": "💼 Planet Investment Portfolios initialized"
+        },
+        {
+          "type": "log",
+          "text": "🏠 Planet Rental/Leasing initialized"
+        },
+        {
+          "type": "log",
+          "text": "🔐 Two-Factor Authentication initialized"
+        },
+        {
+          "type": "log",
+          "text": "📅 Planet Discovery Calendar initialized"
+        },
+        {
+          "type": "log",
+          "text": "⚖️ Planet Discovery Comparison Tool initialized"
+        },
+        {
+          "type": "log",
+          "text": "🧠 Planet Trivia Quiz initialized"
+        },
+        {
+          "type": "log",
+          "text": "🎤 Voice commands initialized"
+        },
+        {
+          "type": "log",
+          "text": "📸 AR Filters initialized"
+        },
+        {
+          "type": "log",
+          "text": "🥽 VR Tours initialized"
+        },
+        {
+          "type": "log",
+          "text": "📚 Educational courses initialized"
+        },
+        {
+          "type": "log",
+          "text": "📺 Live streaming initialized"
+        },
+        {
+          "type": "log",
+          "text": "💬 Community forums initialized"
+        },
+        {
+          "type": "log",
+          "text": "👥 Mentorship program initialized"
+        },
+        {
+          "type": "log",
+          "text": "💰 Research grants initialized"
+        },
+        {
+          "type": "log",
+          "text": "🏅 Certification program initialized"
+        },
+        {
+          "type": "log",
+          "text": "🎓 Internship opportunities initialized"
+        },
+        {
+          "type": "log",
+          "text": "💼 Job board initialized"
+        },
+        {
+          "type": "log",
+          "text": "🎓 Scholarship program initialized"
+        },
+        {
+          "type": "log",
+          "text": "🎤 Conference integration initialized"
+        },
+        {
+          "type": "log",
+          "text": "📹 Webinar platform initialized"
+        },
+        {
+          "type": "log",
+          "text": "📚 Research paper database initialized"
+        },
+        {
+          "type": "log",
+          "text": "📋 Citation manager initialized"
+        },
+        {
+          "type": "log",
+          "text": "🤝 Collaboration tools initialized"
+        },
+        {
+          "type": "log",
+          "text": "📊 Data visualization library initialized"
+        },
+        {
+          "type": "log",
+          "text": "🚦 API rate limiting initialized"
+        },
+        {
+          "type": "log",
+          "text": "🖨️ 3D printing models initialized"
+        },
+        {
+          "type": "log",
+          "text": "🔗 Webhook system initialized"
+        },
+        {
+          "type": "log",
+          "text": "PlanetDiscoveryRealTimeSync: disabled (no backend configured)"
+        },
+        {
+          "type": "log",
+          "text": "💾 Backup and restore system initialized"
+        },
+        {
+          "type": "log",
+          "text": "🤖 AI chat assistant initialized"
+        },
+        {
+          "type": "log",
+          "text": "📡 Fetching space news..."
+        },
+        {
+          "type": "log",
+          "text": "📰 News aggregator initialized"
+        },
+        {
+          "type": "log",
+          "text": "✅ Loaded 4 news articles"
+        },
+        {
+          "type": "log",
+          "text": "📅 Event calendar initialized"
+        },
+        {
+          "type": "log",
+          "text": "👤 User profiles initialized"
+        },
+        {
+          "type": "log",
+          "text": "💬 Direct messaging initialized"
+        },
+        {
+          "type": "log",
+          "text": "📱 Social feed initialized"
+        },
+        {
+          "type": "log",
+          "text": "🖼️ Image gallery initialized"
+        },
+        {
+          "type": "warning",
+          "text": "⚠️ Web3 wallet not detected (MetaMask, etc.)"
+        },
+        {
+          "type": "log",
+          "text": "DOMContentLoaded - setting up unblock"
+        },
+        {
+          "type": "log",
+          "text": "✅ Player HTML verified in DOM"
+        },
+        {
+          "type": "log",
+          "text": "✅ Loaded translations for en"
+        },
+        {
+          "type": "log",
+          "text": "[i18n DEBUG] Skipping applyTranslations in init() to prevent loops {}"
+        },
+        {
+          "type": "log",
+          "text": "🌍 Creating language switcher..."
+        },
+        {
+          "type": "log",
+          "text": "✅ Language switcher added to body"
+        },
+        {
+          "type": "log",
+          "text": "ℹ️ Dynamic content observer disabled for performance"
+        },
+        {
+          "type": "log",
+          "text": "📊 Track display updated: Track 1 of 19"
+        },
+        {
+          "type": "log",
+          "text": "✅ Loaded 19 tracks from audio manifest."
+        },
+        {
+          "type": "log",
+          "text": "📊 Track display updated: Track 1 of 19"
+        },
+        {
+          "type": "warning",
+          "text": "[GroupMarkerNotSet(crbug.com/242999)!:A840180004370000]Automatic fallback to software WebGL has been deprecated. Please use the --enable-unsafe-swiftshader (about:flags#enable-unsafe-swiftshader) flag to opt in to lower security guarantees for trusted content."
+        },
+        {
+          "type": "log",
+          "text": "✅ Service Worker registered"
+        },
+        {
+          "type": "log",
+          "text": "📱 Mobile notifications initialized"
+        },
+        {
+          "type": "log",
+          "text": "📡 Worker: Project SETI started."
+        },
+        {
+          "type": "log",
+          "text": "✅ Language toggle button is ready and clickable"
+        },
+        {
+          "type": "log",
+          "text": "🌍 Button styles: {display: flex, visibility: visible, opacity: 1, pointerEvents: auto, zIndex: auto}"
+        },
+        {
+          "type": "log",
+          "text": "✅ Track metadata loaded: {name: Track 1: Cosmic Journey, duration: 4:50, size: Buffered}"
+        },
+        {
+          "type": "log",
+          "text": "ℹ️ DEBUG loadedmetadata - No restoration (pendingState or duration not available): {hasPendingState: false, hasDuration: true, durationValid: true}"
+        },
+        {
+          "type": "log",
+          "text": "📊 Track display updated: Track 1 of 19"
+        },
+        {
+          "type": "log",
+          "text": "✅ Track ready to play: Track 1: Cosmic Journey (1/19)"
+        },
+        {
+          "type": "log",
+          "text": "✅ Track fully buffered and ready: Track 1: Cosmic Journey"
+        },
+        {
+          "type": "log",
+          "text": "🎵 DEBUG canplaythrough - Current audio state: {currentTime: 0, duration: 290.899604, pendingState: undefined, pendingStateRestored: false}"
+        },
+        {
+          "type": "log",
+          "text": "ℹ️ No pendingState to restore in canplaythrough"
+        },
+        {
+          "type": "log",
+          "text": "🎨 UI updated - Auth status: false (Supabase)"
+        },
+        {
+          "type": "log",
+          "text": "1 second timeout - forcing unblock"
+        },
+        {
+          "type": "log",
+          "text": "🛡️ FORCE UNBLOCK EXECUTING"
+        },
+        {
+          "type": "log",
+          "text": "✅ PAGE UNBLOCKED"
+        },
+        {
+          "type": "log",
+          "text": "📊 Buffered: 1.9%"
+        },
+        {
+          "type": "log",
+          "text": "🎨 UI updated - Auth status: false (Supabase)"
+        },
+        {
+          "type": "log",
+          "text": "🔐 Two-Factor Authentication initialized"
+        },
+        {
+          "type": "log",
+          "text": "⭐ Planet Wishlist System initialized"
+        },
+        {
+          "type": "log",
+          "text": "🔖 Planet Bookmark System initialized"
+        },
+        {
+          "type": "warning",
+          "text": "webgl backend was already registered. Reusing existing backend factory."
+        },
+        {
+          "type": "warning",
+          "text": "cpu backend was already registered. Reusing existing backend factory."
+        },
+        {
+          "type": "warning",
+          "text": "Platform browser has already been set. Overwriting the platform with browser."
+        },
+        {
+          "type": "log",
+          "text": "Window load - forcing unblock"
+        },
+        {
+          "type": "log",
+          "text": "🛡️ FORCE UNBLOCK EXECUTING"
+        },
+        {
+          "type": "log",
+          "text": "✅ PAGE UNBLOCKED"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Window loaded, checking player..."
+        },
+        {
+          "type": "log",
+          "text": "🎵 Window loaded, checking player..."
+        },
+        {
+          "type": "warning",
+          "text": "Web Vital Alert: {metric: TTI, value: 5917.5, status: needs-improvement, threshold: Object, timestamp: 1765799247858}"
+        },
+        {
+          "type": "log",
+          "text": "🔐 Auth state changed: INITIAL_SESSION"
+        },
+        {
+          "type": "log",
+          "text": "🎨 UI updated - Auth status: false (Supabase)"
+        },
+        {
+          "type": "log",
+          "text": "🔐 Auth state changed: INITIAL_SESSION"
+        },
+        {
+          "type": "log",
+          "text": "🎨 UI updated - Auth status: false (Supabase)"
+        },
+        {
+          "type": "log",
+          "text": "🛡️ FORCE UNBLOCK EXECUTING"
+        },
+        {
+          "type": "log",
+          "text": "✅ PAGE UNBLOCKED"
+        },
+        {
+          "type": "log",
+          "text": "✅ Ethers.js detected. Blockchain features ready."
+        },
+        {
+          "type": "log",
+          "text": "🧍 Adam is working."
+        },
+        {
+          "type": "log",
+          "text": "🧍 Eve is working."
+        },
+        {
+          "type": "log",
+          "text": "✅ Music player element found and made visible"
+        },
+        {
+          "type": "log",
+          "text": "✅ Safe Loader: Page visibility ensured"
+        },
+        {
+          "type": "log",
+          "text": "📡 SETI: Correlation detected in Sector 7G. (+44 Science)"
+        },
+        {
+          "type": "warning",
+          "text": "Initialization of backend webgl failed"
+        },
+        {
+          "type": "warning",
+          "text": "Error: WebGL is not supported on this device\n    at new s (https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest:17:1193517)\n    at Object.factory (https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest:17:1214321)\n    at e.value (https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest:17:217748)\n    at e.value (https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest:17:219209)\n    at e.get (https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest:17:215523)\n    at e.value (https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest:17:224142)\n    at $9 (https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest:17:320463)\n    at n.value (https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest:17:520505)\n    at n.value (https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest:17:541554)\n    at n.value (https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest:17:660798)"
+        },
+        {
+          "type": "warning",
+          "text": "Web Vital Alert: {metric: TBT, value: 356, status: needs-improvement, threshold: Object, timestamp: 1765799250737}"
+        },
+        {
+          "type": "log",
+          "text": "📜 HISTORY RECORDED: [8884] First Contact Confirmed"
+        },
+        {
+          "type": "warning",
+          "text": "The resource http://localhost:8000/loader.js was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+        },
+        {
+          "type": "warning",
+          "text": "The resource http://localhost:8000/database-optimized.js was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+        },
+        {
+          "type": "warning",
+          "text": "The resource http://localhost:8000/navigation.js was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+        }
+      ],
+      "pageErrors": [],
+      "requestFailures": [],
+      "badResponses": [],
+      "allBadResponses": [],
+      "undefinedDiagnostics": {
+        "resources": [],
+        "elements": [],
+        "styleAttributes": [],
+        "computedStyles": [],
+        "cssRules": []
+      }
+    },
+    "pwa": {
+      "supported": true,
+      "hasRegistration": true,
+      "scope": "http://localhost:8000/",
+      "scriptUrl": "http://localhost:8000/sw.js"
+    }
+  },
+  {
+    "page": "stellar-ai",
+    "url": "http://localhost:8000/stellar-ai.html",
+    "logs": {
+      "console": [
+        {
+          "type": "log",
+          "text": "🚀 Safe Loader: Initializing..."
+        },
+        {
+          "type": "log",
+          "text": "✅ Safe Loader: Page visibility ensured"
+        },
+        {
+          "type": "log",
+          "text": "🔗 Navigation menu initialized!"
+        },
+        {
+          "type": "log",
+          "text": "🖼️ Lazy loading initialized for 0 images"
+        },
+        {
+          "type": "log",
+          "text": "⌨️ Keyboard Shortcuts initialized"
+        },
+        {
+          "type": "log",
+          "text": "♿ Accessibility enhancements initialized"
+        },
+        {
+          "type": "log",
+          "text": "🔒 CSRF Protection initialized"
+        },
+        {
+          "type": "log",
+          "text": "🛡️ Enhanced XSS Protection initialized"
+        },
+        {
+          "type": "log",
+          "text": "🎨 Enhanced Theme Toggle initialized"
+        },
+        {
+          "type": "log",
+          "text": "📎 Enhanced File Attachment Support initialized"
+        },
+        {
+          "type": "log",
+          "text": "🌍 i18n Support initialized"
+        },
+        {
+          "type": "log",
+          "text": "ℹ️  Puter SDK not available - using backend WebSocket for live models"
+        },
+        {
+          "type": "log",
+          "text": "✅ Stellar AI initialized"
+        },
+        {
+          "type": "warning",
+          "text": "⚠️ Potential XSS: Event handler detected onclick"
+        },
+        {
+          "type": "warning",
+          "text": "⚠️ Potential XSS: Event handler detected onclick"
+        },
+        {
+          "type": "warning",
+          "text": "⚠️ Potential XSS: Event handler detected onclick"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Cosmic Music Player Script Loaded"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Document ready, initializing immediately"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Cosmic Music Player: Initializing (attempt 1)..."
+        },
+        {
+          "type": "log",
+          "text": "🎵 Document ready state: interactive"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Body exists: true"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Player exists: false"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Total tracks: 19"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Track URLs: [Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object]"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Loading saved state..."
+        },
+        {
+          "type": "log",
+          "text": "🔄 DEBUG loadPlayerState called"
+        },
+        {
+          "type": "log",
+          "text": "🔍 DEBUG loadPlayerState - Retrieved from sessionStorage: {savedState: null, savedStateLength: 0, savedStateType: object, allKeys: Array(0)}"
+        },
+        {
+          "type": "warning",
+          "text": "⚠️ WARNING: No saved state found in sessionStorage! {sessionStorageKeys: Array(1), hasCosmicPlayerState: false}"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Injecting player HTML..."
+        },
+        {
+          "type": "log",
+          "text": "🎵 Injecting player HTML into body..."
+        },
+        {
+          "type": "log",
+          "text": "✅ Player HTML injected successfully!"
+        },
+        {
+          "type": "log",
+          "text": "✅ Player element exists: true"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Initializing player for: Track 1: Cosmic Journey"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Base URL: http://localhost:8000"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Full URL: http://localhost:8000/audio/cosmic-journey.mp3"
+        },
+        {
+          "type": "log",
+          "text": "🎵 DEBUG initPlayer - pendingState: undefined"
+        },
+        {
+          "type": "log",
+          "text": "🎵 DEBUG initPlayer - Saved pendingState for restoration: null"
+        },
+        {
+          "type": "log",
+          "text": "📊 Track display updated: Track 1 of 19"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Setting up event listeners..."
+        },
+        {
+          "type": "log",
+          "text": "✅ Navigation persistence enabled"
+        },
+        {
+          "type": "log",
+          "text": "🎵 CosmicMusicPlayer: Constructor complete!"
+        },
+        {
+          "type": "log",
+          "text": "✅ Cosmic Music Player initialized successfully!"
+        },
+        {
+          "type": "log",
+          "text": "ℹ️  Puter SDK not available - using backend WebSocket for live models"
+        },
+        {
+          "type": "log",
+          "text": "✅ Stellar AI initialized"
+        },
+        {
+          "type": "warning",
+          "text": "⚠️ Potential XSS: Event handler detected onclick"
+        },
+        {
+          "type": "warning",
+          "text": "⚠️ Potential XSS: Event handler detected onclick"
+        },
+        {
+          "type": "warning",
+          "text": "⚠️ Potential XSS: Event handler detected onclick"
+        },
+        {
+          "type": "log",
+          "text": "🔗 Navigation menu already initialized"
+        },
+        {
+          "type": "log",
+          "text": "✅ Loaded translations for en"
+        },
+        {
+          "type": "log",
+          "text": "[i18n DEBUG] Skipping applyTranslations in init() to prevent loops {}"
+        },
+        {
+          "type": "log",
+          "text": "🌍 Creating language switcher..."
+        },
+        {
+          "type": "log",
+          "text": "✅ Language switcher added to body"
+        },
+        {
+          "type": "log",
+          "text": "ℹ️ Dynamic content observer disabled for performance"
+        },
+        {
+          "type": "log",
+          "text": "🔄 Load start: Track 1: Cosmic Journey"
+        },
+        {
+          "type": "log",
+          "text": "📊 Track display updated: Track 1 of 19"
+        },
+        {
+          "type": "log",
+          "text": "✅ Loaded 19 tracks from audio manifest."
+        },
+        {
+          "type": "log",
+          "text": "✅ Track metadata loaded: {name: Track 1: Cosmic Journey, duration: 4:50, size: Not buffered}"
+        },
+        {
+          "type": "log",
+          "text": "ℹ️ DEBUG loadedmetadata - No restoration (pendingState or duration not available): {hasPendingState: false, hasDuration: true, durationValid: true}"
+        },
+        {
+          "type": "log",
+          "text": "🎙️ Initializing LiveKit Chat..."
+        },
+        {
+          "type": "log",
+          "text": "DOM ready state: interactive"
+        },
+        {
+          "type": "log",
+          "text": "✅ LiveKit Integration section found"
+        },
+        {
+          "type": "log",
+          "text": "✅ LiveKit chat container found"
+        },
+        {
+          "type": "log",
+          "text": "✅ Language toggle button is ready and clickable"
+        },
+        {
+          "type": "log",
+          "text": "🌍 Button styles: {display: flex, visibility: visible, opacity: 1, pointerEvents: auto, zIndex: auto}"
+        },
+        {
+          "type": "log",
+          "text": "📊 Track display updated: Track 1 of 19"
+        },
+        {
+          "type": "log",
+          "text": "✅ Track ready to play: Track 1: Cosmic Journey (1/19)"
+        },
+        {
+          "type": "log",
+          "text": "✅ Track fully buffered and ready: Track 1: Cosmic Journey"
+        },
+        {
+          "type": "log",
+          "text": "🎵 DEBUG canplaythrough - Current audio state: {currentTime: 0, duration: 290.899604, pendingState: undefined, pendingStateRestored: false}"
+        },
+        {
+          "type": "log",
+          "text": "ℹ️ No pendingState to restore in canplaythrough"
+        },
+        {
+          "type": "log",
+          "text": "📊 Buffered: 1.9%"
+        },
+        {
+          "type": "log",
+          "text": "✅ Player HTML verified in DOM"
+        },
+        {
+          "type": "log",
+          "text": "📊 Track display updated: Track 1 of 19"
+        },
+        {
+          "type": "log",
+          "text": "📦 LiveKit SDK script loaded"
+        },
+        {
+          "type": "warning",
+          "text": "Web Vital Alert: {metric: TTI, value: 5169, status: needs-improvement, threshold: Object, timestamp: 1765799256384}"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Window loaded, checking player..."
+        },
+        {
+          "type": "log",
+          "text": "✅ Service Worker registered: http://localhost:8000/"
+        },
+        {
+          "type": "log",
+          "text": "✅ ServiceWorker registration successful with scope:  http://localhost:8000/"
+        },
+        {
+          "type": "log",
+          "text": "✅ LiveKit SDK detected via polling"
+        },
+        {
+          "type": "log",
+          "text": "✅ LiveKit SDK available: true"
+        },
+        {
+          "type": "log",
+          "text": "  SDK type: Object"
+        },
+        {
+          "type": "log",
+          "text": "✅ LiveKit SDK detected via polling"
+        },
+        {
+          "type": "log",
+          "text": "✅ LiveKit SDK available: true"
+        },
+        {
+          "type": "log",
+          "text": "  SDK type: Object"
+        },
+        {
+          "type": "log",
+          "text": "Checking for LiveKit SDK..."
+        },
+        {
+          "type": "log",
+          "text": "  typeof LiveKit: undefined"
+        },
+        {
+          "type": "log",
+          "text": "  typeof LiveKitVoiceIntegration: function"
+        },
+        {
+          "type": "log",
+          "text": "  window.LIVEKIT_SDK_LOADED: undefined"
+        },
+        {
+          "type": "log",
+          "text": "  window.LIVEKIT_SDK_READY: undefined"
+        },
+        {
+          "type": "log",
+          "text": "✅ LiveKit Chat initialized successfully"
+        },
+        {
+          "type": "log",
+          "text": "✅ LiveKit SDK global available"
+        },
+        {
+          "type": "log",
+          "text": "  Detection method: LivekitClient property"
+        },
+        {
+          "type": "log",
+          "text": "  typeof LiveKit: undefined"
+        },
+        {
+          "type": "log",
+          "text": "  typeof window.LiveKit: undefined"
+        },
+        {
+          "type": "log",
+          "text": "  typeof LivekitClient: object"
+        },
+        {
+          "type": "log",
+          "text": "  typeof window.LivekitClient: object"
+        },
+        {
+          "type": "log",
+          "text": "  \"LivekitClient\" in window: true"
+        },
+        {
+          "type": "log",
+          "text": "  window.LivekitClient: true"
+        },
+        {
+          "type": "log",
+          "text": "  window.livekit: false"
+        },
+        {
+          "type": "log",
+          "text": "📢 LiveKit SDK ready event received"
+        },
+        {
+          "type": "log",
+          "text": "⚠️ LiveKit Chat already initialized"
+        },
+        {
+          "type": "log",
+          "text": "[Attempt 1/100] LiveKit: true, Integration: true"
+        },
+        {
+          "type": "log",
+          "text": "  hasSDKReadyFlag: true (window.LIVEKIT_SDK_READY: true , type: boolean )"
+        },
+        {
+          "type": "log",
+          "text": "  hasLivekitClientProp: true (\"LivekitClient\" in window)"
+        },
+        {
+          "type": "log",
+          "text": "  livekitClientValue: {LogLevel: Object, LoggerNames: Object, ConnectionErrorReason: Object, DataStreamErrorReason: Object, MediaDeviceFailure: Object} (type: object )"
+        },
+        {
+          "type": "log",
+          "text": "  hasLivekitClient: true"
+        },
+        {
+          "type": "log",
+          "text": "  hasLivekitClientRoom: class nd extends Ki.EventEmitter{get hasE2EESetup(){return void 0!==this.e2eeManager}constructor(t){var n,i,o,r;if(super(),n=this,this.state=e.ConnectionState.Disconnected,this.activeSpeakers=[],this.isE2EEEnabled=!1,this.audioEnabled=!0,this.isVideoPlaybackBlocked=!1,this.log=Di,this.bufferedEvents=[],this.isResuming=!1,this.rpcHandlers=new Map,this.connect=(t,n,i)=>Fi(this,void 0,void 0,(function*(){var s;if(!rr())throw mr()?Error(\"WebRTC isn't detected, have you called registerGlobals?\"):Error(\"LiveKit doesn't seem to be supported on this browser. Try to update your browser and make sure no browser extensions are disabling webRTC.\");const o=yield this.disconnectLock.lock();if(this.state===e.ConnectionState.Connected)return this.log.info(\"already connected to room \".concat(this.name),this.logContext),o(),Promise.resolve();if(this.connectFuture)return o(),this.connectFuture.promise;this.setAndEmitConnectionState(e.ConnectionState.Connecting),(null===(s=this.regionUrlProvider)||void 0===s?void 0:s.getServerUrl().toString())!==Jr(t)&&(this.regionUrl=void 0,this.regionUrlProvider=void 0),gr(new URL(t))&&(void 0===this.regionUrlProvider?this.regionUrlProvider=new Za(t,n):this.regionUrlProvider.updateToken(n),this.regionUrlProvider.fetchRegionSettings().then((e=>{var t;null===(t=this.regionUrlProvider)||void 0===t||t.setServerReportedRegions(e)})).catch((e=>{this.log.warn(\"could not fetch region settings\",Object.assign(Object.assign({},this.logContext),{error:e}))})));const r=(s,a,c)=>Fi(this,void 0,void 0,(function*(){var d,l;this.abortController&&this.abortController.abort();const u=new AbortController;this.abortController=u,null==o||o();try{if(yield ua.getInstance().getBackOffPromise(t),u.signal.aborted)throw ho.cancelled(\"Connection attempt aborted\");yield this.attemptConnection(null!=c?c:t,n,i,u),this.abortController=void 0,s()}catch(n){if(this.regionUrlProvider&&n instanceof ho&&n.reason!==e.ConnectionErrorReason.Cancelled&&n.reason!==e.ConnectionErrorReason.NotAllowed){let i=null;try{this.log.debug(\"Fetching next region\"),i=yield this.regionUrlProvider.getNextBestRegionUrl(null===(d=this.abortController)||void 0===d?void 0:d.signal)}catch(t){if(t instanceof ho&&(401===t.status||t.reason===e.ConnectionErrorReason.Cancelled))return this.handleDisconnect(this.options.stopLocalTrackOnUnpublish),void a(t)}[e.ConnectionErrorReason.InternalError,e.ConnectionErrorReason.ServerUnreachable,e.ConnectionErrorReason.Timeout].includes(n.reason)&&(this.log.debug(\"Adding failed connection attempt to back off\"),ua.getInstance().addFailedConnectionAttempt(t)),i&&!(null===(l=this.abortController)||void 0===l?void 0:l.signal.aborted)?(this.log.info(\"Initial connection failed with ConnectionError: \".concat(n.message,\". Retrying with another region: \").concat(i),this.logContext),this.recreateEngine(),yield r(s,a,i)):(this.handleDisconnect(this.options.stopLocalTrackOnUnpublish,Nr(n)),a(n))}else{let e=nt.UNKNOWN_REASON;n instanceof ho&&(e=Nr(n)),this.handleDisconnect(this.options.stopLocalTrackOnUnpublish,e),a(n)}}})),a=this.regionUrl;return this.regionUrl=void 0,this.connectFuture=new Dr(((e,t)=>{r(e,t,a)}),(()=>{this.clearConnectionFutures()})),this.connectFuture.promise})),this.connectSignal=(e,t,n,i,s,o)=>Fi(this,void 0,void 0,(function*(){var r,a,c;const d=yield n.join(e,t,{autoSubscribe:i.autoSubscribe,adaptiveStream:\"object\"==typeof s.adaptiveStream||s.adaptiveStream,maxRetries:i.maxRetries,e2eeEnabled:!!this.e2eeManager,websocketTimeout:i.websocketTimeout,singlePeerConnection:s.singlePeerConnection},o.signal);let l=d.serverInfo;if(l||(l={version:d.serverVersion,region:d.serverRegion}),this.serverInfo=l,this.log.debug(\"connected to Livekit Server \".concat(Object.entries(l).map((e=>{let[t,n]=e;return\"\".concat(t,\": \").concat(n)})).join(\", \")),{room:null===(r=d.room)||void 0===r?void 0:r.name,roomSid:null===(a=d.room)||void 0===a?void 0:a.sid,identity:null===(c=d.participant)||void 0===c?void 0:c.identity}),!l.version)throw new go(\"unknown server version\");return\"0.15.1\"===l.version&&this.options.dynacast&&(this.log.debug(\"disabling dynacast due to server version\",this.logContext),s.dynacast=!1),d})),this.applyJoinResponse=e=>{const t=e.participant;if(this.localParticipant.sid=t.sid,this.localParticipant.identity=t.identity,this.localParticipant.setEnabledPublishCodecs(e.enabledPublishCodecs),this.e2eeManager)try{this.e2eeManager.setSifTrailer(e.sifTrailer)}catch(e){this.log.error(e instanceof Error?e.message:\"Could not set SifTrailer\",Object.assign(Object.assign({},this.logContext),{error:e}))}this.handleParticipantUpdates([t,...e.otherParticipants]),e.room&&this.handleRoomUpdate(e.room)},this.attemptConnection=(t,n,i,s)=>Fi(this,void 0,void 0,(function*(){var o,r;this.state===e.ConnectionState.Reconnecting||this.isResuming||(null===(o=this.engine)||void 0===o?void 0:o.pendingReconnect)?(this.log.info(\"Reconnection attempt replaced by new connection attempt\",this.logContext),this.recreateEngine()):this.maybeCreateEngine(),(null===(r=this.regionUrlProvider)||void 0===r?void 0:r.isCloud())&&this.engine.setRegionUrlProvider(this.regionUrlProvider),this.acquireAudioContext(),this.connOptions=Object.assign(Object.assign({},Qa),i),this.connOptions.rtcConfig&&(this.engine.rtcConfig=this.connOptions.rtcConfig),this.connOptions.peerConnectionTimeout&&(this.engine.peerConnectionTimeout=this.connOptions.peerConnectionTimeout);try{const i=yield this.connectSignal(t,n,this.engine,this.connOptions,this.options,s);this.applyJoinResponse(i),this.setupLocalParticipantEvents(),this.emit(e.RoomEvent.SignalConnected)}catch(e){yield this.engine.close(),this.recreateEngine();const t=s.signal.aborted?ho.cancelled(\"Signal connection aborted\"):ho.serverUnreachable(\"could not establish signal connection\");throw e instanceof Error&&(t.message=\"\".concat(t.message,\": \").concat(e.message)),e instanceof ho&&(t.reason=e.reason,t.status=e.status),this.log.debug(\"error trying to establish signal connection\",Object.assign(Object.assign({},this.logContext),{error:e})),t}if(s.signal.aborted)throw yield this.engine.close(),this.recreateEngine(),ho.cancelled(\"Connection attempt aborted\");try{yield this.engine.waitForPCInitialConnection(this.connOptions.peerConnectionTimeout,s)}catch(e){throw yield this.engine.close(),this.recreateEngine(),e}pr()&&this.options.disconnectOnPageLeave&&(window.addEventListener(\"pagehide\",this.onPageLeave),window.addEventListener(\"beforeunload\",this.onPageLeave)),pr()&&window.addEventListener(\"freeze\",this.onPageLeave),this.setAndEmitConnectionState(e.ConnectionState.Connected),this.emit(e.RoomEvent.Connected),ua.getInstance().resetFailedConnectionAttempts(t),this.registerConnectionReconcile(),this.regionUrlProvider&&this.regionUrlProvider.notifyConnected()})),this.disconnect=function(){for(var t=arguments.length,i=new Array(t),s=0;s<t;s++)i[s]=arguments[s];return Fi(n,[...i],void 0,(function(){var t=this;let n=!(arguments.length>0&&void 0!==arguments[0])||arguments[0];return function*(){var i,s,o;const r=yield t.disconnectLock.lock();try{if(t.state===e.ConnectionState.Disconnected)return void t.log.debug(\"already disconnected\",t.logContext);if(t.log.info(\"disconnect from room\",Object.assign({},t.logContext)),t.state===e.ConnectionState.Connecting||t.state===e.ConnectionState.Reconnecting||t.isResuming){const e=\"Abort connection attempt due to user initiated disconnect\";t.log.warn(e,t.logContext),null===(i=t.abortController)||void 0===i||i.abort(e),null===(o=null===(s=t.connectFuture)||void 0===s?void 0:s.reject)||void 0===o||o.call(s,ho.cancelled(\"Client initiated disconnect\")),t.connectFuture=void 0}t.engine&&(t.engine.client.isDisconnected||(yield t.engine.client.sendLeave()),yield t.engine.close()),t.handleDisconnect(n,nt.CLIENT_INITIATED),t.engine=void 0}finally{r()}}()}))},this.onPageLeave=()=>Fi(this,void 0,void 0,(function*(){this.log.info(\"Page leave detected, disconnecting\",this.logContext),yield this.disconnect()})),this.startAudio=()=>Fi(this,void 0,void 0,(function*(){const t=[],n=Zs();if(n&&\"iOS\"===n.os){const n=\"livekit-dummy-audio-el\";let i=document.getElementById(n);if(!i){i=document.createElement(\"audio\"),i.id=n,i.autoplay=!0,i.hidden=!0;const t=_r();t.enabled=!0;const s=new MediaStream([t]);i.srcObject=s,document.addEventListener(\"visibilitychange\",(()=>{i&&(i.srcObject=document.hidden?null:s,document.hidden||(this.log.debug(\"page visible again, triggering startAudio to resume playback and update playback status\",this.logContext),this.startAudio()))})),document.body.append(i),this.once(e.RoomEvent.Disconnected,(()=>{null==i||i.remove(),i=null}))}t.push(i)}this.remoteParticipants.forEach((e=>{e.audioTrackPublications.forEach((e=>{e.track&&e.track.attachedElements.forEach((e=>{t.push(e)}))}))}));try{yield Promise.all([this.acquireAudioContext(),...t.map((e=>(e.muted=!1,e.play())))]),this.handleAudioPlaybackStarted()}catch(e){throw this.handleAudioPlaybackFailed(e),e}})),this.startVideo=()=>Fi(this,void 0,void 0,(function*(){const e=[];for(const t of this.remoteParticipants.values())t.videoTrackPublications.forEach((t=>{var n;null===(n=t.track)||void 0===n||n.attachedElements.forEach((t=>{e.includes(t)||e.push(t)}))}));yield Promise.all(e.map((e=>e.play()))).then((()=>{this.handleVideoPlaybackStarted()})).catch((e=>{\"NotAllowedError\"===e.name?this.handleVideoPlaybackFailed():this.log.warn(\"Resuming video playback failed, make sure you call `startVideo` directly in a user gesture handler\",this.logContext)}))})),this.handleRestarting=()=>{this.clearConnectionReconcile(),this.isResuming=!1;for(const e of this.remoteParticipants.values())this.handleParticipantDisconnected(e.identity,e);this.setAndEmitConnectionState(e.ConnectionState.Reconnecting)&&this.emit(e.RoomEvent.Reconnecting)},this.handleSignalRestarted=t=>Fi(this,void 0,void 0,(function*(){this.log.debug(\"signal reconnected to server, region \".concat(t.serverRegion),Object.assign(Object.assign({},this.logContext),{region:t.serverRegion})),this.bufferedEvents=[],this.applyJoinResponse(t);try{yield this.localParticipant.republishAllTracks(void 0,!0)}catch(e){this.log.error(\"error trying to re-publish tracks after reconnection\",Object.assign(Object.assign({},this.logContext),{error:e}))}try{yield this.engine.waitForRestarted(),this.log.debug(\"fully reconnected to server\",Object.assign(Object.assign({},this.logContext),{region:t.serverRegion}))}catch(e){return}this.setAndEmitConnectionState(e.ConnectionState.Connected),this.emit(e.RoomEvent.Reconnected),this.registerConnectionReconcile(),this.emitBufferedEvents()})),this.handleParticipantUpdates=e=>{e.forEach((e=>{var t;if(e.identity===this.localParticipant.identity)return void this.localParticipant.updateInfo(e);\"\"===e.identity&&(e.identity=null!==(t=this.sidToIdentity.get(e.sid))&&void 0!==t?t:\"\");let n=this.remoteParticipants.get(e.identity);e.state===lt.DISCONNECTED?this.handleParticipantDisconnected(e.identity,n):n=this.getOrCreateParticipant(e.identity,e)}))},this.handleActiveSpeakersUpdate=t=>{const n=[],i={};t.forEach((e=>{if(i[e.sid]=!0,e.sid===this.localParticipant.sid)this.localParticipant.audioLevel=e.level,this.localParticipant.setIsSpeaking(!0),n.push(this.localParticipant);else{const t=this.getRemoteParticipantBySid(e.sid);t&&(t.audioLevel=e.level,t.setIsSpeaking(!0),n.push(t))}})),i[this.localParticipant.sid]||(this.localParticipant.audioLevel=0,this.localParticipant.setIsSpeaking(!1)),this.remoteParticipants.forEach((e=>{i[e.sid]||(e.audioLevel=0,e.setIsSpeaking(!1))})),this.activeSpeakers=n,this.emitWhenConnected(e.RoomEvent.ActiveSpeakersChanged,n)},this.handleSpeakersChanged=t=>{const n=new Map;this.activeSpeakers.forEach((e=>{const t=this.remoteParticipants.get(e.identity);t&&t.sid!==e.sid||n.set(e.sid,e)})),t.forEach((e=>{let t=this.getRemoteParticipantBySid(e.sid);e.sid===this.localParticipant.sid&&(t=this.localParticipant),t&&(t.audioLevel=e.level,t.setIsSpeaking(e.active),e.active?n.set(e.sid,t):n.delete(e.sid))}));const i=Array.from(n.values());i.sort(((e,t)=>t.audioLevel-e.audioLevel)),this.activeSpeakers=i,this.emitWhenConnected(e.RoomEvent.ActiveSpeakersChanged,i)},this.handleStreamStateUpdate=t=>{t.streamStates.forEach((t=>{const n=this.getRemoteParticipantBySid(t.participantSid);if(!n)return;const i=n.getTrackPublicationBySid(t.trackSid);if(!i||!i.track)return;const s=Qo.streamStateFromProto(t.state);i.track.setStreamState(s),s!==i.track.streamState&&(n.emit(e.ParticipantEvent.TrackStreamStateChanged,i,i.track.streamState),this.emitWhenConnected(e.RoomEvent.TrackStreamStateChanged,i,i.track.streamState,n))}))},this.handleSubscriptionPermissionUpdate=e=>{const t=this.getRemoteParticipantBySid(e.participantSid);if(!t)return;const n=t.getTrackPublicationBySid(e.trackSid);n&&n.setAllowed(e.allowed)},this.handleSubscriptionError=e=>{const t=Array.from(this.remoteParticipants.values()).find((t=>t.trackPublications.has(e.trackSid)));if(!t)return;const n=t.getTrackPublicationBySid(e.trackSid);n&&n.setSubscriptionError(e.err)},this.handleDataPacket=(e,t)=>{const n=this.remoteParticipants.get(e.participantIdentity);if(\"user\"===e.value.case)this.handleUserPacket(n,e.value.value,e.kind,t);else if(\"transcription\"===e.value.case)this.handleTranscription(n,e.value.value);else if(\"sipDtmf\"===e.value.case)this.handleSipDtmf(n,e.value.value);else if(\"chatMessage\"===e.value.case)this.handleChatMessage(n,e.value.value);else if(\"metrics\"===e.value.case)this.handleMetrics(e.value.value,n);else if(\"streamHeader\"===e.value.case||\"streamChunk\"===e.value.case||\"streamTrailer\"===e.value.case)this.handleDataStream(e,t);else if(\"rpcRequest\"===e.value.case){const t=e.value.value;this.handleIncomingRpcRequest(e.participantIdentity,t.id,t.method,t.payload,t.responseTimeoutMs,t.version)}},this.handleUserPacket=(t,n,i,s)=>{this.emit(e.RoomEvent.DataReceived,n.payload,t,i,n.topic,s),null==t||t.emit(e.ParticipantEvent.DataReceived,n.payload,i,s)},this.handleSipDtmf=(t,n)=>{this.emit(e.RoomEvent.SipDTMFReceived,n,t),null==t||t.emit(e.ParticipantEvent.SipDTMFReceived,n)},this.handleTranscription=(t,n)=>{const i=n.transcribedParticipantIdentity===this.localParticipant.identity?this.localParticipant:this.getParticipantByIdentity(n.transcribedParticipantIdentity),s=null==i?void 0:i.trackPublications.get(n.trackId),o=function(e,t){return e.segments.map((e=>{let{id:n,text:i,language:s,startTime:o,endTime:r,final:a}=e;var c;const d=null!==(c=t.get(n))&&void 0!==c?c:Date.now(),l=Date.now();return a?t.delete(n):t.set(n,d),{id:n,text:i,startTime:Number.parseInt(o.toString()),endTime:Number.parseInt(r.toString()),final:a,language:s,firstReceivedTime:d,lastReceivedTime:l}}))}(n,this.transcriptionReceivedTimes);null==s||s.emit(e.TrackEvent.TranscriptionReceived,o),null==i||i.emit(e.ParticipantEvent.TranscriptionReceived,o,s),this.emit(e.RoomEvent.TranscriptionReceived,o,i,s)},this.handleChatMessage=(t,n)=>{const i=function(e){const{id:t,timestamp:n,message:i,editTimestamp:s}=e;return{id:t,timestamp:Number.parseInt(n.toString()),editTimestamp:s?Number.parseInt(s.toString()):void 0,message:i}}(n);this.emit(e.RoomEvent.ChatMessage,i,t)},this.handleMetrics=(t,n)=>{this.emit(e.RoomEvent.MetricsReceived,t,n)},this.handleDataStream=(e,t)=>{this.incomingDataStreamManager.handleDataStreamPacket(e,t)},this.bufferedSegments=new Map,this.handleAudioPlaybackStarted=()=>{this.canPlaybackAudio||(this.audioEnabled=!0,this.emit(e.RoomEvent.AudioPlaybackStatusChanged,!0))},this.handleAudioPlaybackFailed=t=>{this.log.warn(\"could not playback audio\",Object.assign(Object.assign({},this.logContext),{error:t})),this.canPlaybackAudio&&(this.audioEnabled=!1,this.emit(e.RoomEvent.AudioPlaybackStatusChanged,!1))},this.handleVideoPlaybackStarted=()=>{this.isVideoPlaybackBlocked&&(this.isVideoPlaybackBlocked=!1,this.emit(e.RoomEvent.VideoPlaybackStatusChanged,!0))},this.handleVideoPlaybackFailed=()=>{this.isVideoPlaybackBlocked||(this.isVideoPlaybackBlocked=!0,this.emit(e.RoomEvent.VideoPlaybackStatusChanged,!1))},this.handleDeviceChange=()=>Fi(this,void 0,void 0,(function*(){var t;\"iOS\"!==(null===(t=Zs())||void 0===t?void 0:t.os)&&(yield this.selectDefaultDevices()),this.emit(e.RoomEvent.MediaDevicesChanged)})),this.handleRoomUpdate=t=>{const n=this.roomInfo;this.roomInfo=t,n&&n.metadata!==t.metadata&&this.emitWhenConnected(e.RoomEvent.RoomMetadataChanged,t.metadata),(null==n?void 0:n.activeRecording)!==t.activeRecording&&this.emitWhenConnected(e.RoomEvent.RecordingStatusChanged,t.activeRecording)},this.handleConnectionQualityUpdate=e=>{e.updates.forEach((e=>{if(e.participantSid===this.localParticipant.sid)return void this.localParticipant.setConnectionQuality(e.quality);const t=this.getRemoteParticipantBySid(e.participantSid);t&&t.setConnectionQuality(e.quality)}))},this.onLocalParticipantMetadataChanged=t=>{this.emit(e.RoomEvent.ParticipantMetadataChanged,t,this.localParticipant)},this.onLocalParticipantNameChanged=t=>{this.emit(e.RoomEvent.ParticipantNameChanged,t,this.localParticipant)},this.onLocalAttributesChanged=t=>{this.emit(e.RoomEvent.ParticipantAttributesChanged,t,this.localParticipant)},this.onLocalTrackMuted=t=>{this.emit(e.RoomEvent.TrackMuted,t,this.localParticipant)},this.onLocalTrackUnmuted=t=>{this.emit(e.RoomEvent.TrackUnmuted,t,this.localParticipant)},this.onTrackProcessorUpdate=e=>{var t;null===(t=null==e?void 0:e.onPublish)||void 0===t||t.call(e,this)},this.onLocalTrackPublished=t=>Fi(this,void 0,void 0,(function*(){var n,i,s,o,r,a;if(null===(n=t.track)||void 0===n||n.on(e.TrackEvent.TrackProcessorUpdate,this.onTrackProcessorUpdate),null===(i=t.track)||void 0===i||i.on(e.TrackEvent.Restarted,this.onLocalTrackRestarted),null===(r=null===(o=null===(s=t.track)||void 0===s?void 0:s.getProcessor())||void 0===o?void 0:o.onPublish)||void 0===r||r.call(o,this),this.emit(e.RoomEvent.LocalTrackPublished,t,this.localParticipant),qr(t.track)){(yield t.track.checkForSilence())&&this.emit(e.RoomEvent.LocalAudioSilenceDetected,t)}const c=yield null===(a=t.track)||void 0===a?void 0:a.getDeviceId(!1),d=Bo(t.source);d&&c&&c!==this.localParticipant.activeDeviceMap.get(d)&&(this.localParticipant.activeDeviceMap.set(d,c),this.emit(e.RoomEvent.ActiveDeviceChanged,d,c))})),this.onLocalTrackUnpublished=t=>{var n,i;null===(n=t.track)||void 0===n||n.off(e.TrackEvent.TrackProcessorUpdate,this.onTrackProcessorUpdate),null===(i=t.track)||void 0===i||i.off(e.TrackEvent.Restarted,this.onLocalTrackRestarted),this.emit(e.RoomEvent.LocalTrackUnpublished,t,this.localParticipant)},this.onLocalTrackRestarted=t=>Fi(this,void 0,void 0,(function*(){const n=yield t.getDeviceId(!1),i=Bo(t.source);i&&n&&n!==this.localParticipant.activeDeviceMap.get(i)&&(this.log.debug(\"local track restarted, setting \".concat(i,\" \").concat(n,\" active\"),this.logContext),this.localParticipant.activeDeviceMap.set(i,n),this.emit(e.RoomEvent.ActiveDeviceChanged,i,n))})),this.onLocalConnectionQualityChanged=t=>{this.emit(e.RoomEvent.ConnectionQualityChanged,t,this.localParticipant)},this.onMediaDevicesError=(t,n)=>{this.emit(e.RoomEvent.MediaDevicesError,t,n)},this.onLocalParticipantPermissionsChanged=t=>{this.emit(e.RoomEvent.ParticipantPermissionsChanged,t,this.localParticipant)},this.onLocalChatMessageSent=t=>{this.emit(e.RoomEvent.ChatMessage,t,this.localParticipant)},this.setMaxListeners(100),this.remoteParticipants=new Map,this.sidToIdentity=new Map,this.options=Object.assign(Object.assign({},za),t),this.log=xi(null!==(i=this.options.loggerName)&&void 0!==i?i:e.LoggerNames.Room),this.transcriptionReceivedTimes=new Map,this.options.audioCaptureDefaults=Object.assign(Object.assign({},Ga),null==t?void 0:t.audioCaptureDefaults),this.options.videoCaptureDefaults=Object.assign(Object.assign({},Ja),null==t?void 0:t.videoCaptureDefaults),this.options.publishDefaults=Object.assign(Object.assign({},Ha),null==t?void 0:t.publishDefaults),this.maybeCreateEngine(),this.incomingDataStreamManager=new Ac,this.outgoingDataStreamManager=new jc(this.engine,this.log),this.disconnectLock=new s,this.localParticipant=new $c(\"\",\"\",this.engine,this.options,this.rpcHandlers,this.outgoingDataStreamManager),(this.options.e2ee||this.options.encryption)&&this.setupE2EE(),this.engine.e2eeManager=this.e2eeManager,this.options.videoCaptureDefaults.deviceId&&this.localParticipant.activeDeviceMap.set(\"videoinput\",xr(this.options.videoCaptureDefaults.deviceId)),this.options.audioCaptureDefaults.deviceId&&this.localParticipant.activeDeviceMap.set(\"audioinput\",xr(this.options.audioCaptureDefaults.deviceId)),(null===(o=this.options.audioOutput)||void 0===o?void 0:o.deviceId)&&this.switchActiveDevice(\"audiooutput\",xr(this.options.audioOutput.deviceId)).catch((e=>this.log.warn(\"Could not set audio output: \".concat(e.message),this.logContext))),pr()){const e=new AbortController;null===(r=navigator.mediaDevices)||void 0===r||r.addEventListener(\"devicechange\",this.handleDeviceChange,{signal:e.signal}),nd.cleanupRegistry&&nd.cleanupRegistry.register(this,(()=>{e.abort()}))}}registerTextStreamHandler(e,t){return this.incomingDataStreamManager.registerTextStreamHandler(e,t)}unregisterTextStreamHandler(e){return this.incomingDataStreamManager.unregisterTextStreamHandler(e)}registerByteStreamHandler(e,t){return this.incomingDataStreamManager.registerByteStreamHandler(e,t)}unregisterByteStreamHandler(e){return this.incomingDataStreamManager.unregisterByteStreamHandler(e)}registerRpcMethod(e,t){if(this.rpcHandlers.has(e))throw Error(\"RPC handler already registered for method \".concat(e,\", unregisterRpcMethod before trying to register again\"));this.rpcHandlers.set(e,t)}unregisterRpcMethod(e){this.rpcHandlers.delete(e)}setE2EEEnabled(e){return Fi(this,void 0,void 0,(function*(){if(!this.e2eeManager)throw Error(\"e2ee not configured, please set e2ee settings within the room options\");yield Promise.all([this.localParticipant.setE2EEEnabled(e)]),\"\"!==this.localParticipant.identity&&this.e2eeManager.setParticipantCryptorEnabled(e,this.localParticipant.identity)}))}setupE2EE(){var t;const n=!!this.options.encryption,i=this.options.encryption||this.options.e2ee;i&&(\"e2eeManager\"in i?(this.e2eeManager=i.e2eeManager,this.e2eeManager.isDataChannelEncryptionEnabled=n):this.e2eeManager=new la(i,n),this.e2eeManager.on(e.EncryptionEvent.ParticipantEncryptionStatusChanged,((t,n)=>{Gr(n)&&(this.isE2EEEnabled=t),this.emit(e.RoomEvent.ParticipantEncryptionStatusChanged,t,n)})),this.e2eeManager.on(e.EncryptionEvent.EncryptionError,((t,n)=>{const i=n?this.getParticipantByIdentity(n):void 0;this.emit(e.RoomEvent.EncryptionError,t,i)})),null===(t=this.e2eeManager)||void 0===t||t.setup(this))}get logContext(){var e;return{room:this.name,roomID:null===(e=this.roomInfo)||void 0===e?void 0:e.sid,participant:this.localParticipant.identity,pID:this.localParticipant.sid}}get isRecording(){var e,t;return null!==(t=null===(e=this.roomInfo)||void 0===e?void 0:e.activeRecording)&&void 0!==t&&t}getSid(){return Fi(this,void 0,void 0,(function*(){return this.state===e.ConnectionState.Disconnected?\"\":this.roomInfo&&\"\"!==this.roomInfo.sid?this.roomInfo.sid:new Promise(((t,n)=>{const i=n=>{\"\"!==n.sid&&(this.engine.off(e.EngineEvent.RoomUpdate,i),t(n.sid))};this.engine.on(e.EngineEvent.RoomUpdate,i),this.once(e.RoomEvent.Disconnected,(()=>{this.engine.off(e.EngineEvent.RoomUpdate,i),n(\"Room disconnected before room server id was available\")}))}))}))}get name(){var e,t;return null!==(t=null===(e=this.roomInfo)||void 0===e?void 0:e.name)&&void 0!==t?t:\"\"}get metadata(){var e;return null===(e=this.roomInfo)||void 0===e?void 0:e.metadata}get numParticipants(){var e,t;return null!==(t=null===(e=this.roomInfo)||void 0===e?void 0:e.numParticipants)&&void 0!==t?t:0}get numPublishers(){var e,t;return null!==(t=null===(e=this.roomInfo)||void 0===e?void 0:e.numPublishers)&&void 0!==t?t:0}maybeCreateEngine(){this.engine&&!this.engine.isClosed||(this.engine=new Oc(this.options),this.engine.e2eeManager=this.e2eeManager,this.engine.on(e.EngineEvent.ParticipantUpdate,this.handleParticipantUpdates).on(e.EngineEvent.RoomUpdate,this.handleRoomUpdate).on(e.EngineEvent.SpeakersChanged,this.handleSpeakersChanged).on(e.EngineEvent.StreamStateChanged,this.handleStreamStateUpdate).on(e.EngineEvent.ConnectionQualityUpdate,this.handleConnectionQualityUpdate).on(e.EngineEvent.SubscriptionError,this.handleSubscriptionError).on(e.EngineEvent.SubscriptionPermissionUpdate,this.handleSubscriptionPermissionUpdate).on(e.EngineEvent.MediaTrackAdded,((e,t,n)=>{this.onTrackAdded(e,t,n)})).on(e.EngineEvent.Disconnected,(e=>{this.handleDisconnect(this.options.stopLocalTrackOnUnpublish,e)})).on(e.EngineEvent.ActiveSpeakersUpdate,this.handleActiveSpeakersUpdate).on(e.EngineEvent.DataPacketReceived,this.handleDataPacket).on(e.EngineEvent.Resuming,(()=>{this.clearConnectionReconcile(),this.isResuming=!0,this.log.info(\"Resuming signal connection\",this.logContext),this.setAndEmitConnectionState(e.ConnectionState.SignalReconnecting)&&this.emit(e.RoomEvent.SignalReconnecting)})).on(e.EngineEvent.Resumed,(()=>{this.registerConnectionReconcile(),this.isResuming=!1,this.log.info(\"Resumed signal connection\",this.logContext),this.updateSubscriptions(),this.emitBufferedEvents(),this.setAndEmitConnectionState(e.ConnectionState.Connected)&&this.emit(e.RoomEvent.Reconnected)})).on(e.EngineEvent.SignalResumed,(()=>{this.bufferedEvents=[],(this.state===e.ConnectionState.Reconnecting||this.isResuming)&&this.sendSyncState()})).on(e.EngineEvent.Restarting,this.handleRestarting).on(e.EngineEvent.SignalRestarted,this.handleSignalRestarted).on(e.EngineEvent.Offline,(()=>{this.setAndEmitConnectionState(e.ConnectionState.Reconnecting)&&this.emit(e.RoomEvent.Reconnecting)})).on(e.EngineEvent.DCBufferStatusChanged,((t,n)=>{this.emit(e.RoomEvent.DCBufferStatusChanged,t,n)})).on(e.EngineEvent.LocalTrackSubscribed,(t=>{const n=this.localParticipant.getTrackPublications().find((e=>{let{trackSid:n}=e;return n===t}));n?(this.localParticipant.emit(e.ParticipantEvent.LocalTrackSubscribed,n),this.emitWhenConnected(e.RoomEvent.LocalTrackSubscribed,n,this.localParticipant)):this.log.warn(\"could not find local track subscription for subscribed event\",this.logContext)})).on(e.EngineEvent.RoomMoved,(t=>{this.log.debug(\"room moved\",t),t.room&&this.handleRoomUpdate(t.room),this.remoteParticipants.forEach(((e,t)=>{this.handleParticipantDisconnected(t,e)})),this.emit(e.RoomEvent.Moved,t.room.name),t.participant?this.handleParticipantUpdates([t.participant,...t.otherParticipants]):this.handleParticipantUpdates(t.otherParticipants)})),this.localParticipant&&this.localParticipant.setupEngine(this.engine),this.e2eeManager&&this.e2eeManager.setupEngine(this.engine),this.outgoingDataStreamManager&&this.outgoingDataStreamManager.setupEngine(this.engine))}static getLocalDevices(e){let t=!(arguments.length>1&&void 0!==arguments[1])||arguments[1];return pa.getInstance().getDevices(e,t)}prepareConnection(t,n){return Fi(this,void 0,void 0,(function*(){if(this.state===e.ConnectionState.Disconnected){this.log.debug(\"prepareConnection to \".concat(t),this.logContext);try{if(gr(new URL(t))&&n){this.regionUrlProvider=new Za(t,n);const i=yield this.regionUrlProvider.getNextBestRegionUrl();i&&this.state===e.ConnectionState.Disconnected&&(this.regionUrl=i,yield fetch(Ar(i),{method:\"HEAD\"}),this.log.debug(\"prepared connection to \".concat(i),this.logContext))}else yield fetch(Ar(t),{method:\"HEAD\"})}catch(e){this.log.warn(\"could not prepare connection\",Object.assign(Object.assign({},this.logContext),{error:e}))}}}))}getParticipantByIdentity(e){return this.localParticipant.identity===e?this.localParticipant:this.remoteParticipants.get(e)}clearConnectionFutures(){this.connectFuture=void 0}simulateScenario(e,t){return Fi(this,void 0,void 0,(function*(){let n,i=()=>Fi(this,void 0,void 0,(function*(){}));switch(e){case\"signal-reconnect\":yield this.engine.client.handleOnClose(\"simulate disconnect\");break;case\"speaker\":n=new ci({scenario:{case:\"speakerUpdate\",value:3}});break;case\"node-failure\":n=new ci({scenario:{case:\"nodeFailure\",value:!0}});break;case\"server-leave\":n=new ci({scenario:{case:\"serverLeave\",value:!0}});break;case\"migration\":n=new ci({scenario:{case:\"migration\",value:!0}});break;case\"resume-reconnect\":this.engine.failNext(),yield this.engine.client.handleOnClose(\"simulate resume-disconnect\");break;case\"disconnect-signal-on-resume\":i=()=>Fi(this,void 0,void 0,(function*(){yield this.engine.client.handleOnClose(\"simulate resume-disconnect\")})),n=new ci({scenario:{case:\"disconnectSignalOnResume\",value:!0}});break;case\"disconnect-signal-on-resume-no-messages\":i=()=>Fi(this,void 0,void 0,(function*(){yield this.engine.client.handleOnClose(\"simulate resume-disconnect\")})),n=new ci({scenario:{case:\"disconnectSignalOnResumeNoMessages\",value:!0}});break;case\"full-reconnect\":this.engine.fullReconnectOnNext=!0,yield this.engine.client.handleOnClose(\"simulate full-reconnect\");break;case\"force-tcp\":case\"force-tls\":n=new ci({scenario:{case:\"switchCandidateProtocol\",value:\"force-tls\"===e?2:1}}),i=()=>Fi(this,void 0,void 0,(function*(){const e=this.engine.client.onLeave;e&&e(new Bn({reason:nt.CLIENT_INITIATED,action:Vn.RECONNECT}))}));break;case\"subscriber-bandwidth\":if(void 0===t||\"number\"!=typeof t)throw new Error(\"subscriber-bandwidth requires a number as argument\");n=new ci({scenario:{case:\"subscriberBandwidth\",value:Ur(t)}});break;case\"leave-full-reconnect\":n=new ci({scenario:{case:\"leaveRequestFullReconnect\",value:!0}})}n&&(yield this.engine.client.sendSimulateScenario(n),yield i())}))}get canPlaybackAudio(){return this.audioEnabled}get canPlaybackVideo(){return!this.isVideoPlaybackBlocked}getActiveDevice(e){return this.localParticipant.activeDeviceMap.get(e)}switchActiveDevice(t,n){return Fi(this,arguments,void 0,(function(t,n){var i=this;let s=!(arguments.length>2&&void 0!==arguments[2])||arguments[2];return function*(){var o,r,a,c,d,l,u;let h=!0,p=!1;const m=s?{exact:n}:n;if(\"audioinput\"===t){p=0===i.localParticipant.audioTrackPublications.size;const e=null!==(o=i.getActiveDevice(t))&&void 0!==o?o:i.options.audioCaptureDefaults.deviceId;i.options.audioCaptureDefaults.deviceId=m;const n=Array.from(i.localParticipant.audioTrackPublications.values()).filter((e=>e.source===Qo.Source.Microphone));try{h=(yield Promise.all(n.map((e=>{var t;return null===(t=e.audioTrack)||void 0===t?void 0:t.setDeviceId(m)})))).every((e=>!0===e))}catch(t){throw i.options.audioCaptureDefaults.deviceId=e,t}const s=n.some((e=>{var t,n;return null!==(n=null===(t=e.track)||void 0===t?void 0:t.isMuted)&&void 0!==n&&n}));h&&s&&(p=!0)}else if(\"videoinput\"===t){p=0===i.localParticipant.videoTrackPublications.size;const e=null!==(r=i.getActiveDevice(t))&&void 0!==r?r:i.options.videoCaptureDefaults.deviceId;i.options.videoCaptureDefaults.deviceId=m;const n=Array.from(i.localParticipant.videoTrackPublications.values()).filter((e=>e.source===Qo.Source.Camera));try{h=(yield Promise.all(n.map((e=>{var t;return null===(t=e.videoTrack)||void 0===t?void 0:t.setDeviceId(m)})))).every((e=>!0===e))}catch(t){throw i.options.videoCaptureDefaults.deviceId=e,t}const s=n.some((e=>{var t,n;return null!==(n=null===(t=e.track)||void 0===t?void 0:t.isMuted)&&void 0!==n&&n}));h&&s&&(p=!0)}else if(\"audiooutput\"===t){if(p=!0,!or()&&!i.options.webAudioMix||i.options.webAudioMix&&i.audioContext&&!(\"setSinkId\"in i.audioContext))throw new Error(\"cannot switch audio output, the current browser does not support it\");i.options.webAudioMix&&(n=null!==(a=yield pa.getInstance().normalizeDeviceId(\"audiooutput\",n))&&void 0!==a?a:\"\"),null!==(c=(u=i.options).audioOutput)&&void 0!==c||(u.audioOutput={});const e=null!==(d=i.getActiveDevice(t))&&void 0!==d?d:i.options.audioOutput.deviceId;i.options.audioOutput.deviceId=n;try{i.options.webAudioMix&&(null===(l=i.audioContext)||void 0===l||l.setSinkId(n)),yield Promise.all(Array.from(i.remoteParticipants.values()).map((e=>e.setAudioOutput({deviceId:n}))))}catch(t){throw i.options.audioOutput.deviceId=e,t}}return p&&(i.localParticipant.activeDeviceMap.set(t,n),i.emit(e.RoomEvent.ActiveDeviceChanged,t,n)),h}()}))}setupLocalParticipantEvents(){this.localParticipant.on(e.ParticipantEvent.ParticipantMetadataChanged,this.onLocalParticipantMetadataChanged).on(e.ParticipantEvent.ParticipantNameChanged,this.onLocalParticipantNameChanged).on(e.ParticipantEvent.AttributesChanged,this.onLocalAttributesChanged).on(e.ParticipantEvent.TrackMuted,this.onLocalTrackMuted).on(e.ParticipantEvent.TrackUnmuted,this.onLocalTrackUnmuted).on(e.ParticipantEvent.LocalTrackPublished,this.onLocalTrackPublished).on(e.ParticipantEvent.LocalTrackUnpublished,this.onLocalTrackUnpublished).on(e.ParticipantEvent.ConnectionQualityChanged,this.onLocalConnectionQualityChanged).on(e.ParticipantEvent.MediaDevicesError,this.onMediaDevicesError).on(e.ParticipantEvent.AudioStreamAcquired,this.startAudio).on(e.ParticipantEvent.ChatMessage,this.onLocalChatMessageSent).on(e.ParticipantEvent.ParticipantPermissionsChanged,this.onLocalParticipantPermissionsChanged)}recreateEngine(){var e;null===(e=this.engine)||void 0===e||e.close(),this.engine=void 0,this.isResuming=!1,this.remoteParticipants.clear(),this.sidToIdentity.clear(),this.bufferedEvents=[],this.maybeCreateEngine()}onTrackAdded(t,n,i){if(this.state===e.ConnectionState.Connecting||this.state===e.ConnectionState.Reconnecting){const s=()=>{this.log.debug(\"deferring on track for later\",{mediaTrackId:t.id,mediaStreamId:n.id,tracksInStream:n.getTracks().map((e=>e.id))}),this.onTrackAdded(t,n,i),o()},o=()=>{this.off(e.RoomEvent.Reconnected,s),this.off(e.RoomEvent.Connected,s),this.off(e.RoomEvent.Disconnected,o)};return this.once(e.RoomEvent.Reconnected,s),this.once(e.RoomEvent.Connected,s),void this.once(e.RoomEvent.Disconnected,o)}if(this.state===e.ConnectionState.Disconnected)return void this.log.warn(\"skipping incoming track after Room disconnected\",this.logContext);if(\"ended\"===t.readyState)return void this.log.info(\"skipping incoming track as it already ended\",this.logContext);const s=function(e){const t=e.split(\"|\");return t.length>1?[t[0],e.substr(t[0].length+1)]:[e,\"\"]}(n.id),o=s[0];let r=s[1],a=t.id;if(r&&r.startsWith(\"TR\")&&(a=r),o===this.localParticipant.sid)return void this.log.warn(\"tried to create RemoteParticipant for local participant\",this.logContext);const c=Array.from(this.remoteParticipants.values()).find((e=>e.sid===o));if(!c)return void this.log.error(\"Tried to add a track for a participant, that's not present. Sid: \".concat(o),this.logContext);if(!a.startsWith(\"TR\")){const e=this.engine.getTrackIdForReceiver(i);if(!e)return void this.log.error(\"Tried to add a track whose 'sid' could not be found for a participant, that's not present. Sid: \".concat(o),this.logContext);a=e}let d;a.startsWith(\"TR\")||this.log.warn(\"Tried to add a track whose 'sid' could not be determined for a participant, that's not present. Sid: \".concat(o,\", streamId: \").concat(r,\", trackId: \").concat(a),Object.assign(Object.assign({},this.logContext),{rpID:o,streamId:r,trackId:a})),this.options.adaptiveStream&&(d=\"object\"==typeof this.options.adaptiveStream?this.options.adaptiveStream:{});const l=c.addSubscribedMediaTrack(t,a,n,i,d);(null==l?void 0:l.isEncrypted)&&!this.e2eeManager&&this.emit(e.RoomEvent.EncryptionError,new Error(\"Encrypted \".concat(l.source,\" track received from participant \").concat(c.sid,\", but room does not have encryption enabled!\")))}handleDisconnect(){let t=!(arguments.length>0&&void 0!==arguments[0])||arguments[0],n=arguments.length>1?arguments[1]:void 0;var i;if(this.clearConnectionReconcile(),this.isResuming=!1,this.bufferedEvents=[],this.transcriptionReceivedTimes.clear(),this.incomingDataStreamManager.clearControllers(),this.state!==e.ConnectionState.Disconnected){this.regionUrl=void 0,this.regionUrlProvider&&this.regionUrlProvider.notifyDisconnected();try{this.remoteParticipants.forEach((e=>{e.trackPublications.forEach((t=>{e.unpublishTrack(t.trackSid)}))})),this.localParticipant.trackPublications.forEach((e=>{var n,i,s;e.track&&this.localParticipant.unpublishTrack(e.track,t),t?(null===(n=e.track)||void 0===n||n.detach(),null===(i=e.track)||void 0===i||i.stop()):null===(s=e.track)||void 0===s||s.stopMonitor()})),this.localParticipant.off(e.ParticipantEvent.ParticipantMetadataChanged,this.onLocalParticipantMetadataChanged).off(e.ParticipantEvent.ParticipantNameChanged,this.onLocalParticipantNameChanged).off(e.ParticipantEvent.AttributesChanged,this.onLocalAttributesChanged).off(e.ParticipantEvent.TrackMuted,this.onLocalTrackMuted).off(e.ParticipantEvent.TrackUnmuted,this.onLocalTrackUnmuted).off(e.ParticipantEvent.LocalTrackPublished,this.onLocalTrackPublished).off(e.ParticipantEvent.LocalTrackUnpublished,this.onLocalTrackUnpublished).off(e.ParticipantEvent.ConnectionQualityChanged,this.onLocalConnectionQualityChanged).off(e.ParticipantEvent.MediaDevicesError,this.onMediaDevicesError).off(e.ParticipantEvent.AudioStreamAcquired,this.startAudio).off(e.ParticipantEvent.ChatMessage,this.onLocalChatMessageSent).off(e.ParticipantEvent.ParticipantPermissionsChanged,this.onLocalParticipantPermissionsChanged),this.localParticipant.trackPublications.clear(),this.localParticipant.videoTrackPublications.clear(),this.localParticipant.audioTrackPublications.clear(),this.remoteParticipants.clear(),this.sidToIdentity.clear(),this.activeSpeakers=[],this.audioContext&&\"boolean\"==typeof this.options.webAudioMix&&(this.audioContext.close(),this.audioContext=void 0),pr()&&(window.removeEventListener(\"beforeunload\",this.onPageLeave),window.removeEventListener(\"pagehide\",this.onPageLeave),window.removeEventListener(\"freeze\",this.onPageLeave),null===(i=navigator.mediaDevices)||void 0===i||i.removeEventListener(\"devicechange\",this.handleDeviceChange))}finally{this.setAndEmitConnectionState(e.ConnectionState.Disconnected),this.emit(e.RoomEvent.Disconnected,n)}}}handleParticipantDisconnected(t,n){var i;this.remoteParticipants.delete(t),n&&(this.incomingDataStreamManager.validateParticipantHasNoActiveDataStreams(t),n.trackPublications.forEach((e=>{n.unpublishTrack(e.trackSid,!0)})),this.emit(e.RoomEvent.ParticipantDisconnected,n),n.setDisconnected(),null===(i=this.localParticipant)||void 0===i||i.handleParticipantDisconnected(n.identity))}handleIncomingRpcRequest(e,t,n,i,s,o){return Fi(this,void 0,void 0,(function*(){if(yield this.engine.publishRpcAck(e,t),1!==o)return void(yield this.engine.publishRpcResponse(e,t,null,$a.builtIn(\"UNSUPPORTED_VERSION\")));const r=this.rpcHandlers.get(n);if(!r)return void(yield this.engine.publishRpcResponse(e,t,null,$a.builtIn(\"UNSUPPORTED_METHOD\")));let a=null,c=null;try{const o=yield r({requestId:t,callerIdentity:e,payload:i,responseTimeout:s});ec(o)>15360?(a=$a.builtIn(\"RESPONSE_PAYLOAD_TOO_LARGE\"),this.log.warn(\"RPC Response payload too large for \".concat(n))):c=o}catch(e){e instanceof $a?a=e:(this.log.warn(\"Uncaught error returned by RPC handler for \".concat(n,\". Returning APPLICATION_ERROR instead.\"),e),a=$a.builtIn(\"APPLICATION_ERROR\"))}yield this.engine.publishRpcResponse(e,t,c,a)}))}selectDefaultDevices(){return Fi(this,void 0,void 0,(function*(){var t,n,i;const s=pa.getInstance().previousDevices,o=yield pa.getInstance().getDevices(void 0,!1),r=Zs();if(\"Chrome\"===(null==r?void 0:r.name)&&\"iOS\"!==r.os)for(let t of o){const n=s.find((e=>e.deviceId===t.deviceId));n&&\"\"!==n.label&&n.kind===t.kind&&n.label!==t.label&&\"default\"===this.getActiveDevice(t.kind)&&this.emit(e.RoomEvent.ActiveDeviceChanged,t.kind,t.deviceId)}const a=[\"audiooutput\",\"audioinput\",\"videoinput\"];for(let e of a){const r=Fo(e),a=this.localParticipant.getTrackPublication(r);if(a&&(null===(t=a.track)||void 0===t?void 0:t.isUserProvided))continue;const c=o.filter((t=>t.kind===e)),d=this.getActiveDevice(e);d===(null===(n=s.filter((t=>t.kind===e))[0])||void 0===n?void 0:n.deviceId)&&c.length>0&&(null===(i=c[0])||void 0===i?void 0:i.deviceId)!==d?yield this.switchActiveDevice(e,c[0].deviceId):\"audioinput\"===e&&!lr()||\"videoinput\"===e||!(c.length>0)||c.find((t=>t.deviceId===this.getActiveDevice(e)))||\"audiooutput\"===e&&lr()||(yield this.switchActiveDevice(e,c[0].deviceId))}}))}acquireAudioContext(){return Fi(this,void 0,void 0,(function*(){var t,n;if(\"boolean\"!=typeof this.options.webAudioMix&&this.options.webAudioMix.audioContext?this.audioContext=this.options.webAudioMix.audioContext:this.audioContext&&\"closed\"!==this.audioContext.state||(this.audioContext=null!==(t=jo())&&void 0!==t?t:void 0),this.options.webAudioMix&&this.remoteParticipants.forEach((e=>e.setAudioContext(this.audioContext))),this.localParticipant.setAudioContext(this.audioContext),this.audioContext&&\"suspended\"===this.audioContext.state)try{yield Promise.race([this.audioContext.resume(),$o(200)])}catch(e){this.log.warn(\"Could not resume audio context\",Object.assign(Object.assign({},this.logContext),{error:e}))}const i=\"running\"===(null===(n=this.audioContext)||void 0===n?void 0:n.state);i!==this.canPlaybackAudio&&(this.audioEnabled=i,this.emit(e.RoomEvent.AudioPlaybackStatusChanged,i))}))}createParticipant(e,t){var n;let i;return i=t?td.fromParticipantInfo(this.engine.client,t,{loggerContextCb:()=>this.logContext,loggerName:this.options.loggerName}):new td(this.engine.client,\"\",e,void 0,void 0,void 0,{loggerContextCb:()=>this.logContext,loggerName:this.options.loggerName}),this.options.webAudioMix&&i.setAudioContext(this.audioContext),(null===(n=this.options.audioOutput)||void 0===n?void 0:n.deviceId)&&i.setAudioOutput(this.options.audioOutput).catch((e=>this.log.warn(\"Could not set audio output: \".concat(e.message),this.logContext))),i}getOrCreateParticipant(t,n){if(this.remoteParticipants.has(t)){const e=this.remoteParticipants.get(t);if(n){e.updateInfo(n)&&this.sidToIdentity.set(n.sid,n.identity)}return e}const i=this.createParticipant(t,n);return this.remoteParticipants.set(t,i),this.sidToIdentity.set(n.sid,n.identity),this.emitWhenConnected(e.RoomEvent.ParticipantConnected,i),i.on(e.ParticipantEvent.TrackPublished,(t=>{this.emitWhenConnected(e.RoomEvent.TrackPublished,t,i)})).on(e.ParticipantEvent.TrackSubscribed,((t,n)=>{t.kind===Qo.Kind.Audio?(t.on(e.TrackEvent.AudioPlaybackStarted,this.handleAudioPlaybackStarted),t.on(e.TrackEvent.AudioPlaybackFailed,this.handleAudioPlaybackFailed)):t.kind===Qo.Kind.Video&&(t.on(e.TrackEvent.VideoPlaybackFailed,this.handleVideoPlaybackFailed),t.on(e.TrackEvent.VideoPlaybackStarted,this.handleVideoPlaybackStarted)),this.emit(e.RoomEvent.TrackSubscribed,t,n,i)})).on(e.ParticipantEvent.TrackUnpublished,(t=>{this.emit(e.RoomEvent.TrackUnpublished,t,i)})).on(e.ParticipantEvent.TrackUnsubscribed,((t,n)=>{this.emit(e.RoomEvent.TrackUnsubscribed,t,n,i)})).on(e.ParticipantEvent.TrackMuted,(t=>{this.emitWhenConnected(e.RoomEvent.TrackMuted,t,i)})).on(e.ParticipantEvent.TrackUnmuted,(t=>{this.emitWhenConnected(e.RoomEvent.TrackUnmuted,t,i)})).on(e.ParticipantEvent.ParticipantMetadataChanged,(t=>{this.emitWhenConnected(e.RoomEvent.ParticipantMetadataChanged,t,i)})).on(e.ParticipantEvent.ParticipantNameChanged,(t=>{this.emitWhenConnected(e.RoomEvent.ParticipantNameChanged,t,i)})).on(e.ParticipantEvent.AttributesChanged,(t=>{this.emitWhenConnected(e.RoomEvent.ParticipantAttributesChanged,t,i)})).on(e.ParticipantEvent.ConnectionQualityChanged,(t=>{this.emitWhenConnected(e.RoomEvent.ConnectionQualityChanged,t,i)})).on(e.ParticipantEvent.ParticipantPermissionsChanged,(t=>{this.emitWhenConnected(e.RoomEvent.ParticipantPermissionsChanged,t,i)})).on(e.ParticipantEvent.TrackSubscriptionStatusChanged,((t,n)=>{this.emitWhenConnected(e.RoomEvent.TrackSubscriptionStatusChanged,t,n,i)})).on(e.ParticipantEvent.TrackSubscriptionFailed,((t,n)=>{this.emit(e.RoomEvent.TrackSubscriptionFailed,t,i,n)})).on(e.ParticipantEvent.TrackSubscriptionPermissionChanged,((t,n)=>{this.emitWhenConnected(e.RoomEvent.TrackSubscriptionPermissionChanged,t,n,i)})).on(e.ParticipantEvent.Active,(()=>{this.emitWhenConnected(e.RoomEvent.ParticipantActive,i),i.kind===ut.AGENT&&this.localParticipant.setActiveAgent(i)})),n&&i.updateInfo(n),i}sendSyncState(){const e=Array.from(this.remoteParticipants.values()).reduce(((e,t)=>(e.push(...t.getTrackPublications()),e)),[]),t=this.localParticipant.getTrackPublications();this.engine.sendSyncState(e,t)}updateSubscriptions(){for(const e of this.remoteParticipants.values())for(const t of e.videoTrackPublications.values())t.isSubscribed&&Kr(t)&&t.emitTrackUpdate()}getRemoteParticipantBySid(e){const t=this.sidToIdentity.get(e);if(t)return this.remoteParticipants.get(t)}registerConnectionReconcile(){this.clearConnectionReconcile();let e=0;this.connectionReconcileInterval=Co.setInterval((()=>{this.engine&&!this.engine.isClosed&&this.engine.verifyTransport()?e=0:(e++,this.log.warn(\"detected connection state mismatch\",Object.assign(Object.assign({},this.logContext),{numFailures:e,engine:this.engine?{closed:this.engine.isClosed,transportsConnected:this.engine.verifyTransport()}:void 0})),e>=3&&(this.recreateEngine(),this.handleDisconnect(this.options.stopLocalTrackOnUnpublish,nt.STATE_MISMATCH)))}),4e3)}clearConnectionReconcile(){this.connectionReconcileInterval&&Co.clearInterval(this.connectionReconcileInterval)}setAndEmitConnectionState(t){return t!==this.state&&(this.state=t,this.emit(e.RoomEvent.ConnectionStateChanged,this.state),!0)}emitBufferedEvents(){this.bufferedEvents.forEach((e=>{let[t,n]=e;this.emit(t,...n)})),this.bufferedEvents=[]}emitWhenConnected(t){for(var n=arguments.length,i=new Array(n>1?n-1:0),s=1;s<n;s++)i[s-1]=arguments[s];if(this.state===e.ConnectionState.Reconnecting||this.isResuming||!this.engine||this.engine.pendingReconnect)this.bufferedEvents.push([t,i]);else if(this.state===e.ConnectionState.Connected)return this.emit(t,...i);return!1}simulateParticipants(t){return Fi(this,void 0,void 0,(function*(){var n,i;const s=Object.assign({audio:!0,video:!0,useRealTracks:!1},t.publish),o=Object.assign({count:9,audio:!1,video:!0,aspectRatios:[1.66,1.7,1.3]},t.participants);if(this.handleDisconnect(),this.roomInfo=new rt({sid:\"RM_SIMULATED\",name:\"simulated-room\",emptyTimeout:0,maxParticipants:0,creationTime:D.parse((new Date).getTime()),metadata:\"\",numParticipants:1,numPublishers:1,turnPassword:\"\",enabledCodecs:[],activeRecording:!1}),this.localParticipant.updateInfo(new dt({identity:\"simulated-local\",name:\"local-name\"})),this.setupLocalParticipantEvents(),this.emit(e.RoomEvent.SignalConnected),this.emit(e.RoomEvent.Connected),this.setAndEmitConnectionState(e.ConnectionState.Connected),s.video){const t=new Gc(Qo.Kind.Video,new gt({source:Ze.CAMERA,sid:Math.floor(1e4*Math.random()).toString(),type:Xe.AUDIO,name:\"video-dummy\"}),new Tc(s.useRealTracks?(yield window.navigator.mediaDevices.getUserMedia({video:!0})).getVideoTracks()[0]:Or(160*(null!==(n=o.aspectRatios[0])&&void 0!==n?n:1),160,!0,!0),void 0,!1,{loggerName:this.options.loggerName,loggerContextCb:()=>this.logContext}),{loggerName:this.options.loggerName,loggerContextCb:()=>this.logContext});this.localParticipant.addTrackPublication(t),this.localParticipant.emit(e.ParticipantEvent.LocalTrackPublished,t)}if(s.audio){const t=new Gc(Qo.Kind.Audio,new gt({source:Ze.MICROPHONE,sid:Math.floor(1e4*Math.random()).toString(),type:Xe.AUDIO}),new cc(s.useRealTracks?(yield navigator.mediaDevices.getUserMedia({audio:!0})).getAudioTracks()[0]:_r(),void 0,!1,this.audioContext,{loggerName:this.options.loggerName,loggerContextCb:()=>this.logContext}),{loggerName:this.options.loggerName,loggerContextCb:()=>this.logContext});this.localParticipant.addTrackPublication(t),this.localParticipant.emit(e.ParticipantEvent.LocalTrackPublished,t)}for(let e=0;e<o.count-1;e+=1){let t=new dt({sid:Math.floor(1e4*Math.random()).toString(),identity:\"simulated-\".concat(e),state:lt.ACTIVE,tracks:[],joinedAt:D.parse(Date.now())});const n=this.getOrCreateParticipant(t.identity,t);if(o.video){const s=Or(160*(null!==(i=o.aspectRatios[e%o.aspectRatios.length])&&void 0!==i?i:1),160,!1,!0),r=new gt({source:Ze.CAMERA,sid:Math.floor(1e4*Math.random()).toString(),type:Xe.AUDIO});n.addSubscribedMediaTrack(s,r.sid,new MediaStream([s]),new RTCRtpReceiver),t.tracks=[...t.tracks,r]}if(o.audio){const e=_r(),i=new gt({source:Ze.MICROPHONE,sid:Math.floor(1e4*Math.random()).toString(),type:Xe.AUDIO});n.addSubscribedMediaTrack(e,i.sid,new MediaStream([e]),new RTCRtpReceiver),t.tracks=[...t.tracks,i]}n.updateInfo(t)}}))}emit(t){for(var n=arguments.length,i=new Array(n>1?n-1:0),s=1;s<n;s++)i[s-1]=arguments[s];if(t!==e.RoomEvent.ActiveSpeakersChanged&&t!==e.RoomEvent.TranscriptionReceived){const n=id(i).filter((e=>void 0!==e));t!==e.RoomEvent.TrackSubscribed&&t!==e.RoomEvent.TrackUnsubscribed||this.log.trace(\"subscribe trace: \".concat(t),Object.assign(Object.assign({},this.logContext),{event:t,args:n})),this.log.debug(\"room event \".concat(t),Object.assign(Object.assign({},this.logContext),{event:t,args:n}))}return super.emit(t,...i)}}"
+        },
+        {
+          "type": "log",
+          "text": "  typeof LiveKit: undefined"
+        },
+        {
+          "type": "log",
+          "text": "  typeof window.LiveKit: undefined"
+        },
+        {
+          "type": "log",
+          "text": "  typeof LivekitClient: object"
+        },
+        {
+          "type": "log",
+          "text": "  typeof window.LivekitClient: object"
+        },
+        {
+          "type": "log",
+          "text": "  typeof LiveKitVoiceIntegration: function"
+        },
+        {
+          "type": "log",
+          "text": "✅ Both LiveKit SDK and Integration ready!"
+        },
+        {
+          "type": "log",
+          "text": "  ✓ Detected via LIVEKIT_SDK_READY flag"
+        },
+        {
+          "type": "log",
+          "text": "  ✓ Detected via LivekitClient property"
+        },
+        {
+          "type": "log",
+          "text": "✅ LiveKitVoiceIntegration class found"
+        },
+        {
+          "type": "log",
+          "text": "✅ LiveKit SDK already available"
+        },
+        {
+          "type": "log",
+          "text": "✅ LiveKit SDK available: true"
+        },
+        {
+          "type": "log",
+          "text": "  SDK type: Object"
+        },
+        {
+          "type": "log",
+          "text": "✅ LiveKit Chat initialized successfully"
+        },
+        {
+          "type": "log",
+          "text": "✅ Safe Loader: Page visibility ensured"
+        },
+        {
+          "type": "warning",
+          "text": "⚠️ Potential XSS: Event handler detected onclick"
+        },
+        {
+          "type": "warning",
+          "text": "⚠️ Potential XSS: Event handler detected onclick"
+        },
+        {
+          "type": "warning",
+          "text": "⚠️ Potential XSS: Event handler detected onclick"
+        }
+      ],
+      "pageErrors": [],
+      "requestFailures": [],
+      "badResponses": [],
+      "allBadResponses": [],
+      "undefinedDiagnostics": {
+        "resources": [],
+        "elements": [],
+        "styleAttributes": [],
+        "computedStyles": [],
+        "cssRules": []
+      }
+    },
+    "pwa": {
+      "supported": true,
+      "hasRegistration": true,
+      "scope": "http://localhost:8000/",
+      "scriptUrl": "http://localhost:8000/sw.js"
+    }
+  },
+  {
+    "page": "games",
+    "url": "http://localhost:8000/games.html",
+    "logs": {
+      "console": [
+        {
+          "type": "log",
+          "text": "✅ Scroll forcefully enabled!"
+        },
+        {
+          "type": "log",
+          "text": "🔗 Navigation menu initialized!"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Cosmic Music Player Script Loaded"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Document ready, initializing immediately"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Cosmic Music Player: Initializing (attempt 1)..."
+        },
+        {
+          "type": "log",
+          "text": "🎵 Document ready state: interactive"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Body exists: true"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Player exists: false"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Total tracks: 19"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Track URLs: [Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object]"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Loading saved state..."
+        },
+        {
+          "type": "log",
+          "text": "🔄 DEBUG loadPlayerState called"
+        },
+        {
+          "type": "log",
+          "text": "🔍 DEBUG loadPlayerState - Retrieved from sessionStorage: {savedState: null, savedStateLength: 0, savedStateType: object, allKeys: Array(0)}"
+        },
+        {
+          "type": "warning",
+          "text": "⚠️ WARNING: No saved state found in sessionStorage! {sessionStorageKeys: Array(0), hasCosmicPlayerState: false}"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Injecting player HTML..."
+        },
+        {
+          "type": "log",
+          "text": "🎵 Injecting player HTML into body..."
+        },
+        {
+          "type": "log",
+          "text": "✅ Player HTML injected successfully!"
+        },
+        {
+          "type": "log",
+          "text": "✅ Player element exists: true"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Initializing player for: Track 1: Cosmic Journey"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Base URL: http://localhost:8000"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Full URL: http://localhost:8000/audio/cosmic-journey.mp3"
+        },
+        {
+          "type": "log",
+          "text": "🎵 DEBUG initPlayer - pendingState: undefined"
+        },
+        {
+          "type": "log",
+          "text": "🎵 DEBUG initPlayer - Saved pendingState for restoration: null"
+        },
+        {
+          "type": "log",
+          "text": "📊 Track display updated: Track 1 of 19"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Setting up event listeners..."
+        },
+        {
+          "type": "log",
+          "text": "✅ Navigation persistence enabled"
+        },
+        {
+          "type": "log",
+          "text": "🎵 CosmicMusicPlayer: Constructor complete!"
+        },
+        {
+          "type": "log",
+          "text": "✅ Cosmic Music Player initialized successfully!"
+        },
+        {
+          "type": "log",
+          "text": "✅ Scroll forcefully enabled!"
+        },
+        {
+          "type": "log",
+          "text": "🌟 Cosmic effects initialized!"
+        },
+        {
+          "type": "log",
+          "text": "%c🎮 Starting Ruffle Games Manager... color: #7ED321; font-size: 14px; font-weight: bold;"
+        },
+        {
+          "type": "log",
+          "text": "%c[Games] 🎮 Initializing Ruffle Games Manager... color: #4A90E2"
+        },
+        {
+          "type": "log",
+          "text": "%c[Games] 📥 Loading games manifest... color: #4A90E2"
+        },
+        {
+          "type": "log",
+          "text": "%c[Games] 🔍 Trying manifest path: games-manifest.json color: #4A90E2"
+        },
+        {
+          "type": "log",
+          "text": "%c[Games] ✅ Found manifest at: games-manifest.json color: #7ED321"
+        },
+        {
+          "type": "log",
+          "text": "✅ Scroll forcefully enabled!"
+        },
+        {
+          "type": "log",
+          "text": "🔄 Load start: Track 1: Cosmic Journey"
+        },
+        {
+          "type": "log",
+          "text": "🚀 MINIMAL LOADER STARTING"
+        },
+        {
+          "type": "log",
+          "text": "Body exists, setting up immediate unblock"
+        },
+        {
+          "type": "log",
+          "text": "✅ MINIMAL LOADER INITIALIZED - Page will unblock within 1 second"
+        },
+        {
+          "type": "log",
+          "text": "✅ Minimal loader core loaded"
+        },
+        {
+          "type": "log",
+          "text": "✅ Loader initialized - all modules loading"
+        },
+        {
+          "type": "log",
+          "text": "📊 Track display updated: Track 1 of 19"
+        },
+        {
+          "type": "log",
+          "text": "✅ Loaded 19 tracks from audio manifest."
+        },
+        {
+          "type": "log",
+          "text": "✅ Loaded translations for en"
+        },
+        {
+          "type": "log",
+          "text": "[i18n DEBUG] Skipping applyTranslations in init() to prevent loops {}"
+        },
+        {
+          "type": "log",
+          "text": "🌍 Creating language switcher..."
+        },
+        {
+          "type": "log",
+          "text": "✅ Language switcher added to header"
+        },
+        {
+          "type": "log",
+          "text": "ℹ️ Dynamic content observer disabled for performance"
+        },
+        {
+          "type": "log",
+          "text": "%c[Games] ✅ Loaded 1254 games from manifest (hosted on Cloudflare R2) color: #7ED321"
+        },
+        {
+          "type": "log",
+          "text": "%c[Games] 🔧 Setting up event listeners... color: #4A90E2"
+        },
+        {
+          "type": "log",
+          "text": "%c[Games] ✅ Event listeners set up successfully color: #7ED321"
+        },
+        {
+          "type": "log",
+          "text": "%c[Games] 🎨 Rendering 1254 games... color: #4A90E2"
+        },
+        {
+          "type": "log",
+          "text": "%c[Games] ✅ Rendered 1254 game cards color: #7ED321"
+        },
+        {
+          "type": "log",
+          "text": "%c[Games] ✅ Initialization complete! 1254 games loaded color: #7ED321"
+        },
+        {
+          "type": "warning",
+          "text": "SpaceLoader core not found, features module skipped"
+        },
+        {
+          "type": "log",
+          "text": "✅ Loader features loaded"
+        },
+        {
+          "type": "warning",
+          "text": "SpaceLoader core not found, animations module skipped"
+        },
+        {
+          "type": "log",
+          "text": "✅ Loader animations loaded"
+        },
+        {
+          "type": "log",
+          "text": "✅ Language toggle button is ready and clickable"
+        },
+        {
+          "type": "log",
+          "text": "🌍 Button styles: {display: flex, visibility: visible, opacity: 1, pointerEvents: auto, zIndex: auto}"
+        },
+        {
+          "type": "log",
+          "text": "✅ Player HTML verified in DOM"
+        },
+        {
+          "type": "log",
+          "text": "✅ Track metadata loaded: {name: Track 1: Cosmic Journey, duration: 4:50, size: Not buffered}"
+        },
+        {
+          "type": "log",
+          "text": "ℹ️ DEBUG loadedmetadata - No restoration (pendingState or duration not available): {hasPendingState: false, hasDuration: true, durationValid: true}"
+        },
+        {
+          "type": "log",
+          "text": "✅ Scroll forcefully enabled!"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Window loaded, checking player..."
+        },
+        {
+          "type": "log",
+          "text": "Window load - forcing unblock"
+        },
+        {
+          "type": "log",
+          "text": "🛡️ FORCE UNBLOCK EXECUTING"
+        },
+        {
+          "type": "log",
+          "text": "✅ PAGE UNBLOCKED"
+        },
+        {
+          "type": "log",
+          "text": "📊 Track display updated: Track 1 of 19"
+        },
+        {
+          "type": "log",
+          "text": "✅ Track ready to play: Track 1: Cosmic Journey (1/19)"
+        },
+        {
+          "type": "log",
+          "text": "✅ Track fully buffered and ready: Track 1: Cosmic Journey"
+        },
+        {
+          "type": "log",
+          "text": "🎵 DEBUG canplaythrough - Current audio state: {currentTime: 0, duration: 290.899604, pendingState: undefined, pendingStateRestored: false}"
+        },
+        {
+          "type": "log",
+          "text": "ℹ️ No pendingState to restore in canplaythrough"
+        },
+        {
+          "type": "log",
+          "text": "✅ ServiceWorker registration successful with scope:  http://localhost:8000/"
+        },
+        {
+          "type": "log",
+          "text": "📊 Buffered: 1.9%"
+        },
+        {
+          "type": "log",
+          "text": "✅ Scroll forcefully enabled!"
+        },
+        {
+          "type": "log",
+          "text": "📊 Track display updated: Track 1 of 19"
+        },
+        {
+          "type": "log",
+          "text": "🛡️ FORCE UNBLOCK EXECUTING"
+        },
+        {
+          "type": "log",
+          "text": "✅ PAGE UNBLOCKED"
+        },
+        {
+          "type": "log",
+          "text": "✅ Scroll forcefully enabled!"
+        },
+        {
+          "type": "log",
+          "text": "1 second timeout - forcing unblock"
+        },
+        {
+          "type": "log",
+          "text": "🛡️ FORCE UNBLOCK EXECUTING"
+        },
+        {
+          "type": "log",
+          "text": "✅ PAGE UNBLOCKED"
+        },
+        {
+          "type": "log",
+          "text": "✅ Scroll forcefully enabled!"
+        },
+        {
+          "type": "log",
+          "text": "✅ Scroll forcefully enabled!"
+        },
+        {
+          "type": "log",
+          "text": "🌌 3D Space Wallpaper initialized!"
+        },
+        {
+          "type": "log",
+          "text": "✅ Scroll forcefully enabled!"
+        }
+      ],
+      "pageErrors": [],
+      "requestFailures": [],
+      "badResponses": [],
+      "allBadResponses": [],
+      "undefinedDiagnostics": {
+        "resources": [],
+        "elements": [],
+        "styleAttributes": [],
+        "computedStyles": [],
+        "cssRules": []
+      }
+    },
+    "pwa": {
+      "supported": true,
+      "hasRegistration": true,
+      "scope": "http://localhost:8000/",
+      "scriptUrl": "http://localhost:8000/sw.js"
+    }
+  },
+  {
+    "page": "marketplace",
+    "url": "http://localhost:8000/marketplace.html",
+    "logs": {
+      "console": [
+        {
+          "type": "log",
+          "text": "✅ Supabase client initialized"
+        },
+        {
+          "type": "warning",
+          "text": "⚠️ Stripe public key not found. Payment features will be disabled."
+        },
+        {
+          "type": "log",
+          "text": "🔗 Navigation menu initialized!"
+        },
+        {
+          "type": "log",
+          "text": "🌟 Universal Graphics System Activated!"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Cosmic Music Player Script Loaded"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Document ready, initializing immediately"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Cosmic Music Player: Initializing (attempt 1)..."
+        },
+        {
+          "type": "log",
+          "text": "🎵 Document ready state: interactive"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Body exists: true"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Player exists: false"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Total tracks: 19"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Track URLs: [Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object]"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Loading saved state..."
+        },
+        {
+          "type": "log",
+          "text": "🔄 DEBUG loadPlayerState called"
+        },
+        {
+          "type": "log",
+          "text": "🔍 DEBUG loadPlayerState - Retrieved from sessionStorage: {savedState: null, savedStateLength: 0, savedStateType: object, allKeys: Array(0)}"
+        },
+        {
+          "type": "warning",
+          "text": "⚠️ WARNING: No saved state found in sessionStorage! {sessionStorageKeys: Array(0), hasCosmicPlayerState: false}"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Injecting player HTML..."
+        },
+        {
+          "type": "log",
+          "text": "🎵 Injecting player HTML into body..."
+        },
+        {
+          "type": "log",
+          "text": "✅ Player HTML injected successfully!"
+        },
+        {
+          "type": "log",
+          "text": "✅ Player element exists: true"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Initializing player for: Track 1: Cosmic Journey"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Base URL: http://localhost:8000"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Full URL: http://localhost:8000/audio/cosmic-journey.mp3"
+        },
+        {
+          "type": "log",
+          "text": "🎵 DEBUG initPlayer - pendingState: undefined"
+        },
+        {
+          "type": "log",
+          "text": "🎵 DEBUG initPlayer - Saved pendingState for restoration: null"
+        },
+        {
+          "type": "log",
+          "text": "📊 Track display updated: Track 1 of 19"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Setting up event listeners..."
+        },
+        {
+          "type": "log",
+          "text": "✅ Navigation persistence enabled"
+        },
+        {
+          "type": "log",
+          "text": "🎵 CosmicMusicPlayer: Constructor complete!"
+        },
+        {
+          "type": "log",
+          "text": "✅ Cosmic Music Player initialized successfully!"
+        },
+        {
+          "type": "log",
+          "text": "💳 Marketplace Payment Integration initialized"
+        },
+        {
+          "type": "log",
+          "text": "🏠 Planet Rental/Leasing initialized"
+        },
+        {
+          "type": "log",
+          "text": "💼 Planet Investment Portfolios initialized"
+        },
+        {
+          "type": "log",
+          "text": "📊 Planet Trading Analytics initialized"
+        },
+        {
+          "type": "log",
+          "text": "🔄 Load start: Track 1: Cosmic Journey"
+        },
+        {
+          "type": "log",
+          "text": "🚀 MINIMAL LOADER STARTING"
+        },
+        {
+          "type": "log",
+          "text": "Body exists, setting up immediate unblock"
+        },
+        {
+          "type": "log",
+          "text": "✅ MINIMAL LOADER INITIALIZED - Page will unblock within 1 second"
+        },
+        {
+          "type": "log",
+          "text": "✅ Minimal loader core loaded"
+        },
+        {
+          "type": "log",
+          "text": "✅ Loader initialized - all modules loading"
+        },
+        {
+          "type": "log",
+          "text": "✅ Loaded translations for en"
+        },
+        {
+          "type": "log",
+          "text": "[i18n DEBUG] Skipping applyTranslations in init() to prevent loops {}"
+        },
+        {
+          "type": "log",
+          "text": "🌍 Creating language switcher..."
+        },
+        {
+          "type": "log",
+          "text": "✅ Language switcher added to body"
+        },
+        {
+          "type": "log",
+          "text": "ℹ️ Dynamic content observer disabled for performance"
+        },
+        {
+          "type": "log",
+          "text": "📊 Track display updated: Track 1 of 19"
+        },
+        {
+          "type": "log",
+          "text": "✅ Loaded 19 tracks from audio manifest."
+        },
+        {
+          "type": "warning",
+          "text": "SpaceLoader core not found, animations module skipped"
+        },
+        {
+          "type": "log",
+          "text": "✅ Loader animations loaded"
+        },
+        {
+          "type": "warning",
+          "text": "SpaceLoader core not found, features module skipped"
+        },
+        {
+          "type": "log",
+          "text": "✅ Loader features loaded"
+        },
+        {
+          "type": "log",
+          "text": "🚀 Space Mission Crowdfunding initialized"
+        },
+        {
+          "type": "log",
+          "text": "✅ Track metadata loaded: {name: Track 1: Cosmic Journey, duration: 4:50, size: Not buffered}"
+        },
+        {
+          "type": "log",
+          "text": "ℹ️ DEBUG loadedmetadata - No restoration (pendingState or duration not available): {hasPendingState: false, hasDuration: true, durationValid: true}"
+        },
+        {
+          "type": "log",
+          "text": "🔔 Planet Trading Notifications initialized"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Window loaded, checking player..."
+        },
+        {
+          "type": "log",
+          "text": "Window load - forcing unblock"
+        },
+        {
+          "type": "log",
+          "text": "🛡️ FORCE UNBLOCK EXECUTING"
+        },
+        {
+          "type": "log",
+          "text": "✅ PAGE UNBLOCKED"
+        },
+        {
+          "type": "log",
+          "text": "📊 Track display updated: Track 1 of 19"
+        },
+        {
+          "type": "log",
+          "text": "✅ Track ready to play: Track 1: Cosmic Journey (1/19)"
+        },
+        {
+          "type": "log",
+          "text": "✅ Track fully buffered and ready: Track 1: Cosmic Journey"
+        },
+        {
+          "type": "log",
+          "text": "🎵 DEBUG canplaythrough - Current audio state: {currentTime: 0, duration: 290.899604, pendingState: undefined, pendingStateRestored: false}"
+        },
+        {
+          "type": "log",
+          "text": "ℹ️ No pendingState to restore in canplaythrough"
+        },
+        {
+          "type": "log",
+          "text": "📊 Buffered: 1.9%"
+        },
+        {
+          "type": "log",
+          "text": "✅ Language toggle button is ready and clickable"
+        },
+        {
+          "type": "log",
+          "text": "🌍 Button styles: {display: flex, visibility: visible, opacity: 1, pointerEvents: auto, zIndex: auto}"
+        },
+        {
+          "type": "log",
+          "text": "✅ Player HTML verified in DOM"
+        },
+        {
+          "type": "log",
+          "text": "📊 Track display updated: Track 1 of 19"
+        },
+        {
+          "type": "log",
+          "text": "🛡️ FORCE UNBLOCK EXECUTING"
+        },
+        {
+          "type": "log",
+          "text": "✅ PAGE UNBLOCKED"
+        },
+        {
+          "type": "log",
+          "text": "1 second timeout - forcing unblock"
+        },
+        {
+          "type": "log",
+          "text": "🛡️ FORCE UNBLOCK EXECUTING"
+        },
+        {
+          "type": "log",
+          "text": "✅ PAGE UNBLOCKED"
+        },
+        {
+          "type": "log",
+          "text": "✅ Marketplace initialized"
+        }
+      ],
+      "pageErrors": [],
+      "requestFailures": [],
+      "badResponses": [],
+      "allBadResponses": [],
+      "undefinedDiagnostics": {
+        "resources": [],
+        "elements": [],
+        "styleAttributes": [],
+        "computedStyles": [],
+        "cssRules": []
+      }
+    },
+    "pwa": {
+      "supported": true,
+      "hasRegistration": true,
+      "scope": "http://localhost:8000/",
+      "scriptUrl": "http://localhost:8000/sw.js"
+    }
+  },
+  {
+    "page": "analytics-dashboard",
+    "url": "http://localhost:8000/analytics-dashboard.html",
+    "logs": {
+      "console": [
+        {
+          "type": "log",
+          "text": "✅ Supabase client initialized"
+        },
+        {
+          "type": "log",
+          "text": "🔗 Navigation menu initialized!"
+        },
+        {
+          "type": "log",
+          "text": "🌟 Universal Graphics System Activated!"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Cosmic Music Player Script Loaded"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Document ready, initializing immediately"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Cosmic Music Player: Initializing (attempt 1)..."
+        },
+        {
+          "type": "log",
+          "text": "🎵 Document ready state: interactive"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Body exists: true"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Player exists: false"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Total tracks: 19"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Track URLs: [Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object]"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Loading saved state..."
+        },
+        {
+          "type": "log",
+          "text": "🔄 DEBUG loadPlayerState called"
+        },
+        {
+          "type": "log",
+          "text": "🔍 DEBUG loadPlayerState - Retrieved from sessionStorage: {savedState: null, savedStateLength: 0, savedStateType: object, allKeys: Array(0)}"
+        },
+        {
+          "type": "warning",
+          "text": "⚠️ WARNING: No saved state found in sessionStorage! {sessionStorageKeys: Array(0), hasCosmicPlayerState: false}"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Injecting player HTML..."
+        },
+        {
+          "type": "log",
+          "text": "🎵 Injecting player HTML into body..."
+        },
+        {
+          "type": "log",
+          "text": "✅ Player HTML injected successfully!"
+        },
+        {
+          "type": "log",
+          "text": "✅ Player element exists: true"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Initializing player for: Track 1: Cosmic Journey"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Base URL: http://localhost:8000"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Full URL: http://localhost:8000/audio/cosmic-journey.mp3"
+        },
+        {
+          "type": "log",
+          "text": "🎵 DEBUG initPlayer - pendingState: undefined"
+        },
+        {
+          "type": "log",
+          "text": "🎵 DEBUG initPlayer - Saved pendingState for restoration: null"
+        },
+        {
+          "type": "log",
+          "text": "📊 Track display updated: Track 1 of 19"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Setting up event listeners..."
+        },
+        {
+          "type": "log",
+          "text": "✅ Navigation persistence enabled"
+        },
+        {
+          "type": "log",
+          "text": "🎵 CosmicMusicPlayer: Constructor complete!"
+        },
+        {
+          "type": "log",
+          "text": "✅ Cosmic Music Player initialized successfully!"
+        },
+        {
+          "type": "log",
+          "text": "⌨️ Keyboard Shortcuts initialized"
+        },
+        {
+          "type": "log",
+          "text": "✅ Supabase initialized"
+        },
+        {
+          "type": "log",
+          "text": "📊 Planet Claim Statistics initialized"
+        },
+        {
+          "type": "log",
+          "text": "📈 Popular Planet Trends initialized"
+        },
+        {
+          "type": "log",
+          "text": "📈 Planet Discovery Statistics Widget initialized"
+        },
+        {
+          "type": "log",
+          "text": "🗺️ Planet Discovery Map Visualization initialized"
+        },
+        {
+          "type": "log",
+          "text": "🔔 Planet Discovery Notifications initialized"
+        },
+        {
+          "type": "log",
+          "text": "📅 Planet Discovery Calendar initialized"
+        },
+        {
+          "type": "log",
+          "text": "📤 Planet Discovery Export initialized"
+        },
+        {
+          "type": "log",
+          "text": "⚖️ Planet Discovery Comparison Tool initialized"
+        },
+        {
+          "type": "log",
+          "text": "🔄 Load start: Track 1: Cosmic Journey"
+        },
+        {
+          "type": "log",
+          "text": "🚀 MINIMAL LOADER STARTING"
+        },
+        {
+          "type": "log",
+          "text": "Body exists, setting up immediate unblock"
+        },
+        {
+          "type": "log",
+          "text": "✅ MINIMAL LOADER INITIALIZED - Page will unblock within 1 second"
+        },
+        {
+          "type": "log",
+          "text": "✅ Minimal loader core loaded"
+        },
+        {
+          "type": "log",
+          "text": "✅ Loader initialized - all modules loading"
+        },
+        {
+          "type": "log",
+          "text": "🎨 UI updated - Auth status: false (Supabase)"
+        },
+        {
+          "type": "log",
+          "text": "📊 Track display updated: Track 1 of 19"
+        },
+        {
+          "type": "log",
+          "text": "✅ Loaded 19 tracks from audio manifest."
+        },
+        {
+          "type": "log",
+          "text": "✅ Loaded translations for en"
+        },
+        {
+          "type": "log",
+          "text": "[i18n DEBUG] Skipping applyTranslations in init() to prevent loops {}"
+        },
+        {
+          "type": "log",
+          "text": "🌍 Creating language switcher..."
+        },
+        {
+          "type": "log",
+          "text": "✅ Language switcher added to body"
+        },
+        {
+          "type": "log",
+          "text": "ℹ️ Dynamic content observer disabled for performance"
+        },
+        {
+          "type": "warning",
+          "text": "SpaceLoader core not found, animations module skipped"
+        },
+        {
+          "type": "log",
+          "text": "✅ Loader animations loaded"
+        },
+        {
+          "type": "warning",
+          "text": "SpaceLoader core not found, features module skipped"
+        },
+        {
+          "type": "log",
+          "text": "✅ Loader features loaded"
+        },
+        {
+          "type": "log",
+          "text": "🔐 Auth state changed: INITIAL_SESSION"
+        },
+        {
+          "type": "log",
+          "text": "🎨 UI updated - Auth status: false (Supabase)"
+        },
+        {
+          "type": "log",
+          "text": "✅ Track metadata loaded: {name: Track 1: Cosmic Journey, duration: 4:50, size: Not buffered}"
+        },
+        {
+          "type": "log",
+          "text": "ℹ️ DEBUG loadedmetadata - No restoration (pendingState or duration not available): {hasPendingState: false, hasDuration: true, durationValid: true}"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Window loaded, checking player..."
+        },
+        {
+          "type": "log",
+          "text": "Window load - forcing unblock"
+        },
+        {
+          "type": "log",
+          "text": "🛡️ FORCE UNBLOCK EXECUTING"
+        },
+        {
+          "type": "log",
+          "text": "✅ PAGE UNBLOCKED"
+        },
+        {
+          "type": "log",
+          "text": "📊 Track display updated: Track 1 of 19"
+        },
+        {
+          "type": "log",
+          "text": "✅ Track ready to play: Track 1: Cosmic Journey (1/19)"
+        },
+        {
+          "type": "log",
+          "text": "✅ Track fully buffered and ready: Track 1: Cosmic Journey"
+        },
+        {
+          "type": "log",
+          "text": "🎵 DEBUG canplaythrough - Current audio state: {currentTime: 0, duration: 290.899604, pendingState: undefined, pendingStateRestored: false}"
+        },
+        {
+          "type": "log",
+          "text": "ℹ️ No pendingState to restore in canplaythrough"
+        },
+        {
+          "type": "log",
+          "text": "📊 Buffered: 1.9%"
+        },
+        {
+          "type": "log",
+          "text": "✅ Language toggle button is ready and clickable"
+        },
+        {
+          "type": "log",
+          "text": "🌍 Button styles: {display: flex, visibility: visible, opacity: 1, pointerEvents: auto, zIndex: auto}"
+        },
+        {
+          "type": "log",
+          "text": "✅ Player HTML verified in DOM"
+        },
+        {
+          "type": "log",
+          "text": "📊 Track display updated: Track 1 of 19"
+        },
+        {
+          "type": "log",
+          "text": "🛡️ FORCE UNBLOCK EXECUTING"
+        },
+        {
+          "type": "log",
+          "text": "✅ PAGE UNBLOCKED"
+        },
+        {
+          "type": "log",
+          "text": "✅ Analytics Dashboard initialized"
+        },
+        {
+          "type": "log",
+          "text": "1 second timeout - forcing unblock"
+        },
+        {
+          "type": "log",
+          "text": "🛡️ FORCE UNBLOCK EXECUTING"
+        },
+        {
+          "type": "log",
+          "text": "✅ PAGE UNBLOCKED"
+        },
+        {
+          "type": "log",
+          "text": "Performance Monitoring Dashboard initialized"
+        }
+      ],
+      "pageErrors": [],
+      "requestFailures": [],
+      "badResponses": [],
+      "allBadResponses": [],
+      "undefinedDiagnostics": {
+        "resources": [],
+        "elements": [],
+        "styleAttributes": [],
+        "computedStyles": [],
+        "cssRules": []
+      }
+    },
+    "pwa": {
+      "supported": true,
+      "hasRegistration": true,
+      "scope": "http://localhost:8000/",
+      "scriptUrl": "http://localhost:8000/sw.js"
+    }
+  },
+  {
+    "page": "secure-chat",
+    "url": "http://localhost:8000/secure-chat.html",
+    "logs": {
+      "console": [
+        {
+          "type": "log",
+          "text": "🔗 Navigation menu initialized!"
+        },
+        {
+          "type": "log",
+          "text": "🌟 Universal Graphics System Activated!"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Cosmic Music Player Script Loaded"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Document ready, initializing immediately"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Cosmic Music Player: Initializing (attempt 1)..."
+        },
+        {
+          "type": "log",
+          "text": "🎵 Document ready state: interactive"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Body exists: true"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Player exists: false"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Total tracks: 19"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Track URLs: [Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object]"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Loading saved state..."
+        },
+        {
+          "type": "log",
+          "text": "🔄 DEBUG loadPlayerState called"
+        },
+        {
+          "type": "log",
+          "text": "🔍 DEBUG loadPlayerState - Retrieved from sessionStorage: {savedState: null, savedStateLength: 0, savedStateType: object, allKeys: Array(0)}"
+        },
+        {
+          "type": "warning",
+          "text": "⚠️ WARNING: No saved state found in sessionStorage! {sessionStorageKeys: Array(0), hasCosmicPlayerState: false}"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Injecting player HTML..."
+        },
+        {
+          "type": "log",
+          "text": "🎵 Injecting player HTML into body..."
+        },
+        {
+          "type": "log",
+          "text": "✅ Player HTML injected successfully!"
+        },
+        {
+          "type": "log",
+          "text": "✅ Player element exists: true"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Initializing player for: Track 1: Cosmic Journey"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Base URL: http://localhost:8000"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Full URL: http://localhost:8000/audio/cosmic-journey.mp3"
+        },
+        {
+          "type": "log",
+          "text": "🎵 DEBUG initPlayer - pendingState: undefined"
+        },
+        {
+          "type": "log",
+          "text": "🎵 DEBUG initPlayer - Saved pendingState for restoration: null"
+        },
+        {
+          "type": "log",
+          "text": "📊 Track display updated: Track 1 of 19"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Setting up event listeners..."
+        },
+        {
+          "type": "log",
+          "text": "✅ Navigation persistence enabled"
+        },
+        {
+          "type": "log",
+          "text": "🎵 CosmicMusicPlayer: Constructor complete!"
+        },
+        {
+          "type": "log",
+          "text": "✅ Cosmic Music Player initialized successfully!"
+        },
+        {
+          "type": "log",
+          "text": "🔒 CSRF Protection initialized"
+        },
+        {
+          "type": "log",
+          "text": "🎨 UI updated - Auth status: false (localStorage)"
+        },
+        {
+          "type": "log",
+          "text": "🔄 Load start: Track 1: Cosmic Journey"
+        },
+        {
+          "type": "log",
+          "text": "🚀 MINIMAL LOADER STARTING"
+        },
+        {
+          "type": "log",
+          "text": "Body exists, setting up immediate unblock"
+        },
+        {
+          "type": "log",
+          "text": "✅ MINIMAL LOADER INITIALIZED - Page will unblock within 1 second"
+        },
+        {
+          "type": "log",
+          "text": "✅ Minimal loader core loaded"
+        },
+        {
+          "type": "log",
+          "text": "✅ Loader initialized - all modules loading"
+        },
+        {
+          "type": "log",
+          "text": "✅ Loaded translations for en"
+        },
+        {
+          "type": "log",
+          "text": "[i18n DEBUG] Skipping applyTranslations in init() to prevent loops {}"
+        },
+        {
+          "type": "log",
+          "text": "🌍 Creating language switcher..."
+        },
+        {
+          "type": "log",
+          "text": "✅ Language switcher added to body"
+        },
+        {
+          "type": "log",
+          "text": "ℹ️ Dynamic content observer disabled for performance"
+        },
+        {
+          "type": "log",
+          "text": "📊 Track display updated: Track 1 of 19"
+        },
+        {
+          "type": "log",
+          "text": "✅ Loaded 19 tracks from audio manifest."
+        },
+        {
+          "type": "log",
+          "text": "✅ Supabase library loaded"
+        },
+        {
+          "type": "log",
+          "text": "✅ Supabase initialized"
+        },
+        {
+          "type": "log",
+          "text": "🎨 UI updated - Auth status: false (Supabase)"
+        },
+        {
+          "type": "log",
+          "text": "🔐 Auth state changed: INITIAL_SESSION"
+        },
+        {
+          "type": "log",
+          "text": "🎨 UI updated - Auth status: false (Supabase)"
+        },
+        {
+          "type": "warning",
+          "text": "SpaceLoader core not found, animations module skipped"
+        },
+        {
+          "type": "log",
+          "text": "✅ Loader animations loaded"
+        },
+        {
+          "type": "warning",
+          "text": "SpaceLoader core not found, features module skipped"
+        },
+        {
+          "type": "log",
+          "text": "✅ Loader features loaded"
+        },
+        {
+          "type": "log",
+          "text": "✅ Track metadata loaded: {name: Track 1: Cosmic Journey, duration: 4:50, size: Not buffered}"
+        },
+        {
+          "type": "log",
+          "text": "ℹ️ DEBUG loadedmetadata - No restoration (pendingState or duration not available): {hasPendingState: false, hasDuration: true, durationValid: true}"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Window loaded, checking player..."
+        },
+        {
+          "type": "log",
+          "text": "Window load - forcing unblock"
+        },
+        {
+          "type": "log",
+          "text": "🛡️ FORCE UNBLOCK EXECUTING"
+        },
+        {
+          "type": "log",
+          "text": "✅ PAGE UNBLOCKED"
+        },
+        {
+          "type": "log",
+          "text": "📊 Track display updated: Track 1 of 19"
+        },
+        {
+          "type": "log",
+          "text": "✅ Track ready to play: Track 1: Cosmic Journey (1/19)"
+        },
+        {
+          "type": "log",
+          "text": "✅ Track fully buffered and ready: Track 1: Cosmic Journey"
+        },
+        {
+          "type": "log",
+          "text": "🎵 DEBUG canplaythrough - Current audio state: {currentTime: 0, duration: 290.899604, pendingState: undefined, pendingStateRestored: false}"
+        },
+        {
+          "type": "log",
+          "text": "ℹ️ No pendingState to restore in canplaythrough"
+        },
+        {
+          "type": "log",
+          "text": "📊 Buffered: 1.9%"
+        },
+        {
+          "type": "log",
+          "text": "✅ Language toggle button is ready and clickable"
+        },
+        {
+          "type": "log",
+          "text": "🌍 Button styles: {display: flex, visibility: visible, opacity: 1, pointerEvents: auto, zIndex: auto}"
+        },
+        {
+          "type": "log",
+          "text": "✅ Player HTML verified in DOM"
+        },
+        {
+          "type": "log",
+          "text": "📊 Track display updated: Track 1 of 19"
+        },
+        {
+          "type": "log",
+          "text": "🛡️ FORCE UNBLOCK EXECUTING"
+        },
+        {
+          "type": "log",
+          "text": "✅ PAGE UNBLOCKED"
+        },
+        {
+          "type": "log",
+          "text": "1 second timeout - forcing unblock"
+        },
+        {
+          "type": "log",
+          "text": "🛡️ FORCE UNBLOCK EXECUTING"
+        },
+        {
+          "type": "log",
+          "text": "✅ PAGE UNBLOCKED"
+        }
+      ],
+      "pageErrors": [],
+      "requestFailures": [],
+      "badResponses": [],
+      "allBadResponses": [],
+      "undefinedDiagnostics": {
+        "resources": [],
+        "elements": [],
+        "styleAttributes": [],
+        "computedStyles": [],
+        "cssRules": []
+      }
+    },
+    "pwa": {
+      "supported": true,
+      "hasRegistration": true,
+      "scope": "http://localhost:8000/",
+      "scriptUrl": "http://localhost:8000/sw.js"
+    }
+  },
+  {
+    "page": "education",
+    "url": "http://localhost:8000/education.html",
+    "logs": {
+      "console": [
+        {
+          "type": "warning",
+          "text": "[GroupMarkerNotSet(crbug.com/242999)!:A840180004370000]Automatic fallback to software WebGL has been deprecated. Please use the --enable-unsafe-swiftshader (about:flags#enable-unsafe-swiftshader) flag to opt in to lower security guarantees for trusted content."
+        },
+        {
+          "type": "log",
+          "text": "🔗 Navigation menu initialized!"
+        },
+        {
+          "type": "log",
+          "text": "🎮 Educational Games initialized"
+        }
+      ],
+      "pageErrors": [],
+      "requestFailures": [],
+      "badResponses": [],
+      "allBadResponses": [],
+      "undefinedDiagnostics": {
+        "resources": [],
+        "elements": [],
+        "styleAttributes": [],
+        "computedStyles": [],
+        "cssRules": []
+      }
+    },
+    "pwa": {
+      "supported": true,
+      "hasRegistration": true,
+      "scope": "http://localhost:8000/",
+      "scriptUrl": "http://localhost:8000/sw.js"
+    }
+  },
+  {
+    "page": "projects",
+    "url": "http://localhost:8000/projects.html",
+    "logs": {
+      "console": [
+        {
+          "type": "log",
+          "text": "🎵 Cosmic Music Player Script Loaded"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Document ready, initializing immediately"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Cosmic Music Player: Initializing (attempt 1)..."
+        },
+        {
+          "type": "log",
+          "text": "🎵 Document ready state: interactive"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Body exists: true"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Player exists: false"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Total tracks: 19"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Track URLs: [Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object]"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Loading saved state..."
+        },
+        {
+          "type": "log",
+          "text": "🔄 DEBUG loadPlayerState called"
+        },
+        {
+          "type": "log",
+          "text": "🔍 DEBUG loadPlayerState - Retrieved from sessionStorage: {savedState: null, savedStateLength: 0, savedStateType: object, allKeys: Array(0)}"
+        },
+        {
+          "type": "warning",
+          "text": "⚠️ WARNING: No saved state found in sessionStorage! {sessionStorageKeys: Array(0), hasCosmicPlayerState: false}"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Injecting player HTML..."
+        },
+        {
+          "type": "log",
+          "text": "🎵 Injecting player HTML into body..."
+        },
+        {
+          "type": "log",
+          "text": "✅ Player HTML injected successfully!"
+        },
+        {
+          "type": "log",
+          "text": "✅ Player element exists: true"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Initializing player for: Track 1: Cosmic Journey"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Base URL: http://localhost:8000"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Full URL: http://localhost:8000/audio/cosmic-journey.mp3"
+        },
+        {
+          "type": "log",
+          "text": "🎵 DEBUG initPlayer - pendingState: undefined"
+        },
+        {
+          "type": "log",
+          "text": "🎵 DEBUG initPlayer - Saved pendingState for restoration: null"
+        },
+        {
+          "type": "log",
+          "text": "📊 Track display updated: Track 1 of 19"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Setting up event listeners..."
+        },
+        {
+          "type": "log",
+          "text": "✅ Navigation persistence enabled"
+        },
+        {
+          "type": "log",
+          "text": "🎵 CosmicMusicPlayer: Constructor complete!"
+        },
+        {
+          "type": "log",
+          "text": "✅ Cosmic Music Player initialized successfully!"
+        },
+        {
+          "type": "log",
+          "text": "🔄 Load start: Track 1: Cosmic Journey"
+        },
+        {
+          "type": "log",
+          "text": "📊 Track display updated: Track 1 of 19"
+        },
+        {
+          "type": "log",
+          "text": "✅ Loaded 19 tracks from audio manifest."
+        },
+        {
+          "type": "log",
+          "text": "🔗 Navigation menu initialized!"
+        },
+        {
+          "type": "log",
+          "text": "🧪 Experimental Projects Module Initialized"
+        },
+        {
+          "type": "log",
+          "text": "✅ Track metadata loaded: {name: Track 1: Cosmic Journey, duration: 4:50, size: Not buffered}"
+        },
+        {
+          "type": "log",
+          "text": "ℹ️ DEBUG loadedmetadata - No restoration (pendingState or duration not available): {hasPendingState: false, hasDuration: true, durationValid: true}"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Window loaded, checking player..."
+        },
+        {
+          "type": "log",
+          "text": "📊 Track display updated: Track 1 of 19"
+        },
+        {
+          "type": "log",
+          "text": "✅ Track ready to play: Track 1: Cosmic Journey (1/19)"
+        },
+        {
+          "type": "log",
+          "text": "✅ Track fully buffered and ready: Track 1: Cosmic Journey"
+        },
+        {
+          "type": "log",
+          "text": "🎵 DEBUG canplaythrough - Current audio state: {currentTime: 0, duration: 290.899604, pendingState: undefined, pendingStateRestored: false}"
+        },
+        {
+          "type": "log",
+          "text": "ℹ️ No pendingState to restore in canplaythrough"
+        },
+        {
+          "type": "log",
+          "text": "📊 Buffered: 1.9%"
+        },
+        {
+          "type": "log",
+          "text": "✅ Player HTML verified in DOM"
+        },
+        {
+          "type": "log",
+          "text": "📊 Track display updated: Track 1 of 19"
+        }
+      ],
+      "pageErrors": [],
+      "requestFailures": [],
+      "badResponses": [],
+      "allBadResponses": [],
+      "undefinedDiagnostics": {
+        "resources": [],
+        "elements": [],
+        "styleAttributes": [],
+        "computedStyles": [],
+        "cssRules": []
+      }
+    },
+    "pwa": {
+      "supported": true,
+      "hasRegistration": true,
+      "scope": "http://localhost:8000/",
+      "scriptUrl": "http://localhost:8000/sw.js"
+    }
+  },
+  {
+    "page": "offline",
+    "url": "http://localhost:8000/offline.html",
+    "logs": {
+      "console": [
+        {
+          "type": "log",
+          "text": "🔗 Navigation menu initialized!"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Cosmic Music Player Script Loaded"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Document ready, initializing immediately"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Cosmic Music Player: Initializing (attempt 1)..."
+        },
+        {
+          "type": "log",
+          "text": "🎵 Document ready state: interactive"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Body exists: true"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Player exists: false"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Total tracks: 19"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Track URLs: [Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object]"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Loading saved state..."
+        },
+        {
+          "type": "log",
+          "text": "🔄 DEBUG loadPlayerState called"
+        },
+        {
+          "type": "log",
+          "text": "🔍 DEBUG loadPlayerState - Retrieved from sessionStorage: {savedState: null, savedStateLength: 0, savedStateType: object, allKeys: Array(0)}"
+        },
+        {
+          "type": "warning",
+          "text": "⚠️ WARNING: No saved state found in sessionStorage! {sessionStorageKeys: Array(0), hasCosmicPlayerState: false}"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Injecting player HTML..."
+        },
+        {
+          "type": "log",
+          "text": "🎵 Injecting player HTML into body..."
+        },
+        {
+          "type": "log",
+          "text": "✅ Player HTML injected successfully!"
+        },
+        {
+          "type": "log",
+          "text": "✅ Player element exists: true"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Initializing player for: Track 1: Cosmic Journey"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Base URL: http://localhost:8000"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Full URL: http://localhost:8000/audio/cosmic-journey.mp3"
+        },
+        {
+          "type": "log",
+          "text": "🎵 DEBUG initPlayer - pendingState: undefined"
+        },
+        {
+          "type": "log",
+          "text": "🎵 DEBUG initPlayer - Saved pendingState for restoration: null"
+        },
+        {
+          "type": "log",
+          "text": "📊 Track display updated: Track 1 of 19"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Setting up event listeners..."
+        },
+        {
+          "type": "log",
+          "text": "✅ Navigation persistence enabled"
+        },
+        {
+          "type": "log",
+          "text": "🎵 CosmicMusicPlayer: Constructor complete!"
+        },
+        {
+          "type": "log",
+          "text": "✅ Cosmic Music Player initialized successfully!"
+        },
+        {
+          "type": "log",
+          "text": "🔄 Load start: Track 1: Cosmic Journey"
+        },
+        {
+          "type": "log",
+          "text": "🚀 MINIMAL LOADER STARTING"
+        },
+        {
+          "type": "log",
+          "text": "Body exists, setting up immediate unblock"
+        },
+        {
+          "type": "log",
+          "text": "✅ MINIMAL LOADER INITIALIZED - Page will unblock within 1 second"
+        },
+        {
+          "type": "log",
+          "text": "✅ Minimal loader core loaded"
+        },
+        {
+          "type": "log",
+          "text": "✅ Loader initialized - all modules loading"
+        },
+        {
+          "type": "log",
+          "text": "📊 Track display updated: Track 1 of 19"
+        },
+        {
+          "type": "log",
+          "text": "✅ Loaded 19 tracks from audio manifest."
+        },
+        {
+          "type": "log",
+          "text": "✅ Loaded translations for en"
+        },
+        {
+          "type": "log",
+          "text": "[i18n DEBUG] Skipping applyTranslations in init() to prevent loops {}"
+        },
+        {
+          "type": "log",
+          "text": "🌍 Creating language switcher..."
+        },
+        {
+          "type": "log",
+          "text": "✅ Language switcher added to body"
+        },
+        {
+          "type": "log",
+          "text": "ℹ️ Dynamic content observer disabled for performance"
+        },
+        {
+          "type": "warning",
+          "text": "SpaceLoader core not found, animations module skipped"
+        },
+        {
+          "type": "log",
+          "text": "✅ Loader animations loaded"
+        },
+        {
+          "type": "warning",
+          "text": "SpaceLoader core not found, features module skipped"
+        },
+        {
+          "type": "log",
+          "text": "✅ Loader features loaded"
+        },
+        {
+          "type": "log",
+          "text": "✅ Track metadata loaded: {name: Track 1: Cosmic Journey, duration: 4:50, size: Not buffered}"
+        },
+        {
+          "type": "log",
+          "text": "ℹ️ DEBUG loadedmetadata - No restoration (pendingState or duration not available): {hasPendingState: false, hasDuration: true, durationValid: true}"
+        },
+        {
+          "type": "log",
+          "text": "🎵 Window loaded, checking player..."
+        },
+        {
+          "type": "log",
+          "text": "Window load - forcing unblock"
+        },
+        {
+          "type": "log",
+          "text": "🛡️ FORCE UNBLOCK EXECUTING"
+        },
+        {
+          "type": "log",
+          "text": "✅ PAGE UNBLOCKED"
+        },
+        {
+          "type": "log",
+          "text": "📊 Track display updated: Track 1 of 19"
+        },
+        {
+          "type": "log",
+          "text": "✅ Track ready to play: Track 1: Cosmic Journey (1/19)"
+        },
+        {
+          "type": "log",
+          "text": "✅ Track fully buffered and ready: Track 1: Cosmic Journey"
+        },
+        {
+          "type": "log",
+          "text": "🎵 DEBUG canplaythrough - Current audio state: {currentTime: 0, duration: 290.899604, pendingState: undefined, pendingStateRestored: false}"
+        },
+        {
+          "type": "log",
+          "text": "ℹ️ No pendingState to restore in canplaythrough"
+        },
+        {
+          "type": "log",
+          "text": "✅ ServiceWorker registration successful with scope:  http://localhost:8000/"
+        },
+        {
+          "type": "log",
+          "text": "📊 Buffered: 1.9%"
+        },
+        {
+          "type": "log",
+          "text": "✅ Language toggle button is ready and clickable"
+        },
+        {
+          "type": "log",
+          "text": "🌍 Button styles: {display: flex, visibility: visible, opacity: 1, pointerEvents: auto, zIndex: auto}"
+        },
+        {
+          "type": "log",
+          "text": "✅ Player HTML verified in DOM"
+        },
+        {
+          "type": "log",
+          "text": "📊 Track display updated: Track 1 of 19"
+        },
+        {
+          "type": "log",
+          "text": "🛡️ FORCE UNBLOCK EXECUTING"
+        },
+        {
+          "type": "log",
+          "text": "✅ PAGE UNBLOCKED"
+        },
+        {
+          "type": "log",
+          "text": "1 second timeout - forcing unblock"
+        },
+        {
+          "type": "log",
+          "text": "🛡️ FORCE UNBLOCK EXECUTING"
+        },
+        {
+          "type": "log",
+          "text": "✅ PAGE UNBLOCKED"
+        }
+      ],
+      "pageErrors": [],
+      "requestFailures": [],
+      "badResponses": [],
+      "allBadResponses": [],
+      "undefinedDiagnostics": {
+        "resources": [],
+        "elements": [],
+        "styleAttributes": [],
+        "computedStyles": [],
+        "cssRules": []
+      }
+    },
+    "pwa": {
+      "supported": true,
+      "hasRegistration": true,
+      "scope": "http://localhost:8000/",
+      "scriptUrl": "http://localhost:8000/sw.js"
+    }
+  }
+]

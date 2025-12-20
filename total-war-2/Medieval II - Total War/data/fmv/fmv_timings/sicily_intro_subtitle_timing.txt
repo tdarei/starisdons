@@ -1,0 +1,6 @@
+<SYNC Start=7500>
+<P Class=ENUSCC>Sicily_Intro_11
+<SYNC Stop=25800>
+<SYNC Start=53500>
+<P Class=ENUSCC>Sicily_Intro_12
+<SYNC Stop=66000>

@@ -1,0 +1,6 @@
+<SYNC Start=12900>
+<P Class=ENUSCC>Hungary_Intro_11
+<SYNC Stop=25300>
+<SYNC Start=53800>
+<P Class=ENUSCC>Hungary_Intro_12
+<SYNC Stop=66100>

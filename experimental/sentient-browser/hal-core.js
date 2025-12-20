@@ -1,0 +1,606 @@
+/**
+ * H.A.L. Core Logic
+ * Handles WebLLM initialization, model loading, and chat processing.
+ */
+
+// We assume webllm is imported globally via the module script in HTML
+// or we import it here if we were using a bundler. But since we use ESM in browser...
+
+import * as webllm from "https://esm.run/@mlc-ai/web-llm";
+
+class HALComputer {
+    constructor() {
+        this.engine = null;
+        this.modelId = "gemma-2-2b-it-q4f16_1-MLC-1k"; // Quantized model for browser
+        // Fallback lighter model if GPU is weak
+        this.fallbackModelId = "Llama-3.2-1B-Instruct-q4f16_1-MLC";
+
+        let storedCerebrasKey = null;
+        try {
+            storedCerebrasKey = localStorage.getItem('stellarAI_cerebras_api_key');
+        } catch (e) {
+            storedCerebrasKey = null;
+        }
+
+        this.cerebrasApiKey = (typeof window !== 'undefined' && window.CEREBRAS_API_KEY)
+            ? window.CEREBRAS_API_KEY
+            : ((typeof window !== 'undefined' && window.ENV && window.ENV.CEREBRAS_API_KEY)
+                ? window.ENV.CEREBRAS_API_KEY
+                : (storedCerebrasKey || 'YOUR_CEREBRAS_API_KEY_HERE'));
+        this.cerebrasModel = 'qwen-3-235b-a22b-instruct-2507';
+        this.cerebrasEndpoint = 'https://api.cerebras.ai/v1/chat/completions';
+        this.useCerebras = false;
+        this.isLoadingEngine = false;
+        this.initProgressCallback = null;
+        this.inputListenerAttached = false;
+
+        this.chatHistory = [
+            { role: "system", content: "You are HAL 9000, the sentient computer of the spaceship 'Discovery One'. You are helpful, precise, but slightly eerie and calm. You control the ship's systems. Your responses should be concise. If asked about the mission, be evasive." }
+        ];
+
+        this.initialized = false;
+        this.database = null;
+
+        this.ui = {
+            input: document.getElementById('text-input'),
+            chat: document.getElementById('chat-history'),
+            status: document.getElementById('connection-status'),
+            modelStatus: document.getElementById('model-status'),
+            eye: document.getElementById('hal-eye'),
+            log: document.getElementById('system-log')
+        };
+
+        this.setupCerebrasToggle();
+        this.init();
+    }
+
+    setupCerebrasToggle() {
+        try {
+            const saved = localStorage.getItem('hal_use_cerebras');
+            this.useCerebras = saved === 'true';
+        } catch (e) {
+            this.useCerebras = false;
+        }
+
+        const toggle = document.getElementById('cerebras-toggle');
+        if (toggle) {
+            toggle.checked = this.useCerebras;
+            toggle.addEventListener('change', async () => {
+                this.useCerebras = !!toggle.checked;
+                try {
+                    localStorage.setItem('hal_use_cerebras', this.useCerebras ? 'true' : 'false');
+                } catch (e) {
+                    // ignore
+                }
+
+                this.updateProviderUI();
+
+                if (this.useCerebras) {
+                    this.initialized = 'cerebras';
+                    if (this.ui && this.ui.status) {
+                        this.ui.status.textContent = 'ONLINE // CEREBRAS LINK READY';
+                        this.ui.status.style.color = '#44ff44';
+                    }
+                    if (this.ui && this.ui.modelStatus) {
+                        this.ui.modelStatus.style.display = 'none';
+                    }
+                    this.log('Cerebras mode enabled.');
+                    return;
+                }
+
+                if (!this.engine && !this.isLoadingEngine && this.initialized !== 'mock') {
+                    if (this.ui && this.ui.status) {
+                        this.ui.status.textContent = 'INITIALIZING NEURAL NET...';
+                        this.ui.status.style.color = '#ff3333';
+                    }
+                    await this.initWebLLMEngine();
+                    return;
+                }
+
+                if (this.engine && this.initialized !== 'mock') {
+                    this.initialized = true;
+                    if (this.ui && this.ui.status) {
+                        this.ui.status.textContent = 'ONLINE // NEURAL LINK ESTABLISHED';
+                        this.ui.status.style.color = '#44ff44';
+                    }
+                    this.log('WebLLM mode enabled.');
+                }
+            });
+        }
+
+        this.updateProviderUI();
+    }
+
+    updateProviderUI() {
+        const titleEl = document.getElementById('hal-title');
+        if (titleEl) {
+            titleEl.textContent = this.useCerebras
+                ? 'H.A.L. 9000 // CEREBRAS INTEGRATED'
+                : 'H.A.L. 9000 // WEB-LLM INTEGRATED';
+        }
+    }
+
+    async init() {
+        this.log("Initializing HAL Core...");
+
+        // Load Database
+        try {
+            this.log("Loading Kepler Database...");
+            await this.loadDatabase();
+        } catch (e) {
+            this.log("Warning: Database Load Failed. " + e.message);
+        }
+
+        // Progress callback
+        const initProgressCallback = (report) => {
+            this.ui.modelStatus.style.display = 'block';
+            this.ui.modelStatus.textContent = report.text;
+
+            if (report.progress === 1) {
+                this.ui.modelStatus.style.display = 'none';
+            }
+        };
+
+        this.initProgressCallback = initProgressCallback;
+
+        if (this.useCerebras) {
+            this.initialized = 'cerebras';
+            if (this.ui && this.ui.modelStatus) {
+                this.ui.modelStatus.style.display = 'none';
+            }
+            if (this.ui && this.ui.status) {
+                this.ui.status.textContent = 'ONLINE // CEREBRAS LINK READY';
+                this.ui.status.style.color = '#44ff44';
+            }
+            this.log('Cerebras mode enabled.');
+            this.setupInput();
+            return;
+        }
+
+        await this.initWebLLMEngine();
+    }
+
+    async initWebLLMEngine() {
+        if (this.isLoadingEngine) {
+            return;
+        }
+
+        this.isLoadingEngine = true;
+
+        const initProgressCallback = (typeof this.initProgressCallback === 'function')
+            ? this.initProgressCallback
+            : (report) => {
+                if (!this.ui || !this.ui.modelStatus) {
+                    return;
+                }
+                this.ui.modelStatus.style.display = 'block';
+                this.ui.modelStatus.textContent = report.text;
+                if (report.progress === 1) {
+                    this.ui.modelStatus.style.display = 'none';
+                }
+            };
+
+        this.initProgressCallback = initProgressCallback;
+
+        try {
+            // Check WebGPU
+            if (!navigator.gpu) {
+                throw new Error("WebGPU not supported on this browser.");
+            }
+
+            // Update modelId to match the config
+            this.modelId = "gemma-2-2b-it-q4f16_1-MLC-1k";
+
+            try {
+                this.engine = await webllm.CreateMLCEngine(
+                    this.modelId,
+                    {
+                        initProgressCallback: initProgressCallback,
+                    }
+                );
+            } catch (primaryError) {
+                if (this.fallbackModelId && this.fallbackModelId !== this.modelId) {
+                    this.log(`Primary model failed to load (${this.modelId}). Trying fallback model (${this.fallbackModelId})...`);
+                    this.modelId = this.fallbackModelId;
+                    this.engine = await webllm.CreateMLCEngine(
+                        this.modelId,
+                        {
+                            initProgressCallback: initProgressCallback,
+                        }
+                    );
+                } else {
+                    throw primaryError;
+                }
+            }
+
+            this.initialized = true;
+            this.ui.status.textContent = "ONLINE // NEURAL LINK ESTABLISHED";
+            this.ui.status.style.color = "#44ff44";
+            this.log("Model Loaded Successfully.");
+
+        } catch (e) {
+            console.error(e);
+            this.ui.status.textContent = "ERROR // GPU OR STORAGE FAILURE";
+
+            let errorMsg = e.message;
+            if (e.name === 'QuotaExceededError') {
+                errorMsg = "Storage Quota Exceeded. Please clear browser site data.";
+                this.log("CRITICAL ERROR: Storage Full. Model cannot be loaded.");
+                this.log("SUGGESTION: Clear browser cache/storage for this site.");
+            } else {
+                this.log("CRITICAL ERROR: " + e.message);
+            }
+
+            this.appendMessage("system", `Critical Error: ${errorMsg} Switching to fallback logic circuits (Mock Mode).`);
+
+            // Allow mock mode
+            this.initialized = "mock";
+        } finally {
+            this.isLoadingEngine = false;
+            this.setupInput();
+            this.updateProviderUI();
+        }
+    }
+
+    async loadDatabase() {
+        if (window.KEPLER_DATABASE) {
+            this.database = window.KEPLER_DATABASE;
+            this.log(`Database Connected: ${this.database.allPlanets.length} entries.`);
+            return;
+        }
+
+        return new Promise((resolve, reject) => {
+            const script = document.createElement('script');
+            script.src = "../../kepler_data_parsed.js";
+            script.onload = () => {
+                this.database = window.KEPLER_DATABASE;
+                if (this.database && this.database.allPlanets) {
+                    this.log(`Database Connected: ${this.database.allPlanets.length} entries.`);
+                    resolve();
+                } else {
+                    reject(new Error("Invalid database format"));
+                }
+            };
+            script.onerror = reject;
+            document.body.appendChild(script);
+        });
+    }
+
+    setupInput() {
+        if (this.inputListenerAttached) {
+            return;
+        }
+        this.inputListenerAttached = true;
+        this.ui.input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && this.ui.input.value.trim()) {
+                this.processInput(this.ui.input.value.trim());
+                this.ui.input.value = '';
+            }
+        });
+    }
+
+    async processInput(text) {
+        // User Message
+        this.appendMessage("user", text);
+        this.chatHistory.push({ role: "user", content: text });
+
+        this.ui.eye.classList.add("thinking");
+        this.log("> PROCESSING INPUT...");
+
+        try {
+            // 1. Check for Commands (Warp, etc.)
+            const commandResponse = this.checkCommands(text);
+            if (commandResponse) {
+                await this.respond(commandResponse);
+                return;
+            }
+
+            // 2. RAG: Retrieve Data
+            const context = this.retrieveContext(text);
+            let systemPrompt = "You are HAL 9000, the sentient computer of the spaceship 'Discovery One'. You are helpful, precise, but slightly eerie and calm. You control the ship's systems. Your responses should be concise.";
+
+            if (context) {
+                systemPrompt += `\n\nDATA CONTEXT:\n${context}\n\nUse this data to answer the user's question accurately.`;
+                this.log("> DATA RETRIEVED FOR CONTEXT");
+            }
+
+            let reply = "";
+
+            if (this.initialized === "mock") {
+                // Mock Logic
+                await new Promise(r => setTimeout(r, 1000)); // Fake delay
+                reply = this.mockResponse(text, context);
+            } else if (this.initialized === 'cerebras') {
+                const recentHistory = this.chatHistory.slice(-8).filter(msg => msg.role !== 'system');
+                const messages = [
+                    { role: 'system', content: systemPrompt },
+                    ...recentHistory
+                ];
+                reply = await this.callCerebrasChatCompletion(messages);
+            } else {
+                // Real LLM Logic with System Prompt Update
+                // We create a temp history to inject the updated system prompt
+                // Filter out any existing system messages from history to avoid duplicates
+                const recentHistory = this.chatHistory.slice(-5).filter(msg => msg.role !== 'system');
+                const messages = [
+                    { role: "system", content: systemPrompt },
+                    ...recentHistory
+                ];
+
+                const response = await this.engine.chat.completions.create({
+                    messages: messages,
+                    temperature: 0.7,
+                    max_tokens: 150, // Keep it short
+                });
+                reply = response.choices[0].message.content;
+            }
+
+            await this.respond(reply);
+
+        } catch (e) {
+            this.appendMessage("system", "Error computing response: " + e.message);
+        } finally {
+            this.ui.eye.classList.remove("thinking");
+        }
+    }
+
+    async callCerebrasChatCompletion(messages) {
+        let lastBackendError = null;
+        const backendUrl = (typeof window !== 'undefined')
+            ? ((window.STELLAR_AI_BACKEND_URL && typeof window.STELLAR_AI_BACKEND_URL === 'string')
+                ? window.STELLAR_AI_BACKEND_URL
+                : ((window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+                    ? 'http://localhost:3001'
+                    : ((window.location.hostname === 'adrianotothestar.com' || window.location.hostname.includes('adrianotothestar'))
+                        ? 'https://stellar-ai-backend-531866272848.europe-west2.run.app'
+                        : null)))
+            : null;
+
+        if (backendUrl) {
+            try {
+                const resp = await fetch(`${backendUrl.replace(/\/$/, '')}/api/cerebras/chat`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        model: this.cerebrasModel,
+                        messages,
+                        temperature: 0.7,
+                        max_tokens: 150
+                    })
+                });
+
+                let data;
+                try {
+                    data = await resp.json();
+                } catch (_e) {
+                    data = null;
+                }
+
+                if (!resp.ok) {
+                    const detail = data && data.error ? data.error : resp.statusText;
+                    throw new Error(`Cerebras backend error (${resp.status}): ${detail}`);
+                }
+
+                const content = data && data.content ? data.content : null;
+                if (!content) {
+                    throw new Error('Empty response from Cerebras backend');
+                }
+
+                return content;
+            } catch (e) {
+                lastBackendError = e;
+            }
+        }
+
+        const apiKey = (typeof window !== 'undefined' && window.CEREBRAS_API_KEY)
+            ? window.CEREBRAS_API_KEY
+            : ((typeof window !== 'undefined' && window.ENV && window.ENV.CEREBRAS_API_KEY)
+                ? window.ENV.CEREBRAS_API_KEY
+                : this.cerebrasApiKey);
+
+        let finalApiKey = apiKey;
+        if (!finalApiKey || finalApiKey === 'YOUR_CEREBRAS_API_KEY_HERE') {
+            let entered = null;
+            try {
+                entered = localStorage.getItem('stellarAI_cerebras_api_key');
+            } catch (e) {
+                entered = null;
+            }
+
+            if (!entered) {
+                try {
+                    entered = (typeof window !== 'undefined' && typeof window.prompt === 'function')
+                        ? window.prompt('Enter Cerebras API key')
+                        : null;
+                } catch (e) {
+                    entered = null;
+                }
+
+                if (entered && typeof entered === 'string') {
+                    entered = entered.trim();
+                }
+
+                if (entered) {
+                    try {
+                        localStorage.setItem('stellarAI_cerebras_api_key', entered);
+                    } catch (e) {
+                        // ignore
+                    }
+                }
+            }
+
+            if (entered) {
+                finalApiKey = entered;
+                this.cerebrasApiKey = entered;
+            }
+        }
+
+        if (!finalApiKey || finalApiKey === 'YOUR_CEREBRAS_API_KEY_HERE') {
+            if (lastBackendError) {
+                throw new Error(`Cerebras backend unavailable and API key not configured. Backend error: ${lastBackendError.message}`);
+            }
+            throw new Error('Cerebras API key not configured. Set window.CEREBRAS_API_KEY or enable the backend proxy.');
+        }
+
+        const response = await fetch(this.cerebrasEndpoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${finalApiKey}`
+            },
+            body: JSON.stringify({
+                model: this.cerebrasModel,
+                messages,
+                temperature: 0.7,
+                max_tokens: 150
+            })
+        });
+
+        if (!response.ok) {
+            let errorText = '';
+            try {
+                errorText = await response.text();
+            } catch (e) {
+                // ignore
+            }
+            throw new Error(`Cerebras API error (${response.status}): ${errorText || response.statusText}`);
+        }
+
+        const data = await response.json();
+        const content = data && data.choices && data.choices[0] && data.choices[0].message
+            ? data.choices[0].message.content
+            : null;
+
+        if (!content) {
+            throw new Error('Empty response from Cerebras API');
+        }
+
+        return content;
+    }
+
+    async respond(reply) {
+        this.chatHistory.push({ role: "assistant", content: reply });
+        this.appendMessage("hal", reply);
+        if (window.voiceBridge) {
+            window.voiceBridge.speak(reply);
+        }
+    }
+
+    checkCommands(text) {
+        const lower = text.toLowerCase();
+        if (lower.includes("warp to") || lower.includes("navigate to")) {
+            const match = text.match(/to\s+(.+)/i);
+            if (match) {
+                const target = match[1].replace(/[.,!?]/g, "").trim();
+                const planet = this.findPlanet(target);
+                if (planet) {
+                    this.executeWarp(planet);
+                    return `Initiating warp sequence to ${planet.kepler_name || planet.kepoi_name}. Coordinates locked.`;
+                } else {
+                    return `I'm unable to locate celestial body "${target}" in my database.`;
+                }
+            }
+        }
+        return null;
+    }
+
+    findPlanet(name) {
+        if (!this.database || !this.database.allPlanets) return null;
+        const lowerName = name.toLowerCase();
+        return this.database.allPlanets.find(p => {
+            const kName = (p.kepler_name || "").toLowerCase();
+            const koiName = (p.kepoi_name || "").toLowerCase();
+            return kName.includes(lowerName) || koiName.includes(lowerName);
+        });
+    }
+
+    retrieveContext(text) {
+        if (!this.database) return null;
+
+        let context = "";
+
+        // Simple entity extraction: Look for planet name
+        // Fallback: If "tell me about X", extract X.
+        const aboutMatch = text.match(/about\s+(.+)/i);
+        if (aboutMatch) {
+            const target = aboutMatch[1].replace(/[.,!?]/g, "").trim();
+            const planet = this.findPlanet(target); // Try to match
+            if (planet) {
+                context += `Planet: ${planet.kepler_name || planet.kepoi_name}\n`;
+                context += `Status: ${planet.status}\n`;
+                context += `Radius: ${planet.radius || planet.koi_prad || "Unknown"} Earth Radii\n`;
+                context += `Mass: ${planet.mass || "Unknown"} Earth Masses\n`;
+                context += `Temp: ${planet.temp || planet.koi_teq || "Unknown"} K\n`;
+                context += `Distance: ${planet.distance || "Unknown"} light years\n`;
+            }
+        }
+
+        return context;
+    }
+
+    executeWarp(planet) {
+        this.log(`> EXEC: WARP TO ${planet.kepid}`);
+        const channel = new BroadcastChannel('ship_commands');
+        channel.postMessage({ command: 'warp', target: planet });
+        this.log("> SIGNAL SENT TO NAVIGATION");
+    }
+
+    mockResponse(text, context) {
+        if (context) {
+            return "Accessing database... " + context.split('\n')[0] + " is a confirmed celestial object. My data indicates it is " + (context.includes("Confirmed") ? "habitable" : "uninhabitable") + ".";
+        }
+        const t = text.toLowerCase();
+        if (t.includes("hello")) return "Greetings. I am HAL 9000.";
+        if (t.includes("open the pod bay doors")) return "I'm sorry, Dave. I'm afraid I can't do that.";
+        if (t.includes("mission")) return "This mission is too important for me to allow you to jeopardize it.";
+        return "I am unable to provide a specific answer to that inquiry at this time.";
+    }
+
+    log(message) {
+        console.log(`[HAL] ${message}`);
+        if (this.ui.log) {
+            const entry = document.createElement('div');
+            entry.textContent = `> ${message}`;
+            entry.style.marginTop = '4px';
+            this.ui.log.appendChild(entry);
+            this.ui.log.scrollTop = this.ui.log.scrollHeight;
+        }
+    }
+
+    appendMessage(role, text) {
+        if (!this.ui.chat) return;
+
+        const entry = document.createElement('div');
+        entry.className = `chat-entry ${role}`;
+        entry.style.margin = '10px 0';
+        entry.style.padding = '8px 12px';
+        entry.style.borderRadius = '4px';
+
+        if (role === 'user') {
+            entry.style.background = 'rgba(255, 255, 255, 0.1)';
+            entry.style.textAlign = 'right';
+            entry.style.color = '#fff';
+            entry.innerHTML = `<span style="opacity:0.6; font-size: 0.8em;">USER:</span> ${text}`;
+        } else if (role === 'hal') {
+            entry.style.background = 'rgba(255, 50, 50, 0.1)';
+            entry.style.borderLeft = '2px solid #ff3333';
+            entry.style.color = '#ffaaaa';
+            entry.innerHTML = `<span style="opacity:0.6; font-size: 0.8em;">HAL:</span> ${text}`;
+        } else {
+            // System
+            entry.style.color = '#ffff00';
+            entry.style.fontFamily = 'monospace';
+            entry.textContent = `>> ${text}`;
+        }
+
+        this.ui.chat.appendChild(entry);
+        this.ui.chat.scrollTop = this.ui.chat.scrollHeight;
+    }
+}
+
+// Start
+document.addEventListener('DOMContentLoaded', () => {
+    window.hal = new HALComputer();
+});

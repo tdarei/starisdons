@@ -1,0 +1,36 @@
+{
+  "displayName": "Standard",
+  "fluxCapacitors": 0,
+  "fluxVents": 0,
+  "goalVariant": true,
+  "hullId": "station_domres_backbackright",
+  "hullMods": [],
+  "modules": [],
+  "permaMods": [],
+  "quality": 0,
+  "variantId": "station_domres_backbackright_variant",
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0001": "mark9"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0002": "heavyac"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0003": "railgun"
+      }
+    }
+  ],
+  "wings": []
+}

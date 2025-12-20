@@ -1,0 +1,194 @@
+; pool    --> name of mercenary pool
+; regions --> list of regions belonging to pool
+; unit    --> name of mercenary unit
+;         --> exp X                           --> experience level of mercenary unit
+;         --> cost X                          --> cost to recruit mercenary unit
+;         --> replenish X - X                 --> upper and lower bounds on pool replenishment rate
+;         --> max X                           --> maximum pool size for unit
+;         --> initial X                       --> initial pool size for unit
+;         --> {optional} start_year X         --> year that unit becomes available {0 indicates no set start year}
+;         --> {optional} end_year X           --> last year that unit will be available {0 indicates no set end year}
+;         --> {optional} religions { A B C }  --> list of faction religions unit is available for {no entries indicates available for all religions}
+;         --> {optional} crusading            --> {requires one religion to have been specifed} unit only available to crusading/jihad armies
+;         --> {optional} events { A B C}      --> unit only available after all specified events have occurred, event is a string corresponding to descr_events.txt
+
+;RATE_H replenish 0.03 - 0.15 Common Ships		avg 0.09
+;RATE_B replenish 0.02 - 0.10 Rare Ships			avg 0.06
+;RATE_X replenish 0.01 - 0.05 V Rare Ships		avg 0.03
+;RATE_Z replenish 0.04 - 0.20 V Common Ships		avg 0.12
+
+;RATE_F replenish 0.18 - 0.5  Pilgrims							avg 0.34
+;RATE_K replenish 0.36 - 1.0 Pilgrims							avg 0.68
+;RATE_Q replenish 0.24 - 0.66 Pilgrims							avg 0.45
+;RATE_AD replenish 0.12 - 0.33 Eastern Pilgrims					avg 0.225
+;RATE_G replenish 0.15 - 0.35 Crusader Sergeants and Knights		avg 0.25
+;RATE_N replenish 0.08 - 0.17 Crusader Sergeants					avg	0.125
+;RATE_R replenish 0.12 - 0.28 Crusader Knights					avg 0.2
+;RATE_AC replenish 0.03 - 0.07 Great Cross						avg 0.05
+;RATE_AF replenish 0.07 - 0.17 Unhorsed Knights					avg 0.12
+
+;RATE_E replenish 0.02 - 0.04 Ribault etc		avg 0.03
+;RATE_O replenish 0.04 - 0.08 Ribault, Rocket Launcher	avg 0.06
+;RATE_P replenish 0.03 - 0.06 Rocket Launcher, Monster Bombard avg 0.045
+
+;RATE_AG replenish 0.11 - 0.33 Very Common 0.22
+
+;RATE_M replenish 0.08 - 0.25 Common			avg 0.165
+;RATE_Y = RATE_M
+;RATE_AH = RATE_M
+
+;RATE_A replenish 0.06 - 0.18 Less Common		avg 0.12
+;RATE_D RATE_A
+;RATE_V RATE_A
+;RATE_W RATE_A
+;RATE_AB RATE_A
+
+;RATE_C replenish 0.04 - 0.13 Crossbowmen etc	avg 0.085
+;RATE_I RATE_C
+
+;RATE_AE replenish 0.06 - 0.10 North African Ghazis 0.09
+
+;RATE_U replenish 0.03 - 0.10 Swiss crossbow avg 0.065
+
+;RATE_S replenish 0.02 - 0.10 Knights			avg 0.06
+;RATE_AA RATE_S
+
+;RATE_T replenish 0.02 - 0.07 Free company 		avg 0.045
+;RATE_J RATE_T
+
+;RATE_L replenish 0.01 - 0.06 Knights			avg 0.035
+
+
+;pool Greece
+;	regions Isle_of_Rhodes Isle_of_Crete Constantinople_Province Southern_Cyprus Northern_Cyprus
+;	unit merc galley,			exp 0 cost 1040 replenish 0.02 - 0.10 max 1 initial 1
+;	unit Mercenary Frankish Knights		exp 0 cost 1080 replenish 0.01 - 0.06 max 1 initial 0 end_year 1300 religions { catholic orthodox }
+;	unit Catalans				exp 0 cost 980 replenish 0.04 - 0.13 max 2 initial 0 start_year 1300 end_year 1400
+;	unit Albanian Cavalry		exp 0 cost 900 replenish 0.04 - 0.13 max 2 initial 0 start_year 1468 religions { catholic orthodox }
+;	unit Slav Mercenaries		exp 0 cost 350 replenish 0.04 - 0.13 max 2 initial 1 end_year 1300
+;	unit Balkan Archers			exp 0 cost 290 replenish 0.08 - 0.25 max 4 initial 2
+;	unit Ghazis					exp 0 cost 490 replenish 0.18 - 0.5 max 6 initial 1 religions { islam } ;crusading
+;	unit Turkomans Mercs				exp 0 cost 740 replenish 0.02 - 0.10 max 2 initial 1 religions { islam orthodox }
+;	unit Mercenary Monster Bombard		exp 0 cost 1900 replenish 0.03 - 0.06 max 2 initial 0  start_year 1400 events { gunpowder_discovered }
+;unit Greek Flamethrower	exp 0 cost 1200 replenish 0.04 - 0.13 max 2 initial 1 religions { catholic orthodox }
+;unit Alamanoi	exp 0 cost 1000 replenish 0.06 - 0.18 max 3 initial 1 religions { catholic orthodox }
+
+	
+; 	unit Native Mercenaries			exp 0 cost 200 replenish 0.36 - 1.0 max 8 initial 4
+; 	unit Native Archers				exp 0 cost 250 replenish 0.36 - 1.0 max 8 initial 4
+; 	unit Native Warriors			exp 0 cost 280 replenish 0.36 - 1.0 max 8 initial 4
+
+; 	unit Tlaxcalan Mercenaries		exp 0 cost 370 replenish 0.36 - 1.0 max 4 initial 2
+; 	unit Tlaxcalan Archers			exp 0 cost 410 replenish 0.36 - 1.0 max 4 initial 2
+
+; 	unit Arrow Warriors				exp 0 cost 480 replenish 0.36 - 1.0 max 4 initial 2
+; 	unit Eagle Warriors				exp 0 cost 410 replenish 0.36 - 1.0 max 4 initial 2
+	
+; 	unit Jaguar Warriors			exp 0 cost 680 replenish 0.36 - 1.0 max 4 initial 2
+; 	unit Hornet Throwers			exp 0 cost 320 replenish 0.36 - 1.0 max 4 initial 2
+	
+; 	unit Guachichil Warriors		exp 0 cost 610 replenish 0.36 - 1.0 max 4 initial 2
+; 	unit Zacatecos Raiders			exp 0 cost 420 replenish 0.36 - 1.0 max 4 initial 2
+
+; 	unit Dog Soldiers				exp 0 cost 410 replenish 0.36 - 1.0 max 4 initial 2
+; 	unit Apachean Brave				exp 0 cost 360 replenish 0.36 - 1.0 max 4 initial 2
+
+	
+pool Mayan
+	regions Chichen_Itza_r Uxmal_r Canpech_r Chetumal_r Althun_Ha_r Tikal_r Yaxchilan_r Xicalango_r
+	unit Native Mercenaries			exp 0 cost 200 replenish 0.36 - 1.0 max 8 initial 4 religions { catholic }
+	unit Native Archers				exp 0 cost 250 replenish 0.36 - 1.0 max 8 initial 4 religions { catholic }
+	unit Native Warriors			exp 0 cost 280 replenish 0.36 - 1.0 max 8 initial 4 religions { catholic }
+	unit Jaguar Warriors			exp 0 cost 680 replenish 0.36 - 1.0 max 4 initial 2 religions { catholic } events { spain_allied_mayans }
+	unit Hornet Throwers			exp 0 cost 320 replenish 0.36 - 1.0 max 4 initial 2 religions { catholic } events { spain_allied_mayans }
+	unit Native Mercenaries			exp 0 cost 140 replenish 0.36 - 1.0 max 8 initial 4 religions { islam } crusading
+	unit Native Archers				exp 0 cost 125 replenish 0.36 - 1.0 max 8 initial 4 religions { islam } crusading
+	unit Native Warriors			exp 0 cost 135 replenish 0.36 - 1.0 max 8 initial 4 religions { islam } crusading
+
+pool Aztec
+	regions Tenochtitlan_r Huaxtepec_r Tula_r Toluca_r Danipaguache_r Mitla_r Tututepec_r Tixta_r Tuxpan_r Tehuantepec_r
+	unit Native Mercenaries			exp 0 cost 200 replenish 0.36 - 1.0 max 8 initial 4 religions { catholic }
+	unit Native Archers				exp 0 cost 250 replenish 0.36 - 1.0 max 8 initial 4 religions { catholic }
+	unit Native Warriors			exp 0 cost 280 replenish 0.36 - 1.0 max 8 initial 4 religions { catholic }
+	unit Arrow Warriors				exp 0 cost 480 replenish 0.36 - 1.0 max 4 initial 2 religions { catholic } events { spain_allied_aztecs }
+	unit Eagle Warriors				exp 0 cost 410 replenish 0.36 - 1.0 max 4 initial 2 religions { catholic } events { spain_allied_aztecs }
+	unit Native Mercenaries			exp 0 cost 140 replenish 0.36 - 1.0 max 8 initial 4 religions { islam } crusading
+	unit Native Archers				exp 0 cost 125 replenish 0.36 - 1.0 max 8 initial 4 religions { islam } crusading
+	unit Native Warriors			exp 0 cost 135 replenish 0.36 - 1.0 max 8 initial 4 religions { islam } crusading
+
+pool Tlaxcalan
+	regions VeraCruz_r Tlaxcala_r Cholula_r Tehuacan_r
+	unit Native Mercenaries			exp 0 cost 200 replenish 0.36 - 1.0 max 8 initial 4 religions { catholic }
+	unit Native Archers				exp 0 cost 250 replenish 0.36 - 1.0 max 8 initial 4 religions { catholic }
+	unit Native Warriors			exp 0 cost 280 replenish 0.36 - 1.0 max 8 initial 4 religions { catholic }
+	unit Tlaxcalan Mercenaries		exp 0 cost 370 replenish 0.36 - 1.0 max 4 initial 2 religions { catholic } events { spain_allied_tlaxcalans }
+	unit Tlaxcalan Archers			exp 0 cost 410 replenish 0.36 - 1.0 max 4 initial 2 religions { catholic } events { spain_allied_tlaxcalans }
+	unit Native Mercenaries			exp 0 cost 140 replenish 0.36 - 1.0 max 8 initial 4 religions { islam } crusading
+	unit Native Archers				exp 0 cost 125 replenish 0.36 - 1.0 max 8 initial 4 religions { islam } crusading
+	unit Native Warriors			exp 0 cost 135 replenish 0.36 - 1.0 max 8 initial 4 religions { islam } crusading
+
+pool Apache
+	regions Apache_r Comanche_r Coahulia_r Aguapalam_r Caddo_r Choctaw_r Alibamu_Region Chickasaw_Region Tongva_Region Navojoa_Region Pitic_r Cochimi_r
+	unit Native Mercenaries			exp 0 cost 200 replenish 0.36 - 1.0 max 8 initial 4 religions { catholic }
+	unit Native Archers				exp 0 cost 250 replenish 0.36 - 1.0 max 8 initial 4 religions { catholic }
+	unit Native Warriors			exp 0 cost 280 replenish 0.36 - 1.0 max 8 initial 4 religions { catholic }
+	unit Dog Soldiers				exp 0 cost 410 replenish 0.36 - 1.0 max 4 initial 2 religions { catholic } events { spain_allied_apachean }
+	unit Apachean Brave				exp 0 cost 360 replenish 0.36 - 1.0 max 4 initial 2 religions { catholic } events { spain_allied_apachean }
+	unit Native Mercenaries			exp 0 cost 140 replenish 0.36 - 1.0 max 8 initial 4 religions { islam } crusading
+	unit Native Archers				exp 0 cost 125 replenish 0.36 - 1.0 max 8 initial 4 religions { islam } crusading
+	unit Native Warriors			exp 0 cost 135 replenish 0.36 - 1.0 max 8 initial 4 religions { islam } crusading
+
+pool Tarascan
+	regions Apatzignan_r Zacapu_r Ocotlan_r Tecoman_r 
+	unit Native Mercenaries			exp 0 cost 200 replenish 0.36 - 1.0 max 8 initial 4 religions { catholic }
+	unit Native Archers				exp 0 cost 250 replenish 0.36 - 1.0 max 8 initial 4 religions { catholic }
+	unit Native Warriors			exp 0 cost 280 replenish 0.36 - 1.0 max 8 initial 4 religions { catholic }
+	unit Arrow Warriors				exp 0 cost 480 replenish 0.36 - 1.0 max 4 initial 2 religions { catholic } events { spain_allied_tarascans }
+	unit Eagle Warriors				exp 0 cost 410 replenish 0.36 - 1.0 max 4 initial 2 religions { catholic } events { spain_allied_tarascans }
+	unit Native Mercenaries			exp 0 cost 140 replenish 0.36 - 1.0 max 8 initial 4 religions { islam } crusading
+	unit Native Archers				exp 0 cost 125 replenish 0.36 - 1.0 max 8 initial 4 religions { islam } crusading
+	unit Native Warriors			exp 0 cost 135 replenish 0.36 - 1.0 max 8 initial 4 religions { islam } crusading
+
+pool Chichimeca
+	regions Zacatecas_r Colotan_r Cuahtemoc_r Culiacan_r Chihuahua_r Ahuacatlan_r 
+	unit Native Mercenaries			exp 0 cost 200 replenish 0.36 - 1.0 max 8 initial 4 religions { catholic }
+	unit Native Archers				exp 0 cost 250 replenish 0.36 - 1.0 max 8 initial 4 religions { catholic }
+	unit Native Warriors			exp 0 cost 280 replenish 0.36 - 1.0 max 8 initial 4 religions { catholic }
+	unit Guachichil Warriors		exp 0 cost 610 replenish 0.36 - 1.0 max 4 initial 2 religions { catholic } events { spain_allied_chichimeca }
+	unit Zacatecos Raiders			exp 0 cost 420 replenish 0.36 - 1.0 max 4 initial 2 religions { catholic } events { spain_allied_chichimeca }
+	unit Native Mercenaries			exp 0 cost 140 replenish 0.36 - 1.0 max 8 initial 4 religions { islam } crusading
+	unit Native Archers				exp 0 cost 125 replenish 0.36 - 1.0 max 8 initial 4 religions { islam } crusading
+	unit Native Warriors			exp 0 cost 135 replenish 0.36 - 1.0 max 8 initial 4 religions { islam } crusading
+
+	
+;;; Generic Mercenaries
+
+pool South_America
+	regions Tegucigalpa_r Trujillo_r
+	unit Native Mercenaries			exp 0 cost 200 replenish 0.36 - 1.0 max 8 initial 4 religions { catholic }
+	unit Native Archers				exp 0 cost 250 replenish 0.36 - 1.0 max 8 initial 4 religions { catholic }
+	unit Native Warriors			exp 0 cost 280 replenish 0.36 - 1.0 max 8 initial 4 religions { catholic }
+	unit Native Mercenaries			exp 0 cost 140 replenish 0.36 - 1.0 max 8 initial 4 religions { islam } crusading
+	unit Native Archers				exp 0 cost 125 replenish 0.36 - 1.0 max 8 initial 4 religions { islam } crusading
+	unit Native Warriors			exp 0 cost 135 replenish 0.36 - 1.0 max 8 initial 4 religions { islam } crusading
+
+pool Mexico
+	regions Tuxtla_r Coatzalcoalcos_r Potochan_r Quirigua_r Quezaltenango_r
+	unit Native Mercenaries			exp 0 cost 200 replenish 0.36 - 1.0 max 8 initial 4 religions { catholic }
+	unit Native Archers				exp 0 cost 250 replenish 0.36 - 1.0 max 8 initial 4 religions { catholic }
+	unit Native Warriors			exp 0 cost 280 replenish 0.36 - 1.0 max 8 initial 4 religions { catholic }
+	unit Native Mercenaries			exp 0 cost 140 replenish 0.36 - 1.0 max 8 initial 4 religions { islam } crusading
+	unit Native Archers				exp 0 cost 125 replenish 0.36 - 1.0 max 8 initial 4 religions { islam } crusading
+	unit Native Warriors			exp 0 cost 135 replenish 0.36 - 1.0 max 8 initial 4 religions { islam } crusading
+	
+pool Florida
+	regions Miccosoukee_r Calusa_r Tequesta_Region Yamacraws_Region
+	unit Native Mercenaries			exp 0 cost 200 replenish 0.36 - 1.0 max 8 initial 4 religions { catholic }
+	unit Native Archers				exp 0 cost 250 replenish 0.36 - 1.0 max 8 initial 4 religions { catholic }
+	unit Native Warriors			exp 0 cost 280 replenish 0.36 - 1.0 max 8 initial 4 religions { catholic }
+	unit Native Mercenaries			exp 0 cost 140 replenish 0.36 - 1.0 max 8 initial 4 religions { islam } crusading
+	unit Native Archers				exp 0 cost 125 replenish 0.36 - 1.0 max 8 initial 4 religions { islam } crusading
+	unit Native Warriors			exp 0 cost 135 replenish 0.36 - 1.0 max 8 initial 4 religions { islam } crusading
+
+pool Cuba
+	regions Cuba

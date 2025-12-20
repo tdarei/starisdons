@@ -1,0 +1,71 @@
+{
+  "variantId": "cockroach_mining",
+  "hullId": "cockroach",
+  "displayName": "Miner",
+  "goalVariant": true,
+  "fluxCapacitors": 6,
+  "fluxVents": 20,
+  "quality": 0,
+  "permaMods": [
+    "comp_structure",
+    "fragile_subsystems",
+    "glitched_sensors"
+  ],
+  "hullMods": [
+    "junk3",
+    "unstable_injector",
+    "surveying_equipment",
+    "auxiliary_fuel_tanks",
+    "expanded_cargo_holds"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0001": "mining_gen",
+        "WS0004": "mining_gen"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0016": "hammer",
+        "WS0017": "hammer"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0002": "launcher_cannon",
+        "WS0005": "miningblaster",
+        "WS0006": "miningblaster"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0007": "retro_mb",
+        "WS0008": "retro_mb"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0003": "rock_launcher",
+        "WS0010": "retro_ml",
+        "WS0011": "rock_launcher",
+        "WS0012": "rock_launcher",
+        "WS0013": "rock_launcher",
+        "WS0014": "retro_ml",
+        "WS0015": "retro_ml"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

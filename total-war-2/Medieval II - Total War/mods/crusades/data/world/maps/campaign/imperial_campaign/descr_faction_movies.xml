@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<faction_movies>
+
+	<faction>
+		<name>jerusalem</name>
+		<intro>faction/crusades_faction_intro.bik</intro>
+		<victory>faction/minor_win.bik</victory>
+		<defeat>faction/minor_lose.bik</defeat>
+		<death>faction/minor_lose.bik</death>
+	</faction>
+
+	<faction>
+		<name>antioch</name>
+		<intro>faction/crusades_faction_intro.bik</intro>
+		<victory>faction/minor_win.bik</victory>
+		<defeat>faction/minor_lose.bik</defeat>
+		<death>faction/minor_lose.bik</death>
+	</faction>
+
+	<faction>
+		<name>byzantium</name>
+		<intro>faction/crusades_faction_intro.bik</intro>
+		<victory>faction/minor_win.bik</victory>
+		<defeat>faction/minor_lose.bik</defeat>
+		<death>faction/minor_lose.bik</death>
+	</faction>
+
+	<faction>
+		<name>turks</name>
+		<intro>faction/crusades_faction_intro.bik</intro>
+		<victory>faction/Crusades_Muslim_Outro_Win.bik</victory>
+		<defeat>faction/Crusades_Muslim_Outro_Loss.bik</defeat>
+		<death>faction/Crusades_Muslim_Outro_Loss.bik</death>
+	</faction>
+
+	<faction>
+		<name>egypt</name>
+		<intro>faction/crusades_faction_intro.bik</intro>
+		<victory>faction/Crusades_Muslim_Outro_Win.bik</victory>
+		<defeat>faction/Crusades_Muslim_Outro_Loss.bik</defeat>
+		<death>faction/Crusades_Muslim_Outro_Loss.bik</death>
+	</faction>
+
+	<faction>
+		<name>slave</name>
+		<intro>faction/crusades_faction_intro.bik</intro>
+		<victory>faction/minor_win.bik</victory>
+		<defeat>faction/minor_lose.bik</defeat>
+		<death>faction/minor_lose.bik</death>
+	</faction>
+</faction_movies>

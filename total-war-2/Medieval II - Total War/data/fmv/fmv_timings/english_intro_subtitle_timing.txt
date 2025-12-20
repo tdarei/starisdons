@@ -1,0 +1,12 @@
+<SYNC Start=6400>
+<P Class=ENUSCC>English_Intro_1
+<SYNC Stop=27200>
+<SYNC Start=36400>
+<P Class=ENUSCC>English_Intro_4
+<SYNC Stop=47700>
+<SYNC Start=48700>
+<P Class=ENUSCC>English_Intro_5
+<SYNC Stop=56200>
+<SYNC Start=75700>
+<P Class=ENUSCC>English_Intro_9
+<SYNC Stop=85300>

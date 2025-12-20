@@ -1,0 +1,68 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; This file should be in the same folder as descr_regions.txt 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;; M2 faction list ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; NORTH
+; england normans denmark scotland hre saxons france
+
+; EAST
+; hungary russia poland
+
+; SOUTH
+; byzantium portugal spain milan venice sicily papal_states slave
+
+; ME
+; turks moors egypt mongols timurids
+
+; MESO
+; aztecs
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+
+
+music_type southern_european
+	
+regions	Cuba VeraCruz_r
+		
+	factions spain byzantium portugal milan venice sicily papal_states
+	
+music_type nativeindian
+
+	regions Florida_r Miccosoukee_r Choctaw_r Caddo_r Comanche_r Coahulia_r Apache_r Chihuahua_r Pitic_r Culiacan_r 
+	regions Cochimi_r Aguapalam_r Colotan_r Zacatecas_r Cuahtemoc_r Calusa_r Tongva_Region Chickasaw_Region Alibamu_Region Yamacraws_Region
+	regions Navojoa_Region Tequesta_Region 
+
+	factions apachean 
+	
+music_type mesoamerican
+
+	regions Ahuacatlan_r Ocotlan_r Tuxpan_r Chichen_Itza_r Tula_r Uxmal_r Zacapu_r Canpech_r Tecoman_r
+	regions Apatzignan_r Chetumal_r Xicalango_r Toluca_r Tlaxcala_r Tenochtitlan_r Potochan_r
+	regions Cholua_r Cholula_r Tehuacan_r Tixta_r Huaxtepec_r Tikal_r Coatzacoalos_r Althun_Ha_r Yaxchilan_r Danipaguache_r
+	regions Mitla_r Tchuantepec_r Tuxtla_r Trujillo_r Tututepec_r Tegucigalpa_r Quirigua_r Quezaltenango_r Coatzalcoalos_r
+	regions Coatzalcoalcos_r Tehuantepec_r 
+
+
+
+
+	factions aztecs mayans chichimeca tlaxcalans tarascans
+	
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;		
+;; added so Custom Battles will work
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+music_type northern_european
+
+	factions england normans denmark scotland hre saxons france
+	
+music_type eastern_european
+
+	factions hungary russia poland
+
+music_type middle_eastern
+
+	factions turks egypt slave moors mongols timurids

@@ -1,0 +1,6 @@
+<SYNC Start=14000>
+<P Class=ENUSCC>Turkey_Intro_15
+<SYNC Stop=25800>
+<SYNC Start=56700>
+<P Class=ENUSCC>Turkey_Intro_16
+<SYNC Stop=66000>

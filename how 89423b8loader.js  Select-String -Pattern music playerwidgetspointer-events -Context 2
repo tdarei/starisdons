@@ -1,0 +1,96 @@
+[1mdiff --git a/loader.js b/loader.js[m
+[1mindex 035152d..b4c10ce 100644[m
+[1m--- a/loader.js[m
+[1m+++ b/loader.js[m
+[36m@@ -11,6 +11,7 @@[m [mclass SpaceLoader {[m
+         this.loadingTextInterval = null;[m
+         this.animationFrameId = null;[m
+         this.maxTimeout = null;[m
+[32m+[m[32m        this.skipTimeout = null;[m
+         this.init();[m
+     }[m
+ [m
+[36m@@ -103,6 +104,9 @@[m [mclass SpaceLoader {[m
+             [m
+             <!-- Welcome Message -->[m
+             <div class="loader-welcome">Initializing Cosmic Experience...</div>[m
+[32m+[m
+[32m+[m[32m            <!-- Skip Button (Hidden initially) -->[m
+[32m+[m[32m            <button id="skip-loading-btn" class="skip-loading-btn" style="display: none;">Skip Loading</button>[m
+         `;[m
+ [m
+         try {[m
+[36m@@ -122,6 +126,26 @@[m [mclass SpaceLoader {[m
+         this.progressFill = this.loaderElement ? this.loaderElement.querySelector('.loader-progress-fill') : null;[m
+         this.loadingText = this.loaderElement ? this.loaderElement.querySelector('.loader-text') : null;[m
+ [m
+[32m+[m[32m        // Setup Skip Button[m
+[32m+[m[32m        const skipBtn = this.loaderElement.querySelector('#skip-loading-btn');[m
+[32m+[m[32m        if (skipBtn) {[m
+[32m+[m[32m            skipBtn.addEventListener('click', (e) => {[m
+[32m+[m[32m                e.preventDefault();[m
+[32m+[m[32m                e.stopPropagation();[m
+[32m+[m[32m                console.log('Skip button clicked');[m
+[32m+[m[32m                this.complete();[m
+[32m+[m[32m            });[m
+[32m+[m
+[32m+[m[32m            // Show skip button after 3 seconds[m
+[32m+[m[32m            this.skipTimeout = setTimeout(() => {[m
+[32m+[m[32m                if (!this.completed && skipBtn) {[m
+[32m+[m[32m                    skipBtn.style.display = 'block';[m
+[32m+[m[32m                    skipBtn.style.opacity = '0';[m
+[32m+[m[32m                    setTimeout(() => skipBtn.style.opacity = '1', 50);[m
+[32m+[m[32m                }[m
+[32m+[m[32m            }, 3000);[m
+[32m+[m[32m        }[m
+[32m+[m
+         // Add loading dots animation[m
+         this.animateLoadingText();[m
+     }[m
+[36m@@ -190,6 +214,12 @@[m [mclass SpaceLoader {[m
+             this.maxTimeout = null;[m
+         }[m
+ [m
+[32m+[m[32m        // Clear skip timeout[m
+[32m+[m[32m        if (this.skipTimeout) {[m
+[32m+[m[32m            clearTimeout(this.skipTimeout);[m
+[32m+[m[32m            this.skipTimeout = null;[m
+[32m+[m[32m        }[m
+[32m+[m
+         // Cancel animation frame if exists[m
+         if (this.animationFrameId) {[m
+             cancelAnimationFrame(this.animationFrameId);[m
+[36m@@ -543,33 +573,6 @@[m [mclass SpaceLoader {[m
+             const interactiveElements = document.querySelectorAll('a, button, input, select, textarea, [onclick], [role="button"]');[m
+             interactiveElements.forEach(el => {[m
+                 el.style.pointerEvents = 'auto';[m
+[31m-                el.style.opacity = '1';[m
+[31m-                el.style.visibility = 'visible';[m
+[31m-            });[m
+[31m-[m
+[31m-            // Ensure music player is visible and clickable[m
+[31m-            const musicPlayer = document.getElementById('cosmic-music-player');[m
+[31m-            if (musicPlayer) {[m
+[31m-                musicPlayer.style.cssText = `[m
+[31m-                    opacity: 1 !important;[m
+[31m-                    visibility: visible !important;[m
+[31m-                    display: block !important;[m
+[31m-                    pointer-events: auto !important;[m
+[31m-                    z-index: 1000 !important;[m
+[31m-                `;[m
+[31m-            }[m
+[31m-[m
+[31m-            // Ensure all widgets are visible and clickable[m
+[31m-            const widgets = document.querySelectorAll([m
+[31m-                '.widget, .dashboard-widget, #analytics-container, #customizable-dashboard-container, [class*="widget"]'[m
+[31m-            );[m
+[31m-            widgets.forEach(widget => {[m
+[31m-                widget.style.cssText = `[m
+[31m-                    opacity: 1 !important;[m
+[31m-                    visibility: visible !important;[m
+[31m-                    display: block !important;[m
+[31m-                    pointer-events: auto !important;[m
+[31m-                `;[m
+             });[m
+ [m
+             // Trigger main page animations[m

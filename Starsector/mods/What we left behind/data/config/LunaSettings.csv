@@ -1,0 +1,37 @@
+fieldID,fieldName,fieldType,defaultValue,secondaryValue,fieldDescription,minValue,maxValue,tab
+MPC_generalHeader,General Header,Header,General Options,,,,,General
+MPC_showErrorsInGame,Show Errors,Boolean,true,,"Whenever a custom error occurs, you will be notified by some text.",,,General
+,,,,,,,,Conditions
+MPC_conditionToggleHeader,Condition Toggles,Header,Condition Toggles,,,,,Conditions
+MPC_enableDefenseSatellites,Enable Defense Satellites,Boolean,true,,"If false, removes all instances of defense satellites from the sector.",,,Conditions
+,,,,,,,,Conditions
+MPC_satelliteConfigHeader,Satellite Config,Header,Satellite Config,,,,,Conditions
+MPC_preventSatelliteTurning,Prevent in-combat turning,Boolean,true,,Satellites will not turn whatsoever in combat. May theoretically improve combat performance if disabled.,,,Conditions
+MPC_discoverSatellitesInBulk,Discover satellites in bulk,Boolean,false,,"If true, apon discovering a satellite in orbit of an entity, the entire ring will be discovered.",,,Conditions
+MPC_satelliteInterferenceDistanceBase,Interference distance base,Double,90.0,,"The higher, the further away satellites will interfere in battles from.",,,Conditions
+MPC_satelliteInterferenceDistanceMult,Interference distance mult,Double,1.0,,"The higher, the further away satellites will interfere in battles from. Applied after base.",,,Conditions
+MPC_maxSatelliteFpBonus,Max fleet FP bonus,Int,0,,"The higher, the more FP a satellite fleet can spawn with.",,,Conditions
+MPC_maxSatelliteFpBonusMult,Max fleet FP bonus mult,Double,0.5,,"The higher, the more FP a satellite fleet can spawn with. Applied after base.",,,Conditions
+MPC_satellitesAttackFactionIfToff,Attack same-faction if transponder off,Boolean,false,,"If true, satellites will block fleets of their own faction if their transponder is off (excluding things like smugglers)",,,Conditions
+,,,,,,,,Conditions
+MPC_overgrownNanoforgeHeader,Nanoforge Config,Header,Nanoforge Config,,,,,Conditions
+MPC_maxStructuresForNanoforge,Disabled structure threshold,Int,12,,"If a market's structure count exceeds this number, all positive effects of a overgrown nanoforge will be disabled. Reccommended not to change - this is a balance measure.",,,Conditions
+MPC_nanoforgeIsIndustry,Core is industry,Boolean,false,,,,,Conditions
+MPC_nanoforgeBudgetMultMin,Budget minimum mult,Double,0.8,,"The higher the budget, the more intense effects are, both positive and negative.",,,Conditions
+MPC_nanoforgeBudgetMultMax,Budget maximum mult,Double,1.2,,,,,Conditions
+MPC_nanoforgeMinTimeBetweenSpreads,Min time between spreading attempts (Days),Int,30,,,,,Conditions
+MPC_nanoforgeMaxTimeBetweenSpreads,Max time between spreading attempts (Days),Int,90,,,,,Conditions
+MPC_condenseOvergrownNanoforgeIntel,Puts all overgrown nanoforge into one intel tab,Boolean,false,,,,,Conditions
+MPC_nanoforgeSpeedMult,Manipulation speed mult,Double,0.6,,Controls how powerful all the overgrown nanoforge event factors are (higher = faster spread and countermeasures),,,Conditions
+,,,,,,,,
+MPC_derelictEscortHeader,Derelict Escort Config,Header,Derelict Escort Config,,,,,Conditions
+MPC_derelictEscortSimulateFleets,Force simulation of escorted fleets,Boolean,true,,"If true, escorted fleets will be forcefully spawned (contrary to usual behavior where they are despawned if you are far away to save performance). Disabling will improve performance, but will make escorts return home if the fleet gets too far away from the player.",,,Conditions
+MPC_derelictEscortSpawnOnPatrols,Spawn on patrols,Boolean,false,,"If true, patrols can have escorts spawn on them. Disabling will increase performance if the above is enabled.",,,Conditions
+,,,,,,,,
+MPC_nexBarrageAbilityHeader,Satellite barrage settings,Header,Satellite barrage settings,,,,,Nexerelin
+MPC_satelliteBarrageDamage,Satellite barrage base damage,Double,2.0,,"While satellite barrage is active, this damage is distributed across all enemy units on the target industry every turn.",0.0,20.0,Nexerelin
+MPC_satelliteBarrageDuration,Satellite barrage duration (In turns),Int,3,,Ensure the ability entry in groundBattleDefs.json has its cooldown match or exceed this value.,0,50,Nexerelin
+MPC_satelliteBarrageDisruptTime,Satellite barrage base disruption time (Days),Int,9,,"While satellite barrage is active, the target industry is disrupted this much per turn (even if held by friendlies).",0,365,Nexerelin
+,,,,,,,,
+MPC_disableMagnetar,Disable magnetar,Boolean,false,,"If enabled, the magnetar system will not generate. Only affects generation.",,,Exploration
+MPC_magnetarDropOmegaWeapons,Drop omega weapons from battle in magnetar system,Boolean,false,,Reccommended to be set to false - omega weapon availability is intentionally limited.,,,Exploration

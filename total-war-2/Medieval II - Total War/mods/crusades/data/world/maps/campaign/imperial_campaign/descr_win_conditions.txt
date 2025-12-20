@@ -1,0 +1,57 @@
+egypt
+hold_regions Cairo 30 Constantinople 10 Jerusalem 10 Krak_de_Chevaliers 10 Acre 10
+take_regions 25
+outlive jerusalem
+short_campaign hold_regions
+take_regions 15
+outlive jerusalem
+
+turks
+hold_regions Baghdad 30 Antioch 10 Constantinople 10 Krak_de_Chevaliers 10 Jerusalem 10
+take_regions 25
+outlive antioch
+short_campaign hold_regions
+take_regions 15
+outlive antioch
+
+antioch
+hold_regions Krak_de_Chevaliers 30 Antioch 10 Constantinople 10 Baghdad 10 Edessa 10
+take_regions 25
+outlive turks
+short_campaign hold_regions
+take_regions 15
+outlive turks
+
+jerusalem
+hold_regions Jerusalem 30 Baghdad 10 Limassol 10 Cairo 10 Tripoli 10
+take_regions 25
+outlive egypt
+short_campaign hold_regions
+take_regions 15
+outlive egypt
+
+byzantium
+hold_regions Constantinople 30 Ankara 10 Baghdad 10 Antioch 10 Alexandria 10
+take_regions 25
+outlive turks
+short_campaign hold_regions
+take_regions 15
+outlive turks
+
+slave
+hold_regions Constantinople Jerusalem Cairo
+take_regions 60
+short_campaign hold_regions
+take_regions 60
+
+venice
+hold_regions Constantinople Jerusalem Cairo
+take_regions 40
+short_campaign hold_regions
+take_regions 40
+
+mongols
+hold_regions Constantinople Jerusalem Cairo
+take_regions 40
+short_campaign hold_regions
+take_regions 40

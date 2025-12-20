@@ -1,0 +1,153 @@
+{
+  "common": {
+    "home": "Home",
+    "database": "Database",
+    "games": "Games",
+    "shop": "Shop",
+    "about": "About",
+    "blog": "Blog",
+    "contact": "Contact",
+    "login": "Login",
+    "logout": "Logout",
+    "register": "Register",
+    "search": "Search",
+    "filter": "Filter",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "close": "Close",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous"
+  },
+  "home": {
+    "title": "Adriano To The Star",
+    "subtitle": "Interstellar Travel Agency",
+    "sponsored": "SPONSORED BY ELON MUSK AND DONALD TRUMP",
+    "releasingSoon": "RELEASING SOON*",
+    "releasingNote": "*The cryptographic keys that I will work on and calculate from the chosen object disposition from the database have been scheduled for release later in Q1 2025.",
+    "about": "ABOUT",
+    "mission": "Our Mission",
+    "missionText": "ADRIANO TO THE STAR provides a revolutionary opportunity for individuals to own celestial bodies within the Andromeda galaxy. Our platform, inspired by the wonders of the cosmos, enables the buying and selling of licenses for stars, planets, and large Kepler objects. We aim to redefine the space industry by offering a unique and personalized experience for all space enthusiasts.",
+    "learnMore": "Learn More",
+    "gallery": "GALLERY",
+    "follow": "FOLLOW US"
+  },
+  "database": {
+    "title": "EXOPLANET DATABASE",
+    "subtitle": "Explore 9,564+ Celestial Bodies from the Kepler Archive",
+    "searchPlaceholder": "Search planets...",
+    "filterBy": "Filter by",
+    "planetType": "Planet Type",
+    "discoveryMethod": "Discovery Method",
+    "status": "Status",
+    "claimed": "Claimed",
+    "available": "Available",
+    "starMaps": {
+      "title": "🌟 Interactive Star Maps",
+      "description": "Explore the cosmos with an interactive star map. Click on stars to learn more."
+    },
+    "claimPlanet": "Claim Planet",
+    "alreadyClaimed": "Already Claimed",
+    "planetDetails": "Planet Details",
+    "discoveryYear": "Discovery Year",
+    "distance": "Distance",
+    "temperature": "Temperature",
+    "aboutDatabase": "About the Database",
+    "dataSource": "Data Source",
+    "nasaExoplanetArchive": "NASA Exoplanet Archive API"
+  },
+  "stellarAI": {
+    "title": "STELLAR AI",
+    "subtitle": "Your Intelligent Cosmic Companion",
+    "chatHistory": "Chat History",
+    "newChat": "New Chat",
+    "clearChat": "Clear Chat",
+    "exportChat": "Export Chat",
+    "selectModel": "Select AI Model",
+    "askAnything": "Ask Stellar AI anything...",
+    "send": "Send",
+    "welcome": "Welcome to Stellar AI",
+    "welcomeText": "Your intelligent cosmic companion powered by advanced AI",
+    "features": {
+      "conversations": "Natural Conversations",
+      "imageAnalysis": "Image Analysis",
+      "knowledgeBase": "Knowledge Base",
+      "saveHistory": "Save History"
+    }
+  },
+  "marketplace": {
+    "title": "PLANET MARKETPLACE",
+    "subtitle": "Buy, Sell, and Trade Exoplanet Claims",
+    "buy": "Buy",
+    "sell": "Sell",
+    "trade": "Trade",
+    "price": "Price",
+    "seller": "Seller",
+    "buyer": "Buyer",
+    "createListing": "Create Listing",
+    "myListings": "My Listings"
+  },
+  "messaging": {
+    "title": "DIRECT MESSAGES",
+    "subtitle": "Private conversations with other members",
+    "loginRequired": "Login Required",
+    "loginPrompt": "Please log in to send and receive direct messages.",
+    "conversations": "Conversations",
+    "newMessage": "New Message",
+    "selectConversation": "Select a conversation",
+    "selectConversationText": "Choose a conversation from the sidebar or start a new one",
+    "typeMessage": "Type a message...",
+    "send": "Send"
+  },
+  "badges": {
+    "title": "BADGES & ACHIEVEMENTS",
+    "subtitle": "Unlock achievements and showcase your cosmic journey",
+    "reputation": "Reputation",
+    "points": "Points",
+    "level": "Level",
+    "unlocked": "Unlocked",
+    "locked": "Locked"
+  },
+  "analytics": {
+    "title": "ANALYTICS DASHBOARD",
+    "subtitle": "Track your cosmic journey and platform statistics",
+    "totalClaims": "Total Claims",
+    "totalUsers": "Total Users",
+    "totalPlanets": "Total Planets",
+    "recentActivity": "Recent Activity"
+  },
+  "newsletter": {
+    "title": "NEWSLETTER",
+    "subtitle": "Stay updated with the latest cosmic news and features",
+    "subscribe": "Subscribe",
+    "email": "Email Address",
+    "subscribeButton": "Subscribe to Newsletter",
+    "unsubscribe": "Unsubscribe",
+    "subscribed": "Subscribed",
+    "subscriptionSuccess": "Successfully subscribed to newsletter!"
+  },
+  "calendar": {
+    "title": "SPACE EVENTS CALENDAR",
+    "subtitle": "Track launches, discoveries, and cosmic events",
+    "upcoming": "Upcoming",
+    "past": "Past",
+    "today": "Today",
+    "thisWeek": "This Week",
+    "thisMonth": "This Month"
+  },
+  "education": {
+    "title": "SPACE EDUCATION",
+    "subtitle": "Learn about exoplanets, astronomy, and space exploration",
+    "courses": "Courses",
+    "tutorials": "Tutorials",
+    "simulations": "Simulations",
+    "games": "Games"
+  }
+}
+

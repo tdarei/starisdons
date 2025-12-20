@@ -1,0 +1,173 @@
+{
+  "hullName": "Altor Class Replenishment Ship",
+  "hullId": "sw_altor",
+  "hullSize": "CAPITAL_SHIP",
+  "spriteName": "graphics/ships/empire/sw_altor.png",
+  "style": "SW_IMPERIAL",
+  "height": 1100,
+  "width": 299,
+  "center": [135, 550],
+  "collisionRadius": 554.5,
+  "shieldCenter": [0, -0],
+  "shieldRadius": 557.5,
+  "viewOffset": 0,
+  "builtInMods": [
+    "blast_doors",
+    "repair_gantry",
+    "sw_deflector_shield"
+  ],
+  "weaponSlots": [
+    {
+      "id": "WS0001",
+      "size": "MEDIUM",
+      "type": "ENERGY",
+      "mount": "HIDDEN",
+      "arc": 180,
+      "angle": 0,
+      "locations": [523, 93.5]
+    },
+    {
+      "id": "WS0002",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "HIDDEN",
+      "arc": 180,
+      "angle": 90,
+      "locations": [359.5, 110]
+    },
+    {
+      "id": "WS0003",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "HIDDEN",
+      "arc": 180,
+      "angle": 270,
+      "locations": [359.5, -110]
+    },
+    {
+      "id": "WS0004",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "HIDDEN",
+      "arc": 180,
+      "angle": 90,
+      "locations": [220.5, 110]
+    },
+    {
+      "id": "WS0005",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "HIDDEN",
+      "arc": 180,
+      "angle": -90,
+      "locations": [220.5, -110]
+    },
+    {
+      "id": "WS0006",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "HIDDEN",
+      "arc": 180,
+      "angle": 90,
+      "locations": [9, 110]
+    },
+    {
+      "id": "WS0007",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "HIDDEN",
+      "arc": 180,
+      "angle": -90,
+      "locations": [9, -110]
+    },
+    {
+      "id": "WS0008",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "HIDDEN",
+      "arc": 180,
+      "angle": 90,
+      "locations": [-198, 110]
+    },
+    {
+      "id": "WS0009",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "HIDDEN",
+      "arc": 180,
+      "angle": -90,
+      "locations": [-198, -110]
+    },
+    {
+      "id": "WS0010",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "HIDDEN",
+      "arc": 180,
+      "angle": 90,
+      "locations": [-443.5, 105]
+    },
+    {
+      "id": "WS0011",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "HIDDEN",
+      "arc": 180,
+      "angle": -90,
+      "locations": [-443.5, -105]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-548, 70],
+      "length": 10,
+      "width": 30,
+      "angle": 180,
+      "contrailSize": 10,
+      "style": "HIGH_TECH"
+    },
+    {
+      "location": [-548, 35],
+      "length": 10,
+      "width": 30,
+      "angle": 180,
+      "contrailSize": 10,
+      "style": "HIGH_TECH"
+    },
+    {
+      "location": [-548, 2],
+      "length": 10,
+      "width": 30,
+      "angle": 180,
+      "contrailSize": 10,
+      "style": "HIGH_TECH"
+    },
+    {
+      "location": [-548, -31],
+      "length": 10,
+      "width": 30,
+      "angle": 180,
+      "contrailSize": 10,
+      "style": "HIGH_TECH"
+    },
+    {
+      "location": [-548, -66],
+      "length": 10,
+      "width": 30,
+      "angle": 180,
+      "contrailSize": 10,
+      "style": "HIGH_TECH"
+    }
+  ],
+  "bounds": [
+    464, -115.5,
+    -468, -118.5,
+    -544, -103.5,
+    -544, 101.5,
+    -468, 116.5,
+    464, 113.5,
+    522.5, 111.5,
+    522.5, 68,
+    517.5, -66.5
+  ]
+}

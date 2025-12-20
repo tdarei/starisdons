@@ -1,0 +1,12 @@
+<SYNC Start=7100>
+<P Class=ENUSCC>Teutonic_Kingdoms_Game_Intro_1
+<SYNC Stop=11100>
+<SYNC Start=11800>
+<P Class=ENUSCC>Teutonic_Kingdoms_Game_Intro_2
+<SYNC Stop=17000>
+<SYNC Start=17500>
+<P Class=ENUSCC>Teutonic_Kingdoms_Game_Intro_3
+<SYNC Stop=21600>
+<SYNC Start=21500>
+<P Class=ENUSCC>Teutonic_Kingdoms_Game_Intro_4
+<SYNC Stop=26600>

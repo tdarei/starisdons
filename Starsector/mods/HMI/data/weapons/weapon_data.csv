@@ -1,0 +1,79 @@
+name,id,tier,rarity,base value,range,damage/second,damage/shot,emp,impact,turn rate,OPs,ammo,ammo/sec,reload size,type,energy/shot,energy/second,chargeup,chargedown,burst size,burst delay,min spread,max spread,spread/shot,spread decay/sec,beam speed,proj speed,launch speed,flight time,proj hitpoints,autofireAccBonus,extraArcForAI,hints,tags,groupTag,tech/manufacturer,for weapon tooltip>>,primaryRoleStr,speedStr,trackingStr,turnRateStr,accuracyStr,customPrimary,customPrimaryHL,customAncillary,customAncillaryHL,noDPSInTooltip,number
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Fraction Laser,remora_emp_laser,1,,200,600,10,,85,0,100,4,,,,ENERGY,,35,0,0.25,,,,,,,2400,,,,,,,SYSTEM,"beam7, SR",,High Tech,,Suppression,,,,,,,,,,17.11
+Light Autocannon (Shepherd),lightag_shepherd,1,,125,770,,50,,3,20,4,,,,KINETIC,50,,0,0.5,1,,0,20,3,9,,800,,,20,,,SYSTEM,kinetic6,,Low Tech,,Anti Shield,,,,,,,,,,2
+Gauze Accelerator,lightthump_sifter,0,,125,700,,100,,10,20,4,,,,FRAGMENTATION,25,,0,1.5,1,,0,20,3,9,,800,,,20,,,SYSTEM,kinetic6,,Explorarium,,Suppression,,,,,,,,,,2.011
+Ion cannon (Long Range),hmi_ioncannon_lr,1,,750,900,,25,400,0,40,6,,,,ENERGY,30,,0.2,0,,,,,,,,1000,,,,,,SYSTEM,energy8,,Remnant,,Suppression,,,,,"Hits on hull or armor have a %s chance to arc to weapons and engines, dealing extra damage equal to the original hit.",25%,,,,19
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+HK-101 Rifle,sml_fragrifle,1,0.25,110,900,,40,80,3,90,2,,,,FRAGMENTATION,40,,0,2,1,,0,10,1,10,,2000,,,5,,,,"kinetic0, hmi_bp",,HMI Techmined,,Range Finding,,,,,,,,,,14.66
+Williamson Shotgun,sml_shotgrun,1,0.75,315,620,,12,,3,10,5,,,,KINETIC,12,,0,0.6,1,0.1,2,10,1,5,,850,,,10,,,,"kinetic2, hmi_bp, merc",,HMI Techmined,,Anti Shield,,,,,,,,,,15.66
+Retrofitted Mining Laser,retro_ml,1,,125,550,,75,,0,30,3,,,,ENERGY,55,,0,0.75,1,,1,10,2,2,,850,,,,,,ANTI_FTR,"energy0, hmi_bp",,HMI Techmined,,Anti-Fighter,,,,,,,,,,16.66
+McGuyver Mining Laser,mcg_ml,1,0.75,500,375,75,,,0,30,3,,,,HIGH_EXPLOSIVE,,75,0.1,0.1,,,,,,,2400,,,,,,,"STRIKE,USE_VS_FRIGATES","beam2, hmi_bp",,HMI Techmined,,Anti Armour,,,,,,,,,,15.66
+Chimobuko Burst Laser,burst_ml,1,0.25,250,450,450,,,0,30,4,,,,ENERGY,,450,0.1,0.1,0.2,0.7,,,,,10000,,,,,,,"PD,ANTI_FTR","pd0, beam0, hmi_bp",,HMI Techmined,,Point Defense,,,,,,,,,,17.66
+Maglev Mining Generator,mining_gen,1,0.75,1200,400,,1000,500,0,30,9,2,,,KINETIC,1000,,0.25,10,,,0,0,0,0,,900,,,100,,,"STRIKE, USE_VS_FRIGATES, GROUP_ALTERNATING","strike2, hmi_bp",SR_strike_only,HMI Techmined,,Strike,,,,,,,,,,18.66
+Xi Liu Small Mining Collector,rock_launcher,1,0.75,250,400,,1,,0,50,2,,,,FRAGMENTATION,15,,0.2,0.2,1,,5,10,2,2,,900,,,10,,,PD,"pd0, hmi_bp",,HMI Techmined,,Point Defense,,,,,Projectiles will randomly cause between 25 and 75 Fragmentation damage on hit.,,,,TRUE,18.65
+Kane Torpedo Rack,kane_missile,1,0.75,300,1300,,1500,,30,10,3,2,,,HIGH_EXPLOSIVE,0,,0,1,1,,0,0,0,0,,750,40,4,350,,,STRIKE,"strike2, rocket4, hmi_bp",,HMI Techmined,,Torpedo,Fast,Poor,,,,,,,TRUE,9.8
+Seth Drone Fabricator,seth_sml,0,,500,2500,,85,,50,10,5,,,,KINETIC,0,,0,4,1,,0,0,0,0,,175,65,12,350,,,"DO_NOT_AIM, CONSERVE_1","utility2, missile2, hmi_bp",,HMI Techmined,,Pressure,Slow,Good,,,,Projectiles will burst into kinetic fragments near enemy ships.,,,TRUE,16
+Mbeke Rocket Turret,mbeke_sml,0,0.75,200,1500,,75,,5,30,3,90,,,HIGH_EXPLOSIVE,0,,0,0.8,1,,0,0,0,0,,500,95,3.75,50,,,,"rocket4, strike0, hmi_bp",,HMI Techmined,,Anti Armour,Fast,None,,,,,,,TRUE,12.3
+Mbeke Rocket Turret (Fighter),mbeke_fighter,0,0.75,200,1500,,75,,5,30,3,15,,,HIGH_EXPLOSIVE,0,,0,0.8,1,,0,0,0,0,,500,105,3.5,50,,,SYSTEM,"rocket4, strike0",,HMI Techmined,,Anti Armour,Fast,None,,,,,,,TRUE,12.3
+,,,, ,,,,,,,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Ragtime Mortar,hmi_ragtime,0,0.75,600,700,,110,,12,30,8,,,,HIGH_EXPLOSIVE,100,,0,0.4,1,,0,20,4,4,,665,,,30,,,,"he11, hmi_bp, merc",,HMI Techmined,,Anti Armor,,,,,,,,,,3.9
+Andersson MG,med_frag_mg,1,0.75,700,1000,,160,,1,25,9,,,,FRAGMENTATION,45,,0,0.4,1,,0,7,1,20,,825,,,30,,,,"he2, hmi_bp, merc",,HMI Techmined,,Suppression,,,,,,,,,,3.8
+Clyde Rapidfire Cannon,clyde_mg,1,0.75,1100,900,,12,,1,20,10,,,,KINETIC,15,,0,0.05,1,0.05,0,20,1.5,4,,1000,,,10,,,,"kinetic2, hmi_bp, merc",,HMI Techmined,,Anti Shield,,,,,,,,,,3.65
+Pummerer Carbine,pumm_mg,1,0.75,800,700,,70,,1,90,8,,,,FRAGMENTATION,12,,0,0.4,3,0.05,0,7,1,15,,2000,,,10,,,"PD,ANTI_FTR","pd1, kinetic1, hmi_bp, merc",,HMI Techmined,,General Purpose,, ,,,,,,,,1.85
+Retrofitted Mining Blaster,retro_mb,1,0.75,1200,500,,300,,0,4,10,,,,ENERGY,385,,0.25,3,,,,,,,,1000,,,,,,,"kinetic1, hmi_bp",,HMI Techmined,,Strike,,,,,,,,,,22.125
+Xi Liu Large Mining Collector,launcher_cannon,1,0.75,800,900,,20,,0,25,10,,,,FRAGMENTATION,100,,0,1,1,,0,5,3,2,,425,,,100,,,,"he2, hmi_bp",,HMI Techmined,,Suppression,,,,,Projectiles will cause 200 High Explosive damage on hitting hull.,,,,,22.126
+Suo Wang Pulser,suowang_pulser,1,0.75,675,700,,80,,0,50,9,10,2,2,ENERGY,40,,0.05,0.05,2,0.1,3,20,1,4,,1000,,,,,,,"energy2, hmi_bp, merc",,HMI Techmined,,Strike,,,,,,,,,,22.69
+Double IR Pulse Laser,double_ir,1,0.75,600,700,,60, ,0,30,10,,,,ENERGY,45, ,0.25,0,,,,,,,,1000,,,,,,,"energy2, hmi_bp, merc",,HMI Techmined,,Assault,,,,,,,,,,19.25
+F-Type Burst Laser,mining_burst_blaster,1,0.75,1500,650,800,,,0,30,10,6,0.25,,ENERGY,,1200,0.1,0.1,0.3,0.1,,,,,10000,,,,,,,"STRIKE,USE_VS_FRIGATES","energy2, hmi_bp",,HMI Techmined,,Strike,,,,,,,,,,19.255
+Seth Drone Generator,seth_med,1,,1000,2500,,100,,50,10,15,,,,HIGH_EXPLOSIVE,0,,0,4,1,0.25,0,0,0,0,,250,65,12,350,,,"DO_NOT_AIM, CONSERVE_1","utility4, missile3, hmi_bp",,HMI Techmined,,Pressure,Slow,Good,,,,Projectiles will burst into explosive fragments near enemy ships.,,,TRUE,26.889
+Mbeke Rocket Rack,mbeke_med,1,0.75,600,1000,,75,,5,30,10,120,,,HIGH_EXPLOSIVE,0,,0,8,10,0.05,0,30,15,10,,500,95,3.75,50,,,CONSERVE_1,"rocket4, strike2, hmi_bp",,HMI Techmined,,Anti Armour,Fast,None,,,,,,,TRUE,27.789
+Desolator Cannon,rad_gun,2,0.25,2000,1000,2000,,,0,20,16,,,,FRAGMENTATION,,750,0.25,0.5,0.5,2.5,,,,,4000,,,,,,,,"energy1, beam1, rare_bp, merc",,HMI Techmined,,Assault,,,,,,,,,TRUE,28.898
+, ,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Richardson Cannon,dick_cannon,1,0.75,4000,700,,80,,1,65,18,,,,FRAGMENTATION,25,,0,0.05,1,0.1,0,15,1,15,,800,,,10,,,PD,"pd3, SR, hmi_bp",,HMI Techmined,,Assault,,,,,,,,,,29.089
+Mark IV Cannon,mark_iv,1,0.75,3250,850,,85,,10,12,14,6,4.2,12,KINETIC,75,,0.1,0.2,1,,0,5,1,5,,800,,,30,,,,"kinetic10, hmi_bp",,HMI Techmined,,Anti Shield,,,,,,,,,,29.099
+Suzuki-Clapteryon Thermal Projector,tpc_hmi,2,,7500,800,,400,,0,10,22,8,0.5,,ENERGY,500,,0,0.2,1,,0,12,4,4,,900,,,,,,STRIKE,"energy2, rare_bp, merc",,HMI Techmined,,Strike,, ,,,,,,,,40.1
+Baffler ADL,hmi_heavy_assault_launcher,1,,5000,1100,,120,,0,10,16,,,,HIGH_EXPLOSIVE,60,,0,4,24,0.05,0,28,8,5,,315,325,1,100,,,"STRIKE, USE_VS_FRIGATES,FIRE_WHEN_INEFFICIENT","he10, LR, hmi_bp, merc",,HMI Techmined,,Area Denial,,,,,"Projectiles can be fired beyond the weapon's maximum range, but are slow and can be shot down by point defense.",,,,,40.2
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+##Built-ins,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Scarlet Aura Energy Blaster,marlinblaster,0,,10000,650,,480,,0,15,12,,,,ENERGY,350,,0,1,,,,,,,,950,,,,,,SYSTEM,energy14,,HMI Techmined,,General,,,,,,,,,,22.25
+Pummerer Cannon,pumm_cannon,1,,10000,1100,,750,,1,90,30,,,,FRAGMENTATION,300,,0,0.5,1,,0,5,1,15,,1900,,,10,,,"SYSTEM,ANTI_FTR,USE_VS_FRIGATES",kinetic7,,HMI Techmined,,Anti Frigate,,,,,,,,,,1.11
+Weaver Pulse Cannon,tpc_weaver,0,,100000,1000,,380,,0,0,,14,1,,ENERGY,320,,0,0.2,1,,0,10,2,5,,1700,,,,,,SYSTEM,energy10,,HMI Techmined,, Bombardment,,,,,,,,,,40
+Hellbore Battery,domres_hellbore,1,,10000,2000,,850,,200,5,30,,,,HIGH_EXPLOSIVE,850,,0,3,1,,0,5,5,5,,500,,,400,,,SYSTEM,he2,,Domain Resurgent,,Bombardment,,,,,,,,,,1.12
+Khradeh Autocannon,khradeh_left,2,,800,800,,130,,10,12,8,,,,KINETIC,100,,0,0.33,1,,0,10,2,3,,880,,,30,,,SYSTEM,kinetic12,,HMI Techmined,,Anti Shield,,,,,,,,,,4.125
+Khradeh Autocannon,khradeh_right,2,,800,800,,130,,10,12,8,,,,KINETIC,100,,0,0.33,1,,0,10,2,3,,880,,,30,,,SYSTEM,kinetic12,,HMI Techmined,,Anti Shield,,,,,,,,,,4.125
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Cracked Annihilator Launcher,annihilator_bomb,0,,150,1500,,200,,5,30,4,50,,,HIGH_EXPLOSIVE,0,,0,5,5,0.2,0,0,0,0,,400,50,3.75,50,,,"CONSERVE_1, SYSTEM","rocket7, LR",,Midline,,Anti Armour,,,,,,,,,,29.099
+Single Bomb Bay,bomb_single,0,,200,1000,,300,,50,15,4,1,,,HIGH_EXPLOSIVE,0,,0,1,1,,0,0,0,0,,170,20,25,150,,,"STRIKE, BOMB, SYSTEM",he0,,HMI Techmined,,Strike,,,,,,,,,TRUE,3.5
+Marx Mining Drill,hmi_drill,4,,11000,50,,300,,0,0,0,,,,HIGH_EXPLOSIVE,50,,0.1,0,1,0.1,0,0,0,0,,100,,,100,,,"DO_NOT_AIM, STRIKE, SYSTEM",,,Low Tech,,Anti Armour,,,,,,,,,,29.089
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Light Assault Gun,burstlightag,1,,300,600,,40,,3,40,5,5,3.5,5,HIGH_EXPLOSIVE,40,,0,0.05,1,,0,10,2,10,,800,,,30,,,"STRIKE, SYSTEM",he6,,Domain Resurgent,,Anti Armor,,,,,,,,,,3
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Feeder Beam,feeder_gun,3,,125,10,100,,,0,30,4,,,,HIGH_EXPLOSIVE,,35,0,0,,,,,,,2400,,,,,,,SYSTEM,"beam0, energy0",,Mess Evolution,,Unknown,,,,,,,,,,29.909
+,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Overcharged Thermal Pulse Cannon,tpc_hmi_hvb,0,,100000,900,,300,,0,0,,26,1,,ENERGY,200,,0,0.2,1,,0,10,2,5,,1500,,,,,,SYSTEM,,,Pirate,,Attack,,,,,,,,,,40.22
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+##Remnant,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Light Dual Remnant Autocannon,lightdualac_rem,2,,350,600,,50,,3,20,6,,,,KINETIC,50,,0,0.6,2,0.1,0,20,3,9,,800,,,20,,,,"kinetic7, remnant",,Remnant,,Anti Shield,,,,,"Hits on hull or armor have a %s chance to arc to weapons and engines, dealing extra damage equal to the original hit.",15%,,,,2.5
+Remnant Railgun,railgun_rem,2,0.5,700,700,,225,225,10,30,9,,,,KINETIC,205,,0.9,0.6,1,,,,,,,1000,,,50,,,,"kinetic8, LR, remnant",,Remnant,,Anti Shield,,,,,"Projectiles explode on impact. Hits on hull or armor have a %s chance to arc to weapons and engines, dealing extra damage equal to the original hit.",25%,,,,3.75
+Messenger Rocket Launcher,messenger_rem,2,,300,1500,,125,,5,30,4,60,,,ENERGY,0,,0,2.5,5,0.2,0,0,0,0,,600,75,3.75,50,,,CONSERVE_1,"rocket7, strike0, remnant",,Remnant,,Suppression,Fast,None,,,,,,,,11
+Single Messenger Rocket Launcher,messenger_rem_single,2,,300,1500,,125,,5,30,4,1,,,ENERGY,0,,0,2.5,1,0,0,0,0,0,,600,75,3.75,50,,,"CONSERVE_1, SYSTEM","rocket7, strike0",,Remnant,,Suppression,Fast,None,,,,,,,,11.01212
+Remnant Tactical Laser,taclaser_rem,2,,200,1000,50,,,0,20,4,,,,ENERGY,,50,0.1,0.1,,,,,,,3600,,,,,,,,"beam9, LR, remnant",,Remnant,,Suppression,,,,,Beams will deal an additional %s energy damage based on the %s hard flux level.,50% | firing ship's,,,,18
+Remnant Ion Cannon,ioncannon_rem,2,,600,500,,30,400,0,40,7,,,,ENERGY,60,,0.3,0,,,,,,,,1500,,,,,,,"energy8, remnant",,Remnant,,Suppression,,,,,"Hits on hull or armor have a %s chance to arc to weapons and engines, dealing extra damage equal to the original hit.",25%,,,,19
+Remnant IR Pulse Laser,irpulse_rem,2,,400,500,,100,,0,70,6,,,,ENERGY,100,,0.4,0,,,,,,,,1500,,,,,,,"energy8, remnant",,Remnant,,General,,,,,,,,,,19.25
+Remnant PD Laser,pdlaser_rem,2,,200,400,100,,,25,100,5,,,,ENERGY,,50,0,0.25,,,,,,,3600,,,,,,,"PD,ANTI_FTR,IGNORES_FLARES","pd7, beam7, SR, remnant",,Remnant,,Point Defense,,,,,Advanced built-in targeting sensors enable the weapon to identify decoy flares and not fire on them.,decoy flares,,,,17
+LR Remnant PD Laser,lrpdlaser_rem,2,,450,900,60,,,10,100,5,,,,ENERGY,,45,0,0.25,,,,,,,4800,,,,,,,"PD,ANTI_FTR,IGNORES_FLARES","pd7, beam5, remnant",,Remnant,,Point Defense,,,,,Advanced built-in targeting sensors enable the weapon to identify decoy flares and not fire on them. Can fire over friendly ships.,decoy flares,,,,19.5
+Burst Attack Laser,burst_rem,2,,600,450,500,,,0,100,8,,,,ENERGY,,250,0.05,0.05,0.2,,,,,,10000,,,,,,,,"energy8, beam2, remnant",,Remnant,,Assault,,,,,,,,,,19.6
+Light Burst Attack Laser,burst_rem_ftr,2,,600,400,450,,,0,100,8,3,0.5,,ENERGY,,200,0.05,0.05,0.2,0.1,,,,,10000,,,,,,,SYSTEM,"energy8, beam2",,Remnant,,Assault,,,,,,,,,,19.6
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Heavy Remnant Autocannon,heavyac_rem,2,,1500,800,,100,,10,7,12,,,,KINETIC,100,,0,1,3,0.2,0,18,3,10,,800,,,30,,,,"kinetic14, remnant",,Remnant,,Anti Shield,,,,,"Hits on hull or armor have a %s chance to arc to weapons and engines, dealing extra damage equal to the original hit.",15%,,,,5
+Messenger Rocket Pod,messengerpod_rem,2,,1200,1500,,125,,5,30,10,120,,,ENERGY,0,,0,0.5,1,,0,0,0,0,,600,50,3.75,50,,,,"rocket13, strike8, remnant",,Remnant,,Pressure,Fast,None,,,,,,,,12.3
+Remnant Graviton Beam,gravitonbeam_rem,2,,1500,1000,100,,,10,15,9,,,,KINETIC,,75,0.1,0.1,,,,,,,2400,,,,,,,,"beam12, kinetic11, LR, remnant",,Remnant,,Suppression,,,,,Beams will deal an additional %s energy damage based on the %s hard flux level.,50% | firing ship's,,,,21
+Remnant Pulse Laser,pulselaser_rem,2,,1200,700,,170,,0,20,12,,,,ENERGY,170,,0.4,0,,,,,,,,1500,,,,,,,"energy13, remnant",,Remnant,,General,,,,,,,,,,22
+Heavy Burst Attack Laser,heavyburst_rem,2,,2000,400,800,,,0,40,12,,,,ENERGY,,400,0.05,0.05,0.2,,,,,,10000,,,,,,,,"energy12, beam6, remnant",,Remnant,,Assault,,,,,,,,,,22.5
+Remnant Phase Lance,phasebeam_rem,2,0.5,1700,800,500,,650,0,20,10,,,,ENERGY,,400,0.25,0.5,1,4,,,,,3200,,,,,,,,"energy14, beam10, remnant",,Remnant,,Suppression,,,,,"Hits on hull or armor frequently arc to weapons and engines, dealing extra EMP and energy damage. Hits on shields have a high chance to generate a shield-penetrating arc based on the %s hard flux level, with the strength of those arcs depending on the %s flux level.",target ship's | firing ship's,,,,20
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Remnant Tachyon Lance,tachyonlance_rem,3,0.5,8000,1200,750,,1000,0,7,25,,,,ENERGY,,650,0.5,1,1,4,,,,,10000,,,,,,,,"energy20, beam15, LR, remnant",,Remnant,,Suppression,,,,,"Hits on hull or armor frequently arc to weapons and engines, dealing extra EMP and energy damage. Hits on shields have a high chance to generate a shield-penetrating arc based on the %s hard flux level, with the strength of those arcs depending on the %s flux level.",target ship's | firing ship's,,,,27
+Mark IX Remnant Autocannon,mark9_rem,2,0.5,4000,900,,200,,20,8,22,,,,KINETIC,230,,0,2,4,0.1,0,15,1.25,10,,1500,,,100,,,,"kinetic18, remnant",,Remnant,,Anti Shield,,,,,"Hits on hull or armor have a %s chance to arc to weapons and engines, dealing extra damage equal to the original hit.",25%,,,,7.25
+Gauss Remnant Cannon,gauss_rem,3,0.5,7500,1000,,750,750,320,3,28,,,,KINETIC,1125,,0.5,1.5,,,,,,,,2100,,,400,,,,"kinetic20, LR, remnant",,Remnant,,Anti Shield,,,,,"Projectiles explode on impact. Hits on hull or armor have a %s chance to arc to weapons and engines, dealing extra damage equal to the original hit.",25%,,,,6

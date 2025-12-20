@@ -1,0 +1,43 @@
+{
+  "variantId": "domres_berserker_cs",
+  "hullId": "domres_berserker",
+  "displayName": "Close Support",
+  "goalVariant": true,
+  "fluxCapacitors": 0,
+  "fluxVents": 0,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "insulatedengine",
+    "reinforcedhull"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 007": "mark_iv"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 001": "railgun",
+        "WS 002": "railgun",
+        "WS 006": "railgun",
+        "WS 008": "railgun"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 003": "launcher_cannon",
+        "WS 005": "launcher_cannon"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

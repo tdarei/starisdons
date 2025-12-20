@@ -1,0 +1,42 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "node": true
+    },
+    "extends": "eslint:recommended",
+    "parserOptions": {
+        "ecmaVersion": 2022,
+        "sourceType": "module"
+    },
+    "rules": {
+        "no-unused-vars": [
+            "warn",
+            {
+                "vars": "all",
+                "args": "none",
+                "ignoreRestSiblings": false
+            }
+        ],
+        "no-undef": "warn",
+        "no-console": "off",
+        "no-empty": "warn"
+    },
+    "globals": {
+        "KNOWN_PROVIDER_DATA": "readonly",
+        "BroadbandChecker": "readonly",
+        "OptimizedDatabase": "readonly",
+        "NavigationMenu": "readonly",
+        "CosmicMusicPlayer": "readonly",
+        "StellarAI": "readonly",
+        "Planet3DViewer": "readonly",
+        "KEPLER_DATABASE": "readonly",
+        "LargeExoplanetLoader": "readonly",
+        "authManager": "readonly",
+        "THREE": "readonly",
+        "gsap": "readonly",
+        "Chart": "readonly",
+        "supabase": "readonly",
+        "RufflePlayer": "readonly"
+    }
+}

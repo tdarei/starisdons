@@ -1,0 +1,3440 @@
+ 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; AGINCOURT HISTORICAL BATTLE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;**********************************************************************************************
+
+script
+
+
+
+
+;;;;*************************************************************************************************
+;;;;	INITIALISE BATTLE
+;;;;*************************************************************************************************
+
+	prepare_for_battle
+
+;;;;*************************************************************************************************
+;;;;	LABEL UNITS
+;;;;*************************************************************************************************
+	
+  	while ! I_BattleStarted
+	end_while
+
+
+;;;England
+	label_unit 0 0 0 eng_dis_general_1
+	label_unit 0 0 1 eng_dis_knights_1
+	label_unit 0 0 2 eng_dis_knights_2
+	label_unit 0 0 3 eng_dis_knights_3
+	label_unit 0 0 4 eng_heavy_bill_1
+	label_unit 0 0 5 eng_heavy_bill_2
+	label_unit 0 0 6 eng_dis_knights_4
+	label_unit 0 0 7 eng_yeomen_1
+	label_unit 0 0 8 eng_yeomen_2
+	label_unit 0 0 9 eng_yeomen_3
+	label_unit 0 0 10 eng_yeomen_4
+	label_unit 0 0 11 eng_yeomen_5
+	label_unit 0 0 12 eng_yeomen_6
+	label_unit 0 0 13 eng_yeomen_7
+	
+
+
+	
+	
+;;;France
+	label_unit 1 0 0 fra_general_1
+	label_unit 1 0 1 fra_dis_chiv_knig_1
+	label_unit 1 0 2 fra_dis_chiv_knig_2
+	label_unit 1 0 3 fra_dis_chiv_knig_3
+	label_unit 1 0 4 fra_dis_chiv_knig_4
+	label_unit 1 0 5 fra_crossbow_1
+	label_unit 1 0 6 fra_crossbow_2
+	label_unit 1 0 7 fra_dis_chiv_knig_5
+	label_unit 1 0 8 fra_dis_chiv_knig_6
+	label_unit 1 0 9 fra_dis_chiv_knig_7
+	label_unit 1 0 10 fra_serg_spearmen_1
+	label_unit 1 0 11 fra_serg_spearmen_2
+	label_unit 1 0 12 fra_chiv_knights_1
+	label_unit 1 0 13 fra_chiv_knights_2
+	label_unit 1 0 14 fra_dis_chiv_knig_8
+	label_unit 1 0 15 fra_dis_chiv_knig_9
+	label_unit 1 0 16 fra_dis_chiv_knig10
+	label_unit 1 0 17 fra_chiv_knights_3
+	label_unit 1 0 18 fra_dis_chiv_knig11
+	
+	label_unit 1 1 0 fra_general_2
+	label_unit 1 1 1 fra_chiv_knights_1a
+	label_unit 1 1 2 fra_chiv_knights_2a
+
+	
+;;;;*************************************************************************************************
+;;;;	DECLARE COUNTERS
+;;;;*************************************************************************************************
+
+	ai_active_set off
+
+	declare_counter start_battle
+	declare_counter first_wave_rout	
+	declare_counter second_wave_rout
+	declare_counter french_rout
+	declare_counter engaged_fra_general_1
+	declare_counter engaged_fra_dis_chiv_knig_1
+	declare_counter engaged_fra_dis_chiv_knig_2
+	declare_counter engaged_fra_dis_chiv_knig_3
+	declare_counter engaged_fra_dis_chiv_knig_4
+	declare_counter engaged_fra_crossbow_1
+	declare_counter engaged_fra_crossbow_2
+	declare_counter engaged_fra_dis_chiv_knig_5
+	declare_counter engaged_fra_dis_chiv_knig_6
+	declare_counter engaged_fra_dis_chiv_knig_7
+	declare_counter engaged_fra_serg_spearmen_1
+	declare_counter engaged_fra_serg_spearmen_2
+	declare_counter engaged_fra_chiv_knights_1
+	declare_counter engaged_fra_chiv_knights_2
+	declare_counter engaged_fra_dis_chiv_knig_8
+	declare_counter engaged_fra_dis_chiv_knig_9
+	declare_counter engaged_fra_dis_chiv_knig10
+	declare_counter engaged_fra_chiv_knights_3
+	declare_counter engaged_fra_dis_chiv_knig11
+	declare_counter engaged_fra_general_2
+	declare_counter engaged_fra_chiv_knights_1a
+	declare_counter engaged_fra_chiv_knights_2a
+	declare_counter play_charge_event
+	declare_counter second_wave_shout
+	declare_counter	third_wave_shout
+	declare_counter	play_charge_event_1
+	declare_counter	play_charge_event_2
+	declare_counter play_charge_event_3
+	declare_counter flank_attack1
+	declare_counter flank_attack2
+	declare_counter flank_attack3
+	
+;;;;*************************************************************************************************
+;;;;	SETUP CAMERA AND UI FOR INTRO
+;;;;*************************************************************************************************
+
+;-----------------------------------------------------------------------------------------------------------
+	steal_esc_key on
+
+	monitor_event EscPressed TrueCondition
+		set_counter start_battle 1
+		terminate_monitor
+	end_monitor
+;-----------------------------------------------------------------------------------------------------------
+;;;CHANGE THEESE BACK EVERYTIME YOU PLAY WITH THEM!!!!!!!
+	
+	enable_battle_notifications 0
+ 	suspend_unscripted_advice true
+	
+	camera_default_mode_set		tw
+	camera_restrictions_set off
+	disable_cursor							;prevent the player clicking
+	disable_shortcuts true
+	disable_shortcuts options_button false	;to allow the player to escape from the game	
+	disable_entire_ui
+	inhibit_camera_input true
+	disable_shortcuts toggle_pause_button false		;toggle_pause_button	PAUSE	P
+	enable_ui toggle_pause_button
+	hide_ui	
+	
+	set_music_state custom Euro_Tension
+	
+;;;***************************************************************************************************
+;;;SETTING CAMERA BOOKMARKS FOR THE INTRO
+;;;*************************************************************************************************
+
+	set_camera_bookmark 1, -577.839, 96.4586, -634.177		-572.543, 93.849, -626.896		; Landscape shot (farm and windmill)	 
+	set_camera_bookmark 2, -636.286, 77.7432, -612.481		-634.592, 74.1135, -603.038		; Road where Eng enter (right close-up)
+	set_camera_bookmark 3, -636.22, 70.8673, -589.258		-627.09, 70.8856, -593.264		; over head shot of henry's army		
+	set_camera_bookmark 4, -123.755, 74.1874, 475.887		-114.656, 71.6199, 476.282		; French army on the move
+	set_camera_bookmark 5, -647.111, 133.964, 296.856		-650.105, 130.653, 306.022		; pt1 Overhead shot of Agincourt 
+	set_camera_bookmark 6, 134.654, 96.061, 749.321			128.612, 91.1429, 742.445		; Overhead shot of French camp
+	set_camera_bookmark 7, -228.643, 66.8926, -186.612		-223.745, 67.284, -195.305		; Close up of Henry from his right side
+	set_camera_bookmark 8, -225.959, 67.5046, -189.36		-235.682, 67.4757, -187.09		; view behind Henry of of Eng coming off road
+	set_camera_bookmark 9, -276.712, 72.2213, -152.656		-267.893, 69.6914, -155.981		; side shot of Eng coming off road 		
+	set_camera_bookmark 10, -201.445, 73.0695, -70.7762		-196.287, 70.2818, -78.5475		; eng army starting to move from position 1 to position 2
+	set_camera_bookmark 11, -209.684, 73.5347, -74.5292		-200.845, 68.4292, -76.68		; Point1-following eng army moving from position 1 to position 2
+	set_camera_bookmark 12, -205.207, 74.831, -56.1264		-196.367, 69.7255, -58.2772		; Point2-following eng army moving from position 1 to position 2
+	set_camera_bookmark 13, 34.8809, 69.0083, 615.139		41.1127, 69.9147, 622.953		; Relaxed french	
+	set_camera_bookmark 14, -633.133, 67.6274, -637.095		-624.448, 70.153, -632.444		; Close up of Eng army marching up hill
+	set_camera_bookmark 15, 66.0116, 69.5991, 604.768		75.5711, 68.3609, 607.644		; close up of French general 1		
+	set_camera_bookmark 16,	-608.303, 89.2792, 309.398		-599.642, 86.9859, 314.089		; close up of French general 2 (follow him)
+	set_camera_bookmark 17, -108.3, 72.3569, 457.961		-102.444, 73.6305, 466.034		; French army on the move2
+	set_camera_bookmark 18, -49.5395, 74.6737, -45.4165		-55.8526, 73.9025, -37.772		; Point 1 view of battlefield
+	set_camera_bookmark 19, -122.619, 162.985, 44.3106		-125.614, 155.495, 51.0739		; Point 2 view of battlefield
+	set_camera_bookmark 20, 125.551, 69.2394, 649.548		119.1, 68.2889, 657.089			; French camp fire		
+	set_camera_bookmark 21, -83.8576, 78.5069, 495.909		-77.1522, 74.6014, 502.531		; French army
+	
+	
+;
+;;;;************************************************************************************************	
+;;;;**********************************************************************************************
+;;;;	BATTLE INTRO
+;;;;**********************************************************************************************
+;;;;**********************************************************************************************
+
+
+ 	
+;;;**********************************************************
+;;; Intro starts-english arriving and marching up road
+;;;------------------------------------------------------
+	
+	monitor_conditions I_CompareCounter start_battle = 0
+
+		camera_position_at_bookmark 1		; Landscape shot (farm and windmill)-START
+		
+		unit_order_move_relative eng_dis_general_1 0 300
+	 	unit_order_move_relative eng_dis_knights_1 0 300
+	 	unit_order_move_relative eng_dis_knights_2 0 300
+	 	unit_order_move_relative eng_dis_knights_3 0 300
+	 	unit_order_move_relative eng_heavy_bill_1 0 300
+	 	unit_order_move_relative eng_heavy_bill_2 0 300
+	 	unit_order_move_relative eng_dis_knights_4 0 300
+	 	unit_order_move_relative eng_yeomen_1 0 300
+	 	unit_order_move_relative eng_yeomen_2 0 300
+	 	unit_order_move_relative eng_yeomen_3 0 300
+	 	unit_order_move_relative eng_yeomen_4 0 300
+	 	unit_order_move_relative eng_yeomen_5 0 300
+	 	unit_order_move_relative eng_yeomen_6 0 300
+	 	unit_order_move_relative eng_yeomen_7 0 300
+
+		battle_wait 2
+
+		while I_CompareCounter start_battle = 1
+		end_while
+
+;;;Intro landscape shot
+;;;;;;;;;;;;;;;;;;;;;;;		
+	 	;"1415, Northern France"
+	 	play_sound_event AGINCOURT_NARRATOR_1 tag = AGINCOURT_NARRATOR_1
+	 	
+	 	battle_wait 2
+		while I_CompareCounter start_battle = 1
+		end_while
+;;;Henry's army marching along road
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;		
+		camera_zoom_to_bookmark 2 30		; over head shot of henry's army
+		battle_wait 5  
+	   	;"The Hundred Years War continues.:
+		play_sound_event AGINCOURT_NARRATOR_2 tag = AGINCOURT_NARRATOR_2
+	 	
+	 	battle_wait 4
+		while I_CompareCounter start_battle = 1
+		end_while
+
+;;;;camera over henry
+;;;;;;;;;;;;;;;;;;;;;			 	
+	 	 camera_position_at_bookmark 3	; Road where Eng enter (right close-up)
+	 	 battle_wait 1
+	 	while I_CompareCounter start_battle = 1
+		end_while
+	 	; "After spending the Autumn month campaigning in Northern France, Henry V, King of England is making his way home."
+		play_sound_event AGINCOURT_NARRATOR_3 tag = AGINCOURT_NARRATOR_3
+		
+		battle_wait 8
+		while I_CompareCounter start_battle = 1
+		end_while
+;;;shot over French camp
+;;;;;;;;;;;;;;;;;;;;;;;;;;;		
+		camera_position_at_bookmark 6		; Overhead shot of French camp
+		battle_wait 1 
+		;"But first he must contend with a large army awaiting him near the town of Agincourt."
+		play_sound_event AGINCOURT_NARRATOR_4 tag = AGINCOURT_NARRATOR_4
+		battle_wait 1
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+;;;;;Shot of French army
+;;;;;;;;;;;;;;;;;;;;;;;;		
+		camera_position_at_bookmark 21		; French army
+		battle_wait 3
+		while I_CompareCounter start_battle = 1
+		end_while
+;;;;Shot of Town
+;;;;;;;;;;;;;;;;;;
+		camera_position_at_bookmark 5 		; Overhead shot of Agincourt pt1
+		
+		
+	;;;************************************************************
+	;;; Look at French generals	& the french army
+	;;;-----------------------------------------------------------	
+				
+		battle_wait 3
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		camera_position_at_bookmark 15			; close up of French general 1
+		;battle_wait 1
+		;"The French army, led by John la Maingre and Charles d’ Albert is more a collection of arrogent nobles than an army, distracted by their own bitter rivalries.
+		play_sound_event AGINCOURT_NARRATOR_5 tag = AGINCOURT_NARRATOR_5	
+		battle_wait 3
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		camera_position_at_bookmark 16			; close up of French general 2 (follow him)
+		battle_wait 1
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+	;;;	Move French group1 along road
+	;;;----------------------------------------------------------------------
+	
+		unit_order_move_relative fra_general_2 0 100
+		unit_order_move_relative fra_chiv_knights_1a 0 100 
+		unit_order_move_relative fra_chiv_knights_2a 0 100  	
+		
+		camera_track_unit fra_general_2 front 8 1 -25
+		
+	;;;------------------------------------------------------------------------------	
+	;;;Move English to 'coming off road position' & get them to move towards position 1
+	;;;------------------------------------------------------------------------------	
+		battle_wait 5
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		unit_immediate_place	eng_dis_general_1 -226.762, -187.262 -69 10.886
+	 	unit_immediate_place	eng_dis_knights_1 -264.875, -185.188 41 2.807
+		unit_immediate_place	eng_dis_knights_2 -255.256, -170.542 36 6.738
+		unit_immediate_place	eng_dis_knights_3 -252.595, -154.884 12 7.672
+		unit_immediate_place	eng_heavy_bill_1 -271.205, -177.868 34 3.606
+		unit_immediate_place	eng_heavy_bill_2 -283.017, -193.595 60 1.990
+		unit_immediate_place	eng_dis_knights_4 -279.872, -201.320 62 5.145
+		unit_immediate_place	eng_yeomen_1 -241.149, -178.122, 30 8.509
+		unit_immediate_place	eng_yeomen_2 -230.708, -157.315, 23 4.893
+		unit_immediate_place	eng_yeomen_3 -275.787, -160.847, 33 2.212
+		unit_immediate_place	eng_yeomen_4 -255.289, -197.273, 29 5.450
+		unit_immediate_place	eng_yeomen_5 -298.654, -177.644, 83 5.588
+		unit_immediate_place	eng_yeomen_6 -292.560, -214.850, 86 3.823
+		unit_immediate_place	eng_yeomen_7 -268.302, -213.126, 88 6.102
+		
+		unit_order_move eng_dis_knights_1 -207.594, -88.063, -1
+		unit_order_move eng_dis_knights_2 -182.588, -94.531, -1
+		unit_order_move eng_dis_knights_3 -203.524, -94.976, -1
+		unit_order_move eng_heavy_bill_1  -233.293, -101.524, 2
+		unit_order_move eng_heavy_bill_2  -123.461, -100.933, -1
+		unit_order_move eng_dis_knights_4 -160.895, -93.913, 0,
+		unit_order_move eng_yeomen_1 -280.087, -76.373, 28
+		unit_order_move eng_yeomen_2 -244.755, -93.495, 3
+		unit_order_move eng_yeomen_3 -210.006, -104.321, -1
+		unit_order_move eng_yeomen_4 -168.697, -103.790, -1
+		unit_order_move eng_yeomen_5  -139.107, -93.584, -1
+		unit_order_move eng_yeomen_6 -99.213, -91.268, -22
+		unit_order_move eng_yeomen_7 -100.853, -102.349, -14
+		
+		battle_wait 3	
+		while I_CompareCounter start_battle = 1
+		end_while
+	
+		camera_position_at_bookmark 9 ;side shot of Eng coming off road
+		battle_wait 1 
+		while I_CompareCounter start_battle = 1
+		end_while
+
+		; "While the English army is a disciplined force, led by King Henry, a shrewd commander and an inspiring presence."
+		play_sound_event AGINCOURT_NARRATOR_6 tag = AGINCOURT_NARRATOR_6
+		battle_wait 3
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		camera_zoom_to_bookmark 7 5 ;Close up of Henry from his right side
+		
+		battle_wait 4
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		camera_zoom_to_bookmark 8 4 ; view behind Henry of of Eng coming off road
+		battle_wait 2
+		while I_CompareCounter start_battle = 1
+		end_while
+
+		;"As the sun rises on the 25th October, Henry moves his weary and hungry men into position, knowing they are largely outnumbered."
+		play_sound_event AGINCOURT_NARRATOR_7 tag = AGINCOURT_NARRATOR_7
+		
+			
+		battle_wait 9
+		while I_CompareCounter start_battle = 1
+		end_while
+	
+	;;;******************************************************************************	
+	;;;Shots of battlefield
+	;;;------------------------------------------------------------------------------	
+			
+		camera_position_at_bookmark 18	;Point 1 view of battlefield
+		battle_wait 1
+		while I_CompareCounter start_battle = 1
+		end_while
+
+		;"Heavy rainfall overnight has left the newly ploughed field separating the two forces, a sodden muddy mess."
+		play_sound_event AGINCOURT_NARRATOR_8 tag = AGINCOURT_NARRATOR_8
+		battle_wait 1
+		while I_CompareCounter start_battle = 1
+		end_while
+
+		camera_zoom_to_bookmark 19 20 ; Point 2 view of battlefield
+	
+			
+	;;;------------------------------------------------------------------------
+	;;;	Teleport French group1 to battle start position
+	;;;----------------------------------------------------------------------		
+		unit_immediate_place fra_general_2 -757.765, 120.540, -180, 29.641
+		unit_immediate_place fra_chiv_knights_1a -796.416, 116.579, 175 31.499
+		unit_immediate_place fra_chiv_knights_2a -774.006, 140.297, 177 33.830
+		
+	;;;****************************************************************************
+	;;; Shots of relaxed French army
+	;;;--------------------------------------------------------------------------
+		
+		battle_wait 7	
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		camera_position_at_bookmark 20	; French camp fire
+		battle_wait 1
+		while I_CompareCounter start_battle = 1
+		end_while
+		;"The French forces awake and take a leisurely breakfast, happy to wait and let disease and hunger grind down Henry’s Army."
+		play_sound_event AGINCOURT_NARRATOR_9 tag = AGINCOURT_NARRATOR_9
+		battle_wait 1
+		while I_CompareCounter start_battle = 1
+		end_while
+; 		unit_order_move_relative fra_dis_chiv_knig_3 0 30
+; 	 	unit_order_move_relative fra_dis_chiv_knig_5 0 30
+; 	 	unit_order_move_relative fra_dis_chiv_knig11 0 30
+		
+		
+	 	battle_wait 2
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		camera_position_at_bookmark 13 ; relaxed french
+		battle_wait 1
+		while I_CompareCounter start_battle = 1
+		end_while
+
+		
+		 
+	;;;-----------------------------------------------------------------------------
+	;;; teleport Eng army to battle position 1 in formation
+	;;;----------------------------------------------------------------------------
+	
+		
+		unit_immediate_place	eng_dis_general_1  -184.844, -88.415, -1 21.133
+	 	unit_immediate_place	eng_dis_knights_1 -207.594, -88.063, -1 21.949
+		unit_immediate_place	eng_dis_knights_2 -182.588, -94.531, -1 21.623
+		unit_immediate_place	eng_dis_knights_3 -203.524, -94.976, -1 21.931
+		unit_immediate_place	eng_heavy_bill_1 -233.293, -101.524, 2 20.583
+		unit_immediate_place	eng_heavy_bill_2 -123.461, -100.933, -1 20.817
+		unit_immediate_place	eng_dis_knights_4 -160.895, -93.913, 0 21.542
+		unit_immediate_place	eng_yeomen_1 -280.087, -76.373, 28 34.117
+		unit_immediate_place	eng_yeomen_2 244.755, -93.495, 3 40.926
+		unit_immediate_place	eng_yeomen_3 -210.006, -104.321, -1 38.569
+		unit_immediate_place	eng_yeomen_4 -168.697, -103.790, -1 60.078
+		unit_immediate_place	eng_yeomen_5 -139.107, -93.584, -1 39.414
+		unit_immediate_place	eng_yeomen_6 -99.213, -91.268, -22 39.938
+		unit_immediate_place	eng_yeomen_7 -100.853, -102.349, -14 40.189
+	
+		
+	;;;-----------------------------------------------------------------------------
+	;;; move Eng army towards battle position 2 in formation
+	;;;----------------------------------------------------------------------------
+		battle_wait 1
+		while I_CompareCounter start_battle = 1
+		end_while
+
+	 	unit_order_move_relative eng_dis_general_1 0 90
+	 	unit_order_move_relative eng_dis_knights_1 0 90
+	 	unit_order_move_relative eng_dis_knights_2 0 90
+	 	unit_order_move_relative eng_dis_knights_3 0 90
+	 	unit_order_move_relative eng_heavy_bill_1 0 90
+	 	unit_order_move_relative eng_heavy_bill_2 0 90
+	 	unit_order_move_relative eng_dis_knights_4 0 90
+	 	unit_order_move_relative eng_yeomen_1 0 90
+	 	unit_order_move_relative eng_yeomen_2 0 90
+	 	unit_order_move_relative eng_yeomen_3 0 90
+	 	unit_order_move_relative eng_yeomen_4 0 90
+	 	unit_order_move_relative eng_yeomen_5 0 90
+	 	unit_order_move_relative eng_yeomen_6 0 90
+	 	unit_order_move_relative eng_yeomen_7 0 90
+		
+	;;;*********************************************************************	 
+	;;; Shots of Eng army moving into position 1
+	;;;-----------------------------------------------------------------------	 	
+		
+		battle_wait 5
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		camera_position_at_bookmark	10 ; eng army starting to move from position 1 to position 2
+		battle_wait 3
+		while I_CompareCounter start_battle = 1
+		end_while
+	 
+		;"Knowing this only too well Henry moves his army forward, hoping to provoke the French into rash action."
+		play_sound_event AGINCOURT_NARRATOR_10 tag = AGINCOURT_NARRATOR_10
+		 battle_wait 3
+		while I_CompareCounter start_battle = 1
+		end_while
+		 
+		 camera_position_at_bookmark 11 ; Point1-following eng army moving from position 1 to position 2
+		battle_wait 1
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		camera_zoom_to_bookmark 12 1	; Point2-following eng army moving from position 1 to position 2
+		battle_wait 4
+		while I_CompareCounter start_battle = 1
+		end_while
+
+		;"Henry’s gamble is successful."
+		play_sound_event AGINCOURT_NARRATOR_11 tag = AGINCOURT_NARRATOR_11
+		
+	;;;--------------------------------------------------------------------------------------------------
+	;;;Move French towards battle position
+	;;;--------------------------------------------------------------------------------------------------
+		battle_wait 1
+		while I_CompareCounter start_battle = 1
+		end_while
+			
+		unit_order_move fra_dis_chiv_knig_1 -185.213, 183.259, -179 run
+		unit_order_move fra_dis_chiv_knig_2 -106.470, 183.674, -180 run
+		unit_order_move fra_dis_chiv_knig_3  -122.455, 248.714, -179 run
+		unit_order_move fra_dis_chiv_knig_4 -132.375, 183.985, -180 run
+		unit_order_move fra_crossbow_1 -78.575, 190.072, -179 run
+		unit_order_move fra_crossbow_2 -176.583, 190.499, -180 run 
+		unit_order_move fra_dis_chiv_knig_5 -150.806, 227.054, -180 run
+		unit_order_move fra_dis_chiv_knig_6 -176.784, 226.796, -180 run 
+		unit_order_move fra_dis_chiv_knig_7 -158.946, 183.474, -180 run 
+		unit_order_move fra_serg_spearmen_1 -101.301, 248.914, -180 run 
+		unit_order_move fra_serg_spearmen_2 -172.323, 248.801, 178 run
+		unit_order_move fra_chiv_knights_1  -201.045, 166.681, 179 run
+		unit_order_move fra_chiv_knights_2 -171.840, 236.934, -180 run
+		unit_order_move fra_dis_chiv_knig_8 -145.452, 190.022, -179 run
+		unit_order_move fra_dis_chiv_knig_9 -147.297, 248.818, -180 run
+		unit_order_move fra_dis_chiv_knig10 -98.537, 227.391, 179 run
+		unit_order_move fra_chiv_knights_3 -91.680, 166.402, 179 run
+		unit_order_move fra_dis_chiv_knig11 -136.175, 235.577, -180 run
+		unit_order_move fra_general_1 -124.856, 227.657, -180 run
+		
+		battle_wait 1
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		
+	;;;-----------------------------------------------------------------------------
+	;;; teleport Eng army to battle position 2 in formation & plant stakes & make henry never rout
+	;;;----------------------------------------------------------------------------
+		
+		unit_immediate_place	eng_dis_general_1 -181.080, -17.841, -1 21.133
+		unit_immediate_place	eng_dis_knights_1 -216.230, -25.426, -1 21.949
+	 	unit_immediate_place	eng_dis_knights_2 -179.796, -3.408, -1 21.623
+		unit_immediate_place	eng_dis_knights_3 -200.327, -3.566, -1 21.931
+		unit_immediate_place	eng_heavy_bill_1 -239.817, -22.258, 2 20.583
+		unit_immediate_place	eng_heavy_bill_2 -119.218, -23.444, -1 20.817
+		unit_immediate_place	eng_dis_knights_4 -158.669, -3.042, 0 21.542
+		unit_immediate_place	eng_yeomen_1 -271.688, 12.155, 28 28
+		unit_immediate_place	eng_yeomen_2 -241.397, -3.124, 3 31
+		unit_immediate_place	eng_yeomen_3 -220.219, -19.615, -1 35
+		unit_immediate_place	eng_yeomen_4 -159.687, -18.999, -1 35
+		unit_immediate_place	eng_yeomen_5 -137.490, -4.188, -1 30
+		unit_immediate_place	eng_yeomen_6 -98.317, -2.234, -22 31
+		unit_immediate_place	eng_yeomen_7 -107.482, -18.187, -14 31
+		
+	 	 		  		
+	  	unit_deploy_stakes eng_yeomen_1
+	  	unit_deploy_stakes eng_yeomen_2
+	  	unit_deploy_stakes eng_yeomen_3
+	  	unit_deploy_stakes eng_yeomen_4
+	  	unit_deploy_stakes eng_yeomen_5
+	  	unit_deploy_stakes eng_yeomen_6
+	  	unit_deploy_stakes eng_yeomen_7
+	  	
+	  	
+		unit_set_skirmish_mode eng_yeomen_1 off
+		unit_set_skirmish_mode eng_yeomen_2 off
+		unit_set_skirmish_mode eng_yeomen_3 off
+		unit_set_skirmish_mode eng_yeomen_4 off
+		unit_set_skirmish_mode eng_yeomen_5 off
+		unit_set_skirmish_mode eng_yeomen_6 off
+		unit_set_skirmish_mode eng_yeomen_7 off
+		
+		unit_set_morale eng_dis_general_1 high
+	;;;*******************************************************************************	
+	;;; SHOT of French rushing into position
+	;;;--------------------------------------------------------------------------------  	
+	
+		camera_position_at_bookmark 4 ; French army on the move
+		battle_wait 1
+		while I_CompareCounter start_battle = 1
+		end_while
+
+		;"Lines of unprepared knights and nobles push and shove amongst themselves, eager to engage their English counterparts."
+		play_sound_event AGINCOURT_NARRATOR_12 tag = AGINCOURT_NARRATOR_12 
+		battle_wait 6
+		while I_CompareCounter start_battle = 2
+		end_while
+
+		camera_position_at_bookmark 17  ; French army on the move2
+		battle_wait 5
+		while I_CompareCounter start_battle = 1
+		end_while
+	
+	;;;-------------------------------------------------------------------
+	;;; New Bookmarks
+	;;;-----------------------------------------------------------------
+	
+		set_camera_bookmark 1, -230.261, 75.4718, 7.75472		-224.515, 75.6336, -0.403302	; shot of stakes	 
+		set_camera_bookmark 2, -159.791, 73.8077, -15.8261		-164.508, 68.3991, -23.2231		; eng men at arms in battle line  
+		set_camera_bookmark 3, -183.138, 72.378, -15.6563		-177.229, 73.238, -23.7172		; henry in battle line		
+		set_camera_bookmark 4, -178.735, 89.2306, -61.7882		-177.809, 85.2347, -52.9387		; Eng overview
+		set_camera_bookmark 5, -66.9693, 73.0177, 12.3019		-63.9737, 76.9757, 3.35406		; Point 1 Shot of archers		
+		set_camera_bookmark 6, -76.6844, 74.1679, 8.90294		-71.7806, 74.4139, 0.231824		; Point 2 Shot of archers
+		
+	;;;*********************************************************************************
+	;;; SHOT of Eng archers in position
+	;;;------------------------------------------------------------------------------
+	
+		camera_position_at_bookmark 5 ; Point 1 Shot of archers
+		battle_wait 1
+		while I_CompareCounter start_battle = 1
+		end_while
+			
+		camera_zoom_to_bookmark 6 1 ; Point 2 Shot of archers
+		;"Henry's longbowmen will be the key to defeating the French, striking them down as they traverse the muddy field." 
+		play_sound_event AGINCOURT_NARRATOR_13 tag = AGINCOURT_NARRATOR_13
+		
+	;;--------------------------------------------------------------------
+	;;;teleport FrencH group0 to battle position
+	;;---------------------------------------------------------------------
+	
+		unit_immediate_place fra_general_1 -124.856, 227.657, -180  26.596 
+		unit_immediate_place fra_dis_chiv_knig_1 -185.213, 183.259, -179 26.912
+		unit_immediate_place fra_dis_chiv_knig_2 -106.470, 183.674, -180 26.258
+		unit_immediate_place fra_dis_chiv_knig_3  -122.455, 248.714, -179 25.942
+		unit_immediate_place fra_dis_chiv_knig_4 -132.375, 183.985, -180 26.272
+		unit_immediate_place fra_crossbow_1 -78.575, 190.072, -179 72.701
+		unit_immediate_place fra_crossbow_2 -176.583, 190.499, -180 83.668
+		unit_immediate_place fra_dis_chiv_knig_5 -150.806, 227.054, -180  26.080
+		unit_immediate_place fra_dis_chiv_knig_6 -176.784, 226.796, -180 26.576
+		unit_immediate_place fra_dis_chiv_knig_7 -158.946, 183.474, -180 26.892
+		unit_immediate_place fra_serg_spearmen_1 -101.301, 248.914, -180 21.449
+		unit_immediate_place fra_serg_spearmen_2 -172.323, 248.801, 178 21.791
+		unit_immediate_place fra_chiv_knights_1  -201.045, 166.681, 179 63.351
+		unit_immediate_place fra_chiv_knights_2 -171.840, 236.934, -180 49.735
+		unit_immediate_place fra_dis_chiv_knig_8 -145.452, 190.022, -179 26.572
+		unit_immediate_place fra_dis_chiv_knig_9 -147.297, 248.818, -180 25.219
+		unit_immediate_place fra_dis_chiv_knig10 -98.537, 227.391, 179 26.312
+		unit_immediate_place fra_chiv_knights_3 -91.680, 166.402, 179 94.343
+		unit_immediate_place fra_dis_chiv_knig11 -136.175, 235.577, -180 26.312	
+		
+	;;;-------------------------------------------------------------------
+	;;; New Bookmarks
+	;;;-----------------------------------------------------------------
+	
+		set_camera_bookmark 1, -230.461, 75.2703, 6.77397		-224.787, 75.1728, -1.41667		; shot of stakes	 
+		set_camera_bookmark 2, -159.791, 73.8077, -15.8261		-164.508, 68.3991, -23.2231		; eng men at arms in battle line  
+		set_camera_bookmark 3, -183.068, 72.7352, -15.8828		-178.101, 72.0334, -24.4757		; henry in battle line		
+		set_camera_bookmark 4, -178.735, 89.2306, -61.7882		-177.809, 85.2347, -52.9387		; Eng overview
+		set_camera_bookmark 20, -66.7741, 74.373, 12.5999		-63.3339, 73.5149, 2.62728		; Point 1 Shot of archers		
+		set_camera_bookmark 21, -134.848, 75.1649, -0.950766	-64.8983, 72.6332, 2.85072		; Point 2 Shot of archers
+			
+		battle_wait 9
+		while I_CompareCounter start_battle = 1
+		end_while
+
+	;	"To protect his longbowmen from cavalry, Henry has ordered them to plant sharpened stakes in front of their positions."
+		play_sound_event AGINCOURT_NARRATOR_14 tag = AGINCOURT_NARRATOR_14
+		battle_wait 2
+		while I_CompareCounter start_battle = 1
+		end_while
+
+	;;;************************************************************************
+	;;; SHOT of stakes
+	;;;-------------------------------------------------------------------------		
+		
+		camera_position_at_bookmark 1	; shot of stakes
+			
+		battle_wait 7
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+	;;;************************************************************************
+	;;; SHOT of men at arms, Henry and final shot of Eng army
+	;;;-------------------------------------------------------------------------
+			
+		camera_position_at_bookmark 2 ; eng men at arms in battle line
+		battle_wait 1
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		
+		camera_zoom_to_bookmark 3 4 ; henry in battle line
+			;"To emerge victorious, Henry must survive the upcoming battle and destroy or rout the French army before him, Only then can he make his way home.
+		play_sound_event AGINCOURT_NARRATOR_15 tag = AGINCOURT_NARRATOR_15
+		
+		battle_wait 10
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		camera_zoom_to_bookmark 4 15 ; Eng overview
+		
+		battle_wait 7
+		
+		set_counter start_battle 1
+		
+		terminate_monitor
+	end_monitor
+	
+;;;--------------------------------------------------------------------------------------	
+	
+	monitor_conditions I_CompareCounter start_battle = 1
+
+;;;;*************************************************************************************************
+	;;;; RE-ENABLE UI
+	;;;;***********************************************************************************************
+		
+		steal_esc_key off
+		
+		; ------------
+		; RE-ENABLE UI
+		; ------------
+ 		disable_shortcuts false	
+ 		enable_entire_ui
+ 		camera_restrictions_set on
+		inhibit_camera_input false
+	 	enable_cursor
+	 	show_ui
+		camera_default_mode_set	user_pref
+	 	
+ 		
+		set_camera_bookmark 4, -178.735, 89.2306, -61.7882		-177.809, 85.2347, -52.9387		; Eng overview
+	 
+		set_music_state tension
+		
+	;;--------------------------------------------------------------------
+	;;;teleport FrencH group0 to battle position
+	;;---------------------------------------------------------------------
+	
+		unit_immediate_place fra_general_1 -124.856, 227.657, -180  26.596 
+		unit_immediate_place fra_dis_chiv_knig_1 -185.213, 183.259, -179 26.912
+		unit_immediate_place fra_dis_chiv_knig_2 -106.470, 183.674, -180 26.258
+		unit_immediate_place fra_dis_chiv_knig_3  -122.455, 248.714, -179 25.942
+		unit_immediate_place fra_dis_chiv_knig_4 -132.375, 183.985, -180 26.272
+		unit_immediate_place fra_crossbow_1 -78.575, 190.072, -179 72.701
+		unit_immediate_place fra_crossbow_2 -176.583, 190.499, -180 83.668
+		unit_immediate_place fra_dis_chiv_knig_5 -150.806, 227.054, -180  26.080
+		unit_immediate_place fra_dis_chiv_knig_6 -176.784, 226.796, -180 26.576
+		unit_immediate_place fra_dis_chiv_knig_7 -158.946, 183.474, -180 26.892
+		unit_immediate_place fra_serg_spearmen_1 -101.301, 248.914, -180 21.449
+		unit_immediate_place fra_serg_spearmen_2 -172.323, 248.801, 178 21.791
+		unit_immediate_place fra_chiv_knights_1  -201.045, 166.681, 179 63.351
+		unit_immediate_place fra_chiv_knights_2 -171.840, 236.934, -180 49.735
+		unit_immediate_place fra_dis_chiv_knig_8 -145.452, 190.022, -179 26.572
+		unit_immediate_place fra_dis_chiv_knig_9 -147.297, 248.818, -180 25.219
+		unit_immediate_place fra_dis_chiv_knig10 -98.537, 227.391, 179 26.312
+		unit_immediate_place fra_chiv_knights_3 -91.680, 166.402, 179 94.343
+		unit_immediate_place fra_dis_chiv_knig11 -136.175, 235.577, -180 26.312	
+		
+		
+		
+
+	;;;-----------------------------------------------------------------------------
+	;;; teleport Eng army to battle position 2 in formation & plant stakes
+	;;;----------------------------------------------------------------------------
+		
+		unit_immediate_place	eng_dis_general_1 -181.080, -17.841, -1 21.133
+		unit_immediate_place	eng_dis_knights_1 -216.230, -25.426, -1 21.949
+	 	unit_immediate_place	eng_dis_knights_2 -179.796, -3.408, -1 21.623
+		unit_immediate_place	eng_dis_knights_3 -200.327, -3.566, -1 21.931
+		unit_immediate_place	eng_heavy_bill_1 -239.817, -22.258, 2 20.583
+		unit_immediate_place	eng_heavy_bill_2 -119.218, -23.444, -1 20.817
+		unit_immediate_place	eng_dis_knights_4 -158.669, -3.042, 0 21.542
+		unit_immediate_place	eng_yeomen_1 -271.688, 12.155, 28 28
+		unit_immediate_place	eng_yeomen_2 -241.397, -3.124, 3 31
+		unit_immediate_place	eng_yeomen_3 -220.219, -19.615, -1 35
+		unit_immediate_place	eng_yeomen_4 -159.687, -18.999, -1 35
+		unit_immediate_place	eng_yeomen_5 -137.490, -4.188, -1 30
+		unit_immediate_place	eng_yeomen_6 -98.317, -2.234, -22 31
+		unit_immediate_place	eng_yeomen_7 -107.482, -18.187, -14 31
+		
+		
+		unit_deploy_stakes eng_yeomen_1
+	  	unit_deploy_stakes eng_yeomen_2
+	  	unit_deploy_stakes eng_yeomen_3
+	  	unit_deploy_stakes eng_yeomen_4
+	  	unit_deploy_stakes eng_yeomen_5
+	  	unit_deploy_stakes eng_yeomen_6
+	  	unit_deploy_stakes eng_yeomen_7
+	  	
+	  	
+	  	
+		unit_set_skirmish_mode eng_yeomen_1 off
+		unit_set_skirmish_mode eng_yeomen_2 off
+		unit_set_skirmish_mode eng_yeomen_3 off
+		unit_set_skirmish_mode eng_yeomen_4 off
+		unit_set_skirmish_mode eng_yeomen_5 off
+		unit_set_skirmish_mode eng_yeomen_6 off
+		unit_set_skirmish_mode eng_yeomen_7 off
+		
+		unit_set_morale eng_dis_general_1 high 
+		
+		release_unit	eng_dis_general_1 
+		release_unit	eng_dis_knights_1 
+	 	release_unit	eng_dis_knights_2 
+		release_unit	eng_dis_knights_3 
+		release_unit	eng_heavy_bill_1 
+		release_unit	eng_heavy_bill_2 
+		release_unit	eng_dis_knights_4 
+		release_unit	eng_yeomen_1 
+		release_unit	eng_yeomen_2 
+		release_unit	eng_yeomen_3 
+		release_unit	eng_yeomen_4 
+		release_unit	eng_yeomen_5 
+		release_unit	eng_yeomen_6 
+		release_unit	eng_yeomen_7 		
+
+	;;;------------------------------------------------------------------------
+	;;;	Teleport French group1 to battle start position
+	;;;----------------------------------------------------------------------		
+		unit_immediate_place fra_general_2 -757.765, 120.540, -180, 29.641
+		unit_immediate_place fra_chiv_knights_1a -796.416, 116.579, 175 31.499
+		unit_immediate_place fra_chiv_knights_2a -774.006, 140.297, 177 33.830
+	  	
+	;;;*************************************************************************************************
+	;;;;OVERALL COMMANDS & CONDITIONS FOR FRENCH ARMY
+	;;;*************************************************************************************************	
+		
+	
+
+		battle_wait 1.5
+		
+ 		camera_position_at_bookmark 4 ; Eng overview
+ 		
+		stop_sound_event AGINCOURT_NARRATOR_1
+		stop_sound_event AGINCOURT_NARRATOR_2
+		stop_sound_event AGINCOURT_NARRATOR_3
+		stop_sound_event AGINCOURT_NARRATOR_4
+		stop_sound_event AGINCOURT_NARRATOR_5
+		stop_sound_event AGINCOURT_NARRATOR_6
+		stop_sound_event AGINCOURT_NARRATOR_7
+		stop_sound_event AGINCOURT_NARRATOR_8
+		stop_sound_event AGINCOURT_NARRATOR_9
+		stop_sound_event AGINCOURT_NARRATOR_10
+		stop_sound_event AGINCOURT_NARRATOR_11
+		stop_sound_event AGINCOURT_NARRATOR_12
+		stop_sound_event AGINCOURT_NARRATOR_13
+		stop_sound_event AGINCOURT_NARRATOR_14
+		stop_sound_event AGINCOURT_NARRATOR_15
+		
+;;;;************************************************************************************		
+;;;;************************************************************************************
+;;;; 	BATTLE ACTION START
+;;;;************************************************************************************
+;;;;************************************************************************************		
+		
+	;ai_active_set on
+	ai_gta_plan_set ATTACK_MAIN_BODY		
+
+		;;;;rear attack move to point 1					
+		unit_order_move fra_general_2 -668 -156
+		unit_order_move fra_chiv_knights_1a -670 -160
+		unit_order_move fra_chiv_knights_2a -675 -165
+
+	;;;;Allow French crossbows to fire at will
+		unit_set_fire_at_will_mode fra_crossbow_1 on
+		unit_set_fire_at_will_mode fra_crossbow_2 on
+			
+;;;;wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww		
+;;;;;-----------------------------------------------------------------------------------------------------	
+;;;;;First wave of French army moves and attacks-must monitor time-they attack 16sec after  knights attack
+;;;;;------------------------------------------------------------------------------------------------------	
+	
+		battle_wait 8
+	
+;;;;;French knights on flanks charge forwards	
+		
+		unit_order_attack_unit fra_chiv_knights_1 eng_dis_knights_2 run 
+		unit_order_attack_unit fra_chiv_knights_3  eng_dis_knights_4 run
+		;"here they come!"
+		play_sound_event Agincourt_Sergeant_4 tag = Agincourt_Sergeant_4
+	
+		battle_wait 10
+	
+		unit_order_attack_unit fra_dis_chiv_knig_1 eng_dis_knights_3 run
+		unit_order_attack_unit fra_dis_chiv_knig_2 eng_yeomen_5 run
+		unit_order_attack_unit fra_dis_chiv_knig_7 eng_dis_knights_1 run
+		unit_order_attack_unit fra_dis_chiv_knig_4 eng_dis_knights_4 run
+		unit_order_attack_unit fra_dis_chiv_knig_8 eng_dis_knights_2 run
+		
+;;;backup orders for first wave
+	
+		
+		 
+ ;;;;;moves crossbow units into range of English knights on flanks	 
+		 unit_order_attack_closest_unit fra_crossbow_1 180 run 
+		 unit_order_attack_closest_unit fra_crossbow_2 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+;;;-----------------------------------------------------------------------------	
+;;;Prevents units going idle after they are engaged with target and/or other unit-1st time
+;;;------------------------------------------------------------------------------
+
+
+
+	monitor_conditions I_IsUnitEngaged fra_general_1
+	inc_counter engaged_fra_general_1 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_UnitStatus fra_general_1, idling
+	and I_CompareCounter engaged_fra_general_1 > 0
+	unit_order_attack_unit fra_general_1 eng_dis_general_1 run
+	;release_unit fra_general_1
+; 	and I_UnitEnemyUnitInRadius fra_general_1 800
+; 	unit_order_attack_closest_unit fra_general_1 180 run
+		terminate_monitor 
+	end_monitor
+	
+	
+	
+	monitor_conditions I_IsUnitEngaged fra_dis_chiv_knig_1
+	inc_counter engaged_fra_dis_chiv_knig_1 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_UnitStatus fra_dis_chiv_knig_1, idling
+	and I_CompareCounter engaged_fra_general_1 > 0
+	unit_order_attack_unit fra_dis_chiv_knig_1 eng_dis_general_1 run
+	;release_unit fra_dis_chiv_knig_1
+; 	and I_UnitEnemyUnitInRadius fra_dis_chiv_knig_1 800
+; 	unit_order_attack_closest_unit fra_dis_chiv_knig_1 180 run 
+		terminate_monitor
+	end_monitor
+	
+			
+	monitor_conditions I_IsUnitEngaged fra_dis_chiv_knig_2
+		inc_counter engaged_fra_dis_chiv_knig_2 1
+		terminate_monitor
+	end_monitor
+		monitor_conditions I_UnitStatus fra_dis_chiv_knig_2, idling
+	and I_CompareCounter engaged_fra_dis_chiv_knig_2 > 0
+	unit_order_attack_unit fra_dis_chiv_knig_2 eng_dis_general_1 run
+	;release_unit fra_dis_chiv_knig_2
+; 	and I_UnitEnemyUnitInRadius fra_dis_chiv_knig_2 800
+; 	unit_order_attack_closest_unit fra_dis_chiv_knig_2 180 run
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitEngaged fra_dis_chiv_knig_3
+		inc_counter engaged_fra_dis_chiv_knig_3 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_UnitStatus fra_dis_chiv_knig_3, idling
+	and I_CompareCounter engaged_fra_dis_chiv_knig_3 > 0
+	unit_order_attack_unit fra_dis_chiv_knig_3 eng_dis_general_1 run
+	;release_unit fra_dis_chiv_knig_3
+; 	and I_UnitEnemyUnitInRadius fra_dis_chiv_knig_3 800
+; 	unit_order_attack_closest_unit fra_dis_chiv_knig_3 180 run
+	terminate_monitor
+		end_monitor
+	
+	
+	monitor_conditions I_IsUnitEngaged fra_dis_chiv_knig_4
+		inc_counter engaged_fra_dis_chiv_knig_4 1
+		terminate_monitor
+	end_monitor
+ 		monitor_conditions I_UnitStatus fra_dis_chiv_knig_4, idling
+	and I_CompareCounter engaged_fra_dis_chiv_knig_4 > 0
+	unit_order_attack_unit fra_dis_chiv_knig_4 eng_dis_general_1 run
+	;release_unit fra_dis_chiv_knig_4
+; 	and I_UnitEnemyUnitInRadius fra_dis_chiv_knig_4 800
+; 	unit_order_attack_closest_unit fra_dis_chiv_knig_4 180 run
+	terminate_monitor
+		end_monitor
+	
+	
+	monitor_conditions I_UnitStatus fra_crossbow_1, missiles_firing
+		inc_counter engaged_fra_crossbow_1 1
+		terminate_monitor
+	end_monitor
+ 		monitor_conditions I_UnitStatus fra_crossbow_1, idling
+	and I_CompareCounter engaged_fra_crossbow_1 > 0
+	unit_order_attack_unit fra_crossbow_1 eng_dis_general_1 run
+	;release_unit fra_crossbow_1
+; 	and I_UnitEnemyUnitInRadius fra_crossbow_1 800
+; 	unit_order_attack_closest_unit fra_crossbow_1 180 run
+	terminate_monitor
+		end_monitor
+	
+	
+	monitor_conditions I_UnitStatus fra_crossbow_2, missiles_firing
+		inc_counter engaged_fra_crossbow_2 1
+		terminate_monitor
+	end_monitor
+ 		monitor_conditions I_UnitStatus fra_crossbow_2, idling
+	and I_CompareCounter engaged_fra_crossbow_2 > 0
+	unit_order_attack_unit fra_crossbow_2 eng_dis_general_1 run
+	;release_unit fra_crossbow_2
+; 	and I_UnitEnemyUnitInRadius fra_crossbow_2 800
+; 	unit_order_attack_closest_unit fra_crossbow_2 180 run
+	terminate_monitor
+		end_monitor
+
+
+	monitor_conditions I_IsUnitEngaged fra_dis_chiv_knig_5
+		inc_counter engaged_fra_dis_chiv_knig_5 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_UnitStatus fra_dis_chiv_knig_5, idling
+	and I_CompareCounter engaged_fra_dis_chiv_knig_5 > 0
+	unit_order_attack_unit fra_dis_chiv_knig_5 eng_dis_general_1 run
+	;release_unit fra_dis_chiv_knig_5
+; 	and I_UnitEnemyUnitInRadius fra_dis_chiv_knig_5 800
+; 	unit_order_attack_closest_unit fra_dis_chiv_knig_5 180 run
+	terminate_monitor
+		end_monitor
+	
+	
+	monitor_conditions I_IsUnitEngaged fra_dis_chiv_knig_6
+		inc_counter engaged_fra_dis_chiv_knig_6 1 
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_UnitStatus fra_dis_chiv_knig_6, idling
+	and I_CompareCounter engaged_fra_dis_chiv_knig_6 > 0
+	unit_order_attack_unit fra_dis_chiv_knig_6 eng_dis_general_1 run
+	;release_unit fra_dis_chiv_knig_6
+; 	and I_UnitEnemyUnitInRadius fra_dis_chiv_knig_6 800
+; 	unit_order_attack_closest_unit fra_dis_chiv_knig_6 180 run
+	terminate_monitor
+		end_monitor
+	
+		
+	monitor_conditions I_IsUnitEngaged fra_dis_chiv_knig_7
+		inc_counter engaged_fra_dis_chiv_knig_7 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_UnitStatus fra_dis_chiv_knig_7, idling
+	and I_CompareCounter engaged_fra_dis_chiv_knig_7 > 0
+	unit_order_attack_unit fra_dis_chiv_knig_7 eng_dis_general_1 run
+	;release_unit fra_dis_chiv_knig_7
+; 	and I_UnitEnemyUnitInRadius fra_dis_chiv_knig_7 800
+; 	unit_order_attack_closest_unit fra_dis_chiv_knig_7 180 run
+	terminate_monitor
+		end_monitor
+	
+	
+	monitor_conditions I_IsUnitEngaged fra_serg_spearmen_1
+		inc_counter engaged_fra_serg_spearmen_1 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_UnitStatus fra_serg_spearmen_1, idling
+	and I_CompareCounter engaged_fra_serg_spearmen_1 > 0
+	unit_order_attack_unit fra_serg_spearmen_1 eng_dis_general_1 run
+	;release_unit fra_serg_spearmen_1
+; 	and I_UnitEnemyUnitInRadius fra_serg_spearmen_1 800
+; 	unit_order_attack_closest_unit fra_serg_spearmen_1 180 run
+	terminate_monitor
+		end_monitor
+	
+		
+	monitor_conditions I_IsUnitEngaged fra_serg_spearmen_2
+		inc_counter engaged_fra_serg_spearmen_2 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_UnitStatus fra_serg_spearmen_2, idling
+	and I_CompareCounter engaged_fra_serg_spearmen_2 > 0
+	unit_order_attack_unit fra_serg_spearmen_2 eng_dis_general_1 run
+	;release_unit fra_serg_spearmen_2
+; 	and I_UnitEnemyUnitInRadius fra_serg_spearmen_2 800
+; 	unit_order_attack_closest_unit fra_serg_spearmen_2 180 run
+	terminate_monitor
+	end_monitor
+		
+	
+	monitor_conditions I_IsUnitEngaged fra_chiv_knights_1
+		inc_counter engaged_fra_chiv_knights_1 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_UnitStatus fra_chiv_knights_1, idling
+	and I_CompareCounter engaged_fra_chiv_knights_1 > 0
+	unit_order_attack_unit fra_chiv_knights_1 eng_dis_general_1 run
+	;release_unit fra_chiv_knights_1
+; 	and I_UnitEnemyUnitInRadius fra_chiv_knights_1 800
+; 	unit_order_attack_closest_unit fra_chiv_knights_1 180 run
+	terminate_monitor
+		end_monitor	
+	
+	
+	monitor_conditions I_IsUnitEngaged fra_chiv_knights_2
+		inc_counter engaged_fra_chiv_knights_2 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_UnitStatus fra_chiv_knights_2, idling
+	and I_CompareCounter engaged_fra_chiv_knights_2 > 0
+	unit_order_attack_unit fra_chiv_knights_2 eng_dis_general_1 run
+	;release_unit fra_chiv_knights_2
+; 	and I_UnitEnemyUnitInRadius fra_chiv_knights_2 800
+; 	unit_order_attack_closest_unit fra_chiv_knights_2 180 run
+	terminate_monitor
+		end_monitor
+	
+	
+	monitor_conditions I_IsUnitEngaged fra_dis_chiv_knig_8
+		inc_counter engaged_fra_dis_chiv_knig_8 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_UnitStatus fra_dis_chiv_knig_8, idling
+	and I_CompareCounter engaged_fra_dis_chiv_knig_8 > 0
+	unit_order_attack_unit fra_dis_chiv_knig_8 eng_dis_general_1 run
+	;release_unit fra_dis_chiv_knig_8
+; 	and I_UnitEnemyUnitInRadius fra_dis_chiv_knig_8 800
+; 	unit_order_attack_closest_unit fra_dis_chiv_knig_8 180 run
+	terminate_monitor
+		end_monitor
+	
+
+		
+	monitor_conditions I_IsUnitEngaged fra_dis_chiv_knig_9
+		inc_counter engaged_fra_dis_chiv_knig_9 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_UnitStatus fra_dis_chiv_knig_9, idling
+	and I_CompareCounter engaged_fra_dis_chiv_knig_9 > 0
+	unit_order_attack_unit fra_dis_chiv_knig_9 eng_dis_general_1 run
+	;release_unit fra_dis_chiv_knig_9
+; 	and I_UnitEnemyUnitInRadius fra_dis_chiv_knig_9 800
+; 	unit_order_attack_closest_unit fra_dis_chiv_knig_9 180 run
+	terminate_monitor
+		end_monitor	
+	
+	
+	monitor_conditions I_IsUnitEngaged fra_dis_chiv_knig10
+		inc_counter engaged_fra_dis_chiv_knig10 1
+		terminate_monitor
+	end_monitor
+		monitor_conditions I_UnitStatus fra_dis_chiv_knig10, idling
+	and I_CompareCounter engaged_fra_dis_chiv_knig10 > 0
+	release_unit fra_dis_chiv_knig10
+	unit_order_attack_unit fra_dis_chiv_knig10 eng_dis_general_1 run
+; 	and I_UnitEnemyUnitInRadius fra_dis_chiv_knig10 800
+; 	unit_order_attack_closest_unit fra_dis_chiv_knig10 180 run
+	terminate_monitor
+		end_monitor
+	
+	
+	monitor_conditions I_IsUnitEngaged fra_chiv_knights_3
+		inc_counter engaged_fra_chiv_knights_3 1
+		terminate_monitor
+	end_monitor
+		monitor_conditions I_UnitStatus fra_chiv_knights_3, idling
+	and I_CompareCounter engaged_fra_chiv_knights_3 > 0
+	unit_order_attack_unit fra_chiv_knights_3 eng_dis_general_1 run
+	;release_unit fra_chiv_knights_3
+; 	and I_UnitEnemyUnitInRadius fra_chiv_knights_3 800
+; 	unit_order_attack_closest_unit fra_chiv_knights_3 180 run
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitEngaged fra_dis_chiv_knig11
+	 	inc_counter engaged_fra_dis_chiv_knig11 1
+		terminate_monitor
+	end_monitor
+	 	monitor_conditions I_UnitStatus fra_dis_chiv_knig11, idling
+	and I_CompareCounter engaged_fra_dis_chiv_knig11 > 0
+	unit_order_attack_unit fra_dis_chiv_knig11 eng_dis_general_1 run
+	;release_unit fra_dis_chiv_knig11
+; 	and I_UnitEnemyUnitInRadius fra_dis_chiv_knig11 800
+; 	unit_order_attack_closest_unit fra_dis_chiv_knig11 180 run
+	terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitEngaged fra_general_2
+		inc_counter engaged_fra_general_2 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_UnitStatus fra_general_2, idling
+	and I_CompareCounter start_battle = 1
+	;and I_CompareCounter engaged_fra_general_2 > 0
+	unit_order_attack_unit fra_general_2 eng_dis_general_1 run
+	;release_unit fra_general_2
+; 	and I_UnitEnemyUnitInRadius fra_general_2 800
+; 	unit_order_attack_closest_unit fra_general_2 180 run
+	terminate_monitor
+	end_monitor	
+	
+	
+	monitor_conditions I_IsUnitEngaged fra_chiv_knights_1a
+		inc_counter engaged_fra_chiv_knights_1a 1 180 run
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_UnitStatus fra_chiv_knights_1a, idling
+	and I_CompareCounter start_battle = 1
+	;and I_CompareCounter engaged_fra_chiv_knights_1a > 0
+	unit_order_attack_unit fra_chiv_knights_1a eng_dis_general_1 run
+	;release_unit fra_chiv_knights_1a
+; 	and I_UnitEnemyUnitInRadius fra_chiv_knights_1a 800
+; 	unit_order_attack_closest_unit fra_chiv_knights_1a 180 run
+	terminate_monitor
+	end_monitor	
+	
+	
+	monitor_conditions I_IsUnitEngaged fra_chiv_knights_2a
+		inc_counter engaged_fra_chiv_knights_2a 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_UnitStatus fra_chiv_knights_2a, idling
+	;and I_CompareCounter engaged_fra_chiv_knights_2a > 0
+	and I_CompareCounter start_battle = 1
+	unit_order_attack_unit fra_chiv_knights_2a eng_dis_general_1 run
+	
+; 	and I_UnitEnemyUnitInRadius fra_chiv_knights_2a 800
+; 	unit_order_attack_closest_unit fra_chiv_knights_2a 180 run
+	terminate_monitor
+	end_monitor
+	
+	
+	;;;-----------------------------------------------------------------------------	
+;;;Prevents units going idle after they are engaged with target and/or other unit-2nd time
+;;;------------------------------------------------------------------------------
+
+
+
+	monitor_conditions I_IsUnitEngaged fra_general_1
+	inc_counter engaged_fra_general_1 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_UnitStatus fra_general_1, idling
+	and I_CompareCounter engaged_fra_general_1 > 1
+	unit_order_attack_unit fra_general_1 eng_dis_general_1 run
+	;release_unit fra_general_1
+; 	and I_UnitEnemyUnitInRadius fra_general_1 800
+; 	unit_order_attack_closest_unit fra_general_1 180 run
+		terminate_monitor 
+	end_monitor
+	
+	
+	
+	monitor_conditions I_IsUnitEngaged fra_dis_chiv_knig_1
+	inc_counter engaged_fra_dis_chiv_knig_1 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_UnitStatus fra_dis_chiv_knig_1, idling
+	and I_CompareCounter engaged_fra_general_1 > 1
+	unit_order_attack_unit fra_dis_chiv_knig_1 eng_dis_general_1 run
+	;release_unit fra_dis_chiv_knig_1
+; 	and I_UnitEnemyUnitInRadius fra_dis_chiv_knig_1 800
+; 	unit_order_attack_closest_unit fra_dis_chiv_knig_1 180 run 
+		terminate_monitor
+	end_monitor
+	
+			
+	monitor_conditions I_IsUnitEngaged fra_dis_chiv_knig_2
+		inc_counter engaged_fra_dis_chiv_knig_2 1
+		terminate_monitor
+	end_monitor
+		monitor_conditions I_UnitStatus fra_dis_chiv_knig_2, idling
+	and I_CompareCounter engaged_fra_dis_chiv_knig_2 > 1
+	unit_order_attack_unit fra_dis_chiv_knig_2 eng_dis_general_1 run
+	;release_unit fra_dis_chiv_knig_2
+; 	and I_UnitEnemyUnitInRadius fra_dis_chiv_knig_2 800
+; 	unit_order_attack_closest_unit fra_dis_chiv_knig_2 180 run
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitEngaged fra_dis_chiv_knig_3
+		inc_counter engaged_fra_dis_chiv_knig_3 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_UnitStatus fra_dis_chiv_knig_3, idling
+	and I_CompareCounter engaged_fra_dis_chiv_knig_3 > 1
+	unit_order_attack_unit fra_dis_chiv_knig_3 eng_dis_general_1 run
+	;release_unit fra_dis_chiv_knig_3
+; 	and I_UnitEnemyUnitInRadius fra_dis_chiv_knig_3 800
+; 	unit_order_attack_closest_unit fra_dis_chiv_knig_3 180 run
+	terminate_monitor
+		end_monitor
+	
+	
+	monitor_conditions I_IsUnitEngaged fra_dis_chiv_knig_4
+		inc_counter engaged_fra_dis_chiv_knig_4 1
+		terminate_monitor
+	end_monitor
+ 		monitor_conditions I_UnitStatus fra_dis_chiv_knig_4, idling
+	and I_CompareCounter engaged_fra_dis_chiv_knig_4 > 0
+	unit_order_attack_unit fra_dis_chiv_knig_4 eng_dis_general_1 run
+	;release_unit fra_dis_chiv_knig_4
+; 	and I_UnitEnemyUnitInRadius fra_dis_chiv_knig_4 800
+; 	unit_order_attack_closest_unit fra_dis_chiv_knig_4 180 run
+	terminate_monitor
+		end_monitor
+	
+	
+	monitor_conditions I_UnitStatus fra_crossbow_1, missiles_firing
+		inc_counter engaged_fra_crossbow_1 1
+		terminate_monitor
+	end_monitor
+ 		monitor_conditions I_UnitStatus fra_crossbow_1, idling
+	and I_CompareCounter engaged_fra_crossbow_1 > 1
+	unit_order_attack_unit fra_crossbow_1 eng_dis_general_1 run
+	;release_unit fra_crossbow_1
+; 	and I_UnitEnemyUnitInRadius fra_crossbow_1 800
+; 	unit_order_attack_closest_unit fra_crossbow_1 180 run
+	terminate_monitor
+		end_monitor
+	
+	
+	monitor_conditions I_UnitStatus fra_crossbow_2, missiles_firing
+		inc_counter engaged_fra_crossbow_2 1
+		terminate_monitor
+	end_monitor
+ 		monitor_conditions I_UnitStatus fra_crossbow_2, idling
+	and I_CompareCounter engaged_fra_crossbow_2 > 1
+	unit_order_attack_unit fra_crossbow_2 eng_dis_general_1 run
+	;release_unit fra_crossbow_2
+; 	and I_UnitEnemyUnitInRadius fra_crossbow_2 800
+; 	unit_order_attack_closest_unit fra_crossbow_2 180 run
+	terminate_monitor
+		end_monitor
+
+
+	monitor_conditions I_IsUnitEngaged fra_dis_chiv_knig_5
+		inc_counter engaged_fra_dis_chiv_knig_5 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_UnitStatus fra_dis_chiv_knig_5, idling
+	and I_CompareCounter engaged_fra_dis_chiv_knig_5 > 1
+	unit_order_attack_unit fra_dis_chiv_knig_5 eng_dis_general_1 run
+	;release_unit fra_dis_chiv_knig_5
+; 	and I_UnitEnemyUnitInRadius fra_dis_chiv_knig_5 800
+; 	unit_order_attack_closest_unit fra_dis_chiv_knig_5 180 run
+	terminate_monitor
+		end_monitor
+	
+	
+	monitor_conditions I_IsUnitEngaged fra_dis_chiv_knig_6
+		inc_counter engaged_fra_dis_chiv_knig_6 1 
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_UnitStatus fra_dis_chiv_knig_6, idling
+	and I_CompareCounter engaged_fra_dis_chiv_knig_6 > 1
+	unit_order_attack_unit fra_dis_chiv_knig_6 eng_dis_general_1 run
+	;release_unit fra_dis_chiv_knig_6
+; 	and I_UnitEnemyUnitInRadius fra_dis_chiv_knig_6 800
+; 	unit_order_attack_closest_unit fra_dis_chiv_knig_6 180 run
+	terminate_monitor
+		end_monitor
+	
+		
+	monitor_conditions I_IsUnitEngaged fra_dis_chiv_knig_7
+		inc_counter engaged_fra_dis_chiv_knig_7 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_UnitStatus fra_dis_chiv_knig_7, idling
+	and I_CompareCounter engaged_fra_dis_chiv_knig_7 > 1
+	unit_order_attack_unit fra_dis_chiv_knig_7 eng_dis_general_1 run
+	;release_unit fra_dis_chiv_knig_7
+; 	and I_UnitEnemyUnitInRadius fra_dis_chiv_knig_7 800
+; 	unit_order_attack_closest_unit fra_dis_chiv_knig_7 180 run
+	terminate_monitor
+		end_monitor
+	
+	
+	monitor_conditions I_IsUnitEngaged fra_serg_spearmen_1
+		inc_counter engaged_fra_serg_spearmen_1 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_UnitStatus fra_serg_spearmen_1, idling
+	and I_CompareCounter engaged_fra_serg_spearmen_1 > 1
+	unit_order_attack_unit fra_serg_spearmen_1 eng_dis_general_1 run
+	;release_unit fra_serg_spearmen_1
+; 	and I_UnitEnemyUnitInRadius fra_serg_spearmen_1 800
+; 	unit_order_attack_closest_unit fra_serg_spearmen_1 180 run
+	terminate_monitor
+		end_monitor
+	
+		
+	monitor_conditions I_IsUnitEngaged fra_serg_spearmen_2
+		inc_counter engaged_fra_serg_spearmen_2 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_UnitStatus fra_serg_spearmen_2, idling
+	and I_CompareCounter engaged_fra_serg_spearmen_2 > 1
+	unit_order_attack_unit fra_serg_spearmen_2 eng_dis_general_1 run
+	;release_unit fra_serg_spearmen_2
+; 	and I_UnitEnemyUnitInRadius fra_serg_spearmen_2 800
+; 	unit_order_attack_closest_unit fra_serg_spearmen_2 180 run
+	terminate_monitor
+	end_monitor
+		
+	
+	monitor_conditions I_IsUnitEngaged fra_chiv_knights_1
+		inc_counter engaged_fra_chiv_knights_1 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_UnitStatus fra_chiv_knights_1, idling
+	and I_CompareCounter engaged_fra_chiv_knights_1 > 1
+	unit_order_attack_unit fra_chiv_knights_1 eng_dis_general_1 run
+	;release_unit fra_chiv_knights_1
+; 	and I_UnitEnemyUnitInRadius fra_chiv_knights_1 800
+; 	unit_order_attack_closest_unit fra_chiv_knights_1 180 run
+	terminate_monitor
+		end_monitor	
+	
+	
+	monitor_conditions I_IsUnitEngaged fra_chiv_knights_2
+		inc_counter engaged_fra_chiv_knights_2 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_UnitStatus fra_chiv_knights_2, idling
+	and I_CompareCounter engaged_fra_chiv_knights_2 > 1
+	unit_order_attack_unit fra_chiv_knights_2 eng_dis_general_1 run
+	;release_unit fra_chiv_knights_2
+; 	and I_UnitEnemyUnitInRadius fra_chiv_knights_2 800
+; 	unit_order_attack_closest_unit fra_chiv_knights_2 180 run
+	terminate_monitor
+		end_monitor
+	
+	
+	monitor_conditions I_IsUnitEngaged fra_dis_chiv_knig_8
+		inc_counter engaged_fra_dis_chiv_knig_8 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_UnitStatus fra_dis_chiv_knig_8, idling
+	and I_CompareCounter engaged_fra_dis_chiv_knig_8 > 1
+	unit_order_attack_unit fra_dis_chiv_knig_8 eng_dis_general_1 run
+	;release_unit fra_dis_chiv_knig_8
+; 	and I_UnitEnemyUnitInRadius fra_dis_chiv_knig_8 800
+; 	unit_order_attack_closest_unit fra_dis_chiv_knig_8 180 run
+	terminate_monitor
+		end_monitor
+	
+
+		
+	monitor_conditions I_IsUnitEngaged fra_dis_chiv_knig_9
+		inc_counter engaged_fra_dis_chiv_knig_9 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_UnitStatus fra_dis_chiv_knig_9, idling
+	and I_CompareCounter engaged_fra_dis_chiv_knig_9 > 1
+	unit_order_attack_unit fra_dis_chiv_knig_9 eng_dis_general_1 run
+	;release_unit fra_dis_chiv_knig_9
+; 	and I_UnitEnemyUnitInRadius fra_dis_chiv_knig_9 800
+; 	unit_order_attack_closest_unit fra_dis_chiv_knig_9 180 run
+	terminate_monitor
+		end_monitor	
+	
+	
+	monitor_conditions I_IsUnitEngaged fra_dis_chiv_knig10
+		inc_counter engaged_fra_dis_chiv_knig10 1
+		terminate_monitor
+	end_monitor
+		monitor_conditions I_UnitStatus fra_dis_chiv_knig10, idling
+	and I_CompareCounter engaged_fra_dis_chiv_knig10 > 1
+	release_unit fra_dis_chiv_knig10
+	unit_order_attack_unit fra_dis_chiv_knig10 eng_dis_general_1 run
+; 	and I_UnitEnemyUnitInRadius fra_dis_chiv_knig10 800
+; 	unit_order_attack_closest_unit fra_dis_chiv_knig10 180 run
+	terminate_monitor
+		end_monitor
+	
+	
+	monitor_conditions I_IsUnitEngaged fra_chiv_knights_3
+		inc_counter engaged_fra_chiv_knights_3 1
+		terminate_monitor
+	end_monitor
+		monitor_conditions I_UnitStatus fra_chiv_knights_3, idling
+	and I_CompareCounter engaged_fra_chiv_knights_3 > 1
+	unit_order_attack_unit fra_chiv_knights_3 eng_dis_general_1 run
+	;release_unit fra_chiv_knights_3
+; 	and I_UnitEnemyUnitInRadius fra_chiv_knights_3 800
+; 	unit_order_attack_closest_unit fra_chiv_knights_3 180 run
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitEngaged fra_dis_chiv_knig11
+	 	inc_counter engaged_fra_dis_chiv_knig11 1
+		terminate_monitor
+	end_monitor
+	 	monitor_conditions I_UnitStatus fra_dis_chiv_knig11, idling
+	and I_CompareCounter engaged_fra_dis_chiv_knig11 > 0
+	unit_order_attack_unit fra_dis_chiv_knig11 eng_dis_general_1 run
+	;release_unit fra_dis_chiv_knig11
+; 	and I_UnitEnemyUnitInRadius fra_dis_chiv_knig11 800
+; 	unit_order_attack_closest_unit fra_dis_chiv_knig11 180 run
+	terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitEngaged fra_general_2
+		inc_counter engaged_fra_general_2 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_UnitStatus fra_general_2, idling
+	and I_CompareCounter engaged_fra_general_2 > 1
+	unit_order_attack_unit fra_general_2 eng_dis_general_1 run
+	;release_unit fra_general_2
+; 	and I_UnitEnemyUnitInRadius fra_general_2 800
+; 	unit_order_attack_closest_unit fra_general_2 180 run
+	terminate_monitor
+	end_monitor	
+	
+	
+	monitor_conditions I_IsUnitEngaged fra_chiv_knights_1a
+		inc_counter engaged_fra_chiv_knights_1a 1 180 run
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_UnitStatus fra_chiv_knights_1a, idling
+	and I_CompareCounter engaged_fra_chiv_knights_1a > 1
+	unit_order_attack_unit fra_chiv_knights_1a eng_dis_general_1 run
+	;release_unit fra_chiv_knights_1a
+; 	and I_UnitEnemyUnitInRadius fra_chiv_knights_1a 800
+; 	unit_order_attack_closest_unit fra_chiv_knights_1a 180 run
+	terminate_monitor
+	end_monitor	
+	
+	
+	monitor_conditions I_IsUnitEngaged fra_chiv_knights_2a
+		inc_counter engaged_fra_chiv_knights_2a 1
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_UnitStatus fra_chiv_knights_2a, idling
+	and I_CompareCounter engaged_fra_chiv_knights_2a > 1
+	unit_order_attack_unit fra_chiv_knights_2a eng_dis_general_1 run
+	
+; 	and I_UnitEnemyUnitInRadius fra_chiv_knights_2a 800
+; 	unit_order_attack_closest_unit fra_chiv_knights_2a 180 run
+	terminate_monitor
+	end_monitor
+	
+	
+;;;;Extra conditions for troublesome units;;;;;;;;;;;;;;;;;;	
+	monitor_conditions I_UnitStatus fra_dis_chiv_knig_8, idling 
+	and I_PercentageUnitKilled fra_dis_chiv_knig_8 > 1
+		unit_order_attack_unit fra_dis_chiv_knig_8 eng_dis_general_1 run
+		terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitStatus fra_dis_chiv_knig_1, idling 
+	and I_PercentageUnitKilled fra_dis_chiv_knig_1 > 1
+		unit_order_attack_unit fra_dis_chiv_knig_1 eng_dis_general_1 run
+		terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitStatus fra_serg_spearmen_1, idling 
+	and I_PercentageUnitKilled fra_serg_spearmen_1 > 1
+		unit_order_attack_unit fra_serg_spearmen_1 eng_dis_general_1 run
+		terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitStatus fra_dis_chiv_knig_3, idling 
+	and I_PercentageUnitKilled fra_dis_chiv_knig_3 > 1
+		unit_order_attack_unit fra_dis_chiv_knig_3 eng_dis_general_1 run
+		terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitStatus fra_dis_chiv_knig_9, idling 
+	and I_PercentageUnitKilled fra_dis_chiv_knig_9 > 1
+		unit_order_attack_unit fra_dis_chiv_knig_9 eng_dis_general_1 run
+		terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitStatus fra_general_2, idling 
+	and I_PercentageUnitKilled fra_general_2 > 1
+		unit_order_attack_unit fra_general_2 eng_dis_general_1 run
+		terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitStatus fra_chiv_knights_1a, idling 
+	and I_PercentageUnitKilled fra_chiv_knights_1a > 1
+		unit_order_attack_unit fra_chiv_knights_1a eng_dis_general_1 run
+		terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitStatus fra_chiv_knights_2a, idling 
+	and I_PercentageUnitKilled fra_chiv_knights_2a > 1
+		unit_order_attack_unit fra_chiv_knights_2a eng_dis_general_1 run
+		terminate_monitor
+	end_monitor
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;	
+	
+;;;;-----------------------------------------------------------------------------	
+;;;;Prevents units getting stuck on ready after they are engaged with target and/or other unit
+;;;;------------------------------------------------------------------------------
+
+	
+	monitor_conditions I_UnitStatus fra_general_1 ready
+	and I_CompareCounter engaged_fra_general_1 > 0
+	unit_order_attack_closest_unit fra_general_1 180 run
+	end_monitor
+	
+	monitor_conditions I_UnitStatus fra_dis_chiv_knig_1 ready
+	and I_CompareCounter engaged_fra_dis_chiv_knig_1 > 0
+	unit_order_attack_closest_unit fra_dis_chiv_knig_1 180 run
+	end_monitor
+	
+	monitor_conditions I_UnitStatus fra_dis_chiv_knig_2 ready
+	and I_CompareCounter engaged_fra_dis_chiv_knig_2 > 0
+	unit_order_attack_closest_unit fra_dis_chiv_knig_2 180 run
+	end_monitor
+	
+	monitor_conditions I_UnitStatus fra_dis_chiv_knig_3 ready
+	and I_CompareCounter engaged_fra_dis_chiv_knig_3 > 0
+	unit_order_attack_closest_unit fra_dis_chiv_knig_3 180 run
+	end_monitor
+	
+	monitor_conditions I_UnitStatus fra_dis_chiv_knig_4 ready
+	and I_CompareCounter engaged_fra_dis_chiv_knig_4 > 0
+	unit_order_attack_closest_unit fra_dis_chiv_knig_4 180
+	end_monitor
+	
+	monitor_conditions I_UnitStatus fra_crossbow_1 ready
+	and I_CompareCounter engaged_fra_crossbow_1 > 0
+	unit_order_attack_closest_unit fra_crossbow_1 180 run
+	end_monitor
+	
+	monitor_conditions I_UnitStatus fra_crossbow_2 ready
+	and I_CompareCounter engaged_fra_crossbow_2 > 0
+	unit_order_attack_closest_unit fra_crossbow_2 180 run
+	end_monitor
+	
+	monitor_conditions I_UnitStatus fra_dis_chiv_knig_5 ready
+	and I_CompareCounter engaged_fra_dis_chiv_knig_5 > 0
+	unit_order_attack_closest_unit fra_dis_chiv_knig_5 180 run
+	end_monitor
+	
+	monitor_conditions I_UnitStatus fra_dis_chiv_knig_6 ready
+	and I_CompareCounter engaged_fra_dis_chiv_knig_6 > 0
+	unit_order_attack_closest_unit fra_dis_chiv_knig_6 180 run
+	end_monitor
+	
+	monitor_conditions I_UnitStatus fra_dis_chiv_knig_7 ready
+	and I_CompareCounter engaged_fra_dis_chiv_knig_7 > 0
+	unit_order_attack_closest_unit fra_dis_chiv_knig_7 180 run
+	end_monitor
+	
+	monitor_conditions I_UnitStatus fra_serg_spearmen_1 ready
+	and I_CompareCounter engaged_fra_serg_spearmen_1 > 0
+	unit_order_attack_closest_unit fra_serg_spearmen_1 180 run
+	end_monitor
+	
+	monitor_conditions I_UnitStatus fra_serg_spearmen_2 ready
+	and I_CompareCounter engaged_fra_serg_spearmen_2 > 0
+	unit_order_attack_closest_unit fra_serg_spearmen_2 180 run
+	end_monitor
+	
+	monitor_conditions I_UnitStatus fra_chiv_knights_1 ready
+	and I_CompareCounter engaged_fra_chiv_knights_1 > 0
+	unit_order_attack_closest_unit fra_chiv_knights_1 180 run
+	end_monitor
+	
+	monitor_conditions I_UnitStatus fra_chiv_knights_2 ready
+	and I_CompareCounter engaged_fra_chiv_knights_2 > 0
+	unit_order_attack_closest_unit fra_chiv_knights_2 180 run
+	end_monitor
+	
+	monitor_conditions I_UnitStatus fra_dis_chiv_knig_8 ready
+	and I_CompareCounter engaged_fra_dis_chiv_knig_8 > 0
+	unit_order_attack_closest_unit fra_dis_chiv_knig_8 180 run
+	end_monitor
+	
+	monitor_conditions I_UnitStatus fra_dis_chiv_knig_9 ready
+	and I_CompareCounter engaged_fra_dis_chiv_knig_9 > 0
+	unit_order_attack_closest_unit fra_dis_chiv_knig_9 180 run
+	end_monitor
+	
+	monitor_conditions I_UnitStatus fra_dis_chiv_knig10 ready
+	and I_CompareCounter engaged_fra_dis_chiv_knig10 > 0
+	unit_order_attack_closest_unit fra_dis_chiv_knig10 180 run
+	end_monitor
+	
+	monitor_conditions I_UnitStatus fra_chiv_knights_3 ready
+	and I_CompareCounter engaged_fra_chiv_knights_3 > 0
+	unit_order_attack_closest_unit fra_chiv_knights_3 180 run
+	end_monitor
+	
+	monitor_conditions I_UnitStatus fra_dis_chiv_knig11 ready
+	and I_CompareCounter engaged_fra_dis_chiv_knig11 > 0
+	unit_order_attack_closest_unit fra_dis_chiv_knig11 180 run
+	end_monitor
+	
+	monitor_conditions I_UnitStatus fra_general_2 ready
+	and I_CompareCounter engaged_fra_general_2 > 0
+	unit_order_attack_closest_unit fra_general_2 180 run
+	end_monitor
+	
+	monitor_conditions I_UnitStatus fra_chiv_knights_1a ready
+	and I_CompareCounter engaged_fra_chiv_knights_1a > 0
+	unit_order_attack_closest_unit fra_chiv_knights_1a 180 run
+	end_monitor
+	
+	monitor_conditions I_UnitStatus fra_chiv_knights_2a ready
+	and I_CompareCounter engaged_fra_chiv_knights_2a > 0
+	unit_order_attack_closest_unit fra_chiv_knights_2a 180 run
+	end_monitor
+	
+	
+
+;;;;------------------------------------------------------
+;;;; Count French routers-After ???? units rout the whole army routs	
+;;;;-------------------------------------------------------------------	
+	 monitor_conditions I_IsUnitRouting fra_dis_chiv_knig_1
+ 		inc_counter french_rout 1
+			terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting fra_dis_chiv_knig_2
+ 		inc_counter french_rout 1
+			terminate_monitor
+	end_monitor
+	
+
+	monitor_conditions I_IsUnitRouting fra_dis_chiv_knig_3
+ 		inc_counter french_rout 1
+		terminate_monitor
+	end_monitor	
+	
+		
+	monitor_conditions I_IsUnitRouting fra_dis_chiv_knig_4
+		inc_counter french_rout 1
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting fra_crossbow_1
+		inc_counter french_rout 1
+		terminate_monitor
+	end_monitor
+	
+	
+		monitor_conditions I_IsUnitRouting fra_crossbow_2
+		inc_counter french_rout 1
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting fra_dis_chiv_knig_5
+		inc_counter french_rout 1
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting fra_dis_chiv_knig_6
+		inc_counter french_rout 1
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting fra_dis_chiv_knig_7
+		inc_counter french_rout 1
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting fra_serg_spearmen_1
+		inc_counter french_rout 1
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting fra_serg_spearmen_2
+		inc_counter french_rout 1
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting fra_chiv_knights_1
+		inc_counter french_rout 1
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting fra_chiv_knights_2
+		inc_counter french_rout 1
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting fra_dis_chiv_knig_8
+		inc_counter french_rout 1
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting fra_dis_chiv_knig_9
+		inc_counter french_rout 1
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting fra_dis_chiv_knig10
+		inc_counter french_rout 1
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting fra_chiv_knights_3
+		inc_counter french_rout 1
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting fra_dis_chiv_knig11
+		inc_counter french_rout 1
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting fra_general_1
+		inc_counter french_rout 1
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting fra_general_2
+		inc_counter french_rout 1
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting fra_chiv_knights_1a
+		inc_counter french_rout 1
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting fra_chiv_knights_2a
+		inc_counter french_rout 1
+		terminate_monitor
+	end_monitor	
+		
+monitor_conditions I_CompareCounter french_rout > 19
+			play_sound_event Agincourt_Win
+			battle_wait 4 
+			;rout all french off the map
+			unit_set_morale fra_general_1 routing
+			unit_set_morale fra_dis_chiv_knig_1 routing
+			unit_set_morale fra_dis_chiv_knig_2 routing
+			unit_set_morale fra_dis_chiv_knig_3 routing
+			unit_set_morale fra_dis_chiv_knig_4 routing
+			unit_set_morale fra_crossbow_1 routing
+			unit_set_morale fra_crossbow_2 routing
+			unit_set_morale fra_dis_chiv_knig_5 routing
+			unit_set_morale fra_dis_chiv_knig_6 routing
+			unit_set_morale fra_dis_chiv_knig_7 routing
+			unit_set_morale fra_serg_spearmen_1 routing
+			unit_set_morale fra_serg_spearmen_2 routing
+			unit_set_morale fra_chiv_knights_1 routing
+			unit_set_morale fra_chiv_knights_2 routing
+			unit_set_morale fra_dis_chiv_knig_8 routing
+			unit_set_morale fra_dis_chiv_knig_9 routing
+			unit_set_morale fra_dis_chiv_knig10 routing
+			unit_set_morale fra_chiv_knights_3 routing
+			unit_set_morale fra_dis_chiv_knig11 routing
+			unit_set_morale fra_general_2 routing
+			unit_set_morale fra_chiv_knights_1a routing
+			unit_set_morale fra_chiv_knights_2a routing
+			
+				terminate_monitor
+			end_monitor	
+
+;;;-------------------------------------			
+;;;make units keep routing if < ? left
+;;;-------------------------------------
+ monitor_conditions I_IsUnitRouting fra_dis_chiv_knig_1
+ 		and I_PercentageUnitKilled fra_dis_chiv_knig_1 > 60
+ 		
+		unit_set_morale fra_dis_chiv_knig_1 routing
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting fra_dis_chiv_knig_2
+ 		and I_PercentageUnitKilled fra_dis_chiv_knig_2 > 60
+ 		
+		unit_set_morale fra_dis_chiv_knig_2 routing
+	
+		terminate_monitor
+	end_monitor
+	
+
+	monitor_conditions I_IsUnitRouting fra_dis_chiv_knig_3
+ 		and I_PercentageUnitKilled fra_dis_chiv_knig_3 > 60
+ 		
+		unit_set_morale fra_dis_chiv_knig_3 routing
+	
+		terminate_monitor
+	end_monitor	
+	
+		
+	monitor_conditions I_IsUnitRouting fra_dis_chiv_knig_4
+		and I_PercentageUnitKilled fra_dis_chiv_knig_4 > 60
+		
+		unit_set_morale fra_dis_chiv_knig_4 routing
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting fra_crossbow_1
+		;and I_PercentageUnitKilled fra_crossbow_1 > 60
+		
+		unit_set_morale fra_crossbow_1 routing
+	
+		terminate_monitor
+	end_monitor
+	
+	
+		monitor_conditions I_IsUnitRouting fra_crossbow_2
+		;and I_PercentageUnitKilled fra_crossbow_2 > 60
+		
+		unit_set_morale fra_crossbow_2 routing
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting fra_dis_chiv_knig_5
+		and I_PercentageUnitKilled fra_dis_chiv_knig_5 > 60
+		
+		unit_set_morale fra_dis_chiv_knig_5 routing
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting fra_dis_chiv_knig_6
+		and I_PercentageUnitKilled fra_dis_chiv_knig_6 > 60
+	
+		unit_set_morale fra_dis_chiv_knig_6 routing
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting fra_dis_chiv_knig_7
+		and I_PercentageUnitKilled fra_dis_chiv_knig_7 > 60
+		
+		unit_set_morale fra_dis_chiv_knig_7 routing
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting fra_serg_spearmen_1
+		;and I_PercentageUnitKilled fra_serg_spearmen_1 > 60
+		
+		unit_set_morale fra_serg_spearmen_1 routing
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting fra_serg_spearmen_2
+		;and I_PercentageUnitKilled fra_serg_spearmen_2 > 60
+	
+		unit_set_morale fra_serg_spearmen_2 routing
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting fra_chiv_knights_1
+		and I_PercentageUnitKilled fra_chiv_knights_1 > 40
+	
+		unit_set_morale fra_chiv_knights_1 routing
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting fra_chiv_knights_2
+		and I_PercentageUnitKilled fra_chiv_knights_2 > 40
+		
+		unit_set_morale fra_chiv_knights_2 routing	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting fra_dis_chiv_knig_8
+		and I_PercentageUnitKilled fra_dis_chiv_knig_8 > 60
+		
+		unit_set_morale fra_dis_chiv_knig_8 routing
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting fra_dis_chiv_knig_9
+		and I_PercentageUnitKilled fra_dis_chiv_knig_9 > 60
+		
+		unit_set_morale fra_dis_chiv_knig_9 routing
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting fra_dis_chiv_knig10
+		and I_PercentageUnitKilled fra_dis_chiv_knig10 > 60
+	
+		unit_set_morale fra_dis_chiv_knig10 routing
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting fra_chiv_knights_3
+		and I_PercentageUnitKilled fra_chiv_knights_3 > 40
+	
+		unit_set_morale fra_chiv_knights_3 routing
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting fra_dis_chiv_knig11
+		and I_PercentageUnitKilled fra_dis_chiv_knig11 > 60
+	
+		unit_set_morale fra_dis_chiv_knig11 routing
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting fra_general_1
+		and I_PercentageUnitKilled fra_general_1 > 60
+	
+		unit_set_morale fra_general_1 routing
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting fra_general_2
+		and I_PercentageUnitKilled fra_general_2 > 60
+	
+		unit_set_morale fra_general_2 routing
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting fra_chiv_knights_1a
+		and I_PercentageUnitKilled fra_chiv_knights_1a > 60
+	
+		unit_set_morale fra_chiv_knights_1a routing
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitRouting fra_chiv_knights_2a
+		and I_PercentageUnitKilled fra_chiv_knights_2a > 60
+		
+		unit_set_morale fra_chiv_knights_2a routing
+	
+		terminate_monitor
+	end_monitor	
+		
+	
+;;;;-------------------------------------------------	
+;;;;make French units engage if enemy close by (before they have fought)
+;;;;---------------------------------------------------
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig_1 50
+	
+		unit_order_attack_closest_unit fra_dis_chiv_knig_1 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig_2 50
+	
+		unit_order_attack_closest_unit fra_dis_chiv_knig_2 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig_3 60
+	
+		unit_order_attack_closest_unit fra_dis_chiv_knig_3 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig_4 50
+	
+		unit_order_attack_closest_unit fra_dis_chiv_knig_4 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_crossbow_1 80
+	
+		unit_order_attack_closest_unit fra_crossbow_1 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+		monitor_conditions I_UnitEnemyUnitInRadius fra_crossbow_2 80
+	
+		unit_order_attack_closest_unit fra_crossbow_2 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig_5 50
+	
+		unit_order_attack_closest_unit fra_dis_chiv_knig_5 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig_6 50
+	
+		unit_order_attack_closest_unit fra_dis_chiv_knig_6 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig_7 50
+	
+		unit_order_attack_closest_unit fra_dis_chiv_knig_7 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_serg_spearmen_1 60
+	
+		unit_order_attack_closest_unit fra_serg_spearmen_1 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_serg_spearmen_2 60
+	
+		unit_order_attack_closest_unit fra_serg_spearmen_2 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_chiv_knights_1 20
+	
+		unit_order_attack_closest_unit fra_chiv_knights_1 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_chiv_knights_2 20
+	
+		unit_order_attack_closest_unit fra_chiv_knights_2 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig_8 50
+	
+		unit_order_attack_closest_unit fra_dis_chiv_knig_8 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig_9 60
+	
+		unit_order_attack_closest_unit fra_dis_chiv_knig_9 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig10 50
+	
+		unit_order_attack_closest_unit fra_dis_chiv_knig10 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_chiv_knights_3 20
+	
+		unit_order_attack_closest_unit fra_chiv_knights_3 50 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig11 50
+	
+		unit_order_attack_closest_unit fra_dis_chiv_knig11 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_general_1 50
+	
+		unit_order_attack_closest_unit fra_general_1 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_general_2 100
+	
+		unit_order_attack_closest_unit fra_general_2 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_chiv_knights_1a 100
+	
+		unit_order_attack_closest_unit fra_chiv_knights_1a 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_chiv_knights_2a 100
+	
+		unit_order_attack_closest_unit fra_chiv_knights_2a 180 run
+	
+		terminate_monitor
+	end_monitor
+;;;------------------------------------------------------------------------	
+;;;make French units engage if enemy close by (AFTER they have fought once) 	
+;;;-----------------------------------------------------------------------
+
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig_1 800
+		and I_CompareCounter engaged_fra_dis_chiv_knig_1 > 0
+		unit_order_attack_closest_unit fra_dis_chiv_knig_1 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig_2 800
+		and I_CompareCounter engaged_fra_dis_chiv_knig_2 > 0
+		unit_order_attack_closest_unit fra_dis_chiv_knig_2 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig_3 800
+		and I_CompareCounter engaged_fra_dis_chiv_knig_3 > 0
+		unit_order_attack_closest_unit fra_dis_chiv_knig_3 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig_4 800
+		and I_CompareCounter engaged_fra_dis_chiv_knig_4 > 0
+		unit_order_attack_closest_unit fra_dis_chiv_knig_4 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_crossbow_1 800
+		and I_CompareCounter engaged_fra_crossbow_1 > 0
+		unit_order_attack_closest_unit fra_crossbow_1 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+		monitor_conditions I_UnitEnemyUnitInRadius fra_crossbow_2 800
+		and I_CompareCounter engaged_fra_crossbow_2 > 0
+		unit_order_attack_closest_unit fra_crossbow_2 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig_5 800
+		and I_CompareCounter engaged_fra_dis_chiv_knig_5 > 0
+		unit_order_attack_closest_unit fra_dis_chiv_knig_5 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig_6 800
+		and I_CompareCounter engaged_fra_dis_chiv_knig_6 > 0
+		unit_order_attack_closest_unit fra_dis_chiv_knig_6 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig_7 800
+		and I_CompareCounter engaged_fra_dis_chiv_knig_7 > 0
+		unit_order_attack_closest_unit fra_dis_chiv_knig_7 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_serg_spearmen_1 800
+		and I_CompareCounter engaged_fra_serg_spearmen_1 > 0
+		unit_order_attack_closest_unit fra_serg_spearmen_1 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_serg_spearmen_2 800
+		and I_CompareCounter engaged_fra_serg_spearmen_2 > 0
+		unit_order_attack_closest_unit fra_serg_spearmen_2 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_chiv_knights_1 800
+		and I_CompareCounter engaged_fra_chiv_knights_1 > 0
+		unit_order_attack_closest_unit fra_chiv_knights_1 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_chiv_knights_2 800
+		and I_CompareCounter engaged_fra_chiv_knights_2 > 0
+		unit_order_attack_closest_unit fra_chiv_knights_2 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig_8 800
+		and I_CompareCounter engaged_fra_dis_chiv_knig_8 > 0
+		unit_order_attack_closest_unit fra_dis_chiv_knig_8 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig_9 800
+		and I_CompareCounter engaged_fra_dis_chiv_knig_9 > 0
+		unit_order_attack_closest_unit fra_dis_chiv_knig_9 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig10 800
+		and I_CompareCounter engaged_fra_dis_chiv_knig10 > 0
+		unit_order_attack_closest_unit fra_dis_chiv_knig10 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_chiv_knights_3 800
+		and I_CompareCounter engaged_fra_chiv_knights_3 > 0
+		unit_order_attack_closest_unit fra_chiv_knights_3 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig11 800
+		and I_CompareCounter engaged_fra_dis_chiv_knig11 > 0
+		unit_order_attack_closest_unit fra_dis_chiv_knig11 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_general_1 800
+		and I_CompareCounter engaged_fra_general_1 > 0
+		unit_order_attack_closest_unit fra_general_1 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_general_2 800
+		and I_CompareCounter engaged_fra_general_2 > 0
+		unit_order_attack_closest_unit fra_general_2 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_chiv_knights_1a 800
+		and I_CompareCounter engaged_fra_chiv_knights_1a > 0
+		unit_order_attack_closest_unit fra_chiv_knights_1a 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_chiv_knights_2a 800
+		and I_CompareCounter engaged_fra_chiv_knights_2a > 0
+		unit_order_attack_closest_unit fra_chiv_knights_2a 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+;;;------------------------------------------------------------------------	
+;;;make French units engage if enemy close by (AFTER they have fought twice) 	
+;;;-----------------------------------------------------------------------
+
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig_1 800
+		and I_CompareCounter engaged_fra_dis_chiv_knig_1 > 1
+		unit_order_attack_closest_unit fra_dis_chiv_knig_1 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig_2 800
+		and I_CompareCounter engaged_fra_dis_chiv_knig_2 > 1
+		unit_order_attack_closest_unit fra_dis_chiv_knig_2 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig_3 800
+		and I_CompareCounter engaged_fra_dis_chiv_knig_3 > 1
+		unit_order_attack_closest_unit fra_dis_chiv_knig_3 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig_4 800
+		and I_CompareCounter engaged_fra_dis_chiv_knig_4 > 1
+		unit_order_attack_closest_unit fra_dis_chiv_knig_4 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_crossbow_1 800
+		and I_CompareCounter engaged_fra_crossbow_1 > 1
+		unit_order_attack_closest_unit fra_crossbow_1 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+		monitor_conditions I_UnitEnemyUnitInRadius fra_crossbow_2 800
+		and I_CompareCounter engaged_fra_crossbow_2 > 1
+		unit_order_attack_closest_unit fra_crossbow_2 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig_5 800
+		and I_CompareCounter engaged_fra_dis_chiv_knig_5 > 1
+		unit_order_attack_closest_unit fra_dis_chiv_knig_5 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig_6 800
+		and I_CompareCounter engaged_fra_dis_chiv_knig_6 > 1
+		unit_order_attack_closest_unit fra_dis_chiv_knig_6 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig_7 800
+		and I_CompareCounter engaged_fra_dis_chiv_knig_7 > 1
+		unit_order_attack_closest_unit fra_dis_chiv_knig_7 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_serg_spearmen_1 800
+		and I_CompareCounter engaged_fra_serg_spearmen_1 > 1
+		unit_order_attack_closest_unit fra_serg_spearmen_1 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_serg_spearmen_2 800
+		and I_CompareCounter engaged_fra_serg_spearmen_2 > 1
+		unit_order_attack_closest_unit fra_serg_spearmen_2 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_chiv_knights_1 800
+		and I_CompareCounter engaged_fra_chiv_knights_1 > 1
+		unit_order_attack_closest_unit fra_chiv_knights_1 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_chiv_knights_2 800
+		and I_CompareCounter engaged_fra_chiv_knights_2 > 1
+		unit_order_attack_closest_unit fra_chiv_knights_2 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig_8 800
+		and I_CompareCounter engaged_fra_dis_chiv_knig_8 > 1
+		unit_order_attack_closest_unit fra_dis_chiv_knig_8 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig_9 800
+		and I_CompareCounter engaged_fra_dis_chiv_knig_9 > 1
+		unit_order_attack_closest_unit fra_dis_chiv_knig_9 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig10 800
+		and I_CompareCounter engaged_fra_dis_chiv_knig10 > 1
+		unit_order_attack_closest_unit fra_dis_chiv_knig10 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_chiv_knights_3 800
+		and I_CompareCounter engaged_fra_chiv_knights_3 > 1
+		unit_order_attack_closest_unit fra_chiv_knights_3 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig11 800
+		and I_CompareCounter engaged_fra_dis_chiv_knig11 > 1
+		unit_order_attack_closest_unit fra_dis_chiv_knig11 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_general_1 800
+		and I_CompareCounter engaged_fra_general_1 > 1
+		unit_order_attack_closest_unit fra_general_1 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_general_2 800
+		and I_CompareCounter engaged_fra_general_2 > 1
+		unit_order_attack_closest_unit fra_general_2 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_chiv_knights_1a 800
+		and I_CompareCounter engaged_fra_chiv_knights_1a > 1
+		unit_order_attack_closest_unit fra_chiv_knights_1a 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_chiv_knights_2a 800
+		and I_CompareCounter engaged_fra_chiv_knights_2a > 1
+		unit_order_attack_closest_unit fra_chiv_knights_2a 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+;;;------------------------------------------------------------------------	
+;;;make French units engage if enemy close by (AFTER they have fought 3 times) 	
+;;;-----------------------------------------------------------------------
+
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig_1 800
+		and I_CompareCounter engaged_fra_dis_chiv_knig_1 > 2
+		unit_order_attack_closest_unit fra_dis_chiv_knig_1 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig_2 800
+		and I_CompareCounter engaged_fra_dis_chiv_knig_2 > 2
+		unit_order_attack_closest_unit fra_dis_chiv_knig_2 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig_3 800
+		and I_CompareCounter engaged_fra_dis_chiv_knig_3 > 2
+		unit_order_attack_closest_unit fra_dis_chiv_knig_3 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig_4 800
+		and I_CompareCounter engaged_fra_dis_chiv_knig_4 > 2
+		unit_order_attack_closest_unit fra_dis_chiv_knig_4 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_crossbow_1 800
+		and I_CompareCounter engaged_fra_crossbow_1 > 2
+		unit_order_attack_closest_unit fra_crossbow_1 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+		monitor_conditions I_UnitEnemyUnitInRadius fra_crossbow_2 800
+		and I_CompareCounter engaged_fra_crossbow_2 > 2
+		unit_order_attack_closest_unit fra_crossbow_2 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig_5 800
+		and I_CompareCounter engaged_fra_dis_chiv_knig_5 > 2
+		unit_order_attack_closest_unit fra_dis_chiv_knig_5 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig_6 800
+		and I_CompareCounter engaged_fra_dis_chiv_knig_6 > 2
+		unit_order_attack_closest_unit fra_dis_chiv_knig_6 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig_7 800
+		and I_CompareCounter engaged_fra_dis_chiv_knig_7 > 2
+		unit_order_attack_closest_unit fra_dis_chiv_knig_7 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_serg_spearmen_1 800
+		and I_CompareCounter engaged_fra_serg_spearmen_1 > 2
+		unit_order_attack_closest_unit fra_serg_spearmen_1 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_serg_spearmen_2 800
+		and I_CompareCounter engaged_fra_serg_spearmen_2 > 2
+		unit_order_attack_closest_unit fra_serg_spearmen_2 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_chiv_knights_1 800
+		and I_CompareCounter engaged_fra_chiv_knights_1 > 2
+		unit_order_attack_closest_unit fra_chiv_knights_1 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_chiv_knights_2 800
+		and I_CompareCounter engaged_fra_chiv_knights_2 > 2
+		unit_order_attack_closest_unit fra_chiv_knights_2 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig_8 800
+		and I_CompareCounter engaged_fra_dis_chiv_knig_8 > 2
+		unit_order_attack_closest_unit fra_dis_chiv_knig_8 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig_9 800
+		and I_CompareCounter engaged_fra_dis_chiv_knig_9 > 2
+		unit_order_attack_closest_unit fra_dis_chiv_knig_9 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig10 800
+		and I_CompareCounter engaged_fra_dis_chiv_knig10 > 2
+		unit_order_attack_closest_unit fra_dis_chiv_knig10 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_chiv_knights_3 800
+		and I_CompareCounter engaged_fra_chiv_knights_3 > 2
+		unit_order_attack_closest_unit fra_chiv_knights_3 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig11 800
+		and I_CompareCounter engaged_fra_dis_chiv_knig11 > 2
+		unit_order_attack_closest_unit fra_dis_chiv_knig11 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_general_1 800
+		and I_CompareCounter engaged_fra_general_1 > 2
+		unit_order_attack_closest_unit fra_general_1 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_general_2 800
+		and I_CompareCounter engaged_fra_general_2 > 2
+		unit_order_attack_closest_unit fra_general_2 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_chiv_knights_1a 800
+		and I_CompareCounter engaged_fra_chiv_knights_1a > 2
+		unit_order_attack_closest_unit fra_chiv_knights_1a 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_chiv_knights_2a 800
+		and I_CompareCounter engaged_fra_chiv_knights_2a > 2
+		unit_order_attack_closest_unit fra_chiv_knights_2a 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+;;;------------------------------------------------------------------------	
+;;;make French units engage if enemy close by (AFTER they have fought 4 times) 	
+;;;-----------------------------------------------------------------------
+
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig_1 800
+		and I_CompareCounter engaged_fra_dis_chiv_knig_1 > 3
+		unit_order_attack_closest_unit fra_dis_chiv_knig_1 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig_2 800
+		and I_CompareCounter engaged_fra_dis_chiv_knig_2 > 3
+		unit_order_attack_closest_unit fra_dis_chiv_knig_2 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig_3 800
+		and I_CompareCounter engaged_fra_dis_chiv_knig_3 > 3
+		unit_order_attack_closest_unit fra_dis_chiv_knig_3 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig_4 800
+		and I_CompareCounter engaged_fra_dis_chiv_knig_4 > 3
+		unit_order_attack_closest_unit fra_dis_chiv_knig_4 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_crossbow_1 800
+		and I_CompareCounter engaged_fra_crossbow_1 > 3
+		unit_order_attack_closest_unit fra_crossbow_1 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+		monitor_conditions I_UnitEnemyUnitInRadius fra_crossbow_2 800
+		and I_CompareCounter engaged_fra_crossbow_2 > 3
+		unit_order_attack_closest_unit fra_crossbow_2 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig_5 800
+		and I_CompareCounter engaged_fra_dis_chiv_knig_5 > 3
+		unit_order_attack_closest_unit fra_dis_chiv_knig_5 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig_6 800
+		and I_CompareCounter engaged_fra_dis_chiv_knig_6 > 3
+		unit_order_attack_closest_unit fra_dis_chiv_knig_6 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig_7 800
+		and I_CompareCounter engaged_fra_dis_chiv_knig_7 > 3
+		unit_order_attack_closest_unit fra_dis_chiv_knig_7 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_serg_spearmen_1 800
+		and I_CompareCounter engaged_fra_serg_spearmen_1 > 3
+		unit_order_attack_closest_unit fra_serg_spearmen_1 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_serg_spearmen_2 800
+		and I_CompareCounter engaged_fra_serg_spearmen_2 > 3
+		unit_order_attack_closest_unit fra_serg_spearmen_2 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_chiv_knights_1 800
+		and I_CompareCounter engaged_fra_chiv_knights_1 > 3
+		unit_order_attack_closest_unit fra_chiv_knights_1 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_chiv_knights_2 800
+		and I_CompareCounter engaged_fra_chiv_knights_2 > 3
+		unit_order_attack_closest_unit fra_chiv_knights_2 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig_8 800
+		and I_CompareCounter engaged_fra_dis_chiv_knig_8 > 3
+		unit_order_attack_closest_unit fra_dis_chiv_knig_8 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig_9 800
+		and I_CompareCounter engaged_fra_dis_chiv_knig_9 > 3
+		unit_order_attack_closest_unit fra_dis_chiv_knig_9 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig10 800
+		and I_CompareCounter engaged_fra_dis_chiv_knig10 > 3
+		unit_order_attack_closest_unit fra_dis_chiv_knig10 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_chiv_knights_3 800
+		and I_CompareCounter engaged_fra_chiv_knights_3 > 3
+		unit_order_attack_closest_unit fra_chiv_knights_3 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_dis_chiv_knig11 800
+		and I_CompareCounter engaged_fra_dis_chiv_knig11 > 3
+		unit_order_attack_closest_unit fra_dis_chiv_knig11 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_general_1 800
+		and I_CompareCounter engaged_fra_general_1 > 3
+		unit_order_attack_closest_unit fra_general_1 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_general_2 800
+		and I_CompareCounter engaged_fra_general_2 > 3
+		unit_order_attack_closest_unit fra_general_2 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_chiv_knights_1a 800
+		and I_CompareCounter engaged_fra_chiv_knights_1a > 3
+		unit_order_attack_closest_unit fra_chiv_knights_1a 180 run
+	
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitEnemyUnitInRadius fra_chiv_knights_2a 800
+		and I_CompareCounter engaged_fra_chiv_knights_2a > 3
+		unit_order_attack_closest_unit fra_chiv_knights_2a 180 run
+	
+		terminate_monitor
+	end_monitor	
+		
+
+;;;-------------------------------------------------------------------------------------
+;;; Battle Event Speech
+;;;----------------------------------------------------------------------------------
+
+
+	monitor_conditions I_PercentageUnitKilled eng_dis_general_1 > 40 ;"guard the king" etc
+		and I_CharacterExists Henry
+		play_sound_event Agincourt_Sergeant_8 tag = Agincourt_Sergeant_8
+	terminate_monitor
+	end_monitor
+	
+;;;make henry's unit say "once more..." when charging	
+	monitor_conditions I_UnitStatus eng_dis_general_1 charging
+		and I_CompareCounter play_charge_event = 0
+		
+ 		play_sound_event Agincourt_Sergeant_3 tag = Agincourt_Sergeant_3
+		set_counter play_charge_event 1	
+		
+	end_monitor
+
+	monitor_conditions not I_UnitStatus eng_dis_general_1 charging
+	
+		and I_CompareCounter play_charge_event = 1
+		set_counter play_charge_event 0
+		
+	end_monitor
+	
+;;;make eng_dis_knights_1 say "for St george..." when they charge
+	monitor_conditions I_UnitStatus eng_dis_knights_1 charging
+		and I_CompareCounter play_charge_event_1 = 0
+		
+ 		play_sound_event Agincourt_Sergeant_6 tag = Agincourt_Sergeant_6
+		set_counter play_charge_event_1 1	
+		
+	end_monitor
+
+	monitor_conditions not I_UnitStatus eng_dis_knights_1 charging
+	
+		and I_CompareCounter play_charge_event_1 = 1
+		set_counter play_charge_event_1 0
+		
+	end_monitor
+;;;make eng_dis_knights_2 say "for St george..." when they charge
+	monitor_conditions I_UnitStatus eng_dis_knights_2 charging
+		and I_CompareCounter play_charge_event_2 = 0
+		
+ 		play_sound_event Agincourt_Sergeant_6 tag = Agincourt_Sergeant_6
+		set_counter play_charge_event_2 1	
+		
+	end_monitor
+
+	monitor_conditions not I_UnitStatus eng_dis_knights_2 charging
+	
+		and I_CompareCounter play_charge_event_2 = 1
+		set_counter play_charge_event_2 0
+		
+	end_monitor
+	
+;;;make eng_dis_knights_3 say "for St george..." when they charge
+		monitor_conditions I_UnitStatus eng_dis_knights_3 charging
+		and I_CompareCounter play_charge_event_3 = 0
+		
+ 		play_sound_event Agincourt_Sergeant_6 tag = Agincourt_Sergeant_6
+		set_counter play_charge_event_3 1	
+		
+	end_monitor
+
+	monitor_conditions not I_UnitStatus eng_dis_knights_3 charging
+	
+		and I_CompareCounter play_charge_event_3 = 1
+		set_counter play_charge_event_3 0
+		
+	end_monitor	
+		
+	monitor_conditions not I_CharacterExists Jean le_Maingre
+		play_sound_event Agincourt_Sergeant_1 tag = Agincourt_Sergeant_1
+		terminate_monitor
+	end_monitor
+	
+	monitor_conditions not I_CharacterExists Charles d_Albret
+		play_sound_event Agincourt_Sergeant_1 tag = Agincourt_Sergeant_1
+		terminate_monitor
+	end_monitor
+	
+
+	
+	
+	
+;------------------------------------------------------------------
+;IF HENRY DIES or routs THE ENGLISH ARMY ROUTS AND THE PLAYER LOSES (DELAY ROUT BY 5 SECONDS)	
+;-------------------------------------------------------------------------------
+
+	monitor_conditions not I_CharacterExists Henry
+		play_sound_event Agincourt_Sergeant_2 tag = Agincourt_Sergeant_2
+		
+		battle_wait 7
+		play_sound_event Agincourt_Lose 
+		unit_set_morale	eng_dis_general_1 routing
+		unit_set_morale	eng_dis_knights_1 routing
+		unit_set_morale	eng_dis_knights_2 routing
+		unit_set_morale	eng_dis_knights_3 routing
+		unit_set_morale	eng_heavy_bill_1 routing
+		unit_set_morale	eng_heavy_bill_2 routing
+		unit_set_morale	eng_dis_knights_4 routing
+		unit_set_morale	eng_yeomen_1 routing
+		unit_set_morale	eng_yeomen_2 routing
+		unit_set_morale	eng_yeomen_3 routing
+		unit_set_morale	eng_yeomen_4 routing
+		unit_set_morale	eng_yeomen_5 routing
+		unit_set_morale	eng_yeomen_6 routing
+		unit_set_morale	eng_yeomen_7 routing
+		
+		terminate_monitor
+	end_monitor
+	
+; 	
+
+;;;;;------------------------------------------------------------------------
+;;;;;French rear attack-units begin to move into position -in background
+;;;;;---------------------------------------------------------------------------			 
+	 	 
+		
+;;;;rear attack move to point 2 	
+ 	monitor_conditions I_UnitDistanceFromPosition fra_general_2 -668 -156 < 15
+ 	 	unit_order_move fra_general_2 -466 -212 run
+		terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromPosition fra_chiv_knights_1a -670 -160 < 15
+		unit_order_move fra_chiv_knights_1a -470 -215 run
+		terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromPosition fra_chiv_knights_2a -675 -165 < 15
+ 		unit_order_move fra_chiv_knights_2a -475 -220 run
+		terminate_monitor
+	end_monitor	
+ 
+;;;;rear attack move to point 3
+		
+ 	monitor_conditions I_UnitDistanceFromPosition fra_general_2 -466 -212 < 25	
+ 		unit_order_move fra_general_2 -231 -175 run
+		terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromPosition fra_chiv_knights_1a -470 -215 < 25
+		unit_order_move fra_chiv_knights_1a -180 -169 run
+		terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromPosition fra_chiv_knights_2a -475 -220 < 25 
+ 		unit_order_move fra_chiv_knights_2a -320 -119 run
+		terminate_monitor
+	end_monitor
+	
+;;;;rear attack move from point 3		
+	
+	
+	monitor_conditions I_UnitDistanceFromPosition fra_general_2 -231 -175 < 15
+		inc_counter flank_attack1 1
+		unit_order_attack_closest_unit fra_general_2 180 run
+		;"Those dogs have snuck behind us!"
+		play_sound_event Agincourt_Sergeant_9 tag = Agincourt_Sergeant_9
+		terminate_monitor
+		 	end_monitor
+		 	
+ 	
+ 	monitor_conditions I_UnitDistanceFromPosition fra_chiv_knights_1a -180 -169 < 15
+		inc_counter flank_attack2 1
+ 		unit_order_attack_closest_unit fra_chiv_knights_1a 180 run
+		
+		terminate_monitor
+ 	end_monitor
+ 	
+ 	
+ 	monitor_conditions I_UnitDistanceFromPosition fra_chiv_knights_2a -320 -119 < 15
+		inc_counter flank_attack3 1
+		unit_order_attack_closest_unit fra_chiv_knights_2a 180 run
+		
+		terminate_monitor
+ 	end_monitor
+
+;;;backup orders for rear attack if they can't find a target			
+
+ 	monitor_conditions I_UnitStatus fra_general_1, idling
+	and I_CompareCounter flank_attack1 > 0
+	unit_order_attack_unit fra_general_2 eng_dis_general_1 run
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitStatus fra_chiv_knights_1a, idling 
+	and I_CompareCounter flank_attack2 > 0
+	unit_order_attack_unit fra_chiv_knights_1a eng_dis_general_1 run
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitStatus fra_chiv_knights_2a , idling
+	and I_CompareCounter flank_attack3 > 0
+	unit_order_attack_unit fra_chiv_knights_2a eng_dis_general_1 run
+	terminate_monitor
+	end_monitor
+	
+			
+
+
+;;;;wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww 	 
+;;;;------------------------------------------------------------------------------------------------------------	
+;;;;Second wave of French army moves and attacks-must monitor casualties in group1
+;;;;-------------------------------------------------------------------------------------------------------------
+monitor_conditions I_UnitStatus eng_dis_general_1 charging
+		and I_CompareCounter play_charge_event = 0
+		
+ 		play_sound_event Agincourt_Sergeant_3 tag = Agincourt_Sergeant_3
+		set_counter play_charge_event 1	
+		
+	end_monitor
+
+	monitor_conditions not I_UnitStatus eng_dis_general_1 charging
+	
+		and I_CompareCounter play_charge_event = 1
+		set_counter play_charge_event 0
+		
+	end_monitor
+
+ 	monitor_conditions I_IsUnitRouting fra_dis_chiv_knig_1
+		
+ 		inc_counter first_wave_rout 1
+ 	
+ 		terminate_monitor
+ 	end_monitor
+ 	
+  	monitor_conditions I_IsUnitRouting fra_dis_chiv_knig_2
+		
+ 		inc_counter first_wave_rout 1
+ 	
+ 		terminate_monitor
+ 	end_monitor
+ 	
+ 	monitor_conditions I_IsUnitRouting fra_dis_chiv_knig_7
+		
+ 		inc_counter first_wave_rout 1
+ 	
+ 		terminate_monitor
+ 	end_monitor
+
+ 	monitor_conditions I_IsUnitRouting fra_dis_chiv_knig_4
+		
+ 		inc_counter first_wave_rout 1
+ 	
+ 		terminate_monitor
+ 	end_monitor
+
+ 	monitor_conditions I_IsUnitRouting fra_dis_chiv_knig_8
+		
+ 		inc_counter first_wave_rout 1
+ 	
+ 		terminate_monitor
+ 	end_monitor
+
+ 	monitor_conditions I_PercentageUnitKilled fra_dis_chiv_knig_1 > 20
+ 		and I_PercentageUnitKilled fra_dis_chiv_knig_2 > 20
+		and I_PercentageUnitKilled fra_dis_chiv_knig_7 > 20
+		and I_PercentageUnitKilled fra_dis_chiv_knig_4 > 20
+		and I_PercentageUnitKilled fra_dis_chiv_knig_8 > 20
+		
+		unit_order_attack_unit fra_dis_chiv_knig_6 eng_dis_knights_3 run
+		unit_order_attack_unit fra_dis_chiv_knig_5 eng_dis_knights_2 run
+		unit_order_attack_unit fra_general_1 eng_dis_general_1 run		
+		unit_order_attack_unit fra_dis_chiv_knig10 eng_dis_knights_4 run		
+		unit_order_attack_unit fra_chiv_knights_2  eng_dis_knights_3 run		
+		unit_order_attack_unit fra_dis_chiv_knig11 eng_dis_knights_1 run
+					
+		set_counter second_wave_shout 1
+		
+		 terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter second_wave_shout = 1
+; 		"They're sending another wave of hapless fools at us! Hold the line!"
+		play_sound_event Agincourt_Sergeant_5 tag = Agincourt_Sergeant_5
+		 terminate_monitor
+	end_monitor	
+ 	
+ 	monitor_conditions I_CompareCounter first_wave_rout > 2
+	
+ 		unit_order_attack_unit fra_dis_chiv_knig_6 eng_dis_knights_3 run
+		unit_order_attack_unit fra_dis_chiv_knig_5 eng_dis_knights_2 run
+		unit_order_attack_unit fra_general_1 eng_dis_general_1 run		
+		unit_order_attack_unit fra_dis_chiv_knig10 eng_dis_knights_4 run		
+		unit_order_attack_unit fra_chiv_knights_2  eng_dis_knights_3 run		
+		unit_order_attack_unit fra_dis_chiv_knig11 eng_dis_knights_1 run
+		
+		set_counter second_wave_shout 1
+	
+ 		terminate_monitor
+ 	end_monitor
+ 	
+ 	;;;Redirect 2nd wave troops if targets are dead-for 1st set of wave 2 triggers
+
+monitor_conditions I_PercentageUnitKilled fra_dis_chiv_knig_1 > 20
+ 		and I_PercentageUnitKilled fra_dis_chiv_knig_2 > 20
+		and I_PercentageUnitKilled fra_dis_chiv_knig_7 > 20
+		and I_PercentageUnitKilled fra_dis_chiv_knig_4 > 20
+		and I_PercentageUnitKilled fra_dis_chiv_knig_8 > 20
+		and I_UnitStatus fra_dis_chiv_knig_6, idling
+		unit_order_attack_unit fra_dis_chiv_knig_1 eng_dis_general_1 run
+		terminate_monitor
+ 	end_monitor
+ 	
+ 	monitor_conditions I_PercentageUnitKilled fra_dis_chiv_knig_1 > 20
+ 		and I_PercentageUnitKilled fra_dis_chiv_knig_2 > 20
+		and I_PercentageUnitKilled fra_dis_chiv_knig_7 > 20
+		and I_PercentageUnitKilled fra_dis_chiv_knig_4 > 20
+		and I_PercentageUnitKilled fra_dis_chiv_knig_8 > 20
+		and I_UnitStatus fra_dis_chiv_knig_5, idling
+		unit_order_attack_unit fra_dis_chiv_knig_5 eng_dis_general_1 run
+		terminate_monitor
+ 	end_monitor
+ 	
+ 	monitor_conditions I_PercentageUnitKilled fra_dis_chiv_knig_1 > 20
+ 		and I_PercentageUnitKilled fra_dis_chiv_knig_2 > 20
+		and I_PercentageUnitKilled fra_dis_chiv_knig_7 > 20
+		and I_PercentageUnitKilled fra_dis_chiv_knig_4 > 20
+		and I_PercentageUnitKilled fra_dis_chiv_knig_8 > 20
+		and I_UnitStatus fra_general_1, idling
+		unit_order_attack_unit fra_general_1 eng_dis_general_1 run
+		terminate_monitor
+ 	end_monitor
+ 	
+ 	monitor_conditions I_PercentageUnitKilled fra_dis_chiv_knig_1 > 20
+ 		and I_PercentageUnitKilled fra_dis_chiv_knig_2 > 20
+		and I_PercentageUnitKilled fra_dis_chiv_knig_7 > 20
+		and I_PercentageUnitKilled fra_dis_chiv_knig_4 > 20
+		and I_PercentageUnitKilled fra_dis_chiv_knig_8 > 20
+		and I_UnitStatus fra_dis_chiv_knig10, idling
+		unit_order_attack_unit fra_dis_chiv_knig10 eng_dis_general_1 run
+		terminate_monitor
+ 	end_monitor
+ 	
+ 	monitor_conditions I_PercentageUnitKilled fra_dis_chiv_knig_1 > 20
+ 		and I_PercentageUnitKilled fra_dis_chiv_knig_2 > 20
+		and I_PercentageUnitKilled fra_dis_chiv_knig_7 > 20
+		and I_PercentageUnitKilled fra_dis_chiv_knig_4 > 20
+		and I_PercentageUnitKilled fra_dis_chiv_knig_8 > 20
+		and I_UnitStatus fra_chiv_knights_2, idling
+		unit_order_attack_unit fra_chiv_knights_2 eng_dis_general_1 run
+		terminate_monitor
+ 	end_monitor
+ 	
+ 	monitor_conditions I_PercentageUnitKilled fra_dis_chiv_knig_1 > 20
+ 		and I_PercentageUnitKilled fra_dis_chiv_knig_2 > 20
+		and I_PercentageUnitKilled fra_dis_chiv_knig_7 > 20
+		and I_PercentageUnitKilled fra_dis_chiv_knig_4 > 20
+		and I_PercentageUnitKilled fra_dis_chiv_knig_8 > 20
+		and I_UnitStatus fra_dis_chiv_knig11, idling
+		unit_order_attack_unit fra_dis_chiv_knig11 eng_dis_general_1 run
+		terminate_monitor
+ 	end_monitor
+ 	
+;;;Redirect 2nd wave troops if targets are dead-for 2nd set of wave 2 triggers
+
+	monitor_conditions I_CompareCounter first_wave_rout > 2
+	and I_UnitStatus fra_dis_chiv_knig_6, idling
+		unit_order_attack_unit fra_dis_chiv_knig_6 eng_dis_general_1 run
+		terminate_monitor
+ 	end_monitor
+ 	
+ 	monitor_conditions I_CompareCounter first_wave_rout > 2
+ 	and I_UnitStatus fra_dis_chiv_knig_5, idling
+		unit_order_attack_unit fra_dis_chiv_knig_5 eng_dis_general_1 run
+		terminate_monitor
+ 	end_monitor
+ 	
+ 	monitor_conditions I_CompareCounter first_wave_rout > 2
+ 	and I_UnitStatus fra_general_1, idling
+		unit_order_attack_unit fra_general_1 eng_dis_general_1 run
+		terminate_monitor
+ 	end_monitor
+ 	
+ 	monitor_conditions I_CompareCounter first_wave_rout > 2
+ 	and I_UnitStatus fra_dis_chiv_knig10, idling
+		unit_order_attack_unit fra_dis_chiv_knig10 eng_dis_general_1 run
+		terminate_monitor
+ 	end_monitor
+ 	
+ 	monitor_conditions I_CompareCounter first_wave_rout > 2
+ 	and I_UnitStatus fra_chiv_knights_2, idling
+		unit_order_attack_unit fra_chiv_knights_2 eng_dis_general_1 run
+		terminate_monitor
+ 	end_monitor
+ 	
+ 	monitor_conditions I_CompareCounter first_wave_rout > 2
+ 	and I_UnitStatus fra_dis_chiv_knig11, idling
+		unit_order_attack_unit fra_dis_chiv_knig11 eng_dis_general_1 run
+		terminate_monitor
+ 	end_monitor
+		
+;;;;wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww	
+;;;;---------------------------------------------------------------------------------------------------------------
+;;;;Third wave of French army moves and attacks-must monitor casualties in group 2-
+;;;;-----------------------------------------------------------------------------------------------------------------
+
+	monitor_conditions I_PercentageUnitKilled fra_dis_chiv_knig_6 > 10
+		and I_PercentageUnitKilled fra_dis_chiv_knig_5 > 10		
+		and I_PercentageUnitKilled fra_general_1 > 10
+		and I_PercentageUnitKilled fra_dis_chiv_knig10 > 10
+		and I_PercentageUnitKilled fra_dis_chiv_knig11 > 10
+		and I_UnitStatus fra_serg_spearmen_1, idling
+		and I_UnitStatus fra_serg_spearmen_2, idling
+		and I_UnitStatus fra_dis_chiv_knig_3, idling
+		and I_UnitStatus fra_dis_chiv_knig_9, idling
+		
+; 		and I_UnitEnemyUnitInRadius fra_serg_spearmen_1 2000
+; 		and I_UnitEnemyUnitInRadius fra_serg_spearmen_2 2000
+; 		and I_UnitEnemyUnitInRadius fra_dis_chiv_knig_3 2000
+; 		and I_UnitEnemyUnitInRadius fra_dis_chiv_knig_9 2000
+		
+	
+		unit_order_attack_closest_unit fra_serg_spearmen_1 180 run
+		unit_order_attack_closest_unit fra_serg_spearmen_2 180 run
+		unit_order_attack_closest_unit fra_dis_chiv_knig_3 180 run
+		unit_order_attack_closest_unit fra_dis_chiv_knig_9 180 run
+
+
+		set_counter third_wave_shout 1
+		
+		terminate_monitor
+	end_monitor
+	
+ 	monitor_conditions I_CompareCounter second_wave_rout > 1
+ 	
+; 		and I_UnitEnemyUnitInRadius fra_serg_spearmen_1 900
+; 		and I_UnitEnemyUnitInRadius fra_serg_spearmen_2 900
+; 		and I_UnitEnemyUnitInRadius fra_dis_chiv_knig_3 900
+; 		and I_UnitEnemyUnitInRadius fra_dis_chiv_knig_9 900
+
+		and I_UnitStatus fra_serg_spearmen_1, idling
+		and I_UnitStatus fra_serg_spearmen_2, idling
+		and I_UnitStatus fra_dis_chiv_knig_3, idling
+		and I_UnitStatus fra_dis_chiv_knig_9, idling
+		
+ 		unit_order_attack_closest_unit fra_serg_spearmen_1 180 run
+		unit_order_attack_closest_unit fra_serg_spearmen_2 180 run
+		unit_order_attack_closest_unit fra_dis_chiv_knig_3 180 run
+		unit_order_attack_closest_unit fra_dis_chiv_knig_9 180 run
+
+		set_counter third_wave_shout 1
+		
+ 		terminate_monitor
+ 	end_monitor
+
+	monitor_conditions I_CompareCounter third_wave_shout = 1
+; 		;"Oh Good Lord! There's more of these French dogs on their way!"
+		play_sound_event Agincourt_Sergeant_7 tag = Agincourt_Sergeant_7
+		terminate_monitor
+	end_monitor				
+							
+	monitor_conditions I_IsUnitRouting fra_dis_chiv_knig_6
+		
+ 		inc_counter second_wave_rout 1
+ 	
+ 		terminate_monitor
+ 	end_monitor
+ 	
+  	monitor_conditions I_IsUnitRouting fra_dis_chiv_knig_5
+		
+ 		inc_counter second_wave_rout 1
+ 	
+ 		terminate_monitor
+ 	end_monitor
+ 	
+ 	monitor_conditions I_IsUnitRouting fra_general_1
+		
+ 		inc_counter second_wave_rout 1
+ 	
+ 		terminate_monitor
+ 	end_monitor
+
+ 	monitor_conditions I_IsUnitRouting fra_dis_chiv_knig10
+		
+ 		inc_counter second_wave_rout 1
+ 	
+ 		terminate_monitor
+ 	end_monitor
+ 	
+	
+		
+
+;;;;*************************************************************************************************
+;;;; END OF BATTLE
+;;;;*************************************************************************************************
+				
+	while I_InBattle
+	end_while
+
+end_script
+
+
+
+			
+			
+			

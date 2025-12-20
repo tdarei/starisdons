@@ -1,0 +1,19 @@
+{
+	"baseHullId":"vigilance",
+	"skinHullId":"vigilance_ak",
+	"hullName":"Vigilance (AK)",
+	"descriptionId":"vigilance",
+	"spriteName":"graphics/ships/vigilance/vigilance_tt_ak.png",
+	"descriptionPrefix":"This ship has been refit by the fringe Luddic tech-heretic cult known as the Ashen Keepers. Along with a flashy paintjob, it has received extensive energy-boosting upgrades designed to benefit them in their eternal crusade against the more mainstream Luddic sects of the Path and Church of Galactic Redemption.",
+	"hints":["HIDE_IN_CODEX"],
+	"tags":["ashen"],
+	"systemId":"highenergyfocus",
+	"tech":"Ashen Keepers",
+	"removeWeaponSlots":[], 		# ids
+	"removeEngineSlots":[], 		# indices, as engine slots have no id in the .ship file
+	"removeBuiltInMods":[], 		# hullmod ids
+	"removeBuiltInWeapons":[], 		# weapon slot ids
+	"builtInMods":[],
+	"builtInWeapons":{
+    },
+}

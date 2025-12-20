@@ -1,0 +1,24 @@
+{
+    "starSystem":"HMI_opuntia",
+    "markets":[
+        {
+            "entities":["mess_station2"],
+            "faction":"HMI",
+            "size":4,
+            "startingConditions":[
+				"distantpolity",
+				"ruins_vast",
+				"population_5",
+            ],
+			"industries":[
+				"population",
+				"HMI_messmaker",
+				"heavyindustry",
+				"spaceport",
+				"grounddefenses",
+				"militarybase",
+				"starfortress",
+			],
+        },			
+    ],
+}

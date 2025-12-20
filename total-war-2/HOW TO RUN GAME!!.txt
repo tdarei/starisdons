@@ -1,0 +1,5 @@
+To play game, go inside the Medieval II - Total War folder, right click and run 'medieval2' as administrator
+
+If you get any missing dll errors, go inside the _Redist folder and install 'dxsetup'
+
+Game is updated to v1.52 & ALL DLC's are included.

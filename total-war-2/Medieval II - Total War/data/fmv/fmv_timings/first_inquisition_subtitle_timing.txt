@@ -1,0 +1,3 @@
+<SYNC Start=16000>
+<P Class=ENUSCC>First_Inquisition_1
+<SYNC Stop=33900>

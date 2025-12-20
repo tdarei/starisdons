@@ -1,0 +1,69 @@
+{
+    "playableFaction":true,
+    "corvusCompatible":true,
+
+    "rebelFleetSuffix":"Separatist",
+    
+    "directoryUseShortName":true,
+	
+	"marketSpawnWeight":1.2,
+	
+	"startRelationships":{ "independent":0.5, "hegemony": -0.7, "luddic_church": -0.3, "sw_empire": -1.0, "persean": 1.0, "sw_republic":0.5},
+	"maxRelationships":{ "independent":0.5, "hegemony": -0.5, "sw_empire":-0.5 },
+	"diplomacyPositiveChance":{ "independent":0.5, },
+	"diplomacyNegativeChance":{ "hegemony":1, "sw_empire":1 },
+	"diplomacyTraits":["helps_allies", "likes_ai", "stalwart"],
+    
+    "alignments":{
+        "technocratic":0.3,
+        "diplomatic":0.5,
+        "militarist":0.1,
+		"ideological":0.5,
+    },
+    
+    "startShipsSolo":[["sw_nebula_rebel"]],
+    "startShipsTradeSmall":[
+		["sw_mc40a_rebel", "sw_vcx100_light", "sw_bff_1_bulk"],
+		["sw_majestic_rebel", "sw_yt1300_light", "sw_bff_1_bulk"]
+	],
+    "startShipsTradeLarge":[
+		["sw_assault_frigate_mk1_rebel", "sw_majestic_rebel", "sw_aa9_super"],
+		["sw_assault_frigate_mk2_rebel", "sw_quasar_rebel", "sw_aa9_super"]
+	],
+    "startShipsCombatSmall":[
+		["sw_mc40a_rebel", "sw_majestic_rebel", "sw_mc30c_rebel"],
+		["sw_assault_frigate_mk2_rebel", "sw_assault_frigate_mk1_rebel", "sw_mc30c_rebel"]		
+	],
+    "startShipsCombatLarge":[		
+		["sw_mc80_liberty_rebel", "sw_assault_frigate_mk1_rebel", "sw_mc30c_rebel"],
+		["sw_mc80b_rebel", "sw_nebula_rebel", "sw_mc30c_rebel"]
+	],
+    "startShipsCarrierSmall":[		
+		["sw_nebula_rebel", "sw_assault_frigate_mk1_rebel", "sw_quasar_rebel"],
+		["sw_assault_frigate_mk2_rebel", "sw_liberator_rebel", "sw_cc7700_rebel"]
+	],
+    "startShipsCarrierLarge":[
+		["sw_mc75_rebel", "sw_nebula_rebel", "sw_assault_frigate_mk1_rebel"],
+		["sw_mc80_liberty_rebel", "sw_liberator_rebel", "sw_mc30c_rebel"]
+	],
+    
+    "startSpecialItems":[
+        [["sw_weapon_package", ""]],
+    ],
+    
+    "defenceStations":[
+        {"ids":["sw_golan_ii_rebel", "sw_golan_iii_rebel", "sw_shipyards_rebel"]},
+        {"ids":["sw_light_shipyard", "sw_heavy_shipyard", "sw_capital_shipyard"], "weight":0.5},
+    ],
+    
+    "industrySeeds":[
+        {"id":"orbitalworks", "mult":0.1},
+        {"id":"fuelprod", "mult":0.1},
+        {"id":"lightindustry", "mult":0.1},
+    ],
+    
+    "bonusSeeds":[
+        {"id":"population_upsize", "count":1},
+        {"id":"nanoforge_pristine", "count":1},
+    ],
+}

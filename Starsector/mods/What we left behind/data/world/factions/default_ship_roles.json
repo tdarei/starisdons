@@ -1,0 +1,24 @@
+{
+	"combatSmall":{
+		"niko_MPC_defenseSatelliteCore_support":30
+	},
+	"combatMedium":{
+		"niko_MPC_defenseSatelliteCore_support":30
+	},
+	"combatLarge":{
+		"niko_MPC_defenseSatelliteCore_support":30,
+		"MPC_spearHead_Standard":1,
+	},
+	"combatCapital":{
+		"niko_MPC_defenseSatelliteCore_support":30,
+	},
+	# utility ships
+	"tug":{
+		"MPC_ramjet_Standard":12,
+		"MPC_spearHead_Standard":5,
+	},
+	"utility":{
+		"MPC_ramjet_Standard":2,
+		"MPC_spearHead_Standard":0.5,
+	},
+}

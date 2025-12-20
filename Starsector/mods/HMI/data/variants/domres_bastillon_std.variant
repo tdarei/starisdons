@@ -1,0 +1,47 @@
+{
+  "variantId": "domres_bastillon_std",
+  "hullId": "domres_bastillon",
+  "displayName": "Standard",
+  "goalVariant": true,
+  "fluxCapacitors": 9,
+  "fluxVents": 0,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "auxiliarythrusters",
+    "heavyarmor",
+    "turretgyros"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 001": "lightag",
+        "WS 002": "lightag"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 007": "lightac",
+        "WS 008": "lightac"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 003": "vulcan",
+        "WS 004": "vulcan",
+        "WS 005": "vulcan",
+        "WS 006": "vulcan",
+        "WS 014": "vulcan",
+        "WS 015": "vulcan"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

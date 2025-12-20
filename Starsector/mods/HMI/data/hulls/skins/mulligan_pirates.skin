@@ -1,0 +1,30 @@
+{
+	"baseHullId":"mulligan",
+	"skinHullId":"mulligan_pirates",
+	"hullName":"Mulligan (P)",
+	"descriptionId":"mulligan",  # optional
+	"descriptionPrefix":"This ship has been heavily modified - and poorly maintained - by its pirate crew.",
+	"tags":["pirate_bp"],
+	"tech":"Pirate",
+	"baseValueMult":0.9,
+	"ordnancePoints":40,
+	"spriteName":"graphics/ships/mulligan/mulligan_p.png",
+	"removeWeaponSlots":[], 		# ids
+	"removeEngineSlots":[], 		# indices, as engine slots have no id in the .ship file
+	"removeBuiltInMods":[], 		# hullmod ids
+	"removeBuiltInWeapons":[], 		# weapon slot ids
+	"weaponSlotChanges":{
+		"WS0003":{
+            "type": "MISSILE",
+			"size": "SMALL",
+		},	
+		"WS0004":{
+            "type": "MISSILE",
+			"size": "SMALL",
+		},		
+	},
+	"builtInMods":[
+	],
+	"builtInWeapons":{
+    },
+}

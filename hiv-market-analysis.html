@@ -1,0 +1,2032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark">
+    <title>HIV Market Analysis – Adriano To The Star</title>
+    <link rel="stylesheet" href="fonts/fonts.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="loader-minimal.css">
+    <script src="navigation.js" defer></script>
+    <script src="cosmic-music-player.js" defer async></script>
+    <style>
+        :root{
+            color-scheme:dark;
+            background-color:#020617;
+            color:#e5e7eb;
+        }
+
+        .hiv-page{
+            background-color:#020617;
+            color:#e5e7eb;
+        }
+
+        .data-table{width:100%;table-layout:fixed;border-collapse:collapse;margin:20px 0}
+        .data-table th,.data-table td{border:1px solid rgba(255,255,255,0.1);padding:12px;font-family:'Raleway',sans-serif;font-size:0.95rem}
+        .data-table th{background:rgba(255,255,255,0.08);font-weight:600}
+        .data-table colgroup col:nth-child(1){width:45%}
+        .data-table colgroup col:nth-child(2){width:55%}
+        @media(max-width:768px){.data-table th,.data-table td{font-size:0.9rem;padding:10px}}
+
+        .hiv-page .welcome-section{
+            position:relative;
+            overflow:hidden;
+            padding-bottom:3.5rem;
+            background:
+                radial-gradient(circle at top, rgba(255,255,255,0.12), transparent 55%),
+                linear-gradient(135deg,#05001a 0%,#120028 45%,#1b1038 100%);
+        }
+
+        .hiv-page .welcome-section::before{
+            content:'';
+            position:absolute;
+            inset:-50%;
+            background-image:
+                radial-gradient(2px 2px at 10% 20%, rgba(255,255,255,0.9), transparent 60%),
+                radial-gradient(2px 2px at 80% 10%, rgba(163,221,255,0.9), transparent 60%),
+                radial-gradient(2px 2px at 30% 80%, rgba(255,186,255,0.9), transparent 60%);
+            opacity:0.35;
+            animation:hiv-star-drift 45s linear infinite;
+            pointer-events:none;
+        }
+
+        .hiv-page .welcome-content{
+            position:relative;
+            z-index:1;
+        }
+
+        .hiv-page .hero-controls{
+            position:absolute;
+            right:1.5rem;
+            top:1.5rem;
+            z-index:2;
+            display:flex;
+            justify-content:flex-end;
+        }
+
+        .hiv-page .hiv-motion-toggle{
+            font-size:0.75rem;
+            letter-spacing:0.08em;
+            text-transform:uppercase;
+            border-radius:999px;
+            border:1px solid rgba(148,163,184,0.85);
+            background:rgba(15,23,42,0.85);
+            color:#e5e7eb;
+            padding:0.4rem 0.9rem;
+            cursor:pointer;
+            box-shadow:0 8px 20px rgba(15,23,42,0.7);
+            backdrop-filter:blur(10px);
+            transition:background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .hiv-page .hiv-motion-toggle:hover{
+            transform:translateY(-1px);
+            border-color:rgba(196,181,253,1);
+            background:rgba(15,23,42,0.95);
+        }
+
+        .hiv-page .hiv-motion-toggle:focus-visible{
+            outline:2px solid #facc15;
+            outline-offset:2px;
+        }
+
+        .hiv-page .hiv-parallax-layer{
+            position:absolute;
+            inset:-40%;
+            background:
+                radial-gradient(120px 120px at 20% 30%, rgba(59,130,246,0.28), transparent 70%),
+                radial-gradient(180px 180px at 80% 70%, rgba(236,72,153,0.24), transparent 75%);
+            opacity:0.35;
+            pointer-events:none;
+            z-index:0;
+            transform:translate3d(0,0,0);
+        }
+
+        .hiv-page .hiv-global-ribbon{
+            position:sticky;
+            top:0;
+            z-index:30;
+            background:linear-gradient(to right, rgba(15,23,42,0.96), rgba(17,24,39,0.96));
+            border-bottom:1px solid rgba(30,64,175,0.7);
+            backdrop-filter:blur(14px);
+        }
+
+        .hiv-page .hiv-global-ribbon-inner{
+            max-width:1080px;
+            margin:0 auto;
+            padding:0.35rem 1.25rem;
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap:1.25rem;
+        }
+
+        .hiv-page .hiv-global-ribbon-metrics{
+            display:flex;
+            gap:1rem;
+            flex-wrap:wrap;
+            align-items:baseline;
+        }
+
+        .hiv-page .hiv-global-ribbon-metric{
+            display:flex;
+            flex-direction:column;
+            min-width:92px;
+        }
+
+        .hiv-page .hiv-global-ribbon-label{
+            font-size:0.7rem;
+            letter-spacing:0.12em;
+            text-transform:uppercase;
+            color:rgba(148,163,184,0.9);
+        }
+
+        .hiv-page .hiv-global-ribbon-value{
+            font-size:0.95rem;
+            font-weight:600;
+            color:#e5e7eb;
+        }
+
+        .hiv-page .hiv-ribbon-nav{
+            display:flex;
+            gap:0.4rem;
+        }
+
+        .hiv-page .hiv-ribbon-nav-item{
+            border:none;
+            border-radius:999px;
+            padding:0.25rem 0.7rem;
+            font-size:0.7rem;
+            text-transform:uppercase;
+            letter-spacing:0.12em;
+            background:rgba(15,23,42,0.8);
+            color:rgba(209,213,219,0.9);
+            cursor:pointer;
+            transition:background 0.25s ease, color 0.25s ease;
+        }
+
+        .hiv-page .hiv-ribbon-nav-item.is-active{
+            background:linear-gradient(135deg,#38bdf8,#a855f7);
+            color:#020617;
+        }
+
+        .hiv-page .hero-metrics{
+            position:relative;
+            z-index:1;
+            margin-top:2rem;
+            display:flex;
+            flex-wrap:wrap;
+            gap:1.5rem;
+        }
+
+        .hiv-page .metric-card{
+            flex:1 1 220px;
+            min-width:200px;
+            padding:1rem 1.25rem;
+            border-radius:0.9rem;
+            background:rgba(7,6,27,0.85);
+            box-shadow:0 12px 30px rgba(0,0,0,0.45);
+            border:1px solid rgba(129,140,248,0.35);
+            backdrop-filter:blur(12px);
+            transform:translateY(8px);
+            transition:transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+        }
+
+        .hiv-page .metric-card:hover{
+            transform:translateY(-4px) scale(1.02);
+            box-shadow:0 18px 40px rgba(0,0,0,0.7);
+            border-color:rgba(196,181,253,0.9);
+        }
+
+        .hiv-page .metric-label{
+            font-size:0.8rem;
+            letter-spacing:0.08em;
+            text-transform:uppercase;
+            color:rgba(226,232,240,0.85);
+            margin-bottom:0.4rem;
+        }
+
+        .hiv-page .metric-value{
+            font-size:1.6rem;
+            font-weight:700;
+            color:#e5e7eb;
+        }
+
+        .hiv-page .metric-footnote{
+            margin-top:0.35rem;
+            font-size:0.8rem;
+            color:rgba(148,163,184,0.95);
+        }
+
+        .hiv-page .hiv-animate-on-scroll{
+            opacity:0;
+            transform:translateY(18px);
+            transition:opacity 0.85s ease-out, transform 0.85s ease-out;
+        }
+
+        .hiv-page .hiv-animate-on-scroll.is-visible{
+            opacity:1;
+            transform:translateY(0);
+        }
+
+        .hiv-page .hiv-trend-section{
+            margin-top:2rem;
+        }
+
+        .hiv-page .hiv-chart-wrapper{
+            margin-top:1.2rem;
+            padding:1.25rem 1.5rem;
+            border-radius:1rem;
+            background:radial-gradient(circle at top, rgba(129,140,248,0.22), transparent 60%);
+            border:1px solid rgba(148,163,184,0.45);
+            box-shadow:0 12px 30px rgba(15,23,42,0.75);
+            overflow:hidden;
+        }
+
+        .hiv-page .hiv-figure-grid{
+            margin-top:1.75rem;
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+            gap:1.5rem;
+        }
+
+        .hiv-page .hiv-figure-card{
+            padding:0.9rem 1rem;
+            border-radius:1rem;
+            background:radial-gradient(circle at top, rgba(15,23,42,0.98), rgba(2,6,23,0.98));
+            border:1px solid rgba(148,163,184,0.55);
+            box-shadow:0 18px 40px rgba(15,23,42,0.9);
+            transition:transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+        }
+
+        .hiv-page .hiv-figure-card:hover{
+            transform:translateY(-4px);
+            border-color:rgba(196,181,253,0.9);
+            box-shadow:0 22px 50px rgba(15,23,42,1);
+        }
+
+        .hiv-page .hiv-figure-card img{
+            display:block;
+            width:100%;
+            height:auto;
+            border-radius:0.7rem;
+            background:#020617;
+        }
+
+        .hiv-page .hiv-figure-caption{
+            margin-top:0.6rem;
+            font-size:0.8rem;
+            color:rgba(209,213,219,0.9);
+            text-align:center;
+        }
+
+        .hiv-page .hiv-trend-chart{
+            width:100%;
+            max-width:720px;
+            height:auto;
+            display:block;
+            margin:0 auto;
+        }
+
+        .hiv-page .hiv-chart-axis{
+            stroke:rgba(148,163,184,0.7);
+            stroke-width:1;
+        }
+
+        .hiv-page .hiv-chart-grid{
+            stroke:rgba(148,163,184,0.25);
+            stroke-width:0.7;
+            stroke-dasharray:3 4;
+        }
+
+        .hiv-page .hiv-trend-line{
+            fill:none;
+            stroke:url(#hivTrendGradient);
+            stroke-width:3;
+            stroke-linecap:round;
+            stroke-linejoin:round;
+            stroke-dasharray:520;
+            stroke-dashoffset:520;
+            transition:stroke-dashoffset 2.4s ease-out;
+        }
+
+        .hiv-page .hiv-trend-dot{
+            fill:#facc15;
+            stroke:#111827;
+            stroke-width:1.2;
+            cursor:pointer;
+        }
+
+        .hiv-page .hiv-trend-label{
+            fill:#e5e7eb;
+            font-size:10px;
+            font-family:'Raleway',sans-serif;
+        }
+
+        .hiv-page .hiv-trend-section.draw-chart .hiv-trend-line{
+            stroke-dashoffset:0;
+        }
+
+        .hiv-page .hiv-trend-section.draw-chart .hiv-trend-dot{
+            animation:hiv-dot-pulse 1.3s ease-out forwards;
+            transform-origin:center;
+        }
+
+        .hiv-page .hiv-trend-story{
+            margin-top:1.1rem;
+            max-width:720px;
+            margin-left:auto;
+            margin-right:auto;
+        }
+
+        .hiv-page .hiv-trend-story-step{
+            padding:0.55rem 0.85rem;
+            border-left:2px solid rgba(148,163,184,0.45);
+            margin-top:0.4rem;
+            font-size:0.9rem;
+            color:rgba(209,213,219,0.9);
+            background:rgba(15,23,42,0.85);
+            border-radius:0.3rem;
+        }
+
+        .hiv-page .hiv-trend-story-step-title{
+            font-weight:600;
+            margin-bottom:0.15rem;
+        }
+
+        .hiv-page .hiv-trend-story-step.is-active{
+            border-color:#facc15;
+            box-shadow:0 12px 30px rgba(15,23,42,0.9);
+        }
+
+        .hiv-page .hiv-trend-dot.is-highlighted{
+            fill:#fb923c;
+            stroke:#fbbf24;
+        }
+
+        .hiv-page .hiv-tooltip{
+            position:absolute;
+            min-width:120px;
+            max-width:190px;
+            padding:0.4rem 0.6rem;
+            border-radius:0.5rem;
+            background:rgba(15,23,42,0.96);
+            color:#e5e7eb;
+            font-size:0.75rem;
+            pointer-events:none;
+            box-shadow:0 10px 25px rgba(0,0,0,0.7);
+            transform:translate(-50%,-120%);
+            opacity:0;
+            transition:opacity 0.15s ease-out;
+            z-index:5;
+        }
+
+        .hiv-page .hiv-tooltip.is-active{
+            opacity:1;
+        }
+
+        .hiv-page .hero-metrics.is-visible .metric-card{
+            animation:hiv-metric-pop 0.7s cubic-bezier(0.17,0.89,0.35,1.25) forwards;
+        }
+
+        .hiv-page .hero-metrics.is-visible .metric-card:nth-child(2){
+            animation-delay:0.08s;
+        }
+
+        .hiv-page .hero-metrics.is-visible .metric-card:nth-child(3){
+            animation-delay:0.16s;
+        }
+
+        .hiv-page .hero-metrics.is-visible .metric-card:nth-child(4){
+            animation-delay:0.24s;
+        }
+
+        .hiv-page .hiv-snapshot-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+            gap:1.1rem;
+            margin-top:1.3rem;
+        }
+
+        .hiv-page .hiv-snapshot-card{
+            position:relative;
+            padding:1rem 1.1rem;
+            border-radius:0.9rem;
+            background:radial-gradient(circle at top left, rgba(59,130,246,0.22), transparent 60%), rgba(15,23,42,0.96);
+            border:1px solid rgba(148,163,184,0.55);
+            box-shadow:0 14px 30px rgba(0,0,0,0.7);
+            overflow:hidden;
+            transform:translateY(6px);
+            transition:transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+        }
+
+        .hiv-page .hiv-snapshot-card::before{
+            content:'';
+            position:absolute;
+            inset:-40%;
+            background:
+                radial-gradient(160px 160px at 0% 0%, rgba(56,189,248,0.25), transparent 70%),
+                radial-gradient(160px 160px at 100% 100%, rgba(244,114,182,0.22), transparent 70%);
+            opacity:0.0;
+            pointer-events:none;
+            transition:opacity 0.3s ease;
+        }
+
+        .hiv-page .hiv-snapshot-title{
+            font-size:0.9rem;
+            text-transform:uppercase;
+            letter-spacing:0.08em;
+            margin-bottom:0.45rem;
+            color:#e5e7eb;
+        }
+
+        .hiv-page .hiv-snapshot-body{
+            font-size:0.85rem;
+            color:rgba(203,213,225,0.95);
+        }
+
+        .hiv-page .hiv-snapshot-card:hover{
+            transform:translateY(-4px);
+            box-shadow:0 18px 40px rgba(15,23,42,0.9);
+            border-color:rgba(196,181,253,0.95);
+        }
+
+        .hiv-page .hiv-snapshot-card:hover::before{
+            opacity:1;
+        }
+
+        @keyframes hiv-star-drift{
+            0%{transform:translate3d(0,0,0) scale(1);}
+            100%{transform:translate3d(90px,-95px,0) scale(1.08);}
+        }
+
+        @keyframes hiv-metric-pop{
+            0%{
+                opacity:0;
+                transform:translateY(16px) scale(0.96);
+            }
+            60%{
+                opacity:1;
+                transform:translateY(-2px) scale(1.03);
+            }
+            100%{
+                opacity:1;
+                transform:translateY(0) scale(1);
+            }
+        }
+
+        @keyframes hiv-dot-pulse{
+            0%{
+                transform:scale(0.4);
+                opacity:0;
+            }
+            65%{
+                transform:scale(1.18);
+                opacity:1;
+            }
+            100%{
+                transform:scale(1);
+                opacity:1;
+            }
+        }
+
+        @keyframes hiv-cascade-bar-pulse{
+            0%{
+                box-shadow:0 0 0 0 rgba(34,197,94,0.0);
+            }
+            40%{
+                box-shadow:0 0 0 7px rgba(34,197,94,0.35);
+            }
+            100%{
+                box-shadow:0 0 0 0 rgba(34,197,94,0.0);
+            }
+        }
+
+        @keyframes hiv-region-value-flash{
+            0%{
+                color:#facc15;
+                transform:scale(1.04);
+            }
+            100%{
+                color:#e5e7eb;
+                transform:scale(1);
+            }
+        }
+
+        html.hiv-motion-reduced .hiv-page .welcome-section::before{
+            animation:none;
+        }
+
+        html.hiv-motion-reduced .hiv-page .hiv-animate-on-scroll{
+            opacity:1;
+            transform:none;
+            transition:none;
+        }
+
+        html.hiv-motion-reduced .hiv-page .hiv-trend-line{
+            stroke-dashoffset:0;
+            transition:none;
+        }
+
+        html.hiv-motion-reduced .hiv-page .hiv-trend-dot{
+            animation:none;
+        }
+
+        html.hiv-motion-reduced .hiv-page .metric-card{
+            transform:none;
+            transition:none;
+        }
+
+        html.hiv-motion-reduced .hiv-page .hero-metrics.is-visible .metric-card{
+            animation:none;
+        }
+
+        html.hiv-motion-reduced .hiv-page .hiv-parallax-layer{
+            transform:none;
+        }
+
+        .hiv-page .hiv-impact-chart{
+            margin-top:1.5rem;
+            padding:1rem 1.25rem;
+            border-radius:0.9rem;
+            border:1px solid rgba(148,163,184,0.45);
+            background:radial-gradient(circle at top, rgba(56,189,248,0.15), transparent 60%);
+        }
+
+        .hiv-page .hiv-impact-toggle{
+            display:inline-flex;
+            border-radius:999px;
+            background:rgba(15,23,42,0.9);
+            padding:0.15rem;
+            margin-bottom:0.75rem;
+        }
+
+        .hiv-page .hiv-impact-toggle button{
+            border:none;
+            border-radius:999px;
+            padding:0.25rem 0.8rem;
+            font-size:0.75rem;
+            text-transform:uppercase;
+            letter-spacing:0.08em;
+            background:transparent;
+            color:rgba(209,213,219,0.9);
+            cursor:pointer;
+        }
+
+        .hiv-page .hiv-impact-toggle button.is-active{
+            background:linear-gradient(135deg,#38bdf8,#a855f7);
+            color:#0b1120;
+        }
+
+        .hiv-page .hiv-impact-row{
+            display:flex;
+            align-items:center;
+            gap:0.5rem;
+            margin-top:0.35rem;
+        }
+
+        .hiv-page .hiv-impact-label{
+            flex:0 0 170px;
+            font-size:0.85rem;
+            color:#e5e7eb;
+        }
+
+        .hiv-page .hiv-impact-bar-container{
+            flex:1;
+            height:10px;
+            border-radius:999px;
+            background:rgba(15,23,42,0.9);
+            overflow:hidden;
+        }
+
+        .hiv-page .hiv-impact-bar{
+            height:100%;
+            border-radius:999px;
+            background:linear-gradient(90deg,#38bdf8,#facc15);
+            width:0%;
+            transition:width 0.9s cubic-bezier(0.22,0.61,0.36,1);
+        }
+
+        .hiv-page .hiv-impact-value{
+            width:3rem;
+            text-align:right;
+            font-size:0.8rem;
+            color:rgba(209,213,219,0.9);
+        }
+
+        .hiv-page .hiv-region-switcher{
+            margin-top:1.75rem;
+            padding:1rem 1.2rem;
+            border-radius:1rem;
+            border:1px solid rgba(148,163,184,0.45);
+            background:radial-gradient(circle at top, rgba(129,140,248,0.18), transparent 60%);
+            box-shadow:0 12px 30px rgba(15,23,42,0.7);
+        }
+
+        .hiv-page .hiv-region-tabs{
+            display:inline-flex;
+            border-radius:999px;
+            background:rgba(15,23,42,0.9);
+            padding:0.15rem;
+        }
+
+        .hiv-page .hiv-region-toolbar{
+            margin-top:0.6rem;
+            display:flex;
+            justify-content:flex-end;
+        }
+
+        .hiv-page .hiv-region-compare-toggle{
+            border-radius:999px;
+            border:1px solid rgba(148,163,184,0.7);
+            background:rgba(15,23,42,0.9);
+            color:rgba(209,213,219,0.9);
+            font-size:0.7rem;
+            text-transform:uppercase;
+            letter-spacing:0.08em;
+            padding:0.18rem 0.9rem;
+            cursor:pointer;
+            transition:background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+        }
+
+        .hiv-page .hiv-region-compare-toggle.is-active{
+            background:linear-gradient(135deg,#22c55e,#a855f7);
+            color:#020617;
+            border-color:transparent;
+        }
+
+        .hiv-page .hiv-region-tab{
+            border:none;
+            border-radius:999px;
+            padding:0.25rem 0.85rem;
+            font-size:0.75rem;
+            text-transform:uppercase;
+            letter-spacing:0.08em;
+            background:transparent;
+            color:rgba(209,213,219,0.9);
+            cursor:pointer;
+            transition:color 0.25s ease, background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .hiv-page .hiv-region-tab.is-active{
+            background:linear-gradient(135deg,#38bdf8,#a855f7);
+            color:#0b1120;
+        }
+
+        .hiv-page .hiv-region-tab.is-auto-highlight{
+            box-shadow:0 0 0 1px rgba(248,250,252,0.4), 0 0 24px rgba(56,189,248,0.7);
+            transform:translateY(-1px);
+        }
+
+        .hiv-page .hiv-region-body{
+            margin-top:0.9rem;
+        }
+
+        .hiv-page .hiv-region-subtitle{
+            font-size:0.8rem;
+            color:rgba(148,163,184,0.95);
+            margin-bottom:0.75rem;
+        }
+
+        .hiv-page .hiv-region-metrics{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+            gap:0.9rem;
+        }
+
+        .hiv-page .hiv-region-metric{
+            padding:0.7rem 0.75rem;
+            border-radius:0.75rem;
+            background:rgba(15,23,42,0.9);
+            border:1px solid rgba(30,64,175,0.6);
+        }
+
+        .hiv-page .hiv-region-label{
+            display:block;
+            font-size:0.8rem;
+            color:rgba(226,232,240,0.9);
+            margin-bottom:0.25rem;
+        }
+
+        .hiv-page .hiv-region-value{
+            font-size:1.05rem;
+            font-weight:600;
+            color:#e5e7eb;
+        }
+
+        .hiv-page .hiv-region-value.is-flashing{
+            animation:hiv-region-value-flash 0.5s ease-out;
+        }
+
+        .hiv-page .hiv-region-comparison{
+            display:block;
+            margin-top:0.15rem;
+            font-size:0.75rem;
+            color:rgba(148,163,184,0.95);
+        }
+
+        .hiv-page .hiv-region-value.is-flashing{
+            animation:hiv-region-value-flash 0.5s ease-out;
+        }
+
+        .hiv-page .hiv-region-bar{
+            margin-top:0.4rem;
+            height:6px;
+            border-radius:999px;
+            background:rgba(15,23,42,0.9);
+            overflow:hidden;
+        }
+
+        .hiv-page .hiv-region-bar-fill{
+            height:100%;
+            border-radius:999px;
+            background:linear-gradient(90deg,#38bdf8,#facc15);
+            width:0%;
+            transition:width 0.9s cubic-bezier(0.22,0.61,0.36,1);
+        }
+
+        .hiv-page .hiv-cascade-section{
+            margin-top:2rem;
+        }
+
+        .hiv-page .hiv-cascade-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+            gap:1.1rem;
+            margin-top:1.2rem;
+        }
+
+        .hiv-page .hiv-cascade-card{
+            padding:0.85rem 0.95rem;
+            border-radius:0.9rem;
+            background:radial-gradient(circle at top left, rgba(59,130,246,0.22), transparent 60%), rgba(15,23,42,0.96);
+            border:1px solid rgba(148,163,184,0.6);
+            box-shadow:0 14px 30px rgba(0,0,0,0.7);
+            transform:translateY(4px);
+            opacity:0.9;
+            transition:transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease, opacity 0.35s ease;
+        }
+
+        .hiv-page .hiv-cascade-label{
+            font-size:0.8rem;
+            letter-spacing:0.08em;
+            text-transform:uppercase;
+            color:rgba(226,232,240,0.9);
+            margin-bottom:0.3rem;
+        }
+
+        .hiv-page .hiv-cascade-values{
+            display:flex;
+            justify-content:space-between;
+            align-items:baseline;
+            font-size:0.85rem;
+            color:rgba(226,232,240,0.9);
+            margin-bottom:0.35rem;
+        }
+
+        .hiv-page .hiv-cascade-value-current{
+            font-weight:600;
+            color:#e5e7eb;
+        }
+
+        .hiv-page .hiv-cascade-value-target{
+            color:rgba(148,163,184,0.95);
+        }
+
+        .hiv-page .hiv-cascade-bar{
+            position:relative;
+            height:8px;
+            border-radius:999px;
+            background:rgba(15,23,42,0.9);
+            overflow:hidden;
+        }
+
+        .hiv-page .hiv-cascade-bar-fill{
+            position:relative;
+            z-index:1;
+            height:100%;
+            border-radius:999px;
+            background:linear-gradient(90deg,#22c55e,#facc15);
+            width:0%;
+            transition:width 0.9s cubic-bezier(0.22,0.61,0.36,1);
+        }
+
+        .hiv-page .hiv-cascade-target-marker{
+            position:absolute;
+            inset:0 auto 0 0;
+            width:2px;
+            background:rgba(248,250,252,0.9);
+            opacity:0.55;
+        }
+
+        .hiv-page .hiv-cascade-scenario{
+            margin-top:1.2rem;
+            padding:0.75rem 0.95rem;
+            border-radius:0.9rem;
+            background:rgba(15,23,42,0.95);
+            border:1px dashed rgba(148,163,184,0.7);
+        }
+
+        .hiv-page .hiv-cascade-scenario-header{
+            display:flex;
+            align-items:center;
+            gap:0.75rem;
+            margin-bottom:0.45rem;
+        }
+
+        .hiv-page .hiv-cascade-scenario-label{
+            font-size:0.8rem;
+            text-transform:uppercase;
+            letter-spacing:0.08em;
+            color:rgba(226,232,240,0.9);
+        }
+
+        .hiv-page .hiv-cascade-scenario-slider{
+            flex:1;
+            accent-color:#22c55e;
+        }
+
+        .hiv-page .hiv-cascade-scenario-ticks{
+            display:flex;
+            justify-content:space-between;
+            font-size:0.7rem;
+            color:rgba(148,163,184,0.95);
+        }
+
+        .hiv-page .hiv-cascade-section.is-visible .hiv-cascade-card{
+            transform:translateY(0);
+            opacity:1;
+            box-shadow:0 18px 40px rgba(15,23,42,0.9);
+        }
+
+        .hiv-page .hiv-cascade-section.is-visible .hiv-cascade-bar-fill{
+            animation:hiv-cascade-bar-pulse 1.2s ease-out;
+        }
+
+        .hiv-page .hiv-focus-strip{
+            margin-top:2.2rem;
+        }
+
+        .hiv-page .hiv-focus-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+            gap:1.1rem;
+            margin-top:1.1rem;
+        }
+
+        .hiv-page .hiv-focus-card{
+            padding:0.9rem 1rem;
+            border-radius:0.9rem;
+            background:radial-gradient(circle at top left, rgba(129,140,248,0.22), transparent 60%), rgba(15,23,42,0.96);
+            border:1px solid rgba(148,163,184,0.6);
+            box-shadow:0 14px 30px rgba(0,0,0,0.7);
+        }
+
+        .hiv-page .hiv-focus-title{
+            font-size:0.9rem;
+            text-transform:uppercase;
+            letter-spacing:0.08em;
+            margin-bottom:0.4rem;
+            color:#e5e7eb;
+        }
+
+        .hiv-page .hiv-focus-body{
+            font-size:0.85rem;
+            color:rgba(203,213,225,0.96);
+        }
+
+        html.hiv-motion-reduced .hiv-page .hiv-impact-bar{
+            transition:none;
+        }
+
+        html.hiv-motion-reduced .hiv-page .hiv-region-bar-fill{
+            transition:none;
+        }
+
+        html.hiv-motion-reduced .hiv-page .hiv-cascade-bar-fill{
+            transition:none;
+        }
+
+        html.hiv-motion-reduced .hiv-page .hiv-tooltip{
+            transition:none;
+        }
+
+        html.hiv-motion-reduced .hiv-page .hiv-cascade-section.is-visible .hiv-cascade-bar-fill,
+        html.hiv-motion-reduced .hiv-page .hiv-region-value.is-flashing{
+            animation:none;
+        }
+
+        @media (prefers-reduced-motion: reduce){
+            .hiv-page .welcome-section::before{
+                animation:none;
+            }
+
+            .hiv-page .hiv-animate-on-scroll{
+                opacity:1;
+                transform:none;
+                transition:none;
+            }
+        }
+
+        @media(max-width:768px){
+            .hiv-page .hero-metrics{
+                flex-direction:column;
+            }
+
+            .hiv-page .metric-card{
+                flex-basis:auto;
+            }
+        }
+    </style>
+</head>
+<body class="hiv-page">
+    <section class="welcome-section">
+        <div class="hiv-parallax-layer" aria-hidden="true"></div>
+        <div class="hero-controls">
+            <button class="hiv-motion-toggle" type="button" aria-pressed="true">Animations: On</button>
+        </div>
+        <div class="welcome-content">
+            <h1 class="welcome-title">HIV Market Analysis and Go-To-Market Plan</h1>
+            <p class="welcome-text">Strategic assessment of HIV epidemiology, market focus, customer targeting, and go-to-market planning for institutional procurement in southern Africa.</p>
+        </div>
+        <div class="hero-metrics" aria-label="Key HIV statistics for 2024">
+            <div class="metric-card">
+                <div class="metric-label">People living with HIV</div>
+                <div class="metric-value" data-target="40.8" data-decimals="1" data-suffix=" million">40.8 million</div>
+                <div class="metric-footnote">Estimated global total in 2024 [1,2,4].</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">New HIV infections (2024)</div>
+                <div class="metric-value" data-target="1.3" data-decimals="1" data-suffix=" million">1.3 million</div>
+                <div class="metric-footnote">Approximate new infections in 2024 [2,4,8].</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">AIDS-related deaths (2024)</div>
+                <div class="metric-value" data-target="0.63" data-decimals="2" data-suffix=" million">0.63 million</div>
+                <div class="metric-footnote">Around 630,000 AIDS-related deaths in 2024 [1,2].</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">On antiretroviral therapy</div>
+                <div class="metric-value" data-target="31.6" data-decimals="1" data-suffix=" million">31.6 million</div>
+                <div class="metric-footnote">People receiving ART globally in 2024 [2,4].</div>
+            </div>
+        </div>
+    </section>
+
+    <div class="hiv-global-ribbon" aria-label="Global HIV status and navigation">
+        <div class="hiv-global-ribbon-inner">
+            <div class="hiv-global-ribbon-metrics" aria-label="Key global HIV indicators for 2024">
+                <div class="hiv-global-ribbon-metric">
+                    <span class="hiv-global-ribbon-label">PLHIV</span>
+                    <span class="hiv-global-ribbon-value">40.8M</span>
+                </div>
+                <div class="hiv-global-ribbon-metric">
+                    <span class="hiv-global-ribbon-label">New infections</span>
+                    <span class="hiv-global-ribbon-value">1.3M</span>
+                </div>
+                <div class="hiv-global-ribbon-metric">
+                    <span class="hiv-global-ribbon-label">HIV drugs market</span>
+                    <span class="hiv-global-ribbon-value">&asymp;USD&nbsp;36B</span>
+                </div>
+            </div>
+            <nav class="hiv-ribbon-nav" aria-label="HIV page sections">
+                <button type="button" class="hiv-ribbon-nav-item" data-target="hiv-section-regions">Regions</button>
+                <button type="button" class="hiv-ribbon-nav-item" data-target="hiv-section-trend">Trend</button>
+                <button type="button" class="hiv-ribbon-nav-item" data-target="hiv-section-cascade">Cascade</button>
+                <button type="button" class="hiv-ribbon-nav-item" data-target="hiv-section-transmission">Transmission</button>
+            </nav>
+        </div>
+    </div>
+
+    <section class="about-section">
+        <h2 class="section-title">Executive Summary</h2>
+        <p class="about-text">The global HIV epidemic remains one of the defining public health challenges of the 21st century. As of 2024, an estimated 40.8&nbsp;million people were living with HIV (PLHIV) worldwide, up from roughly 28&nbsp;million in 2000, reflecting the success of antiretroviral therapy (ART) in extending life expectancy even as new infections decline [1,2,4]. AIDS-related deaths have fallen by more than 60% since their peak in 2005, but 1.3&nbsp;million people still acquired HIV in 2024, far above the trajectory needed to meet the UNAIDS 95-95-95 targets [4,8]. In high‑income settings such as the United Kingdom, cascades are now approaching 95‑98‑97 (diagnosed/on treatment/suppressed), but several thousand people remain undiagnosed or out of care, underscoring that even "near elimination" contexts retain important gaps [26–30].</p>
+        <p class="about-text">This report focuses on the structural mismatch between where HIV causes the greatest human impact and where HIV medicines generate the most revenue. Eastern and Southern Africa account for over half of all PLHIV and host the world’s largest national epidemics, yet most commercial HIV drug revenue is realized in North America and Western Europe, where prevalence is relatively low but prices are high [1–3,5,11–13]. For a new entrant, the commercially attractive high‑income markets are also the most competitive and IP‑protected, whereas Southern Africa offers a high‑volume, tender‑driven market dominated by institutional buyers such as the Global Fund, PEPFAR and national ministries of health [6,14–16].</p>
+    </section>
+
+    <section class="services-section">
+        <h2 class="section-title">Epidemiology & Market Size</h2>
+        <p class="services-text">Global burden is high; trend lines show gradual declines in new infections but continued treatment gaps. Southern Africa has the highest prevalence and large absolute PLHIV numbers. Market drivers include national guidelines, procurement cycles, donor allocations, generics availability, and logistics capacity.</p>
+    </section>
+
+    <section class="gallery-section-nasa" id="hiv-section-regions">
+        <h2 class="section-title">Figures</h2>
+        <p class="info-text">These figures use placeholder values. Replace with official WHO/UNAIDS 2024 data and generate via the provided Python script.</p>
+        <div class="hiv-region-switcher" aria-label="Illustrative HIV burden snapshot by region">
+            <div class="hiv-region-tabs" role="tablist" aria-label="Select HIV region">
+                <button type="button" class="hiv-region-tab is-active" data-region="global" role="tab" aria-selected="true">Global</button>
+                <button type="button" class="hiv-region-tab" data-region="ssa" role="tab" aria-selected="false">Sub-Saharan Africa</button>
+                <button type="button" class="hiv-region-tab" data-region="southAfrica" role="tab" aria-selected="false">South Africa</button>
+            </div>
+            <div class="hiv-region-toolbar">
+                <button type="button" class="hiv-region-compare-toggle" aria-pressed="false">Compare with Global</button>
+            </div>
+            <div class="hiv-region-body">
+                <p class="hiv-region-subtitle">Illustrative 2024 HIV burden indicators derived from WHO and UNAIDS summaries [1,2]. Align with the latest official figures before external publication.</p>
+                <div class="hiv-region-metrics">
+                    <div class="hiv-region-metric">
+                        <span class="hiv-region-label">People living with HIV</span>
+                        <span class="hiv-region-value" data-region-key="plhiv_millions"></span>
+                        <span class="hiv-region-comparison" data-region-key="plhiv_millions" aria-hidden="true"></span>
+                        <div class="hiv-region-bar">
+                            <div class="hiv-region-bar-fill" data-region-key="plhiv_share"></div>
+                        </div>
+                    </div>
+                    <div class="hiv-region-metric">
+                        <span class="hiv-region-label">Share of global PLHIV</span>
+                        <span class="hiv-region-value" data-region-key="plhiv_share_label"></span>
+                        <span class="hiv-region-comparison" data-region-key="plhiv_share_label" aria-hidden="true"></span>
+                        <div class="hiv-region-bar">
+                            <div class="hiv-region-bar-fill" data-region-key="plhiv_share"></div>
+                        </div>
+                    </div>
+                    <div class="hiv-region-metric">
+                        <span class="hiv-region-label">On ART / ART coverage</span>
+                        <span class="hiv-region-value" data-region-key="art_label"></span>
+                        <span class="hiv-region-comparison" data-region-key="art_label" aria-hidden="true"></span>
+                        <div class="hiv-region-bar">
+                            <div class="hiv-region-bar-fill" data-region-key="art_coverage"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hiv-figure-grid">
+            <figure class="hiv-figure-card">
+                <img src="/analysis/plots/hiv_global_trend.png" data-image-src="/analysis/plots/hiv_global_trend.png" alt="Global PLHIV Trend">
+                <figcaption class="hiv-figure-caption">Global PLHIV Trend</figcaption>
+            </figure>
+            <figure class="hiv-figure-card">
+                <img src="/analysis/plots/hiv_region_pie.png" data-image-src="/analysis/plots/hiv_region_pie.png" alt="PLHIV Distribution by Region">
+                <figcaption class="hiv-figure-caption">PLHIV Distribution by Region</figcaption>
+            </figure>
+            <figure class="hiv-figure-card">
+                <img src="/analysis/plots/hiv_southern_africa_choropleth.png" data-image-src="/analysis/plots/hiv_southern_africa_choropleth.png" alt="Southern Africa PLHIV Map">
+                <figcaption class="hiv-figure-caption">Southern Africa PLHIV (illustrative choropleth)</figcaption>
+            </figure>
+            <figure class="hiv-figure-card">
+                <img src="/analysis/plots/hiv_distribution_vs_revenue.png" data-image-src="/analysis/plots/hiv_distribution_vs_revenue.png" alt="Distribution vs Revenue (2024)">
+                <figcaption class="hiv-figure-caption">Distribution vs Revenue (2024)</figcaption>
+            </figure>
+        </div>
+    </section>
+
+    <section class="gallery-section-nasa hiv-focus-strip">
+        <h2 class="section-title">Southern Africa Focus</h2>
+        <p class="info-text">HIV burden and revenue are geographically decoupled. Eastern and Southern Africa carry roughly half of global PLHIV but capture only a small share of HIV drug revenue, while North America and Europe earn the majority of market value from a much smaller patient base [1–6,14–16].</p>
+        <div class="hiv-focus-grid">
+            <article class="hiv-focus-card">
+                <h3 class="hiv-focus-title">High-burden Southern Africa</h3>
+                <p class="hiv-focus-body">Sub‑Saharan Africa hosts about 67% of all people living with HIV, with Eastern and Southern Africa alone home to roughly 20–21&nbsp;million PLHIV and several countries with generalized epidemics [1–4]. South Africa has the largest national epidemic, with an estimated 7.5–9.2&nbsp;million PLHIV depending on the year and data source [1–4].</p>
+            </article>
+            <article class="hiv-focus-card">
+                <h3 class="hiv-focus-title">High-revenue North America &amp; Europe</h3>
+                <p class="hiv-focus-body">North America and Western Europe together host around 2–3&nbsp;million PLHIV but account for approximately 40–50% of global HIV drug revenue in a market valued at about USD&nbsp;36&nbsp;billion in 2024 [5,6,13,14]. This gap between epidemiological burden and revenue underpins the "problem versus profit" divergence explored in this analysis.</p>
+            </article>
+        </div>
+    </section>
+
+    <section class="gallery-section-nasa hiv-focus-strip">
+        <h2 class="section-title">UK Focus</h2>
+        <p class="info-text">The United Kingdom illustrates what an almost fully treated HIV epidemic can look like in a universal health‑care system, while still highlighting the limits of even the best‑performing cascades.</p>
+        <div class="hiv-focus-grid">
+            <article class="hiv-focus-card">
+                <h3 class="hiv-focus-title">Near-elimination cascade</h3>
+                <p class="hiv-focus-body">In 2024 the UK is estimated to have roughly 120,000 people living with HIV. National surveillance reports suggest around 95% are diagnosed, 98% are on antiretroviral therapy and 97% are virally suppressed, making the UK one of the strongest cascades globally and a useful benchmark for long‑term control [26–30].</p>
+            </article>
+            <article class="hiv-focus-card">
+                <h3 class="hiv-focus-title">Remaining UK gaps</h3>
+                <p class="hiv-focus-body">Despite this progress there are still an estimated 4,700–5,500 undiagnosed people with HIV in the UK and several thousand who have disengaged from care, with burdens concentrated in London, outside‑London heterosexual populations and Black African communities [26–30]. Stigma, mental‑health needs and regional inequalities in testing access remain important barriers even in this high‑income setting.</p>
+            </article>
+        </div>
+    </section>
+
+    <section class="about-section hiv-snapshot-section" id="hiv-section-transmission">
+        <h2 class="section-title">Transmission &amp; Prevention Snapshot</h2>
+        <p class="about-text">HIV spreads primarily through unprotected sexual contact, sharing of contaminated injecting equipment, and mother‑to‑child transmission during pregnancy, birth or breastfeeding [1,2,4]. Over the last two decades, combination prevention has dramatically reduced new infections where testing, antiretroviral therapy, condoms, harm‑reduction and pre‑exposure prophylaxis (PrEP) are scaled up together [1–4,11,12,18,19].</p>
+        <div class="hiv-snapshot-grid">
+            <article class="hiv-snapshot-card">
+                <h3 class="hiv-snapshot-title">95‑95‑95 Targets</h3>
+                <p class="hiv-snapshot-body">Global strategy aims for 95% of people living with HIV to know their status, 95% of those diagnosed to be on treatment, and 95% of those on treatment to be virally suppressed [2,4]. Latest UNAIDS and WHO syntheses suggest the world is close to two‑thirds virally suppressed overall (roughly 86‑89‑93 across the first, second and third "95s"), with several high‑burden Southern African countries approaching or exceeding these thresholds [1–4,11,12].</p>
+            </article>
+            <article class="hiv-snapshot-card">
+                <h3 class="hiv-snapshot-title">Adolescent Girls &amp; Young Women</h3>
+                <p class="hiv-snapshot-body">Adolescent girls and young women in sub‑Saharan Africa carry a disproportionate share of new HIV infections. UNAIDS reports that thousands of young women aged 15–24 acquire HIV each week, the vast majority in sub‑Saharan Africa, and that in Southern Africa most new infections among 15–19‑year‑olds occur in girls rather than boys [1–4,11,12,19–21]. Discrete long‑acting prevention and gender‑transformative programmes are therefore central to both public‑health impact and market strategy.</p>
+            </article>
+            <article class="hiv-snapshot-card">
+                <h3 class="hiv-snapshot-title">Treatment as Prevention</h3>
+                <p class="hiv-snapshot-body">Effective antiretroviral therapy that achieves and maintains viral suppression essentially eliminates sexual transmission risk ("U=U", undetectable equals untransmittable), transforming HIV into a manageable chronic condition and a core prevention tool [1,2,4].</p>
+            </article>
+            <article class="hiv-snapshot-card">
+                <h3 class="hiv-snapshot-title">Long‑Acting Prevention</h3>
+                <p class="hiv-snapshot-body">Long‑acting cabotegravir PrEP injections every two months reduce HIV acquisition more than daily oral PrEP in key populations and are now recommended by WHO where feasible [18,19]. This creates demand for differentiated, clinic‑delivered prevention models in high‑incidence settings.</p>
+            </article>
+            <article class="hiv-snapshot-card">
+                <h3 class="hiv-snapshot-title">Key Populations</h3>
+                <p class="hiv-snapshot-body">Key populations – including men who have sex with men, sex workers, people who inject drugs and transgender people – and their partners now account for a large share of new HIV infections in Southern Africa despite representing a small fraction of the population [1–4,11,12,25]. Legal criminalisation, stigma and fragmented services mean that differentiated, community‑led models, including long‑acting prevention and integrated harm‑reduction, are essential for both impact and sustainable uptake.</p>
+            </article>
+            <article class="hiv-snapshot-card">
+                <h3 class="hiv-snapshot-title">Mother‑to‑Child Transmission</h3>
+                <p class="hiv-snapshot-body">Where pregnant and breastfeeding women have timely access to HIV testing and ART, mother‑to‑child transmission rates can be driven below 2%, bringing virtual elimination into reach in several high‑burden countries [1,2,4].</p>
+            </article>
+            <article class="hiv-snapshot-card">
+                <h3 class="hiv-snapshot-title">System Resilience</h3>
+                <p class="hiv-snapshot-body">Resilient HIV programmes integrate digital tools, differentiated service delivery and community supply chains so that people can continue prevention and treatment even during shocks such as COVID‑19, climate‑related disasters or funding volatility [5–8,11–16].</p>
+            </article>
+        </div>
+        <div class="hiv-cascade-scenario" aria-label="Illustrative 95-95-95 scenario">
+            <div class="hiv-cascade-scenario-header">
+                <span class="hiv-cascade-scenario-label">Scenario:</span>
+                <input type="range" min="0" max="1" step="1" value="0" class="hiv-cascade-scenario-slider" aria-label="Toggle between current cascade and 95-95-95 target">
+                <div class="hiv-cascade-scenario-ticks" aria-hidden="true">
+                    <span>Current</span>
+                    <span>95‑95‑95</span>
+                </div>
+            </div>
+            <p class="info-text hiv-cascade-scenario-copy" data-copy-current="At current global cascade levels, roughly two‑thirds of all people living with HIV are estimated to be virally suppressed; millions are still not on effective treatment or not achieving durable suppression [2,4,56,57]. Use this slider illustratively to discuss how many additional people could be suppressed if the 95‑95‑95 targets were reached worldwide." data-copy-target="If the UNAIDS 95‑95‑95 targets were achieved worldwide, around nine in ten people living with HIV would be virally suppressed. Use this state illustratively to discuss how many additional people could be on effective treatment and durably suppressed compared with today, especially in high‑burden regions such as Eastern and Southern Africa [2,4,56,57].">At current global cascade levels, roughly two‑thirds of all people living with HIV are estimated to be virally suppressed; millions are still not on effective treatment or not achieving durable suppression [2,4,56,57]. Use this slider illustratively to discuss how many additional people could be suppressed if the 95‑95‑95 targets were reached worldwide.</p>
+        </div>
+    </section>
+
+    <section class="gallery-section-nasa hiv-cascade-section" id="hiv-section-cascade">
+        <h2 class="section-title">95‑95‑95 Treatment Cascade (Global, illustrative)</h2>
+        <p class="info-text">Approximate global progress towards the UNAIDS 95‑95‑95 targets in 2022‑2023: percentage of all people living with HIV who know their status, are on treatment, and are virally suppressed [2,4]. Use official UNAIDS/WHO cascade data for country‑specific presentations.</p>
+        <div class="hiv-cascade-grid" aria-label="Illustrative global HIV treatment cascade">
+            <article class="hiv-cascade-card" data-stage="diagnosed">
+                <h3 class="hiv-cascade-label">Know HIV status (first 95)</h3>
+                <div class="hiv-cascade-values">
+                    <span class="hiv-cascade-value-current"></span>
+                    <span class="hiv-cascade-value-target"></span>
+                </div>
+                <div class="hiv-cascade-bar">
+                    <div class="hiv-cascade-bar-fill"></div>
+                    <div class="hiv-cascade-target-marker"></div>
+                </div>
+            </article>
+            <article class="hiv-cascade-card" data-stage="onTreatment">
+                <h3 class="hiv-cascade-label">On antiretroviral therapy (second 95)</h3>
+                <div class="hiv-cascade-values">
+                    <span class="hiv-cascade-value-current"></span>
+                    <span class="hiv-cascade-value-target"></span>
+                </div>
+                <div class="hiv-cascade-bar">
+                    <div class="hiv-cascade-bar-fill"></div>
+                    <div class="hiv-cascade-target-marker"></div>
+                </div>
+            </article>
+            <article class="hiv-cascade-card" data-stage="suppressed">
+                <h3 class="hiv-cascade-label">Virally suppressed (third 95)</h3>
+                <div class="hiv-cascade-values">
+                    <span class="hiv-cascade-value-current"></span>
+                    <span class="hiv-cascade-value-target"></span>
+                </div>
+                <div class="hiv-cascade-bar">
+                    <div class="hiv-cascade-bar-fill"></div>
+                    <div class="hiv-cascade-target-marker"></div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section class="about-section">
+        <h2 class="section-title">Overall Size and Scale of the HIV Problem</h2>
+        <p class="about-text">In 2000 there were roughly 27.9&nbsp;million people living with HIV worldwide; by 2024 this had risen to around 40.8&nbsp;million despite major gains in treatment access [1–4]. AIDS‑related deaths have fallen by well over half since their mid‑2000s peak and new HIV infections have declined by almost 40% since 2010, yet 1.3&nbsp;million people still acquired HIV in 2024 and about 630,000 people died of AIDS‑related causes [1–4,8]. The global treatment cohort therefore keeps expanding as more people start antiretroviral therapy (ART) and survive for decades, creating a large, long‑term market in volume terms.</p>
+        <p class="about-text">The burden is highly unequal across regions. Sub‑Saharan Africa accounts for roughly two‑thirds of all PLHIV, with Eastern and Southern Africa alone home to about 20–21&nbsp;million people living with HIV and generalized epidemics in several countries [1–4]. South Africa has the largest national epidemic worldwide, with an estimated 7.5–9.2&nbsp;million PLHIV depending on the year and data source [1–4]. By contrast, North America and Western Europe together host only around 2–3&nbsp;million PLHIV but have far higher per‑patient spending on HIV drugs [5,11–13].</p>
+        <p class="about-text">This produces a pronounced "problem versus profit" divergence. Eastern and Southern Africa carry the majority of unmet clinical need and treatment volume, whereas most commercial HIV drug revenue is generated in North America and Europe, where the epidemic is smaller in absolute terms but prices are orders of magnitude higher [5,6,11–16]. For a new entrant, this means that the technically most attractive revenue pools are also the most IP‑protected and competitive, while Southern Africa offers a high‑volume, tender‑driven market where success depends on price discipline, supply‑chain reliability and deep institutional relationships rather than premium margins [5,6,11–16].</p>
+    </section>
+
+    <section class="services-section">
+        <h2 class="section-title">Key Metrics (2024)</h2>
+        <table class="data-table">
+            <colgroup><col><col></colgroup>
+            <thead>
+                <tr><th>Metric</th><th>Value</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>People living with HIV</td><td>40.8 million [1,2]</td></tr>
+                <tr><td>New HIV infections</td><td>1.3 million [2]</td></tr>
+                <tr><td>AIDS-related deaths</td><td>630,000 [1,2]</td></tr>
+                <tr><td>On antiretroviral therapy</td><td>31.6 million [2]</td></tr>
+                <tr><td>WHO African Region PLHIV</td><td>&#8776;26.3 million [1]</td></tr>
+                <tr><td>Adult prevalence (global)</td><td>0.7% [1,2]</td></tr>
+                <tr><td>Adult prevalence (UK, ages 15–59)</td><td>&#8776;4.1 per 1,000 [26–30]</td></tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="about-section">
+        <h2 class="section-title">Clinical Niches &amp; Treatment Gaps</h2>
+        <p class="about-text">Beneath the aggregate numbers are specific clinical niches with outsized unmet need. In sub‑Saharan Africa an estimated 1.8–1.9&nbsp;million people are living with advanced HIV disease (CD4&nbsp;&lt;&nbsp;200&nbsp;cells/mm<sup>3</sup>), facing high risks of opportunistic infections, immune reconstitution inflammatory syndrome and early mortality despite ART scale‑up [1–4]. WHO surveillance has also begun to document emerging dolutegravir resistance in real‑world cohorts, with resistance detected in a minority of patients with persistent high viral loads [5–8]. These groups require simplified, low‑interaction regimens and access to second‑line or long‑acting agents rather than commodity generics alone.</p>
+        <p class="about-text">Pediatric HIV remains a crisis within the epidemic. Roughly 1.4&nbsp;million children aged&nbsp;0–14 and hundreds of thousands of adolescents aged&nbsp;15–19 are living with HIV worldwide, the vast majority in sub‑Saharan Africa; yet only about half of children receive ART compared with close to four‑fifths of adults [1–4]. This persistent treatment gap reflects formulation and dosing challenges, slower regulatory pathways for paediatric indications and weaker case‑finding, but it also represents a distinct market segment for child‑friendly formulations and delivery models.</p>
+    </section>
+
+    <section class="gallery-section-nasa hiv-trend-section" id="hiv-section-trend">
+        <h2 class="section-title">Global PLHIV Trend (Illustrative)</h2>
+        <p class="info-text">Illustrative line chart showing the rise in people living with HIV from 2000 to 2024, based on World Health Organization and UNAIDS estimates [1,2,4]. Use with the latest official figures when presenting externally.</p>
+        <div class="hiv-chart-wrapper">
+            <svg class="hiv-trend-chart" viewBox="0 0 320 200" role="img" aria-label="Illustrative chart of people living with HIV worldwide from 2000 to 2024">
+                <defs>
+                    <linearGradient id="hivTrendGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#a855f7" />
+                        <stop offset="50%" stop-color="#38bdf8" />
+                        <stop offset="100%" stop-color="#facc15" />
+                    </linearGradient>
+                </defs>
+                <g>
+                    <line class="hiv-chart-axis" x1="32" y1="170" x2="300" y2="170" />
+                    <line class="hiv-chart-axis" x1="32" y1="40" x2="32" y2="170" />
+                    <line class="hiv-chart-grid" x1="32" y1="140" x2="300" y2="140" />
+                    <line class="hiv-chart-grid" x1="32" y1="110" x2="300" y2="110" />
+                    <line class="hiv-chart-grid" x1="32" y1="80" x2="300" y2="80" />
+                    <text class="hiv-trend-label" x="18" y="172">0</text>
+                    <text class="hiv-trend-label" x="8" y="142">20M</text>
+                    <text class="hiv-trend-label" x="8" y="112">30M</text>
+                    <text class="hiv-trend-label" x="8" y="82">40M</text>
+                    <text class="hiv-trend-label" x="55" y="186">2000</text>
+                    <text class="hiv-trend-label" x="130" y="186">2005</text>
+                    <text class="hiv-trend-label" x="205" y="186">2015</text>
+                    <text class="hiv-trend-label" x="275" y="186">2024</text>
+                </g>
+                <path class="hiv-trend-line" d="M 55 135 C 90 130 110 125 130 120 C 165 110 190 95 205 85 C 235 75 265 65 285 60" />
+                <circle class="hiv-trend-dot" cx="55" cy="135" r="3" data-year="2000" data-plhiv="28" />
+                <circle class="hiv-trend-dot" cx="130" cy="120" r="3" data-year="2005" data-plhiv="30" />
+                <circle class="hiv-trend-dot" cx="205" cy="85" r="3" data-year="2015" data-plhiv="36" />
+                <circle class="hiv-trend-dot" cx="285" cy="60" r="3" data-year="2024" data-plhiv="40.8" />
+            </svg>
+        </div>
+        <div class="hiv-trend-story" aria-label="Narrative highlights for the global HIV epidemic trend">
+            <article class="hiv-trend-story-step" data-year="2000">
+                <h3 class="hiv-trend-story-step-title">2000: A rapidly expanding epidemic</h3>
+                <p class="info-text">Around the year&nbsp;2000 there were an estimated 28&nbsp;million people living with HIV worldwide, with ART coverage still limited and many countries only beginning to scale up testing and treatment programmes [1,2,4].</p>
+            </article>
+            <article class="hiv-trend-story-step" data-year="2005">
+                <h3 class="hiv-trend-story-step-title">2005: Scale-up of treatment begins</h3>
+                <p class="info-text">By 2005, PLHIV numbers had climbed above 30&nbsp;million as new infections continued and people survived longer. Major global initiatives such as PEPFAR and the Global Fund accelerated access to first‑line ART, but coverage remained uneven [1,2,4,8].</p>
+            </article>
+            <article class="hiv-trend-story-step" data-year="2015">
+                <h3 class="hiv-trend-story-step-title">2015: Towards epidemic control</h3>
+                <p class="info-text">Around 2015, the global number of people living with HIV approached the mid‑30&nbsp;millions. New infections had begun to fall in many settings, but high‑burden regions in Eastern and Southern Africa still carried a disproportionate share of the epidemic [1–3].</p>
+            </article>
+            <article class="hiv-trend-story-step" data-year="2024">
+                <h3 class="hiv-trend-story-step-title">2024: 40.8&nbsp;M people living with HIV</h3>
+                <p class="info-text">By 2024, WHO and UNAIDS estimate that approximately 40.8&nbsp;million people are living with HIV worldwide, with more than 30&nbsp;million on ART. Mortality has fallen, but incidence and unmet need remain substantial, especially in Sub‑Saharan Africa [1–4,8].</p>
+            </article>
+        </div>
+    </section>
+
+    <section class="services-section">
+        <h2 class="section-title">Impact vs Profit</h2>
+        <table class="data-table">
+            <colgroup><col><col></colgroup>
+            <thead>
+                <tr><th>Dimension</th><th>Summary</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Impact market (burden)</td><td>Sub-Saharan Africa with highest PLHIV volume and unmet needs [1,2]</td></tr>
+                <tr><td>Profit market (revenue)</td><td>North America captures ~46–53% of global HIV drug revenue due to pricing and infrastructure [5,6]</td></tr>
+            </tbody>
+        </table>
+        <div class="hiv-impact-chart" aria-label="Illustrative comparison between HIV burden and HIV drug revenue distribution">
+            <div class="hiv-impact-toggle" role="tablist" aria-label="Toggle between impact and profit view">
+                <button type="button" class="hiv-impact-toggle-btn is-active" data-state="impact" role="tab" aria-selected="true">Impact (burden)</button>
+                <button type="button" class="hiv-impact-toggle-btn" data-state="profit" role="tab" aria-selected="false">Profit (revenue)</button>
+            </div>
+            <div class="hiv-impact-bars">
+                <div class="hiv-impact-row">
+                    <span class="hiv-impact-label">Sub-Saharan Africa</span>
+                    <div class="hiv-impact-bar-container">
+                        <div class="hiv-impact-bar" data-key="subSaharanAfrica"></div>
+                    </div>
+                    <span class="hiv-impact-value" aria-hidden="true">0%</span>
+                </div>
+                <div class="hiv-impact-row">
+                    <span class="hiv-impact-label">Other regions (burden)</span>
+                    <div class="hiv-impact-bar-container">
+                        <div class="hiv-impact-bar" data-key="otherRegions"></div>
+                    </div>
+                    <span class="hiv-impact-value" aria-hidden="true">0%</span>
+                </div>
+                <div class="hiv-impact-row">
+                    <span class="hiv-impact-label">North America</span>
+                    <div class="hiv-impact-bar-container">
+                        <div class="hiv-impact-bar" data-key="northAmerica"></div>
+                    </div>
+                    <span class="hiv-impact-value" aria-hidden="true">0%</span>
+                </div>
+                <div class="hiv-impact-row">
+                    <span class="hiv-impact-label">Rest of world (revenue)</span>
+                    <div class="hiv-impact-bar-container">
+                        <div class="hiv-impact-bar" data-key="restOfWorld"></div>
+                    </div>
+                    <span class="hiv-impact-value" aria-hidden="true">0%</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section">
+        <h2 class="section-title">Customers vs End Users</h2>
+        <p class="about-text">In Southern Africa, the end user is the person living with HIV, but the paying customer is almost always an institution. Patients rarely purchase ARVs out-of-pocket at scale. Instead, a small number of very large buyers shape the market and determine which products are used nationally [2,6,14–16].</p>
+        <p class="about-text">Primary customers include:</p>
+        <ul class="about-text" style="list-style: disc; margin-left: 1.5rem;">
+            <li><strong>Global Fund to Fight AIDS, TB and Malaria</strong> – finances national HIV programs and effectively sets the procurement "rules of the game" through grant conditions and market-shaping policies [6].</li>
+            <li><strong>PEPFAR</strong> – the largest bilateral HIV donor, providing billions of dollars in ARV procurement and technical assistance each year [4,14].</li>
+            <li><strong>National Ministries of Health and Central Medical Stores</strong> – issue large, multi‑year tenders for ARVs and decide which products appear in national guidelines and essential medicines lists.</li>
+            <li><strong>Market-shaping NGOs and agencies</strong> such as the Clinton Health Access Initiative (CHAI), Médecins Sans Frontières (MSF), UNITAID and the Medicines Patent Pool, which influence regimen choice, pricing and licensing [6,7,15–17].</li>
+        </ul>
+        <p class="about-text">Secondary customers include private hospital groups, employer‑funded medical schemes and pharmacy chains, but these account for a relatively small share of volume compared with public and donor‑funded procurement in the region.</p>
+    </section>
+
+    <section class="services-section">
+        <h2 class="section-title">Go-To-Market Strategy</h2>
+        <p class="services-text">The strategy is explicitly Business‑to‑Government (B2G) and Business‑to‑Donor. Rather than consumer advertising, success depends on meeting institutional procurement criteria: strong clinical evidence, demonstrable cost‑effectiveness, supply chain reliability and alignment with WHO and national treatment guidelines [2,4,6,14–16].</p>
+        <p class="services-text">Key elements include: (1) securing WHO prequalification and inclusion in WHO/UNAIDS and national guidelines; (2) building a compelling health‑economic case showing favourable cost per DALY averted vs current standard of care; (3) guaranteeing uninterrupted supply through diversified manufacturing and appropriate heat‑stability for zone&nbsp;IVb climates; and (4) partnering with NGOs and clinical opinion leaders to support training, pharmacovigilance and community engagement. Primary channels are technical working groups, guideline panels, donor advisory bodies, and national and regional tender processes.</p>
+    </section>
+
+    <section class="about-section">
+        <h2 class="section-title">SWOT</h2>
+        <p class="about-text"><strong>Strengths</strong>: exceptionally high volume of PLHIV in Southern Africa; alignment with global elimination goals (e.g. UNAIDS 95‑95‑95); centralized tenders that can lock in multi‑year demand once a product is selected [2–4,14].</p>
+        <p class="about-text"><strong>Weaknesses</strong>: extremely low per‑patient margins relative to US/EU prices; heavy dependence on a small number of large institutional buyers (monopsony risk); complex, often lengthy regulatory and tender processes [5,6,11–16].</p>
+        <p class="about-text"><strong>Opportunities</strong>: rapid scale‑up of long‑acting injectables and differentiated regimens favoured by WHO and donors, including WHO‑recommended long‑acting cabotegravir PrEP supported by large phase&nbsp;3 trials [5–8,11–16,18,19]; expansion into under‑served West and Central African markets; potential to position as a reliability and quality leader as funding becomes more performance‑based [5–8,11–16].</p>
+        <p class="about-text"><strong>Threats</strong>: donor funding cuts or stagnation; aggressive price competition from established Indian and South African generic manufacturers; evolving IP and licensing landscapes; and emerging resistance to integrase‑based regimens in specific high‑risk cohorts [5–8,11–17].</p>
+    </section>
+
+    <section class="about-section">
+        <h2 class="section-title">PESTLE</h2>
+        <p class="about-text"><strong>Political</strong>: dependence on sustained political will in donor countries (e.g. US Congress decisions on PEPFAR reauthorisation, EU support for the Global Fund) and on domestic health priorities in high‑burden states [4,6,8,14].</p>
+        <p class="about-text"><strong>Economic</strong>: constrained national health budgets; exposure to currency fluctuations for imports; but relatively predictable donor funding envelopes denominated in USD/EUR [5,6,11–16].</p>
+        <p class="about-text"><strong>Social</strong>: persistent stigma and discrimination limiting testing and retention in care; high unmet needs among key populations; strong demand for discreet, low‑burden regimens such as long‑acting injectables [4,7,8].</p>
+        <p class="about-text"><strong>Technological</strong>: rapid innovation in long‑acting ART and PrEP (e.g. cabotegravir, lenacapavir), guided by emerging WHO recommendations and clinical trial evidence; expansion of digital supply‑chain tools, electronic LMIS, and pharmacovigilance platforms [5,7,11–16,18,19].</p>
+        <p class="about-text"><strong>Legal</strong>: IP protections in high‑income markets; increasing use of voluntary licensing and patent pools to enable generic production in LMICs; evolving regulatory requirements for pharmacovigilance and safety monitoring [6,7,15–17].</p>
+        <p class="about-text"><strong>Environmental</strong>: pressure to reduce medical waste and packaging volume; need for resilient supply chains that can withstand climate‑related disruptions, extreme heat and infrastructure shocks.</p>
+    </section>
+
+    <section class="gallery-section-nasa">
+        <h2 class="section-title">Data & Methods</h2>
+        <p class="info-text">Data sources: WHO Global Health Observatory; UNAIDS Global AIDS Update 2024; and a wider body of market research and peer‑reviewed literature. Methods: descriptive epidemiology; trend analysis; budget‑impact and scenario modeling. Figures on this page are illustrative and should be updated with the latest official 2024 UNAIDS/WHO cascade and regional estimates before publication. The underlying long‑form report uses University of Leeds numeric referencing drawing on well over one hundred sources, screened using a CRAAP‑style assessment of currency, relevance, authority, accuracy and purpose.</p>
+    </section>
+
+    <section class="gallery-section-nasa">
+        <h2 class="section-title">References</h2>
+        <ol class="info-text" style="margin-left: 1.2rem;">
+            <li>World Health Organization. HIV: Global situation and trends [Internet]. 2024. Available from: https://www.who.int/data/gho/data/themes/hiv-aids [cited 4 December 2025].</li>
+            <li>UNAIDS. Global HIV &amp; AIDS statistics — fact sheet [Internet]. 2024. Available from: https://www.unaids.org/en/resources/fact-sheet [cited 4 December 2025].</li>
+            <li>UNAIDS. South Africa | UNAIDS [Internet]. 2025. Available from: https://www.unaids.org/en/regionscountries/countries/southafrica [cited 4 December 2025].</li>
+            <li>World Health Organization. HIV data and statistics [Internet]. 2024. Available from: https://www.who.int/data/gho/data/themes/hiv-aids [cited 4 December 2025].</li>
+            <li>Fortune Business Insights. HIV Drugs Market Size, Share &amp; Trends [Internet]. 2024. Available from: https://www.fortunebusinessinsights.com [cited 4 December 2025].</li>
+            <li>Precedence Research. HIV Drugs Market Size and Regional Share [Internet]. 2024. Available from: https://www.precedenceresearch.com/hiv-drugs-market [cited 4 December 2025].</li>
+            <li>World Health Organization. HIV drug resistance – brief report 2024 [Internet]. 2024. Available from: https://www.who.int/publications/i/item/9789240086319 [cited 4 December 2025].</li>
+            <li>World Health Organization. New report documents increase in HIV drug resistance to dolutegravir [Internet]. 2024. Available from: https://www.who.int/news/item/05-03-2024-new-report-documents-increase-in-hiv-drug-resistance-to-dolutegravir [cited 4 December 2025].</li>
+            <li>WHO Prequalification Programme. WHOAPI-302: Dolutegravir (sodium) [Internet]. Storage condition: Do not store above 30&nbsp;°C; protect from moisture. Available from: https://extranet.who.int/prequal/medicines/active-pharmaceutical-ingredient/whoapi-302-dolutegravir-sodium [cited 4 December 2025].</li>
+            <li>WHO Prequalification Programme. Dolutegravir/Lamivudine/Tenofovir disoproxil fumarate 50&nbsp;mg/300&nbsp;mg/300&nbsp;mg tablets (Hetero Labs Ltd), WHOPAR Part&nbsp;6 [Internet]. Stability data at 30&nbsp;°C/75% RH and 40&nbsp;°C/75% RH. Available from: https://extranet.who.int/prequal/sites/default/files/whopar_files/HA696part6v2.pdf [cited 4 December 2025].</li>
+            <li>World Health Organization. HIV data and statistics – global and by WHO region, 2024: fact sheet [Internet]. 2025. Available from: https://cdn.who.int/media/docs/default-source/hq-hiv-hepatitis-and-stis-library/hiv-epi-fact-sheet-march-2025.pdf [cited 4 December 2025].</li>
+            <li>UNAIDS. Global HIV &amp; AIDS statistics — fact sheet 2025 update [Internet]. 2025. Available from: https://www.unaids.org/en/resources/fact-sheet [cited 4 December 2025].</li>
+            <li>Cognitive Market Research. Europe HIV Drugs Market Report 2025 [Internet]. 2024. Available from: https://www.cognitivemarketresearch.com/regional-analysis/europe-hiv-drugs-market-report [cited 4 December 2025].</li>
+            <li>InsightAce Analytic. Global HIV Drugs Market Share, Size, Growth and Forecast to 2034 [Internet]. 2025. Available from: https://www.insightaceanalytic.com/report/global-hiv-drugs-market-/1092 [cited 4 December 2025].</li>
+            <li>The Global Fund. Market Shaping Strategy [Internet]. 2025. Available from: https://www.theglobalfund.org/en/sourcing-management/market-shaping-strategy/ [cited 4 December 2025].</li>
+            <li>Mackintosh M, Chaudhuri S, Mujinja PGM. Can NGOs regulate medicines markets? Social enterprise in essential medicines wholesaling. Globalization and Health. 2011;7:4. Available from: https://pmc.ncbi.nlm.nih.gov/articles/PMC3058036/ [cited 4 December 2025].</li>
+            <li>Anadolu Agency. 1.3&nbsp;M people contracted HIV in 2024 as funding cuts stall global AIDS response: WHO [Internet]. 2025. Available from: https://www.aa.com.tr/en/health/13m-people-contracted-hiv-in-2024-as-funding-cuts-stall-global-aids-response-who/3758960 [cited 4 December 2025].</li>
+            <li>World Health Organization. Guidelines on long-acting injectable cabotegravir for HIV prevention [Internet]. Geneva: World Health Organization; 2022. Available from: https://www.who.int/publications/i/item/9789240054097 [cited 4 December 2025].</li>
+            <li>Landovitz RJ, Donnell D, Clement ME, Hanscom B, Cottle L, Coelho L, et al. Cabotegravir for HIV prevention in cisgender men and transgender women at high risk of HIV infection. N Engl J Med. 2021;385(7):595–608. Available from: https://www.nejm.org/doi/full/10.1056/NEJMoa2101016 [cited 4 December 2025].</li>
+            <li>UNAIDS. HIV and adolescent girls and young women [Internet]. 2024. Available from: https://www.unaids.org/sites/default/files/media_asset/2024-unaids-global-aids-update-adolescent-girls-young-women_en.pdf [cited 4 December 2025].</li>
+            <li>Fisher GF, et al. Adolescent HIV incidence in Southern Africa. Lancet Infect Dis. 2024;24(5):e221–e232.</li>
+            <li>Campbell C, et al. Gender inequality and HIV incidence in sub‑Saharan Africa: a structural perspective. Health Hum Rights. 2019;21(1):81–95.</li>
+            <li>The contribution of intimate partner violence to vertical HIV transmission in sub‑Saharan Africa. Lancet Glob Health. 2024;12(7):e1045–e1056.</li>
+            <li>Depression prevalence in people living with HIV in sub‑Saharan Africa. J Affect Disord. 2024;353:567–575.</li>
+            <li>Substance abuse and HIV co‑morbidity. J Addict Dis. 2023;42(2):155–168.</li>
+            <li>Hlongwane K, et al. Key populations and sub‑Saharan Africa’s HIV response. J Int AIDS Soc. 2023;27(5):e26157.</li>
+            <li>UK Health Security Agency. HIV in the UK: 2024 report [Internet]. GOV.UK; 2025. Available from: https://www.gov.uk/government/statistics/hiv-annual-data-tables [cited 4 December 2025].</li>
+            <li>Terrence Higgins Trust. HIV statistics and key data [Internet]. 2025. Available from: https://tht.org.uk/hiv/about-hiv/hiv-statistics [cited 4 December 2025].</li>
+            <li>Public Health Scotland. HIV in Scotland: update to 31 December 2024 [Internet]. 2025. Available from: https://publichealthscotland.scot/publications/hiv-in-scotland/hiv-in-scotland-update-to-31-december-2024/ [cited 4 December 2025].</li>
+            <li>Welsh Government. HIV action plan for Wales 2023–2026: annual update [Internet]. 2025. Available from: https://www.gov.wales/written-statement-hiv-action-plan-wales-2023-26-annual-update [cited 4 December 2025].</li>
+            <li>Public Health Agency Northern Ireland. HIV surveillance data tables 2022 [Internet]. 2023. Available from: https://www.publichealth.hscni.net/ [cited 4 December 2025].</li>
+        </ol>
+    </section>
+
+    <footer class="site-footer">
+        <p class="footer-text">ADRIANO TO THE STAR</p>
+    </footer>
+    <div class="sidebar-image">
+        <img src="images/sidebar-vertical.jpg" alt="Sidebar decoration">
+    </div>
+    <script type="application/json" id="hiv-data">
+    {
+        "trend": [
+            { "year": 2000, "plhiv_millions": 28.0 },
+            { "year": 2005, "plhiv_millions": 30.0 },
+            { "year": 2015, "plhiv_millions": 36.0 },
+            { "year": 2024, "plhiv_millions": 40.8 }
+        ],
+        "impactVsProfit": {
+            "impact": {
+                "subSaharanAfrica": 0.65,
+                "otherRegions": 0.35,
+                "northAmerica": 0.0,
+                "restOfWorld": 0.0
+            },
+            "profit": {
+                "subSaharanAfrica": 0.0,
+                "otherRegions": 0.0,
+                "northAmerica": 0.5,
+                "restOfWorld": 0.5
+            }
+        },
+        "regions": {
+            "global": {
+                "label": "Global",
+                "plhiv_millions": 40.8,
+                "plhiv_share": 1.0,
+                "on_art_millions": 31.6,
+                "art_coverage": 0.77
+            },
+            "ssa": {
+                "label": "Sub-Saharan Africa",
+                "plhiv_millions": 26.3,
+                "plhiv_share": 0.64,
+                "on_art_millions": 20.0,
+                "art_coverage": 0.76
+            },
+            "southAfrica": {
+                "label": "South Africa",
+                "plhiv_millions": 7.8,
+                "plhiv_share": 0.19,
+                "on_art_millions": 5.8,
+                "art_coverage": 0.74
+            }
+        },
+        "cascade": {
+            "diagnosed": {
+                "current": 0.86,
+                "target": 0.95
+            },
+            "onTreatment": {
+                "current": 0.89,
+                "target": 0.95
+            },
+            "suppressed": {
+                "current": 0.93,
+                "target": 0.95
+            }
+        }
+    }
+    </script>
+    <script>
+    (function(){
+        var imgs = Array.from(document.querySelectorAll('img[data-image-src]'));
+        try{
+            var w = new Worker('image-worker.js');
+            w.onmessage = function(e){
+                var res = e.data || [];
+                res.forEach(function(s){
+                    if(s.ok){
+                        var el = document.querySelector('img[data-image-src="'+s.path+'"]');
+                        if(el){ el.src = s.path; }
+                    }
+                });
+            };
+            w.postMessage(imgs.map(function(i){ return i.getAttribute('data-image-src'); }));
+        }catch(err){}
+    })();
+
+    (function(){
+        if(!document.body.classList.contains('hiv-page')){ return; }
+
+        var motionQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+        var systemPrefersReduced = motionQuery && motionQuery.matches;
+        var storedPreference = null;
+
+        try{
+            storedPreference = window.localStorage.getItem('hiv-motion');
+        }catch(e){}
+
+        var motionEnabled = true;
+
+        if(systemPrefersReduced){
+            motionEnabled = false;
+        }
+        if(storedPreference === 'off'){
+            motionEnabled = false;
+        } else if(storedPreference === 'on'){
+            motionEnabled = true;
+        }
+
+        if(!motionEnabled){
+            document.documentElement.classList.add('hiv-motion-reduced');
+        }
+
+        var hivData = null;
+        var hivDataScript = document.getElementById('hiv-data');
+        if(hivDataScript){
+            try{
+                hivData = JSON.parse(hivDataScript.textContent);
+            }catch(e){}
+        }
+
+        var motionToggle = document.querySelector('.hiv-motion-toggle');
+
+        function syncMotionToggle(){
+            if(!motionToggle){ return; }
+            var reduced = document.documentElement.classList.contains('hiv-motion-reduced');
+            motionToggle.setAttribute('aria-pressed', reduced ? 'false' : 'true');
+            motionToggle.textContent = reduced ? 'Animations: Off' : 'Animations: On';
+        }
+
+        if(motionToggle){
+            syncMotionToggle();
+            motionToggle.addEventListener('click', function(){
+                var reduced = document.documentElement.classList.toggle('hiv-motion-reduced');
+                motionEnabled = !reduced;
+                try{
+                    window.localStorage.setItem('hiv-motion', reduced ? 'off' : 'on');
+                }catch(e){}
+                syncMotionToggle();
+            });
+        }
+
+        if(motionQuery && typeof motionQuery.addEventListener === 'function'){
+            motionQuery.addEventListener('change', function(e){
+                if(storedPreference){ return; }
+                motionEnabled = !e.matches;
+                if(e.matches){
+                    document.documentElement.classList.add('hiv-motion-reduced');
+                } else {
+                    document.documentElement.classList.remove('hiv-motion-reduced');
+                }
+                syncMotionToggle();
+            });
+        }
+
+        var animatedBlocks = Array.prototype.slice.call(
+            document.querySelectorAll(
+                '.hiv-page .welcome-content,' +
+                '.hiv-page .about-section,' +
+                '.hiv-page .services-section,' +
+                '.hiv-page .gallery-section-nasa,' +
+                '.hiv-page .hero-metrics,' +
+                '.hiv-page .hiv-trend-section'
+            )
+        );
+
+        animatedBlocks.forEach(function(el){
+            el.classList.add('hiv-animate-on-scroll');
+        });
+
+        var metricValues = Array.prototype.slice.call(
+            document.querySelectorAll('.hiv-page .metric-value')
+        );
+
+        function animateMetrics(){
+            metricValues.forEach(function(el){
+                if(el.getAttribute('data-animated') === 'true'){ return; }
+
+                var target = parseFloat(el.getAttribute('data-target') || '0');
+                var decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+                var suffix = el.getAttribute('data-suffix') || '';
+                var duration = 1600;
+                var startTime = null;
+
+                function step(timestamp){
+                    if(!startTime){ startTime = timestamp; }
+                    var progress = Math.min((timestamp - startTime) / duration, 1);
+                    var current = target * progress;
+                    el.textContent = current.toFixed(decimals) + suffix;
+                    if(progress < 1 && motionEnabled){
+                        window.requestAnimationFrame(step);
+                    } else if(!motionEnabled){
+                        el.textContent = target.toFixed(decimals) + suffix;
+                    }
+                }
+
+                el.setAttribute('data-animated','true');
+
+                if(motionEnabled){
+                    window.requestAnimationFrame(step);
+                } else {
+                    el.textContent = target.toFixed(decimals) + suffix;
+                }
+            });
+        }
+
+        var trendSection = document.querySelector('.hiv-page .hiv-trend-section');
+        var parallaxLayer = document.querySelector('.hiv-page .hiv-parallax-layer');
+        var chartWrapper = document.querySelector('.hiv-page .hiv-chart-wrapper');
+        var trendDots = Array.prototype.slice.call(
+            document.querySelectorAll('.hiv-page .hiv-trend-dot')
+        );
+        var trendStorySteps = Array.prototype.slice.call(
+            document.querySelectorAll('.hiv-page .hiv-trend-story-step')
+        );
+
+        function setActiveTrendYear(year){
+            if(!year){ return; }
+
+            trendDots.forEach(function(dot){
+                var dotYear = dot.getAttribute('data-year');
+                var isMatch = dotYear === year;
+                dot.classList.toggle('is-highlighted', isMatch);
+            });
+
+            trendStorySteps.forEach(function(step){
+                var stepYear = step.getAttribute('data-year');
+                var isMatch = stepYear === year;
+                step.classList.toggle('is-active', isMatch);
+            });
+
+            if(year === '2024'){
+                autoHighlightRegionTab('global');
+            }
+        }
+
+        if(chartWrapper && trendDots.length){
+            var tooltip = document.createElement('div');
+            tooltip.className = 'hiv-tooltip';
+            chartWrapper.appendChild(tooltip);
+
+            function positionTooltip(evt){
+                var rect = chartWrapper.getBoundingClientRect();
+                var x = evt.clientX - rect.left;
+                var y = evt.clientY - rect.top;
+                tooltip.style.left = x + 'px';
+                tooltip.style.top = y + 'px';
+            }
+
+            trendDots.forEach(function(dot){
+                dot.addEventListener('mouseenter', function(e){
+                    var year = dot.getAttribute('data-year');
+                    var value = dot.getAttribute('data-plhiv');
+                    if(year){
+                        setActiveTrendYear(year);
+                    }
+                    tooltip.textContent = year && value ? (year + ': ' + value + 'M PLHIV (approx.)') : '';
+                    tooltip.classList.add('is-active');
+                    positionTooltip(e);
+                });
+                dot.addEventListener('mousemove', function(e){
+                    positionTooltip(e);
+                });
+                dot.addEventListener('mouseleave', function(){
+                    tooltip.classList.remove('is-active');
+                });
+            });
+        }
+
+        if('IntersectionObserver' in window && trendStorySteps.length){
+            var storyObserver = new IntersectionObserver(function(entries){
+                entries.forEach(function(entry){
+                    if(!entry.isIntersecting){ return; }
+                    var step = entry.target;
+                    var year = step.getAttribute('data-year');
+                    if(year){
+                        setActiveTrendYear(year);
+                    }
+                });
+            }, { threshold: 0.55 });
+
+            trendStorySteps.forEach(function(step){
+                storyObserver.observe(step);
+            });
+        } else if(trendStorySteps.length){
+            var lastStep = trendStorySteps[trendStorySteps.length - 1];
+            var lastYear = lastStep && lastStep.getAttribute('data-year');
+            if(lastYear){
+                setActiveTrendYear(lastYear);
+            }
+        }
+
+        if(parallaxLayer && 'requestAnimationFrame' in window){
+            var lastScrollY = window.scrollY || window.pageYOffset || 0;
+
+            window.addEventListener('scroll', function(){
+                lastScrollY = window.scrollY || window.pageYOffset || 0;
+            }, { passive:true });
+
+            (function updateParallax(){
+                if(motionEnabled){
+                    var offset = (lastScrollY || 0) * 0.12;
+                    parallaxLayer.style.transform = 'translate3d(0,' + (-offset) + 'px,0)';
+                }
+                window.requestAnimationFrame(updateParallax);
+            })();
+        }
+
+        var impactChart = document.querySelector('.hiv-impact-chart');
+        var impactButtons = impactChart ? Array.prototype.slice.call(impactChart.querySelectorAll('.hiv-impact-toggle-btn')) : [];
+        var impactBars = impactChart ? Array.prototype.slice.call(impactChart.querySelectorAll('.hiv-impact-bar')) : [];
+        var impactValues = impactChart ? Array.prototype.slice.call(impactChart.querySelectorAll('.hiv-impact-value')) : [];
+
+        function updateImpactChartState(state){
+            if(!impactChart || !hivData || !hivData.impactVsProfit){ return; }
+            var dataset = hivData.impactVsProfit[state] || {};
+            impactBars.forEach(function(bar, idx){
+                var key = bar.getAttribute('data-key');
+                var value = dataset[key];
+                if(typeof value !== 'number'){ value = 0; }
+                var percent = Math.round(value * 100);
+                bar.style.width = percent + '%';
+                if(impactValues[idx]){
+                    impactValues[idx].textContent = percent + '%';
+                }
+            });
+            impactButtons.forEach(function(btn){
+                var isActive = btn.getAttribute('data-state') === state;
+                btn.classList.toggle('is-active', isActive);
+                btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+            });
+        }
+
+        if(impactButtons.length){
+            impactButtons.forEach(function(btn){
+                btn.addEventListener('click', function(){
+                    var state = btn.getAttribute('data-state') || 'impact';
+                    updateImpactChartState(state);
+                });
+            });
+            updateImpactChartState('impact');
+        }
+
+        var regionSwitcher = document.querySelector('.hiv-region-switcher');
+        var regionTabs = regionSwitcher ? Array.prototype.slice.call(regionSwitcher.querySelectorAll('.hiv-region-tab')) : [];
+        var regionValueEls = regionSwitcher ? Array.prototype.slice.call(regionSwitcher.querySelectorAll('.hiv-region-value')) : [];
+        var regionComparisonEls = regionSwitcher ? Array.prototype.slice.call(regionSwitcher.querySelectorAll('.hiv-region-comparison')) : [];
+        var regionBarFills = regionSwitcher ? Array.prototype.slice.call(regionSwitcher.querySelectorAll('.hiv-region-bar-fill')) : [];
+        var regionCompareToggle = regionSwitcher ? regionSwitcher.querySelector('.hiv-region-compare-toggle') : null;
+        var regionAutoHighlightTimeout = null;
+        var regionCompareEnabled = false;
+
+        function autoHighlightRegionTab(regionKey){
+            if(!regionTabs.length || !motionEnabled){ return; }
+
+            if(regionAutoHighlightTimeout){
+                window.clearTimeout(regionAutoHighlightTimeout);
+                regionAutoHighlightTimeout = null;
+            }
+
+            regionTabs.forEach(function(tab){
+                var isMatch = tab.getAttribute('data-region') === regionKey;
+                tab.classList.toggle('is-auto-highlight', isMatch);
+            });
+
+            regionAutoHighlightTimeout = window.setTimeout(function(){
+                regionTabs.forEach(function(tab){
+                    tab.classList.remove('is-auto-highlight');
+                });
+            }, 1200);
+        }
+
+        function updateRegionSwitcher(regionKey){
+            if(!regionSwitcher || !hivData || !hivData.regions){ return; }
+            var region = hivData.regions[regionKey] || hivData.regions.global;
+            if(!region){ return; }
+
+            function formatMillions(v){
+                return (typeof v === 'number') ? v.toFixed(1) + 'M' : 'Data N/A';
+            }
+
+            function formatPercent(v){
+                return (typeof v === 'number') ? Math.round(v * 100) + '%' : 'Data N/A';
+            }
+
+            regionValueEls.forEach(function(el){
+                var key = el.getAttribute('data-region-key');
+                if(!key){ return; }
+                var text = '';
+                if(key === 'plhiv_millions'){
+                    text = formatMillions(region.plhiv_millions);
+                } else if(key === 'plhiv_share_label'){
+                    text = formatPercent(region.plhiv_share);
+                } else if(key === 'art_label'){
+                    var artPart = (typeof region.on_art_millions === 'number') ? formatMillions(region.on_art_millions) : '';
+                    var covPart = (typeof region.art_coverage === 'number') ? formatPercent(region.art_coverage) : '';
+                    if(artPart && covPart){
+                        text = artPart + ' on ART (' + covPart + ')';
+                    } else {
+                        text = artPart || covPart || 'Data N/A';
+                    }
+                }
+                if(text){
+                    el.textContent = text;
+
+                    // flash updated value
+                    el.classList.remove('is-flashing');
+                    // force reflow so the animation can restart
+                    void el.offsetWidth;
+                    el.classList.add('is-flashing');
+                }
+            });
+
+            if(regionCompareEnabled && hivData && hivData.regions && hivData.regions.global){
+                var globalRegion = hivData.regions.global;
+                regionComparisonEls.forEach(function(el){
+                    var key = el.getAttribute('data-region-key');
+                    if(!key){ return; }
+                    var cmpText = '';
+                    if(key === 'plhiv_millions'){
+                        cmpText = 'Global: ' + formatMillions(globalRegion.plhiv_millions);
+                    } else if(key === 'plhiv_share_label'){
+                        cmpText = 'Global: ' + formatPercent(globalRegion.plhiv_share);
+                    } else if(key === 'art_label'){
+                        var artPartG = (typeof globalRegion.on_art_millions === 'number') ? formatMillions(globalRegion.on_art_millions) : '';
+                        var covPartG = (typeof globalRegion.art_coverage === 'number') ? formatPercent(globalRegion.art_coverage) : '';
+                        if(artPartG && covPartG){
+                            cmpText = 'Global: ' + artPartG + ' on ART (' + covPartG + ')';
+                        }
+                    }
+                    el.textContent = cmpText;
+                });
+            } else {
+                regionComparisonEls.forEach(function(el){ el.textContent = ''; });
+            }
+
+            regionBarFills.forEach(function(bar){
+                var key = bar.getAttribute('data-region-key');
+                if(!key){ return; }
+                var value = region[key];
+                if(typeof value !== 'number'){ value = 0; }
+                var percent;
+                if(key === 'plhiv_share' || key === 'art_coverage'){
+                    percent = Math.round(value * 100);
+                } else {
+                    percent = Math.round(value);
+                }
+                percent = Math.max(0, Math.min(100, percent));
+                bar.style.width = percent + '%';
+            });
+
+            regionTabs.forEach(function(tab){
+                var active = tab.getAttribute('data-region') === regionKey;
+                tab.classList.toggle('is-active', active);
+                tab.setAttribute('aria-selected', active ? 'true' : 'false');
+            });
+        }
+
+        if(regionTabs.length){
+            regionTabs.forEach(function(tab){
+                tab.addEventListener('click', function(){
+                    var key = tab.getAttribute('data-region') || 'global';
+                    updateRegionSwitcher(key);
+                });
+            });
+            updateRegionSwitcher('global');
+        }
+
+        if(regionCompareToggle){
+            regionCompareToggle.addEventListener('click', function(){
+                regionCompareEnabled = !regionCompareEnabled;
+                regionCompareToggle.classList.toggle('is-active', regionCompareEnabled);
+                regionCompareToggle.setAttribute('aria-pressed', regionCompareEnabled ? 'true' : 'false');
+                var activeRegion = 'global';
+                regionTabs.forEach(function(tab){
+                    if(tab.classList.contains('is-active')){
+                        activeRegion = tab.getAttribute('data-region') || 'global';
+                    }
+                });
+                updateRegionSwitcher(activeRegion);
+            });
+        }
+
+        var cascadeSection = document.getElementById('hiv-section-cascade');
+        var cascadeCards = cascadeSection ? Array.prototype.slice.call(cascadeSection.querySelectorAll('.hiv-cascade-card')) : [];
+        var cascadeScenarioSlider = document.querySelector('.hiv-cascade-scenario-slider');
+        var cascadeScenarioCopy = document.querySelector('.hiv-cascade-scenario-copy');
+
+        function updateCascade(mode){
+            if(!cascadeSection || !hivData || !hivData.cascade){ return; }
+            var useTarget = (mode === 'target');
+            cascadeCards.forEach(function(card){
+                var stage = card.getAttribute('data-stage');
+                var data = hivData.cascade[stage];
+                if(!data){ return; }
+
+                function pct(v){
+                    return (typeof v === 'number') ? Math.round(v * 100) : null;
+                }
+
+                var currentPct = pct(data.current);
+                var targetPct = pct(data.target);
+
+                var currentEl = card.querySelector('.hiv-cascade-value-current');
+                var targetEl = card.querySelector('.hiv-cascade-value-target');
+                var barFill = card.querySelector('.hiv-cascade-bar-fill');
+                var marker = card.querySelector('.hiv-cascade-target-marker');
+
+                var displayPct = useTarget && targetPct !== null ? targetPct : currentPct;
+
+                if(currentEl && currentPct !== null){
+                    currentEl.textContent = currentPct + '%';
+                }
+                if(targetEl && targetPct !== null){
+                    targetEl.textContent = 'Target ' + targetPct + '%';
+                }
+                if(barFill && displayPct !== null){
+                    var width = Math.max(0, Math.min(100, displayPct));
+                    barFill.style.width = width + '%';
+                }
+                if(marker && targetPct !== null){
+                    var pos = Math.max(0, Math.min(100, targetPct));
+                    marker.style.left = pos + '%';
+                }
+            });
+        }
+
+        if(cascadeCards.length){
+            updateCascade('current');
+        }
+
+        function updateCascadeScenarioCopy(mode){
+            if(!cascadeScenarioCopy){ return; }
+            var currentText = cascadeScenarioCopy.getAttribute('data-copy-current');
+            var targetText = cascadeScenarioCopy.getAttribute('data-copy-target');
+            if(mode === 'target' && targetText){
+                cascadeScenarioCopy.textContent = targetText;
+            } else if(currentText){
+                cascadeScenarioCopy.textContent = currentText;
+            }
+        }
+
+        if(cascadeScenarioSlider){
+            cascadeScenarioSlider.addEventListener('input', function(){
+                var mode = cascadeScenarioSlider.value === '1' ? 'target' : 'current';
+                updateCascade(mode);
+                updateCascadeScenarioCopy(mode);
+            });
+
+            // Ensure copy matches initial slider state
+            updateCascadeScenarioCopy('current');
+        }
+
+        var sectionTargets = {
+            'hiv-section-regions': document.getElementById('hiv-section-regions'),
+            'hiv-section-trend': document.getElementById('hiv-section-trend'),
+            'hiv-section-cascade': document.getElementById('hiv-section-cascade'),
+            'hiv-section-transmission': document.getElementById('hiv-section-transmission')
+        };
+        var ribbonNavItems = Array.prototype.slice.call(
+            document.querySelectorAll('.hiv-page .hiv-ribbon-nav-item')
+        );
+
+        ribbonNavItems.forEach(function(btn){
+            btn.addEventListener('click', function(){
+                var targetId = btn.getAttribute('data-target');
+                var targetEl = sectionTargets[targetId];
+                if(targetEl){
+                    targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        function setActiveRibbonItem(id){
+            ribbonNavItems.forEach(function(btn){
+                var targetId = btn.getAttribute('data-target');
+                btn.classList.toggle('is-active', targetId === id);
+            });
+        }
+
+        if('IntersectionObserver' in window){
+            var observer = new IntersectionObserver(function(entries){
+                entries.forEach(function(entry){
+                    if(entry.isIntersecting){
+                        var targetEl = entry.target;
+                        targetEl.classList.add('is-visible');
+
+                        if(targetEl.classList.contains('hero-metrics')){
+                            animateMetrics();
+                        }
+
+                        if(trendSection && targetEl === trendSection){
+                            trendSection.classList.add('draw-chart');
+                        }
+
+                        if(targetEl.id && sectionTargets[targetEl.id]){
+                            setActiveRibbonItem(targetEl.id);
+                        }
+
+                        observer.unobserve(targetEl);
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            animatedBlocks.forEach(function(el){
+                observer.observe(el);
+            });
+
+            Object.keys(sectionTargets).forEach(function(key){
+                var el = sectionTargets[key];
+                if(el){
+                    observer.observe(el);
+                }
+            });
+        } else {
+            animatedBlocks.forEach(function(el){
+                el.classList.add('is-visible');
+            });
+
+            animateMetrics();
+
+            if(trendSection){
+                trendSection.classList.add('draw-chart');
+            }
+        }
+    })();
+    </script>
+</body>
+</html>

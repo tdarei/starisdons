@@ -1,0 +1,70 @@
+{
+  "variantId": "cockroach_outdated2",
+  "hullId": "cockroach",
+  "displayName": "Outdated",
+  "goalVariant": false,
+  "fluxCapacitors": 20,
+  "fluxVents": 9,
+  "quality": 0,
+  "permaMods": [
+    "degraded_engines",
+    "comp_armor",
+    "faulty_grid"
+  ],
+  "hullMods": [
+    "junk3",
+    "reinforcedhull",
+    "heavyarmor",
+    "armoredweapons",
+    "blast_doors"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0005": "mbeke_med",
+        "WS0016": "annihilator",
+        "WS0017": "annihilator"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0001": "lightac",
+        "WS0004": "lightac",
+        "WS0010": "lightdualac"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0002": "shredder",
+        "WS0006": "suowang_pulser",
+        "WS0007": "shredder"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0003": "lightdualmg",
+        "WS0008": "flak",
+        "WS0011": "vulcan",
+        "WS0012": "vulcan",
+        "WS0013": "vulcan",
+        "WS0014": "vulcan",
+        "WS0015": "vulcan"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {}
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

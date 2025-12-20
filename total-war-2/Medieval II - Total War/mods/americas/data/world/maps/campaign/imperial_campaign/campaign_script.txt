@@ -1,0 +1,2967 @@
+script
+
+	;show the whole map
+	restrict_strat_radar false
+
+	declare_counter prestige_points
+	declare_counter warpath_called
+	declare_counter apachean_settlements_captured
+	declare_counter apachean_battles_won
+	declare_counter apachean_missile_recruited
+	declare_counter apachean_infantry_recruited
+	declare_counter apachean_cavalry_killed
+	declare_counter apachean_gunpowder_killed
+	declare_counter chichimeca_cavalry_killed
+	declare_counter chichimeca_gunpowder_killed
+	
+;------------------- FACTION LEADER MODELS -------------------;	
+
+	monitor_event BecomesFactionLeader FactionType spain
+		change_battle_model spain leader Spanish_Viceroy
+	end_monitor
+	
+	monitor_event BecomesFactionLeader FactionType aztecs
+		change_battle_model aztecs leader Mesoamerican_King
+	end_monitor
+	
+	monitor_event BecomesFactionLeader FactionType mayans
+		change_battle_model mayans leader Mesoamerican_King
+	end_monitor
+	
+	monitor_event BecomesFactionLeader FactionType tlaxcalans
+		change_battle_model tlaxcalans leader Mesoamerican_King
+	end_monitor
+	
+	monitor_event BecomesFactionLeader FactionType tarascans
+		change_battle_model tarascans leader Mesoamerican_King
+	end_monitor
+	
+	monitor_event BecomesFactionLeader FactionType chichimeca
+		change_battle_model chichimeca leader Indian_General
+	end_monitor
+	
+;;;;;;;;;;;;;;;;;;;;;;;; Warpath Event Message ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	
+	monitor_event FactionTurnStart FactionType spain
+		and I_LocalFaction spain
+ 		and I_TurnNumber = 1
+
+	 	historic_event use_mercenaries factions { spain, }
+
+		terminate_monitor
+	end_monitor
+		
+;;;;;;;;;;;;;;;;;;;;;;;; Warpath Event Message ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	
+	monitor_event CrusadeCalled
+	
+		set_counter warpath_called 1
+	
+		terminate_monitor
+	end_monitor
+
+	monitor_event FactionTurnStart FactionType apachean
+		and I_LocalFaction apachean
+ 		and I_TurnNumber = 1
+
+ 		if I_CompareCounter warpath_called = 0
+ 			historic_event time_for_warpath factions { apachean, }
+	 	end_if
+
+		terminate_monitor
+	end_monitor
+		
+;;;;;;;;;;;;;;;;;;;;;;;; Mercenary Pool Events ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;Faction standing events for native mercenary recruitment
+
+; -	Spain must be allied with native factions to recruit mercenaries from those factions
+; -	Events tracked through the script will keep track of standing and prohibit or allow access to mercenary pools
+; -	Spain will have separate mercenary pools setup for each region where special mercenaries are available
+
+
+;;; Spain is allied with Aztecs
+	monitor_event FactionTurnStart FactionType spain
+		and I_EventCounter spain_allied_aztecs == 0
+		and DiplomaticStanceFromFaction aztecs = Allied
+		
+		add_events
+			event	counter	spain_allied_aztecs
+	   		date	0
+	 	end_add_events
+
+	end_monitor
+
+;;; Spain is allied with Tarascans
+	monitor_event FactionTurnStart FactionType spain
+		and I_EventCounter spain_allied_tarascans == 0
+		and DiplomaticStanceFromFaction tarascans = Allied
+		
+		add_events
+			event	counter	spain_allied_tarascans
+	   		date	0
+	 	end_add_events
+
+	end_monitor
+
+;;; Spain is allied with Tlaxcalans
+	monitor_event FactionTurnStart FactionType spain
+		and I_EventCounter spain_allied_tlaxcalans == 0
+		and DiplomaticStanceFromFaction tlaxcalans = Allied
+		
+		add_events
+			event	counter	spain_allied_tlaxcalans
+	   		date	0
+	 	end_add_events
+
+	end_monitor
+
+;;; Spain is allied with Chichimeca
+	monitor_event FactionTurnStart FactionType spain
+		and I_EventCounter spain_allied_chichimeca == 0
+		and DiplomaticStanceFromFaction chichimeca = Allied
+		
+		add_events
+			event	counter	spain_allied_chichimeca
+	   		date	0
+	 	end_add_events
+
+	end_monitor
+
+;;; Spain is allied with Mayans
+	monitor_event FactionTurnStart FactionType spain
+		and I_EventCounter spain_allied_mayans == 0
+		and DiplomaticStanceFromFaction mayans = Allied
+		
+		add_events
+			event	counter	spain_allied_mayans
+	   		date	0
+	 	end_add_events
+
+	end_monitor
+
+;;; Spain is allied with Apacheans
+	monitor_event FactionTurnStart FactionType spain
+		and I_EventCounter spain_allied_apachean == 0
+		and DiplomaticStanceFromFaction apachean = Allied
+		
+		add_events
+			event	counter	spain_allied_apachean
+	   		date	0
+	 	end_add_events
+
+	end_monitor
+
+;;; Spain no longer allied with Aztecs
+	monitor_event FactionTurnStart FactionType spain
+		and I_EventCounter spain_allied_aztecs == 1
+		and DiplomaticStanceFromFaction aztecs > Allied
+		
+		set_event_counter spain_allied_aztecs 0
+
+	end_monitor
+
+;;; Spain no longer allied with Tarascans
+	monitor_event FactionTurnStart FactionType spain
+		and I_EventCounter spain_allied_tarascans == 1
+		and DiplomaticStanceFromFaction tarascans > Allied
+		
+		set_event_counter spain_allied_tarascans 0
+
+	end_monitor
+
+;;; Spain no longer allied with Tlaxcalans
+	monitor_event FactionTurnStart FactionType spain
+		and I_EventCounter spain_allied_tlaxcalans == 1
+		and DiplomaticStanceFromFaction tlaxcalans > Allied
+		
+		set_event_counter spain_allied_tlaxcalans 0
+
+	end_monitor
+
+;;; Spain no longer allied with Chichimeca
+	monitor_event FactionTurnStart FactionType spain
+		and I_EventCounter spain_allied_chichimeca == 1
+		and DiplomaticStanceFromFaction chichimeca > Allied
+		
+		set_event_counter spain_allied_chichimeca 0
+
+	end_monitor
+
+;;; Spain no longer allied with Mayans
+	monitor_event FactionTurnStart FactionType spain
+		and I_EventCounter spain_allied_mayans == 1
+		and DiplomaticStanceFromFaction mayans > Allied
+		
+		set_event_counter spain_allied_mayans 0
+
+	end_monitor
+
+;;; Spain no longer allied with Apacheans
+	monitor_event FactionTurnStart FactionType spain
+		and I_EventCounter spain_allied_apachean == 1
+		and DiplomaticStanceFromFaction apachean > Allied
+		
+		set_event_counter spain_allied_apachean 0
+
+	end_monitor
+
+
+;;;;;;;;;;;;;;;;;;;;;;;; Native Tech Tree Events ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; chichi_horses_1	Defeat an army with cavalry 10 times
+	monitor_event FactionTurnStart FactionType chichimeca
+		and I_CompareCounter chichimeca_cavalry_killed > 1
+
+		add_events
+			event	counter	chichi_horses_1
+	   		date	0
+	 	end_add_events
+	 	
+	 	if I_LocalFaction chichimeca
+	 		historic_event chichimeca_cavalry_1 factions { chichimeca, }
+	 	end_if
+	 	
+		terminate_monitor
+	end_monitor
+
+; chichi_guns_1		Defeat an army with gunpowder 10 times
+	monitor_event FactionTurnStart FactionType chichimeca
+		and I_CompareCounter chichimeca_gunpowder_killed > 1
+
+		add_events
+			event	counter	chichi_guns_1
+	   		date	0
+	 	end_add_events
+	 	
+	 	if I_LocalFaction chichimeca
+	 		historic_event chichimeca_guns_1 factions { chichimeca, }
+	 	end_if
+	 	
+		terminate_monitor
+	end_monitor
+
+; indian_hunters_1	Recruit 20 missile units & Capture 5 settlements
+	monitor_event FactionTurnStart FactionType apachean
+		and I_CompareCounter apachean_missile_recruited > 19
+		and I_CompareCounter apachean_settlements_captured > 4
+
+		add_events
+			event	counter	indian_hunters_1
+	   		date	0
+	 	end_add_events
+
+	 	if I_LocalFaction apachean
+	 		historic_event apachean_hunters_1 factions { apachean, }
+	 	end_if
+	 	
+		terminate_monitor
+	end_monitor
+
+; indian_hunters_2	Recruit 50 missile units & Capture 10 settlements
+	monitor_event FactionTurnStart FactionType apachean
+		and I_CompareCounter apachean_missile_recruited > 49
+		and I_CompareCounter apachean_settlements_captured > 9
+
+		add_events
+			event	counter	indian_hunters_2
+	   		date	0
+	 	end_add_events
+	 	
+	 	if I_LocalFaction apachean
+	 		historic_event apachean_hunters_2 factions { apachean, }
+	 	end_if
+	 	
+		terminate_monitor
+	end_monitor
+
+; indian_raiders_1	10 infantry units & Win 7 battles
+	monitor_event FactionTurnStart FactionType apachean
+		and I_CompareCounter apachean_infantry_recruited > 9
+		and I_CompareCounter apachean_battles_won > 6
+
+		add_events
+			event	counter	indian_raiders_1
+	   		date	0
+	 	end_add_events
+	 	
+	 	if I_LocalFaction apachean
+	 		historic_event apachean_raiders_1 factions { apachean, }
+	 	end_if
+	 	
+		terminate_monitor
+	end_monitor
+
+; indian_raiders_2	Recruit 50 infantry units & Win 15 battles
+	monitor_event FactionTurnStart FactionType apachean
+		and I_CompareCounter apachean_infantry_recruited > 49
+		and I_CompareCounter apachean_battles_won > 14
+
+		add_events
+			event	counter	indian_raiders_2
+	   		date	0
+	 	end_add_events
+	 	
+	 	if I_LocalFaction apachean
+	 		historic_event apachean_raiders_2 factions { apachean, }
+	 	end_if
+	 	
+		terminate_monitor
+	end_monitor
+
+; indian_horses_1	Defeat an army with cavalry 10 times
+	monitor_event FactionTurnStart FactionType apachean
+		and I_CompareCounter apachean_cavalry_killed > 1
+
+		add_events
+			event	counter	indian_horses_1
+	   		date	0
+	 	end_add_events
+	 	
+	 	if I_LocalFaction apachean
+	 		historic_event apachean_cavalry_1 factions { apachean, }
+	 	end_if
+	 	
+		terminate_monitor
+	end_monitor
+
+; indian_horses_2	Defeat an army with cavalry 20 times
+	monitor_event FactionTurnStart FactionType apachean
+		and I_CompareCounter apachean_cavalry_killed > 2
+
+		add_events
+			event	counter	indian_horses_2
+	   		date	0
+	 	end_add_events
+	 	
+	 	if I_LocalFaction apachean
+	 		historic_event apachean_cavalry_2 factions { apachean, }
+	 	end_if
+	 	
+		terminate_monitor
+	end_monitor
+
+; indian_horses_3	Defeat an army with cavalry 30 times
+	monitor_event FactionTurnStart FactionType apachean
+		and I_CompareCounter apachean_cavalry_killed > 3
+
+		add_events
+			event	counter	indian_horses_3
+	   		date	0
+	 	end_add_events
+	 	
+	 	if I_LocalFaction apachean
+	 		historic_event apachean_cavalry_3 factions { apachean, }
+	 	end_if
+	 	
+		terminate_monitor
+	end_monitor
+
+; indian_guns_1		Defeat an army with gunpowder 10 times
+	monitor_event FactionTurnStart FactionType apachean
+		and I_CompareCounter apachean_gunpowder_killed > 1
+
+		add_events
+			event	counter	indian_guns_1
+	   		date	0
+	 	end_add_events
+	 	
+	 	if I_LocalFaction apachean
+	 		historic_event apachean_guns_1 factions { apachean, }
+	 	end_if
+	 	
+		terminate_monitor
+	end_monitor
+
+; indian_guns_2		Defeat an army with gunpowder 20 times
+	monitor_event FactionTurnStart FactionType apachean
+		and I_CompareCounter apachean_gunpowder_killed > 2
+
+		add_events
+			event	counter	indian_guns_2
+	   		date	0
+	 	end_add_events
+	 	
+	 	if I_LocalFaction apachean
+	 		historic_event apachean_guns_2 factions { apachean, }
+	 	end_if
+	 	
+		terminate_monitor
+	end_monitor
+
+;;; Counter - Apachean settlements captures
+	monitor_event OccupySettlement FactionType apachean
+		inc_counter apachean_settlements_captured 1
+	end_monitor
+
+	monitor_event SackSettlement FactionType apachean
+		inc_counter apachean_settlements_captured 1
+	end_monitor
+
+	monitor_event ExterminatePopulation FactionType apachean
+		inc_counter apachean_settlements_captured 1
+	end_monitor
+
+;;; Counter - Apachean missile units recruited
+	monitor_event UnitTrained FactionType apachean
+		and TrainedUnitClass missile
+		inc_counter apachean_missile_recruited 1
+	end_monitor
+	
+;;; Counter - Apachean infantry units recruited
+	monitor_event UnitTrained FactionType apachean
+		and TrainedUnitCategory infantry
+		inc_counter apachean_infantry_recruited 1
+	end_monitor
+
+;;; Counter - Apachean battles won
+	monitor_event PostBattle FactionType apachean
+		and WonBattle
+		inc_counter apachean_battles_won 1
+	end_monitor
+
+;;; Counter - Apachean beat army with cavalry
+	monitor_event PostBattle not WonBattle
+		and GeneralFoughtFaction apachean
+		and PercentageUnitCategory cavalry > 0
+		inc_counter apachean_cavalry_killed 1
+	end_monitor
+
+;;; Counter - Apachean beat army with gunpowder units
+	monitor_event PostBattle not WonBattle
+		and GeneralFoughtFaction apachean
+		and PercentageUnitAttribute gunpowder_unit > 0
+		inc_counter apachean_gunpowder_killed 1
+	end_monitor
+
+;;; Counter - Chichimeca beat army with cavalry
+	monitor_event PostBattle not WonBattle
+		and GeneralFoughtFaction chichimeca
+		and PercentageUnitCategory cavalry > 0
+		inc_counter chichimeca_cavalry_killed 1
+	end_monitor
+
+;;; Counter - Chichimeca beat army with gunpowder units
+	monitor_event PostBattle not WonBattle
+		and GeneralFoughtFaction chichimeca
+		and PercentageUnitAttribute gunpowder_unit > 0
+		inc_counter chichimeca_gunpowder_killed 1
+	end_monitor
+
+;;;;;;;;;;;;;;;;;;;;;;;; England Arrives ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+	add_events
+		event	counter	england_arrives
+   		date	40 50
+ 	end_add_events
+
+ 	;;; Mosquito Coast 1630
+	;;; - Providence Island Company -  Earl of Warwick
+	;;; - established friendly relations with local inhabitants
+	monitor_event FactionTurnStart I_EventCounter england_arrives == 1	 
+			
+		spawn_army 
+			faction england
+			character	Robert Rich, named character, age 40, x 192, y 5
+			traits GoodCommander 2 , Intelligent 1 , ReligionStarter 1 
+			unit		New World Bodyguard		exp 0 armour 0 weapon_lvl 0
+			unit		Crossbowmen				exp 0 armour 0 weapon_lvl 0
+			unit		Crossbowmen				exp 0 armour 0 weapon_lvl 0
+			unit		Pikemen					exp 0 armour 0 weapon_lvl 0
+			unit		Pikemen					exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		NE Grand Bombard		exp 0 armour 0 weapon_lvl 0
+			unit		NE Ribault				exp 0 armour 0 weapon_lvl 0
+			unit		NE Culverin				exp 0 armour 0 weapon_lvl 0
+		end
+
+		spawn_army 
+			faction england
+			character	random_name, general, age 23, x 190, y 4
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		Crossbowmen				exp 0 armour 0 weapon_lvl 0
+			unit		Crossbowmen				exp 0 armour 0 weapon_lvl 0
+			unit		Pikemen					exp 0 armour 0 weapon_lvl 0
+			unit		Pikemen					exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		NE Culverin				exp 0 armour 0 weapon_lvl 0
+		end
+
+		spawn_character england random_name, priest, age 27, x 189, y 6 
+		spawn_character england random_name, diplomat, age 36, x 190, y 7   
+
+		spawn_army 
+			faction england
+			character	random_name, admiral, age 26, x 195, y 6 
+			unit		carrack				exp 1 armour 0 weapon_lvl 0
+			unit		carrack				exp 1 armour 0 weapon_lvl 0
+		end
+
+		add_events
+			event	counter	england_arrives
+ 	 		date	5 10
+	 	end_add_events
+
+		add_events
+			event	counter	england_arrives
+ 	 		date	10 15
+	 	end_add_events
+
+		add_events
+			event	counter	england_arrives
+ 	 		date	15 20
+	 	end_add_events
+
+		add_events
+			event	counter	england_arrives
+ 	 		date	20 30
+	 	end_add_events
+
+		historic_event england_arrives_1 event/england_france_arrive.bik
+
+		terminate_monitor
+	end_monitor
+
+	;; small intermediate stack
+	monitor_event FactionTurnStart I_EventCounter england_arrives == 2	 
+			
+		spawn_army 
+			faction england
+			character	random_name, general, age 23, x 180, y 14
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		NE Mortar				exp 0 armour 0 weapon_lvl 0
+		end
+
+		terminate_monitor
+	end_monitor
+
+	;; small intermediate stack
+	monitor_event FactionTurnStart I_EventCounter england_arrives == 3 
+			
+		spawn_army 
+			faction england
+			character	random_name, general, age 23, x 163, y 12
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		NE Mortar				exp 0 armour 0 weapon_lvl 0
+		end
+
+		terminate_monitor
+	end_monitor
+
+	;; small intermediate stack
+	monitor_event FactionTurnStart I_EventCounter england_arrives == 4 
+			
+		spawn_army 
+			faction england
+			character	random_name, general, age 23, x 157, y 18
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		NE Mortar				exp 0 armour 0 weapon_lvl 0
+		end
+
+		terminate_monitor
+	end_monitor
+		
+	;;; Belize 1638 - British Honduras
+	;;; - used for production of dyes and mahogany lumber
+	monitor_event FactionTurnStart I_EventCounter england_arrives == 5	 
+			
+		spawn_army 
+			faction england
+			character	Peter Wallace, named character, age 35, x 159, y 20
+			traits GoodCommander 2 , Intelligent 1 , ReligionStarter 1 
+			unit		New World Bodyguard		exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		NE Bombard				exp 0 armour 0 weapon_lvl 0
+			unit		NE Culverin				exp 0 armour 0 weapon_lvl 0
+			unit		NE Mortar				exp 0 armour 0 weapon_lvl 0
+		end
+
+		spawn_army 
+			faction england
+			character	random_name, general, age 23, x 158, y 19
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		NE Mortar				exp 0 armour 0 weapon_lvl 0
+		end
+
+		spawn_character england random_name, priest, age 27, x 158, y 23 
+		spawn_character england random_name, diplomat, age 36, x 158, y 25   
+
+		spawn_army 
+			faction england
+			character	random_name, admiral, age 31, x 161, y 20 
+			unit		carrack				exp 1 armour 0 weapon_lvl 0
+			unit		carrack				exp 1 armour 0 weapon_lvl 0
+		end
+
+		add_events
+			event	counter	england_arrives
+ 	 		date	5 10
+	 	end_add_events
+
+		add_events
+			event	counter	england_arrives
+ 	 		date	10 15
+	 	end_add_events
+
+		add_events
+			event	counter	england_arrives
+ 	 		date	15 20
+	 	end_add_events
+
+	 	historic_event england_arrives_2 event/england_france_arrive.bik
+
+		terminate_monitor
+	end_monitor
+
+	;; small intermediate stack
+	monitor_event FactionTurnStart I_EventCounter england_arrives == 6	 
+			
+		spawn_army 
+			faction england
+			character	random_name, general, age 23, x 159, y 20
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		NE Mortar				exp 0 armour 0 weapon_lvl 0
+		end
+
+		terminate_monitor
+	end_monitor
+
+	;; small intermediate stack
+	monitor_event FactionTurnStart I_EventCounter england_arrives == 7 
+			
+		spawn_army 
+			faction england
+			character	random_name, general, age 23, x 162, y 35
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		NE Mortar				exp 0 armour 0 weapon_lvl 0
+		end
+
+		terminate_monitor
+	end_monitor
+		
+	;; small intermediate stack
+	monitor_event FactionTurnStart I_EventCounter england_arrives == 8 
+			
+		spawn_army 
+			faction england
+			character	random_name, general, age 23, x 163, y 41
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		NE Mortar				exp 0 armour 0 weapon_lvl 0
+		end
+
+		terminate_monitor
+	end_monitor
+		
+
+;;;;;;;;;;;;;;;;;;;;;;;; France Arrives ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+	add_events
+		event	counter	france_arrives
+  		date	20 30
+ 	end_add_events
+
+	;;; French arrive in Jascksonville, 1562 - Jean Ribault
+	monitor_event FactionTurnStart I_EventCounter france_arrives == 1	 
+			
+		spawn_army 
+			faction france
+			character	Jean Ribault, named character, age 35, x 204, y 103
+			traits GoodCommander 2 , Intelligent 1 , ReligionStarter 1 
+			unit		New World Bodyguard		exp 0 armour 0 weapon_lvl 0
+			unit		Crossbowmen				exp 0 armour 0 weapon_lvl 0
+			unit		Crossbowmen				exp 0 armour 0 weapon_lvl 0
+			unit		Crossbowmen				exp 0 armour 0 weapon_lvl 0
+			unit		Pikemen					exp 0 armour 0 weapon_lvl 0
+			unit		Pikemen					exp 0 armour 0 weapon_lvl 0
+			unit		Pikemen					exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		Aventurier				exp 0 armour 0 weapon_lvl 0
+			unit		Aventurier				exp 0 armour 0 weapon_lvl 0
+			unit		NE Culverin				exp 0 armour 0 weapon_lvl 0
+			unit		NE Bombard				exp 0 armour 0 weapon_lvl 0
+		end
+
+		spawn_army 
+			faction france
+			character	random_name, general, age 23, x 205, y 101
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		Crossbowmen				exp 0 armour 0 weapon_lvl 0
+			unit		Crossbowmen				exp 0 armour 0 weapon_lvl 0
+			unit		Pikemen					exp 0 armour 0 weapon_lvl 0
+			unit		Pikemen					exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		Aventurier				exp 0 armour 0 weapon_lvl 0
+			unit		Aventurier				exp 0 armour 0 weapon_lvl 0
+			unit		NE Bombard				exp 0 armour 0 weapon_lvl 0
+		end
+
+		spawn_character france random_name, priest, age 27, x 203, y 105 
+		spawn_character france random_name, diplomat, age 36, x 202, y 102   
+		
+		spawn_army 
+			faction france
+			character	random_name, admiral, age 26, x 207, y 103 
+			unit		grande carrack				exp 1 armour 0 weapon_lvl 0
+			unit		grande carrack				exp 1 armour 0 weapon_lvl 0
+		end
+
+		add_events
+			event	counter	france_arrives
+	 		date	5 10
+	 	end_add_events
+
+		add_events
+			event	counter	france_arrives
+	 		date	10 15
+	 	end_add_events
+
+		add_events
+			event	counter	france_arrives
+	 		date	20 25
+	 	end_add_events
+
+		add_events
+			event	counter	france_arrives
+	 		date	25 30
+	 	end_add_events
+
+		add_events
+			event	counter	france_arrives
+	 		date	30 50
+	 	end_add_events
+
+		historic_event france_arrives_1 event/england_france_arrive.bik
+
+		terminate_monitor
+	end_monitor
+	
+	;; small intermediate force
+	monitor_event FactionTurnStart I_EventCounter france_arrives == 2	 
+
+		spawn_army 
+			faction france
+			character	random_name, general, age 26, x 202, y 111
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		Aventurier				exp 0 armour 0 weapon_lvl 0
+			unit		NE Bombard				exp 0 armour 0 weapon_lvl 0
+		end
+
+		terminate_monitor
+	end_monitor
+	
+	;; small intermediate force
+	monitor_event FactionTurnStart I_EventCounter france_arrives == 3	 
+
+		spawn_army 
+			faction france
+			character	random_name, general, age 26, x 195, y 131
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		Aventurier				exp 0 armour 0 weapon_lvl 0
+			unit		NE Bombard				exp 0 armour 0 weapon_lvl 0
+		end
+
+		terminate_monitor
+	end_monitor
+	
+	;; small intermediate force
+	monitor_event FactionTurnStart I_EventCounter france_arrives == 4	 
+
+		spawn_army 
+			faction france
+			character	random_name, general, age 26, x 177, y 144
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		Aventurier				exp 0 armour 0 weapon_lvl 0
+			unit		NE Bombard				exp 0 armour 0 weapon_lvl 0
+		end
+
+		terminate_monitor
+	end_monitor
+	
+	;; small intermediate force
+	monitor_event FactionTurnStart I_EventCounter france_arrives == 5	 
+
+		spawn_army 
+			faction france
+			character	random_name, general, age 26, x 148, y 145
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		Aventurier				exp 0 armour 0 weapon_lvl 0
+			unit		NE Bombard				exp 0 armour 0 weapon_lvl 0
+		end
+
+		terminate_monitor
+	end_monitor
+	
+	;;; French arrive at mouth of Mississippi, 1684
+	monitor_event FactionTurnStart I_EventCounter france_arrives == 6	 
+
+		spawn_army
+			faction france
+			character	Robert de_La_Salle, named character, age 42, x 108, y 114
+			traits GoodCommander 2 , Intelligent 1 , ReligionStarter 1 
+			unit		New World Bodyguard		exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers		exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers		exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers		exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers		exp 0 armour 0 weapon_lvl 0
+			unit		Aventurier				exp 0 armour 0 weapon_lvl 0
+			unit		Aventurier				exp 0 armour 0 weapon_lvl 0
+			unit		Aventurier				exp 0 armour 0 weapon_lvl 0
+			unit		NE Basilisk				exp 0 armour 0 weapon_lvl 0
+			unit		NE Serpentine			exp 0 armour 0 weapon_lvl 0
+		end
+
+		spawn_army 
+			faction france
+			character	random_name, general, age 23, x 109, y 114
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		Aventurier				exp 0 armour 0 weapon_lvl 0
+			unit		Aventurier				exp 0 armour 0 weapon_lvl 0
+			unit		NE Bombard				exp 0 armour 0 weapon_lvl 0
+		end
+
+		spawn_character france random_name, priest, age 27, x 110, y 118 
+		spawn_character france random_name, diplomat, age 36, x 110, y 117   
+
+		spawn_army 
+			faction france
+			character	random_name, admiral, age 26, x 109, y 111 
+			unit		grande carrack				exp 1 armour 0 weapon_lvl 0
+			unit		grande carrack				exp 1 armour 0 weapon_lvl 0
+		end
+
+		add_events
+			event	counter	france_arrives
+	 		date	5 10
+	 	end_add_events
+
+		add_events
+			event	counter	france_arrives
+	 		date	10 15
+	 	end_add_events
+
+		add_events
+			event	counter	france_arrives
+	 		date	15 20
+	 	end_add_events
+
+		add_events
+			event	counter	france_arrives
+	 		date	20 25
+	 	end_add_events
+
+		historic_event france_arrives_2 event/england_france_arrive.bik
+
+		terminate_monitor
+	end_monitor
+
+	;;; small intermediate force
+	monitor_event FactionTurnStart I_EventCounter france_arrives == 7	 
+
+		spawn_army 
+			faction france
+			character	random_name, general, age 25, x 114, y 144
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		Aventurier				exp 0 armour 0 weapon_lvl 0
+			unit		NE Bombard				exp 0 armour 0 weapon_lvl 0
+		end
+
+		terminate_monitor
+	end_monitor
+
+	;;; small intermediate force
+	monitor_event FactionTurnStart I_EventCounter france_arrives == 8	 
+
+		spawn_army 
+			faction france
+			character	random_name, general, age 31, x 94, y 144
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		Aventurier				exp 0 armour 0 weapon_lvl 0
+			unit		NE Bombard				exp 0 armour 0 weapon_lvl 0
+		end
+
+		terminate_monitor
+	end_monitor
+
+	;;; small intermediate force
+	monitor_event FactionTurnStart I_EventCounter france_arrives == 9	 
+
+		spawn_army 
+			faction france
+			character	random_name, general, age 21, x 73, y 144
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		Aventurier				exp 0 armour 0 weapon_lvl 0
+			unit		NE Bombard				exp 0 armour 0 weapon_lvl 0
+		end
+
+		terminate_monitor
+	end_monitor
+
+	;;; small intermediate force
+	monitor_event FactionTurnStart I_EventCounter france_arrives == 10	 
+
+		spawn_army 
+			faction france
+			character	random_name, general, age 28, x 150, y 144
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		New World Cuirassers	exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers				exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		Demi Lancers			exp 0 armour 0 weapon_lvl 0
+			unit		Aventurier				exp 0 armour 0 weapon_lvl 0
+			unit		NE Bombard				exp 0 armour 0 weapon_lvl 0
+		end
+
+		terminate_monitor
+	end_monitor
+
+;;;;;;;;;;;;;;;;;;;;;;;; Europeans Found Settlements ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;;; Mexico - Tenochtitlan
+
+	declare_counter Tenochtitlan_Spain
+	
+	;;; Spain captures Tenochtitlan
+	monitor_conditions I_SettlementOwner Tenochtitlan = spain
+		and I_CompareCounter Tenochtitlan_Spain = 0
+		
+		set_counter Tenochtitlan_Spain 1
+		change_settlement_name Tenochtitlan Mexico
+
+ 	end_monitor
+
+	;;; Natives capture Tenochtitlan
+	monitor_conditions not I_SettlementOwner Tenochtitlan = spain
+		and not I_SettlementOwner Tenochtitlan = england
+		and not I_SettlementOwner Tenochtitlan = france
+		and I_CompareCounter Tenochtitlan_Spain = 1
+
+		set_counter Tenochtitlan_Spain 0
+		change_settlement_name Tenochtitlan Tenochtitlan
+
+ 	end_monitor
+
+;;;;; Louisiana - Choctaw
+
+	declare_counter Choctaw_France
+	
+	;;; France captures Choctaw
+	monitor_conditions I_SettlementOwner Choctaw = france
+		and I_CompareCounter Choctaw_France = 0
+		
+		set_counter Choctaw_France 1
+		change_settlement_name Choctaw Louisiana
+
+ 	end_monitor
+
+	;;; Natives capture Choctaw
+	monitor_conditions not I_SettlementOwner Choctaw = spain
+		and not I_SettlementOwner Choctaw = england
+		and not I_SettlementOwner Choctaw = france
+		and I_CompareCounter Choctaw_France = 1
+
+		set_counter Choctaw_France 0
+		change_settlement_name Choctaw Choctaw
+
+ 	end_monitor
+ 		
+;;;;; Fort Caroline - Calusa
+
+	declare_counter Calusa_France
+	
+	;;; France captures Calusa
+	monitor_conditions I_SettlementOwner Calusa = france
+		and I_CompareCounter Calusa_France = 0
+		
+		set_counter Calusa_France 1
+		change_settlement_name Calusa Caroline
+
+ 	end_monitor
+
+	;;; Natives capture Calusa
+	monitor_conditions not I_SettlementOwner Calusa = spain
+		and not I_SettlementOwner Calusa = england
+		and not I_SettlementOwner Calusa = france
+		and I_CompareCounter Calusa_France = 1
+
+		set_counter Calusa_France 0
+		change_settlement_name Calusa Calusa
+
+ 	end_monitor
+
+;;;;; Fort Saint Louis - Coahulia
+
+	declare_counter Coahulia_France
+	
+	;;; France captures Coahulia
+	monitor_conditions I_SettlementOwner Coahulia = france
+		and I_CompareCounter Coahulia_France = 0
+		
+		set_counter Coahulia_France 1
+		change_settlement_name Coahulia Saint_Louis
+
+ 	end_monitor
+
+	;;; Natives capture Coahulia
+	monitor_conditions not I_SettlementOwner Coahulia = spain
+		and not I_SettlementOwner Coahulia = england
+		and not I_SettlementOwner Coahulia = france
+		and I_CompareCounter Coahulia_France = 1
+
+		set_counter Coahulia_France 0
+		change_settlement_name Coahulia Coahulia
+
+ 	end_monitor
+
+;;;;; Althun Ha - Honduras
+
+	declare_counter Althun_England
+	
+	;;; England captures Althun_Ha
+	monitor_conditions I_SettlementOwner Althun_Ha = england
+		and I_CompareCounter Althun_England = 0
+		
+		set_counter Althun_England 1
+		change_settlement_name Althun_Ha Honduras
+
+ 	end_monitor
+
+	;;; Natives capture Althun_Ha
+	monitor_conditions not I_SettlementOwner Althun_Ha = spain
+		and not I_SettlementOwner Althun_Ha = england
+		and not I_SettlementOwner Althun_Ha = france
+		and I_CompareCounter Althun_England = 1
+
+		set_counter Althun_England 0
+		change_settlement_name Althun_Ha Althun_Ha
+
+ 	end_monitor
+
+;;;;; Trujillo - Mosquito Coast
+
+	declare_counter Trujillo_England
+	
+	;;; England captures Trujillo
+	monitor_conditions I_SettlementOwner Trujillo = england
+		and I_CompareCounter Trujillo_England = 0
+		
+		set_counter Trujillo_England 1
+		change_settlement_name Trujillo Mosquito
+
+ 	end_monitor
+
+	;;; Natives capture Trujillo
+	monitor_conditions not I_SettlementOwner Trujillo = spain
+		and not I_SettlementOwner Trujillo = england
+		and not I_SettlementOwner Trujillo = france
+		and I_CompareCounter Trujillo_England = 1
+
+		set_counter Trujillo_England 0
+		change_settlement_name Trujillo Trujillo
+
+ 	end_monitor
+
+;;;;; Danipaguache - Monte Alban
+
+	declare_counter Danipaguache_Spain
+	
+	;;; Spain captures Danipaguache
+	monitor_conditions I_SettlementOwner Danipaguache = spain
+		and I_CompareCounter Danipaguache_Spain = 0
+		
+		set_counter Danipaguache_Spain 1
+		change_settlement_name Danipaguache Monte_Alban
+
+ 	end_monitor
+
+	;;; Natives capture Danipaguache
+	monitor_conditions not I_SettlementOwner Danipaguache = spain
+		and not I_SettlementOwner Danipaguache = england
+		and not I_SettlementOwner Danipaguache = france
+		and I_CompareCounter Danipaguache_Spain = 1
+
+		set_counter Danipaguache_Spain 0
+		change_settlement_name Danipaguache Danipaguache
+
+ 	end_monitor
+
+;;;;; Tehuantepec - Salina Cruz
+
+	declare_counter Tehuantepec_Spain
+	
+	;;; Spain captures Tehuantepec
+	monitor_conditions I_SettlementOwner Tehuantepec = spain
+		and I_CompareCounter Tehuantepec_Spain = 0
+		
+		set_counter Tehuantepec_Spain 1
+		change_settlement_name Tehuantepec Salina_Cruz
+
+ 	end_monitor
+
+	;;; Natives capture Tehuantepec
+	monitor_conditions not I_SettlementOwner Tehuantepec = spain
+		and not I_SettlementOwner Tehuantepec = england
+		and not I_SettlementOwner Tehuantepec = france
+		and I_CompareCounter Tehuantepec_Spain = 1
+
+		set_counter Tehuantepec_Spain 0
+		change_settlement_name Tehuantepec Tehuantepec
+
+ 	end_monitor
+
+;;;;;;;;;;;;;;;;;;;;;;;; AI Spanish Expeditions ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+ 	;;; Extra starting force for AI
+	monitor_event FactionTurnStart FactionType spain
+		and I_IsFactionAIControlled spain	 	
+
+ 		add_money spain 10000
+		
+		spawn_army 
+			faction spain
+			character	random_name, named character, age 42, x 110, y 29
+			traits LoyaltyStarter 1 , GoodCommander 1 , ReligionStarter 1 
+			unit		New World Bodyguard			exp 1 armour 0 weapon_lvl 0
+			unit		Conquistadores				exp 1 armour 0 weapon_lvl 0
+			unit		Conquistadores				exp 1 armour 0 weapon_lvl 0
+			unit		Conquistadores				exp 1 armour 0 weapon_lvl 0
+			unit		Conquistadores				exp 1 armour 0 weapon_lvl 0
+			unit		Conquistadores				exp 1 armour 0 weapon_lvl 0
+			unit		Musketeers					exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers					exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers					exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers					exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers					exp 0 armour 0 weapon_lvl 0
+			unit		Crossbowmen				exp 0 armour 0 weapon_lvl 0
+			unit		Crossbowmen				exp 0 armour 0 weapon_lvl 0
+			unit		Crossbowmen				exp 0 armour 0 weapon_lvl 0
+			unit		Crossbowmen				exp 0 armour 0 weapon_lvl 0
+			unit		Sword and Buckler Men		exp 0 armour 0 weapon_lvl 0
+			unit		Sword and Buckler Men		exp 0 armour 0 weapon_lvl 0
+			unit		Sword and Buckler Men		exp 0 armour 0 weapon_lvl 0
+			unit		Sword and Buckler Men		exp 0 armour 0 weapon_lvl 0
+			unit		NE Culverin			exp 0 armour 0 weapon_lvl 0
+		end
+
+		spawn_army 
+			faction spain
+			character	random_name, named character, age 42, x 119, y 27
+			traits LoyaltyStarter 1 , GoodCommander 1 , ReligionStarter 1 
+			unit		New World Bodyguard			exp 1 armour 0 weapon_lvl 0
+			unit		Conquistadores				exp 1 armour 0 weapon_lvl 0
+			unit		Conquistadores				exp 1 armour 0 weapon_lvl 0
+			unit		Conquistadores				exp 1 armour 0 weapon_lvl 0
+			unit		Conquistadores				exp 1 armour 0 weapon_lvl 0
+			unit		Conquistadores				exp 1 armour 0 weapon_lvl 0
+			unit		Musketeers					exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers					exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers					exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers					exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers					exp 0 armour 0 weapon_lvl 0
+			unit		Crossbowmen				exp 0 armour 0 weapon_lvl 0
+			unit		Crossbowmen				exp 0 armour 0 weapon_lvl 0
+			unit		Crossbowmen				exp 0 armour 0 weapon_lvl 0
+			unit		Crossbowmen				exp 0 armour 0 weapon_lvl 0
+			unit		Sword and Buckler Men		exp 0 armour 0 weapon_lvl 0
+			unit		Sword and Buckler Men		exp 0 armour 0 weapon_lvl 0
+			unit		Sword and Buckler Men		exp 0 armour 0 weapon_lvl 0
+			unit		Sword and Buckler Men		exp 0 armour 0 weapon_lvl 0
+			unit		NE Culverin			exp 0 armour 0 weapon_lvl 0
+		end
+		
+		terminate_monitor
+	end_monitor
+
+	;;; Small force between Apaches and Chichimecs
+	monitor_event FactionTurnStart FactionType spain
+		and I_IsFactionAIControlled spain	 	
+ 		and I_TurnNumber = 5
+		and I_NumberOfSettlements spain > 0
+
+ 		add_money spain 5000
+ 		increment_kings_purse spain 500
+ 		
+		spawn_army 
+			faction spain
+			character	random_name, named character, age 42, x 94, y 87
+			traits LoyaltyStarter 1 , GoodCommander 1 , ReligionStarter 1 
+			unit		New World Bodyguard			exp 1 armour 0 weapon_lvl 0
+			unit		Conquistadores				exp 1 armour 0 weapon_lvl 0
+			unit		Conquistadores				exp 1 armour 0 weapon_lvl 0
+			unit		Conquistadores				exp 1 armour 0 weapon_lvl 0
+			unit		Crossbowmen				exp 0 armour 0 weapon_lvl 0
+			unit		Crossbowmen				exp 0 armour 0 weapon_lvl 0
+			unit		Crossbowmen				exp 0 armour 0 weapon_lvl 0
+			unit		Sword and Buckler Men		exp 0 armour 0 weapon_lvl 0
+			unit		Sword and Buckler Men		exp 0 armour 0 weapon_lvl 0
+			unit		Sword and Buckler Men		exp 0 armour 0 weapon_lvl 0
+			unit		NE Culverin			exp 0 armour 0 weapon_lvl 0
+		end
+		
+		terminate_monitor
+	end_monitor
+
+ 	;;; Small force near Mayans
+	monitor_event FactionTurnStart FactionType spain
+		and I_IsFactionAIControlled spain	 	
+ 		and I_TurnNumber = 10
+		and I_NumberOfSettlements spain > 0
+
+ 		add_money spain 10000
+ 		increment_kings_purse spain 500
+ 		
+		spawn_army 
+			faction spain
+			character	random_name, named character, age 38, x 122, y 29
+			traits LoyaltyStarter 1 , GoodCommander 1 , ReligionStarter 1 
+			unit		New World Bodyguard			exp 1 armour 0 weapon_lvl 0
+			unit		Conquistadores				exp 1 armour 0 weapon_lvl 0
+			unit		Conquistadores				exp 1 armour 0 weapon_lvl 0
+			unit		Conquistadores				exp 1 armour 0 weapon_lvl 0
+			unit		Crossbowmen				exp 0 armour 0 weapon_lvl 0
+			unit		Crossbowmen				exp 0 armour 0 weapon_lvl 0
+			unit		Crossbowmen				exp 0 armour 0 weapon_lvl 0
+			unit		Sword and Buckler Men		exp 0 armour 0 weapon_lvl 0
+			unit		Sword and Buckler Men		exp 0 armour 0 weapon_lvl 0
+			unit		Sword and Buckler Men		exp 0 armour 0 weapon_lvl 0
+			unit		NE Culverin			exp 0 armour 0 weapon_lvl 0
+		end
+		
+		terminate_monitor
+	end_monitor
+
+ 	;;; Small force near Apaches
+	monitor_event FactionTurnStart FactionType spain
+		and I_IsFactionAIControlled spain	 	
+ 		and I_TurnNumber = 15
+		and I_NumberOfSettlements spain > 0
+
+ 		add_money spain 10000
+ 		increment_kings_purse spain 1000
+ 		
+		spawn_army 
+			faction spain
+			character	random_name, named character, age 24, x 94, y 101
+			traits LoyaltyStarter 1 , GoodCommander 1 , ReligionStarter 1 
+			unit		New World Bodyguard			exp 1 armour 0 weapon_lvl 0
+			unit		Conquistadores				exp 1 armour 0 weapon_lvl 0
+			unit		Conquistadores				exp 1 armour 0 weapon_lvl 0
+			unit		Musketeers					exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers					exp 0 armour 0 weapon_lvl 0
+			unit		Crossbowmen				exp 0 armour 0 weapon_lvl 0
+			unit		Crossbowmen				exp 0 armour 0 weapon_lvl 0
+			unit		Sword and Buckler Men		exp 0 armour 0 weapon_lvl 0
+			unit		Sword and Buckler Men		exp 0 armour 0 weapon_lvl 0
+			unit		NE Culverin			exp 0 armour 0 weapon_lvl 0
+		end
+		
+		terminate_monitor
+	end_monitor
+
+ 	;;; Small force near Chichimecs
+	monitor_event FactionTurnStart FactionType spain
+		and I_IsFactionAIControlled spain	 	
+ 		and I_TurnNumber = 20
+		and I_NumberOfSettlements spain > 0
+
+ 		add_money spain 10000
+ 		increment_kings_purse spain 1000
+ 		
+		spawn_army 
+			faction spain
+			character	random_name, named character, age 31, x 90, y 74
+			traits LoyaltyStarter 1 , GoodCommander 1 , ReligionStarter 1 
+			unit		New World Bodyguard			exp 1 armour 0 weapon_lvl 0
+			unit		Conquistadores				exp 1 armour 0 weapon_lvl 0
+			unit		Conquistadores				exp 1 armour 0 weapon_lvl 0
+			unit		Musketeers					exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers					exp 0 armour 0 weapon_lvl 0
+			unit		Crossbowmen				exp 0 armour 0 weapon_lvl 0
+			unit		Crossbowmen				exp 0 armour 0 weapon_lvl 0
+			unit		Sword and Buckler Men		exp 0 armour 0 weapon_lvl 0
+			unit		Sword and Buckler Men		exp 0 armour 0 weapon_lvl 0
+			unit		NE Culverin			exp 0 armour 0 weapon_lvl 0
+		end
+		
+		terminate_monitor
+	end_monitor
+
+ 	;;; Small force near Apaches
+	monitor_event FactionTurnStart FactionType spain
+		and I_IsFactionAIControlled spain	 	
+ 		and I_TurnNumber = 25
+		and I_NumberOfSettlements spain > 0
+
+ 		add_money spain 10000
+  		increment_kings_purse spain 500
+		
+		spawn_army 
+			faction spain
+			character	random_name, named character, age 26, x 102, y 110
+			traits LoyaltyStarter 1 , GoodCommander 1 , ReligionStarter 1 
+			unit		New World Bodyguard			exp 1 armour 0 weapon_lvl 0
+			unit		Conquistadores				exp 1 armour 0 weapon_lvl 0
+			unit		Conquistadores				exp 1 armour 0 weapon_lvl 0
+			unit		Conquistadores				exp 1 armour 0 weapon_lvl 0
+			unit		Musketeers					exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers					exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers					exp 0 armour 0 weapon_lvl 0
+			unit		Sword and Buckler Men		exp 0 armour 0 weapon_lvl 0
+			unit		Sword and Buckler Men		exp 0 armour 0 weapon_lvl 0
+			unit		NE Culverin			exp 0 armour 0 weapon_lvl 0
+		end
+		
+		terminate_monitor
+	end_monitor
+
+ 	;;; Small force near Chichimecs
+	monitor_event FactionTurnStart FactionType spain
+		and I_IsFactionAIControlled spain	 	
+ 		and I_TurnNumber = 30
+		and I_NumberOfSettlements spain > 0
+
+ 		add_money spain 10000
+  		increment_kings_purse spain 500
+ 		
+		spawn_army 
+			faction spain
+			character	random_name, named character, age 23, x 93, y 86
+			traits LoyaltyStarter 1 , GoodCommander 1 , ReligionStarter 1 
+			unit		New World Bodyguard			exp 1 armour 0 weapon_lvl 0
+			unit		Conquistadores				exp 1 armour 0 weapon_lvl 0
+			unit		Conquistadores				exp 1 armour 0 weapon_lvl 0
+			unit		Conquistadores				exp 1 armour 0 weapon_lvl 0
+			unit		Musketeers					exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers					exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers					exp 0 armour 0 weapon_lvl 0
+			unit		Dismounted Conquistadores	exp 0 armour 0 weapon_lvl 0
+			unit		Dismounted Conquistadores	exp 0 armour 0 weapon_lvl 0
+			unit		NE Culverin			exp 0 armour 0 weapon_lvl 0
+		end
+		
+		terminate_monitor
+	end_monitor
+
+ 	;;; Small force near Apaches
+	monitor_event FactionTurnStart FactionType spain
+		and I_IsFactionAIControlled spain	 	
+ 		and I_TurnNumber = 35
+		and I_NumberOfSettlements spain > 0
+
+ 		add_money spain 10000
+  		increment_kings_purse spain 500
+ 		
+		spawn_army 
+			faction spain
+			character	random_name, named character, age 41, x 126, y 119
+			traits LoyaltyStarter 1 , GoodCommander 1 , ReligionStarter 1 
+			unit		New World Bodyguard			exp 1 armour 0 weapon_lvl 0
+			unit		Conquistadores				exp 1 armour 0 weapon_lvl 0
+			unit		Conquistadores				exp 1 armour 0 weapon_lvl 0
+			unit		Conquistadores				exp 1 armour 0 weapon_lvl 0
+			unit		Musketeers					exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers					exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers					exp 0 armour 0 weapon_lvl 0
+			unit		Dismounted Conquistadores	exp 0 armour 0 weapon_lvl 0
+			unit		Dismounted Conquistadores	exp 0 armour 0 weapon_lvl 0
+			unit		NE Culverin			exp 0 armour 0 weapon_lvl 0
+		end
+		
+		terminate_monitor
+	end_monitor
+
+ 	;;; Small force near Chichimecs
+	monitor_event FactionTurnStart FactionType spain
+		and I_IsFactionAIControlled spain	 	
+ 		and I_TurnNumber = 40
+		and I_NumberOfSettlements spain > 0
+
+ 		add_money spain 10000
+  		increment_kings_purse spain 500
+ 		
+		spawn_army 
+			faction spain
+			character	random_name, named character, age 37, x 91, y 57
+			traits LoyaltyStarter 1 , GoodCommander 1 , ReligionStarter 1 
+			unit		New World Bodyguard			exp 1 armour 0 weapon_lvl 0
+			unit		Spanish Dragoons			exp 1 armour 0 weapon_lvl 0
+			unit		Spanish Dragoons			exp 1 armour 0 weapon_lvl 0
+			unit		Conquistadores				exp 1 armour 0 weapon_lvl 0
+			unit		Conquistadores				exp 1 armour 0 weapon_lvl 0
+			unit		Musketeers					exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers					exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers					exp 0 armour 0 weapon_lvl 0
+			unit		Dismounted Conquistadores	exp 0 armour 0 weapon_lvl 0
+			unit		Dismounted Conquistadores	exp 0 armour 0 weapon_lvl 0
+			unit		NE Culverin			exp 0 armour 0 weapon_lvl 0
+		end
+		
+		terminate_monitor
+	end_monitor
+
+ 	;;; Small force between Apaches and Chichimecs
+	monitor_event FactionTurnStart FactionType spain
+		and I_IsFactionAIControlled spain	 	
+ 		and I_TurnNumber = 50
+		and I_NumberOfSettlements spain > 0
+
+ 		add_money spain 10000
+  		increment_kings_purse spain 500
+ 		
+		spawn_army 
+			faction spain
+			character	random_name, named character, age 33, x 95, y 105
+			traits LoyaltyStarter 1 , GoodCommander 1 , ReligionStarter 1 
+			unit		New World Bodyguard			exp 1 armour 0 weapon_lvl 0
+			unit		Spanish Dragoons			exp 1 armour 0 weapon_lvl 0
+			unit		Spanish Dragoons			exp 1 armour 0 weapon_lvl 0
+			unit		Conquistadores				exp 1 armour 0 weapon_lvl 0
+			unit		Conquistadores				exp 1 armour 0 weapon_lvl 0
+			unit		Musketeers					exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers					exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers					exp 0 armour 0 weapon_lvl 0
+			unit		Dismounted Conquistadores	exp 0 armour 0 weapon_lvl 0
+			unit		Dismounted Conquistadores	exp 0 armour 0 weapon_lvl 0
+			unit		NE Culverin			exp 0 armour 0 weapon_lvl 0
+		end
+		
+		terminate_monitor
+	end_monitor
+
+ 	;;; Small force between Apaches and Chichimecs
+	monitor_event FactionTurnStart FactionType spain
+		and I_IsFactionAIControlled spain	 	
+ 		and I_TurnNumber = 60
+		and I_NumberOfSettlements spain > 0
+
+ 		add_money spain 10000
+  		increment_kings_purse spain 500
+ 		
+		spawn_army 
+			faction spain
+			character	random_name, named character, age 29, x 90, y 75
+			traits LoyaltyStarter 1 , GoodCommander 1 , ReligionStarter 1 
+			unit		New World Bodyguard			exp 1 armour 0 weapon_lvl 0
+			unit		Spanish Dragoons			exp 1 armour 0 weapon_lvl 0
+			unit		Spanish Dragoons			exp 1 armour 0 weapon_lvl 0
+			unit		Conquistadores				exp 1 armour 0 weapon_lvl 0
+			unit		Conquistadores				exp 1 armour 0 weapon_lvl 0
+			unit		Musketeers					exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers					exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers					exp 0 armour 0 weapon_lvl 0
+			unit		Dismounted Conquistadores	exp 0 armour 0 weapon_lvl 0
+			unit		Dismounted Conquistadores	exp 0 armour 0 weapon_lvl 0
+			unit		NE Culverin			exp 0 armour 0 weapon_lvl 0
+		end
+		
+		terminate_monitor
+	end_monitor
+
+;;;;;;;;;;;;;;;;;;;;;;;; Spanish Expeditions ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+	monitor_event FactionTurnStart FactionType spain
+ 		and I_TurnNumber = 10
+
+		add_events
+			event	counter	explorers
+	 		date	0 10
+	 	end_add_events
+
+		terminate_monitor
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType spain
+		and I_EventCounter explorers == 1	 	
+
+		; Francisco de_Montejo	1528
+		; - Yucatan
+		; - attempted to conquer it along the east coast (Tulum, Chetumal) 
+
+		; Turn 10-20
+		spawn_army 
+			faction spain
+			character	Francisco de_Montejo, named character, age 50, x 164, y 40
+			traits LoyaltyStarter 1 , GoodCommander 1 , Intelligent 1 , ReligionStarter 1 
+			unit		New World Bodyguard			exp 1 armour 0 weapon_lvl 0
+			unit		Conquistadores				exp 1 armour 0 weapon_lvl 0
+			unit		Conquistadores				exp 1 armour 0 weapon_lvl 0
+			unit		Conquistadores				exp 1 armour 0 weapon_lvl 0
+			unit		Conquistadores				exp 1 armour 0 weapon_lvl 0
+			unit		Conquistadores				exp 1 armour 0 weapon_lvl 0
+			unit		Musketeers					exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers					exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers					exp 0 armour 0 weapon_lvl 0
+			unit		Crossbowmen				exp 0 armour 0 weapon_lvl 0
+			unit		Crossbowmen				exp 0 armour 0 weapon_lvl 0
+			unit		Sword and Buckler Men		exp 0 armour 0 weapon_lvl 0
+			unit		Sword and Buckler Men		exp 0 armour 0 weapon_lvl 0
+			unit		NE Culverin			exp 0 armour 0 weapon_lvl 0
+		end
+
+		spawn_army 
+			faction spain
+			character	Garcia, admiral, age 32, x 166, y 40 
+			unit		grande carrack				exp 1 armour 0 weapon_lvl 0
+			unit		grande carrack				exp 1 armour 0 weapon_lvl 0
+		end
+
+		add_events
+			event	counter	explorers
+	 		date	10 20
+	 	end_add_events
+		
+	 	if I_LocalFaction spain
+
+			add_events
+			 	event	historic spanish_explorers_1
+			 	date 0
+				position	164, 40
+			 	movie	event/Spanish_Expedition.bik
+			 	factions { spain, }
+		 	end_add_events
+
+		end_if
+	 	
+		terminate_monitor
+	end_monitor
+
+	; Turn 20-40
+	monitor_event FactionTurnStart FactionType spain
+		and I_EventCounter explorers == 2	 	
+
+		; Francisco Coronado	1540
+		; - northern Mexico, Pueblo Indians
+		; - searching for Seven Golden Cities of Cibola
+		
+		spawn_army 
+			faction spain
+			character	Francisco Coronado, named character, age 30, x 98, y 41
+			traits LoyaltyStarter 1 , GoodCommander 2 , ReligionStarter 1 
+			unit		New World Bodyguard			exp 1 armour 0 weapon_lvl 0
+			unit		Conquistadores				exp 1 armour 0 weapon_lvl 0
+			unit		Conquistadores				exp 1 armour 0 weapon_lvl 0
+			unit		Conquistadores				exp 1 armour 0 weapon_lvl 0
+			unit		Conquistadores				exp 1 armour 0 weapon_lvl 0
+			unit		Musketeers					exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers					exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers					exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers					exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers					exp 0 armour 0 weapon_lvl 0
+			unit		Sword and Buckler Men		exp 0 armour 0 weapon_lvl 0
+			unit		Sword and Buckler Men		exp 0 armour 0 weapon_lvl 0
+			unit		Sword and Buckler Men		exp 0 armour 0 weapon_lvl 0
+			unit		NE Culverin			exp 0 armour 0 weapon_lvl 0
+		end
+
+		spawn_army 
+			faction spain
+			character	Rodrigo, admiral, age 32, x 100, y 41 
+			unit		grande carrack				exp 1 armour 0 weapon_lvl 0
+			unit		grande carrack				exp 1 armour 0 weapon_lvl 0
+		end
+
+		add_events
+			event	counter	explorers
+	 		date	10 20
+	 	end_add_events
+		
+	 	if I_LocalFaction spain
+			add_events
+			 	event	historic spanish_explorers_2
+			 	date 0
+				position	98, 41
+			 	movie	event/Spanish_Expedition.bik
+			 	factions { spain, }
+		 	end_add_events
+		end_if
+		
+		terminate_monitor
+	end_monitor
+
+	; Turn 30-60
+	monitor_event FactionTurnStart FactionType spain
+		and I_EventCounter explorers == 3	 	
+		
+		; Pedro Menendez		1565
+		; - Florida
+		; - founds St Augustine
+	
+		spawn_army 
+			faction spain
+			character	Pedro Menendez, named character, age 46, x 205, y 102
+			traits LoyaltyStarter 1 , GoodCommander 1 , Intelligent 1 , ReligionStarter 1 
+			unit		New World Bodyguard			exp 1 armour 0 weapon_lvl 0
+			unit		Conquistadores				exp 1 armour 0 weapon_lvl 0
+			unit		Conquistadores				exp 1 armour 0 weapon_lvl 0
+			unit		Conquistadores				exp 1 armour 0 weapon_lvl 0
+			unit		Spanish Dragoons			exp 1 armour 0 weapon_lvl 0
+			unit		Spanish Dragoons			exp 1 armour 0 weapon_lvl 0
+			unit		Musketeers					exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers					exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers					exp 0 armour 0 weapon_lvl 0
+			unit		Musketeers					exp 0 armour 0 weapon_lvl 0
+			unit		Dismounted Conquistadores	exp 0 armour 0 weapon_lvl 0
+			unit		Dismounted Conquistadores	exp 0 armour 0 weapon_lvl 0
+			unit		Dismounted Conquistadores	exp 0 armour 0 weapon_lvl 0
+			unit		NE Culverin			exp 0 armour 0 weapon_lvl 0
+		end
+
+		spawn_army 
+			faction spain
+			character	Pablo, admiral, age 32, x 207, y 102 
+			unit		grande carrack				exp 1 armour 0 weapon_lvl 0
+			unit		grande carrack				exp 1 armour 0 weapon_lvl 0
+		end
+		
+	 	if I_LocalFaction spain
+			add_events
+			 	event	historic spanish_explorers_3 event/Spanish_Expedition.bik
+			 	date 0
+				position	205, 102
+			 	movie	event/Spanish_Expedition.bik
+			 	factions { spain, }
+		 	end_add_events
+		end_if
+
+		terminate_monitor
+	end_monitor
+
+;;;;;;;;;;;;;;;;;;;;;;;; Reveal Settlements ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+	monitor_event FactionTurnStart FactionType mayans
+		and I_LocalFaction mayans
+
+		reveal_tile 160, 24		;Althun Ha
+		reveal_tile 160, 31		;Chetumal
+		reveal_tile 134, 33		;Xicalango
+		reveal_tile 138, 20		;Yaxchilan
+		
+		hide_all_revealed_tiles
+		
+		terminate_monitor
+	end_monitor
+
+	monitor_event FactionTurnStart FactionType chichimeca
+		and I_LocalFaction chichimeca
+
+		reveal_tile 42, 54		;Ahuacatlan
+		reveal_tile 89, 64		;Cuahtemoc
+
+		hide_all_revealed_tiles
+		
+		terminate_monitor
+	end_monitor
+
+	monitor_event FactionTurnStart FactionType tarascans
+		and I_LocalFaction tarascans
+
+		reveal_tile 52, 47		;Ocotlan
+		reveal_tile 47, 36		;Tecoman
+
+		hide_all_revealed_tiles
+		
+		terminate_monitor
+	end_monitor
+
+;;;;;;;;;;;;;;;;;;;;;;;; Sacrifice ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	
+	;;;;;;; Convert Settlement (Occupy) ;;;;;;;
+	monitor_event OccupySettlement FactionType spain
+		change_population_religion spain catholic 3 pagan
+		change_population_religion spain catholic 3 islam
+	end_monitor
+
+	monitor_event OccupySettlement FactionType england
+		change_population_religion england catholic 3 pagan
+		change_population_religion england catholic 3 islam
+	end_monitor
+
+	monitor_event OccupySettlement FactionType france
+		change_population_religion france catholic 3 pagan
+		change_population_religion france catholic 3 islam
+	end_monitor
+
+	;;;;;;; Sacrifice Settlement (Exterminate) ;;;;;;;
+	monitor_event ExterminatePopulation FactionType aztecs
+		change_population_religion aztecs pagan 3 catholic
+		change_population_religion aztecs pagan 3 islam
+	end_monitor
+
+	monitor_event ExterminatePopulation FactionType mayans
+		change_population_religion mayans pagan 3 catholic
+		change_population_religion mayans pagan 3 islam
+	end_monitor
+
+	monitor_event ExterminatePopulation FactionType tlaxcalans
+		change_population_religion tlaxcalans pagan 3 catholic
+		change_population_religion tlaxcalans pagan 3 islam
+	end_monitor
+
+	monitor_event ExterminatePopulation FactionType tarascans
+		change_population_religion tarascans pagan 3 catholic
+		change_population_religion tarascans pagan 3 islam
+	end_monitor
+
+	monitor_event ExterminatePopulation FactionType chichimeca
+		change_population_religion chichimeca pagan 3 catholic
+		change_population_religion chichimeca pagan 3 islam
+	end_monitor
+
+	;;;;;;; Raid Settlement (Sack) ;;;;;;;
+	monitor_event SackSettlement FactionType aztecs
+		change_population_religion aztecs pagan 1 catholic
+		change_population_religion aztecs pagan 1 islam
+	end_monitor
+
+	monitor_event SackSettlement FactionType mayans
+		change_population_religion mayans pagan 1 catholic
+		change_population_religion mayans pagan 1 islam
+	end_monitor
+
+	monitor_event SackSettlement FactionType tlaxcalans
+		change_population_religion tlaxcalans pagan 1 catholic
+		change_population_religion tlaxcalans pagan 1 islam
+	end_monitor
+
+	monitor_event SackSettlement FactionType tarascans
+		change_population_religion tarascans pagan 1 catholic
+		change_population_religion tarascans pagan 1 islam
+	end_monitor
+
+	monitor_event SackSettlement FactionType chichimeca
+		change_population_religion chichimeca pagan 1 catholic
+		change_population_religion chichimeca pagan 1 islam
+	end_monitor
+	
+	;;;;;;; Sacrifice Unit (Disband) ;;;;;;;
+	
+	monitor_event UnitDisbanded FactionType aztecs
+		change_population_religion aztecs pagan 3 catholic
+		change_population_religion aztecs pagan 3 islam
+	end_monitor
+
+	monitor_event UnitDisbanded FactionType mayans
+		change_population_religion mayans pagan 3 catholic
+		change_population_religion mayans pagan 3 islam
+	end_monitor
+
+	monitor_event UnitDisbanded FactionType tlaxcalans
+		change_population_religion tlaxcalans pagan 3 catholic
+		change_population_religion tlaxcalans pagan 3 islam
+	end_monitor
+
+	monitor_event UnitDisbanded FactionType tarascans
+		change_population_religion tarascans pagan 3 catholic
+		change_population_religion tarascans pagan 3 islam
+	end_monitor
+
+	monitor_event UnitDisbanded FactionType chichimeca
+		change_population_religion chichimeca pagan 3 catholic
+		change_population_religion chichimeca pagan 3 islam
+	end_monitor
+		
+	;;;;;;; Hold Sacrifices (Races) ;;;;;;;
+	monitor_event GovernorThrowRaces FactionType aztecs
+		change_population_religion aztecs pagan 1 catholic
+		change_population_religion aztecs pagan 1 islam
+	end_monitor
+
+	monitor_event GovernorThrowRaces FactionType mayans
+		change_population_religion mayans pagan 1 catholic
+		change_population_religion mayans pagan 1 islam
+	end_monitor
+
+	monitor_event GovernorThrowRaces FactionType tlaxcalans
+		change_population_religion tlaxcalans pagan 1 catholic
+		change_population_religion tlaxcalans pagan 1 islam
+	end_monitor
+
+	monitor_event GovernorThrowRaces FactionType tarascans
+		change_population_religion tarascans pagan 1 catholic
+		change_population_religion tarascans pagan 1 islam
+	end_monitor
+
+	monitor_event GovernorThrowRaces FactionType chichimeca
+		change_population_religion chichimeca pagan 1 catholic
+		change_population_religion chichimeca pagan 1 islam
+	end_monitor
+	
+	;;;;;;; Hold Dances (Games) ;;;;;;;
+	monitor_event GovernorThrowGames FactionType apachean
+		change_population_religion apachean islam 1 pagan
+		change_population_religion apachean islam 1 catholic
+	end_monitor
+	
+	;;;;;;; Sacrifice Enemies (Execute) ;;;;;;;
+	monitor_event GeneralPrisonersRansomedCaptor RansomType execute
+		and FactionType aztecs
+		change_population_religion aztecs pagan 1 catholic
+		change_population_religion aztecs pagan 1 islam
+	end_monitor
+	
+	monitor_event FactionLeaderPrisonersRansomedCaptor RansomType execute
+		and FactionType aztecs
+		change_population_religion aztecs pagan 3 catholic
+		change_population_religion aztecs pagan 3 islam
+	end_monitor
+	
+	monitor_event GeneralPrisonersRansomedCaptor RansomType execute
+		and FactionType mayans
+		change_population_religion mayans pagan 1 catholic
+		change_population_religion mayans pagan 1 islam
+	end_monitor
+	
+	monitor_event FactionLeaderPrisonersRansomedCaptor RansomType execute
+		and FactionType mayans
+		change_population_religion mayans pagan 3 catholic
+		change_population_religion mayans pagan 3 islam
+	end_monitor
+
+	monitor_event GeneralPrisonersRansomedCaptor RansomType execute
+		and FactionType tlaxcalans
+		change_population_religion tlaxcalans pagan 1 catholic
+		change_population_religion tlaxcalans pagan 1 islam
+	end_monitor
+	
+	monitor_event FactionLeaderPrisonersRansomedCaptor RansomType execute
+		and FactionType tlaxcalans
+		change_population_religion tlaxcalans pagan 3 catholic
+		change_population_religion tlaxcalans pagan 3 islam
+	end_monitor
+
+	monitor_event GeneralPrisonersRansomedCaptor RansomType execute
+		and FactionType tarascans
+		change_population_religion tarascans pagan 1 catholic
+		change_population_religion tarascans pagan 1 islam
+	end_monitor
+	
+	monitor_event FactionLeaderPrisonersRansomedCaptor RansomType execute
+		and FactionType tarascans
+		change_population_religion tarascans pagan 3 catholic
+		change_population_religion tarascans pagan 3 islam
+	end_monitor
+
+	monitor_event GeneralPrisonersRansomedCaptor RansomType execute
+		and FactionType chichimeca
+		change_population_religion chichimeca pagan 1 catholic
+		change_population_religion chichimeca pagan 1 islam
+	end_monitor
+	
+	monitor_event FactionLeaderPrisonersRansomedCaptor RansomType execute
+		and FactionType chichimeca
+		change_population_religion chichimeca pagan 3 catholic
+		change_population_religion chichimeca pagan 3 islam
+	end_monitor
+
+;;;;;;;;;;;;;;;;;;;;;;;; Smallpox ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+	;;;;Spain captures Vera Cruz	-	Outbreak
+	monitor_event FactionTurnStart FactionType spain
+		and I_SettlementOwner Vera_Cruz = spain
+
+		add_events
+			event	counter	plague_spain
+	 		date	6 12
+	 	end_add_events
+		
+		terminate_monitor
+	end_monitor
+
+	monitor_event FactionTurnStart FactionType spain
+		and I_EventCounter plague_spain == 1
+		
+		add_events
+			event	plague
+	 		date	0
+			position	103, 33		;Vera Cruz
+	 	end_add_events
+
+		if I_LocalFaction spain
+			historic_event outbreak factions { spain, }
+		end_if
+
+		if I_LocalFaction tlaxcalans
+			historic_event outbreak factions { tlaxcalans, }
+		end_if
+	 	
+		terminate_monitor
+	 end_monitor
+	
+	;;;;Spain captures Tenochtitlan	-	Outbreak
+	monitor_event FactionTurnStart FactionType spain
+		and I_SettlementOwner Tenochtitlan = spain
+
+		if I_LocalFaction aztecs
+			add_events
+				event	historic outbreak
+				date 2
+				factions { aztecs, }
+		 	end_add_events
+		end_if
+		
+		add_events
+			event	plague
+	 		date	2
+			position	85, 33		;Tenochtitlan
+			position	87, 28		;Huaxtepec
+			position	83, 41		;Tula
+			position	79, 32		;Toluca
+			position	91, 29		;Cholua
+			position	92, 33		;Tlaxcala
+			position	83, 21		;Tixtla
+			position	103, 33		;Vera Cruz
+	 	end_add_events
+		
+		terminate_monitor
+	end_monitor
+ 	
+	;;;;Spain captures Apatzignan	-	Outbreak
+	monitor_event FactionTurnStart FactionType spain
+		and I_SettlementOwner Apatzignan = spain
+
+		if I_LocalFaction tarascans
+			add_events
+				event	historic outbreak
+				date 2
+				factions { tarascans, }
+		 	end_add_events
+		end_if
+		
+		add_events
+			event	plague
+	 		date	2
+			position	55, 36		;Apatzignan
+			position	58, 41		;Zacapu
+			position	52, 47		;Ocotlan
+			position	47, 36		;Tecoman
+	 	end_add_events
+		
+		terminate_monitor
+	end_monitor
+
+	;;;;Spain captures Zacatecas	-	Outbreak
+	monitor_event FactionTurnStart FactionType spain
+		and I_SettlementOwner Zacatecas = spain
+		
+		if I_LocalFaction chichimeca
+			add_events
+				event	historic outbreak
+				date 2
+				factions { chichimeca, }
+		 	end_add_events
+		end_if
+		
+		add_events
+			event	plague
+	 		date	2
+			position	55, 68		;Zacatecas
+			position	49, 62		;Colotan
+	 	end_add_events
+		
+		terminate_monitor
+	end_monitor
+
+	;;;;Spain captures Canpech	-	Outbreak
+	monitor_event FactionTurnStart FactionType spain
+		and I_SettlementOwner Canpech = spain
+		
+		if I_LocalFaction mayans
+			add_events
+				event	historic outbreak
+				date 2
+				factions { mayans, }
+		 	end_add_events
+		end_if
+		
+		add_events
+			event	plague
+	 		date	2
+			position	141, 42		;Canpech
+			position	147, 46		;Uxmal
+			position	156, 50		;Chichen Itza
+			position	160, 31		;Chetumal
+			position	160, 24		;Althun Ha
+			position	147, 21		;Tikal
+			position	134, 33		;Xicalango
+			position	138, 30		;Yaxchilan
+	 	end_add_events
+		
+		terminate_monitor
+	end_monitor
+	 	
+	 	
+;;;;;;;;;;;;;;;;;;;;;;;; Prestige Points ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+	;;;;;;; Easy Mission ;;;;;;;
+	monitor_event LeaderMissionSuccess FactionType spain
+		and PaybackID consulate_minor
+		inc_counter prestige_points 2
+	end_monitor
+
+	monitor_event LeaderMissionSuccess FactionType spain
+		and PaybackID consulate_minor_units
+		inc_counter prestige_points 2
+	end_monitor
+
+	monitor_event LeaderMissionFailed FactionType spain
+		and PaybackID consulate_minor
+		inc_counter prestige_points -2
+	end_monitor
+
+	monitor_event LeaderMissionFailed FactionType spain
+		and PaybackID consulate_minor_units
+		inc_counter prestige_points -2
+	end_monitor
+	
+	;;;;;;; Moderate Mission ;;;;;;;
+	monitor_event LeaderMissionSuccess FactionType spain
+		and PaybackID consulate_mod
+		inc_counter prestige_points 5
+	end_monitor
+
+	monitor_event LeaderMissionSuccess FactionType spain
+		and PaybackID consulate_mod_units
+		inc_counter prestige_points 5
+	end_monitor
+
+	monitor_event LeaderMissionFailed FactionType spain
+		and PaybackID consulate_mod
+		inc_counter prestige_points -5
+	end_monitor
+
+	monitor_event LeaderMissionFailed FactionType spain
+		and PaybackID consulate_mod_units
+		inc_counter prestige_points -5
+	end_monitor
+	
+	;;;;;;; Hard Mission ;;;;;;;
+	monitor_event LeaderMissionSuccess FactionType spain
+		and PaybackID consulate_major
+		inc_counter prestige_points 10
+	end_monitor
+
+	monitor_event LeaderMissionSuccess FactionType spain
+		and PaybackID consulate_major_units
+		inc_counter prestige_points 10
+	end_monitor
+	
+	monitor_event LeaderMissionFailed FactionType spain
+		and PaybackID consulate_major
+		inc_counter prestige_points -10
+	end_monitor
+
+	monitor_event LeaderMissionFailed FactionType spain
+		and PaybackID consulate_major_units
+		inc_counter prestige_points -10
+	end_monitor
+
+	;;;;;;; Victory (Odds >=1) ;;;;;;;
+	monitor_event PostBattle FactionType spain
+		and WonBattle
+		and BattleOdds >= 1
+		inc_counter prestige_points 1
+	end_monitor
+	
+	;;;;;;; Victory (Odds 0.5-1) ;;;;;;;
+	monitor_event PostBattle FactionType spain
+		and WonBattle
+		and BattleOdds >= 0.5
+		and BattleOdds < 1
+		inc_counter prestige_points 2
+	end_monitor
+	
+	;;;;;;; Victory (Odds <0.5) ;;;;;;;
+	monitor_event PostBattle FactionType spain
+		and WonBattle
+		and BattleOdds < 0.5
+		inc_counter prestige_points 3
+	end_monitor
+	
+	;;;;;;; Defeat (Odds < 0.5) ;;;;;;;
+	monitor_event PostBattle FactionType spain
+		and not WonBattle
+		and BattleOdds < 0.5
+		inc_counter prestige_points -1
+	end_monitor
+
+	;;;;;;; Defeat (Odds 0.5-1) ;;;;;;;
+	monitor_event PostBattle FactionType spain
+		and not WonBattle
+		and BattleOdds >= 0.5
+		and BattleOdds < 1
+		inc_counter prestige_points -2
+	end_monitor
+	
+	;;;;;;; Defeat (Odds >= 1) ;;;;;;;
+	monitor_event PostBattle FactionType spain
+		and not WonBattle
+		and BattleOdds >= 1
+		inc_counter prestige_points -3
+	end_monitor
+	
+	;;;;;;; Capture Settlement ;;;;;;;
+	monitor_event OccupySettlement FactionType spain
+		inc_counter prestige_points 3
+	end_monitor
+
+	monitor_event SackSettlement FactionType spain
+		inc_counter prestige_points 3
+	end_monitor
+
+	monitor_event ExterminatePopulation FactionType spain
+		inc_counter prestige_points 3
+	end_monitor
+	
+	;;;;;;; Lose Settlement ;;;;;;;
+	monitor_event OccupySettlement TargetFactionType spain
+		inc_counter prestige_points -3
+	end_monitor
+
+	monitor_event SackSettlement TargetFactionType spain
+		inc_counter prestige_points -3
+	end_monitor
+
+	monitor_event ExterminatePopulation TargetFactionType spain
+		inc_counter prestige_points -3
+	end_monitor
+	
+	;;;;;;; Capture Capital ;;;;;;;
+	monitor_event FactionTurnStart FactionType spain
+		and I_SettlementOwner Tenochtitlan = spain
+		inc_counter prestige_points 5
+		terminate_monitor
+	end_monitor
+
+	monitor_event FactionTurnStart FactionType spain
+		and I_SettlementOwner Apache = spain
+		inc_counter prestige_points 5
+		terminate_monitor
+	end_monitor
+
+	monitor_event FactionTurnStart FactionType spain
+		and I_SettlementOwner Chichen_Itza = spain
+		inc_counter prestige_points 5
+		terminate_monitor
+	end_monitor
+
+	monitor_event FactionTurnStart FactionType spain
+		and I_SettlementOwner Tlaxcala = spain
+		inc_counter prestige_points 5
+		terminate_monitor
+	end_monitor
+
+	monitor_event FactionTurnStart FactionType spain
+		and I_SettlementOwner Zacatecas = spain
+		inc_counter prestige_points 5
+		terminate_monitor
+	end_monitor
+
+	monitor_event FactionTurnStart FactionType spain
+		and I_SettlementOwner Apatzignan = spain
+		inc_counter prestige_points 5
+		terminate_monitor
+	end_monitor
+	
+	;;;;;;; Destroy Faction ;;;;;;;
+	monitor_event LeaderDestroyedFaction FactionType spain
+		inc_counter prestige_points 10
+	end_monitor
+	
+	;;;;;;; Kill Family Member ;;;;;;;
+	monitor_event AssassinationMission MissionSucceeded
+		and FactionType spain
+		and AgentType = family
+		inc_counter prestige_points 3
+	end_monitor
+	
+	;;;;;;; Trade Agreement Made ;;;;;;;
+	monitor_event FactionTradeAgreementMade FactionType spain
+		inc_counter prestige_points 3
+	end_monitor
+	
+	;;;;;;; Treasury >50000 ;;;;;;;
+	monitor_event FactionTurnStart FactionType spain
+		and Treasury > 50000
+		inc_counter prestige_points 1
+	end_monitor
+
+	;;;;;;; Treasury >100000 ;;;;;;;
+	monitor_event FactionTurnStart FactionType spain
+		and Treasury > 100000
+		inc_counter prestige_points 2
+	end_monitor
+	
+	;;;;;;; Passive Increase ;;;;;;;
+	monitor_event FactionTurnStart FactionType spain
+		inc_counter prestige_points 1
+	end_monitor
+
+	;;;;;;; AI Passive Increase ;;;;;;;
+	monitor_event FactionTurnStart FactionType spain
+		and I_IsFactionAIControlled spain
+		inc_counter prestige_points 2
+	end_monitor
+
+;;;;;;;;;;;;;;;;;;;;;;;; Prestige Ranks ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+	;;;;;;; Lord ;;;;;;;
+	monitor_event FactionTurnStart FactionType spain
+		and I_CompareCounter prestige_points >= 25
+		
+		add_events
+			event	counter	prestige_rank
+	 		date	0
+	 	end_add_events
+
+	 	add_money spain 5000
+		
+		if I_LocalFaction spain
+			add_events
+				event	historic prestige_lord
+				date	1
+				factions { spain, }
+	 		end_add_events
+		end_if
+		
+		terminate_monitor
+	end_monitor
+
+	monitor_event CharacterTurnEnd IsFactionLeader 
+		and Trait Prestige = 1
+		
+		set_event_counter prestige_rank 0
+		
+		add_events
+			event	counter	prestige_rank_lord
+	 		date	0
+	 	end_add_events
+		
+		terminate_monitor
+	end_monitor
+
+	;;;;;;; Baron ;;;;;;;
+	monitor_event FactionTurnStart FactionType spain
+		and I_CompareCounter prestige_points >= 50
+	
+		add_events
+			event	counter	prestige_rank
+	 		date	0
+	 	end_add_events
+		
+	 	add_money spain 10000
+
+	 	if I_LocalFaction spain
+			add_events
+				event	historic prestige_baron
+				date	1
+				factions { spain, }
+	 		end_add_events
+		end_if
+		
+		terminate_monitor
+	end_monitor
+
+	monitor_event CharacterTurnEnd IsFactionLeader 
+		and Trait Prestige = 2
+		
+		set_event_counter prestige_rank 0
+		
+		add_events
+			event	counter	prestige_rank_baron
+	 		date	0
+	 	end_add_events
+
+		terminate_monitor
+	end_monitor
+
+	;;;;;;; Viscount ;;;;;;;
+	monitor_event FactionTurnStart FactionType spain
+		and I_CompareCounter prestige_points >= 100
+	
+		add_events
+			event	counter	prestige_rank
+	 		date	0
+	 	end_add_events
+		
+	 	add_money spain 15000
+	 	
+	 	if I_LocalFaction spain
+			add_events
+				event	historic prestige_viscount
+				date	1
+				factions { spain, }
+	 		end_add_events
+		end_if
+		
+		terminate_monitor
+	end_monitor
+
+	monitor_event CharacterTurnEnd IsFactionLeader 
+		and Trait Prestige = 3
+		
+		set_event_counter prestige_rank 0
+		
+		add_events
+			event	counter	prestige_rank_viscount
+	 		date	0
+	 	end_add_events
+		
+		terminate_monitor
+	end_monitor
+
+	;;;;;;; Count ;;;;;;;
+	monitor_event FactionTurnStart FactionType spain
+		and I_CompareCounter prestige_points >= 150
+	
+		add_events
+			event	counter	prestige_rank
+	 		date	0
+	 	end_add_events
+		
+	 	add_money spain 20000
+	 	
+	 	if I_LocalFaction spain
+			add_events
+				event	historic prestige_count
+				date	1
+				factions { spain, }
+	 		end_add_events
+		end_if
+		
+		terminate_monitor
+	end_monitor
+
+	monitor_event CharacterTurnEnd IsFactionLeader 
+		and Trait Prestige = 4
+		
+		set_event_counter prestige_rank 0
+		
+		add_events
+			event	counter	prestige_rank_count
+	 		date	0
+	 	end_add_events
+		
+		terminate_monitor
+	end_monitor
+
+	;;;;;;; Marquis ;;;;;;;
+	monitor_event FactionTurnStart FactionType spain
+		and I_CompareCounter prestige_points >= 200
+	
+		add_events
+			event	counter	prestige_rank
+	 		date	0
+	 	end_add_events
+		
+	 	add_money spain 25000
+	 	
+	 	if I_LocalFaction spain
+			add_events
+				event	historic prestige_marquis
+				date	1
+				factions { spain, }
+	 		end_add_events
+		end_if
+		
+		terminate_monitor
+	end_monitor
+
+	monitor_event CharacterTurnEnd IsFactionLeader
+		and Trait Prestige = 5
+		
+		set_event_counter prestige_rank 0
+		
+		add_events
+			event	counter	prestige_rank_marquis
+	 		date	0
+	 	end_add_events
+		
+		terminate_monitor
+	end_monitor
+
+;----------------- CASH FOR AI ----------------;
+	
+	monitor_event FactionTurnStart not FactionIsLocal
+		and FactionType spain
+		and LosingMoney
+		and Treasury < 0
+	
+		add_money spain 2000
+	
+	end_monitor
+
+	monitor_event FactionTurnStart not FactionIsLocal
+		and FactionType aztecs
+		and LosingMoney
+		and Treasury < 0
+	
+		add_money aztecs 2000
+	
+	end_monitor
+
+	monitor_event FactionTurnStart not FactionIsLocal
+		and FactionType mayans
+		and LosingMoney
+		and Treasury < 0
+	
+		add_money mayans 2000
+	
+	end_monitor
+
+	monitor_event FactionTurnStart not FactionIsLocal
+		and FactionType apachean
+		and LosingMoney
+		and Treasury < 0
+	
+		add_money apachean 2000
+	
+	end_monitor
+
+	monitor_event FactionTurnStart not FactionIsLocal
+		and FactionType chichimeca
+		and LosingMoney
+		and Treasury < 0
+	
+		add_money chichimeca 2000
+	
+	end_monitor
+
+	monitor_event FactionTurnStart not FactionIsLocal
+		and FactionType tlaxcalans
+		and LosingMoney
+		and Treasury < 0
+	
+		add_money tlaxcalans 2000
+	
+	end_monitor
+
+	monitor_event FactionTurnStart not FactionIsLocal
+		and FactionType tarascans
+		and LosingMoney
+		and Treasury < 0
+	
+		add_money tarascans 2000
+	
+	end_monitor
+
+	monitor_event FactionTurnStart not FactionIsLocal
+		and FactionType england
+		and LosingMoney
+		and Treasury < 0
+	
+		add_money england 2000
+	
+	end_monitor
+
+	monitor_event FactionTurnStart not FactionIsLocal
+		and FactionType france
+		and LosingMoney
+		and Treasury < 0
+	
+		add_money france 2000
+	
+	end_monitor
+
+;----------------- MORE CASH FOR AI ----------------;
+	
+	monitor_event FactionTurnStart not FactionIsLocal
+		and FactionType spain
+		and LosingMoney
+		and Treasury < -5000
+	
+		add_money spain 6000
+	
+	end_monitor
+
+	monitor_event FactionTurnStart not FactionIsLocal
+		and FactionType aztecs
+		and LosingMoney
+		and Treasury < -5000
+	
+		add_money aztecs 6000
+	
+	end_monitor
+
+	monitor_event FactionTurnStart not FactionIsLocal
+		and FactionType mayans
+		and LosingMoney
+		and Treasury < -5000
+	
+		add_money mayans 6000
+	
+	end_monitor
+
+	monitor_event FactionTurnStart not FactionIsLocal
+		and FactionType apachean
+		and LosingMoney
+		and Treasury < -5000
+	
+		add_money apachean 6000
+	
+	end_monitor
+
+	monitor_event FactionTurnStart not FactionIsLocal
+		and FactionType chichimeca
+		and LosingMoney
+		and Treasury < -5000
+	
+		add_money chichimeca 6000
+	
+	end_monitor
+	
+	monitor_event FactionTurnStart not FactionIsLocal
+		and FactionType tlaxcalans
+		and LosingMoney
+		and Treasury < -5000
+	
+		add_money tlaxcalans 6000
+	
+	end_monitor
+
+	monitor_event FactionTurnStart not FactionIsLocal
+		and FactionType tarascans
+		and LosingMoney
+		and Treasury < -5000
+	
+		add_money tarascans 6000
+	
+	end_monitor
+
+	monitor_event FactionTurnStart not FactionIsLocal
+		and FactionType england
+		and LosingMoney
+		and Treasury < -5000
+	
+		add_money england 6000
+	
+	end_monitor
+
+	monitor_event FactionTurnStart not FactionIsLocal
+		and FactionType france
+		and LosingMoney
+		and Treasury < -5000
+	
+		add_money france 6000
+	
+	end_monitor
+
+	;------------------- AI KINGS PURSE BONUS -------------------;
+	;money granted to AI as they do not carry out missions
+
+	monitor_event FactionTurnStart I_TurnNumber >= 0
+		and CampaignDifficulty = easy
+		
+			if I_IsFactionAIControlled spain
+				increment_kings_purse spain 500
+			end_if
+			
+			if I_IsFactionAIControlled aztecs
+				increment_kings_purse aztecs 250
+			end_if
+			
+			if I_IsFactionAIControlled mayans
+				increment_kings_purse mayans 2000
+			end_if
+			
+			if I_IsFactionAIControlled apachean
+				increment_kings_purse apachean 250
+			end_if
+			
+			if I_IsFactionAIControlled tarascans
+				increment_kings_purse tarascans 2000
+			end_if
+			
+			if I_IsFactionAIControlled tlaxcalans
+				increment_kings_purse tlaxcalans 500
+			end_if
+			
+			if I_IsFactionAIControlled chichimeca
+				increment_kings_purse chichimeca 2000
+			end_if
+
+			
+			;;give player more money on easy
+			if not I_IsFactionAIControlled spain
+				increment_kings_purse spain 2000
+			end_if
+			
+			if not I_IsFactionAIControlled aztecs
+				increment_kings_purse aztecs 500
+			end_if
+			
+			if not I_IsFactionAIControlled mayans
+				increment_kings_purse mayans 500
+			end_if
+			
+			if not I_IsFactionAIControlled apachean
+				increment_kings_purse apachean 500
+			end_if
+			
+			if not I_IsFactionAIControlled tarascans
+				increment_kings_purse tarascans 1000
+			end_if
+			
+			if not I_IsFactionAIControlled tlaxcalans
+				increment_kings_purse tlaxcalans 1000
+			end_if
+			
+			if not I_IsFactionAIControlled chichimeca
+				increment_kings_purse chichimeca 1000
+			end_if
+			
+		terminate_monitor
+	end_monitor
+	
+	monitor_event FactionTurnStart I_TurnNumber >= 0
+		and CampaignDifficulty = medium
+		
+			if I_IsFactionAIControlled spain
+				increment_kings_purse spain 1000
+			end_if
+			
+			if I_IsFactionAIControlled aztecs
+				increment_kings_purse aztecs 1000
+			end_if
+			
+			if I_IsFactionAIControlled mayans
+				increment_kings_purse mayans 3000
+			end_if
+			
+			if I_IsFactionAIControlled apachean
+				increment_kings_purse apachean 500
+			end_if
+			
+			if I_IsFactionAIControlled tarascans
+				increment_kings_purse tarascans 3000
+			end_if
+			
+			if I_IsFactionAIControlled tlaxcalans
+				increment_kings_purse tlaxcalans 1500
+			end_if
+			
+			if I_IsFactionAIControlled chichimeca
+				increment_kings_purse chichimeca 3000
+			end_if
+			
+		terminate_monitor
+	end_monitor
+	
+	monitor_event FactionTurnStart I_TurnNumber >= 0
+		and CampaignDifficulty = hard
+		
+			if I_IsFactionAIControlled spain
+				increment_kings_purse spain 3000
+			end_if
+			
+			if I_IsFactionAIControlled aztecs
+				increment_kings_purse aztecs 3000
+			end_if
+			
+			if I_IsFactionAIControlled mayans
+				increment_kings_purse mayans 4000
+			end_if
+			
+			if I_IsFactionAIControlled apachean
+				increment_kings_purse apachean 2000
+			end_if
+			
+			if I_IsFactionAIControlled tarascans
+				increment_kings_purse tarascans 4500
+			end_if
+			
+			if I_IsFactionAIControlled tlaxcalans
+				increment_kings_purse tlaxcalans 3000
+			end_if
+			
+			if I_IsFactionAIControlled chichimeca
+				increment_kings_purse chichimeca 4500
+			end_if
+			
+		terminate_monitor
+	end_monitor
+	
+	monitor_event FactionTurnStart I_TurnNumber >= 0
+		and CampaignDifficulty = very_hard
+		
+			if I_IsFactionAIControlled spain
+				increment_kings_purse spain 5000
+			end_if
+			
+			if I_IsFactionAIControlled aztecs
+				increment_kings_purse aztecs 4000
+			end_if
+			
+			if I_IsFactionAIControlled mayans
+				increment_kings_purse mayans 5000
+			end_if
+			
+			if I_IsFactionAIControlled apachean
+				increment_kings_purse apachean 3000
+			end_if
+			
+			if I_IsFactionAIControlled tarascans
+				increment_kings_purse tarascans 6500
+			end_if
+			
+			if I_IsFactionAIControlled tlaxcalans
+				increment_kings_purse tlaxcalans 4000
+			end_if
+			
+			if I_IsFactionAIControlled chichimeca
+				increment_kings_purse chichimeca 6500
+			end_if
+			
+		terminate_monitor
+	end_monitor
+
+	monitor_event FactionTurnStart FactionType chichimeca
+		
+			if I_IsFactionAIControlled chichimeca
+				add_money chichimeca 10000
+			end_if
+			
+		terminate_monitor
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType tarascans
+		
+			if I_IsFactionAIControlled tarascans
+				add_money tarascans 10000
+			end_if
+			
+		terminate_monitor
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType aztecs
+		and I_IsFactionAIControlled aztecs
+	
+		add_money aztecs 10000
+		 	
+		spawn_army 
+			faction aztecs
+			character	random_name, named character, age 46, x 78, y 36
+			traits LoyaltyStarter 1 , GoodCommander 1 , ReligionStarter 1 
+				unit		Aztec Bodyguard				exp 1 armour 0 weapon_lvl 0
+				unit		Coyote Priests				exp 1 armour 0 weapon_lvl 0
+				unit		Cuahchiqueh				exp 1 armour 0 weapon_lvl 0
+				unit		Aztec Warriors				exp 1 armour 0 weapon_lvl 0
+				unit		Aztec Warriors				exp 1 armour 0 weapon_lvl 0
+				unit		Eagle Warriors				exp 1 armour 0 weapon_lvl 0
+				unit		Eagle Warriors				exp 1 armour 0 weapon_lvl 0
+				unit		Jaguar Warriors				exp 1 armour 0 weapon_lvl 0
+				unit		Jaguar Warriors				exp 1 armour 0 weapon_lvl 0
+				unit		Arrow Warriors				exp 1 armour 0 weapon_lvl 0
+				unit		Arrow Warriors				exp 1 armour 0 weapon_lvl 0
+				unit		Aztec Spearmen				exp 1 armour 0 weapon_lvl 0
+				unit		Aztec Spearmen				exp 1 armour 0 weapon_lvl 0
+				unit		Aztec Archers				exp 0 armour 0 weapon_lvl 0
+				unit		Aztec Archers				exp 0 armour 0 weapon_lvl 0
+				unit		Aztec Spear Throwers				exp 0 armour 0 weapon_lvl 0
+				unit		Aztec Spear Throwers				exp 0 armour 0 weapon_lvl 0
+		end
+
+		spawn_army 
+			faction aztecs
+			character	random_name, named character, age 32, x 97, y 25
+			traits LoyaltyStarter 1 , GoodCommander 1 , ReligionStarter 1 
+				unit		Aztec Bodyguard				exp 1 armour 0 weapon_lvl 0
+				unit		Coyote Priests				exp 1 armour 0 weapon_lvl 0
+				unit		Cuahchiqueh				exp 1 armour 0 weapon_lvl 0
+				unit		Aztec Warriors				exp 1 armour 0 weapon_lvl 0
+				unit		Aztec Warriors				exp 1 armour 0 weapon_lvl 0
+				unit		Eagle Warriors				exp 1 armour 0 weapon_lvl 0
+				unit		Eagle Warriors				exp 1 armour 0 weapon_lvl 0
+				unit		Jaguar Warriors				exp 1 armour 0 weapon_lvl 0
+				unit		Jaguar Warriors				exp 1 armour 0 weapon_lvl 0
+				unit		Arrow Warriors				exp 1 armour 0 weapon_lvl 0
+				unit		Arrow Warriors				exp 1 armour 0 weapon_lvl 0
+				unit		Aztec Spearmen				exp 1 armour 0 weapon_lvl 0
+				unit		Aztec Spearmen				exp 1 armour 0 weapon_lvl 0
+				unit		Aztec Archers				exp 0 armour 0 weapon_lvl 0
+				unit		Aztec Archers				exp 0 armour 0 weapon_lvl 0
+				unit		Aztec Spear Throwers				exp 0 armour 0 weapon_lvl 0
+				unit		Aztec Spear Throwers				exp 0 armour 0 weapon_lvl 0
+		end
+
+		terminate_monitor
+	end_monitor
+
+	wait_monitors
+
+end_script

@@ -1,0 +1,84 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; This file should be in the same folder as descr_regions.txt 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+music_type southern_european
+
+	regions Constantinople_Province Nicaea_Province Sinope_Region Trebizond_Province Smyrna_Province
+	regions Isle_of_Crete Isle_of_Rhodes Southern_Cyprus Northern_Cyprus
+	regions Abydos_Region Palaeokastron_Region Laodicea_Region Alanya_Region Heraclea_Region
+	
+
+
+	factions byzantium portugal spain milan venice sicily papal_states 
+
+music_type middle_eastern
+
+	
+	regions Tbilisi_Province Theodoiopolis_Region Yerevan_Province Ankara_Region Malatya_Region Caesarea_Province
+	regions Doryleum_Region Iconium_Province Edessa_Province Mosul_Province Adana_Province Aleppo_Province
+	regions Attaleia_Region Baghdad_Province Antioch_Province Takrit_Region Raqqa_Region Homs_Region
+	regions Jedda_Province Krak_de_Chavliers_Region Damascus_Province Tribelands8 Tripoli_Province Baalbek_Region
+	regions Tyre_Region Banyas_Region Tribelands5 Acre_Province Tribelands4 Tribelands6 Arsuf_Region Kerak_Region
+	regions Jerusalem_Province Ascalon_Region Tribelands7 Siwa_Region Alexandria_Province Dumyat_Region Tribelands3
+	regions Tribelands2 Tribelands1 Cairo_Province Alia_Region
+	regions Kirsehir_Region Sebastea_Region Corum_Region Amorium_Region
+	regions Van_Region Diyabakir_Region Kirkuk_Region Kermanshah_Region Kufa_Region Qarisiya_Region Basra_Region
+	regions Suways_Region Tanta_Region
+
+	factions turks egypt jerusalem antioch slave moors mongols timurids
+	 
+	
+	
+	
+	
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;		
+;; added so Custom Battles will work
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+music_type northern_european
+	; england faction (see world\maps\base\descr_regions.txt)
+   	regions Dublin_Province York_Province Caernarvon_Province Nottingham_Province London_Province
+
+	; denmark
+	regions Oslo_Province Stockholm_Province Helsinki_Province Arhus_Province
+
+	; scotland
+	regions Inverness_Province Edinburgh_Province
+
+	; hre
+	regions Stettin_Province Hamburg_Province Antwerp_Province Magdeburg_Province Frankfurt_Province
+	regions Metz_Province Prague_Province Nuremburg_Province Hohenstauffen_Province Vienna_Province
+	regions Bern_Province Innsbruck_Province
+
+	; france
+	regions Bruges_Province Caen_Province Rheims_Province Rennes_Province Paris_Province
+	regions Angers_Province Dijon_Province Bordeaux_Province Toulouse_Province Marseille_Province
+
+	factions england normans denmark scotland hre saxons france
+	
+	
+	
+music_type eastern_european
+
+	; hungary
+	regions Iasi_Province Budapest_Province Bran_Province Bucharest_Province Sofia_Province
+	regions Zagreb_Province Ragusa_Province
+
+	; russia
+	regions Novgorod_Province Moscow_Province Riga_Province Volga-Bulgar_Province Smolensk_Province
+	regions Ryazan_Province Sarkel_Province Kiev_Province
+
+	; poland
+	regions Vilnius_Province Thorn_Province Halych_Province Cracow_Province Breslau_Province
+
+	factions hungary russia poland
+	
+	
+music_type mesoamerican
+
+	; aztecs
+	regions North_America Caribbean_Isles Cholula_Province Tlaxcala_Province Tenochtitlan_Province
+	regions Brazil
+
+	factions aztecs

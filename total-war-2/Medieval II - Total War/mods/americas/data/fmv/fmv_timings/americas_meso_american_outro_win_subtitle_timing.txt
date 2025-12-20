@@ -1,0 +1,3 @@
+<SYNC Start=13000>
+<P Class=ENUSCC>Americas_Meso_American_Outro_Win_1
+<SYNC Stop=29000>

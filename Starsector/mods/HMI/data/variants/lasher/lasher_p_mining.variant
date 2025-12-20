@@ -1,0 +1,42 @@
+{
+  "displayName": "Mining",
+  "fluxCapacitors": 8,
+  "fluxVents": 5,
+  "goalVariant": false,
+  "hullId": "lasher_d",
+  "hullMods": [
+    "insulatedengine",
+    "unstable_injector"
+  ],
+  "permaMods": [],
+  "quality": 0,
+  "variantId": "lasher_p_mining",
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 002": "mining_gen",
+        "WS 003": "mining_gen"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 001": "hammer",
+        "WS 004": "hammer"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 005": "retro_ml",
+        "WS 006": "retro_ml",
+        "WS 007": "retro_ml"
+      }
+    }
+  ],
+  "wings": []
+}

@@ -1,0 +1,70 @@
+{
+    "hullFrequency":{
+        	"hulls":{
+           		"mm_bishamonten":0.5,
+		"mm_mikaboshi":3,
+           		"mm_amaterasu":3,
+           		"mm_kuzuryu":3,
+           		"mm_moreya":4,
+            		"mm_hachiman":4,
+           		"mm_watatsumi":5,
+           		"mm_gongen":5,
+            		"mm_kisshoten":7,
+		"mm_nesaku":8,
+		"mm_kojin":9,
+		"mm_hoderi":9,
+		"mm_idaten":10,
+
+		"mm_ebisu":4,
+		"mm_ebisu_m":6,
+		"mm_ebisu_s":8,
+		},
+        	},
+
+    "knownShips":{
+        	"hulls":[
+           		"mm_bishamonten",
+		"mm_mikaboshi",
+           		"mm_amaterasu",
+           		"mm_moreya",
+           		"mm_kuzuryu",
+           		"mm_watatsumi",
+           		"mm_gongen",
+            		"mm_kisshoten",
+		"mm_nesaku",
+		"mm_kojin",
+		"mm_hoderi",
+		"mm_idaten",
+
+		"mm_ebisu",
+		"mm_ebisu_m",
+		"mm_ebisu_s",
+       		],
+    	},
+
+    "knownFighters":{
+	"fighters":[
+		"mm_fighter_jizo",
+		"mm_bomber_jizo",
+		"mm_support_kappa_wing",
+		"mm_bushi_interceptor_standard_wing",
+		],
+	},
+
+   
+    "knownWeapons":{
+       	"weapons":[
+            		"mm_cryofusionbattery",
+            		"mm_hypermagneticrifle",
+            		"mm_hyperblastbattery",
+            		"mm_flakstormarray",
+            		"mm_gigatichowitzer",
+            		"mm_magneticrifle",
+            		"mm_flakstormbattery",
+            		"mm_cryoflamser",
+            		"mm_autoflakpd",
+            		"mm_miniflakpd",
+            		"mm_machineturretpd",
+        		],
+    	},
+},

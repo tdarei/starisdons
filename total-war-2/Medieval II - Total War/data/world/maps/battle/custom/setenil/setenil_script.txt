@@ -1,0 +1,1076 @@
+;;;;**********************************************************************************************
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Siege of Setenil BATTLE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;**********************************************************************************************
+
+script
+
+;;;;init
+	prepare_for_battle
+
+;;;;*************************************************************************************************
+;;;;	LABEL UNITS
+;;;;*************************************************************************************************
+	
+
+	;MOORS Castle force
+	;General and Cavalry and Crossbowmen inside Keep
+	label_unit 1 0 0 MOORE_general
+	label_unit 1 0 9 Crossbows_3
+	label_unit 1 0 16 GranadineLancers_1
+	label_unit 1 0 17 GranadineLancers_2
+	;Inside Castle
+	label_unit 1 0 1 UrbanMilita_1
+	label_unit 1 0 2 UrbanMilita_2
+	label_unit 1 0 3 UrbanMilita_3
+	label_unit 1 0 19 UrbanMilita_5
+	label_unit 1 0 4 DismountedArabCav_1
+	label_unit 1 0 5 DismountedArabCav_2
+	label_unit 1 0 6 DismountedArabCav_3
+	label_unit 1 0 7 Crossbows_1
+	label_unit 1 0 8 Crossbows_2
+	label_unit 1 0 10 Crossbows_4
+	
+	
+	;MOORS EXTERNAL FORCE
+	label_unit 1 0 14 Javelins_1
+	label_unit 1 0 15 Javelins_2
+	label_unit 1 0 18 UrbanMilita_4
+
+	
+	;MOORS Artillery
+	label_unit 1 0 11 Trebuchet_1
+	label_unit 1 0 12 Trebuchet_2
+	label_unit 1 0 13 Trebuchet_3
+	
+		
+;;; SPA
+	;SPA general and Artiller
+	 label_unit 0 0 0 SPA_general
+	 label_unit 0 0 1 Gendarmes_1
+	 label_unit 0 0 2 Gendarmes_2
+	 label_unit 0 0 3 Gendarmes_3
+	 label_unit 0 0 4 SwdBuckMen_1
+     label_unit 0 0 5 SwdBuckMen_2
+	 label_unit 0 0 6 SwdBuckMen_3
+	 label_unit 0 0 7 SwdBuckMen_4
+	 label_unit 0 0 8 Almughavars_1
+	 label_unit 0 0 9 Almughavars_2
+	 label_unit 0 0 10 CrossbowMilita_1
+	 label_unit 0 0 11 CrossbowMilita_2
+	 label_unit 0 0 12 CrossbowMilita_3
+	 label_unit 0 0 13 CrossbowMilita_4
+	 label_unit 0 0 14 Basilisk_1
+	 label_unit 0 0 15 Basilisk_2
+	 label_unit 0 0 16 Basilisk_3
+	 label_unit 0 0 17 Basilisk_4
+	 label_unit 0 0 18 Culverin_1
+	 label_unit 0 0 19 Culverin_2
+	 
+	 
+	
+;;;;**********************************************************************************************
+;;;;	TURN THE AI OFF. REMEMBER TO TURN ON AGAIN WHEN YOU ARE READY FOR IT 
+;;;;**********************************************************************************************
+
+
+	suspend_unscripted_advice true
+	ai_active_set off
+	set_music_state custom Arabic_Tension 	;tension, mobilize, battle or custom
+
+	camera_default_mode_set		tw
+	camera_restrictions_set off
+	disable_cursor 						;prevent the player clicking
+	disable_shortcuts true
+	disable_entire_ui
+	disable_shortcuts toggle_pause_button false	
+	enable_ui toggle_pause_button
+	inhibit_camera_input true
+	hide_ui
+	unit_use_special_ability Trebuchet_3
+	unit_use_special_ability Trebuchet_2
+	unit_use_special_ability Trebuchet_1
+;		disable_shortcuts false	
+; 		enable_entire_ui
+;  		camera_restrictions_set on
+; 		inhibit_camera_input false
+; 	 	enable_cursor
+; 	 	show_ui
+;-----------------------------------------------------------------------------------------------------------
+	steal_esc_key on
+
+	monitor_event EscPressed TrueCondition
+		set_counter start_battle 1
+		terminate_monitor
+	end_monitor
+;-----------------------------------------------------------------------------------------------------------
+
+		set_camera_bookmark 1 -345.608, 172.495, 245.265  -337.967, 174.488, 251.602 ;side view of castle looking at the sun
+ 		set_camera_bookmark 2 -375.316, 183.362, 537.274  -365.563, 182.568, 539.467 ;rotating towards back
+ 		set_camera_bookmark 3 -317.561, 208.413, 862.066  -310.754, 207.619, 854.745 ;at back of castle
+ 	 	set_camera_bookmark 4 -49.1439, 98.9506, -111.686 -43.0334, 96.7006, -119.472 ;King Ferdinand from side
+ 		set_camera_bookmark 5  49.6833, 99.6425, -118.294 46.3648, 97.5968, -109.3 ;left Artillery Low
+ 		set_camera_bookmark 6 -50.3548, 100.527, -118.194 -45.2251, 96.3159, -110.149 ;behind Ferdinand
+ 		set_camera_bookmark 7 104.482, 80.1834, -0.262415 103.27, 79.0119, -10.1882 ;walkby end
+ 		set_camera_bookmark 8 -49.316, 88.7507, -72.8639 -56.9686, 87.6231, -79.1067 ;right artillery
+ 		set_camera_bookmark 9  -7.08023, 81.1777, -42.7528 -6.51598, 79.9653, -32.9206;lower shot looking at men and castle
+  		set_camera_bookmark 10 63.5989, 81.7908, -40.1515 61.3525, 80.5784, -30.5628 ;pan accross men
+  		set_camera_bookmark 11 40.464, 130.751, -32.8139 36.7363, 126.985, -41.502 ;artiller camp pan start
+  		set_camera_bookmark 12 -29.3882, 128.574, -16.1702 -29.0173, 124.808, -25.6171 ;artillery camp middle pan
+  		set_camera_bookmark 13 -98.2114, 129.858, -36.2562 -93.489, 126.092, -44.4463 ;artillery pan right
+	   	set_camera_bookmark 14 537.66, 140.785, 156.702 529.368, 140.786, 162.196 ;shot of setenil
+	   	set_camera_bookmark 15 -113.479, 101.238, 10.4763 -110.697, 99.8659, 19.8308 ;shot of ramp
+	   	set_camera_bookmark 16 -29.6076, 154.439, 195.69 -29.5926, 151.377, 205.023 ;zoom up ramp to gate
+		set_camera_bookmark 17 495.926, 382.454, 82.7204 490.699, 376.667, 88.2873 ;High shot of setenil
+	   	set_camera_bookmark 18 -113.633, 113.94, -139.093  -107.828, 111.7, -131.132 ;over cannons shoulders
+	   	set_camera_bookmark 19 52.9775, 96.4279, -100.743 46.4252, 95.8459, -108.172 ; four cannons
+	  	set_camera_bookmark 20 31.2334, 95.3616, -107.652 38.5521, 97.7651, -101.099 ; close up of barrel
+    	set_camera_bookmark 21 36.1934, 126.424, 182.644 35.7679, 125.876, 192.58 ;Wall being hit hopefully
+
+
+
+; Position: -116.973, 108.879, -140.20
+; Target: -113.733, 106.47, -131.309
+
+
+
+;52.0115, 95.6336, -69.5839 46.0675, 94.4212, -77.4362 ;artillery left position
+;-22.0125, 94.5883, -55.4693 -22.1284, 93.3759, -65.317 ; moving to right arty
+;-55.2304, 93.0143, -55.0781 -55.3464, 91.8019, -64.9258 ;moving to right arty 2
+;-100.248, 102.456, -61.4518 -95.2276, 101.244, -69.9248 ;right arty
+;4.59407, 76.5523, -17.7802 0.699673, 80.0821, -9.06418
+;-113.633, 113.94, -139.093  -107.828, 111.7, -131.132 ;over cannons shoulders
+;32.0763, 106.492, -60.1542 28.0067, 104.114, -51.5016 ;view of ramp
+;63.9164, 174.27, 352.927 63.6289, 168.428, 344.554 ;View of trebs and wall
+;63.439, 128.778, 330.052 61.2501, 126.88, 320.391 ;Close view of Trebs firing hopefully
+
+; -49.1439, 98.9506, -111.686 -43.0334, 96.7006, -119.472
+
+; -51.5741, 99.1434, -115.515 -42.2639, 97.9819, -112.431
+
+; -50.3548, 100.527, -118.194 -45.2251, 96.3159, -110.149
+
+
+
+;-89.1389, 222.653, 864   -88.2518, 217.663, 855.054 ;rear view of castle
+;-57.4283, 139.46, 210.144  -56.4354, 136.406, 200.873 ;lookingouotwards from castle towards spanish emplacement+-
+  	
+;;;;*************************************************************************************************
+;;;; Declare Line
+;;;;*************************************************************************************************
+label_location -74, 48 entranceStartLine
+label_location -104, 50 entranceEndLine 
+label_location 371 245.5 castleStartLine
+label_location -192 257 castleEndLine
+;;;;*************************************************************************************************
+;;;; Declare counters
+;;;;*************************************************************************************************
+declare_counter Line_Crossed
+declare_counter Line2_Crossed
+declare_counter start_battle
+declare_counter treb2move 1
+declare_counter treb3move 1
+declare_counter Javready1
+declare_counter Javready2
+declare_counter Javidle1
+declare_counter Javidle2
+declare_counter Urbidle
+declare_counter Urbready
+
+;;;;*************************************************************************************************
+;;;; Battle Action Start
+;;;;*************************************************************************************************
+
+
+monitor_conditions I_CompareCounter start_battle = 0
+		
+		;view at rear of castle
+		camera_position_at_bookmark 1
+		battle_wait 1
+		; 1484, Setenil, Emirate of Granada.
+		play_sound_event SETENIL_NARRATOR_1 tag = SETENIL_NARRATOR_1
+		while I_CompareCounter start_battle = 1
+		end_while
+				
+		battle_wait 4 
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+ 		while I_SoundPlaying SETENIL_NARRATOR_1
+ 		end_while
+
+			; As the Reconquista of the Iberian Peninsula from the Islamic Moors continues, Spain finds its efforts revitalized 
+			; by its zealous Catholic monarchs, King Ferdinand and Queen Isabella.
+		play_sound_event SETENIL_NARRATOR_2 tag = SETENIL_NARRATOR_2
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+
+
+ 		camera_zoom_to_bookmark 2 65
+		camera_zoom_to_bookmark 3 65
+		
+		while I_SoundPlaying SETENIL_NARRATOR_2
+		end_while
+
+		while I_CompareCounter start_battle = 1
+		end_while
+
+		;show spanish general and troops
+ 		;camera_position_at_bookmark 5
+		unit_taunt SPA_general
+ 		unit_order_move Gendarmes_1 -781 14
+		unit_order_move Gendarmes_2 -781 14
+		unit_order_move Gendarmes_3 -781 14
+		unit_order_move SwdBuckMen_1 -781 21.6
+		unit_order_move SwdBuckMen_2 -781 21.6
+		unit_order_move SwdBuckMen_3 -781 21.6
+		unit_order_move SwdBuckMen_4 -781 21.6
+		unit_order_move Almughavars_1 -781 21.6
+		unit_order_move Almughavars_2 -781 21.6
+		unit_order_move CrossbowMilita_1 -781 21.6
+		unit_order_move CrossbowMilita_2 -781 21.6
+		unit_order_move CrossbowMilita_3 -781 21.6
+		unit_order_move CrossbowMilita_4 -781 21.6
+ 	 		
+ 		while I_CompareCounter start_battle = 1
+		end_while
+		; SETENIL_NARRATOR_3
+		; King Ferdinand, leading the Spanish efforts on the field, is renowned as a skilled warrior with a passion for artillery.
+		play_sound_event SETENIL_NARRATOR_3 tag = SETENIL_NARRATOR_3
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+		camera_position_at_bookmark 4
+		battle_wait 3
+		while I_CompareCounter start_battle = 1
+		end_while
+ 		camera_zoom_to_bookmark 6 13
+ 		while I_CompareCounter start_battle = 1
+ 		end_while
+ 		battle_wait 3.5
+		camera_position_at_bookmark 5
+		battle_wait 2
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		while I_SoundPlaying SETENIL_NARRATOR_3
+		end_while
+
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		; SETENIL_NARRATOR_4
+		; The Spanish King now seeks to remove yet another Moorish fortress, keeping to his policy of leaving no enemies behind him as he moves towards the Moors' capital.
+		play_sound_event SETENIL_NARRATOR_4 tag = SETENIL_NARRATOR_4
+		
+		camera_position_at_bookmark 9
+		battle_wait 1
+		while I_CompareCounter start_battle = 1
+		end_while
+		camera_zoom_to_bookmark 10 12
+		battle_wait 2
+		unit_immediate_place SPA_general -45.361 -115.788 2 10
+		while I_CompareCounter start_battle = 1
+		end_while
+		while I_SoundPlaying SETENIL_NARRATOR_4
+		end_while
+		
+		; SETENIL_NARRATOR_5
+		; With a new train of artillery provided by his wife Queen Isabella, King Ferdinand builds a small artillery emplacement outside Setenil’s walls and prepares to lay waste to the defences.
+		play_sound_event SETENIL_NARRATOR_5 tag = SETENIL_NARRATOR_5
+		unit_order_attack_unit Basilisk_4 UrbanMilita_1
+		;battle_wait 2
+		unit_order_attack_unit Basilisk_3 UrbanMilita_1
+		while I_CompareCounter start_battle = 1
+		end_while
+		camera_position_at_bookmark 11
+		while I_CompareCounter start_battle = 1
+		end_while
+		;unit_order_attack_unit Basilisk_4 UrbanMilita_1
+		;unit_order_attack_unit Basilisk_3 UrbanMilita_1
+		battle_wait 2
+		while I_CompareCounter start_battle = 1
+		end_while
+		camera_zoom_to_bookmark 12 12
+		
+		;get basilisks firing for movie
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+		camera_zoom_to_bookmark 13 12
+		battle_wait 1
+		
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+		while I_SoundPlaying SETENIL_NARRATOR_5
+		end_while
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		; SETENIL_NARRATOR_6
+		; Built on a giant rock, with the only access a ramp carved from stone leading up to the fortress, Setenil will be as impenetrable as the stone on which it is built.
+		play_sound_event SETENIL_NARRATOR_6 tag = SETENIL_NARRATOR_6
+		while I_CompareCounter start_battle = 1
+		end_while
+		camera_position_at_bookmark 14
+
+		while I_CompareCounter start_battle = 1
+		end_while
+		battle_wait 2
+		while I_CompareCounter start_battle = 1
+		end_while
+		camera_position_at_bookmark 15
+		battle_wait 2
+		while I_CompareCounter start_battle = 1
+		end_while
+		camera_zoom_to_bookmark 16 45
+		battle_wait 2
+		
+		unit_immediate_place Gendarmes_1 -103.252 -52.336 -2 14
+		unit_immediate_place Gendarmes_2 -97.090 -19.555 0 14
+		unit_immediate_place Gendarmes_3 -81.162 -51.227 0 14
+		unit_immediate_place SwdBuckMen_1 -62.362 -10.456 1 11.651
+		unit_immediate_place SwdBuckMen_2 -62.395 -25.694 0 11.363
+		unit_immediate_place SwdBuckMen_3 -62.542 -39.011 -6 10.902
+		unit_immediate_place SwdBuckMen_4 -47.458 -10.612 -1 13.514
+		unit_immediate_place Almughavars_1 -46.494 -23.041 -3 13.853
+		unit_immediate_place Almughavars_2 -45.923 -34.956 -3 13.409
+		unit_immediate_place CrossbowMilita_1 -20.861 -4.602 1 16.708
+		unit_immediate_place CrossbowMilita_2 -2.266 -5.110 0 19.754
+		unit_immediate_place CrossbowMilita_3 -22.627 -23.129 -1 19.609
+		unit_immediate_place CrossbowMilita_4 1.181 -21.302 -2 20.095
+		while I_CompareCounter start_battle = 1
+		end_while
+		while I_SoundPlaying SETENIL_NARRATOR_6
+		end_while
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		; SETENIL_NARRATOR_7	
+		; The King, confident in his cannons, builds no siege equipment, believing he can destroy the walls at range and hasten the Moors' demise.
+		play_sound_event SETENIL_NARRATOR_7 tag = SETENIL_NARRATOR_7
+		while I_CompareCounter start_battle = 1
+		end_while
+		camera_position_at_bookmark 19
+		while I_CompareCounter start_battle = 1
+		end_while
+		battle_wait 2.0
+		while I_CompareCounter start_battle = 1
+		end_while
+		camera_position_at_bookmark 20
+		while I_CompareCounter start_battle = 1
+		end_while
+		battle_wait 3.0
+		while I_CompareCounter start_battle = 1
+		end_while
+		camera_position_at_bookmark 21
+		while I_CompareCounter start_battle = 1
+		end_while
+		battle_wait 2
+		set_camera_bookmark 1 63.9164, 174.27, 352.927 63.6289, 168.428, 344.554 ;View of trebs and wall
+		set_camera_bookmark 2 36.2675, 145.18, 292.476 35.6673, 141.638, 282.873 ;Close view of Trebs firing hopefully
+		set_camera_bookmark 3 30.3383, 134.778, 252.065 30.3244, 132.414, 242.582 ;xbows on walls 1
+		set_camera_bookmark 4 125.843, 132.418, 295.825 121.356, 131.739, 287.017 ;xbows on walls 2
+		set_camera_bookmark 5 -6.48782, 176.63, 366.373 -6.50068, 171.397, 357.617 ;overview looking at spaniards
+		set_camera_bookmark 6 -65.6837, 133.467, 248.988 -65.8395, 132.152, 239.006 ;xbows on walls 3
+		set_camera_bookmark 7 -104.921, 149.667, 591.99 -104.747, 148.352, 582.009 ;xbows on walls 4
+		set_camera_bookmark 8 -17.2524, 199.359, 165.619 -17.4609, 196.7, 175.058 ;Setenil from front
+		set_camera_bookmark 9 -26.5258, 222.772, 585.451 -26.7343, 220.113, 594.89; setenil moving towards keep
+		set_camera_bookmark 10 -47.0999, 171.277, 630.365 -51.0701, 168.408, 638.887; Looking at plaza
+		set_camera_bookmark 11 -88.535, 83.3761, 7.47402 -81.9322, 83.1955, 0.00411123 ;looking at spanish army
+		set_camera_bookmark 12 -32.4785, 110.378, -142.924 -32.5427, 108.073, -133.331 ;Final shot
+
+
+	
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		while I_SoundPlaying SETENIL_NARRATOR_7
+		end_while
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		; SETENIL_NARRATOR_8
+		; The Moors stand prepared, with ample crossbowmen and artillery positioned behind the protective walls, ready to bleed the Spaniards dry unless they can quickly drive through these walls.
+		play_sound_event SETENIL_NARRATOR_8 tag = SETENIL_NARRATOR_8
+		while I_CompareCounter start_battle = 1
+		end_while
+		unit_order_halt Basilisk_3
+		unit_order_halt Basilisk_4
+		camera_position_at_bookmark 1
+		unit_immediate_place Culverin_1 -58.911 -75.914 -6 15
+ 		unit_immediate_place Culverin_2 4.755 -78.561 -4 15
+		;unit_use_special_ability Trebuchet_1
+		unit_order_attack_unit Trebuchet_1 SwdBuckMen_4
+		while I_CompareCounter start_battle = 1
+		end_while
+		battle_wait 0.5
+		while I_CompareCounter start_battle = 1
+		end_while
+		;unit_use_special_ability Trebuchet_2
+		unit_order_attack_unit Trebuchet_2 CrossbowMilita_1
+		while I_CompareCounter start_battle = 1
+		end_while
+		battle_wait 0.5
+		while I_CompareCounter start_battle = 1
+		end_while
+		;unit_use_special_ability Trebuchet_3 	 	
+ 	 	unit_order_attack_unit Trebuchet_3 Gendarmes_2
+		while I_CompareCounter start_battle = 1
+		end_while
+		battle_wait 2
+		while I_CompareCounter start_battle = 1
+		end_while
+		camera_position_at_bookmark 3
+		battle_wait 1
+		while I_CompareCounter start_battle = 1
+		end_while
+		camera_position_at_bookmark 4
+		battle_wait 1
+		while I_CompareCounter start_battle = 1
+		end_while
+		camera_position_at_bookmark 6
+		battle_wait 1
+		while I_CompareCounter start_battle = 1
+		end_while
+		camera_position_at_bookmark 7 
+		battle_wait 1
+		while I_CompareCounter start_battle = 1
+		end_while
+		camera_position_at_bookmark 2
+		while I_CompareCounter start_battle = 1
+		end_while
+		battle_wait 5
+		while I_CompareCounter start_battle = 1
+		end_while
+		camera_position_at_bookmark 5
+		battle_wait 2
+		while I_CompareCounter start_battle = 1
+		end_while
+		while I_SoundPlaying SETENIL_NARRATOR_8
+		end_while
+		while I_CompareCounter start_battle = 1
+		end_while
+; SETENIL_NARRATOR_9
+; For the Reconquista to proceed, Setenil must be captured. A hard land breeds a hard people, today the Spanish must be the harder.
+		play_sound_event SETENIL_NARRATOR_9 tag = SETENIL_NARRATOR_9
+		while I_CompareCounter start_battle = 1
+		end_while
+		camera_position_at_bookmark 8
+		battle_wait 1
+		while I_CompareCounter start_battle = 1
+		end_while
+		camera_zoom_to_bookmark 9 350
+		battle_wait 2
+		while I_CompareCounter start_battle = 1
+		end_while
+		camera_zoom_to_bookmark 10 350
+		battle_wait 1.5
+		while I_CompareCounter start_battle = 1
+		end_while
+		unit_immediate_place Javelins_1 92.663 139.962 177 35.213
+		unit_immediate_place Javelins_2 -55.104 139.200 178 34.739
+		unit_immediate_place UrbanMilita_4 -9.741 168.515 -179 21.262
+		camera_position_at_bookmark 11
+		battle_wait 3
+		while I_CompareCounter start_battle = 1
+		end_while
+		camera_zoom_to_bookmark 12 45
+		battle_wait 5
+		unit_immediate_place MOORE_general -53.567 718.166 179 22.347
+		unit_immediate_place UrbanMilita_1 44.207 265.100 -180 11.295
+		unit_immediate_place UrbanMilita_2 195.316 302.373 -180 24.202
+		unit_immediate_place UrbanMilita_3 -69.861 265.360 178 11.982
+		unit_immediate_place DismountedArabCav_1 -22.477 261.333 -180 11.122
+		unit_immediate_place DismountedArabCav_2 14.577 266.055 179 11.634
+		unit_immediate_place DismountedArabCav_3 128.162 303.387 -178 43.675
+		unit_immediate_place Crossbows_1 -56.740 241.069 -178 25.608
+		unit_immediate_place Crossbows_2 119.539 291.686 178 42.593
+		unit_immediate_place Crossbows_3 -96.776 586.099 -180 38.143		
+		unit_immediate_place Crossbows_4 30.784 244.984 -180 81.810
+		;unit_immediate_place Trebuchet_1 52.473 308.672 -179 8.612
+		;unit_immediate_place Trebuchet_2 64.950 307.926 -180 1.000
+		;unit_immediate_place Trebuchet_3 -72.600 290.882 -180 5.622
+		unit_immediate_place Javelins_1 92.663 139.962 177 35.213
+		unit_immediate_place Javelins_2 -55.104 139.200 178 34.739
+		unit_immediate_place GranadineLancers_1 -24.530 716.397 -179 26.711
+		unit_immediate_place GranadineLancers_2 -81.545, 717.048 -179 26.851
+		unit_immediate_place UrbanMilita_4 -9.741 168.515 -179 21.262
+		unit_immediate_place UrbanMilita_5 -91.613 323.141 -178 11.174
+		;move units in
+		unit_immediate_place SPA_general -45.361 -115.788 2 10
+		unit_immediate_place Gendarmes_1 -103.252 -52.336 -2 14
+		unit_immediate_place Gendarmes_2 -97.090 -19.555 0 14
+		unit_immediate_place Gendarmes_3 -81.162 -51.227 0 14
+		unit_immediate_place SwdBuckMen_1 -62.362 -10.456 1 11.651
+		unit_immediate_place SwdBuckMen_2 -62.395 -25.694 0 11.363
+		unit_immediate_place SwdBuckMen_3 -62.542 -39.011 -6 10.902
+		unit_immediate_place SwdBuckMen_4 -47.458 -10.612 -1 13.514
+		unit_immediate_place Almughavars_1 -46.494 -23.041 -3 13.853
+		unit_immediate_place Almughavars_2 -45.923 -34.956 -3 13.409
+		unit_immediate_place CrossbowMilita_1 -20.861 -4.602 1 16.708
+		unit_immediate_place CrossbowMilita_2 -2.266 -5.110 0 19.754
+		unit_immediate_place CrossbowMilita_3 -22.627 -23.129 -1 19.609
+		unit_immediate_place CrossbowMilita_4 1.181 -21.302 -2 20.095
+		unit_order_halt Basilisk_3
+		unit_order_halt Basilisk_4
+		battle_wait 1
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		
+		while I_SoundPlaying SETENIL_NARRATOR_8
+		end_while
+		while I_CompareCounter start_battle = 1
+		end_while		
+		
+		set_counter start_battle 1
+		
+		terminate_monitor
+	end_monitor	
+
+
+
+	
+
+;;;;*************************************************************************************************
+;;;; START BATTLE
+;;;;*************************************************************************************************			
+	
+	monitor_conditions I_CompareCounter start_battle = 1
+		
+		steal_esc_key off
+		
+		; ------------
+		; RE-ENABLE UI
+		; ------------
+  		disable_shortcuts false	
+  		enable_entire_ui
+  		camera_restrictions_set on
+ 		inhibit_camera_input false
+ 	 	enable_cursor
+ 	 	show_ui
+		camera_default_mode_set	user_pref
+		
+	 	stop_sound_event SETENIL_NARRATOR_1
+	 	stop_sound_event SETENIL_NARRATOR_2
+	 	stop_sound_event SETENIL_NARRATOR_3
+	 	stop_sound_event SETENIL_NARRATOR_4
+	 	stop_sound_event SETENIL_NARRATOR_5
+	 	stop_sound_event SETENIL_NARRATOR_6
+	 	stop_sound_event SETENIL_NARRATOR_7
+	 	stop_sound_event SETENIL_NARRATOR_8
+	 	stop_sound_event SETENIL_NARRATOR_9
+
+	 	set_music_state tension
+	 	
+	 	
+	 	
+	 	;;;	teleport troops into starting positions
+		
+		;move spanish group to start positions
+		unit_immediate_place SPA_general -45.361 -115.788 2 10
+		unit_immediate_place Gendarmes_1 -103.252 -52.336 -2 14
+		unit_immediate_place Gendarmes_2 -97.090 -19.555 0 14
+		unit_immediate_place Gendarmes_3 -81.162 -51.227 0 14
+		unit_immediate_place SwdBuckMen_1 -62.362 -10.456 1 11.651
+		unit_immediate_place SwdBuckMen_2 -62.395 -25.694 0 11.363
+		unit_immediate_place SwdBuckMen_3 -62.542 -39.011 -6 10.902
+		unit_immediate_place SwdBuckMen_4 -47.458 -10.612 -1 13.514
+		unit_immediate_place Almughavars_1 -46.494 -23.041 -3 13.853
+		unit_immediate_place Almughavars_2 -45.923 -34.956 -3 13.409
+		unit_immediate_place CrossbowMilita_1 -20.861 -4.602 1 16.708
+		unit_immediate_place CrossbowMilita_2 -2.266 -5.110 0 19.754
+		unit_immediate_place CrossbowMilita_3 -22.627 -23.129 -1 19.609
+		unit_immediate_place CrossbowMilita_4 1.181 -21.302 -2 20.095
+; 		unit_immediate_place Basilisk_1 -112.863 -114.737 1 6.022
+; 		unit_immediate_place Basilisk_2 -97.057 -115.162 2 6.765
+; 		unit_immediate_place Basilisk_3 31.683 -105.392 3 5.019
+; 		unit_immediate_place Basilisk_4 47.646 -105.941 0 5.753
+ 		unit_immediate_place Culverin_1 -58.911 -75.914 -6 15
+ 		unit_immediate_place Culverin_2 4.755 -78.561 -4 15
+		unit_order_halt Basilisk_3
+		unit_order_halt Basilisk_4
+		;;; move Moores units into starting positions	
+		unit_immediate_place MOORE_general -53.567 718.166 179 22.347
+		unit_immediate_place UrbanMilita_1 44.207 265.100 -180 11.295
+		unit_immediate_place UrbanMilita_2 195.316 302.373 -180 24.202
+		unit_immediate_place UrbanMilita_3 -69.861 265.360 178 11.982
+		unit_immediate_place DismountedArabCav_1 -22.477 261.333 -180 11.122
+		unit_immediate_place DismountedArabCav_2 14.577 266.055 179 11.634
+		unit_immediate_place DismountedArabCav_3 128.162 303.387 -178 43.675
+		unit_immediate_place Crossbows_1 -56.740 241.069 -178 25.608
+		unit_immediate_place Crossbows_2 119.539 291.686 178 42.593
+		unit_immediate_place Crossbows_3 -96.776 586.099 -180 38.143		
+		unit_immediate_place Crossbows_4 30.784 244.984 -180 81.810
+		;unit_immediate_place Trebuchet_1 52.473 308.672 -179 8.612
+		;unit_immediate_place Trebuchet_2 64.950 307.926 -180 1.000
+		;unit_immediate_place Trebuchet_3 -72.600 290.882 -180 5.622
+		unit_immediate_place Javelins_1 92.663 139.962 177 35.213
+		unit_immediate_place Javelins_2 -55.104 139.200 178 34.739
+		unit_immediate_place GranadineLancers_1 -24.530 716.397 -179 26.711
+		unit_immediate_place GranadineLancers_2 -81.545, 717.048 -179 26.851
+		unit_immediate_place UrbanMilita_4 -9.741 168.515 -179 21.262
+		unit_immediate_place UrbanMilita_5 -91.613 323.141 -178 11.174
+; 		unit_use_special_ability Trebuchet_1
+; 		unit_use_special_ability Trebuchet_2
+; 		unit_use_special_ability Trebuchet_3
+		unit_order_attack_unit Trebuchet_1 SwdBuckMen_4
+ 	 	unit_order_attack_unit Trebuchet_2 CrossbowMilita_1
+ 	 	unit_order_attack_unit Trebuchet_3 Gendarmes_2
+		set_camera_bookmark 12 -32.4785, 110.378, -142.924 -32.5427, 108.073, -133.331 ;Final shot
+		camera_position_at_bookmark 12
+	terminate_monitor
+	end_monitor
+
+
+
+;;;;*************************************************************************************************
+;;;; Start Battle
+;;;;*************************************************************************************************
+		; ------------
+		; RE-ENABLE UI
+		; ------------
+;  		disable_shortcuts false	
+;  		enable_entire_ui
+;  		camera_restrictions_set on
+; 		inhibit_camera_input false
+; 	 	enable_cursor
+; 	 	show_ui
+	 	
+	 	
+	 	;Activate Special Abilities 
+	 	;Trebuchets target spanish troops
+;  	 	unit_order_attack_unit Trebuchet_1 SwdBuckMen_2
+;  	 	unit_order_attack_unit Trebuchet_2 CrossbowMilita_3
+;  	 	unit_order_attack_unit Trebuchet_3 Gendarmes_3
+	 	;Disable skirmish 
+	 	unit_set_skirmish_mode Javelins_1 off
+	 	unit_set_skirmish_mode Javelins_2 off
+	 	
+	 	;;Activating defenses
+	 	monitor_conditions I_UnitDistanceFromPosition SPA_general -91.28 52.621 < 10
+	 	inc_counter Line_Crossed 1
+	 	terminate_monitor
+		end_monitor
+	 	
+		monitor_conditions I_UnitDistanceFromPosition Gendarmes_1 -91.28 52.621 < 10
+	 	inc_counter Line_Crossed 1
+	 	terminate_monitor
+		end_monitor
+		
+		monitor_conditions I_UnitDistanceFromPosition Gendarmes_2 -91.28 52.621 < 10
+	 	inc_counter Line_Crossed 1
+	 	terminate_monitor
+		end_monitor
+	 	
+		monitor_conditions I_UnitDistanceFromPosition Gendarmes_3 -91.28 52.621 < 10
+	 	inc_counter Line_Crossed 1
+	 	terminate_monitor
+		end_monitor
+		
+		monitor_conditions I_UnitDistanceFromPosition SwdBuckMen_1 -91.28 52.621 < 10
+	 	inc_counter Line_Crossed 1
+	 	terminate_monitor
+		end_monitor
+		
+		monitor_conditions I_UnitDistanceFromPosition SwdBuckMen_2 -91.28 52.621 < 10
+	 	inc_counter Line_Crossed 1
+	 	terminate_monitor
+		end_monitor
+		
+		monitor_conditions I_UnitDistanceFromPosition SwdBuckMen_3 -91.28 52.621 < 10
+	 	inc_counter Line_Crossed 1
+	 	terminate_monitor
+		end_monitor
+		
+		monitor_conditions I_UnitDistanceFromPosition SwdBuckMen_4 -91.28 52.621 < 10
+	 	inc_counter Line_Crossed 1
+	 	terminate_monitor
+		end_monitor 
+		
+		monitor_conditions I_UnitDistanceFromPosition Almughavars_1 -91.28 52.621 < 10
+	 	inc_counter Line_Crossed 1 Almughavars_1
+	 	terminate_monitor
+		end_monitor
+		
+		monitor_conditions I_UnitDistanceFromPosition Almughavars_2 -91.28 52.621 < 10
+	 	inc_counter Line_Crossed 1
+	 	terminate_monitor
+		end_monitor
+		
+		monitor_conditions I_UnitDistanceFromPosition CrossbowMilita_1 -91.28 52.621 < 10
+	 	inc_counter Line_Crossed 1
+	 	terminate_monitor
+		end_monitor
+		
+		monitor_conditions I_UnitDistanceFromPosition CrossbowMilita_2 -91.28 52.621 < 10
+	 	inc_counter Line_Crossed 1
+	 	terminate_monitor
+		end_monitor
+		
+		monitor_conditions I_UnitDistanceFromPosition CrossbowMilita_3 -91.28 52.621 < 10
+	 	inc_counter Line_Crossed 1
+	 	terminate_monitor
+		end_monitor
+		
+		monitor_conditions I_UnitDistanceFromPosition CrossbowMilita_4 -91.28 52.621 < 10
+	 	inc_counter Line_Crossed 1
+	 	terminate_monitor
+		end_monitor
+		
+		monitor_conditions I_UnitDistanceFromPosition Basilisk_1 -91.28 52.621 < 10
+	 	inc_counter Line_Crossed 1
+	 	terminate_monitor
+		end_monitor
+		
+		monitor_conditions I_UnitDistanceFromPosition Basilisk_2 -91.28 52.621 < 10
+	 	inc_counter Line_Crossed 1
+	 	terminate_monitor
+		end_monitor
+		
+		monitor_conditions I_UnitDistanceFromPosition Basilisk_3 -91.28 52.621 < 10
+	 	inc_counter Line_Crossed 1
+	 	terminate_monitor
+		end_monitor
+		
+		monitor_conditions I_UnitDistanceFromPosition Basilisk_4 -91.28 52.621 < 10
+	 	inc_counter Line_Crossed 1
+	 	terminate_monitor
+		end_monitor
+		
+		monitor_conditions I_UnitDistanceFromPosition Culverin_1 -91.28 52.621 < 10
+	 	inc_counter Line_Crossed 1
+	 	terminate_monitor
+		end_monitor
+		
+		monitor_conditions I_UnitDistanceFromPosition Culverin_2 -91.28 52.621 < 10
+	 	inc_counter Line_Crossed 1
+	 	terminate_monitor
+		end_monitor
+		
+
+;Release the Trebs!
+ 		
+ 			monitor_conditions I_UnitEnemyUnitInRadius Trebuchet_1 100
+  			unit_order_move Trebuchet_1 59.6 361.4
+ 			;release_unit Trebuchet_1
+  			terminate_monitor
+  			end_monitor
+ 			
+  			monitor_conditions I_UnitEnemyUnitInRadius Trebuchet_2 100
+   			unit_order_move Trebuchet_2 -32 500
+ 			terminate_monitor
+   			end_monitor
+  			
+  			monitor_conditions I_UnitEnemyUnitInRadius Trebuchet_3 100
+   			unit_order_move Trebuchet_3 -93 400
+ 			terminate_monitor
+   			end_monitor	
+		
+		
+ 			monitor_conditions I_UnitDistanceFromPosition Trebuchet_1 59.6 361.4 < 10
+ 			;release_unit Trebuchet_1
+ 			unit_order_attack_closest_unit Trebuchet_1 180
+  			terminate_monitor
+ 			end_monitor
+ 			
+ 			monitor_conditions I_UnitDistanceFromPosition Trebuchet_2 -32 500 < 10
+ 			unit_order_move Trebuchet_2 -32 470
+ 			inc_counter treb2move 1
+ 			terminate_monitor
+ 			end_monitor
+ 			
+ 			monitor_conditions I_UnitDistanceFromPosition Trebuchet_3 -93 400 < 10
+ 			unit_order_move Trebuchet_3 -93 370
+  			inc_counter treb3move 1
+ 			terminate_monitor
+ 			end_monitor
+ 			
+ 			monitor_conditions I_UnitDistanceFromPosition Trebuchet_2 -32 470 < 10
+ 			and I_CompareCounter treb2move > 0
+ 			unit_order_attack_closest_unit Trebuchet_2 180
+ 			terminate_monitor
+ 			end_monitor
+ 			
+ 			monitor_conditions I_UnitDistanceFromPosition Trebuchet_3 -93 400 < 10
+ 			and I_CompareCounter treb3move > 0
+ 			unit_order_attack_closest_unit Trebuchet_3 180
+  			terminate_monitor
+ 			end_monitor
+ 			
+ 			
+ 				
+; 			
+; ; 			monitor_conditions I_UnitDistanceFromPosition Trebuchet_2 -28.0 499 < 10
+; ;  			release_unit Trebuchet_2
+; ; 			;unit_order_attack_closest_unit Trebuchet_2 180
+; ;  			terminate_monitor
+; ; 			end_monitor	
+;  			
+  			monitor_conditions I_UnitDistanceFromPosition Trebuchet_3 -85 347 < 10
+  			;release_unit Trebuchet_3
+ 			unit_order_attack_closest_unit Trebuchet_3 180
+  			terminate_monitor
+  			end_monitor	
+		
+;;;;*************************************************************************************************
+;;;; MOORS EXTERNAL DEFENSE FORCE
+;;;;*************************************************************************************************
+	 	
+	 	monitor_conditions I_CompareCounter Line_Crossed > 0
+	 	;pause_battle
+	 	unit_order_move_to_orientation UrbanMilita_4 -57.222 115.672 25 178 run	
+		unit_order_move_to_orientation Javelins_1 36.266 108.364 23.685 -150 run
+		unit_order_move_to_orientation Javelins_2 -77 132 35 130 run						;-12.699 120.632 34.739 178 run
+	 	release_unit MOORE_general
+		release_unit Crossbows_3
+		release_unit GranadineLancers_1
+		release_unit GranadineLancers_2
+	;Inside Castle
+		release_unit UrbanMilita_1
+		release_unit UrbanMilita_2
+		release_unit UrbanMilita_3
+		release_unit UrbanMilita_5
+		release_unit DismountedArabCav_1
+		release_unit DismountedArabCav_2
+		release_unit DismountedArabCav_3
+		release_unit Crossbows_1
+		release_unit Crossbows_2
+		release_unit Crossbows_4
+		
+		release_unit SPA_general
+		release_unit Gendarmes_1
+		release_unit Gendarmes_2
+		release_unit Gendarmes_3
+		release_unit SwdBuckMen_1
+		release_unit SwdBuckMen_2
+		release_unit SwdBuckMen_3
+		release_unit SwdBuckMen_4
+		release_unit Almughavars_1
+		release_unit Almughavars_2
+		release_unit CrossbowMilita_1
+		release_unit CrossbowMilita_2
+		release_unit CrossbowMilita_3
+		release_unit CrossbowMilita_4
+		release_unit Basilisk_1
+		release_unit Basilisk_2
+		release_unit Basilisk_3
+		release_unit Basilisk_4
+		release_unit Culverin_1
+		release_unit Culverin_2
+		terminate_monitor
+		end_monitor
+	 	
+	 	
+	 		monitor_conditions I_UnitDistanceFromPosition UrbanMilita_4 -57.222 115.672 < 10
+			unit_order_attack_closest_unit UrbanMilita_4 180 run
+			terminate_monitor
+			end_monitor	
+			
+			monitor_conditions I_UnitDistanceFromPosition Javelins_1 36.266 108.364 < 10
+			unit_order_attack_closest_unit Javelins_1 100 run
+			terminate_monitor
+			end_monitor	
+			
+			monitor_conditions I_UnitDistanceFromPosition Javelins_2 -12.699 120.632 < 10
+			unit_order_attack_closest_unit Javelins_2 180 run
+			terminate_monitor
+			end_monitor	
+			
+			;Urban milita guard mode
+			
+			monitor_conditions I_UnitStatus UrbanMilita_4 ready
+			and I_CompareCounter Line_Crossed > 0
+			and I_UnitDistanceFromPosition UrbanMilita_4 -57.222 115.672 > 8
+			and not I_UnitEnemyUnitInRadius UrbanMilita_4 20
+			unit_order_move_to_orientation UrbanMilita_4 -57.222 115.672 25 178 run
+			terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_IsUnitIdle UrbanMilita_4
+			and I_CompareCounter Line_Crossed > 0
+			and I_UnitDistanceFromPosition UrbanMilita_4 -57.222 115.672 > 8
+			and not I_UnitEnemyUnitInRadius UrbanMilita_4 20
+			unit_order_move_to_orientation UrbanMilita_4 -57.222 115.672 25 178 run
+			terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_UnitStatus UrbanMilita_4 ready
+			and I_UnitEnemyUnitInRadius UrbanMilita_4 30
+			inc_counter Urbready 1
+			unit_order_attack_closest_unit UrbanMilita_4 180 run
+			end_monitor
+			
+			monitor_conditions I_UnitStatus UrbanMilita_4 ready
+			and I_CompareCounter Urbready > 0
+			release_unit UrbanMilita_4
+			terminate_monitor
+			end_monitor
+			
+			
+			monitor_conditions I_IsUnitIdle UrbanMilita_4
+			and I_UnitEnemyUnitInRadius UrbanMilita_4 30
+			inc_counter Urbidle 1
+			unit_order_attack_closest_unit UrbanMilita_4 180 run
+			end_monitor
+			
+			monitor_conditions I_IsUnitIdle UrbanMilita_4
+			and I_CompareCounter Urbidle > 0
+			release_unit UrbanMilita_4
+			terminate_monitor
+			end_monitor
+			
+			
+			monitor_conditions I_IsUnitRouting UrbanMilita_4
+			release_unit UrbanMilita_4
+			terminate_monitor
+			end_monitor
+			
+			;Javelin 1 unit guard mode
+			
+			monitor_conditions I_UnitStatus Javelins_1 ready
+			and I_CompareCounter Line_Crossed > 0
+			and I_UnitDistanceFromPosition Javelins_1 36.266 108.364 > 8
+			and not I_UnitEnemyUnitInRadius Javelins_1 55
+			unit_order_move_to_orientation Javelins_1 36.266 108.364 23.685 -150 run
+			terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_IsUnitIdle Javelins_1
+			and I_UnitEnemyUnitInRadius Javelins_1 55
+			inc_counter Javidle1 1
+			release_unit Javelins_1
+			terminate_monitor
+			end_monitor			
+			
+			monitor_conditions I_IsUnitIdle Javelins_1
+			and I_CompareCounter Line_Crossed > 0
+			and I_UnitDistanceFromPosition Javelins_1 36.266 108.364 > 8
+			and not I_UnitEnemyUnitInRadius Javelins_1 55
+			unit_order_move_to_orientation Javelins_1 36.266 108.364 23.685 -150 run
+			terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_UnitStatus Javelins_1 ready
+			and I_CompareCounter Javready1 > 0
+			release_unit Javelins_1
+			terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_UnitStatus Javelins_1 ready
+			and I_UnitEnemyUnitInRadius Javelins_1 45
+			inc_counter Javready1 1
+			unit_order_attack_closest_unit Javelins_1 45 run
+			terminate_monitor
+			end_monitor			
+			
+					
+			monitor_conditions I_IsUnitRouting Javelins_1
+			release_unit Javelins_1
+			terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_IsUnitEngaged Javelins_1
+			unit_order_attack_closest_unit Javelins_1 180 run
+			terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_IsUnitIdle Javelins_1
+			and I_CompareCounter Javidle1 > 0
+			release_unit Javelins_1
+			terminate_monitor
+			end_monitor
+			
+			; Javelin 2 unit guard mode
+			
+			monitor_conditions I_UnitStatus Javelins_2 ready
+			and I_CompareCounter Line_Crossed > 0
+			and I_UnitDistanceFromPosition Javelins_2 -57.222 115.672 > 8
+			and not I_UnitEnemyUnitInRadius Javelins_2 55
+			unit_order_move_to_orientation Javelins_2 -77 132 35 130 run		;-12.699 120.632 34.739 178 run
+			terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_IsUnitIdle Javelins_2
+			and I_CompareCounter Line_Crossed > 0
+			and I_UnitDistanceFromPosition Javelins_2 -57.222 115.672 > 8
+			and not I_UnitEnemyUnitInRadius Javelins_2 55
+			unit_order_move_to_orientation Javelins_2 -77 132 35 130 run		;-12.699 120.632 34.739 178 run
+			terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_UnitStatus Javelins_2 ready
+			and I_UnitEnemyUnitInRadius Javelins_2 55
+			inc_counter Javready2 1
+			unit_order_attack_closest_unit Javelins_2 180 run
+			end_monitor
+			
+			monitor_conditions I_IsUnitIdle Javelins_2
+			and I_UnitEnemyUnitInRadius Javelins_2 55
+			inc_counter Javidle2 1
+			unit_order_attack_closest_unit Javelins_2 55 run
+			terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_IsUnitIdle Javelins_2
+			and I_CompareCounter Javidle2 > 0
+			release_unit Javelins_2
+			terminate_monitor
+			end_monitor
+			
+			
+			monitor_conditions I_UnitStatus Javelins_2 ready
+			and I_CompareCounter Javready2 > 0
+			release_unit Javelins_2
+			terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_IsUnitRouting Javelins_2
+			release_unit Javelins_2
+			terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_IsUnitEngaged Javelins_2
+			release_unit Javelins_2
+			terminate_monitor
+			end_monitor
+			
+;;;;*************************************************************************************************
+;;;; TREBUCHET IDLING
+;;;;*************************************************************************************************
+			
+			;monitor_conditions I_UnitStatus Javelins_1 ready
+			;and I_UnitEnemyUnitInRadius Javelins_1 55
+			;unit_order_attack_closest_unit Javelins_1 180 run
+			;end_monitor
+			
+ 			monitor_conditions I_IsUnitIdle Trebuchet_1
+ 			and I_UnitEnemyUnitInRadius Trebuchet_1 220
+ 			unit_order_attack_closest_unit Trebuchet_1 180
+ 			battle_wait 10  
+ 			end_monitor
+ 			
+ 			monitor_conditions I_IsUnitIdle Trebuchet_2
+ 			and I_UnitEnemyUnitInRadius Trebuchet_2 220
+ 			unit_order_attack_closest_unit Trebuchet_2 180
+ 			battle_wait 10  
+ 			end_monitor
+ 			
+ 			monitor_conditions I_IsUnitIdle Trebuchet_3
+ 			and I_UnitEnemyUnitInRadius Trebuchet_3 220
+ 			unit_order_attack_closest_unit Trebuchet_3 180
+ 			battle_wait 10 
+ 			end_monitor
+;;;;*************************************************************************************************
+;;;; END OF BATTLE
+;;;;*************************************************************************************************
+				
+	while I_InBattle
+	end_while
+
+	end_script

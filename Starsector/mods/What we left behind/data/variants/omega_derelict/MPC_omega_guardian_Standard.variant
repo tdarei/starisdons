@@ -1,0 +1,84 @@
+{
+  "variantId": "MPC_omega_guardian_Standard",
+  "hullId": "guardian",
+  "displayName": "Corrupted",
+  "goalVariant": false,
+  "fluxCapacitors": 43,
+  "fluxVents": 50,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "fluxdistributor",
+    "fluxbreakers",
+    "insulatedengine",
+    "autorepair",
+    "auxiliarythrusters"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 007": "vpdriver",
+        "WS 008": "vpdriver",
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 004": "cryoflux",
+        "WS 005": "cryoflux"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+		  "WS 006": "rifttorpedo",
+		  "WS 009": "rifttorpedo",
+	  }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+          "WS 011": "typhoon",
+		  "WS 010": "typhoon",
+	  }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 012": "riftlance",
+        "WS 013": "riftlance"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+		"WS 020": "realitydisruptor"
+	  }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 000": "flak",
+        "WS 001": "flak",
+        "WS 002": "flak",
+        "WS 003": "flak",
+        "WS 014": "shockrepeater",
+        "WS 015": "shockrepeater",
+        "WS 016": "shockrepeater",
+        "WS 017": "shockrepeater",
+        "WS 018": "shockrepeater",
+        "WS 019": "shockrepeater"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

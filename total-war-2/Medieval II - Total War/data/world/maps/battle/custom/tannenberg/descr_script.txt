@@ -1,0 +1,3173 @@
+script
+
+		; *********************************************************************************************
+		;	Battle of Hastings
+		; *********************************************************************************************
+		
+		
+			prepare_for_battle		; This must be *BEFORE* defining labels
+
+;---------------------------------
+;POLAND/LITHUANIA, ALLIANCE 0
+;---------------------------------	
+	
+	label_unit 0 0 0 Jagiello
+	label_unit 0 0 1 knights1
+	label_unit 0 0 2 knights2
+	label_unit 0 0 3 knights3
+	label_unit 0 0 4 knights4
+	label_unit 0 0 5 militia1
+	label_unit 0 0 6 militia2
+	label_unit 0 0 7 militia3
+	label_unit 0 0 8 militia4
+	label_unit 0 0 9 militia5
+	label_unit 0 0 10 militia6
+	label_unit 0 0 11 militia7
+	label_unit 0 0 12 lithuanians1
+	label_unit 0 0 13 lithuanians2
+	label_unit 0 0 14 lithuanians3
+	label_unit 0 0 15 tartars
+
+
+
+
+		
+;----------------
+;TEUTONIC ORDER, ALLIANCE 1
+;-------------------
+
+ 	label_unit 1 0 0 Ulrich_von_Jungingen
+	label_unit 1 0 1 cannon1
+	label_unit 1 0 2 cannon2
+	label_unit 1 0 3 cannon3
+	label_unit 1 0 4 cannon4
+	label_unit 1 0 5 crossbow1
+	label_unit 1 0 6 crossbow2
+	label_unit 1 0 7 crossbow3
+	label_unit 1 0 8 infantry1
+	label_unit 1 0 9 infantry2
+	label_unit 1 0 10 infantry3
+	label_unit 1 0 11 infantry4
+	label_unit 1 0 12 infantry5
+	label_unit 1 0 13 infantry6
+	label_unit 1 0 14 teutonic_knights1
+	label_unit 1 0 15 teutonic_knights2
+	label_unit 1 0 16 teutonic_knights3
+	label_unit 1 0 17 teutonic_knights4
+	label_unit 1 0 18 teutonic_knights5
+	label_unit 1 0 19 crusaders
+	
+
+
+		; *********************************************************************************************
+		;	COUNTERS
+		; *********************************************************************************************
+
+	
+			declare_counter battle_start
+			declare_counter intro_sequence		;	Kicks off intro sequence
+			declare_counter player_not_escape
+			
+			declare_counter von_jungingen_dead
+			declare_counter knights1_release
+			declare_counter knights2_release
+			declare_counter knights3_release
+			declare_counter knights4_release
+			declare_counter knights5_release
+			declare_counter crusaders_release
+			declare_counter tripwire
+			declare_counter order_army_weakened
+			declare_counter courage_my_brothers
+			declare_counter cavalry_prompt
+			declare_counter cavalry_prompt_check
+			declare_counter cavalry_lock
+			
+			declare_counter lit1_fire_on_Knights1
+			declare_counter lit2_fire_on_Knights1
+			declare_counter lit3_fire_on_Knights1
+			declare_counter tartars_fire_on_Knights1
+			
+			declare_counter lit1_fire_on_Knights2
+			declare_counter lit2_fire_on_Knights2
+			declare_counter lit3_fire_on_Knights2
+			declare_counter tartars_fire_on_Knights2
+			
+			declare_counter lit1_fire_on_Knights3
+			declare_counter lit2_fire_on_Knights3
+			declare_counter lit3_fire_on_Knights3
+			declare_counter tartars_fire_on_Knights3
+			
+			declare_counter lit1_fire_on_Knights4
+			declare_counter lit2_fire_on_Knights4
+			declare_counter lit3_fire_on_Knights4
+			declare_counter tartars_fire_on_Knights4
+			
+			declare_counter lit1_fire_on_Knights5
+			declare_counter lit2_fire_on_Knights5
+			declare_counter lit3_fire_on_Knights5
+			declare_counter tartars_fire_on_Knights5
+			
+			declare_counter lit1_fire_on_crusaders
+			declare_counter lit2_fire_on_crusaders
+			declare_counter lit3_fire_on_crusaders
+			declare_counter tartars_fire_on_crusaders
+			
+			declare_counter tartars_outflank_right
+			declare_counter lithuanians1_outflank_right
+			declare_counter lithuanians2_outflank_right
+			declare_counter lithuanians3_outflank_right
+			declare_counter lithuanians1_outflank_left
+			declare_counter lithuanians2_outflank_left
+			declare_counter lithuanians3_outflank_left
+			declare_counter tartars_outflank_left
+			
+			declare_counter knights1_proximity_release	
+			declare_counter knights2_proximity_release
+			declare_counter knights3_proximity_release
+			declare_counter knights4_proximity_release
+			declare_counter knights5_proximity_release
+			declare_counter crusaders_proximity_release	
+			
+			declare_counter rout_counter	
+			
+			
+
+			label_location	-265, -860 tripwire_left		;order front line
+			label_location	-289, 860 tripwire_right
+			
+			label_location	-860, 185 tripwire2_left		;order front line
+			label_location	860, 185 tripwire2_right
+
+
+
+
+
+		;-----------------------------------------------------------------------------------------------------------
+		;-----------------------------------------------------------------------------------------------------------
+		;			OPEN SCRIPT SECTION
+		;-----------------------------------------------------------------------------------------------------------
+		;-----------------------------------------------------------------------------------------------------------
+		
+			camera_default_mode_set tw
+		
+;			disable_cursor						;prevent the player clicking
+			suspend_unscripted_advice true
+;			disable_shortcuts true		
+;			disable_entire_ui
+;			inhibit_camera_input true
+
+
+
+
+	
+		
+			set_counter intro_sequence 1	;	kicks off intro sequence
+		
+			while ! I_BattleStarted					; battle_wait FOR DEPLOYMENT
+			end_while
+		
+			
+		
+		 	camera_restrictions_set off
+		
+		
+			;-----------------------------------------------------------------------------------------------------------
+			;-----------------------------------------------------------------------------------------------------------
+			;-----------------------------------------------------------------------------------------------------------
+			;-----------------------------------------------------------------------------------------------------------
+			;		ESCAPE KEY HANDLER
+			;-----------------------------------------------------------------------------------------------------------
+			;-----------------------------------------------------------------------------------------------------------
+			;-----------------------------------------------------------------------------------------------------------
+			;-----------------------------------------------------------------------------------------------------------
+				steal_esc_key
+		
+				;	Allows user to skip intro and jump straight to the battle by pressing the ESC key.
+				monitor_event EscPressed TrueCondition
+					set_counter battle_start 1
+				
+					terminate_monitor
+				end_monitor
+			;-----------------------------------------------------------------------------------------------------------
+		
+		
+		
+			;**********************************************************************************************************
+			;**********************************************************************************************************
+			;************************************** BATTLE MONITORS ***************************************************
+			;**********************************************************************************************************
+			;**********************************************************************************************************
+
+			
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;LIGHT CAV FLANKING ORDER'S LEFT TRIGGERS ORDER CAV COUNTER
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+release_unit Jagiello
+release_unit knights1
+release_unit knights2
+release_unit knights3
+release_unit knights4
+release_unit militia1
+release_unit militia2
+release_unit militia3
+release_unit militia4
+release_unit militia5
+release_unit militia6
+release_unit militia7
+release_unit lithuanians1
+release_unit lithuanians2
+release_unit lithuanians3
+release_unit tartars
+
+
+	monitor_conditions I_UnitDistanceFromLine lithuanians1 tripwire2_left tripwire2_right < 1
+	and I_UnitDistanceFromLine lithuanians1 tripwire_left tripwire_right < 1
+		set_counter lithuanians1_outflank_right 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter lithuanians1_outflank_right > 0
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights4 lithuanians1 run
+		unit_order_attack_unit teutonic_knights5 lithuanians1 run
+		unit_order_attack_unit crusaders lithuanians1 run
+		inc_counter order_army_weakened 1
+		battle_wait 120
+		set_counter knights4_release 1
+		set_counter knights5_release 1
+		set_counter crusaders_release 1
+	terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitDistanceFromLine lithuanians2 tripwire2_left tripwire2_right < 1
+	and I_UnitDistanceFromLine lithuanians2 tripwire_left tripwire_right < 1
+		set_counter lithuanians2_outflank_right 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter lithuanians2_outflank_right > 0
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights4 lithuanians2 run
+		unit_order_attack_unit teutonic_knights5 lithuanians2 run
+		unit_order_attack_unit crusaders lithuanians2 run
+		inc_counter order_army_weakened 1
+		battle_wait 120
+		set_counter knights4_release 1
+		set_counter knights5_release 1
+		set_counter crusaders_release 1
+	terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitDistanceFromLine lithuanians3 tripwire2_left tripwire2_right < 1
+	and I_UnitDistanceFromLine lithuanians3 tripwire_left tripwire_right < 1
+		set_counter lithuanians3_outflank_right 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter lithuanians3_outflank_right > 0
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights4 lithuanians3 run
+		unit_order_attack_unit teutonic_knights5 lithuanians3 run
+		unit_order_attack_unit crusaders lithuanians3 run
+		inc_counter order_army_weakened 1
+		battle_wait 120
+		set_counter knights4_release 1
+		set_counter knights5_release 1
+		set_counter crusaders_release 1
+	terminate_monitor
+	end_monitor
+			
+			
+	monitor_conditions I_UnitDistanceFromLine tartars tripwire2_left tripwire2_right < 1
+	and I_UnitDistanceFromLine tartars tripwire_left tripwire_right < 1
+		set_counter tartars_outflank_right 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter tartars_outflank_right > 0
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights4 tartars run
+		unit_order_attack_unit teutonic_knights5 tartars run
+		unit_order_attack_unit crusaders tartars run
+		inc_counter order_army_weakened 1
+		battle_wait 120
+		set_counter knights4_release 1
+		set_counter knights5_release 1
+		set_counter crusaders_release 1
+	terminate_monitor
+	end_monitor
+	
+	
+	
+	
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;LIGHT CAV FLANKING ORDER'S RIGHT TRIGGERS ORDER CAV COUNTER
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+
+			monitor_conditions I_UnitDistanceFromLine lithuanians1 tripwire2_left tripwire2_right > 1
+	and I_UnitDistanceFromLine lithuanians1 tripwire_left tripwire_right < 1
+		set_counter lithuanians1_outflank_left 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter lithuanians1_outflank_left > 0
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights1 lithuanians1 run
+		unit_order_attack_unit teutonic_knights2 lithuanians1 run
+		unit_order_attack_unit teutonic_knights3 lithuanians1 run
+		inc_counter order_army_weakened 1
+		battle_wait 120
+		set_counter knights1_release 1
+		set_counter knights2_release 1
+		set_counter knights3_release 1
+	terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitDistanceFromLine lithuanians2 tripwire2_left tripwire2_right > 1
+	and I_UnitDistanceFromLine lithuanians2 tripwire_left tripwire_right < 1
+		set_counter lithuanians2_outflank_left 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter lithuanians2_outflank_left > 0
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights1 lithuanians2 run
+		unit_order_attack_unit teutonic_knights2 lithuanians2 run
+		unit_order_attack_unit teutonic_knights3 lithuanians2 run
+		inc_counter order_army_weakened 1
+		battle_wait 120
+		set_counter knights1_release 1
+		set_counter knights2_release 1
+		set_counter knights3_release 1
+	terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitDistanceFromLine lithuanians3 tripwire2_left tripwire2_right > 1
+	and I_UnitDistanceFromLine lithuanians3 tripwire_left tripwire_right < 1
+		set_counter lithuanians3_outflank_left 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter lithuanians3_outflank_left > 0
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights1 lithuanians3 run
+		unit_order_attack_unit teutonic_knights2 lithuanians3 run
+		unit_order_attack_unit teutonic_knights3 lithuanians3 run
+		inc_counter order_army_weakened 1
+		battle_wait 120
+		set_counter knights1_release 1
+		set_counter knights2_release 1
+		set_counter knights3_release 1
+	terminate_monitor
+	end_monitor
+			
+			
+	monitor_conditions I_UnitDistanceFromLine tartars tripwire2_left tripwire2_right > 1
+	and I_UnitDistanceFromLine tartars tripwire_left tripwire_right < 1
+		set_counter tartars_outflank_left 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter tartars_outflank_left > 0
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights1 tartars run
+		unit_order_attack_unit teutonic_knights2 tartars run
+		unit_order_attack_unit teutonic_knights3 tartars run
+		inc_counter order_army_weakened 1
+		battle_wait 120
+		set_counter knights1_release 1
+		set_counter knights2_release 1
+		set_counter knights3_release 1
+	terminate_monitor
+	end_monitor
+	
+	
+		
+			
+			
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;LOCK AI MORALE IF PLAYER IGNORES ORDERS
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;			
+			
+	monitor_conditions I_CompareCounter order_army_weakened < 1
+	and I_CompareCounter tripwire > 0
+		unit_set_morale Ulrich_von_Jungingen firm
+		unit_set_morale cannon1 firm
+		unit_set_morale cannon2 firm
+		unit_set_morale cannon3 firm
+		unit_set_morale cannon4 firm
+		unit_set_morale crossbow1 firm
+		unit_set_morale crossbow2 firm
+		unit_set_morale crossbow3 firm
+		unit_set_morale infantry1 firm
+		unit_set_morale infantry2 firm
+		unit_set_morale infantry3 firm
+		unit_set_morale infantry4 firm
+		unit_set_morale infantry5 firm
+		unit_set_morale infantry6 firm
+		unit_set_morale teutonic_knights1 firm
+		unit_set_morale teutonic_knights2 firm
+		unit_set_morale teutonic_knights3 firm
+		unit_set_morale teutonic_knights4 firm
+		unit_set_morale teutonic_knights5 firm
+		unit_set_morale crusaders firm
+		inc_counter cavalry_lock 1
+	terminate_monitor
+	end_monitor
+	
+	 			
+			
+			
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; ORDER UNITS RELEASE TO AI WHEN OUTFLANKED
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+	monitor_conditions I_UnitDistanceFromLine Jagiello tripwire_left tripwire_right < 2
+		inc_counter tripwire 1		
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_UnitDistanceFromLine knights1 tripwire_left tripwire_right < 2
+		inc_counter tripwire 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromLine knights2 tripwire_left tripwire_right < 2
+		inc_counter tripwire 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromLine knights3 tripwire_left tripwire_right < 2
+		inc_counter tripwire 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromLine knights4 tripwire_left tripwire_right < 2
+		inc_counter tripwire 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromLine militia1 tripwire_left tripwire_right < 2
+		inc_counter tripwire 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromLine militia2 tripwire_left tripwire_right < 2
+		inc_counter tripwire 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromLine militia3 tripwire_left tripwire_right < 2
+		inc_counter tripwire 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromLine militia4 tripwire_left tripwire_right < 2
+		inc_counter tripwire 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromLine militia5 tripwire_left tripwire_right < 2
+		inc_counter tripwire 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromLine militia6 tripwire_left tripwire_right < 2
+		inc_counter tripwire 1
+	terminate_monitor
+	end_monitor
+	
+	
+
+;	monitor_conditions I_CompareCounter tripwire > 0
+;		release_unit cannon1
+;		release_unit cannon2
+;		release_unit cannon3
+;		release_unit cannon4
+;		release_unit Ulrich_von_Jungingen
+;		release_unit crossbow1
+;		release_unit crossbow2
+;		release_unit crossbow3
+;		release_unit infantry1
+;		release_unit infantry2
+;		release_unit infantry3
+;		release_unit infantry4
+;		release_unit infantry5
+;		release_unit infantry6		
+;	terminate_monitor
+;	end_monitor
+
+			
+	monitor_conditions I_CompareCounter tripwire > 0
+	and I_CompareCounter cavalry_lock > 0
+		release_unit teutonic_knights1
+		release_unit teutonic_knights2
+		release_unit teutonic_knights3
+		release_unit teutonic_knights4
+		release_unit teutonic_knights5
+		release_unit crusaders	
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter tripwire > 0
+	and I_CompareCounter knights1_release < 1	
+		release_unit teutonic_knights1
+		set_counter cavalry_lock 1
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_CompareCounter tripwire > 0
+	and I_CompareCounter knights2_release < 1
+		release_unit teutonic_knights2
+		set_counter cavalry_lock 1
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_CompareCounter tripwire > 0
+	and I_CompareCounter knights3_release < 1	
+		release_unit teutonic_knights3
+		set_counter cavalry_lock 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter tripwire > 0
+	and I_CompareCounter knights4_release < 1	
+		release_unit teutonic_knights4
+		set_counter cavalry_lock 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter tripwire > 0
+	and I_CompareCounter knights5_release < 1	
+		release_unit teutonic_knights5
+		set_counter cavalry_lock 1
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_CompareCounter tripwire > 0
+	and I_CompareCounter crusaders_release < 1	
+		release_unit crusaders
+		set_counter cavalry_lock 1
+	terminate_monitor
+	end_monitor			
+						
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;PROMPT PLAYER TO LURE CAVALRY AWAY
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+	monitor_conditions I_CompareCounter battle_start > 0
+		battle_wait 60
+		inc_counter cavalry_prompt_check 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter cavalry_prompt_check > 0
+	and I_CompareCounter order_army_weakened < 1
+		inc_counter cavalry_prompt 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter cavalry_prompt > 0
+	and I_CompareCounter cavalry_lock < 1
+		play_sound_event Tannenberg_Sergeant_2 tag = Tannenberg_Sergeant_2
+	terminate_monitor
+	end_monitor	
+	
+	
+	monitor_conditions I_CompareCounter battle_start > 0
+		battle_wait 120
+		inc_counter cavalry_prompt_check 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter cavalry_prompt_check > 1
+	and I_CompareCounter order_army_weakened < 1
+		inc_counter cavalry_prompt 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter cavalry_prompt > 1
+	and I_CompareCounter cavalry_lock < 1
+		play_sound_event Tannenberg_Sergeant_2 tag = Tannenberg_Sergeant_2
+	terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_CompareCounter battle_start > 0
+		battle_wait 180
+		inc_counter cavalry_prompt_check 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter cavalry_prompt_check > 2
+	and I_CompareCounter order_army_weakened < 1
+		inc_counter cavalry_prompt 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter cavalry_prompt > 2
+	and I_CompareCounter cavalry_lock < 1
+		play_sound_event Tannenberg_Sergeant_2 tag = Tannenberg_Sergeant_2
+	terminate_monitor
+	end_monitor
+	
+	
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;CELEBRATE SUCCESSFUL LURING AWAY OF CAVALRY
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+	monitor_conditions I_CompareCounter order_army_weakened > 0
+		battle_wait 5
+		play_sound_event Tannenberg_Sergeant_3 tag = Tannenberg_Sergeant_3
+		battle_wait 20
+		play_sound_event Tannenberg_Sergeant_4 tag = Tannenberg_Sergeant_4
+	terminate_monitor
+	end_monitor
+	
+				
+		
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;ORDER CAVALRY RESPOND TO UNITS WHO GET TOO NEAR
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;;;;knights1
+
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights1 Jagiello < 50
+	and I_CompareCounter knights1_release < 1
+		set_counter knights1_proximity_release 1
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights1 knights1 < 50
+	and I_CompareCounter knights1_release < 1
+		set_counter knights1_proximity_release 1
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights1 knights2 < 50
+	and I_CompareCounter knights1_release < 1
+		set_counter knights1_proximity_release 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights1 knights3 < 50
+	and I_CompareCounter knights1_release < 1
+		set_counter knights1_proximity_release 1
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights1 knights4 < 50
+	and I_CompareCounter knights1_release < 1
+		set_counter knights1_proximity_release 1
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights1 militia1 < 50
+	and I_CompareCounter knights1_release < 1
+		set_counter knights1_proximity_release 1
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights1 militia2 < 50
+	and I_CompareCounter knights1_release < 1
+		set_counter knights1_proximity_release 1
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights1 militia3 < 50
+	and I_CompareCounter knights1_release < 1
+		set_counter knights1_proximity_release 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights1 militia4 < 50
+	and I_CompareCounter knights1_release < 1
+		set_counter knights1_proximity_release 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights1 militia5 < 50
+	and I_CompareCounter knights1_release < 1
+		set_counter knights1_proximity_release 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights1 militia6 < 50
+	and I_CompareCounter knights1_release < 1
+		set_counter knights1_proximity_release 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights1 militia7 < 50
+	and I_CompareCounter knights1_release < 1
+		set_counter knights1_proximity_release 1
+	terminate_monitor
+	end_monitor
+	
+	
+	
+	monitor_conditions I_CompareCounter knights1_proximity_release > 0	
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_closest_unit teutonic_knights1 180 run
+		set_counter knights1_release 1
+		set_counter cavalry_lock 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter knights1_proximity_release > 0
+	and I_CompareCounter cavalry_lock > 0
+		unit_order_attack_closest_unit teutonic_knights1 180 run
+		set_counter knights1_release 1
+	terminate_monitor
+	end_monitor
+	
+	
+	
+;;;;knights1
+
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights2 Jagiello < 50
+	and I_CompareCounter knights2_release < 1
+		set_counter knights2_proximity_release 1
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights2 knights1 < 50
+	and I_CompareCounter knights2_release < 1
+		set_counter knights2_proximity_release 1
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights2 knights2 < 50
+	and I_CompareCounter knights2_release < 1
+		set_counter knights2_proximity_release 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights2 knights3 < 50
+	and I_CompareCounter knights2_release < 1
+		set_counter knights2_proximity_release 1
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights2 knights4 < 50
+	and I_CompareCounter knights2_release < 1
+		set_counter knights2_proximity_release 1
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights2 militia1 < 50
+	and I_CompareCounter knights2_release < 1
+		set_counter knights2_proximity_release 1
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights2 militia2 < 50
+	and I_CompareCounter knights2_release < 1
+		set_counter knights2_proximity_release 1
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights2 militia3 < 50
+	and I_CompareCounter knights2_release < 1
+		set_counter knights2_proximity_release 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights2 militia4 < 50
+	and I_CompareCounter knights2_release < 1
+		set_counter knights2_proximity_release 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights2 militia5 < 50
+	and I_CompareCounter knights2_release < 1
+		set_counter knights2_proximity_release 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights2 militia6 < 50
+	and I_CompareCounter knights2_release < 1
+		set_counter knights2_proximity_release 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights2 militia7 < 50
+	and I_CompareCounter knights2_release < 1
+		set_counter knights2_proximity_release 1
+	terminate_monitor
+	end_monitor
+	
+	
+	
+	monitor_conditions I_CompareCounter knights2_proximity_release > 0	
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_closest_unit teutonic_knights2 180 run
+		set_counter knights2_release 1
+		set_counter cavalry_lock 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter knights2_proximity_release > 0
+	and I_CompareCounter cavalry_lock > 0
+		unit_order_attack_closest_unit teutonic_knights2 180 run
+		set_counter knights2_release 1
+	terminate_monitor
+	end_monitor	
+	
+
+
+;;;;knights3
+
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights3 Jagiello < 50
+	and I_CompareCounter knights3_release < 1
+		set_counter knights3_proximity_release 1
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights3 knights1 < 50
+	and I_CompareCounter knights3_release < 1
+		set_counter knights3_proximity_release 1		
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights3 knights2 < 50
+	and I_CompareCounter knights3_release < 1
+		set_counter knights3_proximity_release 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights3 knights3 < 50
+	and I_CompareCounter knights3_release < 1
+		set_counter knights3_proximity_release 1
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights3 knights4 < 50
+	and I_CompareCounter knights3_release < 1
+		set_counter knights3_proximity_release 1
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights3 militia1 < 50
+	and I_CompareCounter knights3_release < 1
+		set_counter knights3_proximity_release 1
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights3 militia2 < 50
+	and I_CompareCounter knights3_release < 1
+		set_counter knights3_proximity_release 1
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights3 militia3 < 50
+	and I_CompareCounter knights3_release < 1
+		set_counter knights3_proximity_release 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights3 militia4 < 50
+	and I_CompareCounter knights3_release < 1
+		set_counter knights3_proximity_release 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights3 militia5 < 50
+	and I_CompareCounter knights3_release < 1
+		set_counter knights3_proximity_release 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights3 militia6 < 50
+	and I_CompareCounter knights3_release < 1
+		set_counter knights3_proximity_release 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights3 militia7 < 50
+	and I_CompareCounter knights3_release < 1
+		set_counter knights3_proximity_release 1
+	terminate_monitor
+	end_monitor
+	
+	
+	
+	monitor_conditions I_CompareCounter knights3_proximity_release > 0	
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_closest_unit teutonic_knights3 180 run
+		set_counter knights3_release 1
+		set_counter cavalry_lock 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter knights3_proximity_release > 0
+	and I_CompareCounter cavalry_lock > 0
+		unit_order_attack_closest_unit teutonic_knights3 180 run
+		set_counter knights3_release 1
+	terminate_monitor
+	end_monitor
+	
+	
+	
+;;;;knights4
+
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights4 Jagiello < 50
+	and I_CompareCounter knights4_release < 1
+		set_counter knights4_proximity_release 1
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights4 knights1 < 50
+	and I_CompareCounter knights4_release < 1
+		set_counter knights4_proximity_release 1
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights4 knights2 < 50
+	and I_CompareCounter knights4_release < 1
+		set_counter knights4_proximity_release 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights4 knights3 < 50
+	and I_CompareCounter knights4_release < 1
+		set_counter knights4_proximity_release 1
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights4 knights4 < 50
+		and I_CompareCounter knights4_release < 1
+		set_counter knights4_proximity_release 1
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights4 militia1 < 50
+	and I_CompareCounter knights4_release < 1
+		set_counter knights4_proximity_release 1
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights4 militia2 < 50
+	and I_CompareCounter knights4_release < 1
+		set_counter knights4_proximity_release 1
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights4 militia3 < 50
+	and I_CompareCounter knights4_release < 1
+		set_counter knights4_proximity_release 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights4 militia4 < 50
+	and I_CompareCounter knights4_release < 1
+		set_counter knights4_proximity_release 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights4 militia5 < 50
+	and I_CompareCounter knights4_release < 1
+		set_counter knights4_proximity_release 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights4 militia6 < 50
+	and I_CompareCounter knights4_release < 1
+		set_counter knights4_proximity_release 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights4 militia7 < 50
+	and I_CompareCounter knights4_release < 1
+		set_counter knights4_proximity_release 1
+	terminate_monitor
+	end_monitor
+	
+	
+	
+	monitor_conditions I_CompareCounter knights4_proximity_release > 0	
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_closest_unit teutonic_knights4 180 run
+		set_counter knights4_release 1
+		set_counter cavalry_lock 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter knights4_proximity_release > 0
+	and I_CompareCounter cavalry_lock > 0
+		unit_order_attack_closest_unit teutonic_knights4 180 run
+		set_counter knights4_release 1
+	terminate_monitor
+	end_monitor	
+	
+	
+	
+;;;;knights5
+
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights5 Jagiello < 50
+	and I_CompareCounter knights5_release < 1
+		set_counter knights5_proximity_release 1
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights5 knights1 < 50
+	and I_CompareCounter knights5_release < 1
+		set_counter knights5_proximity_release 1
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights5 knights2 < 50
+	and I_CompareCounter knights5_release < 1
+		set_counter knights5_proximity_release 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights5 knights3 < 50
+	and I_CompareCounter knights5_release < 1
+		set_counter knights5_proximity_release 1
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights5 knights4 < 50
+	and I_CompareCounter knights5_release < 1
+		set_counter knights5_proximity_release 1
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights5 militia1 < 50
+	and I_CompareCounter knights5_release < 1
+		set_counter knights5_proximity_release 1
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights5 militia2 < 50
+	and I_CompareCounter knights5_release < 1
+		set_counter knights5_proximity_release 1
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights5 militia3 < 50
+	and I_CompareCounter knights5_release < 1
+		set_counter knights5_proximity_release 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights5 militia4 < 50
+	and I_CompareCounter knights5_release < 1
+		set_counter knights5_proximity_release 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights5 militia5 < 50
+	and I_CompareCounter knights5_release < 1
+		set_counter knights5_proximity_release 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights5 militia6 < 50
+	and I_CompareCounter knights5_release < 1
+		set_counter knights5_proximity_release 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights5 militia7 < 50
+	and I_CompareCounter knights5_release < 1
+		set_counter knights5_proximity_release 1
+	terminate_monitor
+	end_monitor
+	
+	
+	
+	monitor_conditions I_CompareCounter knights5_proximity_release > 0	
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_closest_unit teutonic_knights5 180 run
+		set_counter knights5_release 1
+		set_counter cavalry_lock 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter knights5_proximity_release > 0
+	and I_CompareCounter cavalry_lock > 0
+		unit_order_attack_closest_unit teutonic_knights5 180 run
+		set_counter knights5_release 1
+	terminate_monitor
+	end_monitor	
+	
+	
+	
+;;;;crusaders
+
+	monitor_conditions I_UnitDistanceFromUnit crusaders Jagiello < 50
+	and I_CompareCounter crusaders_release < 1
+		set_counter crusaders_proximity_release 1
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_UnitDistanceFromUnit crusaders knights1 < 50
+	and I_CompareCounter crusaders_release < 1
+		set_counter crusaders_proximity_release 1
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_UnitDistanceFromUnit crusaders knights2 < 50
+	and I_CompareCounter crusaders_release < 1
+		set_counter crusaders_proximity_release 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromUnit crusaders knights3 < 50
+	and I_CompareCounter crusaders_release < 1
+		set_counter crusaders_proximity_release 1
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_UnitDistanceFromUnit crusaders knights4 < 50
+	and I_CompareCounter crusaders_release < 1
+		set_counter crusaders_proximity_release 1
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_UnitDistanceFromUnit crusaders militia1 < 50
+	and I_CompareCounter crusaders_release < 1
+		set_counter crusaders_proximity_release 1
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_UnitDistanceFromUnit crusaders militia2 < 50
+	and I_CompareCounter crusaders_release < 1
+		set_counter crusaders_proximity_release 1
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_UnitDistanceFromUnit crusaders militia3 < 50
+	and I_CompareCounter crusaders_release < 1
+		set_counter crusaders_proximity_release 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromUnit crusaders militia4 < 50
+	and I_CompareCounter crusaders_release < 1
+		set_counter crusaders_proximity_release 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromUnit crusaders militia5 < 50
+	and I_CompareCounter crusaders_release < 1
+		set_counter crusaders_proximity_release 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromUnit crusaders militia6 < 50
+	and I_CompareCounter crusaders_release < 1
+		set_counter crusaders_proximity_release 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromUnit crusaders militia7 < 50
+	and I_CompareCounter crusaders_release < 1
+		set_counter crusaders_proximity_release 1
+	terminate_monitor
+	end_monitor
+	
+	
+	
+	monitor_conditions I_CompareCounter crusaders_proximity_release > 0	
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_closest_unit crusaders 180 run
+		set_counter crusaders_release 1
+		set_counter cavalry_lock 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter crusaders_proximity_release > 0
+	and I_CompareCounter cavalry_lock > 0
+		unit_order_attack_closest_unit crusaders 180 run
+		set_counter knights2_release 1
+	terminate_monitor
+	end_monitor	
+
+
+
+
+
+ 	
+
+	
+	
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; ORDER CAVALRY ON LEFT FLANK WILL ATTACK HORSE ARCHERS WHEN THEY GET CLOSER THAN 10 METRES
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+	
+
+
+;;;;;teutonic_knights4
+
+
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights4 lithuanians1 < 10
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights4 lithuanians1 run
+		inc_counter order_army_weakened 1
+		set_counter knights4_release 1
+	terminate_monitor
+	end_monitor
+		
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights4 lithuanians2 < 10
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights4 lithuanians2 run
+		inc_counter order_army_weakened 1
+		set_counter knights4_release 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights4 lithuanians3 < 10
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights4 lithuanians3 run
+		inc_counter order_army_weakened 1
+		set_counter knights4_release 1
+	terminate_monitor
+	end_monitor
+	
+
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights4 tartars < 10
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights4 tartars run
+		inc_counter order_army_weakened 1
+		set_counter knights4_release 1
+	terminate_monitor
+	end_monitor
+	
+	
+	
+	
+;;;;;teutonic_knights5
+
+
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights5 lithuanians1 < 10
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights5 lithuanians1 run
+		inc_counter order_army_weakened 1
+		set_counter knights5_release 1
+	terminate_monitor
+	end_monitor
+		
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights5 lithuanians2 < 10
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights5 lithuanians2 run
+		inc_counter order_army_weakened 1
+		set_counter knights5_release 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights5 lithuanians3 < 10
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights5 lithuanians3 run
+		inc_counter order_army_weakened 1
+		set_counter knights5_release 1
+	terminate_monitor
+	end_monitor
+	
+	
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights5 tartars < 10
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights5 tartars run
+		inc_counter order_army_weakened 1
+		set_counter knights5_release 1
+	terminate_monitor
+	end_monitor
+	
+	
+	
+	
+	
+;;;;;crusaders
+
+
+	monitor_conditions I_UnitDistanceFromUnit crusaders lithuanians1 < 10
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit crusaders lithuanians1 run
+		inc_counter order_army_weakened 1
+		set_counter crusaders_release 1
+	terminate_monitor
+	end_monitor
+		
+	monitor_conditions I_UnitDistanceFromUnit crusaders lithuanians2 < 10
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit crusaders lithuanians2 run
+		inc_counter order_army_weakened 1
+		set_counter crusaders_release 1		
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromUnit crusaders lithuanians3 < 10
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit crusaders lithuanians3 run
+		inc_counter order_army_weakened 1
+		set_counter crusaders_release 1
+	terminate_monitor
+	end_monitor
+	
+	
+	
+	monitor_conditions I_UnitDistanceFromUnit crusaders tartars < 10
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit crusaders tartars run
+		inc_counter order_army_weakened 1
+		set_counter crusaders_release 1
+	terminate_monitor
+	end_monitor
+	
+	
+
+	
+	
+	
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; ORDER CAVALRY ON LEFT FLANK ATTACK WHEN FIRED UPON
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+
+;;;;;teutonic_knights4
+
+
+	monitor_conditions I_UnitInRangeOfUnit lithuanians1 teutonic_knights4
+		and I_IsUnitUnderFire teutonic_knights4
+		inc_counter lit1_fire_on_Knights4 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter lit1_fire_on_Knights4 > 0
+	and I_CompareCounter cavalry_lock < 1	
+		unit_order_attack_unit teutonic_knights4 lithuanians1 run
+		unit_order_attack_unit teutonic_knights5 lithuanians1 run
+		unit_order_attack_unit crusaders lithuanians1 run
+		inc_counter order_army_weakened 1
+		battle_wait 120
+		set_counter knights4_release 1
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_UnitInRangeOfUnit lithuanians2 teutonic_knights4
+		and I_IsUnitUnderFire teutonic_knights4
+		inc_counter lit2_fire_on_Knights4 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter lit2_fire_on_Knights4 > 0
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights4 lithuanians2 run
+		unit_order_attack_unit teutonic_knights5 lithuanians2 run
+		unit_order_attack_unit crusaders lithuanians2 run
+		inc_counter order_army_weakened 1
+		battle_wait 120
+		set_counter knights4_release 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitInRangeOfUnit lithuanians3 teutonic_knights4
+		and I_IsUnitUnderFire teutonic_knights4
+		inc_counter lit3_fire_on_Knights4 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter lit3_fire_on_Knights4 > 0
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights4 lithuanians3 run
+		unit_order_attack_unit teutonic_knights5 lithuanians3 run
+		unit_order_attack_unit crusaders lithuanians3 run
+		inc_counter order_army_weakened 1
+		battle_wait 120
+		set_counter knights4_release 1
+	terminate_monitor
+	end_monitor
+	
+	
+	
+	monitor_conditions I_UnitInRangeOfUnit tartars teutonic_knights4
+		and I_IsUnitUnderFire teutonic_knights4
+		inc_counter tartars_fire_on_Knights4 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter tartars_fire_on_Knights4 > 0
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights4 tartars run
+		unit_order_attack_unit teutonic_knights5 tartars run
+		unit_order_attack_unit crusaders tartars run
+		inc_counter order_army_weakened 1
+		battle_wait 120
+		set_counter knights4_release 1
+	terminate_monitor
+	end_monitor
+	
+	
+	
+	
+	;;;;;teutonic_knights5
+
+
+	monitor_conditions I_UnitInRangeOfUnit lithuanians1 teutonic_knights5
+		and I_IsUnitUnderFire teutonic_knights5
+		inc_counter lit1_fire_on_Knights5 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter lit1_fire_on_Knights5 > 0
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights4 lithuanians1 run
+		unit_order_attack_unit teutonic_knights5 lithuanians1 run
+		unit_order_attack_unit crusaders lithuanians1 run
+		inc_counter order_army_weakened 1
+		battle_wait 120
+		set_counter knights5_release 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitInRangeOfUnit lithuanians2 teutonic_knights5
+		and I_IsUnitUnderFire teutonic_knights5
+		inc_counter lit2_fire_on_Knights5 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter lit2_fire_on_Knights5 > 0
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights4 lithuanians2 run
+		unit_order_attack_unit teutonic_knights5 lithuanians2 run
+		unit_order_attack_unit crusaders lithuanians2 run
+		inc_counter order_army_weakened 1
+		battle_wait 120
+		set_counter knights5_release 1
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_UnitInRangeOfUnit lithuanians3 teutonic_knights5
+		and I_IsUnitUnderFire teutonic_knights5
+		inc_counter lit3_fire_on_Knights5 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter lit3_fire_on_Knights5 > 0
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights4 lithuanians3 run
+		unit_order_attack_unit teutonic_knights5 lithuanians3 run
+		unit_order_attack_unit crusaders lithuanians3 run
+		inc_counter order_army_weakened 1
+		battle_wait 120
+		set_counter knights5_release 1
+	terminate_monitor
+	end_monitor
+	
+	
+	
+	monitor_conditions I_UnitInRangeOfUnit tartars teutonic_knights5
+		and I_IsUnitUnderFire teutonic_knights5
+		inc_counter tartars_fire_on_Knights5 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter tartars_fire_on_Knights5 > 0
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights4 tartars run
+		unit_order_attack_unit teutonic_knights5 tartars run
+		unit_order_attack_unit crusaders tartars run
+		inc_counter order_army_weakened 1
+		battle_wait 120
+		set_counter knights5_release 1
+	terminate_monitor
+	end_monitor
+	
+	
+	
+	
+	;;;;;crusaders
+
+
+	monitor_conditions I_UnitInRangeOfUnit lithuanians1 crusaders
+		and I_IsUnitUnderFire crusaders
+		inc_counter lit1_fire_on_crusaders 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter lit1_fire_on_crusaders > 0
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights4 lithuanians1 run
+		unit_order_attack_unit teutonic_knights5 lithuanians1 run
+		unit_order_attack_unit crusaders lithuanians1 run
+		inc_counter order_army_weakened 1
+		battle_wait 120
+		set_counter crusaders_release 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitInRangeOfUnit lithuanians2 crusaders
+		and I_IsUnitUnderFire crusaders
+		inc_counter lit2_fire_on_crusaders 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter lit2_fire_on_crusaders > 0
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights4 lithuanians2 run
+		unit_order_attack_unit teutonic_knights5 lithuanians2 run
+		unit_order_attack_unit crusaders lithuanians2 run
+		inc_counter order_army_weakened 1
+		battle_wait 120
+		set_counter crusaders_release 1
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_UnitInRangeOfUnit lithuanians3 crusaders
+		and I_IsUnitUnderFire crusaders
+		inc_counter lit3_fire_on_crusaders 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter lit3_fire_on_crusaders > 0
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights4 lithuanians3 run
+		unit_order_attack_unit teutonic_knights5 lithuanians3 run
+		unit_order_attack_unit crusaders lithuanians3 run
+		inc_counter order_army_weakened 1
+		battle_wait 120
+		set_counter crusaders_release 1
+	terminate_monitor
+	end_monitor
+	
+	
+	
+	monitor_conditions I_UnitInRangeOfUnit tartars crusaders
+		and I_IsUnitUnderFire crusaders
+		inc_counter tartars_fire_on_crusaders 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter tartars_fire_on_crusaders > 0
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights4 tartars run
+		unit_order_attack_unit teutonic_knights5 tartars run
+		unit_order_attack_unit crusaders tartars run
+		inc_counter order_army_weakened 1
+		battle_wait 120
+		set_counter crusaders_release 1
+	terminate_monitor
+	end_monitor
+	
+	
+	
+	
+	
+	
+	
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; ORDER CAVALRY ON RIGHT FLANK WILL ATTACK HORSE ARCHERS WHEN THEY GET CLOSER THAN 10 METRES
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+
+;;;;;teutonic_knights1
+
+
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights1 lithuanians1 < 10
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights1 lithuanians1 run
+		inc_counter order_army_weakened 1
+		set_counter knights1_release 1
+	terminate_monitor
+	end_monitor
+		
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights1 lithuanians2 < 10
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights1 lithuanians2 run
+		inc_counter order_army_weakened 1
+		set_counter knights1_release 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights1 lithuanians3 < 10
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights1 lithuanians3 run
+		inc_counter order_army_weakened 1
+		set_counter knights1_release 1
+	terminate_monitor
+	end_monitor
+	
+	
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights1 tartars < 10
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights1 tartars run
+		inc_counter order_army_weakened 1
+		set_counter knights1_release 1
+	terminate_monitor
+	end_monitor
+	
+	
+	
+	
+;;;;;teutonic_knights2
+
+
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights2 lithuanians1 < 10
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights2 lithuanians1 run
+		inc_counter order_army_weakened 1
+		set_counter knights2_release 1
+	terminate_monitor
+	end_monitor
+		
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights2 lithuanians2 < 10
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights2 lithuanians2 run
+		inc_counter order_army_weakened 1
+		set_counter knights2_release 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights2 lithuanians3 < 10
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights2 lithuanians3 run
+		inc_counter order_army_weakened 1
+		set_counter knights2_release 1
+	terminate_monitor
+	end_monitor
+	
+	
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights2 tartars < 10
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights2 tartars run
+		inc_counter order_army_weakened 1
+		set_counter knights2_release 1
+	terminate_monitor
+	end_monitor
+	
+	
+	
+	
+	
+;;;;;teutonic_knights3
+
+
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights3 lithuanians1 < 10
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights3 lithuanians1 run
+		inc_counter order_army_weakened 1
+		set_counter knights3_release 1
+	terminate_monitor
+	end_monitor
+		
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights3 lithuanians2 < 10
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights3 lithuanians2 run
+		inc_counter order_army_weakened 1
+		set_counter knights3_release 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights3 lithuanians3 < 10
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights3 lithuanians3 run
+		inc_counter order_army_weakened 1
+		set_counter knights3_release 1
+	terminate_monitor
+	end_monitor
+	
+	
+	
+	monitor_conditions I_UnitDistanceFromUnit teutonic_knights3 tartars < 10
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights3 tartars run
+		inc_counter order_army_weakened 1
+		set_counter knights3_release 1
+	terminate_monitor
+	end_monitor
+	
+	
+
+	
+	
+	
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; ORDER CAVALRY ON RIGHT FLANK ATTACK WHEN FIRED UPON
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+
+;;;;;teutonic_knights1
+
+
+	monitor_conditions I_UnitInRangeOfUnit lithuanians1 teutonic_knights1
+		and I_IsUnitUnderFire teutonic_knights1
+		inc_counter lit1_fire_on_Knights1 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter lit1_fire_on_Knights1 > 0
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights1 lithuanians1 run
+		unit_order_attack_unit teutonic_knights2 lithuanians1 run
+		unit_order_attack_unit teutonic_knights3 lithuanians1 run
+		inc_counter order_army_weakened 1
+		battle_wait 120
+		set_counter knights1_release 1
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_UnitInRangeOfUnit lithuanians2 teutonic_knights1
+		and I_IsUnitUnderFire teutonic_knights1
+		inc_counter lit2_fire_on_Knights1 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter lit2_fire_on_Knights1 > 0
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights1 lithuanians2 run
+		unit_order_attack_unit teutonic_knights2 lithuanians2 run
+		unit_order_attack_unit teutonic_knights3 lithuanians2 run
+		inc_counter order_army_weakened 1
+		battle_wait 120
+		set_counter knights1_release 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitInRangeOfUnit lithuanians3 teutonic_knights1
+		and I_IsUnitUnderFire teutonic_knights1
+		inc_counter lit3_fire_on_Knights1 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter lit3_fire_on_Knights1 > 0
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights1 lithuanians3 run
+		unit_order_attack_unit teutonic_knights2 lithuanians3 run
+		unit_order_attack_unit teutonic_knights3 lithuanians3 run
+		inc_counter order_army_weakened 1
+		battle_wait 120
+		set_counter knights1_release 1
+	terminate_monitor
+	end_monitor
+	
+	
+	
+	monitor_conditions I_UnitInRangeOfUnit tartars teutonic_knights1
+		and I_IsUnitUnderFire teutonic_knights1
+		inc_counter tartars_fire_on_Knights1 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter tartars_fire_on_Knights1 > 0
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights1 tartars run
+		unit_order_attack_unit teutonic_knights2 tartars run
+		unit_order_attack_unit teutonic_knights3 tartars run
+		inc_counter order_army_weakened 1
+		battle_wait 120
+		set_counter knights1_release 1
+	terminate_monitor
+	end_monitor
+	
+	
+	
+	
+	;;;;;teutonic_knights2
+
+
+	monitor_conditions I_UnitInRangeOfUnit lithuanians1 teutonic_knights2
+		and I_IsUnitUnderFire teutonic_knights2
+		inc_counter lit1_fire_on_Knights2 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter lit1_fire_on_Knights2 > 0
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights1 lithuanians1 run
+		unit_order_attack_unit teutonic_knights2 lithuanians1 run
+		unit_order_attack_unit teutonic_knights3 lithuanians1 run
+		inc_counter order_army_weakened 1
+		battle_wait 120
+		set_counter knights2_release 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitInRangeOfUnit lithuanians2 teutonic_knights2
+		and I_IsUnitUnderFire teutonic_knights2
+		inc_counter lit2_fire_on_Knights2 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter lit2_fire_on_Knights2 > 0
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights1 lithuanians2 run
+		unit_order_attack_unit teutonic_knights2 lithuanians2 run
+		unit_order_attack_unit teutonic_knights3 lithuanians2 run
+		inc_counter order_army_weakened 1
+		battle_wait 120
+		set_counter knights2_release 1
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_UnitInRangeOfUnit lithuanians3 teutonic_knights2
+		and I_IsUnitUnderFire teutonic_knights2
+		inc_counter lit3_fire_on_Knights2 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter lit3_fire_on_Knights2 > 0
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights1 lithuanians3 run
+		unit_order_attack_unit teutonic_knights2 lithuanians3 run
+		unit_order_attack_unit teutonic_knights3 lithuanians3 run
+		inc_counter order_army_weakened 1
+		battle_wait 120
+		set_counter knights2_release 1
+	terminate_monitor
+	end_monitor
+	
+	
+	
+	monitor_conditions I_UnitInRangeOfUnit tartars teutonic_knights2
+		and I_IsUnitUnderFire teutonic_knights2
+		inc_counter tartars_fire_on_Knights2 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter tartars_fire_on_Knights2 > 0
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights1 tartars run
+		unit_order_attack_unit teutonic_knights2 tartars run
+		unit_order_attack_unit teutonic_knights3 tartars run
+		inc_counter order_army_weakened 1
+		battle_wait 120
+		set_counter knights2_release 1
+	terminate_monitor
+	end_monitor
+	
+	
+	
+	
+	;;;;;knights3
+
+
+	monitor_conditions I_UnitInRangeOfUnit lithuanians1 teutonic_knights3
+		and I_IsUnitUnderFire teutonic_knights3
+		inc_counter lit1_fire_on_Knights3 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter lit1_fire_on_Knights3 > 0
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights1 lithuanians1 run
+		unit_order_attack_unit teutonic_knights2 lithuanians1 run
+		unit_order_attack_unit teutonic_knights3 lithuanians1 run
+		inc_counter order_army_weakened 1
+		battle_wait 120
+		set_counter knights3_release 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitInRangeOfUnit lithuanians2 teutonic_knights3
+		and I_IsUnitUnderFire teutonic_knights3
+		inc_counter lit2_fire_on_Knights3 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter lit2_fire_on_Knights3 > 0
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights1 lithuanians2 run
+		unit_order_attack_unit teutonic_knights2 lithuanians2 run
+		unit_order_attack_unit teutonic_knights3 lithuanians2 run
+		inc_counter order_army_weakened 1
+		battle_wait 120
+		set_counter knights3_release 1
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_UnitInRangeOfUnit lithuanians3 teutonic_knights3
+		and I_IsUnitUnderFire teutonic_knights3
+		inc_counter lit3_fire_on_Knights3 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter lit3_fire_on_Knights3 > 0
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights1 lithuanians3 run
+		unit_order_attack_unit teutonic_knights2 lithuanians3 run
+		unit_order_attack_unit teutonic_knights3 lithuanians3 run
+		inc_counter order_army_weakened 1
+		battle_wait 120
+		set_counter knights3_release 1
+	terminate_monitor
+	end_monitor
+	
+	
+	
+	monitor_conditions I_UnitInRangeOfUnit tartars teutonic_knights3
+		and I_IsUnitUnderFire teutonic_knights3
+		inc_counter tartars_fire_on_Knights3 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter tartars_fire_on_Knights3 > 0dq
+	and I_CompareCounter cavalry_lock < 1
+		unit_order_attack_unit teutonic_knights1 tartars run
+		unit_order_attack_unit teutonic_knights2 tartars run
+		unit_order_attack_unit teutonic_knights3 tartars run
+		inc_counter order_army_weakened 1
+		battle_wait 120
+		set_counter knights3_release 1
+	terminate_monitor
+	end_monitor
+	
+	
+
+	
+	
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; CAVALRY ATTACK CLOSEST UNIT IF IDLE ANY TIME FROM ONE MINUTE AFTER ATTACKING
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+	monitor_conditions I_CompareCounter knights1_release > 0
+		and I_IsUnitIdle teutonic_knights1
+		unit_order_attack_closest_unit teutonic_knights1 180 run
+		battle_wait 60
+		set_counter knights1_release 2	
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_CompareCounter knights2_release > 0
+		and I_IsUnitIdle teutonic_knights2
+		unit_order_attack_closest_unit teutonic_knights2 180 run
+		battle_wait 60
+		set_counter knights2_release 2	
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_CompareCounter knights3_release > 0
+		and I_IsUnitIdle teutonic_knights3
+		unit_order_attack_closest_unit teutonic_knights3 180 run
+		battle_wait 60
+		set_counter knights3_release 2
+	terminate_monitor
+	end_monitor	
+
+
+	monitor_conditions I_CompareCounter knights4_release > 0
+		and I_IsUnitIdle teutonic_knights4
+		unit_order_attack_closest_unit teutonic_knights4 180 run
+		battle_wait 60
+		set_counter knights4_release 2	
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_CompareCounter knights5_release > 0
+		and I_IsUnitIdle teutonic_knights5
+		unit_order_attack_closest_unit teutonic_knights5 180 run
+		battle_wait 60
+		set_counter knights5_release 2	
+	terminate_monitor
+	end_monitor	
+	
+	monitor_conditions I_CompareCounter crusaders_release > 0
+		and I_IsUnitIdle crusaders
+		unit_order_attack_closest_unit crusaders 180 run
+		battle_wait 60
+		set_counter crusaders_release 2
+	terminate_monitor
+	end_monitor				
+
+;;;;;;AND THEN ATTACK JAGIELLO WHEN IDLE ANYTIME FROM 60 SECS AFTER THAT AND RELEASE TO AI A MINUTE AFTER THAT AFTER THAT
+
+	monitor_conditions I_CompareCounter knights1_release > 1
+	and I_IsUnitIdle teutonic_knights1
+		unit_order_attack_unit teutonic_knights1 Jagiello run
+		battle_wait 60
+		set_counter knights1_release 3
+	terminate_monitor
+	end_monitor
+		
+		
+	
+	monitor_conditions I_CompareCounter knights2_release > 1
+	and I_IsUnitIdle teutonic_knights2
+		unit_order_attack_unit teutonic_knights2 Jagiello run
+		battle_wait 60
+		set_counter knights2_release 3
+	terminate_monitor
+	end_monitor
+		
+	
+	monitor_conditions I_CompareCounter knights3_release > 1
+	and I_IsUnitIdle teutonic_knights3
+		unit_order_attack_unit teutonic_knights3 Jagiello run
+		battle_wait 60
+		set_counter knights3_release 3
+	terminate_monitor
+	end_monitor
+		
+
+	monitor_conditions I_CompareCounter knights4_release > 1
+	and I_IsUnitIdle teutonic_knights4
+		unit_order_attack_unit teutonic_knights4 Jagiello run
+		battle_wait 60
+		set_counter knights4_release 3
+	terminate_monitor
+	end_monitor
+		
+	
+	monitor_conditions I_CompareCounter knights5_release > 1
+	and I_IsUnitIdle teutonic_knights5
+		unit_order_attack_unit teutonic_knights5 Jagiello run
+		battle_wait 60
+		set_counter knights5_release 3
+	terminate_monitor
+	end_monitor
+		
+	
+	monitor_conditions I_CompareCounter crusaders_release > 1
+	and I_IsUnitIdle crusaders
+		unit_order_attack_unit crusaders Jagiello run
+		battle_wait 60
+		set_counter crusaders_release 3
+	terminate_monitor
+	end_monitor
+		
+	
+	
+;;;;;;
+
+	monitor_conditions I_CompareCounter knights1_release > 2
+	and I_IsUnitIdle teutonic_knights1
+		release_unit teutonic_knights1
+	terminate_monitor
+	end_monitor
+
+
+	monitor_conditions I_CompareCounter knights2_release > 2
+	and I_IsUnitIdle teutonic_knights1
+		release_unit teutonic_knights2
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights3_release > 2
+	and I_IsUnitIdle teutonic_knights1
+	release_unit teutonic_knights3
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_CompareCounter knights4_release > 2
+	and I_IsUnitIdle teutonic_knights1
+	release_unit teutonic_knights4
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter knights5_release > 2
+	and I_IsUnitIdle teutonic_knights1
+	release_unit teutonic_knights5
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter crusaders_release > 2
+	and I_IsUnitIdle teutonic_knights1
+	release_unit crusaders
+	terminate_monitor
+	end_monitor
+
+
+	
+	
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;RANDOM WORDS OF ENCOURAGEMENT WHEN INFANTRY ARE ENGAGED
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;	
+	
+	monitor_conditions I_IsUnitEngaged militia1
+	and I_CompareCounter courage_my_brothers < 1
+	play_sound_event Tannenberg_Sergeant_6 tag = Tannenberg_Sergeant_6
+	inc_counter courage_my_brothers 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_IsUnitEngaged militia2
+	and I_CompareCounter courage_my_brothers < 1
+	play_sound_event Tannenberg_Sergeant_6 tag = Tannenberg_Sergeant_6
+	inc_counter courage_my_brothers 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_IsUnitEngaged militia3
+	and I_CompareCounter courage_my_brothers < 1
+	play_sound_event Tannenberg_Sergeant_6 tag = Tannenberg_Sergeant_6
+	inc_counter courage_my_brothers 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_IsUnitEngaged militia4
+	and I_CompareCounter courage_my_brothers < 1
+	play_sound_event Tannenberg_Sergeant_6 tag = Tannenberg_Sergeant_6
+	inc_counter courage_my_brothers 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_IsUnitEngaged militia5
+	and I_CompareCounter courage_my_brothers < 1
+	play_sound_event Tannenberg_Sergeant_6 tag = Tannenberg_Sergeant_6
+	inc_counter courage_my_brothers 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_IsUnitEngaged militia6
+	and I_CompareCounter courage_my_brothers < 1
+	play_sound_event Tannenberg_Sergeant_6 tag = Tannenberg_Sergeant_6
+	inc_counter courage_my_brothers 1
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_IsUnitEngaged militia7
+	and I_CompareCounter courage_my_brothers < 1
+	play_sound_event Tannenberg_Sergeant_6 tag = Tannenberg_Sergeant_6
+	inc_counter courage_my_brothers 1
+	terminate_monitor
+	end_monitor
+			
+	
+	
+	
+	
+	
+	
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; BODYGUARD ABLE TO ROUT AFTER VON JUNGINGEN'S DEATH
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+	monitor_conditions not I_CharacterExists Ulrich von_Jungingen
+		set_counter von_jungingen_dead 1
+		battle_wait 4
+		play_sound_event Tannenberg_Sergeant_5 tag = Tannenberg_Sergeant_5
+		while I_SoundPlaying Tannenberg_Sergeant_5
+		end_while
+	terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_CompareCounter von_jungingen_dead > 0
+	and I_CompareCounter order_army_weakened > 0
+		unit_unset_morale Ulrich_von_Jungingen
+	terminate_monitor
+	end_monitor
+
+	
+	
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; ROUTING ORDER UNITS KEEP ON ROUTING
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;	
+
+
+	monitor_conditions I_IsUnitRouting Ulrich_von_Jungingen
+		unit_set_morale Ulrich_von_Jungingen routing
+		inc_counter rout_counter 1
+	terminate_monitor
+	end_monitor
+
+	monitor_conditions I_IsUnitRouting cannon1
+		unit_set_morale cannon1 routing
+		inc_counter rout_counter 1
+	terminate_monitor
+	end_monitor
+		
+	monitor_conditions I_IsUnitRouting cannon2
+		unit_set_morale cannon2 routing
+		inc_counter rout_counter 1
+	terminate_monitor
+	end_monitor
+		
+	monitor_conditions I_IsUnitRouting cannon3
+		unit_set_morale cannon3 routing
+		inc_counter rout_counter 1
+	terminate_monitor
+	end_monitor
+		
+	monitor_conditions I_IsUnitRouting cannon4
+		unit_set_morale cannon4 routing
+		inc_counter rout_counter 1
+	terminate_monitor
+	end_monitor
+		
+	monitor_conditions I_IsUnitRouting crossbow1
+		unit_set_morale crossbow1 routing
+		inc_counter rout_counter 1
+	terminate_monitor
+	end_monitor
+		
+	monitor_conditions I_IsUnitRouting crossbow2
+		unit_set_morale crossbow2 routing
+		inc_counter rout_counter 1
+	terminate_monitor
+	end_monitor
+		
+	monitor_conditions I_IsUnitRouting crossbow3
+		unit_set_morale crossbow3 routing
+		inc_counter rout_counter 1
+	terminate_monitor
+	end_monitor
+		
+	monitor_conditions I_IsUnitRouting infantry1
+		unit_set_morale infantry1 routing
+		inc_counter rout_counter 1
+	terminate_monitor
+	end_monitor
+		
+	monitor_conditions I_IsUnitRouting infantry2
+		unit_set_morale infantry2 routing
+		inc_counter rout_counter 1
+	terminate_monitor
+	end_monitor
+		
+	monitor_conditions I_IsUnitRouting infantry3
+		unit_set_morale infantry3 routing
+		inc_counter rout_counter 1
+	terminate_monitor
+	end_monitor
+		
+	monitor_conditions I_IsUnitRouting infantry4
+		unit_set_morale infantry4 routing
+		inc_counter rout_counter 1
+	terminate_monitor
+	end_monitor
+		
+	monitor_conditions I_IsUnitRouting infantry5
+		unit_set_morale infantry5 routing
+		inc_counter rout_counter 1
+	terminate_monitor
+	end_monitor
+		
+	monitor_conditions I_IsUnitRouting infantry6
+		unit_set_morale infantry6 routing
+		inc_counter rout_counter 1
+	terminate_monitor
+	end_monitor
+		
+	monitor_conditions I_IsUnitRouting teutonic_knights1
+		unit_set_morale teutonic_knights1 routing
+		play_sound_event Tannenberg_Sergeant_7 tag = Tannenberg_Sergeant_7
+	terminate_monitor
+	end_monitor
+		
+	monitor_conditions I_IsUnitRouting teutonic_knights2
+		unit_set_morale teutonic_knights2 routing
+	terminate_monitor
+	end_monitor
+		
+	monitor_conditions I_IsUnitRouting teutonic_knights3
+		unit_set_morale teutonic_knights3 routing
+	terminate_monitor
+	end_monitor
+		
+	monitor_conditions I_IsUnitRouting teutonic_knights4
+		unit_set_morale teutonic_knights4 routing
+	terminate_monitor
+	end_monitor
+		
+	monitor_conditions I_IsUnitRouting teutonic_knights5
+		unit_set_morale teutonic_knights5 routing
+	terminate_monitor
+	end_monitor
+		
+	monitor_conditions I_IsUnitRouting crusaders
+		unit_set_morale crusaders routing
+	terminate_monitor
+	end_monitor	
+
+	
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;ORDER CAV ATTACK JAGIELLO WHEN REST OF THEIR ARMY IS ROUTING
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;	
+	
+		
+	
+	monitor_conditions I_CompareCounter rout_counter > 10
+		unit_order_attack_unit teutonic_knights1 Jagiello run
+		unit_order_attack_unit teutonic_knights2 Jagiello run
+		unit_order_attack_unit teutonic_knights3 Jagiello run
+		unit_order_attack_unit teutonic_knights4 Jagiello run
+		unit_order_attack_unit teutonic_knights5 Jagiello run
+		unit_order_attack_unit crusaders Jagiello run
+	terminate_monitor
+	end_monitor	
+	
+	
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;TRIGGER MASS-ROUT IF JAGIELLO BOTTLES IT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+	monitor_conditions I_IsUnitRouting Jagiello
+		battle_wait 5
+		unit_set_morale knights1 routing
+		unit_set_morale knights2 routing
+		unit_set_morale knights3 routing
+		unit_set_morale knights4 routing
+		unit_set_morale militia1 routing
+		unit_set_morale militia2 routing
+		unit_set_morale militia3 routing
+		unit_set_morale militia4 routing
+		unit_set_morale militia5 routing
+		unit_set_morale militia6 routing
+		unit_set_morale militia7 routing
+		unit_set_morale lithuanians1 routing
+		unit_set_morale lithuanians2 routing
+		unit_set_morale lithuanians3 routing
+		unit_set_morale tartars routing
+	terminate_monitor
+	end_monitor 		
+	
+
+
+
+
+
+			; *********************************************************************************************
+			;	Start of battle - BATTLESTART MONITOR	(Transfer control to player)
+			;	Start of battle - BATTLESTART MONITOR	(Transfer control to player)
+			;	Start of battle - BATTLESTART MONITOR	(Transfer control to player)
+			;	Start of battle - BATTLESTART MONITOR	(Transfer control to player)
+			;	Start of battle - BATTLESTART MONITOR	(Transfer control to player)
+			;	Start of battle - BATTLESTART MONITOR	(Transfer control to player)
+			;	Start of battle - BATTLESTART MONITOR	(Transfer control to player)
+			;	Start of battle - BATTLESTART MONITOR	(Transfer control to player)
+			;	Start of battle - BATTLESTART MONITOR	(Transfer control to player)
+			; *********************************************************************************************
+		
+			monitor_conditions I_CompareCounter battle_start = 1
+
+				hiding_enabled_set true
+		
+				steal_esc_key off
+
+			; *********************************************************************************************
+			;	Stop the intro narration
+			; *********************************************************************************************
+
+
+stop_sound_event TANNENBERG_NARRATOR_1
+stop_sound_event TANNENBERG_NARRATOR_2
+stop_sound_event TANNENBERG_NARRATOR_3
+stop_sound_event TANNENBERG_NARRATOR_4
+stop_sound_event TANNENBERG_NARRATOR_5
+stop_sound_event TANNENBERG_NARRATOR_6
+stop_sound_event TANNENBERG_NARRATOR_7
+stop_sound_event TANNENBERG_NARRATOR_8
+stop_sound_event TANNENBERG_NARRATOR_9
+
+
+
+	
+set_camera_bookmark 1, 37.8846, 17.0814, 195.793 27.9473, 16.8656, 195.706		;jagiello rear
+set_camera_bookmark 2, 90.4194, 47.5757, 196.252 80.5134, 43.794, 196.165		;pan to battlestart
+
+
+
+
+;ai_gta_add_objective 1 DEFEND_TERRAIN_AREA -319, 187, 100, 100
+;ai_gta_add_objective 1 DEFEND_TERRAIN_AREA -277, 194, 100, 100
+ai_gta_add_objective 1 DEFEND_LINE 999 -280, 244, -280, 135
+
+
+
+camera_position_at_bookmark 1			;opening shot
+
+;	release_unit Jagiello
+;	release_unit knights1
+;	release_unit knights2
+;	release_unit knights3
+;	release_unit knights4
+;	release_unit militia1
+;	release_unit militia2
+;	release_unit militia3
+;	release_unit militia4
+;	release_unit militia5
+;	release_unit militia6
+;	release_unit militia7
+;	release_unit lithuanians1
+;	release_unit lithuanians2
+;	release_unit lithuanians3
+;	release_unit tartars
+
+;	unit_immediate_place Ulrich_von_Jungingen -332.719, 198.831, 89, 15.000
+;	unit_immediate_place crossbow1 -315.711, 162.866, 89, 15.000
+;	unit_immediate_place crossbow2 -316.076, 196.500, 89, 15.000
+;	unit_immediate_place crossbow3 -316.767, 228.026, 89, 15.000
+;	unit_immediate_place infantry1 -282.074, 147.183, 89, 18.000
+;	unit_immediate_place infantry2 -282.388, 167.896, 89, 18.000
+;	unit_immediate_place infantry3 -282.677, 188.617, 89, 18.000
+;	unit_immediate_place infantry4 -283.084, 209.172, 89, 18.000
+;	unit_immediate_place infantry5 -283.353, 229.930, 89, 18.000
+;	unit_immediate_place infantry6 -283.616, 250.824, 89, 18.000
+;	unit_immediate_place teutonic_knights1 -300.548, 79.986, 87, 15.000 
+;	unit_immediate_place teutonic_knights2 -291.142, 102.134, 89, 15.000 
+;	unit_immediate_place teutonic_knights3 -283.219, 124.280, 89, 15.000 
+;	unit_immediate_place teutonic_knights4 -285.864, 271.585, 89, 15.000 
+;	unit_immediate_place teutonic_knights5 -294.672, 301.205, 89, 12.000
+;	unit_immediate_place crusaders -303.450, 327.435, 89, 17.000
+
+	unit_immediate_place Jagiello 33.089, 197.609, -92, 15.000
+	unit_immediate_place knights1 20.545, 51.331, -92, 12.000
+	unit_immediate_place knights2 20.008, 77.785, -92, 12.000
+	unit_immediate_place knights3 19.268, 104.145, -92, 12.000
+	unit_immediate_place knights4 18.423, 130.590, -92, 12.000
+	unit_immediate_place militia1 16.887, 155.201, -92, 15.000
+	unit_immediate_place militia2 16.411, 170.009, -92, 15.000
+	unit_immediate_place militia3 15.866, 184.741, -92, 15.000
+	unit_immediate_place militia4 15.436, 199.485, -92, 15.000
+	unit_immediate_place militia5 14.932, 214.228, -92, 15.000
+	unit_immediate_place militia6 14.432, 228.966, -92, 15.000
+	unit_immediate_place militia7 13.945, 243.790, -92, 15.000
+	unit_immediate_place lithuanians1 14.605, 260.552, -92, 12.000
+	unit_immediate_place lithuanians2 13.571, 287.012, -92, 12.000
+	unit_immediate_place lithuanians3 12.611, 313.367, -92, 12.000
+	unit_immediate_place tartars 11.651, 339.808, -92 , 12.000
+
+	unit_immediate_place Ulrich_von_Jungingen -332.719, 198.831, 89, 15.000
+	unit_immediate_place crossbow1 -315.711, 162.866, 89, 15.000
+	unit_immediate_place crossbow2 -316.076, 196.500, 89, 15.000
+	unit_immediate_place crossbow3 -316.767, 228.026, 89, 15.000
+	unit_immediate_place infantry1 -282.074, 147.183, 89, 18.000
+	unit_immediate_place infantry2 -282.388, 167.896, 89, 18.000
+	unit_immediate_place infantry3 -282.677, 188.617, 89, 18.000
+	unit_immediate_place infantry4 -283.084, 209.172, 89, 18.000
+	unit_immediate_place infantry5 -283.353, 229.930, 89, 18.000
+	unit_immediate_place infantry6 -283.616, 250.824, 89, 18.000
+	unit_immediate_place teutonic_knights1 -300.548, 79.986, 87, 11.000 
+	unit_immediate_place teutonic_knights2 -291.142, 102.134, 89, 11.000 
+	unit_immediate_place teutonic_knights3 -283.219, 124.280, 89, 11.000 
+	unit_immediate_place teutonic_knights4 -285.864, 271.585, 89, 11.000 
+	unit_immediate_place teutonic_knights5 -294.672, 301.205, 89, 12.000
+	unit_immediate_place crusaders -303.450, 327.435, 89, 13.000
+
+;	release_unit cannon1
+;	release_unit cannon2
+;	release_unit cannon3
+;	release_unit cannon4
+	
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; TELEPORT UNITS TO BATTLESTART POSITIONS
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;			unit_immediate_place merc_greek_hoplites_1 838.776, -23.877, -90
+
+
+
+
+battle_wait 1
+
+camera_zoom_to_bookmark 2 			;pan to battlestart
+
+
+
+battle_wait 6				
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; RE-ENABLE UI ETC.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+		
+				show_ui
+		
+				enable_cursor						;enable player to click
+				disable_shortcuts false	
+				inhibit_camera_input false			;	Permit user to move camera.
+				enable_entire_ui
+		
+				camera_restrictions_set on
+				camera_default_mode_set user_pref
+				camera_event_cuts_active_set off
+	
+				set_music_state battle			;tension, mobilize, battle
+
+		suspend_unscripted_advice true
+
+		;		steal_esc_key off
+
+
+	unit_set_morale Ulrich_von_Jungingen firm	
+
+;ai_gta_plan_set 1 DEFEND
+	
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; VON JUNGINGEN IS INVULNERABLE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;		console_command invulnerable_general Albrecht von_Jungingen
+
+		
+		
+	
+	
+	
+			
+	unit_set_fire_at_will_mode cannon1 on
+	unit_set_fire_at_will_mode cannon2 on
+	unit_set_fire_at_will_mode cannon3 on
+	unit_set_fire_at_will_mode cannon4 on
+	unit_set_fire_at_will_mode crossbow1 on
+	unit_set_fire_at_will_mode crossbow2 on
+	unit_set_fire_at_will_mode crossbow3 on
+	
+battle_wait 1	
+	
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;ADVICE ON DRAWING TEUTONIC CAVALRY AWAY
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;	
+		
+	play_sound_event Tannenberg_Sergeant_1 tag = Tannenberg_Sergeant_1
+	
+	release_unit Ulrich_von_Jungingen
+	release_unit infantry1
+	release_unit infantry2
+	release_unit infantry3
+	release_unit infantry4
+	release_unit infantry5
+	release_unit infantry6
+;	release_unit teutonic_knights1
+;	release_unit teutonic_knights2
+;	release_unit teutonic_knights3
+;	release_unit cannon1
+;	release_unit cannon2
+;	release_unit cannon3
+;	release_unit cannon4
+;	release_unit crossbow1
+;	release_unit crossbow2
+;	release_unit crossbow3
+	
+	
+	ai_gta_add_unit_label 1 0 Ulrich_von_Jungingen
+	ai_gta_add_unit_label 1 0 infantry1
+	ai_gta_add_unit_label 1 0 infantry2
+	ai_gta_add_unit_label 1 0 infantry3
+	ai_gta_add_unit_label 1 0 infantry4
+	ai_gta_add_unit_label 1 0 infantry5
+	ai_gta_add_unit_label 1 0 infantry6
+;	ai_gta_add_unit_label 1 0 teutonic_knights1
+;	ai_gta_add_unit_label 1 0 teutonic_knights2
+;	ai_gta_add_unit_label 1 0 teutonic_knights3
+;	ai_gta_add_unit_label 1 0 cannon1
+;	ai_gta_add_unit_label 1 0 cannon2
+;	ai_gta_add_unit_label 1 0 cannon3
+;	ai_gta_add_unit_label 1 0 cannon4
+	ai_gta_add_unit_label 1 0 crossbow1
+	ai_gta_add_unit_label 1 0 crossbow2
+	ai_gta_add_unit_label 1 0 crossbow3
+	
+			
+
+
+
+
+
+			terminate_monitor
+			end_monitor	
+	
+		
+			; *********************************************************************************************
+			; ********************* END OF BATTLE START MONITOR *******************************************
+			; *********************************************************************************************
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+			; *********************************************************************************************
+			; *********************************************************************************************
+			;			Intro sequence - INTRO MONITOR
+			;			Intro sequence - INTRO MONITOR
+			;			Intro sequence - INTRO MONITOR
+			;			Intro sequence - INTRO MONITOR
+			;			Intro sequence - INTRO MONITOR
+			;			Intro sequence - INTRO MONITOR
+			;			Intro sequence - INTRO MONITOR
+			;			Intro sequence - INTRO MONITOR
+			;			Intro sequence - INTRO MONITOR
+			; *********************************************************************************************
+			; *********************************************************************************************
+		
+		
+			monitor_conditions I_CompareCounter intro_sequence = 1
+		
+		
+		
+				; *********************************************************************************************
+				;	Start sequence
+				; *********************************************************************************************
+		
+				battle_default_camera
+    camera_restrictions_set off
+    disable_cursor      ;prevent the player clicking
+    disable_entire_ui
+    disable_shortcuts true
+    disable_shortcuts toggle_pause_button false  ;toggle_pause_button PAUSE P
+    enable_ui toggle_pause_button
+    inhibit_camera_input true	;false
+    hide_ui
+
+			set_music_state custom Euro_Tension
+;		
+;		
+;				hiding_enabled_set true
+;		
+;				while I_CompareCounter battle_start = 1		; PLAYER CAN ESCAPE
+;				end_while									; PLAYER CAN ESCAPE
+;		
+;
+
+
+
+
+
+
+
+
+
+   
+ 
+
+		set_camera_bookmark 1, 161.257, 15.6163, 692.365 168.548, 18.6616, 698.662		;movie start 
+		set_camera_bookmark 2, 37.3927, 44.0262, 230.478 27.4862, 43.8338, 229.14		;pan up
+		set_camera_bookmark 3, -464.557, 20.3165, 145.6 -465.004, 20.3106, 135.621		;order column
+		set_camera_bookmark 4, -460.617, 17.9619, 65.8989 -453.069, 18.4431, 72.3297	;order knights
+		set_camera_bookmark 5, 281.095, 17.9447, -348.88 288.117, 19.4382, -355.675		;allied column
+		set_camera_bookmark 6, 420.033, 17.9545, -457.767 427.989, 20.7138, -451.997	;jagiello
+		set_camera_bookmark 7, 430.588, 25.9177, -436.607 421.042, 23.4878, -434.068	;polish banner and column
+		set_camera_bookmark 8, -333.574, 37.6156, 216.887 -338.547, 36.3532, 208.224	;von jungingen
+		set_camera_bookmark 9, -311.729, 36.4038, 245.217 -316.702, 35.1414, 236.554	;pan out
+		set_camera_bookmark 10, -265.569, 39.4299, 162.017 -273.79, 37.3324, 166.916	;order army
+		set_camera_bookmark 11, -297.726, 27.5392, 304.941 -306.516, 27.1069, 300.174	;teutonic and crusader knights
+		set_camera_bookmark 12, -277.122, 29.6262, 189.826 -286.831, 30.9118, 192.146	;heavy infantry
+		set_camera_bookmark 13, -321.742, 36.0058, 158.858 -314.701, 36.6156, 165.826	;xbows/cannon
+		set_camera_bookmark 14, 59.8663, 18.7343, -29.9026 59.3757, 19.0152, -19.9307	;allied army
+		set_camera_bookmark 15, 13.8588, 16.4079, 53.2025 22.2795, 17.907, 47.8098		;polish nobles
+		set_camera_bookmark 16, 45.2654, 15.5278, 188.176 47.4011, 17.6859, 178.506		;lithuanians head-on
+		set_camera_bookmark 17, 44.7664, 18.4463, 178.227 42.597, 18.6247, 187.975		;lithuanians gallop below
+		set_camera_bookmark 18, 63.9076, 18.3296, 164.291 53.9254, 18.508, 164.598		;lithuanians gallop past
+   		set_camera_bookmark 19, -270.231, 31.4616, 191.427 -280.164, 31.9556, 191.031	;order army
+   		set_camera_bookmark 20, -280.665, 30.2309, 250.106 -287.339, 31.1514, 242.809	;order army again
+   		set_camera_bookmark 21, 37.8846, 17.0814, 195.793 27.9473, 16.8656, 195.706		;jagiello rear
+
+
+
+
+
+
+
+
+
+
+
+define_unit_group group1 Jagiello knights1 knights2 knights3 knights4 militia1 militia2 militia3 militia4 militia5 militia6 militia7 lithuanians1 lithuanians2 lithuanians3 tartars
+
+define_unit_group group2 Ulrich_von_Jungingen crossbow1 crossbow2 crossbow3 infantry1 infantry2 infantry3 infantry4 infantry5 infantry6 teutonic_knights1 teutonic_knights2 teutonic_knights3 teutonic_knights4 teutonic_knights5 crusaders
+
+
+
+
+
+
+
+
+
+
+	camera_position_at_bookmark 1           			;movie start
+
+	
+
+;	unit_order_move_to_orientation cannon1 -315.492, 142.017, 4.000, 89 run
+;	unit_order_move_to_orientation cannon2 -316.826, 174.244, 4.000, 89 run
+;	unit_order_move_to_orientation cannon3 -317.392, 207.127, 4.000, 89 run
+;	unit_order_move_to_orientation cannon4 -317.106, 238.764, 4.000, 89 run	
+;	unit_order_move_to_orientation cannon1 -315.492, 145.017, 4.000, 89 run
+;	unit_order_move_to_orientation cannon2 -316.826, 180.244, 4.000, 89 run
+;	unit_order_move_to_orientation cannon3 -317.392, 213.127, 4.000, 89 run
+;	unit_order_move_to_orientation cannon4 -317.106, 245.764, 4.000, 89 run
+
+	battle_wait 3
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	play_sound_event TANNENBERG_NARRATOR_2 tag = TANNENBERG_NARRATOR_2
+
+
+
+	unit_group_order_relative_move_formed group1 0 100
+	
+	unit_group_order_relative_move_formed group2 0 100
+	
+	battle_wait 1
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	camera_zoom_to_bookmark 2 1 	 					;pan up
+	
+	
+	
+	
+	
+	
+	battle_wait 6
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+
+	camera_position_at_bookmark 3						;order column
+	
+	battle_wait 1
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	play_sound_event TANNENBERG_NARRATOR_1a tag = TANNENBERG_NARRATOR_1a
+	
+	battle_wait 7.5
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	camera_position_at_bookmark 4						;order knights
+	
+	battle_wait 7.5	
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	camera_position_at_bookmark 5						;allied column
+
+	battle_wait 1
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	play_sound_event TANNENBERG_NARRATOR_1b tag = TANNENBERG_NARRATOR_1b
+	
+	undefine_unit_group group2
+
+	
+	battle_wait 2
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	unit_immediate_place Ulrich_von_Jungingen -350.858, 210.958, 89, 15.000
+;	unit_immediate_place cannon1 -333.631, 140.144, 89, 9.000
+;	unit_immediate_place cannon2 -334.965, 172.371, 89, 9.000
+;	unit_immediate_place cannon3 -335.531, 205.254, 89, 9.000
+;	unit_immediate_place cannon4 -335.245, 236.891, 89, 9.000
+	unit_immediate_place crossbow1 -333.850, 161.993, 89, 18.000
+	unit_immediate_place crossbow2 -334.215, 195.627, 89, 18.000
+	unit_immediate_place crossbow3 -334.906, 227.153, 89, 18.000
+	unit_immediate_place infantry1 -300.213, 145.310, 89, 18.000
+	unit_immediate_place infantry2 -300.527, 166.023, 89, 18.000
+	unit_immediate_place infantry3 -300.816, 186.744, 89, 18.000
+	unit_immediate_place infantry4 -301.223, 207.299, 89, 18.000
+	unit_immediate_place infantry5 -301.492, 228.057, 89, 18.000
+	unit_immediate_place infantry6 -301.755, 248.951, 89, 18.000
+	unit_immediate_place teutonic_knights1 -318.687, 78.113, 87, 15.000
+	unit_immediate_place teutonic_knights2 -309.281, 100.261, 89, 15.000
+	unit_immediate_place teutonic_knights3 -301.358, 122.407, 89, 15.000
+	unit_immediate_place teutonic_knights4 -304.003, 269.712, 89, 15.000
+;	unit_immediate_place teutonic_knights5 -312.811, 291.332, 89, 15.000
+;	unit_immediate_place crusaders -321.589, 317.562, 89, 18.000
+
+	unit_immediate_place teutonic_knights5 -294.672, 301.205, 89, 12.000
+	unit_immediate_place crusaders -303.450, 327.435, 89, 17.000
+	
+		
+	battle_wait 2.5
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	camera_position_at_bookmark 6						;jagiello
+	
+	battle_wait 6.5
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	unit_order_move_to_orientation Ulrich_von_Jungingen -332.719, 198.831, 15.000, 89
+;	unit_order_move_to_orientation cannon1 -315.492, 142.017, 9.000, 89
+;	unit_order_move_to_orientation cannon2 -316.826, 174.244, 9.000, 89
+;	unit_order_move_to_orientation cannon3 -317.392, 207.127, 9.000, 89
+;	unit_order_move_to_orientation cannon4 -317.106, 238.764, 9.000, 89
+	unit_order_move_to_orientation crossbow1 -315.711, 155.866, 15.000, 89
+	unit_order_move_to_orientation crossbow2 -316.076, 189.500, 15.000, 89
+	unit_order_move_to_orientation crossbow3 -316.767, 221.026, 15.000, 89
+	unit_order_move_to_orientation infantry1 -282.074, 147.183, 18.000, 89
+	unit_order_move_to_orientation infantry2 -282.388, 167.896, 18.000, 89
+	unit_order_move_to_orientation infantry3 -282.677, 188.617, 18.000, 89
+	unit_order_move_to_orientation infantry4 -283.084, 209.172, 18.000, 89
+	unit_order_move_to_orientation infantry5 -283.353, 229.930, 18.000, 89
+	unit_order_move_to_orientation infantry6 -283.616, 250.824, 18.000, 89
+	
+;	unit_order_move_to_orientation teutonic_knights1 -300.548, 79.986, 15.000, 87 run
+;	unit_order_move_to_orientation teutonic_knights2 -291.142, 102.134, 15.000, 89 run
+;	unit_order_move_to_orientation teutonic_knights3 -283.219, 124.280, 15.000, 89 run
+
+	unit_order_move_to_orientation teutonic_knights1 -300.548, 75.986, 13.000, 87 run
+	unit_order_move_to_orientation teutonic_knights2 -291.142, 98.134, 13.000, 89 run
+	unit_order_move_to_orientation teutonic_knights3 -283.219, 120.280, 13.000, 89 run
+	
+	unit_order_move_to_orientation teutonic_knights4 -285.864, 271.585, 13.000, 89 run
+;	unit_order_move_to_orientation teutonic_knights5 -294.672, 293.205, 15.000, 89 run
+;	unit_order_move_to_orientation crusaders -303.450, 319.435, 18.000, 89 run
+	
+	battle_wait 3
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	camera_position_at_bookmark 7						;polish banner and column
+	
+	battle_wait 1
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+
+	
+	
+	battle_wait 3.5
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	camera_position_at_bookmark 8						;von jungingen
+	
+	battle_wait 1
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	unit_immediate_place Jagiello 91.100, -25.169, 2, 15.000
+	unit_immediate_place knights1 17.388, 13.286, 2, 15.000
+	unit_immediate_place knights2 16.738, -19.026, 2, 15.000
+	unit_immediate_place knights3 15.002, -82.670, 2, 15.000
+	unit_immediate_place knights4 15.634, -51.626, 2, 15.000
+	unit_immediate_place militia1 56.605, -48.725, 2, 15.000
+	unit_immediate_place militia2 64.139, -39.894, 2, 15.000
+	unit_immediate_place militia3 48.559, -38.668, 2, 15.000
+	unit_immediate_place militia4 48.824, -29.658, 2, 15.000
+	unit_immediate_place militia5 63.925, -30.088, 2, 15.000
+	unit_immediate_place militia6 49.193, -20.403, 2, 15.000
+	unit_immediate_place militia7 64.304, -20.929, 2, 15.000
+	unit_immediate_place lithuanians1 47.714, 9.118, 2, 15.000
+	unit_immediate_place lithuanians2 47.522, 40.430, 2, 15.000
+	unit_immediate_place lithuanians3 49.425, 74.758, 2, 15.000
+	unit_immediate_place tartars 44.739, 118.238, 2, 15.000
+	
+;	unit_set_fire_at_will_mode cannon1 on
+;	unit_set_fire_at_will_mode cannon2 on
+;	unit_set_fire_at_will_mode cannon3 on
+;	unit_set_fire_at_will_mode cannon4 on
+	
+	play_sound_event TANNENBERG_NARRATOR_3 tag = TANNENBERG_NARRATOR_3
+	
+;	battle_wait 1
+	
+	camera_zoom_to_bookmark 9 5							;pan out
+		
+	battle_wait 12
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	camera_position_at_bookmark 10						;order army
+	
+	battle_wait 1
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	play_sound_event TANNENBERG_NARRATOR_4 tag = TANNENBERG_NARRATOR_4
+
+
+		
+	battle_wait 3
+
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+
+	
+	
+			
+	camera_position_at_bookmark 11						;teutonic and crusader knights
+	
+	battle_wait 1
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	battle_wait 3
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	camera_position_at_bookmark 12						;heavy infantry
+	
+	
+	
+	unit_order_move_to_orientation Jagiello 33.089, 197.609, 15.000, -92
+;	unit_order_move_to_orientation knights1 20.545, 51.331, 15.000, -92
+;	unit_order_move_to_orientation knights2 20.008, 77.785, 15.000, -92
+;	unit_order_move_to_orientation knights3 19.268, 104.145, 15.000, -92
+;	unit_order_move_to_orientation knights4 18.423, 130.590, 15.000, -92
+	unit_order_move_relative knights1 0 100
+	unit_order_move_relative knights2 0 100
+	unit_order_move_relative knights3 0 100
+	unit_order_move_relative knights4 0 100
+	unit_order_move_to_orientation militia1 16.887, 155.201, 15.000, -92
+	unit_order_move_to_orientation militia2 16.411, 170.009, 15.000, -92
+	unit_order_move_to_orientation militia3 15.866, 184.741, 15.000, -92
+	unit_order_move_to_orientation militia4 15.436, 199.485, 15.000, -92
+	unit_order_move_to_orientation militia5 14.932, 214.228, 15.000, -92
+	unit_order_move_to_orientation militia6 14.432, 228.966, 15.000, -92
+	unit_order_move_to_orientation militia7 13.945, 243.790, 15.000, -92
+	unit_order_move_to_orientation lithuanians1 14.605, 260.552, 15.000, -92 
+	unit_order_move_to_orientation lithuanians2 13.571, 287.012, 15.000, -92 
+	unit_order_move_to_orientation lithuanians3 12.611, 313.367, 15.000, -92 
+	unit_order_move_to_orientation tartars 11.651, 339.808, 15.000, -92  
+	
+	
+	battle_wait 1
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	play_sound_event TANNENBERG_NARRATOR_5 tag = TANNENBERG_NARRATOR_5
+	
+	battle_wait 2
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	camera_position_at_bookmark 13 						;xbows/cannon
+
+	
+ 
+			
+	battle_wait 4
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+		
+	battle_wait 4
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	unit_order_move_to_orientation lithuanians1 14.605, 260.552, 15.000, -92 
+	unit_order_move_to_orientation lithuanians2 13.571, 287.012, 15.000, -92 
+	unit_order_move_to_orientation lithuanians3 12.611, 313.367, 15.000, -92 
+	unit_order_move_to_orientation tartars 11.651, 339.808, 15.000, -92  
+	
+	camera_position_at_bookmark 14						;allied army
+
+	
+		
+	battle_wait 1
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	play_sound_event TANNENBERG_NARRATOR_6 tag = TANNENBERG_NARRATOR_6
+	
+	battle_wait 9
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	camera_position_at_bookmark 15						;polish nobles
+	
+	battle_wait 1
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	unit_immediate_place Ulrich_von_Jungingen -332.719, 198.831, 89, 15.000
+	unit_immediate_place crossbow1 -315.711, 162.866, 89, 15.000
+	unit_immediate_place crossbow2 -316.076, 196.500, 89, 15.000
+	unit_immediate_place crossbow3 -316.767, 228.026, 89, 15.000
+	unit_immediate_place infantry1 -282.074, 147.183, 89, 18.000
+	unit_immediate_place infantry2 -282.388, 167.896, 89, 18.000
+	unit_immediate_place infantry3 -282.677, 188.617, 89, 18.000
+	unit_immediate_place infantry4 -283.084, 209.172, 89, 18.000
+	unit_immediate_place infantry5 -283.353, 229.930, 89, 18.000
+	unit_immediate_place infantry6 -283.616, 250.824, 89, 18.000
+	unit_immediate_place teutonic_knights1 -300.548, 79.986, 87, 11.000 
+	unit_immediate_place teutonic_knights2 -291.142, 102.134, 89, 11.000 
+	unit_immediate_place teutonic_knights3 -283.219, 124.280, 89, 11.000 
+	unit_immediate_place teutonic_knights4 -285.864, 271.585, 89, 11.000 
+	unit_immediate_place teutonic_knights5 -294.672, 301.205, 89, 12.000
+	unit_immediate_place crusaders -303.450, 327.435, 89, 13.000
+	
+	unit_order_move_relative knights1 0 100 run
+	unit_order_move_relative knights2 0 100 run
+	unit_order_move_relative knights3 0 100 run
+	unit_order_move_relative knights4 0 100 run
+	
+	play_sound_event TANNENBERG_NARRATOR_7 tag = TANNENBERG_NARRATOR_7
+	
+	battle_wait 5.5
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	camera_position_at_bookmark 16						;lithuanians head-on
+	
+	battle_wait 1
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	unit_order_move_to_orientation lithuanians1 14.605, 260.552, 15.000, -92 run
+	unit_order_move_to_orientation lithuanians2 13.571, 287.012, 15.000, -92 run
+	unit_order_move_to_orientation lithuanians3 12.611, 313.367, 15.000, -92 run
+	unit_order_move_to_orientation tartars 11.651, 339.808, 15.000, -92  run
+	
+	unit_order_move_relative knights1 0 100 
+	unit_order_move_relative knights2 0 100 
+	unit_order_move_relative knights3 0 100 
+	unit_order_move_relative knights4 0 100 
+	
+	battle_wait 2
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	camera_position_at_bookmark 17						;lithuanians gallop below
+	
+	battle_wait 3
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	camera_position_at_bookmark 18						;lithuanians gallop past
+	
+	battle_wait 2
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	play_sound_event TANNENBERG_NARRATOR_8 tag = TANNENBERG_NARRATOR_8
+	
+	camera_zoom_to_bookmark 19 10						;pan to order army
+	
+	battle_wait 5
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	unit_immediate_place Jagiello 33.089, 197.609, -92, 15.000
+	unit_immediate_place knights1 20.545, 51.331, -92, 12.000
+	unit_immediate_place knights2 20.008, 77.785, -92, 12.000
+	unit_immediate_place knights3 19.268, 104.145, -92, 12.000
+	unit_immediate_place knights4 18.423, 130.590, -92, 12.000
+	unit_immediate_place militia1 16.887, 155.201, -92, 15.000
+	unit_immediate_place militia2 16.411, 170.009, -92, 15.000
+	unit_immediate_place militia3 15.866, 184.741, -92, 15.000
+	unit_immediate_place militia4 15.436, 199.485, -92, 15.000
+	unit_immediate_place militia5 14.932, 214.228, -92, 15.000
+	unit_immediate_place militia6 14.432, 228.966, -92, 15.000
+	unit_immediate_place militia7 13.945, 243.790, -92, 15.000
+	unit_immediate_place lithuanians1 14.605, 260.552, -92, 12.000
+	unit_immediate_place lithuanians2 13.571, 287.012, -92, 12.000
+	unit_immediate_place lithuanians3 12.611, 313.367, -92, 12.000
+	unit_immediate_place tartars 11.651, 339.808, -92 , 12.000
+		
+	
+	battle_wait 2
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	camera_position_at_bookmark 19						;order army
+	
+	battle_wait 6
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	camera_position_at_bookmark 20						;order army again
+	
+	battle_wait 1
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	play_sound_event TANNENBERG_NARRATOR_9 tag = TANNENBERG_NARRATOR_9
+	
+	battle_wait 6
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+	camera_position_at_bookmark 21						;jagiello rear
+	
+	unit_set_fire_at_will_mode cannon1 on
+	unit_set_fire_at_will_mode cannon2 on
+	unit_set_fire_at_will_mode cannon3 on
+	unit_set_fire_at_will_mode cannon4 on
+		
+	battle_wait 7
+	
+	while I_CompareCounter battle_start = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+undefine_unit_group group1	
+
+					; ESC DUMP
+		
+				set_counter player_not_escape 1	  
+				set_counter battle_start 1	  
+
+
+
+
+
+
+		
+			terminate_monitor
+			end_monitor
+		
+		
+		
+			; *********************************************************************************************
+			; ********************* END OF INTRO SEQUENCE MONITOR *****************************************
+			; *********************************************************************************************
+		
+
+	while I_InBattle
+	end_while
+
+end_script
+
+

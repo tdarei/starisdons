@@ -1,0 +1,1307 @@
+script
+
+	;show the whole map
+	restrict_strat_radar false
+
+	;setup some event counters
+	monitor_event FactionTurnStart
+	
+		;setup LITHUANIA CONVERSION counters
+		
+		add_events
+			event	counter	lithuania_conversion_accepted
+			event	counter	lithuania_conversion_declined
+			event	counter lithuania_conversion_timer
+	 		date	0
+	 	end_add_events
+
+		generate_random_counter	lithuania_conversion_timer 0 25
+		set_event_counter lithuania_conversion_accepted 0
+		set_event_counter lithuania_conversion_declined 0
+		
+		;setup KALMAR UNION counters
+		
+		add_events
+			event	counter	kalmar_union
+			event	counter	kalmar_question_accepted
+	 		date	0
+	 	end_add_events
+		
+		set_event_counter kalmar_union 0
+		set_event_counter kalmar_question_accepted 0
+
+		;setup HANSEATIC LEAGUE counters
+
+		add_events
+			event	counter	hansaetic_formation_timer
+			event	counter	hanseatic_constructed
+	 		date	0
+	 	end_add_events
+		
+		generate_random_counter	hanseatic_formation_timer 0 10 		
+		set_event_counter hanseatic_constructed 0					;DONT RENAME - counter referenced by name in export_descr_guilds
+		
+		;setup CRUSADING NOBLE counters
+		
+		declare_counter teutonic_lithuania_allied 0
+		declare_counter	crusader1_active 0
+		declare_counter crusader2_active 0
+		declare_counter crusader3_active 0
+
+		add_events			
+			event	counter	crusader1_timer
+			event	counter	crusader2_timer
+			event	counter crusader3_timer
+	 		date	0
+	 	end_add_events
+		
+		generate_random_counter	crusader1_timer 0 10
+		generate_random_counter	crusader2_timer 0 10
+		generate_random_counter	crusader3_timer 0 30
+		
+		;setup TECH TREE counters
+		
+		add_events
+			event	counter	pagan_lithuania  		;DONT RENAME - counter referenced by name in export_descr_buildings
+			event	counter	not_pagan_lithuania		;DONT RENAME - counter referenced by name in export_descr_buildings
+			event	counter not_teutonic			;DONT RENAME - counter referenced by name in export_descr_buildings
+	 		date	0
+	 	end_add_events
+		
+		set_event_counter pagan_lithuania 0
+		set_event_counter not_pagan_lithuania 0
+		set_event_counter not_teutonic 0
+	
+		terminate_monitor
+	
+	end_monitor
+	
+	;------------------- TECHTREE -------------------;
+	
+	monitor_event PreFactionTurnStart not FactionType lithuania
+		and not FactionType teutonic_order
+		
+		set_event_counter pagan_lithuania 0
+		set_event_counter not_pagan_lithuania 1
+		set_event_counter not_teutonic 1
+		
+	end_monitor
+	
+	monitor_event PreFactionTurnStart FactionType lithuania
+		
+		set_event_counter pagan_lithuania 1
+		set_event_counter not_pagan_lithuania 0
+		set_event_counter not_teutonic 1
+		
+		if I_EventCounter lithuania_conversion_accepted = 1
+			set_event_counter pagan_lithuania 0
+			set_event_counter not_pagan_lithuania 1
+		end_if
+		
+			
+	end_monitor
+	
+	monitor_event PreFactionTurnStart FactionType teutonic_order		
+		
+		set_event_counter not_teutonic 0
+		set_event_counter pagan_lithuania 0
+		set_event_counter not_pagan_lithuania 1
+		
+	end_monitor
+	
+	;set counters on FactionTurnStart once only to ensure correct tech tree options are present at turn 0
+	
+	monitor_event FactionTurnStart not FactionType lithuania
+		and not FactionType teutonic_order
+		
+		set_event_counter pagan_lithuania 0
+		set_event_counter not_pagan_lithuania 1
+		set_event_counter not_teutonic 1
+		
+		terminate_monitor
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType lithuania
+		
+		set_event_counter pagan_lithuania 1
+		set_event_counter not_pagan_lithuania 0
+		set_event_counter not_teutonic 1
+		
+		if I_EventCounter lithuania_conversion_accepted = 1
+			set_event_counter pagan_lithuania 0
+			set_event_counter not_pagan_lithuania 1
+		end_if
+		
+		terminate_monitor
+			
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType teutonic_order		
+		
+		set_event_counter not_teutonic 0
+		set_event_counter pagan_lithuania 0
+		set_event_counter not_pagan_lithuania 1
+		
+		terminate_monitor
+		
+	end_monitor
+	
+	
+	;teutonic_order does not allow the brothel/tavern chain in their cities
+	monitor_event GeneralCaptureSettlement FactionType teutonic_order
+		
+		destroy_buildings teutonic_order taverns true
+	
+	end_monitor
+	
+	monitor_event GiveSettlement TargetFactionType teutonic_order
+	
+		destroy_buildings teutonic_order taverns true
+	
+	end_monitor
+	
+	monitor_event CityRebels TargetFactionType teutonic_order
+	
+		destroy_buildings teutonic_order taverns true
+		
+	end_monitor
+	
+	monitor_event GovernorCityRebels TargetFactionType teutonic_order
+	
+		destroy_buildings teutonic_order taverns true
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType teutonic_order
+	
+		destroy_buildings teutonic_order taverns true
+		
+	end_monitor
+	
+	;------------------- LITHUANIA CONVERSION TO CATHOLICISM -------------------;
+	
+	;increment the timer for conversion offer
+	monitor_event FactionTurnStart FactionType lithuania
+	
+			inc_event_counter lithuania_conversion_timer 1
+			
+			if I_EventCounter lithuania_conversion_accepted = 1
+				terminate_monitor
+			end_if
+			
+	end_monitor
+	
+	;offer the conversion to Lithuania if the correct conditions are met
+	
+	monitor_event FactionTurnStart FactionType lithuania
+	
+		if I_NumberOfSettlements lithuania < 5
+			and I_EventCounter lithuania_conversion_timer >= 37
+			and I_EventCounter lithuania_conversion_accepted = 0
+			
+			;offer conversion to christianity
+			historic_event lithuania_conversion true factions { lithuania, }
+			
+			;if AI random chance to accept
+			if I_IsFactionAIControlled lithuania
+			
+				generate_random_counter	random_accept 0 2
+				if I_EventCounter random_accept < 2
+					set_event_counter lithuania_conversion_accepted 1
+				end_if
+				
+			end_if
+			
+			terminate_monitor
+			
+		end_if
+		
+		if I_EventCounter lithuania_conversion_timer >= 65
+			and I_EventCounter lithuania_conversion_accepted = 0
+			
+			;offer conversion to christianity
+			historic_event lithuania_conversion true factions { lithuania, }
+			
+			;if AI random chance to accept
+			if I_IsFactionAIControlled lithuania
+			
+				generate_random_counter	random_accept 0 2
+				if I_EventCounter random_accept < 2
+					set_event_counter lithuania_conversion_accepted 1
+				end_if
+				
+			end_if
+			
+			terminate_monitor
+			
+		end_if
+		
+	end_monitor
+	
+	monitor_conditions I_EventCounter lithuania_conversion_accepted = 1
+		
+		;Three easy steps for conversion
+		
+		;1 - Convert the people
+		set_religion lithuania catholic
+		change_population_religion lithuania catholic 75 pagan
+		
+		;2 - Destroy the pagan buildings
+		destroy_buildings lithuania temple_dievas true
+		destroy_buildings lithuania temple_dievas_castle true
+		destroy_buildings lithuania temple_perkunas true
+		destroy_buildings lithuania temple_perkunas_castle true
+		destroy_buildings lithuania temple_giltine true
+		destroy_buildings lithuania temple_giltine_castle true
+		
+		;3 - Disband the pagan units
+		retire_characters Lithuania priest
+		destroy_units Lithuania pagan_unit
+		
+		;notify all factions that Lithuania has converted and become Catholic
+		historic_event lithuania_converts event/Lithuania_converts.bik
+		
+		set_event_counter pagan_lithuania 0
+		set_event_counter not_pagan_lithuania 1
+
+		; change teutonic order ai label
+		link_faction_ai teutonic_order teutonic_order_non_pagan
+		link_faction_ai poland poland_non_pagan
+		link_faction_ai lithuania lithuania_non_pagan
+		
+		terminate_monitor
+	
+	end_monitor
+	
+	;------------------- KALMAR UNION FORMATION -------------------;
+	
+	;Notify the player early in the game about to possibility to form the kalmar union
+	monitor_event FactionTurnStart FactionType denmark
+		and I_TurnNumber = 8
+		
+		historic_event kalmar_notification factions { denmark, } 
+		
+		terminate_monitor
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType denmark
+		and I_TurnNumber > 8
+		and I_NumberOfSettlements norway > 0
+	
+		if I_SettlementOwner Kalmar denmark
+			and I_SettlementOwner Goteborg denmark
+			and I_SettlementOwner Uppsala denmark
+			and I_SettlementOwner Visby denmark
+			and I_SettlementOwner Abo denmark
+			
+				historic_event kalmar_stage2 factions { denmark, }
+			
+				terminate_monitor		
+					
+		end_if
+	
+	end_monitor
+	
+	monitor_event BecomesFactionLeader FactionType norway
+		and I_TurnNumber > 9
+		
+		if I_SettlementOwner Kalmar denmark
+			and I_SettlementOwner Goteborg denmark
+			and I_SettlementOwner Uppsala denmark
+			and I_SettlementOwner Visby denmark
+			and I_SettlementOwner Abo denmark
+				
+				historic_event kalmar_question true factions { denmark, }
+							
+				if I_IsFactionAIControlled denmark
+					set_event_counter kalmar_question_accepted 1
+				end_if
+				
+				terminate_monitor
+		end_if
+		
+	end_monitor
+	
+	monitor_conditions I_EventCounter kalmar_question_accepted = 1
+		
+		;apply kalmar union faction banner to denmark
+		set_faction_banner
+			faction denmark
+			banner kalmar_union
+		end_set_faction_banner
+		
+		;turn over norways assets to denmark
+		give_everything_to_faction norway denmark false
+		
+		historic_event denmark_joins_kalmar event/Kalmar_union.bik
+
+		terminate_monitor
+	
+	end_monitor
+
+	;------------------- HANSEATIC LEAGUE -------------------;
+	
+	;announcement event
+	monitor_event SettlementTurnStart SettlementName Visby
+	
+		inc_event_counter hanseatic_formation_timer 1
+		
+		if I_EventCounter hanseatic_formation_timer >= 25
+			historic_event hanseatic_formation factions { teutonic_order, denmark, novgorod, poland, hre, } 
+			terminate_monitor
+		end_if
+	
+	end_monitor
+
+	monitor_event GuildUpgraded BuildingName = hanseatic_guild
+		and FactionType teutonic_order
+		
+		if I_EventCounter lithuania_conversion_accepted = 1
+			historic_event hanseatic_built_teutonic factions { lithuania, denmark, novgorod, poland, hre, } 
+		end_if
+		
+		if I_EventCounter lithuania_conversion_accepted = 0
+			historic_event hanseatic_built_teutonic factions { denmark, novgorod, poland, hre, } 
+		end_if
+		
+
+	end_monitor
+	
+	monitor_event GuildUpgraded BuildingName = hanseatic_guild
+		and FactionType lithuania
+
+		historic_event hanseatic_built_teutonic factions { teutonic_order, denmark, novgorod, poland, hre, } 
+
+	end_monitor
+	
+	monitor_event GuildUpgraded BuildingName = hanseatic_guild
+		and FactionType denmark
+		
+		if I_EventCounter lithuania_conversion_accepted = 1
+			historic_event hanseatic_built_teutonic factions { lithuania, teutonic_order, novgorod, poland, hre, } 
+		end_if
+		
+		if I_EventCounter lithuania_conversion_accepted = 0
+			historic_event hanseatic_built_teutonic factions { teutonic_order, novgorod, poland, hre, } 
+		end_if
+
+	end_monitor
+	
+	monitor_event GuildUpgraded BuildingName = hanseatic_guild
+		and FactionType novgorod
+		
+		if I_EventCounter lithuania_conversion_accepted = 1
+			historic_event hanseatic_built_teutonic factions { lithuania, denmark, teutonic_order, poland, hre, } 
+		end_if
+		
+		if I_EventCounter lithuania_conversion_accepted = 0
+			historic_event hanseatic_built_teutonic factions { denmark, teutonic_order, poland, hre, } 
+		end_if
+
+	end_monitor
+	
+	monitor_event GuildUpgraded BuildingName = hanseatic_guild
+		and FactionType poland
+		
+		if I_EventCounter lithuania_conversion_accepted = 1
+			historic_event hanseatic_built_teutonic factions { lithuania, denmark, teutonic_order, novgorod, hre, } 
+		end_if
+		
+		if I_EventCounter lithuania_conversion_accepted = 0
+			historic_event hanseatic_built_teutonic factions { denmark, teutonic_order, novgorod, hre, } 
+		end_if
+
+	end_monitor
+	
+	monitor_event GuildUpgraded BuildingName = hanseatic_guild
+		and FactionType hre
+
+		
+		if I_EventCounter lithuania_conversion_accepted = 1
+			historic_event hanseatic_built_teutonic factions { lithuania, denmark, teutonic_order, novgorod, poland, } 
+		end_if
+		
+		if I_EventCounter lithuania_conversion_accepted = 0
+			historic_event hanseatic_built_teutonic factions { denmark, teutonic_order, novgorod, poland, } 
+		end_if
+		
+		
+	end_monitor
+	
+	monitor_event GuildUpgraded BuildingName = hanseatic_guild
+		
+		set_event_counter hanseatic_constructed 1
+		reset_guild_standing hanseatic_guild
+		
+	end_monitor
+	
+	monitor_event BuildingDestroyed BuildingName = hanseatic_guild
+		and FactionType teutonic_order
+
+		if I_EventCounter lithuania_conversion_accepted = 1
+			historic_event hanseatic_destroyed factions { lithuania, denmark, novgorod, poland, hre, }
+		end_if
+		
+		if I_EventCounter lithuania_conversion_accepted = 0
+			historic_event hanseatic_destroyed factions { denmark, novgorod, poland, hre, }
+		end_if
+		
+	end_monitor
+	
+	monitor_event BuildingDestroyed BuildingName = hanseatic_guild
+		and FactionType lithuania
+
+		historic_event hanseatic_destroyed factions { teutonic_order, denmark, novgorod, poland, hre, }
+		
+	end_monitor
+	
+	monitor_event BuildingDestroyed BuildingName = hanseatic_guild
+		and FactionType denmark
+
+		if I_EventCounter lithuania_conversion_accepted = 1
+			historic_event hanseatic_destroyed factions { lithuania, teutonic_order, novgorod, poland, hre, } 
+		end_if
+		
+		if I_EventCounter lithuania_conversion_accepted = 0
+			historic_event hanseatic_destroyed factions { teutonic_order, novgorod, poland, hre, } 
+		end_if
+		
+	end_monitor
+	
+	monitor_event BuildingDestroyed BuildingName = hanseatic_guild
+		and FactionType novgorod
+
+		if I_EventCounter lithuania_conversion_accepted = 1
+			historic_event hanseatic_destroyed factions { lithuania, teutonic_order, denmark, poland, hre, } 
+		end_if
+		
+		if I_EventCounter lithuania_conversion_accepted = 0
+			historic_event hanseatic_destroyed factions { teutonic_order, denmark, poland, hre, } 
+		end_if
+		
+	end_monitor
+	
+	monitor_event BuildingDestroyed BuildingName = hanseatic_guild
+		and FactionType poland
+
+		if I_EventCounter lithuania_conversion_accepted = 1
+			historic_event hanseatic_destroyed factions { lithuania, teutonic_order, denmark, novgorod, hre, } 
+		end_if
+		
+		if I_EventCounter lithuania_conversion_accepted = 0
+			historic_event hanseatic_destroyed factions { teutonic_order, denmark, novgorod, hre, } 
+		end_if
+		
+	end_monitor
+	
+	monitor_event BuildingDestroyed BuildingName = hanseatic_guild
+		and FactionType hre
+
+		if I_EventCounter lithuania_conversion_accepted = 1
+			historic_event hanseatic_destroyed factions { lithuania, teutonic_order, denmark, novgorod, poland, } 
+		end_if
+		
+		if I_EventCounter lithuania_conversion_accepted = 0
+			historic_event hanseatic_destroyed factions { teutonic_order, denmark, novgorod, poland, } 
+		end_if
+		
+	end_monitor
+
+	monitor_event BuildingDestroyed BuildingName = hanseatic_guild
+
+		set_event_counter hanseatic_constructed 0
+		reset_guild_standing hanseatic_guild
+
+	end_monitor
+	
+	;------------------- CRUSADING NOBLES -------------------;
+	
+	;increment crusader spawn timers
+	monitor_event FactionTurnStart FactionType teutonic_order
+		
+		inc_event_counter crusader1_timer 1
+		inc_event_counter crusader2_timer 1
+		inc_event_counter crusader3_timer 1
+		
+	end_monitor
+	
+	
+	;monitor the alliance status of lithuania and the teutonic order
+	monitor_event FactionAllianceDeclared FactionType teutonic_order
+		and TargetFactionType lithuania
+		
+		set_counter teutonic_lithuania_allied 1
+		
+	end_monitor
+	
+	monitor_event FactionAllianceDeclared FactionType lithuania
+		and TargetFactionType teutonic_order
+		
+		set_counter teutonic_lithuania_allied 1
+		
+	end_monitor
+	
+	monitor_event FactionBreakAlliance FactionType teutonic_order
+		and TargetFactionType lithuania
+		
+		set_counter teutonic_lithuania_allied 0
+		
+	end_monitor
+	
+	monitor_event FactionBreakAlliance FactionType lithuania
+		and TargetFactionType teutonic_order
+		
+		set_counter teutonic_lithuania_allied 0
+		
+	end_monitor
+
+	
+	;spawn an army with the labelled character and 'adv_crusade' tagged unit
+	
+	monitor_event FactionTurnStart I_EventCounter crusader1_timer >= 15
+		and I_EventCounter crusader1_timer <= 20
+		and I_CompareCounter teutonic_lithuania_allied = 0
+		and I_NumberOfSettlements lithuania > 0
+		and I_EventCounter lithuania_conversion_accepted = 0
+		
+		set_counter crusader1_active 1
+		
+		spawn_army
+			faction		teutonic_order
+			character	Ulrich Salier, admiral, age 31, x 57, y 53, direction SE
+			unit		cog				exp 0 armour 0 weapon_lvl 0
+		end
+		
+		spawn_army 
+				faction teutonic_order
+				character	Charles, named character, x 57, y 53, label crus1, battle_model Adv_Northern_General_Eng
+				traits	LoyaltyStarter 1, ReligionStarter 1, Upright 2, GoodAttacker 1, PublicFaith 2, EnglishCrusader 1
+				unit		Adv English Bodyguard				exp 0 armour 0 weapon_lvl 0
+				unit		Adv Levy Spearmen				exp 0 armour 0 weapon_lvl 0
+				unit		Adv Levy Spearmen				exp 0 armour 0 weapon_lvl 0
+				unit		Adv Levy Spearmen				exp 0 armour 0 weapon_lvl 0
+				unit		Adv Feudal Knights				exp 0 armour 0 weapon_lvl 0
+				unit		Adv Feudal Knights				exp 0 armour 0 weapon_lvl 0
+				unit		Adv Dismounted Feudal Knights	exp 0 armour 0 weapon_lvl 0
+				unit		Adv Dismounted Feudal Knights	exp 0 armour 0 weapon_lvl 0
+				unit		Adv Dismounted Feudal Knights	exp 0 armour 0 weapon_lvl 0
+		end
+
+		create_mission adventure_crusader teutonic_order crus1
+		create_mission kill_crusader lithuania crus1
+
+		terminate_monitor
+	
+	end_monitor
+	
+	monitor_event FactionTurnStart I_EventCounter crusader2_timer >= 46
+		and I_EventCounter crusader2_timer <= 52
+		and I_CompareCounter teutonic_lithuania_allied = 0
+		and I_NumberOfSettlements lithuania > 0
+		and I_EventCounter lithuania_conversion_accepted = 0
+		
+		set_counter crusader2_active 1
+		
+		spawn_army
+			faction		teutonic_order
+			character	Kurt, admiral, age 25, x 57, y 60, direction SE
+			unit		cog				exp 0 armour 0 weapon_lvl 0
+		end
+		
+		spawn_army 
+				faction teutonic_order
+				character	Philipp, named character, x 57, y 60, label crus2, battle_model Adv_Northern_General_Fra
+				traits	LoyaltyStarter 1, ReligionStarter 1, Loyal 3, BadAttacker 2, Girls 3, BadSiegeAttacker 2, FrenchCrusader 1
+				unit		Adv French Generals Bodyguard				exp 0 armour 0 weapon_lvl 0
+				unit		Adv Religious Fanatics				exp 0 armour 0 weapon_lvl 0
+				unit		Adv Religious Fanatics				exp 0 armour 0 weapon_lvl 0
+				unit		Adv Religious Fanatics				exp 0 armour 0 weapon_lvl 0
+				unit		Adv Religious Fanatics				exp 0 armour 0 weapon_lvl 0
+				unit		Adv Dismounted French Archers				exp 0 armour 0 weapon_lvl 0
+				unit		Adv Dismounted French Archers				exp 0 armour 0 weapon_lvl 0
+				unit		Adv French Mounted Archers				exp 0 armour 0 weapon_lvl 0
+				unit		Adv Chivalric Knights				exp 0 armour 0 weapon_lvl 0
+				unit		Adv Chivalric Knights				exp 0 armour 0 weapon_lvl 0
+				unit		Adv Dismounted Chivalric Knights				exp 0 armour 0 weapon_lvl 0
+				unit		Adv Dismounted Chivalric Knights				exp 0 armour 0 weapon_lvl 0
+		end
+
+		create_mission adventure_crusader teutonic_order crus2
+		create_mission kill_crusader lithuania crus2
+
+		terminate_monitor
+	
+	end_monitor
+	
+	monitor_event FactionTurnStart I_EventCounter crusader3_timer > 98
+		and I_CompareCounter teutonic_lithuania_allied = 0
+		and I_NumberOfSettlements lithuania > 0
+		and I_EventCounter lithuania_conversion_accepted = 0
+		
+		set_counter crusader3_active 1
+		
+		spawn_army
+			faction		teutonic_order
+			character	Ortwinus, admiral, age 38, x 53, y 53, direction S
+			unit		holk				exp 0 armour 0 weapon_lvl 0
+		end
+		
+		spawn_army 
+				faction teutonic_order
+				character	Henry, named character, x 53, y 53, label crus3, battle_model Adv_Northern_General_Eng
+				traits	LoyaltyStarter 1, ReligionStarter 1, Upright 1, Drink 5, Stoic 1, Just 1, EnglishCrusader 1
+				unit		Adv English Late Bodyguard				exp 0 armour 0 weapon_lvl 0
+				unit		Adv Longbowmen				exp 0 armour 0 weapon_lvl 0
+				unit		Adv Longbowmen				exp 0 armour 0 weapon_lvl 0
+				unit		Adv Longbowmen				exp 0 armour 0 weapon_lvl 0
+				unit		Adv Longbowmen			exp 0 armour 0 weapon_lvl 0
+				unit		Adv English Knights			exp 0 armour 0 weapon_lvl 0
+				unit		Adv English Knights			exp 0 armour 0 weapon_lvl 0
+				unit		Adv Dismounted English Knights				exp 0 armour 0 weapon_lvl 0
+				unit		Adv Dismounted English Knights				exp 0 armour 0 weapon_lvl 0
+		end
+
+		create_mission adventure_crusader teutonic_order crus3
+		create_mission kill_crusader lithuania crus3
+
+		terminate_monitor
+	
+	end_monitor
+
+	monitor_event MissionFinished MissionID adventure_crusader
+
+		;kill the adventure crusader
+		if I_CompareCounter crusader1_active = 1
+			kill_character crus1
+			destroy_units teutonic_order adv_crusade_eng
+			set_counter crusader1_active 0
+		end_if
+		
+		if I_CompareCounter crusader2_active = 1
+			kill_character crus2
+			destroy_units teutonic_order adv_crusade_fra
+			set_counter crusader2_active 0
+		end_if
+		
+		if I_CompareCounter crusader3_active = 1
+			kill_character crus3
+			destroy_units teutonic_order adv_crusade_eng
+			set_counter crusader3_active 0
+		end_if
+
+		;kill his units
+				
+
+	end_monitor
+	
+	;---------------  HOCHMEISTER BATTLE MODEL -----------------;
+	
+	;apply the Hochmeister battle_model to the Teutonic Order faction leader whenever a new leader is assigned
+	monitor_event BecomesFactionLeader FactionType teutonic_order
+	
+		change_battle_model teutonic_order leader Teutonic_Hochmeister
+	
+	end_monitor
+	
+	;------------------- REVEALED TILES ------------------------;
+	; reveal certain tiles to certain factions
+	
+	monitor_event FactionTurnStart FactionType lithuania
+		and not I_IsFactionAIControlled lithuania
+		
+		reveal_tile 81, 5
+		reveal_tile 92, 1
+		reveal_tile 134, 16
+		reveal_tile 129, 2
+		reveal_tile 118, 27
+		reveal_tile 129, 50
+		reveal_tile 70, 13
+		
+		hide_all_revealed_tiles
+		
+		terminate_monitor
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType teutonic_order
+		and not I_IsFactionAIControlled teutonic_order
+		
+		reveal_tile 30, 37
+		reveal_tile 18, 21
+		reveal_tile 31, 2
+		reveal_tile 2, 25
+		reveal_tile 70, 13
+		reveal_tile 66, 1
+		reveal_tile 82, 58
+		reveal_tile 88, 92
+				
+		hide_all_revealed_tiles
+		
+		terminate_monitor
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType denmark
+		
+		if not I_IsFactionAIControlled denmark
+		
+			reveal_tile 2, 25
+			reveal_tile 18, 21
+			reveal_tile 41, 70
+			reveal_tile 21, 79
+			reveal_tile 55, 74
+			reveal_tile 86, 83
+			reveal_tile 76, 82
+			reveal_tile 120, 88
+		
+			hide_all_revealed_tiles
+		
+		end_if
+		
+		terminate_monitor
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType poland
+		
+		
+		if not I_IsFactionAIControlled poland
+		
+			reveal_tile 60, 36
+			reveal_tile 65, 46
+			reveal_tile 60, 36
+			reveal_tile 84, 33
+			reveal_tile 31, 2
+			reveal_tile 32, 21
+			reveal_tile 30, 37
+		
+			hide_all_revealed_tiles
+		
+		end_if
+		
+		terminate_monitor
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType poland
+		
+		if not I_IsFactionAIControlled poland
+		
+			reveal_tile 60, 36
+			reveal_tile 65, 46
+			reveal_tile 60, 36
+			reveal_tile 84, 33
+			reveal_tile 31, 2
+			reveal_tile 32, 21
+			reveal_tile 30, 37
+		
+			hide_all_revealed_tiles	
+			
+		end_if
+		
+		terminate_monitor
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType novgorod
+		
+		if not I_IsFactionAIControlled novgorod
+		
+			reveal_tile 103, 94
+			reveal_tile 86, 83
+			reveal_tile 100, 59
+			reveal_tile 113, 35
+			reveal_tile 134, 16
+			reveal_tile 85, 68
+				
+			hide_all_revealed_tiles	
+			
+		end_if
+		
+		terminate_monitor
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType hre
+		
+		if not I_IsFactionAIControlled hre
+		
+			reveal_tile 32, 21
+			reveal_tile 47, 19
+			reveal_tile 3, 43
+			reveal_tile 19, 58
+			reveal_tile 58, 24
+			reveal_tile 60, 36
+				
+			hide_all_revealed_tiles	
+			
+		end_if
+		
+		terminate_monitor
+		
+	end_monitor
+	
+	;------------------- AI KINGS PURSE BONUS -------------------;
+	;money granted to AI as they do not carry out missions
+	
+	monitor_event FactionTurnStart I_TurnNumber >= 0
+		and CampaignDifficulty = easy
+		
+			if I_IsFactionAIControlled teutonic_order
+				increment_kings_purse teutonic_order 1000
+			end_if
+			
+			if I_IsFactionAIControlled lithuania
+				increment_kings_purse lithuania 1000
+			end_if
+			
+			if I_IsFactionAIControlled denmark
+				increment_kings_purse denmark 1000
+			end_if
+			
+			if I_IsFactionAIControlled novgorod
+				increment_kings_purse novgorod 1000
+			end_if
+			
+			if I_IsFactionAIControlled poland
+				increment_kings_purse poland 1000
+			end_if
+			
+			if I_IsFactionAIControlled hre
+				increment_kings_purse hre 1000
+			end_if
+			
+		terminate_monitor
+		
+	end_monitor
+
+	
+	monitor_event FactionTurnStart I_TurnNumber >= 0
+		and CampaignDifficulty = medium
+		
+			if I_IsFactionAIControlled teutonic_order
+				increment_kings_purse teutonic_order 2000
+			end_if
+			
+			if I_IsFactionAIControlled lithuania
+				increment_kings_purse lithuania 2000
+			end_if
+			
+			if I_IsFactionAIControlled denmark
+				increment_kings_purse denmark 2000
+			end_if
+			
+			if I_IsFactionAIControlled novgorod
+				increment_kings_purse novgorod 2000
+			end_if
+			
+			if I_IsFactionAIControlled poland
+				increment_kings_purse poland 2000
+			end_if
+			
+			if I_IsFactionAIControlled hre
+				increment_kings_purse hre 2000
+			end_if
+			
+		terminate_monitor
+	end_monitor
+	
+	monitor_event FactionTurnStart I_TurnNumber >= 0
+		and CampaignDifficulty = hard
+		
+			if I_IsFactionAIControlled teutonic_order
+				increment_kings_purse teutonic_order 4000
+			end_if
+			
+			if I_IsFactionAIControlled lithuania
+				increment_kings_purse lithuania 4000
+			end_if
+			
+			if I_IsFactionAIControlled denmark
+				increment_kings_purse denmark 4000
+			end_if
+			
+			if I_IsFactionAIControlled novgorod
+				increment_kings_purse novgorod 4000
+			end_if
+			
+			if I_IsFactionAIControlled poland
+				increment_kings_purse poland 4000
+			end_if
+			
+			if I_IsFactionAIControlled hre
+				increment_kings_purse hre 4000
+			end_if
+			
+		terminate_monitor
+	end_monitor
+	
+	monitor_event FactionTurnStart I_TurnNumber >= 0
+		and CampaignDifficulty = very_hard
+		
+			if I_IsFactionAIControlled teutonic_order
+				increment_kings_purse teutonic_order 7000
+			end_if
+			
+			if I_IsFactionAIControlled lithuania
+				increment_kings_purse lithuania 7000
+			end_if
+			
+			if I_IsFactionAIControlled denmark
+				increment_kings_purse denmark 7000
+			end_if
+			
+			if I_IsFactionAIControlled novgorod
+				increment_kings_purse novgorod 7000
+			end_if
+			
+			if I_IsFactionAIControlled poland
+				increment_kings_purse poland 7000
+			end_if
+			
+			if I_IsFactionAIControlled hre
+				increment_kings_purse hre 7000
+			end_if
+			
+		terminate_monitor
+	end_monitor
+	
+	;------------------- AI LAST STAND BONUS -------------------;
+	; allow each AI faction to make a last stand when they near destruction
+	
+	monitor_event FactionTurnStart FactionType teutonic_order
+		and I_TurnNumber > 15
+		and I_NumberOfSettlements teutonic_order < 4
+		and IsFactionAIControlled
+		
+			add_money teutonic_order 10000
+
+		terminate_monitor	
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType lithuania
+		and I_TurnNumber > 15
+		and I_NumberOfSettlements lithuania < 4
+		and IsFactionAIControlled
+		
+			add_money lithuania 10000
+	
+		terminate_monitor	
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType denmark
+		and I_TurnNumber > 15
+		and I_NumberOfSettlements denmark < 4
+		and IsFactionAIControlled
+
+			add_money denmark 10000
+
+		terminate_monitor	
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType novgorod
+		and I_TurnNumber > 15
+		and I_NumberOfSettlements novgorod < 4
+		and IsFactionAIControlled
+		
+			add_money novgorod 10000
+		
+		terminate_monitor	
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType poland
+		and I_TurnNumber > 15
+		and I_NumberOfSettlements poland < 4
+		and IsFactionAIControlled
+		
+			add_money poland 10000
+
+		terminate_monitor	
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType hre
+		and I_TurnNumber > 15
+		and I_NumberOfSettlements hre < 4
+		and IsFactionAIControlled
+		
+			add_money hre 10000
+
+		terminate_monitor	
+		
+	end_monitor
+	
+	;------------------- AI DEBT -------------------;
+	
+	monitor_event FactionTurnStart FactionType teutonic_order
+		and IsFactionAIControlled
+		and Treasury < -5000
+		
+			add_money teutonic_order 10000
+	
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType lithuania
+		and IsFactionAIControlled
+		and Treasury < -5000
+		
+			add_money lithuania 10000
+	
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType denmark
+		and IsFactionAIControlled
+		and Treasury < -5000
+		
+			add_money denmark 10000
+	
+		
+	end_monitor
+		
+	monitor_event FactionTurnStart FactionType novgorod
+		and IsFactionAIControlled
+		and Treasury < -5000
+		
+			add_money novgorod 10000
+	
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType poland
+		and IsFactionAIControlled
+		and Treasury < -5000
+		
+			add_money poland 10000
+	
+	end_monitor
+	
+	;------------------- AI ATTACK POWERFUL PLAYER -------------------;
+	; All AI factions turn on the players faction when they nearing their victory conditions
+	
+	declare_counter	AI_attack_player_level 0
+	declare_counter target_human_active 0
+	
+	monitor_event FactionTurnStart FactionType teutonic_order
+		and not I_HotseatEnabled
+		and CampaignDifficulty > easy
+		and not IsFactionAIControlled
+		and I_NumberOfSettlements teutonic_order >= 35
+		
+		set_counter AI_attack_player_level 2
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType teutonic_order
+		and not I_HotseatEnabled
+		and CampaignDifficulty > easy
+		and not IsFactionAIControlled
+		and I_NumberOfSettlements teutonic_order >= 25
+		and I_NumberOfSettlements teutonic_order < 35
+		
+		set_counter AI_attack_player_level 1
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType teutonic_order
+		and not I_HotseatEnabled
+		and CampaignDifficulty > easy
+		and not IsFactionAIControlled
+		and I_NumberOfSettlements teutonic_order < 20
+		
+		set_counter AI_attack_player_level 0
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType lithuania
+		and not I_HotseatEnabled
+		and CampaignDifficulty > easy
+		and not IsFactionAIControlled
+		and I_NumberOfSettlements lithuania >= 35
+		
+		set_counter AI_attack_player_level 2
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType lithuania
+		and not I_HotseatEnabled
+		and CampaignDifficulty > easy
+		and not IsFactionAIControlled
+		and I_NumberOfSettlements lithuania >= 25
+		and I_NumberOfSettlements lithuania < 35
+
+		set_counter AI_attack_player_level 1
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType lithuania
+		and not I_HotseatEnabled
+		and CampaignDifficulty > easy
+		and not IsFactionAIControlled
+		and I_NumberOfSettlements lithuania < 20
+		
+		set_counter AI_attack_player_level 0
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType denmark
+		and not I_HotseatEnabled
+		and CampaignDifficulty > easy
+		and not IsFactionAIControlled
+		and I_NumberOfSettlements denmark >= 35
+		
+		set_counter AI_attack_player_level 2
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType denmark
+		and not I_HotseatEnabled
+		and CampaignDifficulty > easy
+		and not IsFactionAIControlled
+		and I_NumberOfSettlements denmark >= 25
+		and I_NumberOfSettlements denmark < 35
+
+		set_counter AI_attack_player_level 1
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType denmark
+		and not I_HotseatEnabled
+		and CampaignDifficulty > easy
+		and not IsFactionAIControlled
+		and I_NumberOfSettlements denmark < 20
+		
+		set_counter AI_attack_player_level 0
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType novgorod
+		and not I_HotseatEnabled
+		and CampaignDifficulty > easy
+		and not IsFactionAIControlled
+		and I_NumberOfSettlements novgorod >= 35
+		
+		set_counter AI_attack_player_level 2
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType novgorod
+		and not I_HotseatEnabled
+		and CampaignDifficulty > easy
+		and not IsFactionAIControlled
+		and I_NumberOfSettlements novgorod >= 25
+		and I_NumberOfSettlements novgorod < 35
+
+		set_counter AI_attack_player_level 1
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType novgorod
+		and not I_HotseatEnabled
+		and CampaignDifficulty > easy
+		and not IsFactionAIControlled
+		and I_NumberOfSettlements novgorod < 20
+		
+		set_counter AI_attack_player_level 0
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType poland
+		and not I_HotseatEnabled
+		and CampaignDifficulty > easy
+		and not IsFactionAIControlled
+		and I_NumberOfSettlements poland >= 35
+		
+		set_counter AI_attack_player_level 2
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType poland
+		and not I_HotseatEnabled
+		and CampaignDifficulty > easy
+		and not IsFactionAIControlled
+		and I_NumberOfSettlements poland >= 25
+		and I_NumberOfSettlements poland < 35
+
+		set_counter AI_attack_player_level 1
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType poland
+		and not I_HotseatEnabled
+		and CampaignDifficulty > easy
+		and not IsFactionAIControlled
+		and I_NumberOfSettlements poland < 20
+		
+		set_counter AI_attack_player_level 0
+		
+	end_monitor
+	
+	monitor_conditions I_CompareCounter AI_attack_player_level = 0
+		and I_CompareCounter target_human_active = 1
+	
+		if I_EventCounter lithuania_conversion_accepted = 1
+			link_faction_ai teutonic_order teutonic_order_non_pagan
+			link_faction_ai lithuania lithuania_non_pagan
+			link_faction_ai poland poland_non_pagan
+		end_if
+		
+		if I_EventCounter lithuania_conversion_accepted = 0
+			link_faction_ai teutonic_order teutonic_order
+			link_faction_ai lithuania lithuania
+			link_faction_ai poland poland
+		end_if
+		
+		link_faction_ai denmark denmark
+		link_faction_ai novgorod novgorod
+		link_faction_ai hre turtle
+		link_faction_ai norway turtle
+		link_faction_ai mongols turtle
+		
+		set_counter target_human_active 0
+	
+	end_monitor
+	
+	;Stage 1 attack label
+	monitor_conditions I_CompareCounter AI_attack_player_level >= 1
+		and I_CompareCounter target_human_active = 0
+		
+		if I_CompareCounter AI_attack_player_level = 1
+		
+			link_faction_ai teutonic_order target_human_stage1
+			link_faction_ai lithuania target_human_stage1
+			link_faction_ai poland target_human_stage1
+			link_faction_ai denmark target_human_stage1
+			link_faction_ai novgorod target_human_stage1
+			link_faction_ai hre target_human_stage1
+			link_faction_ai norway target_human_stage1
+			link_faction_ai mongols target_human_stage1
+			
+		end_if
+		
+		if I_CompareCounter AI_attack_player_level = 2
+		
+			link_faction_ai teutonic_order target_human_stage2
+			link_faction_ai lithuania target_human_stage2
+			link_faction_ai poland target_human_stage2
+			link_faction_ai denmark target_human_stage2
+			link_faction_ai novgorod target_human_stage2
+			link_faction_ai hre target_human_stage2
+			link_faction_ai norway target_human_stage2
+			link_faction_ai mongols target_human_stage2
+		
+		end_if
+		
+		set_counter target_human_active 1
+	
+	end_monitor
+	
+	wait_monitors
+
+end_script

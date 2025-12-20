@@ -1,0 +1,587 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medieval II: Total War - Adriano To The Star</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Raleway:wght@200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="pages-styles.css">
+    <link rel="stylesheet" href="loader-minimal.css">
+    <link rel="stylesheet" href="total-war-2-styles.css">
+
+    <script src="loader.js"></script>
+    <script src="animations.js" defer></script>
+    <script src="navigation.js" defer></script>
+    <script src="universal-graphics.js" defer></script>
+    <script src="cosmic-music-player.js" defer></script>
+    <script src="i18n.js" defer></script>
+    <script src="theme-toggle.js" defer></script>
+    <script src="accessibility.js" defer></script>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="theme-styles.css">
+    <link rel="stylesheet" href="accessibility-styles.css">
+    <link rel="stylesheet" href="i18n-styles.css">
+</head>
+
+<body>
+    <!-- Menu Toggle Button -->
+    <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">
+        <span class="menu-icon"></span>
+        <span class="menu-icon"></span>
+        <span class="menu-icon"></span>
+    </button>
+    <!-- Skip to Main Content -->
+    <a href="#main" class="skip-link">Skip to Main Content</a>
+
+    <!-- Header with portrait -->
+    <header class="site-header">
+        <div class="site-logo">
+            <a href="index.html" style="text-decoration: none; color: inherit;">
+                <h1
+                    style="font-family: 'Raleway', sans-serif; font-size: 1.2rem; font-weight: 300; letter-spacing: 3px; text-transform: uppercase;">
+                    ADRIANO TO THE STAR</h1>
+            </a>
+        </div>
+        <div class="header-image-wrapper" data-entrance="fadeIn" data-entrance-delay="0">
+            <img src="images/image_1.jpg" alt="Portrait" class="header-portrait" data-hover="zoom">
+        </div>
+    </header>
+
+    <main id="main">
+        <!-- Page Hero -->
+        <section class="page-hero" data-entrance="fadeIn">
+            <h1 class="page-title" data-scroll-animate>MEDIEVAL II: TOTAL WAR</h1>
+            <p class="page-subtitle">Experience epic medieval warfare - Version 1.52 with All DLCs</p>
+        </section>
+
+        <!-- Game Info Section -->
+        <section class="content-section" data-entrance="slideUp">
+            <div class="content-container">
+                <div class="game-info-card">
+                    <div class="game-info-header">
+                        <h2>🎮 Medieval II: Total War</h2>
+                        <span class="game-version">v1.52 + All DLCs</span>
+                    </div>
+
+                    <div class="game-description">
+                        <div class="game-notice">
+                            <p><strong>⚠️ Note:</strong> This is a native Windows PC game that requires download and
+                                installation. It cannot run directly in your web browser like Flash games. Please
+                                download the game files to play.</p>
+                        </div>
+
+                        <p>Medieval II: Total War is a turn-based strategy and real-time tactics game set in the Middle
+                            Ages. Lead your armies across Europe, the Middle East, and the Americas in this epic
+                            strategy game.</p>
+
+                        <div class="game-features">
+                            <h3>Features:</h3>
+                            <ul>
+                                <li>✅ Full game version 1.52</li>
+                                <li>✅ All DLCs included (Americas, Britannia, Crusades, Teutonic)</li>
+                                <li>✅ Complete game files</li>
+                                <li>✅ DirectX redistributables included</li>
+                                <li>✅ Ready to play after download</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Instructions Section -->
+        <section class="content-section" data-entrance="slideUp">
+            <div class="content-container">
+                <div class="instructions-card">
+                    <h2>📋 How to Play</h2>
+                    <div class="instructions-content">
+                        <div class="instruction-step">
+                            <span class="step-number">1</span>
+                            <div class="step-content">
+                                <h3>Download the Game</h3>
+                                <p>Click the "Download Game" button below to download all game files.</p>
+                            </div>
+                        </div>
+
+                        <div class="instruction-step">
+                            <span class="step-number">2</span>
+                            <div class="step-content">
+                                <h3>Extract Files</h3>
+                                <p>Extract the downloaded files to a folder on your computer.</p>
+                            </div>
+                        </div>
+
+                        <div class="instruction-step">
+                            <span class="step-number">3</span>
+                            <div class="step-content">
+                                <h3>Run the Game</h3>
+                                <p>Navigate to the <code>Medieval II - Total War</code> folder, right-click on
+                                    <code>medieval2.exe</code> and select "Run as administrator".
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="instruction-step">
+                            <span class="step-number">4</span>
+                            <div class="step-content">
+                                <h3>Install DirectX (if needed)</h3>
+                                <p>If you encounter any missing DLL errors, go to the <code>_Redist</code> folder and
+                                    run <code>dxsetup.exe</code> to install DirectX components.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Game Preview Section -->
+        <section class="content-section" data-entrance="slideUp">
+            <div class="content-container">
+                <div class="preview-section">
+                    <h2>🎬 Game Preview</h2>
+                    <div class="preview-content">
+                        <div class="preview-note">
+                            <p><strong>📥 Download Required:</strong> This game runs on Windows and must be downloaded
+                                to play. Click the download section below to get started.</p>
+                        </div>
+                        <div class="preview-placeholder">
+                            <div class="preview-icon">⚔️</div>
+                            <h3>Medieval II: Total War</h3>
+                            <p>Epic medieval strategy warfare</p>
+                            <p class="preview-subtitle">Download the game to experience:</p>
+                            <ul class="preview-features">
+                                <li>🏰 Massive medieval battles</li>
+                                <li>🗺️ Campaign across Europe, Middle East & Americas</li>
+                                <li>⚔️ Real-time tactical combat</li>
+                                <li>👑 Turn-based empire management</li>
+                                <li>🎯 All DLC campaigns included</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Download Section -->
+        <section class="content-section" data-entrance="slideUp">
+            <div class="content-container">
+                <div class="download-section">
+                    <h2>⬇️ Download Game</h2>
+                    <p class="download-description">Download the complete game package from MEGA. All files are included
+                        and ready to play. <strong>This game requires Windows and cannot run in your browser.</strong>
+                    </p>
+
+                    <div class="download-all-container" style="text-align: center; margin-top: 2rem;">
+                        <a href="https://mega.nz/folder/QltiyAxQ#kEFJwD14aIEqLwU6NKmR9Q" target="_blank"
+                            rel="noopener noreferrer" class="download-all-btn"
+                            style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; background: linear-gradient(135deg, rgba(186, 148, 79, 0.3), rgba(186, 148, 79, 0.5)); border: 2px solid #ba944f; border-radius: 12px; color: white; text-decoration: none; font-size: 1.1rem; font-weight: 600; transition: all 0.3s ease;">
+                            <span class="btn-icon">📦</span>
+                            <span class="btn-text">Download from MEGA</span>
+                        </a>
+                        <p class="download-note" style="margin-top: 1.5rem; color: rgba(255, 255, 255, 0.7);">Click the
+                            button above to access all game files on MEGA. Download the entire folder for the complete
+                            game experience.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- System Requirements -->
+        <section class="content-section" data-entrance="slideUp">
+            <div class="content-container">
+                <div class="requirements-card">
+                    <h2>💻 System Requirements</h2>
+                    <div class="requirements-grid">
+                        <div class="requirement-item">
+                            <h3>Minimum:</h3>
+                            <ul>
+                                <li>OS: Windows XP/Vista/7/8/10</li>
+                                <li>Processor: 1.5 GHz Pentium 4 or equivalent</li>
+                                <li>Memory: 512 MB RAM</li>
+                                <li>Graphics: 128 MB DirectX 9.0c compatible card</li>
+                                <li>DirectX: Version 9.0c</li>
+                                <li>Storage: 8 GB available space</li>
+                            </ul>
+                        </div>
+                        <div class="requirement-item">
+                            <h3>Recommended:</h3>
+                            <ul>
+                                <li>OS: Windows 7/8/10</li>
+                                <li>Processor: 2.4 GHz Pentium 4 or equivalent</li>
+                                <li>Memory: 1 GB RAM</li>
+                                <li>Graphics: 256 MB DirectX 9.0c compatible card</li>
+                                <li>DirectX: Version 9.0c</li>
+                                <li>Storage: 10 GB available space</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <template>
+        <link rel="stylesheet" href="theme-styles.css">
+        <link rel="stylesheet" href="accessibility-styles.css">
+        <link rel="stylesheet" href="i18n-styles.css">
+    </head>
+
+    <body>
+        <!-- Skip to Main Content -->
+        <a href="#main" class="skip-link">Skip to Main Content</a>
+
+        <!-- Header with portrait -->
+        <header class="site-header">
+            <div class="site-logo">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <h1
+                        style="font-family: 'Raleway', sans-serif; font-size: 1.2rem; font-weight: 300; letter-spacing: 3px; text-transform: uppercase;">
+                        ADRIANO TO THE STAR</h1>
+                </a>
+            </div>
+            <div class="header-image-wrapper" data-entrance="fadeIn" data-entrance-delay="0">
+                <img src="images/image_1.jpg" alt="Portrait" class="header-portrait" data-hover="zoom">
+            </div>
+        </header>
+
+        <main id="main">
+            <!-- Page Hero -->
+            <section class="page-hero" data-entrance="fadeIn">
+                <h1 class="page-title" data-scroll-animate>MEDIEVAL II: TOTAL WAR</h1>
+                <p class="page-subtitle">Experience epic medieval warfare - Version 1.52 with All DLCs</p>
+            </section>
+
+            <!-- Game Info Section -->
+            <section class="content-section" data-entrance="slideUp">
+                <div class="content-container">
+                    <div class="game-info-card">
+                        <div class="game-info-header">
+                            <h2>🎮 Medieval II: Total War</h2>
+                            <span class="game-version">v1.52 + All DLCs</span>
+                        </div>
+
+                        <div class="game-description">
+                            <div class="game-notice">
+                                <p><strong>⚠️ Note:</strong> This is a native Windows PC game that requires download and
+                                    installation. It cannot run directly in your web browser like Flash games. Please
+                                    download the game files to play.</p>
+                            </div>
+
+                            <p>Medieval II: Total War is a turn-based strategy and real-time tactics game set in the
+                                Middle
+                                Ages. Lead your armies across Europe, the Middle East, and the Americas in this epic
+                                strategy game.</p>
+
+                            <div class="game-features">
+                                <h3>Features:</h3>
+                                <ul>
+                                    <li>✅ Full game version 1.52</li>
+                                    <li>✅ All DLCs included (Americas, Britannia, Crusades, Teutonic)</li>
+                                    <li>✅ Complete game files</li>
+                                    <li>✅ DirectX redistributables included</li>
+                                    <li>✅ Ready to play after download</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Instructions Section -->
+            <section class="content-section" data-entrance="slideUp">
+                <div class="content-container">
+                    <div class="instructions-card">
+                        <h2>📋 How to Play</h2>
+                        <div class="instructions-content">
+                            <div class="instruction-step">
+                                <span class="step-number">1</span>
+                                <div class="step-content">
+                                    <h3>Download the Game</h3>
+                                    <p>Click the "Download Game" button below to download all game files.</p>
+                                </div>
+                            </div>
+
+                            <div class="instruction-step">
+                                <span class="step-number">2</span>
+                                <div class="step-content">
+                                    <h3>Extract Files</h3>
+                                    <p>Extract the downloaded files to a folder on your computer.</p>
+                                </div>
+                            </div>
+
+                            <div class="instruction-step">
+                                <span class="step-number">3</span>
+                                <div class="step-content">
+                                    <h3>Run the Game</h3>
+                                    <p>Navigate to the <code>Medieval II - Total War</code> folder, right-click on
+                                        <code>medieval2.exe</code> and select "Run as administrator".
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="instruction-step">
+                                <span class="step-number">4</span>
+                                <div class="step-content">
+                                    <h3>Install DirectX (if needed)</h3>
+                                    <p>If you encounter any missing DLL errors, go to the <code>_Redist</code> folder
+                                        and
+                                        run <code>dxsetup.exe</code> to install DirectX components.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Game Preview Section -->
+            <section class="content-section" data-entrance="slideUp">
+                <div class="content-container">
+                    <div class="preview-section">
+                        <h2>🎬 Game Preview</h2>
+                        <div class="preview-content">
+                            <div class="preview-note">
+                                <p><strong>📥 Download Required:</strong> This game runs on Windows and must be
+                                    downloaded
+                                    to play. Click the download section below to get started.</p>
+                            </div>
+                            <div class="preview-placeholder">
+                                <div class="preview-icon">⚔️</div>
+                                <h3>Medieval II: Total War</h3>
+                                <p>Epic medieval strategy warfare</p>
+                                <p class="preview-subtitle">Download the game to experience:</p>
+                                <ul class="preview-features">
+                                    <li>🏰 Massive medieval battles</li>
+                                    <li>🗺️ Campaign across Europe, Middle East & Americas</li>
+                                    <li>⚔️ Real-time tactical combat</li>
+                                    <li>👑 Turn-based empire management</li>
+                                    <li>🎯 All DLC campaigns included</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Download Section -->
+            <section class="content-section" data-entrance="slideUp">
+                <div class="content-container">
+                    <div class="download-section">
+                        <h2>⬇️ Download Game</h2>
+                        <p class="download-description">Download the complete game package from MEGA. All files are
+                            included
+                            and ready to play. <strong>This game requires Windows and cannot run in your
+                                browser.</strong>
+                        </p>
+
+                        <div class="download-all-container" style="text-align: center; margin-top: 2rem;">
+                            <a href="https://mega.nz/folder/QltiyAxQ#kEFJwD14aIEqLwU6NKmR9Q" target="_blank"
+                                rel="noopener noreferrer" class="download-all-btn"
+                                style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; background: linear-gradient(135deg, rgba(186, 148, 79, 0.3), rgba(186, 148, 79, 0.5)); border: 2px solid #ba944f; border-radius: 12px; color: white; text-decoration: none; font-size: 1.1rem; font-weight: 600; transition: all 0.3s ease;">
+                                <span class="btn-icon">📦</span>
+                                <span class="btn-text">Download from MEGA</span>
+                            </a>
+                            <p class="download-note" style="margin-top: 1.5rem; color: rgba(255, 255, 255, 0.7);">Click
+                                the
+                                button above to access all game files on MEGA. Download the entire folder for the
+                                complete
+                                game experience.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- System Requirements -->
+            <section class="content-section" data-entrance="slideUp">
+                <div class="content-container">
+                    <div class="requirements-card">
+                        <h2>💻 System Requirements</h2>
+                        <div class="requirements-grid">
+                            <div class="requirement-item">
+                                <h3>Minimum:</h3>
+                                <ul>
+                                    <li>OS: Windows XP/Vista/7/8/10</li>
+                                    <li>Processor: 1.5 GHz Pentium 4 or equivalent</li>
+                                    <li>Memory: 512 MB RAM</li>
+                                    <li>Graphics: 128 MB DirectX 9.0c compatible card</li>
+                                    <li>DirectX: Version 9.0c</li>
+                                    <li>Storage: 8 GB available space</li>
+                                </ul>
+                            </div>
+                            <div class="requirement-item">
+                                <h3>Recommended:</h3>
+                                <ul>
+                                    <li>OS: Windows 7/8/10</li>
+                                    <li>Processor: 2.4 GHz Pentium 4 or equivalent</li>
+                                    <li>Memory: 1 GB RAM</li>
+                                    <li>Graphics: 256 MB DirectX 9.0c compatible card</li>
+                                    <li>DirectX: Version 9.0c</li>
+                                    <li>Storage: 10 GB available space</li>
+                                </ul>
+
+                                    <div class="game-features">
+                                        <h3>Features:</h3>
+                                        <ul>
+                                            <li>✅ Full game version 1.52</li>
+                                            <li>✅ All DLCs included (Americas, Britannia, Crusades, Teutonic)</li>
+                                            <li>✅ Complete game files</li>
+                                            <li>✅ DirectX redistributables included</li>
+                                            <li>✅ Ready to play after download</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Instructions Section -->
+                    <section class="content-section" data-entrance="slideUp">
+                        <div class="content-container">
+                            <div class="instructions-card">
+                                <h2>📋 How to Play</h2>
+                                <div class="instructions-content">
+                                    <div class="instruction-step">
+                                        <span class="step-number">1</span>
+                                        <div class="step-content">
+                                            <h3>Download the Game</h3>
+                                            <p>Click the "Download Game" button below to download all game files.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="instruction-step">
+                                        <span class="step-number">2</span>
+                                        <div class="step-content">
+                                            <h3>Extract Files</h3>
+                                            <p>Extract the downloaded files to a folder on your computer.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="instruction-step">
+                                        <span class="step-number">3</span>
+                                        <div class="step-content">
+                                            <h3>Run the Game</h3>
+                                            <p>Navigate to the <code>Medieval II - Total War</code> folder, right-click on
+                                                <code>medieval2.exe</code> and select "Run as administrator".
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="instruction-step">
+                                        <span class="step-number">4</span>
+                                        <div class="step-content">
+                                            <h3>Install DirectX (if needed)</h3>
+                                            <p>If you encounter any missing DLL errors, go to the <code>_Redist</code> folder
+                                                and
+                                                run <code>dxsetup.exe</code> to install DirectX components.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Game Preview Section -->
+                    <section class="content-section" data-entrance="slideUp">
+                        <div class="content-container">
+                            <div class="preview-section">
+                                <h2>🎬 Game Preview</h2>
+                                <div class="preview-content">
+                                    <div class="preview-note">
+                                        <p><strong>📥 Download Required:</strong> This game runs on Windows and must be
+                                            downloaded
+                                            to play. Click the download section below to get started.</p>
+                                    </div>
+                                    <div class="preview-placeholder">
+                                        <div class="preview-icon">⚔️</div>
+                                        <h3>Medieval II: Total War</h3>
+                                        <p>Epic medieval strategy warfare</p>
+                                        <p class="preview-subtitle">Download the game to experience:</p>
+                                        <ul class="preview-features">
+                                            <li>🏰 Massive medieval battles</li>
+                                            <li>🗺️ Campaign across Europe, Middle East & Americas</li>
+                                            <li>⚔️ Real-time tactical combat</li>
+                                            <li>👑 Turn-based empire management</li>
+                                            <li>🎯 All DLC campaigns included</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Download Section -->
+                    <section class="content-section" data-entrance="slideUp">
+                        <div class="content-container">
+                            <div class="download-section">
+                                <h2>⬇️ Download Game</h2>
+                                <p class="download-description">Download the complete game package from MEGA. All files are
+                                    included
+                                    and ready to play. <strong>This game requires Windows and cannot run in your
+                                        browser.</strong>
+                                </p>
+
+                                <div class="download-all-container" style="text-align: center; margin-top: 2rem;">
+                                    <a href="https://mega.nz/folder/QltiyAxQ#kEFJwD14aIEqLwU6NKmR9Q" target="_blank"
+                                        rel="noopener noreferrer" class="download-all-btn"
+                                        style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; background: linear-gradient(135deg, rgba(186, 148, 79, 0.3), rgba(186, 148, 79, 0.5)); border: 2px solid #ba944f; border-radius: 12px; color: white; text-decoration: none; font-size: 1.1rem; font-weight: 600; transition: all 0.3s ease;">
+                                        <span class="btn-icon">📦</span>
+                                        <span class="btn-text">Download from MEGA</span>
+                                    </a>
+                                    <p class="download-note" style="margin-top: 1.5rem; color: rgba(255, 255, 255, 0.7);">Click
+                                        the
+                                        button above to access all game files on MEGA. Download the entire folder for the
+                                        complete
+                                        game experience.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- System Requirements -->
+                    <section class="content-section" data-entrance="slideUp">
+                        <div class="content-container">
+                            <div class="requirements-card">
+                                <h2>💻 System Requirements</h2>
+                                <div class="requirements-grid">
+                                    <div class="requirement-item">
+                                        <h3>Minimum:</h3>
+                                        <ul>
+                                            <li>OS: Windows XP/Vista/7/8/10</li>
+                                            <li>Processor: 1.5 GHz Pentium 4 or equivalent</li>
+                                            <li>Memory: 512 MB RAM</li>
+                                            <li>Graphics: 128 MB DirectX 9.0c compatible card</li>
+                                            <li>DirectX: Version 9.0c</li>
+                                            <li>Storage: 8 GB available space</li>
+                                        </ul>
+                                    </div>
+                                    <div class="requirement-item">
+                                        <h3>Recommended:</h3>
+                                        <ul>
+                                            <li>OS: Windows 7/8/10</li>
+                                            <li>Processor: 2.4 GHz Pentium 4 or equivalent</li>
+                                            <li>Memory: 1 GB RAM</li>
+                                            <li>Graphics: 256 MB DirectX 9.0c compatible card</li>
+                                            <li>DirectX: Version 9.0c</li>
+                                            <li>Storage: 10 GB available space</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </main>
+            </template>
+
+            <!-- Footer -->
+            <footer class="site-footer">
+                <p class="footer-text">ADRIANO TO THE STAR</p>
+            </footer>
+            <script src="pwa-loader.js"></script>
+        </body>
+
+    </html>

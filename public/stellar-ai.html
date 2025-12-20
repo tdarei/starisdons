@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stellar AI - Adriano To The Star</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Raleway:wght@200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="pages-styles.css">
+    <link rel="stylesheet" href="stellar-ai-styles.css">
+    <!-- Loader CSS disabled to prevent blocking -->
+    <link rel="stylesheet" href="theme-styles.css">
+    <link rel="stylesheet" href="accessibility-styles.css">
+    <link rel="stylesheet" href="i18n-styles.css">
+    <!-- Loader JS disabled to prevent blocking -->
+    <script src="safe-loader.js" defer></script>
+    <script src="navigation.js" defer></script>
+    <style>
+        /* AGGRESSIVE FIX: Force page to be visible and clickable */
+        html,
+        body {
+            pointer-events: auto !important;
+            overflow: auto !important;
+            overflow-x: hidden !important;
+            position: relative !important;
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+
+        body *,
+        body *::before,
+        body *::after {
+            pointer-events: auto !important;
+        }
+
+        button,
+        a,
+        input,
+        textarea,
+        select {
+            pointer-events: auto !important;
+            cursor: pointer !important;
+        }
+
+        section,
+        main,
+        .chat-container,
+        .page-hero {
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            pointer-events: auto !important;
+        }
+
+        #space-loader {
+            display: none !important;
+        }
+    </style>
+    <!--
+    <script>
+        // ULTRA-AGGRESSIVE FIX: Run immediately
+        (function() {
+            function ultraForceEnable() {
+                if (document.body) {
+                    document.body.style.cssText = 'pointer-events:auto!important;overflow:auto!important;overflow-x:hidden!important;position:relative!important;display:block!important;visibility:visible!important;opacity:1!important;';
+                    document.body.classList.add('loaded');
+                }
+                if (document.documentElement) {
+                    document.documentElement.style.cssText = 'pointer-events:auto!important;overflow:auto!important;overflow-x:hidden!important;';
+                    document.documentElement.classList.add('loaded');
+                }
+                const loader = document.getElementById('space-loader');
+                if (loader) loader.remove();
+                document.querySelectorAll('button').forEach(function(btn) {
+                    btn.style.cssText = 'pointer-events:auto!important;cursor:pointer!important;';
+                });
+                document.querySelectorAll('section, main, .chat-container').forEach(function(el) {
+                    el.style.cssText = 'display:block!important;visibility:visible!important;opacity:1!important;pointer-events:auto!important;';
+                });
+            }
+            ultraForceEnable();
+            setTimeout(ultraForceEnable, 10);
+            setTimeout(ultraForceEnable, 50);
+            setTimeout(ultraForceEnable, 100);
+            setTimeout(ultraForceEnable, 500);
+            setTimeout(ultraForceEnable, 1000);
+            setInterval(ultraForceEnable, 2000);
+        })();
+    </script>
+    -->
+    <script src="i18n.js" defer></script>
+    <script src="rate-limiting.js" defer></script>
+    <script src="rate-limiting-ui.js" defer></script>
+    <script src="code-splitting.js" defer></script>
+    <script src="animation-controls.js" defer></script>
+    <script src="lazy-loading.js" defer></script>
+    <script src="keyboard-shortcuts.js" defer></script>
+    <script src="accessibility-enhancements.js" defer></script>
+    <script src="csrf-protection.js" defer></script>
+    <script src="xss-protection-enhanced.js" defer></script>
+    <script src="register-service-worker.js" defer></script>
+    <script src="api-response-caching.js" defer></script>
+    <script src="user-behavior-analytics.js" defer></script>
+    <script src="theme-toggle-enhanced.js" defer></script>
+    <script src="color-scheme-customizer.js" defer></script>
+    <script src="file-attachment-enhanced.js" defer></script>
+    <script src="security-audit-logging.js" defer></script>
+    <script src="i18n-support.js" defer></script>
+    <script>
+        // Configure backend URL for Gemini Live WebSocket proxy
+        // Backend handles WebSocket connection to Gemini Live API (avoids browser CORS)
+        // For production, use the Google Cloud Run backend URL
+        window.STELLAR_AI_BACKEND_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+            ? 'http://localhost:3001'
+            : (window.location.hostname === 'adrianotothestar.com' || window.location.hostname.includes('adrianotothestar'))
+                ? 'https://stellar-ai-backend-531866272848.europe-west2.run.app'  // Production backend on Google Cloud Run
+                : (window.STELLAR_AI_BACKEND_URL || 'http://localhost:3001');
+
+        // LiveKit configuration (client never sees API key/secret; tokens come from backend)
+        window.LIVEKIT_CONFIG = {
+            url: 'wss://gemini-integration-pxcg6ngt.livekit.cloud',
+            backendUrl: window.STELLAR_AI_BACKEND_URL
+        };
+
+        // Load LiveKit SDK and verify it loads
+        (function () {
+            const script = document.createElement('script');
+            script.src = 'https://unpkg.com/livekit-client@latest/dist/livekit-client.umd.js';
+            script.async = true;
+            script.onload = function () {
+                console.log('📦 LiveKit SDK script loaded');
+
+                // Check multiple times with increasing delays (UMD builds can take time to expose globals)
+                let attempts = 0;
+                const maxAttempts = 20;
+                const checkSDK = setInterval(function () {
+                    attempts++;
+
+                    // Check for LiveKit in various ways (the SDK exposes as LivekitClient)
+                    // Don't check LIVEKIT_SDK_READY here - we're setting it, not checking it
+                    // Use property existence checks first, then typeof
+                    const livekitFound = ('LivekitClient' in window && window.LivekitClient != null) ||
+                        (window.LivekitClient && typeof window.LivekitClient === 'object' && window.LivekitClient.Room) ||
+                        typeof LivekitClient !== 'undefined' ||
+                        typeof window.LivekitClient !== 'undefined' ||
+                        typeof LiveKit !== 'undefined' ||
+                        typeof window.LiveKit !== 'undefined' ||
+                        (window.livekit && window.livekit.Room) ||
+                        (window.Livekit && window.Livekit.Room);
+
+                    if (livekitFound) {
+                        clearInterval(checkSDK);
+                        console.log('✅ LiveKit SDK global available');
+                        console.log('  Detection method:',
+                            ('LivekitClient' in window && window.LivekitClient != null) ? 'LivekitClient property' :
+                                (window.LivekitClient && window.LivekitClient.Room) ? 'LivekitClient.Room' :
+                                    typeof LivekitClient !== 'undefined' ? 'LivekitClient global' :
+                                        typeof window.LivekitClient !== 'undefined' ? 'window.LivekitClient' :
+                                            'other');
+                        console.log('  typeof LiveKit:', typeof LiveKit);
+                        console.log('  typeof window.LiveKit:', typeof window.LiveKit);
+                        console.log('  typeof LivekitClient:', typeof LivekitClient);
+                        console.log('  typeof window.LivekitClient:', typeof window.LivekitClient);
+                        console.log('  "LivekitClient" in window:', 'LivekitClient' in window);
+                        console.log('  window.LivekitClient:', !!window.LivekitClient);
+                        console.log('  window.livekit:', !!window.livekit);
+                        window.LIVEKIT_SDK_READY = true;
+                        // Trigger custom event
+                        window.dispatchEvent(new CustomEvent('livekit-sdk-ready'));
+                    } else if (attempts >= maxAttempts) {
+                        clearInterval(checkSDK);
+                        console.error('❌ LiveKit SDK script loaded but global not found after', maxAttempts, 'attempts');
+                        console.log('Available globals with "livekit":', Object.keys(window).filter(k => k.toLowerCase().includes('livekit')));
+                        console.log('All window properties:', Object.keys(window).slice(0, 50)); // First 50 for debugging
+                        window.LIVEKIT_SDK_READY = false;
+                    }
+                }, 100);
+            };
+            script.onerror = function () {
+                console.error('❌ Failed to load LiveKit SDK script');
+                console.error('  Script URL:', script.src);
+                window.LIVEKIT_SDK_READY = false;
+            };
+            document.head.appendChild(script);
+        })();
+    </script>
+    <script src="livekit-voice-integration.js?v=1.0.6" defer></script>
+</head>
+
+<body>
+    <!-- Menu Toggle Button -->
+    <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">
+        <span class="menu-icon"></span>
+        <span class="menu-icon"></span>
+        <span class="menu-icon"></span>
+    </button>
+    <section class="page-hero" data-entrance="fadeIn">
+        <h1 class="page-title" data-scroll-animate>🤖 STELLAR AI</h1>
+        <p class="page-subtitle">Your Intelligent Cosmic Companion</p>
+        <p class="page-subtitle" style="opacity: 0.8; font-size: 0.95rem; margin-top: 0.5rem;">
+            Stellar AI conversations are logged and monitored with fairness checks to help keep usage responsible.
+        </p>
+    </section>
+
+    <div class="chat-container">
+        <!-- Sidebar -->
+        <div class="chat-sidebar">
+            <div class="sidebar-header">
+                <h3>💬 Chat History</h3>
+                <button id="new-chat-btn" class="new-chat-btn" title="New Chat">
+                    <span>+</span> New Chat
+                </button>
+            </div>
+
+            <div class="chat-history-list" id="chat-history-list">
+                <!-- Chat history will be dynamically loaded here -->
+            </div>
+
+            <div class="sidebar-footer">
+                <div id="user-info" class="user-info">
+                    <div class="user-avatar">👤</div>
+                    <div class="user-details">
+                        <div class="user-name">Guest</div>
+                        <button id="login-btn" class="login-btn">Login to Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Chat Area -->
+        <div class="chat-main">
+            <div class="chat-header">
+                <div class="chat-title">
+                    <span class="ai-indicator">🌟</span>
+                    <span id="current-chat-title">Stellar AI</span>
+                </div>
+                <div class="chat-controls">
+                    <div class="model-selector-wrapper">
+                        <label for="model-selector" class="model-label">Model:</label>
+                        <select id="model-selector" class="model-selector" title="Select AI Model">
+                            <option value="sonnet-4.5">Claude Sonnet 4.5</option>
+                            <option value="sonnet-4">Claude Sonnet 4</option>
+                            <option value="opus-4">Claude Opus 4</option>
+                            <option value="haiku-4">Claude Haiku 4</option>
+                            <option value="gpt-4o">GPT-4o</option>
+                            <option value="gpt-4-turbo">GPT-4 Turbo</option>
+                            <option value="gpt-3.5-turbo">GPT-3.5 Turbo</option>
+                            <option value="gemini-2.5-flash-native-audio-preview-09-2025">Gemini 2.5 Flash Native Audio
+                                (Live) 🎤</option>
+                            <option value="gemini-2.5-flash-live">Gemini 2.5 Flash Live 🎤</option>
+                            <option value="gemini-2.5-flash-live-preview">Gemini 2.5 Flash Live Preview 🎤</option>
+                            <option value="gemini-pro">Gemini Pro</option>
+                            <option value="llama-3.1">Llama 3.1</option>
+                            <option value="fallback">Fallback (Demo)</option>
+                        </select>
+                    </div>
+                    <div class="chat-actions">
+                        <button id="metrics-btn" class="action-btn" title="View AI Performance Metrics">
+                            📊 Metrics
+                        </button>
+                        <button id="clear-chat-btn" class="action-btn" title="Clear Chat">
+                            🗑️ Clear
+                        </button>
+                        <button id="export-chat-btn" class="action-btn" title="Export Chat">
+                            📥 Export
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="messages-container" id="messages-container">
+                <div class="welcome-message">
+                    <div class="welcome-icon">🌌</div>
+                    <h2>Welcome to Stellar AI</h2>
+                    <p>Your intelligent cosmic companion powered by advanced AI</p>
+                    <div class="welcome-features">
+                        <div class="feature">
+                            <span>💬</span>
+                            <span>Natural Conversations</span>
+                        </div>
+                        <div class="feature">
+                            <span>🖼️</span>
+                            <span>Image Analysis</span>
+                        </div>
+                        <div class="feature">
+                            <span>📚</span>
+                            <span>Knowledge Base</span>
+                        </div>
+                        <div class="feature">
+                            <span>💾</span>
+                            <span>Save History</span>
+                        </div>
+                    </div>
+                    <div class="example-prompts">
+                        <p>Try asking:</p>
+                        <button class="example-prompt" onclick="usePrompt('Tell me about exoplanets')">
+                            Tell me about exoplanets
+                        </button>
+                        <button class="example-prompt" onclick="usePrompt('Explain the Andromeda galaxy')">
+                            Explain the Andromeda galaxy
+                        </button>
+                        <button class="example-prompt" onclick="usePrompt('What is a Kepler object?')">
+                            What is a Kepler object?
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-container">
+                <div class="attachments-preview" id="attachments-preview"></div>
+
+                <div class="input-wrapper">
+                    <button id="attach-btn" class="attach-btn" title="Attach Image">
+                        📎
+                    </button>
+                    <button id="voice-input-btn" class="attach-btn" title="Voice Input">
+                        🎤
+                    </button>
+                    <button id="voice-output-btn" class="attach-btn" title="Toggle Voice Output">
+                        🔊
+                    </button>
+                    <button id="livekit-voice-btn" class="attach-btn livekit-voice-btn"
+                        title="Start Live Voice Conversation">
+                        🎙️
+                    </button>
+                    <input type="file" id="file-input" accept="image/*,.pdf,.doc,.docx,.txt" style="display: none;"
+                        multiple>
+
+                    <textarea id="message-input" class="message-input" placeholder="Ask Stellar AI anything..."
+                        rows="1"></textarea>
+
+                    <button id="send-btn" class="send-btn" title="Send">
+                        <span class="send-icon">➤</span>
+                    </button>
+                </div>
+
+                <div class="input-footer">
+                    <span class="model-info" style="display: none;">Powered by Puter AI</span>
+                    <span class="char-count" id="char-count">0 / 4000</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CLI Download Section -->
+    <section class="content-section" data-entrance="slideUp">
+        <div class="content-container">
+            <div class="cli-download-section">
+                <div class="cli-download-card">
+                    <div class="cli-icon">💻</div>
+                    <h2>Run Stellar AI Locally</h2>
+                    <p>Download the Stellar AI CLI to run AI chat from your terminal with advanced tool calling,
+                        file system integration, and multi-agent support.</p>
+                    <div class="cli-features">
+                        <div class="cli-feature">
+                            <span>🔧</span>
+                            <span>Tool Calling</span>
+                        </div>
+                        <div class="cli-feature">
+                            <span>📁</span>
+                            <span>File Operations</span>
+                        </div>
+                        <div class="cli-feature">
+                            <span>🖼️</span>
+                            <span>Image Analysis</span>
+                        </div>
+                        <div class="cli-feature">
+                            <span>🤖</span>
+                            <span>Multi-Agent</span>
+                        </div>
+                    </div>
+                    <button id="download-cli-btn" class="download-cli-btn">
+                        <span>⬇️</span>
+                        Download CLI
+                    </button>
+                    <div id="puter-token-section"
+                        style="display: none !important; background: rgba(186, 148, 79, 0.1); border: 1px solid rgba(186, 148, 79, 0.3); padding: 1rem; border-radius: 10px; margin-bottom: 1.5rem;">
+                        <p style="color: #ba944f; margin: 0 0 0.5rem 0; font-weight: 600;">🔐 Copy Your Puter.js
+                            Token for CLI</p>
+                        <p style="color: rgba(255, 255, 255, 0.8); margin: 0 0 0.5rem 0; font-size: 0.9rem;">
+                            You're signed in! Copy this token to use in the CLI:
+                        </p>
+                        <div style="display: flex; gap: 0.5rem; align-items: center;">
+                            <input type="text" id="puter-token-input" readonly
+                                style="flex: 1; padding: 0.5rem; background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(186, 148, 79, 0.3); border-radius: 5px; color: #fff; font-family: monospace; font-size: 0.85rem;">
+                            <button id="copy-token-btn"
+                                style="padding: 0.5rem 1rem; background: rgba(186, 148, 79, 0.3); border: 1px solid rgba(186, 148, 79, 0.5); border-radius: 5px; color: #ba944f; cursor: pointer;">Copy</button>
+                        </div>
+                        <p style="color: rgba(255, 255, 255, 0.6); margin: 0.5rem 0 0 0; font-size: 0.85rem;">
+                            After downloading the CLI, paste this token into <code
+                                style="background: rgba(186, 148, 79, 0.2); padding: 2px 4px; border-radius: 3px;">.stellar-ai-config.json</code>
+                            as <code
+                                style="background: rgba(186, 148, 79, 0.2); padding: 2px 4px; border-radius: 3px;">"puterAuthToken"</code>
+                        </p>
+                    </div>
+                    <div class="cli-instructions">
+                        <div
+                            style="background: rgba(74, 222, 128, 0.1); border: 1px solid rgba(74, 222, 128, 0.3); padding: 1rem; border-radius: 10px; margin-bottom: 1.5rem;">
+                            <p style="color: #4ade80; margin: 0; font-weight: 600;">✨ All-in-One Package with
+                                Automatic Setup!</p>
+                            <p style="color: rgba(255, 255, 255, 0.8); margin: 0.5rem 0 0 0; font-size: 0.9rem;">
+                                The package includes automatic setup scripts. Just extract and run!
+                            </p>
+                        </div>
+                        <h3 style="color: #ba944f; margin-bottom: 1rem; font-size: 1.2rem;">📋 Quick Setup Guide
+                        </h3>
+                        <ol
+                            style="text-align: left; color: rgba(255, 255, 255, 0.9); line-height: 2; padding-left: 1.5rem;">
+                            <li>Click the download button above to get the CLI package</li>
+                            <li>Extract the ZIP file to a folder of your choice</li>
+                            <li><strong>Windows:</strong> Double-click <code
+                                    style="background: rgba(186, 148, 79, 0.2); padding: 2px 6px; border-radius: 3px;">setup.bat</code>
+                            </li>
+                            <li><strong>Linux/Mac:</strong> Run <code
+                                    style="background: rgba(186, 148, 79, 0.2); padding: 2px 6px; border-radius: 3px;">./setup.sh</code>
+                                in terminal</li>
+                            <li>Wait for automatic setup to complete (installs all dependencies)</li>
+                            <li><strong>Windows:</strong> Double-click <code
+                                    style="background: rgba(186, 148, 79, 0.2); padding: 2px 6px; border-radius: 3px;">start.bat</code>
+                                to launch</li>
+                            <li><strong>Linux/Mac:</strong> Run <code
+                                    style="background: rgba(186, 148, 79, 0.2); padding: 2px 6px; border-radius: 3px;">./start.sh</code>
+                                to launch</li>
+                        </ol>
+                        <p style="margin-top: 1.5rem; color: rgba(255, 255, 255, 0.7); font-size: 0.9rem;">
+                            <strong>Requirements:</strong> Node.js 14+ (the setup script will check for this
+                            automatically)<br>
+                            <strong>Features:</strong> Tool calling, file operations, image analysis, multi-agent
+                            support, and Puter.js integration.<br>
+                            <strong>Note:</strong> The package is fully self-contained with automatic setup - no
+                            manual configuration needed!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LiveKit Integration Section -->
+    <section class="content-section" data-entrance="slideUp" id="livekit-integration-section"
+        style="margin-top: 4rem; display: block !important; visibility: visible !important;">
+        <div class="content-container">
+            <h2 class="section-title"
+                style="text-align: center; margin-bottom: 2rem; color: #ba944f; font-size: 2rem; padding: 2rem 0; border-top: 2px solid rgba(186, 148, 79, 0.3); border-bottom: 2px solid rgba(186, 148, 79, 0.3);">
+                🎙️ LiveKit Integration
+            </h2>
+            <p style="text-align: center; color: rgba(255, 255, 255, 0.8); margin-bottom: 2rem;">
+                Real-time voice conversations powered by LiveKit and Gemini Live API
+            </p>
+
+            <!-- LiveKit Chat Container -->
+            <div class="chat-container" id="livekit-chat-container" style="max-width: 1200px; margin: 0 auto;">
+                <!-- LiveKit Chat Header -->
+                <div class="chat-header"
+                    style="background: rgba(0, 0, 0, 0.5); padding: 1rem; border-radius: 10px 10px 0 0;">
+                    <div class="chat-title">
+                        <span class="ai-indicator">🎙️</span>
+                        <span id="livekit-chat-title">LiveKit Voice Agent</span>
+                    </div>
+                    <div class="chat-controls">
+                        <div class="model-selector-wrapper">
+                            <label for="livekit-model-selector" class="model-label">Model:</label>
+                            <select id="livekit-model-selector" class="model-selector" title="Select LiveKit Model">
+                                <option value="gemini-2.5-flash-native-audio-preview-09-2025">Gemini 2.5 Flash Native
+                                    Audio (LiveKit) 🎤</option>
+                            </select>
+                        </div>
+                        <div class="chat-actions">
+                            <button id="livekit-connect-btn" class="action-btn" title="Connect to LiveKit">
+                                🔌 Connect
+                            </button>
+                            <button id="livekit-disconnect-btn" class="action-btn" title="Disconnect"
+                                style="display: none;">
+                                🔴 Disconnect
+                            </button>
+                            <button id="livekit-mute-btn" class="action-btn" title="Toggle Mute" style="display: none;">
+                                🔇 Mute
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LiveKit Messages Container -->
+                <div class="messages-container" id="livekit-messages-container"
+                    style="min-height: 400px; max-height: 600px; overflow-y: auto; background: rgba(0, 0, 0, 0.3); padding: 1rem;">
+                    <div class="welcome-message">
+                        <div class="welcome-icon">🎙️</div>
+                        <h2>LiveKit Voice Agent</h2>
+                        <p>Connect to start a real-time voice conversation with the AI agent</p>
+                        <div class="welcome-features">
+                            <div class="feature">
+                                <span>🎤</span>
+                                <span>Real-time Voice</span>
+                            </div>
+                            <div class="feature">
+                                <span>🔊</span>
+                                <span>Natural Speech</span>
+                            </div>
+                            <div class="feature">
+                                <span>💬</span>
+                                <span>Live Transcripts</span>
+                            </div>
+                            <div class="feature">
+                                <span>⚡</span>
+                                <span>Low Latency</span>
+                            </div>
+                        </div>
+                        <button id="livekit-welcome-connect-btn" class="cta-button"
+                            style="margin-top: 1.5rem; padding: 0.75rem 2rem;">
+                            Connect to Voice Agent
+                        </button>
+                    </div>
+                </div>
+
+                <!-- LiveKit Status Bar -->
+                <div id="livekit-status-bar"
+                    style="background: rgba(0, 0, 0, 0.5); padding: 0.75rem 1rem; border-radius: 0 0 10px 10px; color: rgba(255, 255, 255, 0.7); font-size: 0.9rem;">
+                    <span id="livekit-status-text">Status: Not connected</span>
+                    <span id="livekit-connection-indicator"
+                        style="float: right; width: 10px; height: 10px; border-radius: 50%; background: #ef4444; margin-left: 0.5rem;"></span>
+                </div>
+            </div>
+
+            <!-- LiveKit Info -->
+            <div
+                style="margin-top: 2rem; padding: 1.5rem; background: rgba(186, 148, 79, 0.1); border: 1px solid rgba(186, 148, 79, 0.3); border-radius: 10px;">
+                <h3 style="color: #ba944f; margin-bottom: 1rem;">📋 About LiveKit Integration</h3>
+                <ul style="color: rgba(255, 255, 255, 0.8); line-height: 1.8; padding-left: 1.5rem;">
+                    <li><strong>Real-time Voice:</strong> Speak naturally and get instant voice responses</li>
+                    <li><strong>Live Transcripts:</strong> See text transcripts of your conversation in real-time</li>
+                    <li><strong>Low Latency:</strong> Powered by LiveKit's optimized WebRTC infrastructure</li>
+                    <li><strong>Native Audio:</strong> Uses Gemini's native audio processing for natural conversations
+                    </li>
+                    <li><strong>Agent Required:</strong> Make sure the LiveKit agent is running (see CLI package)</li>
+                </ul>
+                <p style="margin-top: 1rem; color: rgba(255, 255, 255, 0.7); font-size: 0.9rem;">
+                    <strong>Note:</strong> The LiveKit agent must be running for this to work. Start it with: <code
+                        style="background: rgba(186, 148, 79, 0.2); padding: 2px 6px; border-radius: 3px;">python livekit_agent.py dev</code>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <p>&copy; 2025 ADRIANO TO THE STAR - I.T.A (Interstellar Travel Agency)</p>
+        <p><a href="index.html">Back to Home</a> · <a href="ai-fairness.html">AI &amp; Fairness</a></p>
+        <button type="button" onclick="toggleAIUsageOverlay()">🔍 AI Usage (Dev)</button>
+    </footer>
+
+    <!-- Core Web Vitals & Performance Budgets -->
+    <script src="core-web-vitals-monitoring.js" defer></script>
+    <script src="core-web-vitals-dashboard.js" defer></script>
+    <script src="core-web-vitals-alerts.js" defer></script>
+    <script src="performance-budgets-system.js" defer></script>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="hideLoginModal()">&times;</span>
+            <h2>Login to Save Your Chats</h2>
+            <p>Save your conversation history across devices</p>
+            <form id="login-form" onsubmit="handleLogin(event)">
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit" class="cta-button">Login</button>
+            </form>
+            <p class="modal-footer">
+                Don't have an account? <a href="groups.html">Sign up here</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="ai-model-performance-metrics.js" defer></script>
+    <script src="gemini-config.js" defer></script>
+    <script src="stellar-ai.js" defer></script>
+    <script src="livekit-chat.js?v=1.0.2" defer></script>
+    <script src="pwa-loader.js" defer></script>
+    <script src="ai-usage-logger.js" defer></script>
+
+    <script>
+        // Global function for AI Usage Overlay
+        window.toggleAIUsageOverlay = function () {
+            if (window.aiUsageLogger && typeof window.aiUsageLogger.toggleOverlay === 'function') {
+                window.aiUsageLogger.toggleOverlay();
+            } else {
+                alert('AI Usage Logger not initialized or overlay not supported.');
+            }
+        };
+
+        // Initialize AI Model Performance Metrics Dashboard
+        (function () {
+            function initAIMetricsDashboard() {
+                // Add metrics section to stellar AI page
+                const chatContainer = document.querySelector('.chat-container');
+                if (chatContainer) {
+                    const metricsSection = document.createElement('div');
+                    metricsSection.id = 'ai-metrics-container';
+                    metricsSection.style.cssText = 'margin: 2rem; padding: 1rem; background: rgba(0,0,0,0.3); border-radius: 12px;';
+                    chatContainer.parentElement.insertBefore(metricsSection, chatContainer.nextSibling);
+
+                    // Initialize dashboard after metrics are available
+                    setTimeout(() => {
+                        if (window.aiModelMetrics && typeof window.aiModelMetrics === 'function') {
+                            const metrics = window.aiModelMetrics();
+                            if (metrics && metrics.displayDashboard) {
+                                metrics.displayDashboard('ai-metrics-container');
+                            }
+                        }
+                    }, 2000);
+                }
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initAIMetricsDashboard);
+            } else {
+                setTimeout(initAIMetricsDashboard, 1000);
+            }
+        })();
+        (function () {
+            function renderAIUsageOverlay() {
+                let panel = document.getElementById('ai-usage-overlay');
+                if (!panel) {
+                    panel = document.createElement('div');
+                    panel.id = 'ai-usage-overlay';
+                    panel.style.cssText = 'position:fixed;bottom:80px;right:20px;width:320px;max-height:260px;overflow:auto;background:rgba(0,0,0,0.9);color:#fff;border-radius:8px;padding:10px;font-size:11px;z-index:9999;border:1px solid rgba(186,148,79,0.6);display:none;';
+                    document.body.appendChild(panel);
+                }
+                const events = (window.aiUsageEvents || []).slice(-10).reverse();
+                panel.innerHTML = events.length ? events.map(e => {
+                    const t = new Date(e.timestamp).toLocaleTimeString();
+                    return `<div style="margin-bottom:4px;border-bottom:1px solid rgba(255,255,255,0.1);padding-bottom:3px;"><strong>${e.feature}</strong> <span style="opacity:0.7;">${e.model || ''}</span><br><span style="opacity:0.6;">${t}</span></div>`;
+                }).join('') : '<div style="opacity:0.7;">No AI usage events yet.</div>';
+            }
+            function toggleAIUsageOverlay() {
+                const panel = document.getElementById('ai-usage-overlay');
+                if (!panel) {
+                    renderAIUsageOverlay();
+                }
+                const p = document.getElementById('ai-usage-overlay');
+                if (!p) return;
+                if (p.style.display === 'none' || !p.style.display) {
+                    renderAIUsageOverlay();
+                    p.style.display = 'block';
+                } else {
+                    p.style.display = 'none';
+                }
+            }
+            function initToggleButton() {
+                const footer = document.querySelector('.site-footer');
+                if (!footer) return;
+                const existing = Array.from(footer.querySelectorAll('button')).find(button => (button.textContent || '').includes('AI Usage'));
+                if (existing) return;
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.textContent = '🔍 AI Usage (Dev)';
+                btn.style.cssText = 'margin-top:0.5rem;margin-left:0.5rem;padding:0.25rem 0.75rem;border-radius:6px;border:1px solid rgba(186,148,79,0.5);background:rgba(0,0,0,0.5);color:#ba944f;cursor:pointer;font-size:0.8rem;';
+                btn.onclick = toggleAIUsageOverlay;
+                footer.appendChild(btn);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initToggleButton);
+            } else {
+                initToggleButton();
+            }
+        })();
+    </script>
+</body>
+
+</html>

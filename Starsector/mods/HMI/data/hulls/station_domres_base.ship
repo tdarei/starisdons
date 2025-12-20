@@ -1,0 +1,329 @@
+{
+  "bounds": [
+    255,
+    -114,
+    228,
+    11.5,
+    237.5,
+    146,
+    213,
+    158,
+    140,
+    142,
+    33,
+    123,
+    -13,
+    146,
+    -43,
+    125,
+    -134.5,
+    156.5,
+    -210.5,
+    175.5,
+    -251,
+    154,
+    -253.5,
+    54,
+    -236,
+    43.5,
+    -237,
+    -50,
+    -257,
+    -57,
+    -252,
+    -159.5,
+    -216,
+    -177,
+    60,
+    -147.5,
+    77.5,
+    -163,
+    159,
+    -143,
+    216,
+    -157,
+    228,
+    -127.5
+  ],
+  "builtInMods": [
+    "axialrotation",
+    "vastbulk",
+    "supercomputer",
+    "reduced_explosion"
+  ],
+  "builtInWeapons": {
+    "WS0006": "launcher_cannon"
+  },
+  "center": [
+    256,
+    256
+  ],
+  "collisionRadius": 337.5,
+  "height": 512,
+  "hullId": "station_domres_base",
+  "hullName": "Domain Resurgent Station",
+  "hullSize": "CAPITAL_SHIP",
+  "shieldCenter": [
+    1,
+    1
+  ],
+  "shieldRadius": 328,
+  "spriteName": "graphics/ships/domain_resurgent/hmidr_platform_base.png",
+  "style": "LOW_TECH",
+  "viewOffset": 0,
+  "weaponSlots": [
+    {
+      "angle": -177.5,
+      "arc": 239,
+      "id": "WS0001",
+      "locations": [
+        -202,
+        -89
+      ],
+      "mount": "TURRET",
+      "size": "MEDIUM",
+      "type": "BALLISTIC"
+    },
+    {
+      "angle": -88.5,
+      "arc": 181,
+      "id": "WS0002",
+      "locations": [
+        -81,
+        -117.5
+      ],
+      "mount": "TURRET",
+      "size": "MEDIUM",
+      "type": "BALLISTIC"
+    },
+    {
+      "angle": -79.5,
+      "arc": 123,
+      "id": "WS0003",
+      "locations": [
+        -44,
+        -91
+      ],
+      "mount": "TURRET",
+      "size": "MEDIUM",
+      "type": "BALLISTIC"
+    },
+    {
+      "angle": 160,
+      "arc": 222,
+      "id": "WS0004",
+      "locations": [
+        -182.5,
+        91.5
+      ],
+      "mount": "TURRET",
+      "size": "MEDIUM",
+      "type": "BALLISTIC"
+    },
+    {
+      "angle": 180,
+      "arc": 157,
+      "id": "WS0005",
+      "locations": [
+        -157.5,
+        26
+      ],
+      "mount": "TURRET",
+      "size": "MEDIUM",
+      "type": "BALLISTIC"
+    },
+    {
+      "angle": 90,
+      "arc": 360,
+      "id": "WS0006",
+      "locations": [
+        -81,
+        52
+      ],
+      "mount": "TURRET",
+      "size": "MEDIUM",
+      "type": "BUILT_IN"
+    },
+    {
+      "angle": 90,
+      "arc": 143,
+      "id": "WS0007",
+      "locations": [
+        4.5,
+        5
+      ],
+      "mount": "TURRET",
+      "size": "MEDIUM",
+      "type": "BALLISTIC"
+    },
+    {
+      "angle": 77,
+      "arc": 142,
+      "id": "WS0008",
+      "locations": [
+        46,
+        4
+      ],
+      "mount": "TURRET",
+      "size": "MEDIUM",
+      "type": "BALLISTIC"
+    },
+    {
+      "angle": 23.5,
+      "arc": 119,
+      "id": "WS0009",
+      "locations": [
+        141.5,
+        -5
+      ],
+      "mount": "TURRET",
+      "size": "MEDIUM",
+      "type": "BALLISTIC"
+    },
+    {
+	  "angle": 0,
+      "arc": 0,
+      "id": "BACKLEFT",
+      "locations": [
+        -51.5,
+        138
+      ],
+      "mount": "HARDPOINT",
+      "size": "LARGE",
+      "type": "STATION_MODULE"
+    },
+    {
+	  "angle": 0,
+      "arc": 0,
+      "id": "BACKBACKRIGHT",
+      "locations": [
+        -139,
+        -138
+      ],
+      "mount": "HARDPOINT",
+      "size": "LARGE",
+      "type": "STATION_MODULE"
+    },
+    {
+	  "angle": 0,
+      "arc": 0,
+      "id": "BACKRIGHT",
+      "locations": [
+        -64.5,
+        -150.5
+      ],
+      "mount": "HARDPOINT",
+      "size": "LARGE",
+      "type": "STATION_MODULE"
+    },
+    {
+	  "angle": 0,
+      "arc": 0,
+      "id": "RIGHT",
+      "locations": [
+        64.5,
+        -129.5
+      ],
+      "mount": "HARDPOINT",
+      "size": "LARGE",
+      "type": "STATION_MODULE"
+    },
+    {
+	  "angle": 0,
+      "arc": 0,
+      "id": "TOPRIGHTRIGHT",
+      "locations": [
+        114.5,
+        -135
+      ],
+      "mount": "HARDPOINT",
+      "size": "LARGE",
+      "type": "STATION_MODULE"
+    },
+    {
+	  "angle": 0,
+      "arc": 0,
+      "id": "TOPRIGHT",
+      "locations": [
+        208,
+        -82
+      ],
+      "mount": "HARDPOINT",
+      "size": "LARGE",
+      "type": "STATION_MODULE"
+    },
+    {
+	  "angle": 0,
+      "arc": 0,
+      "id": "TOPTOPLEFT",
+      "locations": [
+        216.5,
+        76
+      ],
+      "mount": "HARDPOINT",
+      "size": "LARGE",
+      "type": "STATION_MODULE"
+    },
+    {
+	  "angle": 0,
+      "arc": 0,
+      "id": "LEFT",
+      "locations": [
+        128,
+        139.5
+      ],
+      "mount": "HARDPOINT",
+      "size": "LARGE",
+      "type": "STATION_MODULE"
+    },
+    {
+	  "angle": 0,
+      "arc": 0,
+      "id": "TOPLEFTLEFT",
+      "locations": [
+        181.5,
+        140.5
+      ],
+      "mount": "HARDPOINT",
+      "size": "LARGE",
+      "type": "STATION_MODULE"
+    },
+    {
+	  "angle": 0,
+      "arc": 0,
+      "id": "TOPLEFT",
+      "locations": [
+        235.5,
+        141.5
+      ],
+      "mount": "HARDPOINT",
+      "size": "LARGE",
+      "type": "STATION_MODULE"
+    },
+    {
+	  "angle": 0,
+      "arc": 0,
+      "id": "BACKRIGHTRIGHT",
+      "locations": [
+        11.5,
+        -143
+      ],
+      "mount": "HARDPOINT",
+      "size": "LARGE",
+      "type": "STATION_MODULE"
+    },
+    {
+	  "angle": 0,
+      "arc": 0,
+      "id": "WS0011",
+      "locations": [
+        11.5,
+        143
+      ],
+      "mount": "HARDPOINT",
+      "size": "LARGE",
+      "type": "STATION_MODULE"
+    }
+  ],
+  "width": 512
+}

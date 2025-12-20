@@ -1,0 +1,1931 @@
+;;;;**********************************************************************************************
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Pavia BATTLE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;**********************************************************************************************
+
+script
+
+;;;;init
+	prepare_for_battle
+
+;;;;*************************************************************************************************
+;;;;	LABEL UNITS
+;;;;*************************************************************************************************
+	
+;;; France Dont Label till HRE and Spain are in Position
+	;FRA King attackers front
+	;monitor_conditions I_UnitDistanceFromPosition Arquebusiers_2 -129.952 -355.017 < 10
+	label_unit 1 0 0 fra_general
+	label_unit 1 0 1 gendarmes_1
+	label_unit 1 0 2 gendarmes_2
+	label_unit 1 0 14 scots_guard_1
+	label_unit 1 0 15 scots_guard_2
+	
+	;FRA Artillery position 1
+	label_unit 1 0 3 fra_culverin_1
+	label_unit 1 0 4 fra_culverin_2
+	label_unit 1 0 5 pikemen_3
+	label_unit 1 0 6 pikemen_4
+	label_unit 1 0 16 footknight_1
+	label_unit 1 0 8 pikemen_1
+	
+	;FRA guards
+	label_unit 1 0 7 voulgier_1
+	label_unit 1 0 17 voulgier_2
+	label_unit 1 0 18 footknight_2
+	
+	;FRA Artillery position 2
+	label_unit 1 0 9 fra_culverin_3
+	label_unit 1 0 10 fra_culverin_4
+	label_unit 1 0 11 scots_guard_3
+	label_unit 1 0 12 scots_guard_4
+	label_unit 1 0 19 pikemen_2
+	label_unit 1 0 13 lancers
+	;terminate_monitor
+	;end_monitor
+	
+;;; HRE
+	;HRE starting position
+	 label_unit 0 0 0 HRE_general
+	 label_unit 0 0 1 HRE_Landsknechts_1
+	 label_unit 0 0 2 HRE_Landsknechts_2
+	 label_unit 0 0 3 Arquebusiers_1
+	 label_unit 0 0 4 Arquebusiers_2
+     label_unit 0 0 5 Arquebusiers_3
+	 label_unit 0 0 6 Arquebusiers_4
+	 label_unit 0 0 7 Zweihander_1
+	 label_unit 0 0 8 Zweihander_2
+	
+	
+;;; Spain
+	;SPA starting position
+	label_unit 0 1 0 SPA_general
+	label_unit 0 1 1 SPA_culverin
+	label_unit 0 1 2 SPA_Landsknechts_1
+	label_unit 0 1 3 SPA_Landsknechts_2
+	label_unit 0 1 4 Sword_Buckler_men_1
+	label_unit 0 1 5 Sword_Buckler_men_2
+	label_unit 0 1 6 Musketeers_1
+	label_unit 0 1 7 Musketeers_2
+		
+	
+;;;;**********************************************************************************************
+;;;;	TURN THE AI OFF. REMEMBER TO TURN ON AGAIN WHEN YOU ARE READY FOR IT 
+;;;;**********************************************************************************************
+	enable_battle_notifications 0 ;disable battle notifications
+	suspend_unscripted_advice true
+	ai_active_set off
+	set_music_state custom Mediterranean_Tension 	;tension, mobilize, battle or custom
+
+	
+	
+; 		disable_shortcuts false	
+;  		enable_entire_ui
+;  		camera_restrictions_set on
+; 		inhibit_camera_input false
+; 	 	enable_cursor
+; 	 	show_ui
+	
+	
+	
+	
+	camera_default_mode_set tw
+	camera_restrictions_set off
+	disable_cursor						;prevent the player clicking
+	disable_shortcuts true
+	disable_entire_ui
+	disable_shortcuts toggle_pause_button false	
+	enable_ui toggle_pause_button
+	inhibit_camera_input true
+	hide_ui
+	
+;-----------------------------------------------------------------------------------------------------------
+	steal_esc_key on
+
+	monitor_event EscPressed TrueCondition
+		set_counter start_battle 1
+		terminate_monitor
+	end_monitor
+;-----------------------------------------------------------------------------------------------------------
+
+	set_camera_bookmark 1 547.392, 426.404, 188.808		541.391, 420.844, 183.574	;overview of pavia
+; 	set_camera_bookmark 2 204.891, 82.9957, 87.1593		201.757, 78.7446, 78.8552	;french troops
+; 	set_camera_bookmark 3 214.386, 128.434, -66.3685	210.439, 124.183, -74.3187	;mirabello manor
+; 	set_camera_bookmark 4 74.7516, 128.117, -182.72		81.918, 123.866, -187.956	;french troops 2
+	set_camera_bookmark 5 -483.002, 83.7308, -75.0413	-490.845, 80.3875, -80.0375	;spanish general
+	set_camera_bookmark 6 -437.41, 77.6321, -145.066	-445.247, 75.5085, -139.37	;hre general
+	set_camera_bookmark 7 -426.545, 96.23, -143.453		-434.254, 91.3307, -139.699	;hre and spain
+; 	set_camera_bookmark 8 -200.74, 89.6678, -668.614	-207.34, 86.1941, -675.386	;french marching in
+	set_camera_bookmark 9 7.41678, 118.754, -654.451	-0.462302, 115.28, -659.68	;french camp
+ 	set_camera_bookmark 8 -248.064, 82.0074, -699.444	-253.887, 79.478, -707.014	;french marching in
+ 	set_camera_bookmark 10 -326.961, 82.7331, -802.012	-332.784, 80.2037, -809.582 ;past french army
+ 	set_camera_bookmark 11 173.116, 76.7904, -270.764	178.004, 76.3745, -262.099	;mirabello manor
+ 	set_camera_bookmark 12 182.997, 77.5902, -331.895	173.676, 74.3163, -331.641	;cannons left
+ 	set_camera_bookmark 13 367.391, 177.959, -157.156	358.462, 173.895, -156.355	;cannons middle
+  	set_camera_bookmark 14 239.289, 81.1775, -3.18824	230.489, 77.4317, 0.127085	;cannons right
+  	set_camera_bookmark 15 -423.758, 75.7558, -107.435 -429.336, 74.1467, -115.384	;de lannoy
+  	set_camera_bookmark 16 -596.5, 75.4105, -136.973 -598.067, 69.4593, -128.445	;musketeers
+  	set_camera_bookmark 17 -496.823, 73.4943, -123.39 -503.257, 73.1115, -131.016   ;arquebooziers
+  	set_camera_bookmark 18 -386.591, 93.0488, -89.0331  -377.93, 89.2621, -88.1231  ;spanish army on way to cannons
+  	set_camera_bookmark 19 -305.54, 135.589, -80.0956  -295.894, 134.033, -79.0319  ;midway point
+  	set_camera_bookmark 20 119.913, 132.965, 58.8774 127.285, 127.905, 55.2571
+  	;old shot set_camera_bookmark 20 240.664, 82.7298, 23.1369  231.849, 79.829, 18.8996 		;beside cannons
+  	set_camera_bookmark 21 -176.645 110.631 -305.768 -175.169 104.003 -314.475
+  	
+  	
+
+
+
+
+
+  	
+  	
+  	 
+  	
+	set_camera_bookmark 2 -123.148, 236.244, 207.613	-118.545, 231.993, 200.024	;overview2
+	set_camera_bookmark 3 -249.795, 284.503, -463.416	-243.019, 280.251, -457.683	;overview3
+	set_camera_bookmark 4 554.151, 291.434, -545.152	546.867, 287.33, -539.397	;overview4
+	
+
+;;;;*************************************************************************************************
+;;;; DECLARE COUNTERS
+;;;;*************************************************************************************************
+
+	declare_counter spanish_rout
+	declare_counter french_rout
+	declare_counter french_rout2
+	declare_counter french_rout3
+	declare_counter french_rout4
+	declare_counter gendarme_release1
+	declare_counter gendarme_release2
+	declare_counter HRE_in_position
+	declare_counter SPA_in_position
+	declare_counter start_battle
+	declare_counter arty_dead_1
+	declare_counter arty_dead_2
+	declare_counter arty_dead_3
+	declare_counter cav_rout
+	declare_counter king_runs
+	declare_counter sgrelease
+	declare_counter HRE_Lose
+	declare_counter spain_release
+	declare_counter fra_inf_run
+	declare_counter lance_release
+;*********************************************************************************************
+;	BATTLE ACTION START
+;*********************************************************************************************
+	;Move HRE Forces Into Position
+
+	monitor_conditions I_CompareCounter start_battle = 0
+			
+		;overhead shot of map
+		camera_position_at_bookmark 1
+		unit_set_guard_mode voulgier_1 off
+		unit_set_guard_mode voulgier_2 off
+		;1525, Mirabello park, near Pavia
+		play_sound_event PAVIA_NARRATOR_1 tag = PAVIA_NARRATOR_1
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+				
+		battle_wait 3
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		camera_zoom_to_bookmark 2 50
+
+		while I_SoundPlaying PAVIA_NARRATOR_1
+		end_while
+
+		while I_CompareCounter start_battle = 1
+		end_while
+
+		;The Italian Wars... fought bitterly for over thirty years by the Holy Roman Empire and France.
+		;Both sides claim ties by blood and deed to various Italian states and seek dominion over all of Italy
+		play_sound_event PAVIA_NARRATOR_2 tag = PAVIA_NARRATOR_2
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+
+;  		battle_wait 3
+; 		camera_zoom_to_bookmark 3 70
+; 		battle_wait 7
+; 		camera_zoom_to_bookmark 4 70
+
+		while I_SoundPlaying PAVIA_NARRATOR_2
+		end_while
+
+		while I_CompareCounter start_battle = 1
+		end_while
+
+		;show spanish general and troops
+ 		camera_position_at_bookmark 5
+		
+ 		while I_CompareCounter start_battle = 1
+		
+ 		end_while
+		;Spain joining forces with the Holy Roman Empire prompted a desperate France to launch an all out assault on Milan, the wealthiest Italian state.
+		play_sound_event PAVIA_NARRATOR_3 tag = PAVIA_NARRATOR_3
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		;show spanish general and troops
+		battle_wait 2
+ 		while I_CompareCounter start_battle = 1
+		end_while
+		
+		camera_zoom_to_bookmark 6
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		unit_order_move SPA_general -368.359 -56.685 
+		unit_order_move SPA_culverin -496.7 -74.3 
+		unit_order_move SPA_Landsknechts_1 -496.7 -74.3 
+		unit_order_move SPA_Landsknechts_2 -496.7 -74.3 
+		unit_order_move Sword_Buckler_men_1 -496.7 -74.3 
+		unit_order_move Sword_Buckler_men_2 -496.7 -74.3 
+ 		battle_wait 2
+ 		
+ 		while I_CompareCounter start_battle = 1
+		end_while
+		
+ 		camera_zoom_to_bookmark 7 100
+ 		
+ 		while I_CompareCounter start_battle = 1
+		end_while
+ 		
+ 		battle_wait 2
+ 		
+ 		while I_CompareCounter start_battle = 1
+		end_while
+ 
+ 		unit_order_move fra_general -184 -611
+		unit_order_move gendarmes_1 -184 -611
+		unit_order_move gendarmes_2 -184 -611
+		unit_order_move scots_guard_1 -184 -611
+		unit_order_move scots_guard_2 -184 -611
+		
+		while I_SoundPlaying PAVIA_NARRATOR_3
+		end_while
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+		battle_wait 1
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		;shot of francis and gendarmes and some frenchies moving along road
+ 		camera_position_at_bookmark 8
+ 		
+ 		while I_CompareCounter start_battle = 1
+		end_while
+		
+		;After successfully wresting most of Milan from Imperial control, 
+		;King Francis moves his French army towards the last corner of Imperial resistance, the city of Pavia
+		play_sound_event PAVIA_NARRATOR_4 tag = PAVIA_NARRATOR_4
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		battle_wait 2
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		camera_zoom_to_bookmark 10 20
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		while I_SoundPlaying PAVIA_NARRATOR_4
+		end_while
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+
+		unit_immediate_place fra_general -94 -672 0
+		unit_immediate_place gendarmes_1 -143 -666 0
+		unit_immediate_place gendarmes_2 -50 -705 90
+		unit_immediate_place scots_guard_1 -95 -795 10
+		unit_immediate_place scots_guard_2 -186 -738 90
+	
+		battle_wait 1
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		;shot of king francis and gendarme cavalry milling around camp	
+ 		camera_position_at_bookmark 9
+ 		
+ 		while I_CompareCounter start_battle = 1
+		end_while
+	
+		;King Francis waits in his camp with his formidable Gendarme cavalry, near the main road into Pavia
+		play_sound_event PAVIA_NARRATOR_5 tag = PAVIA_NARRATOR_5
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		while I_SoundPlaying PAVIA_NARRATOR_5
+		end_while
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+		;shot across park with close up of Mirabello Manor
+ 		camera_position_at_bookmark 11
+ 		unit_order_move SPA_general -368.359 -56.685 
+		unit_order_move SPA_culverin -496.7 -74.3 
+		unit_order_move SPA_Landsknechts_1 -496.7 -74.3 
+		unit_order_move SPA_Landsknechts_2 -496.7 -74.3 
+		unit_order_move Sword_Buckler_men_1 -496.7 -74.3 
+		unit_order_move Sword_Buckler_men_2 -496.7 -74.3 
+		
+		
+ 		while I_CompareCounter start_battle = 1
+		end_while
+		
+		;He has deployed the majority of his army across the park, including a force of infantry to guard Mirabello manor
+		play_sound_event PAVIA_NARRATOR_6 tag = PAVIA_NARRATOR_6
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		while I_SoundPlaying PAVIA_NARRATOR_6
+		end_while
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		;Move Spanish forces into position
+		unit_order_move SPA_general -368.359 -56.685 
+		unit_order_move SPA_culverin -496.7 -74.3 
+		unit_order_move SPA_Landsknechts_1 -496.7 -74.3 
+		unit_order_move SPA_Landsknechts_2 -496.7 -74.3 
+		unit_order_move Sword_Buckler_men_1 -496.7 -74.3 
+		unit_order_move Sword_Buckler_men_2 -496.7 -74.3 
+		unit_order_move Musketeers_1 -589.07 -142.22 run
+		unit_order_move Musketeers_2 -605.9 -147.38 run
+
+		;move hre		
+		unit_order_move HRE_general -340.652 -127.868 
+		unit_order_move HRE_Landsknechts_1 -340.652 -127.868 
+		unit_order_move HRE_Landsknechts_2 -340.652 -127.868 
+		unit_order_move Arquebusiers_1 -340.652 -127.868  
+		unit_order_move Arquebusiers_2 -340.652 -127.868 
+		unit_order_move Arquebusiers_3 -340.652 -127.868 
+		unit_order_move Arquebusiers_4 -340.652 -127.868 
+		unit_order_move Zweihander_1 -340.652 -127.868 
+		unit_order_move Zweihander_2 -340.652 -127.868 
+		;go between both cannons
+ 		camera_position_at_bookmark 12
+		unit_immediate_place SPA_general -330.359 -73.685 97 22
+		unit_immediate_place SPA_culverin -345.7 -71.3 91 8
+		unit_immediate_place Sword_Buckler_men_1 -362.7 -74.3 90 11
+		unit_immediate_place Sword_Buckler_men_2 -372.7 -76.3 90 21
+		unit_immediate_place SPA_Landsknechts_1 -374.7 -77.3 95 21
+		unit_immediate_place SPA_Landsknechts_2 -389.7 -78.3 84 21
+		
+		;The greatest challenge awaiting the Imperial force is the heavily-guarded French cannons, positioned to protect the French King
+		play_sound_event PAVIA_NARRATOR_7 tag = PAVIA_NARRATOR_7
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		battle_wait 3
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+ 		camera_zoom_to_bookmark 13 100
+ 		
+ 		while I_CompareCounter start_battle = 1
+		end_while
+ 		
+		battle_wait 4
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+ 		camera_zoom_to_bookmark 14 100
+ 		
+ 		while I_CompareCounter start_battle = 1
+		end_while
+		
+		while I_SoundPlaying PAVIA_NARRATOR_7
+		end_while
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		;Move Spanish forces into position
+		unit_order_move SPA_general -163.38 -69.93 
+		unit_order_move SPA_culverin -163.38 -69.93  
+		unit_order_move SPA_Landsknechts_1 -163.38 -69.93  
+		unit_order_move SPA_Landsknechts_2 -163.38 -69.93  
+		unit_order_move Sword_Buckler_men_1 -163.38 -69.93  
+		unit_order_move Sword_Buckler_men_2 -163.38 -69.93  
+		
+		
+		unit_order_move Musketeers_1 -589.07 -136.22 
+		unit_order_move Musketeers_2 -605.9 -140.38 
+
+		;move hre		
+		unit_order_move HRE_general -340.652 -127.868 
+		unit_order_move HRE_Landsknechts_1 -340.652 -127.868 
+		unit_order_move HRE_Landsknechts_2 -340.652 -127.868 
+		unit_order_move Arquebusiers_1 -340.652 -127.868  
+		unit_order_move Arquebusiers_2 -340.652 -127.868 
+		unit_order_move Arquebusiers_3 -340.652 -127.868 
+		unit_order_move Arquebusiers_4 -340.652 -127.868 
+		unit_order_move Zweihander_1 -340.652 -127.868 
+		unit_order_move Zweihander_2 -340.652 -127.868 
+
+		battle_wait 1
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+
+		;shot of general de lannoy and armies marching, shot of musketeers and arquebusiers
+ 		camera_position_at_bookmark 15
+ 		
+ 		while I_CompareCounter start_battle = 1
+		end_while
+		
+		;However, all hope is not lost for Pavia's Imperial garrison, even now, 
+		;General Charles de Lannoy leads a relieving army of Imperial and Spanish troops. 
+		;Amongst them: Musketeers and Arquebusiers, equipped with new, powerful firearms
+		play_sound_event PAVIA_NARRATOR_8 tag = PAVIA_NARRATOR_8
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		battle_wait 12
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+ 		camera_position_at_bookmark 16
+ 		
+ 		while I_CompareCounter start_battle = 1
+		end_while
+ 		
+		battle_wait 1.5
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+ 		camera_position_at_bookmark 17
+ 		
+ 		while I_CompareCounter start_battle = 1
+		end_while
+ 		
+		battle_wait 0
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		while I_SoundPlaying PAVIA_NARRATOR_8
+		end_while
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+	
+		;Second spanish group with general
+		unit_order_move SPA_general -163.38 -69.93 
+		unit_order_move SPA_culverin -163.38 -69.93
+		unit_order_move SPA_Landsknechts_1 -163.38 -69.93 
+		unit_order_move SPA_Landsknechts_2 -163.38 -69.93
+		unit_order_move Sword_Buckler_men_1 -163.38 -69.93 
+		unit_order_move Sword_Buckler_men_2 -163.38 -69.93 
+ 		
+		;Musketeer Movement
+		unit_order_move Musketeers_1 -340.652 -127.868 run
+		unit_order_move Musketeers_2 -340.652 -127.868 run
+	
+		;high shot of musketeers marching through forest, then of french cannon
+; 		camera_position_at_bookmark 13
+; 		camera_position_at_bookmark 14
+		play_sound_event PAVIA_NARRATOR_9 tag = PAVIA_NARRATOR_9
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+				
+ 		camera_position_at_bookmark 18 
+ 		
+ 		while I_CompareCounter start_battle = 1
+		end_while
+ 		
+ 		battle_wait 3
+ 		
+ 		while I_CompareCounter start_battle = 1
+		end_while
+ 		
+		camera_zoom_to_bookmark 19 500
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		battle_wait 2
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+ 		camera_zoom_to_bookmark 20 600
+ 		
+ 		while I_CompareCounter start_battle = 1
+		end_while
+ 		
+ 		battle_wait 1
+ 		
+ 		while I_CompareCounter start_battle = 1
+		end_while
+		
+			
+		;Under orders from General de Lannoy, the Spanish army boldly moves to destroy the French cannons to the left of the manor
+		
+		while I_SoundPlaying PAVIA_NARRATOR_9
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		end_while
+	
+;		unit_order_move_to_orientation SPA_general 12.308 88.217 22 97 
+; 		unit_order_move SPA_culverin -368.359 -56.685 
+; 		unit_order_move SPA_Landsknechts_1 -368.359 -56.685 
+; 		unit_order_move SPA_Landsknechts_2 -368.359 -56.685 
+; 		unit_order_move Sword_Buckler_men_1 -368.359 -56.685 
+; 		unit_order_move Sword_Buckler_men_2 -368.359 -56.685 
+	
+		;shot from french camp of hre units emerging from the wood
+; 		camera_position_at_bookmark 15
+		set_camera_bookmark 1 -189.629, 92.5132, -323.853 -187.754, 89.9407, -332.851
+		set_camera_bookmark 2 -293.44, 131.34, -386.658 -284.966, 126.283, -383.359	;looking down at HRE hill
+		set_camera_bookmark 3 -191.824, 73.1646 -367.045 -197.745, 76.2203 -359.257	
+		set_camera_bookmark 4 -93.9883, 73.4101, -667.922 -97.7979, 71.9666, -676.893
+		set_camera_bookmark 5 126.851 81.73 34.4744 136.412 81.5214 33.5559
+		set_camera_bookmark 6 100.856 80.6187 -364.3 108.438 78.4862 -357.837
+		set_camera_bookmark 7 -139.472 79.0104 -345.448 -140.071 78.8847 -335.511
+		set_camera_bookmark 18 -284.722, 133.46, -320.481 -279.998, 129.417, -327.127 ;Long shot of french camp
+		set_camera_bookmark 19 -237.971, 131.398, -476.523 -230.017, 127.61, -470.842
+
+
+
+
+
+		unit_immediate_place Arquebusiers_1  -175.238 -360.632 173 30
+		unit_immediate_place Arquebusiers_2  -129.952 -355.017 174 30
+		unit_immediate_place Musketeers_1  -142.411 -343.217 173 26
+		unit_immediate_place Musketeers_2  -178.191 -349.587 174 26
+		unit_immediate_place HRE_general -114.259, -297.340, 172, formation_type square, formation_width 27.724
+		unit_immediate_place HRE_Landsknechts_1 -136.878, -330.378, 172, formation_type square, formation_width 34.431
+	    unit_immediate_place HRE_Landsknechts_2 -172.737, -335.507, 175, formation_type square, formation_width 34.667
+		;arq1-177.057, -323.794, 173, formation_type square, formation_width 46.529
+		;arq2-131.771, -318.179, 174, formation_type square, formation_width 45.708
+	
+		unit_immediate_place Zweihander_2 -229.105, -340.882, 176 20.383
+		unit_immediate_place Zweihander_1 -114.987, -308.316, 87 14.327
+		
+		unit_order_move HRE_general -120.290 -327.864 172 27
+	 	unit_order_move HRE_Landsknechts_1  -135.059 -367.216 172 34
+		unit_order_move HRE_Landsknechts_2  -170.918 -372.345 175 34
+	 	unit_order_move Zweihander_2  -227.286 -377.720 176 20
+		unit_order_move Zweihander_1  -113.168 -345.154 87 14
+	 	;camera_zoom_to_bookmark 1 1000
+	 	
+	 	while I_CompareCounter start_battle = 1
+		end_while
+	 	
+	 	battle_wait 1.0
+	 	
+	 	while I_CompareCounter start_battle = 1
+		end_while
+	 	
+		unit_immediate_place Arquebusiers_3  -113.773 -365.312 175 20
+		unit_immediate_place Arquebusiers_4  -206.514 -375.168 177 17	 	
+		unit_immediate_place Arquebusiers_3 -115.592, -328.474, 175 20.197
+		unit_immediate_place Arquebusiers_4 -208.333, -338.330, 177 17.866
+		;The Imperial forces move toward the French King's camp, determined to capture or kill the French sovereign
+		play_sound_event PAVIA_NARRATOR_10 tag = PAVIA_NARRATOR_10
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+		;unit_taunt fra_general
+; 		camera_position_at_bookmark 2 ;camera_zoom_to_bookmark 2 1000 ;kingshot
+; 		while I_CompareCounter start_battle = 1
+; 		end_while
+; 		;unit_taunt fra_general
+; 		battle_wait 2.0
+		while I_CompareCounter start_battle = 1
+		end_while
+		camera_position_at_bookmark 18 
+		battle_wait 3.0
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		unit_immediate_place Arquebusiers_3  -113.773 -365.312 175 20
+		unit_immediate_place Arquebusiers_4  -206.514 -375.168 177 17
+		camera_position_at_bookmark 4 ;king?
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		battle_wait 2.5
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		;camera_position_at_bookmark 2 1000
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		while I_SoundPlaying PAVIA_NARRATOR_10
+		end_while
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		play_sound_event PAVIA_NARRATOR_11 tag = PAVIA_NARRATOR_11
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		camera_position_at_bookmark 3 ;musketeers
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		battle_wait 2
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		;shot of musketeers falling in with setup hre army
+; 		camera_position_at_bookmark 16
+		;The Spanish Musketeers shoulder their arms and move to support their Imperial comrades... bracing for the bloody battle to come.
+		while I_SoundPlaying PAVIA_NARRATOR_11
+		end_while
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+	;;; move units into starting positions		
+		
+		;unit_immediate_place Arquebusiers_1  -175.238 -360.632 173 30
+		;unit_immediate_place Arquebusiers_2  -129.952 -355.017 174 30
+		
+		
+
+		;move spanish group to start positions
+		unit_immediate_place SPA_general 12.308 88.217 97 22
+		unit_immediate_place SPA_culverin 9.339 50.824 91 8
+		unit_immediate_place SPA_Landsknechts_1 11.509 67.110 90 11
+		unit_immediate_place SPA_Landsknechts_2 13.272 41.727 90 21
+		unit_immediate_place Sword_Buckler_men_1 13.206 17.084 95 21
+		unit_immediate_place Sword_Buckler_men_2 11.687 114.125 84 21
+
+		;unit_immediate_place Musketeers_1  -142.411 -343.217 173 26
+		;unit_immediate_place Musketeers_2  -178.191 -349.587 174 26
+		;;; move French units into starting positions	
+		unit_immediate_place HRE_general -128.290 -327.864 172 27
+		unit_immediate_place fra_general -166.005 -545.958 -5 20
+		unit_immediate_place gendarmes_1 -134.736 -541.495 -11 28
+		unit_immediate_place gendarmes_2 -195.392 -550.109 -5 28
+		unit_immediate_place scots_guard_1 -176.791 -578.362 -6 14
+		unit_immediate_place scots_guard_2 -138.729 -578.206 -5 14
+		;high shot centred on hre army in middle with french armies around zooming down to general
+; 		camera_position_at_bookmark 17
+; 		camera_zoom_to_bookmark 18
+		camera_position_at_bookmark 5 ;first artillery
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		play_sound_event PAVIA_NARRATOR_12 tag = PAVIA_NARRATOR_12
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		battle_wait 3
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		camera_position_at_bookmark 6 ;second artillery
+		unit_immediate_place HRE_general -128.290 -327.864 172 27
+	 	unit_immediate_place HRE_Landsknechts_1  -135.059 -367.216 172 34
+		unit_immediate_place HRE_Landsknechts_2  -170.918 -372.345 175 34
+		unit_immediate_place Arquebusiers_1  -175.238 -360.632 173 30
+		unit_immediate_place Arquebusiers_2  -129.952 -355.017 174 30
+		unit_immediate_place Arquebusiers_3  -113.773 -365.312 175 20
+		unit_immediate_place Arquebusiers_4  -206.514 -375.168 177 17
+		unit_immediate_place Zweihander_2  -227.286 -377.720 176 20
+		unit_immediate_place Zweihander_1  -113.168 -345.154 87 14
+		unit_immediate_place Musketeers_1  -142.411 -343.217 173 26
+		unit_immediate_place Musketeers_2  -178.191 -349.587 174 26
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		battle_wait 2
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		camera_position_at_bookmark 7 ;final shot on g
+		battle_wait 2
+		
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		camera_zoom_to_bookmark 21 600
+		while I_CompareCounter start_battle = 1
+		end_while
+		
+		;The situation for the Holy Roman Empire is desperate, but defeat against the ambitious French is not an option. 
+		;Here... today... at Pavia, the Empire must prevail!
+		while I_SoundPlaying PAVIA_NARRATOR_12
+		end_while
+
+		
+		set_counter start_battle 1
+		
+		terminate_monitor
+	end_monitor
+
+	
+;;;;*************************************************************************************************
+;;;; START BATTLE
+;;;;*************************************************************************************************			
+	
+; 	monitor_conditions I_CompareCounter HRE_in_position > 1
+; 		and I_CompareCounter SPA_in_position > 0
+	monitor_conditions I_CompareCounter start_battle = 1
+		
+		steal_esc_key off
+		
+		; ------------
+		; RE-ENABLE UI
+		; ------------
+ 		disable_shortcuts false	
+ 		enable_entire_ui
+ 		camera_restrictions_set on
+		inhibit_camera_input false
+	 	enable_cursor
+	 	show_ui
+		camera_default_mode_set	user_pref
+	 	
+	 	
+	 	stop_sound_event PAVIA_NARRATOR_1
+	 	stop_sound_event PAVIA_NARRATOR_2
+	 	stop_sound_event PAVIA_NARRATOR_3
+	 	stop_sound_event PAVIA_NARRATOR_4
+	 	stop_sound_event PAVIA_NARRATOR_5
+	 	stop_sound_event PAVIA_NARRATOR_6
+	 	stop_sound_event PAVIA_NARRATOR_7
+	 	stop_sound_event PAVIA_NARRATOR_8
+	 	stop_sound_event PAVIA_NARRATOR_9
+	 	stop_sound_event PAVIA_NARRATOR_10
+	 	stop_sound_event PAVIA_NARRATOR_11
+	 	stop_sound_event PAVIA_NARRATOR_12
+	 	
+	 	set_music_state tension
+	 	
+	 	;;;	teleport troops into starting positions
+		unit_immediate_place HRE_general -128.290 -327.864 172 27
+	 	unit_immediate_place HRE_Landsknechts_1  -135.059 -367.216 172 34
+		unit_immediate_place HRE_Landsknechts_2  -170.918 -372.345 175 34
+		unit_use_special_ability HRE_Landsknechts_1
+		unit_use_special_ability HRE_Landsknechts_2
+		unit_immediate_place Arquebusiers_1  -175.238 -360.632 173 30
+		unit_immediate_place Arquebusiers_2  -129.952 -355.017 174 30
+		unit_set_guard_mode Arquebusiers_1 on
+		unit_set_guard_mode Arquebusiers_2 on
+		unit_immediate_place Arquebusiers_3  -113.773 -365.312 175 20
+		unit_immediate_place Arquebusiers_4  -206.514 -375.168 177 17
+		unit_immediate_place Zweihander_2  -227.286 -377.720 176 20
+		unit_immediate_place Zweihander_1  -113.168 -345.154 87 14
+
+		;move spanish group to start positions
+		unit_immediate_place SPA_general 12.308 88.217 97 22
+		unit_immediate_place SPA_culverin 9.339 50.824 91 8
+		unit_immediate_place SPA_Landsknechts_1 11.509 67.110 90 11
+		unit_immediate_place SPA_Landsknechts_2 13.272 41.727 90 21
+		unit_immediate_place Sword_Buckler_men_1 13.206 17.084 95 21
+		unit_immediate_place Sword_Buckler_men_2 11.687 114.125 84 21
+
+		unit_immediate_place Musketeers_1  -142.411 -343.217 173 26
+		unit_immediate_place Musketeers_2  -178.191 -349.587 174 26
+		unit_set_guard_mode Musketeers_1 on
+		unit_set_guard_mode Musketeers_2 on
+		;;; move French units into starting positions	
+		unit_immediate_place fra_general -166.005 -545.958 -5 20
+		unit_immediate_place gendarmes_1 -134.736 -541.495 -11 20
+		unit_immediate_place gendarmes_2 -195.392 -550.109 -5 20
+		unit_immediate_place scots_guard_1 -176.791 -578.362 -6 14
+		unit_immediate_place scots_guard_2 -138.729 -578.206 -5 14
+		
+		unit_order_attack_unit gendarmes_1 HRE_Landsknechts_1 run
+		unit_order_attack_unit gendarmes_2 HRE_Landsknechts_2 run
+		inc_counter HRE_in_position 1
+	 		;France attacking spain 
+		unit_use_special_ability fra_culverin_3
+		unit_use_special_ability fra_culverin_4
+		unit_order_attack_unit fra_culverin_3 SPA_Landsknechts_2
+		unit_order_attack_unit fra_culverin_4 SPA_Landsknechts_1
+		unit_order_attack_unit lancers SPA_general run
+		unit_order_attack_unit SPA_general lancers run
+		unit_set_skirmish_mode scots_guard_3 off
+		unit_set_skirmish_mode scots_guard_4 off		
+; 		unit_use_special_ability scots_guard_3
+; 		unit_use_special_ability scots_guard_4
+		unit_order_attack_unit scots_guard_3 Sword_Buckler_men_1 
+		unit_order_attack_unit scots_guard_4 Sword_Buckler_men_1 
+		;unit_use_special_ability pikemen_2 on
+		
+	
+	;Spain Attacks France, wait till spain gains position
+		unit_use_special_ability SPA_culverin
+		unit_order_attack_unit SPA_culverin scots_guard_4
+		unit_set_guard_mode SPA_Landsknechts_1 off
+		unit_use_special_ability SPA_Landsknechts_1 off
+		unit_set_guard_mode SPA_Landsknechts_2 off
+		unit_use_special_ability SPA_Landsknechts_2 off 
+		unit_order_attack_unit SPA_Landsknechts_1 scots_guard_3 
+		unit_order_attack_unit SPA_Landsknechts_2 pikemen_2 
+		unit_order_attack_unit Sword_Buckler_men_1 scots_guard_4 
+		unit_order_attack_unit Sword_Buckler_men_2 lancers 
+		unit_order_attack_unit scots_guard_3 Sword_Buckler_men_1 
+		unit_order_attack_unit scots_guard_4 Sword_Buckler_men_1 
+		
+		
+		;camera_zoom_to_unit HRE_general
+	 	;camera_zoom_to_bookmark 21 600
+	 	;Move voulgiers to position near to road before moving to engage zweihanders
+		unit_order_move voulgier_1 159 -273.15 run
+		unit_order_move voulgier_2 176 -273.15 run
+		unit_order_move footknight_2 193 -273.15 run
+	 	camera_position_at_bookmark 21
+		;Moved scots guard units to top
+		battle_wait 5
+		;French archers firing flaming arrows at Landsknechts			unit_set_skirmish_mode scots_guard_1 off
+		unit_set_skirmish_mode scots_guard_1 off	
+		unit_set_skirmish_mode scots_guard_2 off
+		unit_use_special_ability scots_guard_1
+		unit_use_special_ability scots_guard_2
+		unit_order_move scots_guard_1 -180.373 -489.016
+		unit_order_move scots_guard_2 -142.232 -489.016
+				
+		battle_wait 5
+		unit_order_attack_unit fra_general HRE_Landsknechts_1 run
+		unit_order_attack_closest_unit Musketeers_1 180
+		unit_order_attack_closest_unit Musketeers_2 180
+	 	
+		;enable phalanx for landsknechts and pikemen
+		
+		unit_use_special_ability SPA_Landsknechts_1
+		unit_use_special_ability SPA_Landsknechts_2
+		unit_use_special_ability pikemen_1
+		unit_use_special_ability pikemen_2
+		unit_use_special_ability pikemen_3
+		unit_use_special_ability pikemen_4
+		;French Culverins firing at HRE
+		unit_use_special_ability fra_culverin_1
+		unit_use_special_ability fra_culverin_2
+		unit_order_attack_unit fra_culverin_1 HRE_Landsknechts_1
+		unit_order_attack_unit fra_culverin_2 HRE_Landsknechts_2
+		
+	
+		
+			
+	;French Pike and Footknight group moving to position
+		unit_order_move pikemen_4 -137 -384 
+		unit_order_move pikemen_3 -137 -337  
+		unit_order_move pikemen_1 -137 -358	
+		unit_order_move footknight_1 -119 -337
+	
+	
+
+	terminate_monitor
+	end_monitor
+		
+	
+;;;;*************************************************************************************************
+;;;; MONITOR BATTLE ACTION
+;;;;*************************************************************************************************			
+; Pavia_Sergeant_1
+; The rash French choose to attack us head on! Lets give them a dose of Imperial pike and shot!
+monitor_conditions I_UnitDistanceFromPosition gendarmes_2 -187 -502 < 20
+	play_sound_event Pavia_Sergeant_1 tag = Pavia_Sergeant_1
+	unit_order_attack_unit pikemen_2 SPA_Landsknechts_2
+	terminate_monitor
+	end_monitor
+	
+;when the voulgiers are in position, get them to move to next
+	monitor_conditions I_UnitDistanceFromPosition voulgier_1 159 -273.15 < 10
+		and I_UnitDistanceFromPosition voulgier_2 176 -273.15 < 10
+			and I_UnitDistanceFromPosition footknight_2 193 -273.15 < 10
+			
+			unit_order_move voulgier_1 -51.56 -358.28 run
+			unit_order_move voulgier_2 -56.057 -326.77 run
+			unit_order_move footknight_2 -77.77 -300 run
+			
+				terminate_monitor
+	end_monitor
+		;france hvy cavalry attacks hre	footknight unit released and spain general released
+		
+		
+			
+;when the scotts guard are in position, get them to attack
+	monitor_conditions I_UnitDistanceFromPosition scots_guard_1 -180.373 -489.016 < 10
+		and I_UnitDistanceFromPosition scots_guard_2 -142.232 -489.016 < 10
+			
+			unit_order_attack_unit scots_guard_1 HRE_Landsknechts_2 
+			unit_order_attack_unit scots_guard_2 HRE_Landsknechts_1 
+			
+				terminate_monitor
+	end_monitor
+	
+	;when the voulgiers are in position, get them to attack
+	monitor_conditions I_UnitDistanceFromPosition voulgier_1 -51.56 -358.28 < 10
+					
+			unit_order_attack_closest_unit voulgier_1 180 run
+				
+			terminate_monitor
+	end_monitor
+	
+	;when the voulgiers are in position, get them to attack
+	
+		monitor_conditions I_UnitDistanceFromPosition voulgier_2 -56.057 -326.77 < 10
+						
+			unit_order_attack_closest_unit voulgier_2 180 run
+						
+			terminate_monitor
+	end_monitor
+	
+	;when the footknight are in position, get them to attack
+			monitor_conditions I_UnitDistanceFromPosition footknight_2 -77.77 -300 < 10
+			
+			unit_order_attack_closest_unit footknight_2 360 run
+			
+			terminate_monitor
+	end_monitor
+	
+	
+	
+;;;;*************************************************************************************************
+;;;; RELEASE UNITS TO AI WHEN THEY'VE DONE WHAT THEY'RE SUPPOSED TO
+;;;;*************************************************************************************************
+	
+	
+
+		monitor_conditions I_IsUnitEngagedWithUnit scots_guard_3 SPA_Landsknechts_1 
+						inc_counter sgrelease 1
+						unit_use_special_ability SPA_Landsknechts_1
+						release_unit fra_culverin_4
+						unit_order_attack_unit SPA_Landsknechts_1 scots_guard_3
+						unit_order_attack_unit scots_guard_3 SPA_Landsknechts_1
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_CompareCounter sgrelease > 0
+	and I_UnitStatus scots_guard_3 ready
+	unit_order_attack_closest_unit scots_guard_3 90 run
+	terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_IsUnitEngagedWithUnit Sword_Buckler_men_1 scots_guard_4
+					   unit_order_attack_unit scots_guard_3 SPA_Landsknechts_1
+		terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_IsUnitEngagedWithUnit SPA_Landsknechts_2 pikemen_2
+						unit_use_special_ability SPA_Landsknechts_2
+						;release_unit fra_culverin_3 
+						;unit_order_attack_unit SPA_Landsknechts_2 scots_guard_4 run
+		terminate_monitor
+	end_monitor
+
+		monitor_conditions I_IsUnitEngagedWithUnit fra_culverin_1 HRE_Landsknechts_1
+		and I_PercentageUnitKilled HRE_Landsknechts_1 > 50
+		unit_order_attack_closest_unit fra_culverin_1 40			
+		terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_IsUnitEngagedWithUnit SPA_general lancers
+			unit_order_attack_unit scots_guard_3 Sword_Buckler_men_1 
+			unit_order_attack_unit scots_guard_4 Sword_Buckler_men_1 			
+		terminate_monitor
+	end_monitor
+	
+
+	
+	monitor_conditions I_IsUnitEngagedWithUnit fra_culverin_2 HRE_Landsknechts_2
+		and I_PercentageUnitKilled HRE_Landsknechts_2 > 50
+		unit_order_attack_closest_unit fra_culverin_2 40		
+		terminate_monitor
+	end_monitor
+
+	monitor_conditions I_IsUnitEngaged voulgier_1
+			
+	release_unit voulgier_1
+			
+		terminate_monitor
+	end_monitor
+	
+	 
+	monitor_conditions I_IsUnitEngaged voulgier_2			
+	release_unit voulgier_2
+				
+		terminate_monitor
+	end_monitor
+		
+	monitor_conditions I_UnitEnemyUnitInRadius voulgier_2 20
+	
+		
+		
+		release_unit SPA_culverin
+		release_unit HRE_Landsknechts_2
+		release_unit Arquebusiers_1
+		release_unit Arquebusiers_2
+		release_unit Arquebusiers_3
+		release_unit Arquebusiers_4
+		release_unit Zweihander_1
+		release_unit SPA_general
+		release_unit footknight_2
+		terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitEnemyUnitInRadius pikemen_1 30
+		unit_use_special_ability pikemen_1
+		release_unit pikemen_1
+		terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitEnemyUnitInRadius pikemen_3 30
+		unit_use_special_ability pikemen_3
+		release_unit pikemen_3
+		terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitEnemyUnitInRadius pikemen_4 30
+		unit_use_special_ability pikemen_4
+		release_unit pikemen_4
+		terminate_monitor
+	end_monitor
+	monitor_conditions I_UnitEnemyUnitInRadius footknight_1 30
+		release_unit footknight_1
+		terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromPosition pikemen_4 -137 -384 < 20				
+			release_unit pikemen_4
+				terminate_monitor
+				end_monitor
+				
+				monitor_conditions I_UnitDistanceFromPosition pikemen_3 -137 -337 < 20				
+			release_unit pikemen_3
+				terminate_monitor
+				end_monitor
+				
+				monitor_conditions I_UnitDistanceFromPosition pikemen_1 -137 -358 < 20				
+			release_unit pikemen_1
+				terminate_monitor
+				end_monitor
+				
+				monitor_conditions I_UnitDistanceFromPosition footknight_1 -119 -337 < 20				
+			release_unit footknight_1
+				terminate_monitor
+				end_monitor
+;*********************************************************************************************
+;	Spanish Rout Counter
+;*********************************************************************************************
+	monitor_conditions I_IsUnitRouting SPA_general
+					   	unit_set_morale SPA_general routing
+						inc_counter spanish_rout 1 
+						unit_order_attack_unit lancers Sword_Buckler_men_2 run
+						terminate_monitor
+					end_monitor
+			
+			monitor_conditions I_IsUnitRouting Sword_Buckler_men_2
+					   unit_set_morale Sword_Buckler_men_2 routing
+				inc_counter spanish_rout 1 
+				unit_order_attack_unit lancers SPA_culverin run
+				terminate_monitor
+			end_monitor
+			
+			
+			
+			monitor_conditions I_IsUnitRouting SPA_culverin
+					   unit_set_morale SPA_culverin routing
+					   unit_order_attack_unit lancers SPA_Landsknechts_2 run
+				inc_counter spanish_rout 1
+				terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_IsUnitRouting SPA_Landsknechts_1
+					   unit_set_morale SPA_Landsknechts_1 routing
+					   unit_order_move pikemen_2 79 -32 run
+				inc_counter spanish_rout 1
+				terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_IsUnitRouting SPA_Landsknechts_2
+					   unit_set_morale SPA_Landsknechts_2 routing
+					   unit_order_attack_unit pikemen_2 SPA_Landsknechts_1 run
+				inc_counter spanish_rout 1
+				terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_IsUnitRouting Sword_Buckler_men_1
+					   unit_set_morale Sword_Buckler_men_1 routing
+					   inc_counter spanish_rout 1
+				terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_IsUnitRouting Sword_Buckler_men_1
+					   unit_set_morale Sword_Buckler_men_2 routing
+					   unit_order_attack_unit scots_guard_3 SPA_Landsknechts_1
+					   unit_order_attack_unit scots_guard_4 SPA_Landsknechts_2
+				inc_counter spanish_rout 1
+				terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_CompareCounter spanish_rout < 4
+			and I_IsUnitRouting SPA_culverin
+			;unit_order_attack_closest_unit lancers 180 run
+			release_unit SPA_Landsknechts_1
+			release_unit SPA_Landsknechts_2
+			release_unit Sword_Buckler_men_1
+			release_unit Sword_Buckler_men_2
+			release_unit SPA_general
+			terminate_monitor
+			end_monitor
+			
+			
+			;Release the spanish if the Frenchies get killed
+			
+			monitor_conditions I_CompareCounter spain_release > 4
+			release_unit SPA_Landsknechts_1
+			release_unit SPA_Landsknechts_2
+			release_unit Sword_Buckler_men_1
+			release_unit Sword_Buckler_men_2
+			release_unit SPA_general
+			release_unit SPA_culverin
+			release_unit Musketeers_1
+			release_unit Musketeers_2
+			terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_CompareCounter spanish_rout > 4
+			and I_CompareCounter HRE_Lose < 7
+			;rout all spaniards off board
+			unit_set_morale SPA_general routing
+			unit_set_morale SPA_culverin routing
+			unit_set_morale SPA_Landsknechts_1 routing
+			unit_set_morale SPA_Landsknechts_2 routing
+			unit_set_morale Sword_Buckler_men_1 routing
+			unit_set_morale Sword_Buckler_men_2 routing
+			;move frenchies over to surprise attack
+			unit_order_move lancers 80 -89 run
+			unit_order_move scots_guard_3 81 -62 run
+			unit_order_move scots_guard_4 81 3 run
+			unit_use_special_ability pikemen_2
+			unit_set_guard_mode pikemen_2 off
+			unit_order_move pikemen_2 79 -32 run
+			unit_set_guard_mode Musketeers_1 off
+			unit_set_guard_mode Musketeers_2 off
+			release_unit Musketeers_1
+			release_unit Musketeers_2
+			play_sound_event Pavia_Sergeant_6 tag = Pavia_Sergeant_6
+			;The French have dealt our Spanish allies a severe blow! We must brace for a new wave of enemies!
+			;Pavia_Sergeant_7
+				terminate_monitor
+			end_monitor
+	;*********************************************************************************************
+	;	Counter Attacking Frenchies
+	;*********************************************************************************************
+			monitor_conditions I_UnitDistanceFromPosition lancers 80 -89 < 20				
+			unit_order_move lancers 125 -299 run
+				terminate_monitor
+				end_monitor
+			
+			monitor_conditions I_UnitDistanceFromPosition scots_guard_3 81 -62 < 20			
+			unit_order_move scots_guard_3 81 -209 run			
+				terminate_monitor
+				end_monitor
+	
+			monitor_conditions I_UnitDistanceFromPosition pikemen_2 79 -32 < 20			
+			unit_order_move pikemen_2 44 -210 run
+			terminate_monitor
+			end_monitor
+	
+			monitor_conditions I_UnitDistanceFromPosition scots_guard_4 81 3 < 20
+			unit_order_move scots_guard_4 6 -211 run
+				terminate_monitor
+				end_monitor
+	
+	
+				
+		monitor_conditions I_UnitDistanceFromPosition lancers 125 -299 < 20				
+		unit_order_attack_closest_unit lancers 180 run	
+		inc_counter lance_release 1
+		; 		release_unit lancers
+			terminate_monitor
+				end_monitor
+		
+ 		monitor_conditions I_IsUnitIdle lancers		
+ 		and I_CompareCounter spanish_rout > 4
+ 		unit_order_move lancers 125 -299 run
+		terminate_monitor
+				end_monitor
+				
+				
+ 		monitor_conditions I_IsUnitIdle lancers		
+ 		and I_CompareCounter lance_release > 0
+ 		release_unit lancers
+		terminate_monitor
+				end_monitor
+		
+	monitor_conditions I_UnitDistanceFromPosition scots_guard_3 81 -209 < 20
+		unit_order_move scots_guard_3 93 -302 run			
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitDistanceFromPosition scots_guard_3 93 -302 < 20
+		release_unit scots_guard_3			
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitDistanceFromPosition pikemen_2 44 -210 < 20
+		release_unit pikemen_2		
+		terminate_monitor
+	end_monitor
+	
+	monitor_conditions I_UnitDistanceFromPosition scots_guard_4 6 -211 < 20
+		unit_order_move scots_guard_4 93 -357 run
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_conditions I_UnitDistanceFromPosition scots_guard_4 93 -357 < 20
+		release_unit scots_guard_4
+		terminate_monitor
+	end_monitor
+	
+
+		;*********************************************************************************************
+		;	Culverin options
+		;*********************************************************************************************
+				
+		monitor_conditions I_UnitEnemyUnitInRadius fra_culverin_1 200
+		unit_order_attack_closest_unit fra_culverin_1 180
+		terminate_monitor
+		end_monitor
+		
+		monitor_conditions I_UnitEnemyUnitInRadius fra_culverin_2 200
+		unit_order_attack_closest_unit fra_culverin_2 180
+		terminate_monitor
+		end_monitor
+		
+		monitor_conditions I_UnitEnemyUnitInRadius fra_culverin_1 100
+		unit_order_attack_closest_unit fra_culverin_1 180
+		terminate_monitor
+		end_monitor
+		
+		monitor_conditions I_UnitEnemyUnitInRadius fra_culverin_2 100
+		unit_order_attack_closest_unit fra_culverin_2 180
+		terminate_monitor
+		end_monitor
+		
+		monitor_conditions I_UnitEnemyUnitInRadius fra_culverin_3 200
+		and I_CompareCounter spanish_rout > 4
+		unit_order_attack_closest_unit fra_culverin_3 180
+		terminate_monitor
+		end_monitor
+		
+		monitor_conditions I_UnitEnemyUnitInRadius fra_culverin_4 200
+		and I_CompareCounter spanish_rout > 4
+		unit_order_attack_closest_unit fra_culverin_4 180
+		terminate_monitor
+		end_monitor
+		
+		monitor_conditions I_UnitEnemyUnitInRadius fra_culverin_3 100
+		and I_CompareCounter spanish_rout > 4
+		unit_order_attack_closest_unit fra_culverin_3 180
+		terminate_monitor
+		end_monitor
+		
+		monitor_conditions I_UnitEnemyUnitInRadius fra_culverin_4 100
+		and I_CompareCounter spanish_rout > 4
+		unit_order_attack_closest_unit fra_culverin_4 180
+		terminate_monitor
+		end_monitor
+				
+		monitor_conditions I_IsUnitIdle fra_culverin_1 	
+			and I_CompareCounter start_battle = 1
+		unit_order_attack_closest_unit fra_culverin_1 180
+		battle_wait 5
+		end_monitor
+		
+		monitor_conditions I_IsUnitIdle fra_culverin_2		
+			and I_CompareCounter start_battle = 1
+		unit_order_attack_closest_unit fra_culverin_2 180
+		battle_wait 5
+		end_monitor
+		
+		;Pavia_Sergeant_2
+		;We have destroyed one of the French artillery positions!  Now Destroy the other!
+		monitor_conditions I_CompareCounter arty_dead_1 = 2
+		and I_CompareCounter arty_dead_2 < 2
+		play_sound_event Pavia_Sergeant_2 tag = Pavia_Sergeant_2
+		inc_counter arty_dead_3 1p
+		terminate_monitor
+		end_monitor
+		
+		monitor_conditions I_CompareCounter arty_dead_2 = 2
+		and I_CompareCounter arty_dead_1 < 2
+		play_sound_event Pavia_Sergeant_2 tag = Pavia_Sergeant_2
+		inc_counter arty_dead_3 1
+		terminate_monitor
+		end_monitor
+		
+		;Wunderbar! All the French artillery has been destroyed! We are well on the way to victory!
+		;Pavia_Sergeant_5
+		monitor_conditions I_CompareCounter arty_dead_3 = 2
+		play_sound_event Pavia_Sergeant_4 tag = Pavia_Sergeant_4
+		terminate_monitor
+		end_monitor
+		;*********************************************************************************************
+		;	Scotts Guard 1 & 2 options
+		;*********************************************************************************************
+				
+		monitor_conditions I_UnitEnemyUnitInRadius scots_guard_1 150
+		and I_CompareCounter HRE_in_position > 1
+		and I_CompareCounter SPA_in_position > 0 
+		unit_order_attack_closest_unit scots_guard_1 180
+		terminate_monitor
+		end_monitor
+		
+		monitor_conditions I_UnitEnemyUnitInRadius scots_guard_2 150
+		and I_CompareCounter HRE_in_position > 1
+		and I_CompareCounter SPA_in_position > 0 
+		unit_order_attack_closest_unit scots_guard_2 180
+		terminate_monitor
+		end_monitor
+				
+		monitor_conditions I_IsUnitIdle scots_guard_1 	
+		and I_CompareCounter HRE_in_position > 1
+		and I_CompareCounter SPA_in_position > 0 
+		unit_order_attack_closest_unit scots_guard_1 180
+		end_monitor
+		
+		monitor_conditions I_UnitStatus scots_guard_1 ready 	
+		and I_CompareCounter HRE_in_position > 1
+		and I_CompareCounter SPA_in_position > 0 
+		unit_order_attack_closest_unit scots_guard_1 180
+		end_monitor
+		
+		monitor_conditions I_IsUnitIdle scots_guard_2		
+		and I_CompareCounter HRE_in_position > 1
+		and I_CompareCounter SPA_in_position > 0 
+		unit_order_attack_closest_unit scots_guard_2 180
+		end_monitor
+		
+		monitor_conditions I_UnitStatus scots_guard_2 ready 	
+		and I_CompareCounter HRE_in_position > 1
+		and I_CompareCounter SPA_in_position > 0 
+		unit_order_attack_closest_unit scots_guard_2 180
+		end_monitor
+		
+	 	
+		;*********************************************************************************************
+		;	French Rout Counter
+		;*********************************************************************************************
+; 		Pavia_Sergeant_5
+; 		The French king flees!  Is he really that spineless or does he have a plan?
+		;routing and moving french general
+		monitor_conditions I_PercentageUnitKilled fra_general > 25
+				inc_counter french_rout2 1
+				inc_counter king_runs 1
+				unit_order_move fra_general -166 -530 run
+				unit_order_attack_unit Musketeers_1 scots_guard_1 run
+				unit_order_attack_unit Musketeers_2 scots_guard_2 run
+				battle_wait 5 
+				unit_set_morale fra_general high
+				unit_order_move fra_general -166 -530 run
+				terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_CompareCounter king_runs > 0
+			and I_CharacterExists Francis
+			play_sound_event Pavia_Sergeant_5 tag = Pavia_Sergeant_5
+			terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_UnitDistanceFromPosition fra_general -166 -530 < 10
+			unit_set_morale fra_general high
+			unit_order_move fra_general 110 -548 run
+			terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_UnitDistanceFromPosition fra_general 110 -548 < 10
+			unit_order_move fra_general 122 -364 run
+			terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_UnitDistanceFromPosition fra_general 122 -364 < 10
+			unit_order_move fra_general 106 -364 run
+			terminate_monitor
+			end_monitor	
+			
+			monitor_conditions I_UnitDistanceFromPosition fra_general 106 -364 < 10
+			and I_UnitEnemyUnitInRadius fra_general 75
+			unit_unset_morale fra_general
+			release_unit fra_general
+			terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_UnitDistanceFromPosition fra_general 106 -364 < 10
+			and and I_IsUnitEngaged fra_general
+			unit_unset_morale fra_general
+			release_unit fra_general
+			terminate_monitor
+			end_monitor
+			
+			;routing gendarmes_1
+			monitor_conditions I_PercentageUnitKilled gendarmes_1 > 30
+				unit_set_morale gendarmes_1 high
+				unit_order_move gendarmes_1 -134 -541 run
+				inc_counter french_rout3 1
+				terminate_monitor
+			end_monitor	
+			
+			monitor_conditions I_UnitDistanceFromPosition gendarmes_1 -134 -541 < 10
+			unit_order_move gendarmes_1 117 -576 run
+			terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_UnitDistanceFromPosition gendarmes_1 117 -576 < 10
+			unit_order_move gendarmes_1 123 -338 run
+			terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_UnitDistanceFromPosition gendarmes_1 123 -338 < 10
+			unit_order_move gendarmes_1 106 -338 run
+			terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_UnitDistanceFromPosition gendarmes_1 106 -338 < 10
+			and I_UnitEnemyUnitInRadius gendarmes_1 75
+			unit_unset_morale gendarmes_1
+			release_unit gendarmes_1
+			terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_UnitDistanceFromPosition gendarmes_1 106 -338 < 10
+			and I_IsUnitEngaged gendarmes_1
+			unit_unset_morale gendarmes_1
+			release_unit gendarmes_1
+			terminate_monitor
+			end_monitor
+			
+				monitor_conditions I_PercentageUnitKilled gendarmes_2 > 30
+				unit_set_morale gendarmes_2 high
+				unit_order_move gendarmes_2 -134 -539 run
+				inc_counter french_rout4 1
+				terminate_monitor
+			end_monitor		
+			
+						
+			monitor_conditions I_UnitDistanceFromPosition gendarmes_2 -134 -539 < 10
+			unit_order_move gendarmes_2 110 -530 run
+			terminate_monitor
+			end_monitor	
+			
+			monitor_conditions I_UnitDistanceFromPosition gendarmes_2 110 -530 < 10
+			unit_order_move gendarmes_2 125 -310 run
+			terminate_monitor
+			end_monitor	
+			
+			monitor_conditions I_UnitDistanceFromPosition gendarmes_2 125 -310 < 10
+			unit_order_move gendarmes_2 109 -310 run
+			terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_UnitDistanceFromPosition gendarmes_2 109 -310 < 10
+			and I_UnitEnemyUnitInRadius gendarmes_2 75
+			unit_unset_morale gendarmes_2
+			release_unit gendarmes_2
+			terminate_monitor
+			end_monitor		
+			
+			monitor_conditions I_UnitDistanceFromPosition gendarmes_2 109 -310 < 10
+			and I_IsUnitEngaged gendarmes_2
+			unit_unset_morale gendarmes_2
+			release_unit gendarmes_2
+			terminate_monitor
+			end_monitor		
+			
+		;*********************************************************************************************
+		;	Break those damn Spanish, Tough buggers
+		;*********************************************************************************************		
+			
+			
+			
+			monitor_conditions I_PercentageUnitKilled SPA_general > 50
+			unit_set_morale SPA_general routing
+			terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_PercentageUnitKilled Sword_Buckler_men_1 > 50
+			unit_set_morale Sword_Buckler_men_1 routing
+			terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_PercentageUnitKilled Sword_Buckler_men_2 > 50
+			unit_set_morale Sword_Buckler_men_2 routing
+			terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_PercentageUnitKilled SPA_culverin > 70
+			unit_set_morale SPA_culverin routing
+			terminate_monitor
+			end_monitor
+			
+			
+			monitor_conditions I_PercentageUnitKilled SPA_Landsknechts_1 > 70
+			unit_set_morale SPA_Landsknechts_1 routing
+			terminate_monitor
+			end_monitor
+			
+			
+			monitor_conditions I_PercentageUnitKilled SPA_Landsknechts_2 > 70
+			unit_set_morale SPA_Landsknechts_2 routing
+			terminate_monitor
+			end_monitor
+			
+			
+			;Pavia_Sergeant_3
+			;All the French cavalry are defeated!! Now we must kill their infantry!
+			monitor_conditions I_CompareCounter cav_rout > 3
+			and I_CompareCounter fra_inf_run < 12
+			play_sound_event Pavia_Sergeant_3 tag = Pavia_Sergeant_3
+			terminate_monitor
+			end_monitor
+		;*********************************************************************************************
+		;	French Rout Counter
+		;*********************************************************************************************
+
+		
+		
+		;Pavia_Sergeant_10
+		;The King of France lies dead on the field! Now let us finish off the rest of his men and enter Pavia as heroes!
+		monitor_conditions not I_CharacterExists Francis
+		play_sound_event Pavia_Sergeant_10 tag = Pavia_Sergeant_10	
+		terminate_monitor
+		end_monitor
+		
+		;Pavia_Sergeant_7
+		;Mein Gott! General de Lannoy has been Killed! We must carry on the orders of the Emperor and crush these French schwein.
+		monitor_conditions not I_CharacterExists Charles de Lannoy
+		play_sound_event Pavia_Sergeant_7 tag = Pavia_Sergeant_7
+		terminate_monitor
+		end_monitor
+		;Pavia_Sergeant_13
+	    ;Gott im himmel! Our allied general has been slain!  Avenge him!
+ 		monitor_conditions not I_CharacterExists Alfonso de Alicante
+ 		play_sound_event Pavia_Sergeant_13 tag = Pavia_Sergeant_13
+ 		terminate_monitor
+ 		end_monitor
+		
+		monitor_conditions I_IsUnitRouting fra_general
+			and I_CompareCounter french_rout2 > 0
+			unit_set_morale fra_general routing
+				inc_counter french_rout 1
+				inc_counter cav_rout 1
+				terminate_monitor
+			end_monitor		
+					
+			monitor_conditions I_IsUnitRouting gendarmes_1 
+			and I_CompareCounter french_rout3 > 0
+			unit_set_morale gendarmes_1 routing
+				inc_counter french_rout 1
+				inc_counter cav_rout 1
+				terminate_monitor
+			end_monitor
+	
+			monitor_conditions I_IsUnitRouting gendarmes_2 
+			and I_CompareCounter french_rout4 > 0
+			unit_set_morale gendarmes_2 routing
+				inc_counter french_rout 1
+				inc_counter cav_rout 1
+				terminate_monitor
+			end_monitor
+	
+			monitor_conditions I_IsUnitRouting scots_guard_1
+			and I_PercentageUnitKilled scots_guard_1 > 50
+			unit_set_morale scots_guard_1 routing
+				inc_counter french_rout 1
+				inc_counter fra_inf_run 1
+				terminate_monitor
+			end_monitor
+	
+			monitor_conditions I_IsUnitRouting scots_guard_2
+			and I_PercentageUnitKilled scots_guard_2 > 50
+			unit_set_morale scots_guard_2 routing
+				inc_counter french_rout 1
+				inc_counter fra_inf_run 1
+				terminate_monitor
+			end_monitor
+			
+				
+			monitor_conditions I_PercentageUnitKilled fra_culverin_1 > 50
+				unit_set_morale fra_culverin_1 routing
+				inc_counter french_rout 1
+				inc_counter arty_dead_1 1
+				terminate_monitor
+			end_monitor	
+	
+			monitor_conditions I_PercentageUnitKilled fra_culverin_2 > 50
+				unit_set_morale fra_culverin_2 routing
+				inc_counter french_rout 1
+				inc_counter arty_dead_1 1
+				terminate_monitor
+			end_monitor	
+	
+			monitor_conditions I_IsUnitRouting pikemen_3
+			and I_PercentageUnitKilled pikemen_3 > 50
+			unit_set_morale pikemen_3 routing
+				inc_counter french_rout 1
+				inc_counter fra_inf_run 1
+				terminate_monitor
+			end_monitor
+	
+			monitor_conditions I_IsUnitRouting pikemen_4
+			and I_PercentageUnitKilled pikemen_4 > 50
+			unit_set_morale pikemen_4 routing
+				inc_counter french_rout 1
+				inc_counter fra_inf_run 1
+				terminate_monitor
+			end_monitor	
+	
+			monitor_conditions I_IsUnitRouting footknight_1
+			and I_PercentageUnitKilled footknight_1 > 50
+			unit_set_morale footknight_1 routing
+				inc_counter french_rout 1
+				inc_counter fra_inf_run 1
+				terminate_monitor
+			end_monitor		
+							
+			monitor_conditions I_IsUnitRouting pikemen_1
+			and I_PercentageUnitKilled pikemen_1 > 50
+			unit_set_morale pikemen_1 routing
+				inc_counter french_rout 1
+				inc_counter fra_inf_run 1
+				terminate_monitor
+			end_monitor		
+		
+			
+			monitor_conditions I_IsUnitRouting voulgier_1
+			and I_PercentageUnitKilled voulgier_1 > 50
+			unit_set_morale voulgier_1 routing
+				inc_counter french_rout 1
+				inc_counter fra_inf_run 1
+				terminate_monitor
+			end_monitor	
+	
+			monitor_conditions I_IsUnitRouting voulgier_2
+			and I_PercentageUnitKilled voulgier_2 > 50
+			unit_set_morale voulgier_2 routing
+				inc_counter french_rout 1
+				inc_counter fra_inf_run 1
+				terminate_monitor
+			end_monitor	
+	
+			monitor_conditions I_IsUnitRouting footknight_2
+			and I_PercentageUnitKilled footknight_2 > 50
+			unit_set_morale footknight_2 routing
+				inc_counter french_rout 1
+				inc_counter fra_inf_run 1
+				terminate_monitor
+			end_monitor
+	
+			monitor_conditions I_PercentageUnitKilled fra_culverin_3 > 50
+				unit_set_morale fra_culverin_3 routing
+				inc_counter french_rout 1
+				inc_counter arty_dead_2 1
+				inc_counter spain_release 1
+				terminate_monitor
+			end_monitor	
+	
+			monitor_conditions I_PercentageUnitKilled fra_culverin_4 > 50
+				unit_set_morale fra_culverin_4 routing
+				inc_counter french_rout 1
+				inc_counter arty_dead_2 1
+				inc_counter spain_release 1
+				terminate_monitor
+			end_monitor		
+							
+			monitor_conditions I_IsUnitRouting scots_guard_3
+			and I_PercentageUnitKilled scots_guard_3 > 50
+			unit_set_morale scots_guard_3 routing
+				inc_counter french_rout 1
+				inc_counter spain_release 1
+				inc_counter fra_inf_run 1
+				terminate_monitor
+			end_monitor	
+			
+			monitor_conditions I_IsUnitRouting scots_guard_4
+			and I_PercentageUnitKilled scots_guard_4 > 50
+			unit_set_morale scots_guard_4 routing
+				inc_counter french_rout 1
+				inc_counter spain_release 1
+				inc_counter fra_inf_run 1
+				terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_IsUnitRouting pikemen_2
+			and I_PercentageUnitKilled pikemen_2 > 50
+			unit_set_morale pikemen_2 routing
+				inc_counter french_rout 1
+				inc_counter spain_release 1
+				inc_counter fra_inf_run 1
+				terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_IsUnitRouting lancers
+			and I_PercentageUnitKilled lancers > 50
+			unit_set_morale lancers routing
+				inc_counter french_rout 1
+				inc_counter cav_rout 1
+				inc_counter spain_release 1
+				terminate_monitor
+			end_monitor	
+			
+			monitor_conditions I_CompareCounter spain_release > 4
+			release_unit fra_culverin_4
+			release_unit fra_culverin_3
+			release_unit lancers
+			release_unit pikemen_2
+			release_unit scots_guard_4
+			release_unit scots_guard_3
+			terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_CompareCounter french_rout > 14
+				play_sound_event Pavia_Sergeant_11 tag = Pavia_Sergeant_11
+				battle_wait 10
+			
+				unit_set_morale fra_general routing
+				unit_set_morale gendarmes_1 routing
+				unit_set_morale gendarmes_2 routing
+				unit_set_morale scots_guard_1 routing
+				unit_set_morale scots_guard_2 routing
+				unit_set_morale fra_culverin_1 routing
+				unit_set_morale fra_culverin_2 routing
+				unit_set_morale pikemen_3 routing
+				unit_set_morale pikemen_4 routing
+				unit_set_morale footknight_1 routing
+				unit_set_morale pikemen_1 routing
+				unit_set_morale voulgier_1 routing
+				unit_set_morale voulgier_2 routing
+				unit_set_morale footknight_2 routing
+				unit_set_morale fra_culverin_3 routing
+				unit_set_morale fra_culverin_4 routing
+				unit_set_morale scots_guard_3 routing
+				unit_set_morale scots_guard_4 routing
+				unit_set_morale pikemen_2 routing
+				unit_set_morale lancers routing
+				;play_sound_event Pavia_Sergeant_11 tag = Pavia_Sergeant_11
+				terminate_monitor
+				end_monitor
+
+			monitor_conditions I_PercentageUnitKilled HRE_general > 95
+			unit_set_morale HRE_general routing
+			terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_PercentageUnitKilled HRE_Landsknechts_1 > 95
+			unit_set_morale HRE_Landsknechts_1 routing
+			terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_PercentageUnitKilled HRE_Landsknechts_2 > 95
+			unit_set_morale HRE_Landsknechts_2 routing
+			terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_PercentageUnitKilled Arquebusiers_1 > 95
+			unit_set_morale Arquebusiers_1 routing
+			terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_PercentageUnitKilled Arquebusiers_2 > 95
+			unit_set_morale Arquebusiers_2 routing
+			terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_PercentageUnitKilled Arquebusiers_3 > 95
+			unit_set_morale Arquebusiers_3 routing
+			terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_PercentageUnitKilled Arquebusiers_4 > 95
+			unit_set_morale Arquebusiers_4 routing
+			terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_PercentageUnitKilled Zweihander_1 > 95
+			unit_set_morale Zweihander_1 routing
+			terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_PercentageUnitKilled Zweihander_2 > 95
+			unit_set_morale Zweihander_2 routing
+			terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_IsUnitRouting HRE_general
+			inc_counter HRE_Lose 1
+			terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_IsUnitRouting HRE_Landsknechts_1
+			inc_counter HRE_Lose 1
+			terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_IsUnitRouting HRE_Landsknechts_2
+			inc_counter HRE_Lose 1
+			terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_IsUnitRouting Arquebusiers_1
+			inc_counter HRE_Lose 1
+			terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_IsUnitRouting Arquebusiers_2
+			inc_counter HRE_Lose 1
+			terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_IsUnitRouting Arquebusiers_3
+			inc_counter HRE_Lose 1
+			terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_IsUnitRouting Arquebusiers_4
+			inc_counter HRE_Lose 1
+			terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_IsUnitRouting Zweihander_1
+			inc_counter HRE_Lose 1
+			terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_IsUnitRouting Zweihander_2
+			inc_counter HRE_Lose 1
+			terminate_monitor
+			end_monitor
+			
+			monitor_conditions I_CompareCounter HRE_Lose > 7
+			play_sound_event Pavia_Sergeant_12 tag = Pavia_Sergeant_12
+			;battle_wait 6
+			unit_set_morale HRE_general routing
+			unit_set_morale HRE_Landsknechts_1 routing
+			unit_set_morale HRE_Landsknechts_2 routing
+			unit_set_morale Arquebusiers_1 routing
+			unit_set_morale Arquebusiers_2 routing
+			unit_set_morale Arquebusiers_3 routing
+			unit_set_morale Arquebusiers_4 routing
+			unit_set_morale Zweihander_1 routing
+			unit_set_morale Zweihander_2 routing
+			unit_set_morale SPA_general routing
+			unit_set_morale SPA_culverin routing
+			unit_set_morale SPA_Landsknechts_1 routing
+			unit_set_morale SPA_Landsknechts_2 routing
+			unit_set_morale Sword_Buckler_men_1 routing
+			unit_set_morale Sword_Buckler_men_2 routing
+			unit_set_morale Musketeers_1 routing
+			unit_set_morale Musketeers_2 routing
+			terminate_monitor
+			end_monitor
+;;;;*************************************************************************************************
+;;;; END OF BATTLE
+;;;;*************************************************************************************************
+				
+	while I_InBattle
+	end_while
+
+	end_script

@@ -1,0 +1,25 @@
+{
+	"baseHullId":"dominator",
+	"skinHullId":"dominator_hmi_p",
+	"hullName":"Dominator (P)",
+	"descriptionId":"dominator",
+	"descriptionPrefix":"This ship has been heavily modified - and poorly maintained - by its pirate crew.",
+	"tags":["pirate_bp"],
+	"tech":"Pirate",
+	"ordnancePoints":170,
+	"baseValueMult":1.0,
+	"spriteName":"graphics/ships/dominator/dominator_hmi_p.png",
+	"removeWeaponSlots":["WS 001", "WS 007", "WS 008", "WS 009"], 		# ids
+	"removeEngineSlots":[], 		# indices, as engine slots have no id in the .ship file
+	"removeBuiltInMods":[], 		# hullmod ids
+	"removeBuiltInWeapons":[], 		# weapon slot ids
+	"weaponSlotChanges":{
+		"WS 002":{"type": "COMPOSITE"},
+		"WS 003":{"type": "COMPOSITE"},
+		"WS 005":{"type": "COMPOSITE"},
+		"WS 006":{"type": "COMPOSITE"}	
+	},
+	"builtInMods":[],
+	"builtInWeapons":{
+    },
+}

@@ -1,0 +1,3 @@
+{
+    "newShipLimit": 100000,   # new maximum deployment value of automated ships
+}

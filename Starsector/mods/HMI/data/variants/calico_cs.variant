@@ -1,0 +1,52 @@
+{
+  "variantId": "calico_cs",
+  "hullId": "calico",
+  "displayName": "Close Support",
+  "goalVariant": true,
+  "fluxCapacitors": 0,
+  "fluxVents": 8,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "targetingunit"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0007": "gravitonbeam"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0003": "heatseeker",
+        "WS0004": "heatseeker"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0001": "taclaser",
+        "WS0002": "taclaser",
+        "WS0008": "railgun"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0005": "heavymauler",
+        "WS0006": "heavymauler"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": [
+    "piranha_wing",
+    "piranha_wing"
+  ]
+}

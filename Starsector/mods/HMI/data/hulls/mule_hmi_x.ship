@@ -1,0 +1,264 @@
+{
+  "bounds": [
+    -17.5,
+    53,
+    5.5,
+    53.5,
+    21.5,
+    36.5,
+    52,
+    34.5,
+    54.5,
+    28,
+    77,
+    22,
+    77,
+    -22.5,
+    57.5,
+    -26,
+    57,
+    -32,
+    20.5,
+    -36.5,
+    4,
+    -52.5,
+    -14,
+    -52.5,
+    -26,
+    -39.5,
+    -34,
+    -38,
+    -37,
+    -47,
+    -68,
+    -50.5,
+    -81,
+    -32,
+    -73,
+    -1,
+    -80,
+    33,
+    -65.5,
+    51,
+    -36,
+    48,
+    -32,
+    38,
+    -23,
+    39
+  ],
+  "builtInWings": [],
+  "center": [
+    64,
+    91
+  ],
+  "collisionRadius": 130,
+  "engineSlots": [
+    {
+      "angle": 180,
+      "contrailSize": 64,
+      "length": 64,
+      "location": [
+        -83,
+        30
+      ],
+      "style": "LOW_TECH",
+      "width": 16
+    },
+    {
+      "angle": 180,
+      "contrailSize": 64,
+      "length": 48,
+      "location": [
+        -83,
+        22
+      ],
+      "style": "LOW_TECH",
+      "width": 12
+    },
+    {
+      "angle": 180,
+      "contrailSize": 64,
+      "length": 32,
+      "location": [
+        -83,
+        17
+      ],
+      "style": "LOW_TECH",
+      "width": 8
+    },
+    {
+      "angle": 180,
+      "contrailSize": 64,
+      "length": 32,
+      "location": [
+        -78,
+        0
+      ],
+      "style": "LOW_TECH",
+      "width": 8
+    },
+    {
+      "angle": 180,
+      "contrailSize": 64,
+      "length": 32,
+      "location": [
+        -83,
+        -16
+      ],
+      "style": "LOW_TECH",
+      "width": 8
+    },
+    {
+      "angle": 180,
+      "contrailSize": 64,
+      "length": 48,
+      "location": [
+        -83,
+        -22
+      ],
+      "style": "LOW_TECH",
+      "width": 12
+    },
+    {
+      "angle": 180,
+      "contrailSize": 64,
+      "length": 64,
+      "location": [
+        -83,
+        -30
+      ],
+      "style": "LOW_TECH",
+      "width": 16
+    },
+    {
+      "angle": 180,
+      "contrailSize": 128,
+      "length": 8,
+      "location": [
+        -24,
+        46.5
+      ],
+      "style": "LOW_TECH",
+      "width": 8
+    },
+    {
+      "angle": 180,
+      "contrailSize": 128,
+      "length": 8,
+      "location": [
+        -24.5,
+        -47
+      ],
+      "style": "LOW_TECH",
+      "width": 8
+    },
+    {
+      "angle": 180,
+      "contrailSize": 22,
+      "length": 42,
+      "location": [
+        -77,
+        38.5
+      ],
+      "style": "LOW_TECH",
+      "width": 22
+    },
+    {
+      "angle": -180,
+      "contrailSize": 22,
+      "length": 42,
+      "location": [
+        -77,
+        -38.5
+      ],
+      "style": "LOW_TECH",
+      "width": 22
+    },
+    {
+      "angle": 122,
+      "contrailSize": 13.988805,
+      "length": 16.854624,
+      "location": [
+        -67,
+        50
+      ],
+      "style": "LOW_TECH",
+      "width": 13.988805
+    },
+    {
+      "angle": -122,
+      "contrailSize": 13.988805,
+      "length": 16.854624,
+      "location": [
+        -67,
+        -50
+      ],
+      "style": "LOW_TECH",
+      "width": 13.988805
+    }
+  ],
+  "height": 192,
+  "hullId": "mule_hmi_x",
+  "hullName": "Mule (X)",
+  "hullSize": "DESTROYER",
+  "shieldCenter": [
+    3,
+    0
+  ],
+  "shieldRadius": 125,
+  "spriteName": "graphics/ships/mule_hmi_x.png",
+  "style": "LOW_TECH",
+  "viewOffset": 0,
+  "weaponSlots": [
+    {
+      "angle": 0,
+      "arc": 10,
+      "id": "WS 003",
+      "locations": [
+        59,
+        0
+      ],
+      "mount": "TURRET",
+      "size": "LARGE",
+      "type": "MISSILE"
+    },
+    {
+      "angle": 95.5,
+      "arc": 198,
+      "id": "WS 004",
+      "locations": [
+        -4,
+        32
+      ],
+      "mount": "TURRET",
+      "size": "MEDIUM",
+      "type": "BALLISTIC"
+    },
+    {
+      "angle": 180,
+      "arc": 150,
+      "id": "WS 005",
+      "locations": [
+        -57,
+        0
+      ],
+      "mount": "TURRET",
+      "size": "SMALL",
+      "type": "BALLISTIC"
+    },
+    {
+      "angle": -95.5,
+      "arc": 198,
+      "id": "WS 006",
+      "locations": [
+        -4,
+        -32
+      ],
+      "mount": "TURRET",
+      "size": "MEDIUM",
+      "type": "BALLISTIC"
+    }
+  ],
+  "width": 128
+}

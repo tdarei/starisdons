@@ -1,0 +1,42 @@
+{
+  "variantId": "domres_rampart_attack",
+  "hullId": "domres_rampart",
+  "displayName": "Attack",
+  "goalVariant": true,
+  "fluxCapacitors": 4,
+  "fluxVents": 20,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "safetyoverrides",
+    "missleracks",
+    "reinforcedhull"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 000": "dick_cannon",
+        "WS 001": "dick_cannon"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 002": "hammerrack"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 003": "mbeke_med",
+        "WS 004": "mbeke_med"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

@@ -1,0 +1,6 @@
+<SYNC Start=64000>
+<P Class=ENUSCC>England_Outro_Win_1
+<SYNC Stop=76600>
+<SYNC Start=35100>
+<P Class=ENUSCC>England_Outro_Win_2
+<SYNC Stop=54100>

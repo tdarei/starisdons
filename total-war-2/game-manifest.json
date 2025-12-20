@@ -1,0 +1,32 @@
+{
+  "version": "1.52",
+  "gameName": "Medieval II: Total War",
+  "description": "Medieval II: Total War with all DLCs included",
+  "dlcs": [
+    "Americas",
+    "Britannia",
+    "Crusades",
+    "Teutonic"
+  ],
+  "files": [
+    {
+      "path": "Medieval II - Total War/medieval2.exe",
+      "name": "medieval2.exe",
+      "category": "executable",
+      "description": "Main game executable - Run as administrator"
+    },
+    {
+      "path": "HOW TO RUN GAME!!.txt",
+      "name": "HOW TO RUN GAME!!.txt",
+      "category": "documentation",
+      "description": "Game installation and running instructions"
+    },
+    {
+      "path": "_Redist/dxsetup.exe",
+      "name": "dxsetup.exe",
+      "category": "redistributable",
+      "description": "DirectX setup - Install if you get DLL errors"
+    }
+  ]
+}
+

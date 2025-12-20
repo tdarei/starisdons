@@ -1,0 +1,49 @@
+{
+  "id": "sw_h9_turbolaser",
+  "specClass": "projectile",
+  "projectileSpecId": "sw_redlaser3",
+  "type": "ENERGY",
+  "size": "SMALL",
+  "turretSprite": "graphics/weapons/sw_h9_turbolaser_turret_base.png",
+  "hardpointSprite": "graphics/weapons/sw_h9_turbolaser_hardpoint_base.png",
+  "renderAboveAllWeapons": 0,
+  "glowColor": [
+    250,
+    0,
+    50,
+    255
+  ],
+  "visualRecoil": 3,
+  "turretOffsets": [
+    6,
+    0
+  ],
+  "turretAngleOffsets": [
+    0
+  ],
+  "hardpointOffsets": [
+    7,
+    0
+  ],
+  "hardpointAngleOffsets": [
+    0
+  ],
+  "barrelMode": "LINKED",
+  "animationType": "GLOW_AND_FLASH",
+  "muzzleFlashSpec": {
+    "length": 5,
+    "spread": 3,
+    "particleSizeMin": 10,
+    "particleSizeRange": 5,
+    "particleDuration": 0.12,
+    "particleCount": 5,
+    "particleColor": [
+      250,
+      0,
+      50,
+      200
+    ]
+  },
+  "textureType": ROUGH,
+  "fireSoundTwo": "sw_sound_laser_cannon"
+}

@@ -1,0 +1,49 @@
+{
+  "variantId": "hammerhead_tt_attack2",
+  "hullId": "hammerhead_tt",
+  "displayName": "Attack",
+  "goalVariant": false,
+  "fluxCapacitors": 2,
+  "fluxVents": 10,
+  "quality": 0.5,
+  "permaMods": [],
+  "hullMods": [
+    "unstable_injector",
+    "magazines"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 001": "heavyneedler",
+        "WS 002": "heavyneedler"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0001": "atropos",
+        "WS0002": "atropos"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 003": "amblaster",
+        "WS 004": "amblaster"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0003": "ionbeam"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

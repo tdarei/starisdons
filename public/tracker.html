@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracker - Adriano To The Star</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Raleway:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="pages-styles.css">
+    <link rel="stylesheet" href="loader-minimal.css">
+    <link rel="stylesheet" href="theme-styles.css">
+    <link rel="stylesheet" href="accessibility-styles.css">
+    <link rel="stylesheet" href="i18n-styles.css">
+    <script src="loader.js"></script>
+    <script src="i18n.js" defer></script>
+    <script src="animations.js" defer></script>
+    <script src="navigation.js" defer></script>
+    <script src="universal-graphics.js" defer></script>
+    <script src="cosmic-music-player.js" defer></script>
+    <script src="theme-toggle.js" defer></script>
+    <script src="accessibility.js" defer></script>
+    <script>
+        window.TRACKER_API_CONFIG = {
+            enabled: false,
+            baseUrl: 'https://tracker-api-664033451690.us-east1.run.app',
+            apiKey: '',
+            deviceId: 'primary-phone'
+        };
+    </script>
+</head>
+<body>
+    <!-- Menu Toggle Button -->
+    <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">
+        <span class="menu-icon"></span>
+        <span class="menu-icon"></span>
+        <span class="menu-icon"></span>
+    </button>
+    <main>
+        <section class="page-hero" data-entrance="fadeIn">
+            <h1 class="page-title" data-scroll-animate>Secure Tracker</h1>
+            <p class="page-subtitle">Locate devices with an authenticated session</p>
+        </section>
+
+        <section class="content-section" data-entrance="slideUp" data-entrance-delay="200">
+            <div class="content-container">
+                <p class="highlight" style="font-size:1rem;">
+                    This page provides a secure interface for recording and reviewing the last known status of your phone.
+                    Actual GPS or network location requires installing a native app or enabling a trusted mobile device manager.
+                    The tracker below stores updates in your browser only and never leaves this device unless you connect it to an API.
+                </p>
+
+                <div class="tracker-grid">
+                    <div class="tracker-panel" id="login-panel">
+                        <h2 class="tracker-title">Authenticate</h2>
+                        <p class="tracker-description">Sign in with the shared tracker credentials to reveal the location console.</p>
+                        <form id="tracker-login-form" class="tracker-form">
+                            <label for="tracker-username">Username</label>
+                            <input type="text" id="tracker-username" autocomplete="username" placeholder="owner" required>
+
+                            <label for="tracker-password">Password</label>
+                            <input type="password" id="tracker-password" autocomplete="current-password" placeholder="••••••••" required>
+
+                            <button type="submit" class="cta-button" data-hover="lift">Unlock Tracker</button>
+                            <p class="tracker-hint">Hint: share the passphrase only with trusted people.</p>
+                        </form>
+                        <p id="tracker-login-feedback" class="tracker-feedback" role="status" aria-live="polite"></p>
+                    </div>
+
+                    <div class="tracker-panel tracker-panel--secure" id="tracker-console" aria-hidden="true">
+                        <div class="tracker-console__header">
+                            <div>
+                                <h2 class="tracker-title">Device status</h2>
+                                <p class="tracker-description">Last sync <span id="tracker-last-sync"></span></p>
+                            </div>
+                            <button type="button" class="outline-btn" id="tracker-lock-button">Lock Console</button>
+                        </div>
+
+                        <div class="tracker-status-cards">
+                            <div class="status-card">
+                                <p class="status-label">Connection</p>
+                                <p class="status-value" id="tracker-connection"></p>
+                            </div>
+                            <div class="status-card">
+                                <p class="status-label">Battery</p>
+                                <p class="status-value" id="tracker-battery"></p>
+                            </div>
+                            <div class="status-card">
+                                <p class="status-label">Mode</p>
+                                <p class="status-value" id="tracker-mode"></p>
+                            </div>
+                        </div>
+
+                        <div class="tracker-map" id="tracker-map">
+                            <div class="tracker-map__badge">Last known location</div>
+                            <div class="tracker-map__coords" id="tracker-coords"></div>
+                            <p class="tracker-map__note" id="tracker-note"></p>
+                        </div>
+
+                        <div class="tracker-actions">
+                            <button type="button" class="cta-button" id="tracker-ping">Ping device</button>
+                            <button type="button" class="outline-btn" id="tracker-export">Export local log</button>
+                        </div>
+
+                        <form id="tracker-update-form" class="tracker-form">
+                            <h3 class="tracker-form__title">Update status manually</h3>
+                            <label for="update-connection">Connection type</label>
+                            <select id="update-connection">
+                                <option>Wi-Fi</option>
+                                <option>Mobile Data</option>
+                                <option>Offline</option>
+                            </select>
+
+                            <label for="update-battery">Battery (%)</label>
+                            <input type="number" id="update-battery" min="0" max="100" value="70">
+
+                            <label for="update-mode">Mode</label>
+                            <select id="update-mode">
+                                <option>Active</option>
+                                <option>Standby</option>
+                                <option>Low Power</option>
+                            </select>
+
+                            <label for="update-lat">Latitude</label>
+                            <input type="text" id="update-lat" placeholder="25.7617">
+
+                            <label for="update-lng">Longitude</label>
+                            <input type="text" id="update-lng" placeholder="-80.1918">
+
+                            <label for="update-note">Notes</label>
+                            <textarea id="update-note" rows="3" placeholder="Observed on home Wi-Fi with Bluetooth enabled."></textarea>
+
+                            <button type="submit" class="cta-button" data-hover="lift">Save update</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="tracker-disclaimer">
+                    <h3>Need real-time tracking?</h3>
+                    <p>
+                        Real GPS or network location requires a dedicated mobile application or the Android / iOS “Find My Device”
+                        service. Use the interface above to keep your own notes or connect it to a secure API when you are ready.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2025 ADRIANO TO THE STAR - I.T.A (Interstellar Travel Agency)</p>
+        <p><a href="index.html">Back to Home</a></p>
+    </footer>
+
+    <script>
+        var TRACKER_API_CONFIG = window.TRACKER_API_CONFIG || {
+            enabled: false,
+            baseUrl: '',
+            apiKey: '',
+            deviceId: 'primary-phone'
+        };
+
+        (function () {
+            const PASSWORD_HASH = 'b39dfb6202ac9c25fadf31e5e7e7780b9b232e59ec524a6196f7bab64ff29afa'; // tracker2024
+            const STORAGE_KEY = 'trackerConsoleUnlocked';
+            const loginPanel = document.getElementById('login-panel');
+            const consolePanel = document.getElementById('tracker-console');
+            const loginForm = document.getElementById('tracker-login-form');
+            const loginFeedback = document.getElementById('tracker-login-feedback');
+            const lockButton = document.getElementById('tracker-lock-button');
+            const pingButton = document.getElementById('tracker-ping');
+            const exportButton = document.getElementById('tracker-export');
+            const updateForm = document.getElementById('tracker-update-form');
+
+            const lastKnownState = {
+                connection: 'Wi-Fi',
+                battery: 76,
+                mode: 'Active',
+                coordinates: { lat: 25.7617, lng: -80.1918 },
+                note: 'Device reported from home network on Skylink router.',
+                lastSync: new Date().toISOString()
+            };
+
+            const elements = {
+                connection: document.getElementById('tracker-connection'),
+                battery: document.getElementById('tracker-battery'),
+                mode: document.getElementById('tracker-mode'),
+                coords: document.getElementById('tracker-coords'),
+                note: document.getElementById('tracker-note'),
+                lastSync: document.getElementById('tracker-last-sync')
+            };
+
+            const updateInputs = {
+                connection: document.getElementById('update-connection'),
+                battery: document.getElementById('update-battery'),
+                mode: document.getElementById('update-mode'),
+                lat: document.getElementById('update-lat'),
+                lng: document.getElementById('update-lng'),
+                note: document.getElementById('update-note')
+            };
+
+            function formatDate(iso) {
+                return new Date(iso).toLocaleString();
+            }
+
+            function updateUI() {
+                elements.connection.textContent = lastKnownState.connection;
+                elements.battery.textContent = `${lastKnownState.battery}%`;
+                elements.mode.textContent = lastKnownState.mode;
+                elements.coords.textContent = `${lastKnownState.coordinates.lat}, ${lastKnownState.coordinates.lng}`;
+                elements.note.textContent = lastKnownState.note || 'No additional notes.';
+                elements.lastSync.textContent = formatDate(lastKnownState.lastSync);
+
+                updateInputs.connection.value = lastKnownState.connection;
+                updateInputs.battery.value = lastKnownState.battery;
+                updateInputs.mode.value = lastKnownState.mode;
+                updateInputs.lat.value = lastKnownState.coordinates.lat;
+                updateInputs.lng.value = lastKnownState.coordinates.lng;
+                updateInputs.note.value = lastKnownState.note;
+            }
+
+            function setUnlockedState(isUnlocked) {
+                if (isUnlocked) {
+                    loginPanel.style.display = 'none';
+                    consolePanel.style.display = 'block';
+                    consolePanel.setAttribute('aria-hidden', 'false');
+                    localStorage.setItem(STORAGE_KEY, 'true');
+                    updateUI();
+                } else {
+                    loginPanel.style.display = 'block';
+                    consolePanel.style.display = 'none';
+                    consolePanel.setAttribute('aria-hidden', 'true');
+                    localStorage.removeItem(STORAGE_KEY);
+                }
+            }
+
+            async function hashPassword(value) {
+                const encoder = new TextEncoder();
+                const data = encoder.encode(value);
+                const digest = await crypto.subtle.digest('SHA-256', data);
+                return Array.from(new Uint8Array(digest))
+                    .map((b) => b.toString(16).padStart(2, '0'))
+                    .join('');
+            }
+
+            async function syncWithApi(payload) {
+                if (!TRACKER_API_CONFIG.enabled || !TRACKER_API_CONFIG.baseUrl || !TRACKER_API_CONFIG.apiKey) {
+                    return;
+                }
+
+                try {
+                    await fetch(`${TRACKER_API_CONFIG.baseUrl}/tracker/update`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Authorization: `Bearer ${TRACKER_API_CONFIG.apiKey}`
+                        },
+                        body: JSON.stringify({
+                            deviceId: TRACKER_API_CONFIG.deviceId,
+                            lat: payload.coordinates.lat,
+                            lng: payload.coordinates.lng,
+                            battery: payload.battery,
+                            connection: payload.connection,
+                            mode: payload.mode,
+                            note: payload.note
+                        })
+                    });
+                } catch (error) {
+                    console.warn('Tracker API update failed', error);
+                }
+            }
+
+            async function fetchFromApi() {
+                if (!TRACKER_API_CONFIG.enabled || !TRACKER_API_CONFIG.baseUrl || !TRACKER_API_CONFIG.apiKey) {
+                    return;
+                }
+                try {
+                    const response = await fetch(`${TRACKER_API_CONFIG.baseUrl}/tracker/status?deviceId=${encodeURIComponent(TRACKER_API_CONFIG.deviceId)}`, {
+                        headers: {
+                            Authorization: `Bearer ${TRACKER_API_CONFIG.apiKey}`
+                        }
+                    });
+                    if (response.ok) {
+                        const data = await response.json();
+                        if (data) {
+                            lastKnownState.connection = data.connection || lastKnownState.connection;
+                            lastKnownState.battery = data.battery ?? lastKnownState.battery;
+                            lastKnownState.mode = data.mode || lastKnownState.mode;
+                            lastKnownState.coordinates = {
+                                lat: data.last_lat ?? data.lat ?? lastKnownState.coordinates.lat,
+                                lng: data.last_lng ?? data.lng ?? lastKnownState.coordinates.lng
+                            };
+                            lastKnownState.note = data.note || lastKnownState.note;
+                            lastKnownState.lastSync = data.updated_at || data.reported_at || new Date().toISOString();
+                            updateUI();
+                        }
+                    }
+                } catch (error) {
+                    console.warn('Tracker API fetch failed', error);
+                }
+            }
+
+            loginForm.addEventListener('submit', async (event) => {
+                event.preventDefault();
+                loginFeedback.textContent = '';
+
+                const username = document.getElementById('tracker-username').value.trim().toLowerCase();
+                const password = document.getElementById('tracker-password').value;
+
+                if (!username || !password) {
+                    loginFeedback.textContent = 'Enter your username and password.';
+                    return;
+                }
+
+                if (username !== 'owner') {
+                    loginFeedback.textContent = 'Unknown user.';
+                    return;
+                }
+
+                try {
+                    const hashed = await hashPassword(password);
+                    if (hashed === PASSWORD_HASH) {
+                        setUnlockedState(true);
+                        if (TRACKER_API_CONFIG.enabled) {
+                            fetchFromApi();
+                        }
+                        loginForm.reset();
+                    } else {
+                        loginFeedback.textContent = 'Incorrect passphrase. Access denied.';
+                    }
+                } catch (error) {
+                    loginFeedback.textContent = 'Secure hashing is not supported by this browser.';
+                }
+            });
+
+            lockButton.addEventListener('click', () => {
+                setUnlockedState(false);
+            });
+
+            pingButton.addEventListener('click', () => {
+                lastKnownState.mode = 'Active';
+                lastKnownState.connection = ['Wi-Fi', 'Mobile Data', 'Offline'][Math.floor(Math.random() * 3)];
+                lastKnownState.battery = Math.max(5, Math.min(100, lastKnownState.battery - Math.floor(Math.random() * 5)));
+                lastKnownState.lastSync = new Date().toISOString();
+                lastKnownState.note = `Automated ping at ${formatDate(lastKnownState.lastSync)}.`;
+                syncWithApi(lastKnownState);
+                updateUI();
+            });
+
+            exportButton.addEventListener('click', () => {
+                const blob = new Blob([JSON.stringify(lastKnownState, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = `tracker-log-${Date.now()}.json`;
+                link.click();
+                URL.revokeObjectURL(url);
+            });
+
+            updateForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+                lastKnownState.connection = updateInputs.connection.value;
+                lastKnownState.battery = Number(updateInputs.battery.value) || 0;
+                lastKnownState.mode = updateInputs.mode.value;
+                lastKnownState.coordinates = {
+                    lat: updateInputs.lat.value || '0.0000',
+                    lng: updateInputs.lng.value || '0.0000'
+                };
+                lastKnownState.note = updateInputs.note.value;
+                lastKnownState.lastSync = new Date().toISOString();
+                lastKnownState.lastSync = new Date().toISOString();
+                updateUI();
+                syncWithApi(lastKnownState);
+            });
+
+            if (localStorage.getItem(STORAGE_KEY) === 'true') {
+                setUnlockedState(true);
+                if (TRACKER_API_CONFIG.enabled) {
+                    fetchFromApi();
+                }
+            } else {
+                setUnlockedState(false);
+            }
+        })();
+    </script>
+    <script src="pwa-loader.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Star Maps - Adriano To The Star</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Raleway:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="pages-styles.css">
+    <link rel="stylesheet" href="theme-styles.css">
+    <link rel="stylesheet" href="accessibility-styles.css">
+    <link rel="stylesheet" href="i18n-styles.css">
+    <script src="loader.js"></script>
+    <script src="navigation.js" defer></script>
+    <script src="theme-toggle.js" defer></script>
+</head>
+<body>
+    <!-- Menu Toggle Button -->
+    <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">
+        <span class="menu-icon"></span>
+        <span class="menu-icon"></span>
+        <span class="menu-icon"></span>
+    </button>
+    <main>
+        <section class="page-hero" data-entrance="fadeIn">
+            <h1 class="page-title">🌟 Interactive Star Maps</h1>
+            <p class="page-subtitle">Explore the cosmos with an interactive star map</p>
+        </section>
+
+        <section class="content-section" data-entrance="slideUp">
+            <div class="content-container">
+                <div id="star-map-container" class="star-map-container">
+                    <!-- Star map will be rendered here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2025 ADRIANO TO THE STAR</p>
+        <p><a href="database.html">Back to Database</a> | <a href="index.html">Home</a></p>
+    </footer>
+
+    <script src="interactive-star-maps.js" defer></script>
+    <script src="universal-graphics.js" defer></script>
+    <script src="i18n.js" defer></script>
+    <script src="cosmic-music-player.js" defer></script>
+    <script src="accessibility.js" defer></script>
+    <script>
+        (function() {
+            function initStarMaps() {
+                const container = document.getElementById('star-map-container');
+                if (!container) {
+                    setTimeout(initStarMaps, 500);
+                    return;
+                }
+                
+                try {
+                    if (window.starMaps && typeof window.starMaps === 'function') {
+                        const starMaps = window.starMaps();
+                        if (starMaps && starMaps.createCanvas) {
+                            starMaps.createCanvas('star-map-container');
+                            console.log('✅ Interactive Star Maps initialized');
+                        }
+                    }
+                } catch (error) {
+                    console.error('❌ Error initializing Star Maps:', error);
+                }
+            }
+            
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initStarMaps);
+            } else {
+                initStarMaps();
+            }
+        })();
+    </script>
+</body>
+</html>
+

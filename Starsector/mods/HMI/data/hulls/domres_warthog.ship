@@ -1,0 +1,105 @@
+{
+  "bounds": [
+    3,
+    13,
+    13.5,
+    -1,
+    3.5,
+    -15,
+    -9.5,
+    -12.5,
+    -9,
+    11
+  ],
+  "builtInWings": [],
+  "center": [
+    15,
+    12
+  ],
+  "collisionRadius": 20,
+  "engineSlots": [
+    {
+      "angle": 180,
+      "contrailSize": 64,
+      "length": 20,
+      "location": [
+        -10.5,
+        8
+      ],
+      "style": "MIDLINE",
+      "width": 12
+    },
+    {
+      "angle": 180,
+      "contrailSize": 64,
+      "length": 20,
+      "location": [
+        -11,
+        -10
+      ],
+      "style": "MIDLINE",
+      "width": 12
+    },
+    {
+      "angle": 180,
+      "contrailSize": 64,
+      "length": 12,
+      "location": [
+        -10.5,
+        1.5
+      ],
+      "style": "MIDLINE",
+      "width": 4
+    },
+    {
+      "angle": 180,
+      "contrailSize": 64,
+      "length": 12,
+      "location": [
+        -11,
+        -3.5
+      ],
+      "style": "MIDLINE",
+      "width": 4
+    }
+  ],
+  "height": 29,
+  "hullId": "domres_warthog",
+  "hullName": "Warthog (DomRes)",
+  "hullSize": "FIGHTER",
+  "shieldCenter": [
+    0,
+    0
+  ],
+  "shieldRadius": 20,
+  "spriteName": "graphics/ships/domain_resurgent/hmidr_warthog.png",
+  "style": "LOW_TECH",
+  "viewOffset": 0,
+  "weaponSlots": [
+    {
+      "angle": 0,
+      "arc": 5,
+      "id": "WS 001",
+      "locations": [
+        7,
+        8.5
+      ],
+      "mount": "HIDDEN",
+      "size": "SMALL",
+      "type": "BALLISTIC"
+    },
+    {
+      "angle": 0,
+      "arc": 5,
+      "id": "WS 002",
+      "locations": [
+        6.5,
+        -10.5
+      ],
+      "mount": "HIDDEN",
+      "size": "SMALL",
+      "type": "BALLISTIC"
+    }
+  ],
+  "width": 32
+}

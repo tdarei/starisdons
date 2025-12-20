@@ -1,0 +1,115 @@
+{
+  "hullName": "Kojin",
+  "hullId": "mm_kojin",
+  "hullSize": "DESTROYER",
+  "spriteName": "graphics/mm/ships/mm_kojin.png",
+  "style": "HIGH_TECH",
+  "height": 160,
+  "width": 58,
+  "center": [29, 77.5],
+  "collisionRadius": 84,
+  "shieldCenter": [0, -0],
+  "shieldRadius": 89,
+  "viewOffset": 0,
+  "builtInMods": [
+    "mmmilitarytargetingcore"
+  ],
+  "weaponSlots": [
+    {
+      "id": "WS0002",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 280,
+      "angle": 0,
+      "locations": [42, 0]
+    },
+    {
+      "id": "WS0009",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 280,
+      "angle": -180,
+      "locations": [-46, 0]
+    },
+    {
+      "id": "WS0003",
+      "size": "SMALL",
+      "type": "COMPOSITE",
+      "mount": "HARDPOINT",
+      "arc": 30,
+      "angle": 0,
+      "locations": [73.5, 0]
+    },
+    {
+      "id": "WS0004",
+      "size": "LARGE",
+      "type": "UNIVERSAL",
+      "mount": "TURRET",
+      "arc": 20,
+      "angle": 0,
+      "locations": [3, 0]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-67.5, 16.5],
+      "length": 39.5,
+      "width": 11,
+      "angle": 180,
+      "contrailSize": 11,
+      "style": "HIGH_TECH"
+    },
+    {
+      "location": [-67.5, -16.5],
+      "length": 39.5,
+      "width": 11,
+      "angle": -180,
+      "contrailSize": 11,
+      "style": "HIGH_TECH"
+    },
+    {
+      "location": [-59, 18.5],
+      "length": 33,
+      "width": 13,
+      "angle": 168,
+      "contrailSize": 13,
+      "style": "HIGH_TECH"
+    },
+    {
+      "location": [-59, -18.5],
+      "length": 33,
+      "width": 13,
+      "angle": -168,
+      "contrailSize": 13,
+      "style": "HIGH_TECH"
+    },
+    {
+      "location": [-14, 27],
+      "length": 13.266404,
+      "width": 4.583684,
+      "angle": 168,
+      "contrailSize": 4.583684,
+      "style": "HIGH_TECH"
+    },
+    {
+      "location": [-14, -27],
+      "length": 13.266404,
+      "width": 4.583684,
+      "angle": -168,
+      "contrailSize": 4.583684,
+      "style": "HIGH_TECH"
+    }
+  ],
+  "bounds": [
+    77.5, -6.5,
+    15.5, -23,
+    -50, -24,
+    -74.5, -9,
+    -74.5, 11,
+    -50, 26,
+    15.5, 25,
+    77.5, 8.5
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "bounds": [
+    14,
+    0,
+    -2,
+    9,
+    -5,
+    0,
+    -2,
+    -8
+  ],
+  "builtInMods": [
+    "no_weapon_flux"
+  ],
+  "builtInWings": [],
+  "center": [
+    9,
+    8
+  ],
+  "collisionRadius": 40,
+  "engineSlots": [
+    {
+      "angle": 180,
+      "contrailSize": 18,
+      "length": 25,
+      "location": [
+        -3.5,
+        -0
+      ],
+      "style": "CUSTOM",
+      "styleId": "Terminator_aqua",
+      "width": 18
+    }
+  ],
+  "height": 21,
+  "hullId": "drone_terminator_8",
+  "hullName": "Terminator Drone (Mk VIII)",
+  "hullSize": "FIGHTER",
+  "shieldCenter": [
+    0,
+    0
+  ],
+  "shieldRadius": 30,
+  "spriteName": "graphics/ships/drones/drone_terminatorB.png",
+  "style": "HIGH_TECH",
+  "viewOffset": 0,
+  "weaponSlots": [
+    {
+      "angle": 0,
+      "arc": 360,
+      "id": "WS 001",
+      "locations": [
+        3,
+        0
+      ],
+      "mount": "HIDDEN",
+      "size": "MEDIUM",
+      "type": "ENERGY"
+    }
+  ],
+  "width": 18
+}

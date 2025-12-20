@@ -1,0 +1,39 @@
+{
+  "variantId": "tempest_8_prototype",
+  "hullId": "tempest_8",
+  "displayName": "Prototype",
+  "goalVariant": true,
+  "fluxCapacitors": 10,
+  "fluxVents": 10,
+  "quality": 0,
+  "permaMods": [],
+  "hullMods": [
+    "advancedoptics",
+    "fluxbreakers"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 002": "pulselaser"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 003": "swarmer"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 001": "gravitonbeam"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

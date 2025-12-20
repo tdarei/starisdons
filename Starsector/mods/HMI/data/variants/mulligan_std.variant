@@ -1,0 +1,32 @@
+{
+  "displayName": "Standard",
+  "fluxCapacitors": 0,
+  "fluxVents": 8,
+  "goalVariant": true,
+  "hullId": "mulligan",
+  "hullMods": [
+    "armoredweapons"
+  ],
+  "permaMods": [],
+  "quality": 0,
+  "variantId": "mulligan_std",
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0001": "chaingun",
+        "WS0002": "chaingun"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0003": "arbalest",
+        "WS0004": "arbalest"
+      }
+    }
+  ],
+  "wings": []
+}

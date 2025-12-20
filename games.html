@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flash Games Archive - Adriano To The Star</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Raleway:wght@200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="pages-styles.css">
+    <link rel="stylesheet" href="cosmic-styles.css">
+    <link rel="stylesheet" href="loader-minimal.css">
+    <link rel="stylesheet" href="games-styles.css">
+    <script src="loader.js"></script>
+    <script src="fix-scroll.js"></script>
+    <script src="space-wallpaper.js" defer></script>
+    <script src="animations.js" defer></script>
+    <script src="navigation.js" defer></script>
+    <script src="cosmic-effects.js" defer></script>
+    <script src="cosmic-music-player.js" defer></script>
+    <script src="i18n.js" defer></script>
+    <script src="theme-toggle.js" defer></script>
+    <script src="accessibility.js" defer></script>
+    <!-- Ruffle Player -->
+    <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="theme-styles.css">
+    <link rel="stylesheet" href="accessibility-styles.css">
+    <link rel="stylesheet" href="i18n-styles.css">
+</head>
+
+<body>
+    <!-- Skip to Main Content -->
+    <a href="#main" class="skip-link">Skip to Main Content</a>
+
+    <!-- Menu Toggle Button -->
+    <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">
+        <span class="menu-icon"></span>
+        <span class="menu-icon"></span>
+        <span class="menu-icon"></span>
+    </button>
+
+    <!-- Header with portrait -->
+    <header class="site-header">
+        <div class="site-logo">
+            <a href="index.html" style="text-decoration: none; color: inherit;">
+                <h1
+                    style="font-family: 'Raleway', sans-serif; font-size: 1.2rem; font-weight: 300; letter-spacing: 3px; text-transform: uppercase;">
+                    ADRIANO TO THE STAR</h1>
+            </a>
+        </div>
+        <!-- Navigation -->
+        <nav class="site-nav">
+            <ul style="display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0;">
+                <li><a href="index.html"
+                        style="color: white; text-decoration: none; font-family: 'Raleway', sans-serif;">HOME</a>
+                </li>
+                <li><a href="database.html"
+                        style="color: white; text-decoration: none; font-family: 'Raleway', sans-serif;">DATABASE</a>
+                </li>
+                <li><a href="games.html"
+                        style="color: #ba944f; text-decoration: none; font-family: 'Raleway', sans-serif;">GAMES</a>
+                </li>
+                <li><a href="shop.html"
+                        style="color: white; text-decoration: none; font-family: 'Raleway', sans-serif;">SHOP</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main">
+        <!-- Games Title Section -->
+        <section class="content-section" data-entrance="slideUp">
+            <div class="content-container">
+                <div class="section-header">
+                    <h1 class="section-title">FLASH GAMES ARCHIVE</h1>
+                    <p class="section-subtitle">A collection of 1254 classic Flash games, preserved for eternity.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Search and Filter -->
+        <section class="content-section" data-entrance="slideUp">
+            <div class="content-container">
+                <div class="search-filter-section">
+                    <input type="text" id="game-search" placeholder="Search games..." class="game-search-input">
+                    <select id="game-sort" class="game-sort-select"
+                        style="padding: 0.8rem; border-radius: 8px; border: 1px solid rgba(186, 148, 79, 0.3); background: rgba(10, 10, 15, 0.8); color: white; margin-left: 1rem;">
+                        <option value="name-asc">Name (A-Z)</option>
+                        <option value="name-desc">Name (Z-A)</option>
+                        <option value="size-asc">Size (Smallest)</option>
+                        <option value="size-desc">Size (Largest)</option>
+                    </select>
+                    <p id="game-count" class="game-count">Loading games...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Games Grid -->
+        <section class="content-section" data-entrance="slideUp">
+            <div class="content-container">
+                <div id="games-grid" class="games-grid">
+                    <!-- Games will be populated by JavaScript -->
+                </div>
+                <div id="loading-indicator" class="loading-indicator">Loading games...</div>
+                <a href="https://mega.nz/folder/loEEwSyK#jSp-o-9ZdcUbV9aXlKd3AA" target="_blank"
+                    rel="noopener noreferrer"
+                    style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; background: linear-gradient(135deg, rgba(186, 148, 79, 0.3), rgba(186, 148, 79, 0.5)); border: 2px solid #ba944f; border-radius: 12px; color: white; text-decoration: none; font-size: 1.1rem; font-weight: 600; transition: all 0.3s ease;">
+                    <span>📦</span>
+                    <span>Download from MEGA</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Game Player Modal -->
+        <div id="game-modal" class="game-modal" style="display: none;">
+            <div class="game-modal-content">
+                <div class="game-modal-header">
+                    <h2 id="game-modal-title">Game Title</h2>
+                    <button id="close-game-modal" class="close-modal-btn" aria-label="Close game">×</button>
+                </div>
+                <div class="game-modal-body">
+                    <div id="game-container" class="game-container">
+                        <!-- Ruffle game will be loaded here -->
+                    </div>
+                </div>
+                <div class="game-modal-footer">
+                    <button id="fullscreen-btn" class="fullscreen-btn">Fullscreen</button>
+                    <button id="close-game-btn" class="close-game-btn">Close Game</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <p class="footer-text">ADRIANO TO THE STAR</p>
+    </footer>
+
+    <script src="games.js" defer></script>
+    <script src="pwa-loader.js"></script>
+</body>
+
+</html>

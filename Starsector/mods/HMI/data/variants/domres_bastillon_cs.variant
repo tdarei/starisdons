@@ -1,0 +1,43 @@
+{
+  "variantId": "domres_bastillon_cs",
+  "hullId": "domres_bastillon",
+  "displayName": "Close Support",
+  "goalVariant": true,
+  "fluxCapacitors": 6,
+  "fluxVents": 10,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 007": "launcher_cannon",
+        "WS 008": "launcher_cannon"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 001": "railgun",
+        "WS 002": "railgun",
+        "WS 005": "railgun",
+        "WS 006": "railgun"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 003": "vulcan",
+        "WS 004": "vulcan",
+        "WS 014": "vulcan",
+        "WS 015": "vulcan"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

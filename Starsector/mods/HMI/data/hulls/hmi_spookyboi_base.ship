@@ -1,0 +1,342 @@
+{
+  "bounds": [
+    -124,
+    -17.5,
+    -158,
+    -33,
+    -165,
+    -43.5,
+    -180,
+    -45,
+    -180.5,
+    -67,
+    -168,
+    -68.5,
+    -158,
+    -79,
+    -125,
+    -83,
+    -80,
+    -129,
+    -19,
+    -134.5,
+    -14,
+    -98,
+    36,
+    -123,
+    68.5,
+    -119.5,
+    88,
+    -99,
+    121,
+    -99,
+    143.5,
+    -87,
+    179,
+    -84,
+    178.5,
+    -55,
+    143,
+    -53,
+    119.5,
+    -31,
+    75.5,
+    -30,
+    111,
+    -26,
+    131,
+    -9,
+    131,
+    9,
+    111,
+    26,
+    75.5,
+    30,
+    119.5,
+    31,
+    143,
+    53,
+    178.5,
+    55,
+    179,
+    84,
+    143.5,
+    87,
+    121,
+    99,
+    88,
+    99,
+    68.5,
+    119.5,
+    36,
+    123,
+    -10,
+    98.5,
+    -40,
+    133.5,
+    -80,
+    133,
+    -125,
+    83,
+    -158,
+    79,
+    -168,
+    68.5,
+    -180.5,
+    67,
+    -180,
+    45,
+    -165,
+    43.5,
+    -158,
+    33,
+    -124,
+    17.5
+  ],
+  "builtInMods": [
+    "advancedcore",
+    "automated",
+    "fluxbreakers",
+    "magazines",
+    "shared_flux_sink"
+  ],
+  "builtInWeapons": {
+    "WS0001": "tachyonlance",
+    "WS0002": "tachyonlance",
+    "WS0003": "pdburst",
+    "WS0004": "pdburst",
+    "WS0005": "gauss",
+    "WS0006": "gauss",
+    "WS0007": "heavyblaster",
+    "WS0008": "heavyblaster",
+    "WS0009": "typhoon",
+    "WS0010": "typhoon",
+    "WS0011": "heavyneedler",
+    "WS0012": "heavyneedler"
+  },
+  "builtInWings": [],
+  "center": [
+    133,
+    182
+  ],
+  "collisionRadius": 198.5,
+  "engineSlots": [
+    {
+      "angle": 180,
+      "contrailSize": 32,
+      "length": 41,
+      "location": [
+        -180,
+        56.5
+      ],
+      "style": "COBRA_BOMBER",
+      "width": 32
+    },
+    {
+      "angle": -180,
+      "contrailSize": 32,
+      "length": 41,
+      "location": [
+        -180,
+        -56.5
+      ],
+      "style": "COBRA_BOMBER",
+      "width": 32
+    }
+  ],
+  "height": 364,
+  "hullId": "hmi_spookyboi_base",
+  "hullName": "Capital Terror",
+  "hullSize": "CAPITAL_SHIP",
+  "shieldCenter": [
+    -73,
+    1
+  ],
+  "shieldRadius": 305.5,
+  "spriteName": "graphics/ships/mess/hmi_spookyboi_base.png",
+  "style": "LOW_TECH",
+  "viewOffset": 0,
+  "weaponSlots": [
+    {
+      "angle": 46.5,
+      "arc": 162,
+      "id": "WS0001",
+      "locations": [
+        33.5,
+        34
+      ],
+      "mount": "TURRET",
+      "size": "LARGE",
+      "type": "BUILT_IN"
+    },
+    {
+      "angle": -46.5,
+      "arc": 162,
+      "id": "WS0002",
+      "locations": [
+        33.5,
+        -34
+      ],
+      "mount": "TURRET",
+      "size": "LARGE",
+      "type": "BUILT_IN"
+    },
+    {
+      "angle": -62,
+      "arc": 69,
+      "id": "WS0003",
+      "locations": [
+        118,
+        43
+      ],
+      "mount": "TURRET",
+      "size": "SMALL",
+      "type": "BUILT_IN"
+    },
+    {
+      "angle": 62,
+      "arc": 69,
+      "id": "WS0004",
+      "locations": [
+        118,
+        -43
+      ],
+      "mount": "HARDPOINT",
+      "size": "SMALL",
+      "type": "BUILT_IN"
+    },
+    {
+	  "angle": 0,
+      "arc": 10,
+      "id": "WS0005",
+      "locations": [
+        152.5,
+        70
+      ],
+      "mount": "HARDPOINT",
+      "size": "LARGE",
+      "type": "BUILT_IN"
+    },
+    {
+	  "angle": 0,
+      "arc": 10,
+      "id": "WS0006",
+      "locations": [
+        152.5,
+        -70
+      ],
+      "mount": "HARDPOINT",
+      "size": "LARGE",
+      "type": "BUILT_IN"
+    },
+    {
+      "angle": 41,
+      "arc": 203,
+      "id": "WS0007",
+      "locations": [
+        117.5,
+        84
+      ],
+      "mount": "TURRET",
+      "size": "MEDIUM",
+      "type": "BUILT_IN"
+    },
+    {
+      "angle": -41,
+      "arc": 203,
+      "id": "WS0008",
+      "locations": [
+        117.5,
+        -84
+      ],
+      "mount": "TURRET",
+      "size": "MEDIUM",
+      "type": "BUILT_IN"
+    },
+    {
+	  "angle": 0,
+      "arc": 10,
+      "id": "WS0009",
+      "locations": [
+        112.5,
+        9.5
+      ],
+      "mount": "HIDDEN",
+      "size": "MEDIUM",
+      "type": "BUILT_IN"
+    },
+    {
+	  "angle": 0,
+      "arc": 10,
+      "id": "WS0010",
+      "locations": [
+        112.5,
+        -9.5
+      ],
+      "mount": "HIDDEN",
+      "size": "MEDIUM",
+      "type": "BUILT_IN"
+    },
+    {
+      "angle": 58.5,
+      "arc": 121,
+      "id": "WS0011",
+      "locations": [
+        58,
+        105
+      ],
+      "mount": "TURRET",
+      "size": "MEDIUM",
+      "type": "BUILT_IN"
+    },
+    {
+      "angle": -58.5,
+      "arc": 121,
+      "id": "WS0012",
+      "locations": [
+        58,
+        -105
+      ],
+      "mount": "TURRET",
+      "size": "MEDIUM",
+      "type": "BUILT_IN"
+    },
+    {
+	  "angle": 0,
+      "arc": 162,
+      "id": "LEFTWING",
+      "locations": [
+        -150,
+        168.5
+      ],
+      "mount": "HARDPOINT",
+      "size": "LARGE",
+      "type": "STATION_MODULE"
+    },
+    {
+	  "angle": 0,
+      "arc": 162,
+      "id": "RIGHTWING",
+      "locations": [
+        -150.5,
+        -168.5
+      ],
+      "mount": "HARDPOINT",
+      "size": "LARGE",
+      "type": "STATION_MODULE"
+    },
+    {
+	  "angle": 0,
+      "arc": 162,
+      "id": "BACKMINER",
+      "locations": [
+        -153,
+        -0
+      ],
+      "mount": "HARDPOINT",
+      "size": "LARGE",
+      "type": "STATION_MODULE"
+    }
+  ],
+  "width": 270
+}

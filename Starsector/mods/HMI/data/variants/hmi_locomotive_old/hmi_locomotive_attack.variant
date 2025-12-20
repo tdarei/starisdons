@@ -1,0 +1,66 @@
+{
+  "variantId": "hmi_locomotive_attack",
+  "hullId": "hmi_locomotive",
+  "displayName": "Sledgehammer",
+  "goalVariant": true,
+  "fluxCapacitors": 27,
+  "fluxVents": 36,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "auxiliarythrusters"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0001": "pumm_cannon"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0008": "sabot",
+        "WS0009": "sabot"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0003": "pumm_mg",
+        "WS0004": "dualflak",
+        "WS0005": "pumm_mg"
+      }
+    }
+  ],
+  "modules": [
+    {
+      "MODULE_GUN_LEFT": "hmi_locomotive_gun_left_attack"
+    },
+    {
+      "MODULE_GUN_RIGHT": "hmi_locomotive_gun_right_attack"
+    },
+    {
+      "MODULE_FRONT": "hmi_locomotive_front_attack"
+    },
+    {
+      "MODULE_FIGHTER_LEFT": "hmi_locomotive_fighter_left_attack"
+    },
+    {
+      "MODULE_FIGHTER_RIGHT": "hmi_locomotive_fighter_right_attack"
+    },
+    {
+      "MODULE_ENGINES": "hmi_locomotive_rear_std"
+    },
+    {
+      "MODULE_UNDER": "hmi_locomotive_base_variant"
+    }
+  ],
+  "wings": [
+    "broadsword_wing",
+    "broadsword_wing"
+  ]
+}

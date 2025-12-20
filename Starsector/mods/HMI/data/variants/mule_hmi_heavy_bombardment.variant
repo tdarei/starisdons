@@ -1,0 +1,41 @@
+{
+  "displayName": "Bombardment",
+  "fluxCapacitors": 5,
+  "fluxVents": 8,
+  "goalVariant": true,
+  "hullId": "mule_hmi_heavy",
+  "hullMods": [
+    "targetingunit"
+  ],
+  "permaMods": [],
+  "quality": 0,
+  "variantId": "mule_hmi_heavy_bombardment",
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 004": "heavymauler",
+        "WS 006": "heavymauler"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 001": "annihilator",
+        "WS 002": "annihilator"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 005": "vulcan"
+      }
+    }
+  ],
+  "wings": [
+    "broadsword_wing"
+  ]
+}

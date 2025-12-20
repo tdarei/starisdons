@@ -1,0 +1,54 @@
+{
+  "displayName": "Miner",
+  "fluxCapacitors": 3,
+  "fluxVents": 5,
+  "goalVariant": true,
+  "hullId": "zebu",
+  "hullMods": [
+    "unstable_injector",
+    "auxiliarythrusters",
+    "auxiliary_fuel_tanks",
+    "expanded_cargo_holds"
+  ],
+  "permaMods": [
+    "degraded_engines",
+    "fragile_subsystems"
+  ],
+  "quality": 0,
+  "variantId": "zebu_miner",
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0001": "rock_launcher",
+        "WS0002": "rock_launcher",
+        "WS0003": "rock_launcher",
+        "WS0004": "rock_launcher"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0005": "hammer"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {}
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {}
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {}
+    }
+  ],
+  "wings": []
+}

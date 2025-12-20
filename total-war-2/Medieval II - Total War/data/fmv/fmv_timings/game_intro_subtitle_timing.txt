@@ -1,0 +1,3 @@
+<SYNC Start=21100>
+<P Class=ENUSCC>Game_Intro_1
+<SYNC Stop=32300>

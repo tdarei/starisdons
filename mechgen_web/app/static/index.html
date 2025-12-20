@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>MechGen Web</title>
+    <style>
+      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 24px; max-width: 980px; }
+      label { display: block; font-weight: 600; margin: 12px 0 6px; }
+      textarea, input, select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; }
+      button { padding: 10px 14px; border: 0; border-radius: 8px; background: #111; color: #fff; cursor: pointer; }
+      button:disabled { opacity: 0.5; cursor: not-allowed; }
+      .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+      .badge { display: inline-block; padding: 4px 10px; border-radius: 999px; font-size: 12px; font-weight: 700; }
+      .badge.ok { background: #e6ffed; color: #055d20; border: 1px solid #b7f5c7; }
+      .badge.warn { background: #fff7e6; color: #7a4a00; border: 1px solid #ffe2a8; }
+      .badge.bad { background: #ffe8e8; color: #7a0000; border: 1px solid #ffc2c2; }
+      .card { border: 1px solid #eee; border-radius: 12px; padding: 14px; margin-top: 14px; }
+      .steps { display: grid; grid-template-columns: 1fr; gap: 12px; }
+      img { max-width: 100%; border: 1px solid #eee; border-radius: 12px; }
+      pre { white-space: pre-wrap; word-break: break-word; }
+      .muted { color: #666; }
+    </style>
+  </head>
+  <body>
+    <h1>MechGen Web</h1>
+    <div class="muted">Runs locally. Jobs write to <code>mechgen_web/runs/&lt;job_id&gt;/</code>. Mechanisms are currently returned as <b>unverified</b> (attempt) with PNG artifacts.</div>
+
+    <div class="card">
+      <div class="row">
+        <div>
+          <label>Mode</label>
+          <select id="mode">
+            <option value="predict">Predict (reactants -> products + mechanism)</option>
+            <option value="explain">Explain (reactants + products -> mechanism)</option>
+          </select>
+        </div>
+        <div>
+          <label>Input kind</label>
+          <select id="input_kind">
+            <option value="auto">auto</option>
+            <option value="smiles">smiles</option>
+            <option value="english">english</option>
+          </select>
+        </div>
+      </div>
+
+      <label>Reactants (SMILES or English)</label>
+      <textarea id="reactants" rows="3" placeholder="e.g. CC(=O)C=C + [OH-] ... or: acetone + ..."></textarea>
+
+      <div id="products_wrap">
+        <label>Products (SMILES or English) [Explain mode]</label>
+        <textarea id="products" rows="3" placeholder="optional for predict; required for explain"></textarea>
+      </div>
+
+      <label>Conditions</label>
+      <input id="conditions" placeholder="optional" />
+
+      <div style="margin-top: 12px; display: flex; gap: 12px; align-items: center;">
+        <button id="submit">Run</button>
+        <span id="status_badge"></span>
+        <span id="job_id" class="muted"></span>
+      </div>
+    </div>
+
+    <div id="result" class="card" style="display:none;">
+      <div style="display:flex; justify-content: space-between; align-items: center; gap: 12px;">
+        <h2 style="margin:0;">Result</h2>
+        <a id="result_link" href="#" target="_blank" class="muted">result.json</a>
+      </div>
+
+      <div id="predicted_products"></div>
+
+      <h3>Errors / Diagnostics</h3>
+      <pre id="errors"></pre>
+
+      <h3>Steps</h3>
+      <div id="steps" class="steps"></div>
+    </div>
+
+    <script>
+      const modeEl = document.getElementById('mode');
+      const productsWrap = document.getElementById('products_wrap');
+      const submitBtn = document.getElementById('submit');
+      const statusBadge = document.getElementById('status_badge');
+      const jobIdEl = document.getElementById('job_id');
+      const resultCard = document.getElementById('result');
+      const errorsEl = document.getElementById('errors');
+      const stepsEl = document.getElementById('steps');
+      const predictedProductsEl = document.getElementById('predicted_products');
+      const resultLinkEl = document.getElementById('result_link');
+
+      function setBadge(kind, text) {
+        statusBadge.innerHTML = `<span class="badge ${kind}">${text}</span>`;
+      }
+
+      function syncModeUI() {
+        const mode = modeEl.value;
+        productsWrap.style.display = (mode === 'explain') ? 'block' : 'none';
+      }
+      modeEl.addEventListener('change', syncModeUI);
+      syncModeUI();
+
+      async function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+      async function pollJob(jobId) {
+        while (true) {
+          const res = await fetch(`/api/jobs/${jobId}`);
+          if (!res.ok) throw new Error(`status failed: ${res.status}`);
+          const s = await res.json();
+          if (s.state === 'queued') setBadge('warn', 'Queued');
+          if (s.state === 'running') setBadge('warn', 'Running');
+          if (s.state === 'succeeded' || s.state === 'failed') return s;
+          await sleep(800);
+        }
+      }
+
+      function renderResult(r) {
+        resultCard.style.display = 'block';
+        resultLinkEl.href = `/api/jobs/${r.job_id}/result.json`;
+
+        const badgeText = r.verified ? 'Verified' : (r.status === 'fatal' ? 'Fatal' : 'Unverified (attempt)');
+        const badgeKind = r.verified ? 'ok' : (r.status === 'fatal' ? 'bad' : 'warn');
+        setBadge(badgeKind, badgeText);
+
+        const pp = (r.predicted_products || []).filter(Boolean);
+        predictedProductsEl.innerHTML = pp.length ? `<h3>Predicted products</h3><pre>${pp.join('\n')}</pre>` : '';
+
+        errorsEl.textContent = (r.errors || []).join('\n\n');
+
+        stepsEl.innerHTML = '';
+        (r.steps || []).forEach(st => {
+          const div = document.createElement('div');
+          div.className = 'card';
+          const imgUrl = st.image_url ? (st.image_url + `?t=${Date.now()}`) : '';
+          div.innerHTML = `
+            <div class="muted">Step ${st.index}</div>
+            <div style="font-weight:700; margin: 6px 0;">${st.title || ''}</div>
+            <div class="muted" style="margin-bottom: 10px;">${st.description || ''}</div>
+            ${imgUrl ? `<img src="${imgUrl}" alt="step" />` : ''}
+          `;
+          stepsEl.appendChild(div);
+        });
+      }
+
+      submitBtn.addEventListener('click', async () => {
+        try {
+          submitBtn.disabled = true;
+          setBadge('warn', 'Submitting');
+          resultCard.style.display = 'none';
+          stepsEl.innerHTML = '';
+          errorsEl.textContent = '';
+          predictedProductsEl.innerHTML = '';
+
+          const mode = modeEl.value;
+          const payload = {
+            reactants: document.getElementById('reactants').value,
+            products: document.getElementById('products').value,
+            conditions: document.getElementById('conditions').value,
+            input_kind: document.getElementById('input_kind').value,
+          };
+
+          if (mode === 'predict') delete payload.products;
+
+          const res = await fetch(`/api/${mode}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+
+          if (!res.ok) {
+            const t = await res.text();
+            throw new Error(`submit failed: ${res.status} ${t}`);
+          }
+
+          const j = await res.json();
+          const jobId = j.job_id;
+          jobIdEl.textContent = `job_id: ${jobId}`;
+
+          await pollJob(jobId);
+
+          const rres = await fetch(`/api/jobs/${jobId}/result.json`);
+          if (!rres.ok) throw new Error(`result fetch failed: ${rres.status}`);
+          const r = await rres.json();
+          renderResult(r);
+        } catch (e) {
+          setBadge('bad', 'Error');
+          jobIdEl.textContent = '';
+          resultCard.style.display = 'block';
+          errorsEl.textContent = String(e);
+        } finally {
+          submitBtn.disabled = false;
+        }
+      });
+    </script>
+  </body>
+</html>

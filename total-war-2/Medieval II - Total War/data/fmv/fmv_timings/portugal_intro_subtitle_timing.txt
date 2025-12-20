@@ -1,0 +1,6 @@
+<SYNC Start=11500>
+<P Class=ENUSCC>Portugal_Intro_12
+<SYNC Stop=25700>
+<SYNC Start=50300>
+<P Class=ENUSCC>Portugal_Intro_13
+<SYNC Stop=66100>

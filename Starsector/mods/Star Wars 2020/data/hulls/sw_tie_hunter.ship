@@ -1,0 +1,110 @@
+{
+  "hullName": "TIE/HU Hunter Multi_role Starfighter",
+  "hullId": "sw_tie_hunter",
+  "hullSize": "FIGHTER",
+  "spriteName": "graphics/ships/fighters/sw_tie_hunter.png",
+  "style": "SW_IMPERIAL",
+  "height": 45,
+  "width": 71,
+  "center": [35.5, 14.5],
+  "collisionRadius": 38.5,
+  "shieldCenter": [0, -0],
+  "shieldRadius": 0,
+  "viewOffset": 0,
+  "builtInMods": [
+    "sw_deflector_shield"
+  ],
+  "weaponSlots": [
+    {
+      "id": "WS0001",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": 0,
+      "locations": [3, 4]
+    },
+    {
+      "id": "WS0002",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": -0,
+      "locations": [3, -4]
+    },
+    {
+      "id": "WS0003",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": 0,
+      "locations": [6.5, 15]
+    },
+    {
+      "id": "WS0004",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": -0,
+      "locations": [6.5, -15]
+    },
+    {
+      "id": "WS0005",
+      "size": "SMALL",
+      "type": "MISSILE",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": 0,
+      "locations": [-1, 10]
+    },
+    {
+      "id": "WS0006",
+      "size": "SMALL",
+      "type": "MISSILE",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": -0,
+      "locations": [-1, -10]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-12, 7],
+      "length": 30,
+      "width": 10,
+      "angle": 180,
+      "contrailSize": 128,
+      "style": "CUSTOM",
+      "styleId": "COBRA_BOMBER"
+    },
+    {
+      "location": [-12, -7],
+      "length": 30,
+      "width": 10,
+      "angle": -180,
+      "contrailSize": 128,
+      "style": "CUSTOM",
+      "styleId": "COBRA_BOMBER"
+    }
+  ],
+  "bounds": [
+    3, -4,
+    -1, -13,
+    5, -15,
+    -3, -23,
+    30, -23,
+    -14, -35,
+    -9, -15.5,
+    -14, -0,
+    -9, 15.5,
+    -14, 35,
+    30, 23,
+    -3, 23,
+    5, 15,
+    -1, 13,
+    3, 4
+  ]
+}

@@ -1,0 +1,17 @@
+[
+  {
+    "name": "manifest",
+    "url": "http://localhost:8000/manifest.json",
+    "status": 200
+  },
+  {
+    "name": "service-worker",
+    "url": "http://localhost:8000/sw.js",
+    "status": 200
+  },
+  {
+    "name": "offline-fallback",
+    "url": "http://localhost:8000/offline.html",
+    "status": 200
+  }
+]

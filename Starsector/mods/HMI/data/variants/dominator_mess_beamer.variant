@@ -1,0 +1,46 @@
+{
+  "displayName": "Beamer",
+  "fluxCapacitors": 20,
+  "fluxVents": 20,
+  "goalVariant": true,
+  "hullId": "mess_dominator",
+  "hullMods": [
+    "targetingunit",
+    "advancedoptics",
+    "turretgyros",
+    "pointdefenseai"
+  ],
+  "permaMods": [],
+  "quality": 0,
+  "variantId": "dominator_mess_beamer",
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0001": "hil",
+        "WS0002": "hil",
+        "WS0003": "gravitonbeam",
+        "WS0004": "gravitonbeam",
+        "WS0005": "gravitonbeam",
+        "WS0006": "taclaser",
+        "WS0007": "taclaser",
+        "WS0008": "taclaser",
+        "WS0009": "gravitonbeam",
+        "WS0010": "taclaser",
+        "WS0011": "taclaser"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {}
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {}
+    }
+  ],
+  "wings": []
+}

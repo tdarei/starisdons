@@ -1,0 +1,67 @@
+{
+  "hullName": "Broadsword (DomRes)",
+  "hullId": "domres_broadsword",
+  "hullSize": "FIGHTER",
+  "spriteName": "graphics/ships/domain_resurgent/hmidr_broadsword.png",
+  "style": "LOW_TECH",
+  "height": 34,
+  "width": 30,
+  "center": [15, 13],
+  "collisionRadius": 30,
+  "shieldCenter": [1, 0],
+  "shieldRadius": 22,
+  "viewOffset": 0,
+  "weaponSlots": [
+    {
+      "id": "WS0002",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "HIDDEN",
+      "arc": 5,
+      "angle": 0,
+      "locations": [-5, 11]
+    },
+    {
+      "id": "WS0003",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "HIDDEN",
+      "arc": 5,
+      "angle": 0,
+      "locations": [-5, -10]
+    },
+    {
+      "id": "WS0001",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "HIDDEN",
+      "arc": 28,
+      "angle": 0,
+      "locations": [3.5, -0]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-11, 6],
+      "length": 32,
+      "width": 12,
+      "angle": 180,
+      "contrailSize": 64,
+      "style": "LOW_TECH"
+    },
+    {
+      "location": [-11, -5],
+      "length": 32,
+      "width": 12,
+      "angle": 180,
+      "contrailSize": 64,
+      "style": "LOW_TECH"
+    }
+  ],
+  "bounds": [
+    -5, 12,
+    20, 0,
+    -5, -12,
+    -10, 0
+  ]
+}

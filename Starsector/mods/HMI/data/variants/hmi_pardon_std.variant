@@ -1,0 +1,49 @@
+{
+  "variantId": "hmi_pardon_std",
+  "hullId": "hmi_pardon",
+  "displayName": "Prototype",
+  "goalVariant": true,
+  "fluxCapacitors": 8,
+  "fluxVents": 20,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "targetingunit",
+    "hardenedshieldemitter"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 001": "autopulse"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 002": "phasebeam",
+        "WS 003": "phasebeam"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0001": "gravitonbeam",
+        "WS0002": "gravitonbeam"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 004": "pdburst",
+        "WS 005": "pdburst"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

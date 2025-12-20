@@ -1,0 +1,17 @@
+{
+  "nav": {
+    "home": "Home",
+    "starmap": "Starmap",
+    "database": "Database",
+    "about": "About"
+  },
+  "hero": {
+    "title": "Explore the Cosmos",
+    "subtitle": "Journey through the stars and discover new worlds."
+  },
+  "features": {
+    "visualization": "3D Visualization",
+    "data": "Scientific Data",
+    "community": "Community"
+  }
+}

@@ -1,0 +1,51 @@
+teutonic_order
+hold_regions Visby Vilnius Novgorod Kiev Poznan
+take_regions 45
+outlive lithuania
+short_campaign hold_regions Visby Vilnius Novgorod Kiev Poznan
+take_regions 35
+outlive lithuania
+
+lithuania
+hold_regions Marienburg Kiev
+take_regions 45
+outlive teutonic_order
+short_campaign hold_regions Marienburg Kiev
+take_regions 35
+outlive teutonic_order
+
+hre
+hold_regions
+take_regions 45
+outlive denmark
+short_campaign hold_regions
+take_regions 35
+outlive denmark
+
+denmark
+hold_regions Akershus Uppsala Goteborg Kalmar Roskilde Visby Narva
+take_regions 45
+short_campaign hold_regions Akershus Uppsala Goteborg Kalmar Roskilde Visby Narva
+take_regions 35
+
+poland
+hold_regions Hannover Marienburg
+take_regions 45
+outlive teutonic_order hre
+short_campaign hold_regions Marienburg
+take_regions 35
+outlive teutonic_order
+
+novgorod
+hold_regions Marienburg Visby
+take_regions 45
+outlive teutonic_order
+short_campaign hold_regions Marienburg Visby
+take_regions 35
+outlive teutonic_order
+
+slave
+hold_regions
+take_regions 100
+short_campaign hold_regions
+take_regions 100

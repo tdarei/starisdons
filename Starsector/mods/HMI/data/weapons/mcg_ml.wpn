@@ -1,0 +1,55 @@
+{
+  "collisionClass": "RAY",
+  "collisionClassByFighter": "RAY_FIGHTER",
+  "coreColor": [
+    255,
+    255,
+    255,
+    255
+  ],
+  "fireSoundOne": "burst_pd_fire",
+  "fringeColor": [
+    155,
+    0,
+    0,
+    255
+  ],
+  "glowColor": [
+    255,
+    100,
+    100,
+    255
+  ],
+  "hardpointAngleOffsets": [
+    0
+  ],
+  "hardpointGlowSprite": "graphics/weapons/mcg_ml_hardpoint_glow.png",
+  "hardpointOffsets": [
+    9.5,
+    0
+  ],
+  "hardpointSprite": "graphics/weapons/mcg_ml_hardpoint_base.png",
+  "hitGlowRadius": 0,
+  "id": "mcg_ml",
+  "pierceSet": [
+    PROJECTILE_FF,
+    PROJECTILE_NO_FF,
+    PROJECTILE_FIGHTER
+  ],
+  "pixelsPerTexel": 5,
+  "size": "SMALL",
+  "specClass": "beam",
+  "textureScrollSpeed": 128,
+  "textureType": ROUGH,
+  "turretAngleOffsets": [
+    0
+  ],
+  "turretGlowSprite": "graphics/weapons/mcg_ml_turret_glow.png",
+  "turretOffsets": [
+    4.5,
+    0
+  ],
+  "turretSprite": "graphics/weapons/mcg_ml_turret_base.png",
+  "type": "ENERGY",
+  "width": 17
+}

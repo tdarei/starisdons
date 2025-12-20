@@ -1,0 +1,38 @@
+{
+  "displayName": "Rookie",
+  "fluxCapacitors": 7,
+  "fluxVents": 6,
+  "goalVariant": true,
+  "hullId": "hmi_shotglass",
+  "hullMods": [
+    "auxiliarythrusters",
+    "unstable_injector"
+  ],
+  "permaMods": [],
+  "quality": 0,
+  "variantId": "hmi_shotglass_rookie",
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0001": "arbalest"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0002": "hammer"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0003": "heavymortar"
+      }
+    }
+  ],
+  "wings": []
+}

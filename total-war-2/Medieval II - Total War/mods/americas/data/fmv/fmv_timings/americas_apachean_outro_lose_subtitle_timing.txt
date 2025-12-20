@@ -1,0 +1,6 @@
+<SYNC Start=9100>
+<P Class=ENUSCC>Americas_Apachean_Outro_Lose_1
+<SYNC Stop=17900>
+<SYNC Start=18000>
+<P Class=ENUSCC>Americas_Apachean_Outro_Lose_2
+<SYNC Stop=25300>

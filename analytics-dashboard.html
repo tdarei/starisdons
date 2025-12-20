@@ -1,0 +1,263 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics Dashboard - Adriano To The Star</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Raleway:wght@200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="pages-styles.css">
+    <link rel="stylesheet" href="loader-minimal.css">
+    <link rel="stylesheet" href="theme-styles.css">
+    <link rel="stylesheet" href="accessibility-styles.css">
+    <link rel="stylesheet" href="analytics-styles.css">
+    <link rel="stylesheet" href="keyboard-shortcuts-styles.css">
+    <link rel="stylesheet" href="dashboard-widgets-styles.css">
+    <link rel="stylesheet" href="trends-styles.css">
+
+    <!-- Loading Screen -->
+    <script src="loader.js"></script>
+
+    <script src="animations.js" defer></script>
+    <script src="navigation.js" defer></script>
+    <script src="universal-graphics.js" defer></script>
+    <script src="cosmic-music-player.js" defer></script>
+    <script src="theme-toggle.js" defer></script>
+    <script src="accessibility.js" defer></script>
+    <script src="keyboard-shortcuts.js" defer></script>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="i18n-styles.css">
+</head>
+
+<body>
+    <!-- Menu Toggle Button -->
+    <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">
+        <span class="menu-icon"></span>
+        <span class="menu-icon"></span>
+        <span class="menu-icon"></span>
+    </button>
+    <main>
+        <!-- Page Hero -->
+        <section class="page-hero" data-entrance="fadeIn">
+            <h1 class="page-title" data-scroll-animate>ANALYTICS DASHBOARD</h1>
+            <p class="page-subtitle">Track your cosmic journey and platform statistics</p>
+            <p class="page-subtitle" style="opacity: 0.8; font-size: 0.95rem; margin-top: 0.5rem;">
+                AI-powered features are monitored for performance and fairness to support responsible use.
+            </p>
+        </section>
+
+        <!-- Analytics Container -->
+        <section class="content-section" data-entrance="slideUp">
+            <div class="content-container">
+                <div id="analytics-container">
+                    <!-- Analytics will be initialized here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Planet Discovery Statistics -->
+        <section class="content-section" data-entrance="slideUp">
+            <div class="content-container">
+                <h2 style="text-align: center; margin-bottom: 2rem; color: #ba944f;">📊 Planet Discovery Statistics</h2>
+                <div id="discovery-statistics-container">
+                    <!-- Discovery statistics will be initialized here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Performance Monitoring -->
+        <section class="content-section" data-entrance="slideUp">
+            <div class="content-container">
+                <div id="performance-container">
+                    <!-- Performance metrics will be initialized here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <p>&copy; 2025 ADRIANO TO THE STAR - I.T.A (Interstellar Travel Agency)</p>
+        <p><a href="index.html">Back to Home</a> · <a href="ai-fairness.html">AI &amp; Fairness</a></p>
+    </footer>
+
+    <!-- Supabase Client - Load in order, auth-supabase.js must load before analytics-dashboard.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
+    <script src="auth-supabase.js" defer></script>
+    <script src="reputation-system.js" defer></script>
+    <script src="dashboard-widgets.js" defer></script>
+    <script src="planet-claim-statistics.js" defer></script>
+    <script src="popular-planet-trends.js" defer></script>
+    <script src="discovery-rate-tracker.js" defer></script>
+    <script src="advanced-analytics-widgets.js" defer></script>
+    <script src="user-behavior-analytics.js" defer></script>
+    <script src="analytics-dashboard.js?v=20251214" defer></script>
+    <script src="performance-monitoring.js?v=20251214" defer></script>
+    <script src="fairness-metrics-export.js" defer></script>
+    <script src="monitoring-audits.js" defer></script>
+    <script src="planet-discovery-statistics-widget.js" defer></script>
+    <script src="planet-discovery-map-visualization.js" defer></script>
+    <script src="planet-discovery-notifications.js" defer></script>
+    <script src="planet-discovery-calendar.js" defer></script>
+    <script src="planet-discovery-export.js" defer></script>
+    <script src="planet-discovery-comparison-tool.js" defer></script>
+    <script src="i18n.js" defer></script>
+    <script>
+        // Ensure music player is visible
+        (function () {
+            function ensurePlayerVisible() {
+                const playerEl = document.getElementById('cosmic-music-player');
+                if (playerEl) {
+                    playerEl.style.display = 'block';
+                    playerEl.style.opacity = '1';
+                    playerEl.style.pointerEvents = 'auto';
+                    playerEl.style.visibility = 'visible';
+                } else {
+                    setTimeout(ensurePlayerVisible, 500);
+                }
+            }
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', () => setTimeout(ensurePlayerVisible, 1000));
+            } else {
+                setTimeout(ensurePlayerVisible, 1000);
+            }
+        })();
+
+        (function() {
+            function initDiscoveryStats() {
+                const container = document.getElementById('discovery-statistics-container');
+                if (!container) {
+                    setTimeout(initDiscoveryStats, 500);
+                    return;
+                }
+
+                if (window.planetDiscoveryStatisticsWidget && typeof window.planetDiscoveryStatisticsWidget.renderWidget === 'function') {
+                    window.planetDiscoveryStatisticsWidget.renderWidget('discovery-statistics-container');
+                    return;
+                }
+
+                setTimeout(initDiscoveryStats, 500);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initDiscoveryStats);
+            } else {
+                setTimeout(initDiscoveryStats, 1000);
+            }
+        })();
+
+        // Initialize Analytics Dashboard
+        (function() {
+            async function initAnalyticsDashboard() {
+                try {
+                    // Wait for all dependencies to load
+                    if (typeof AnalyticsDashboard === 'undefined') {
+                        setTimeout(initAnalyticsDashboard, 500);
+                        return;
+                    }
+
+                    const dashboard = window.analyticsDashboardInstance || new AnalyticsDashboard();
+                    window.analyticsDashboardInstance = dashboard;
+                    if (dashboard.__initPromise) {
+                        await dashboard.__initPromise;
+                    } else {
+                        dashboard.__initPromise = dashboard.init();
+                        await dashboard.__initPromise;
+                    }
+                    console.log('✅ Analytics Dashboard initialized');
+                } catch (error) {
+                    console.error('❌ Error initializing Analytics Dashboard:', error);
+                    const container = document.getElementById('analytics-container');
+                    if (container) {
+                        container.innerHTML = '<div class="error-message">Failed to initialize analytics dashboard. Please refresh the page.</div>';
+                    }
+                }
+            }
+            
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', () => setTimeout(initAnalyticsDashboard, 1000));
+            } else {
+                setTimeout(initAnalyticsDashboard, 1000);
+            }
+        })();
+
+        // Initialize Performance Monitoring
+        (function() {
+            function initPerformanceDashboard() {
+                const container = document.getElementById('performance-container');
+                if (!container) {
+                    setTimeout(initPerformanceDashboard, 500);
+                    return;
+                }
+                
+                try {
+                    if (window.performanceMonitoring && typeof window.performanceMonitoring.getPerformanceSummary === 'function') {
+                        setTimeout(() => {
+                            try {
+                                const summary = window.performanceMonitoring.getPerformanceSummary();
+                                const entries = summary ? Object.entries(summary) : [];
+                                const rows = entries.map(([name, stats]) => {
+                                    const avg = typeof stats.avg === 'number' ? Math.round(stats.avg) : stats.avg;
+                                    const max = typeof stats.max === 'number' ? Math.round(stats.max) : stats.max;
+                                    const unit = stats.unit ? String(stats.unit) : '';
+                                    return `
+                                        <div style="display:flex; justify-content: space-between; gap: 1rem; padding: 0.5rem 0; border-top: 1px solid rgba(255,255,255,0.08);">
+                                            <span style="color: rgba(255,255,255,0.75);">${name}</span>
+                                            <span style="color: #ba944f; font-weight: 600;">avg ${avg}${unit} · max ${max}${unit}</span>
+                                        </div>
+                                    `;
+                                }).join('');
+
+                                container.innerHTML = `
+                                    <div style="background: rgba(0, 0, 0, 0.6); border: 2px solid rgba(186, 148, 79, 0.3); border-radius: 15px; padding: 2rem; margin: 1rem 0;">
+                                        <h3 style="color: #ba944f; margin: 0 0 1rem 0;">⚡ Performance Summary</h3>
+                                        ${rows || '<div style="color: rgba(255,255,255,0.75);">No performance metrics recorded yet.</div>'}
+                                    </div>
+                                `;
+                                console.log('Performance Monitoring Dashboard initialized');
+                            } catch (error) {
+                                container.innerHTML = '<div class="error-message">Error loading performance metrics.</div>';
+                            }
+                        }, 2000);
+                        return;
+                    }
+
+                    if (window.performanceMonitor && typeof window.performanceMonitor === 'function') {
+                        const monitor = window.performanceMonitor();
+                        if (monitor && monitor.displayDashboard) {
+                            // Wait a bit for metrics to be collected
+                            setTimeout(() => {
+                                monitor.displayDashboard('performance-container');
+                                console.log('Performance Monitoring Dashboard initialized');
+                            }, 2000);
+                        } else if (window.PerformanceMonitoring) {
+                            // Create new instance if needed
+                            const monitor = new PerformanceMonitoring();
+                            setTimeout(() => {
+                                monitor.displayDashboard('performance-container');
+                                console.log('Performance Monitoring Dashboard initialized');
+                            }, 2000);
+                        }
+                    }
+                } catch (error) {
+                    console.error('Error initializing Performance Dashboard:', error);
+                }
+            }
+            
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initPerformanceDashboard);
+            } else {
+                setTimeout(initPerformanceDashboard, 1000);
+            }
+        })();
+    </script>
+</body>
+
+</html>
+

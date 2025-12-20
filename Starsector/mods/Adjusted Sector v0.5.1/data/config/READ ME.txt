@@ -1,0 +1,1 @@
+To change preset from one to other, just remove 'no longer needed' setting file and rename 'preset' file as settings.json

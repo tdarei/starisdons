@@ -1,0 +1,87 @@
+{
+  "variantId": "sw_starhawk_rebel",
+  "hullId": "sw_starhawk",
+  "displayName": "New Republic",
+  "goalVariant": true,
+  "fluxCapacitors": 50,
+  "fluxVents": 50,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "sw_deflector_shield"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0002": "sw_oct_turbolaser",
+        "WS0003": "sw_oct_turbolaser",
+        "WS0004": "sw_oct_turbolaser",
+        "WS0005": "sw_oct_turbolaser",
+        "WS0006": "sw_oct_turbolaser",
+        "WS0007": "sw_oct_turbolaser"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0008": "sw_dual_turbolaser_heavy",
+        "WS0009": "sw_dual_turbolaser_heavy",
+        "WS0010": "sw_dual_turbolaser_heavy",
+        "WS0011": "sw_dual_turbolaser_heavy",
+        "WS0012": "sw_dual_turbolaser_heavy",
+        "WS0013": "sw_dual_turbolaser_heavy",
+        "WS0014": "sw_dual_turbolaser_heavy",
+        "WS0015": "sw_dual_turbolaser_heavy",
+        "WS0016": "sw_dual_turbolaser_heavy",
+        "WS0017": "sw_dual_turbolaser_heavy"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0018": "sw_nk7_ion_cannon",
+        "WS0019": "sw_nk7_ion_cannon",
+        "WS0020": "sw_nk7_ion_cannon",
+        "WS0021": "sw_nk7_ion_cannon",
+        "WS0022": "sw_nk7_ion_cannon",
+        "WS0023": "sw_nk7_ion_cannon"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0035": "sw_concussion_missile_assault",
+        "WS0036": "sw_concussion_missile_assault",
+        "WS0037": "sw_concussion_missile_assault",
+        "WS0038": "sw_concussion_missile_assault"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0024": "sw_laser_cannon",
+        "WS0025": "sw_laser_cannon",
+        "WS0026": "sw_laser_cannon",
+        "WS0027": "sw_laser_cannon",
+        "WS0028": "sw_laser_cannon",
+        "WS0029": "sw_laser_cannon",
+        "WS0030": "sw_laser_cannon",
+        "WS0031": "sw_laser_cannon",
+        "WS0032": "sw_laser_cannon",
+        "WS0033": "sw_laser_cannon"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": [
+    "sw_t70_xwing_wing",
+    "sw_ewing_wing",
+    "sw_bwing_wing"
+  ]
+}

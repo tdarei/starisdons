@@ -1,0 +1,354 @@
+<?xml version="1.0" ?>
+<SaveGameData z="1">
+<portraitName>graphics/portraits/portrait12.png</portraitName>
+<characterName>Spacewarrior</characterName>
+<saveFileVersion>0.6</saveFileVersion>
+<gameVersion>0.98a-RC8</gameVersion>
+<characterLevel>9</characterLevel>
+<compressed>false</compressed>
+<isIronMode>false</isIronMode>
+<difficulty>normal</difficulty>
+<gameDate z="2">
+<secondsPerDay>10.0</secondsPerDay>
+<timestamp>-55610985471000</timestamp>
+</gameDate>
+<saveDate z="3">2025-09-04 18:52:05.150 UTC</saveDate>
+<slotCreationTimestamp>1757011925150</slotCreationTimestamp>
+<allModsEverEnabled z="4">
+<EnabledModData z="5">
+<spec z="6">
+<id>adjustableautomatedships</id>
+<desc>A lightweight mod which allows you to change the maximum deployment rating of automated ships allowed by the associated skill.</desc>
+<name>Adjustable Automated Ships</name>
+<gameVersion z="7">
+<major>0.98</major>
+<minor>8</minor>
+<patch></patch>
+<string>0.98a-RC8</string>
+<minorIsRC>true</minorIsRC>
+</gameVersion>
+<versionInfo z="8">
+<major>1</major>
+<minor>0</minor>
+<patch>0</patch>
+<string>1.0.0</string>
+<minorIsRC>false</minorIsRC>
+</versionInfo>
+<author>Kentington</author>
+<path>D:\starsector updated\Starsector\starsector-core\..\mods\AdjustableAutomatedShips</path>
+<dirName>AdjustableAutomatedShips</dirName>
+<totalConversion>false</totalConversion>
+<utility>false</utility>
+<modPluginClassName>kentington.automationskill.AutomationModPlugin</modPluginClassName>
+<fullOverrides z="9"></fullOverrides>
+<jars z="10">
+<st>jars/AutomatedShips.jar</st>
+</jars>
+<requiredMemoryMB>0</requiredMemoryMB>
+<dependencies z="11"></dependencies>
+</spec>
+</EnabledModData>
+<EnabledModData z="12">
+<spec z="13">
+<id>adjustable_skill_thresholds</id>
+<desc>Adjust skill-related OP and fighter bay thresholds.</desc>
+<name>Adjustable Skill Thresholds</name>
+<gameVersion z="14">
+<major>0.98</major>
+<minor>8</minor>
+<patch></patch>
+<string>0.98a-RC8</string>
+<minorIsRC>true</minorIsRC>
+</gameVersion>
+<versionInfo z="15">
+<major>1</major>
+<minor>2</minor>
+<patch>0</patch>
+<string>1.2.0</string>
+<minorIsRC>false</minorIsRC>
+</versionInfo>
+<author>stormbringer951</author>
+<path>D:\starsector updated\Starsector\starsector-core\..\mods\AdjustableSkillThresholds</path>
+<dirName>AdjustableSkillThresholds</dirName>
+<totalConversion>false</totalConversion>
+<utility>false</utility>
+<modPluginClassName>AdjustableSkillThresholds.AdjustableSkillThresholdsModPlugin</modPluginClassName>
+<fullOverrides z="16"></fullOverrides>
+<jars z="17">
+<st>jars/AdjustableSkillThresholds.jar</st>
+</jars>
+<requiredMemoryMB>0</requiredMemoryMB>
+<dependencies z="18"></dependencies>
+</spec>
+</EnabledModData>
+<EnabledModData z="19">
+<spec z="20">
+<id>lw_console</id>
+<desc>An in-game developer's console, by default summoned with control+backspace.
+
+For a complete list of commands enter 'help'. For more information on a specific command enter 'help &lt;command&gt;'. Enter 'settings' to customize the console's appearance and behavior, including the key used to summon it.
+
+This should be compatible with all mods and doesn't require a new game.</desc>
+<name>Console Commands (UNSTABLE 0.98a DEV BUILD)</name>
+<gameVersion z="21">
+<major>0.98</major>
+<minor>5</minor>
+<patch></patch>
+<string>0.98a-RC5</string>
+<minorIsRC>true</minorIsRC>
+</gameVersion>
+<versionInfo z="22">
+<major>2025</major>
+<minor>03</minor>
+<patch>30</patch>
+<string>2025.03.30</string>
+<minorIsRC>false</minorIsRC>
+</versionInfo>
+<author>LazyWizard</author>
+<path>D:\starsector updated\Starsector\starsector-core\..\mods\Console Commands</path>
+<dirName>Console Commands</dirName>
+<totalConversion>false</totalConversion>
+<utility>true</utility>
+<modPluginClassName>org.lazywizard.console.ConsoleModPlugin</modPluginClassName>
+<fullOverrides z="23"></fullOverrides>
+<jars z="24">
+<st>jars/lw_Console.jar</st>
+</jars>
+<requiredMemoryMB>0</requiredMemoryMB>
+<dependencies z="25">
+<ModDependency z="26">
+<id>lw_lazylib</id>
+<name>LazyLib</name>
+<version z="27">
+<major></major>
+<minor></minor>
+<patch></patch>
+<string></string>
+<minorIsRC>false</minorIsRC>
+</version>
+</ModDependency>
+</dependencies>
+</spec>
+</EnabledModData>
+<EnabledModData z="28">
+<spec z="29">
+<id>lw_lazylib</id>
+<desc>A collection of classes to aid modding. Not a mod in itself, but required by certain other mods.</desc>
+<name>LazyLib</name>
+<gameVersion z="30">
+<major>0.98</major>
+<minor>5</minor>
+<patch></patch>
+<string>0.98a-RC5</string>
+<minorIsRC>true</minorIsRC>
+</gameVersion>
+<versionInfo z="31">
+<major>3</major>
+<minor>0</minor>
+<patch>0</patch>
+<minorIsRC>false</minorIsRC>
+</versionInfo>
+<author>LazyWizard</author>
+<path>D:\starsector updated\Starsector\starsector-core\..\mods\LazyLib</path>
+<dirName>LazyLib</dirName>
+<totalConversion>false</totalConversion>
+<utility>true</utility>
+<modPluginClassName>org.lazywizard.lazylib.LazyLib</modPluginClassName>
+<fullOverrides z="32"></fullOverrides>
+<jars z="33">
+<st>jars/LazyLib.jar</st>
+<st>jars/LazyLib-Kotlin.jar</st>
+<st>jars/internal/LazyLib-Console.jar</st>
+<st>jars/internal/Kotlin-Runtime.jar</st>
+</jars>
+<requiredMemoryMB>0</requiredMemoryMB>
+<dependencies z="34"></dependencies>
+</spec>
+</EnabledModData>
+<EnabledModData z="35">
+<spec z="36">
+<id>lunalib</id>
+<desc>Library including utilities for players and mod developers.</desc>
+<name>LunaLib</name>
+<gameVersion z="37">
+<major>0.98</major>
+<minor>5</minor>
+<patch></patch>
+<string>0.98a-RC5</string>
+<minorIsRC>true</minorIsRC>
+</gameVersion>
+<versionInfo z="38">
+<major>2</major>
+<minor>0</minor>
+<patch>4</patch>
+<string>2.0.4</string>
+<minorIsRC>false</minorIsRC>
+</versionInfo>
+<author>Lukas04</author>
+<path>D:\starsector updated\Starsector\starsector-core\..\mods\LunaLib</path>
+<dirName>LunaLib</dirName>
+<totalConversion>false</totalConversion>
+<utility>false</utility>
+<modPluginClassName>lunalib.LunaLibPlugin</modPluginClassName>
+<fullOverrides z="39"></fullOverrides>
+<jars z="40">
+<st>jars/LunaLib.jar</st>
+<st>jars/libs/fuzzywuzzy-1.3.0.jar</st>
+</jars>
+<requiredMemoryMB>0</requiredMemoryMB>
+<dependencies z="41">
+<ModDependency z="42">
+<id>lw_lazylib</id>
+<name>LazyLib</name>
+<version z="43">
+<major></major>
+<minor></minor>
+<patch></patch>
+<string></string>
+<minorIsRC>false</minorIsRC>
+</version>
+</ModDependency>
+</dependencies>
+</spec>
+</EnabledModData>
+<EnabledModData z="44">
+<spec z="45">
+<id>omegaslaught</id>
+<desc>.</desc>
+<name>OMEGAslaught</name>
+<gameVersion z="46">
+<major>0.98</major>
+<minor>8</minor>
+<patch></patch>
+<string>0.98a-RC8</string>
+<minorIsRC>true</minorIsRC>
+</gameVersion>
+<versionInfo z="47">
+<major>1</major>
+<minor>1</minor>
+<patch></patch>
+<string>1.1</string>
+<minorIsRC>false</minorIsRC>
+</versionInfo>
+<author>anonymous</author>
+<path>D:\starsector updated\Starsector\starsector-core\..\mods\OMEGAslaught</path>
+<dirName>OMEGAslaught</dirName>
+<totalConversion>false</totalConversion>
+<utility>true</utility>
+<modPluginClassName>data.scripts.omegaplugin</modPluginClassName>
+<fullOverrides z="48"></fullOverrides>
+<jars z="49">
+<st>jars/omegaslaught.jar</st>
+</jars>
+<requiredMemoryMB>0</requiredMemoryMB>
+<dependencies z="50"></dependencies>
+</spec>
+</EnabledModData>
+<EnabledModData z="51">
+<spec z="52">
+<id>shaderLib</id>
+<desc>An arcane tome of black magic and sorcery.</desc>
+<name>zz GraphicsLib</name>
+<gameVersion z="53">
+<major>0.98</major>
+<minor>8</minor>
+<patch></patch>
+<string>0.98a-RC8</string>
+<minorIsRC>true</minorIsRC>
+</gameVersion>
+<versionInfo z="54">
+<major>1</major>
+<minor>12</minor>
+<patch>1</patch>
+<string>1.12.1</string>
+<minorIsRC>false</minorIsRC>
+</versionInfo>
+<author>DarkRevenant</author>
+<path>D:\starsector updated\Starsector\starsector-core\..\mods\GraphicsLib</path>
+<dirName>GraphicsLib</dirName>
+<totalConversion>false</totalConversion>
+<utility>true</utility>
+<modPluginClassName>org.dark.shaders.ShaderModPlugin</modPluginClassName>
+<fullOverrides z="55"></fullOverrides>
+<jars z="56">
+<st>jars/Graphics.jar</st>
+</jars>
+<requiredMemoryMB>0</requiredMemoryMB>
+<dependencies z="57">
+<ModDependency z="58">
+<id>lw_lazylib</id>
+<name>LazyLib</name>
+<version z="59">
+<major>3</major>
+<minor>0</minor>
+<patch>0</patch>
+<string>3.0.0</string>
+<minorIsRC>false</minorIsRC>
+</version>
+</ModDependency>
+</dependencies>
+</spec>
+</EnabledModData>
+<EnabledModData z="60">
+<spec z="61">
+<id>Planetace_AstralAscension</id>
+<desc>Ascend beyond the Domain. Bring about the Impossible. Comprehend the Singularity.</desc>
+<name>Astral Ascension</name>
+<gameVersion z="62">
+<major>0.98</major>
+<minor>8</minor>
+<patch></patch>
+<string>0.98a-RC8</string>
+<minorIsRC>true</minorIsRC>
+</gameVersion>
+<versionInfo z="63">
+<major>1</major>
+<minor>2</minor>
+<patch>7</patch>
+<string>1.2.7</string>
+<minorIsRC>false</minorIsRC>
+</versionInfo>
+<author>Planetace</author>
+<path>D:\starsector updated\Starsector\starsector-core\..\mods\Astral Ascension 1.2.7</path>
+<dirName>Astral Ascension 1.2.7</dirName>
+<totalConversion>false</totalConversion>
+<utility>true</utility>
+<modPluginClassName>planetace.astralAscension.AstralModPlugin</modPluginClassName>
+<fullOverrides z="64"></fullOverrides>
+<jars z="65">
+<st>jars/astralAscension.jar</st>
+</jars>
+<requiredMemoryMB>0</requiredMemoryMB>
+<dependencies z="66"></dependencies>
+</spec>
+</EnabledModData>
+</allModsEverEnabled>
+<enabledMods z="67">
+<EnabledModData z="68">
+<spec ref="6"></spec>
+</EnabledModData>
+<EnabledModData z="69">
+<spec ref="13"></spec>
+</EnabledModData>
+<EnabledModData z="70">
+<spec ref="20"></spec>
+</EnabledModData>
+<EnabledModData z="71">
+<spec ref="29"></spec>
+</EnabledModData>
+<EnabledModData z="72">
+<spec ref="36"></spec>
+</EnabledModData>
+<EnabledModData z="73">
+<spec ref="45"></spec>
+</EnabledModData>
+<EnabledModData z="74">
+<spec ref="52"></spec>
+</EnabledModData>
+<EnabledModData z="75">
+<spec ref="61"></spec>
+</EnabledModData>
+</enabledMods>
+<locDesc>Epsilon Xophiel Star System</locDesc>
+<autosave>true</autosave>
+</SaveGameData>

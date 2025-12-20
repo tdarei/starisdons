@@ -1,0 +1,6 @@
+<SYNC Start=8300>
+<P Class=ENUSCC>Poland_Intro_10
+<SYNC Stop=25600>
+<SYNC Start=53000>
+<P Class=ENUSCC>Poland_Intro_11
+<SYNC Stop=66100>

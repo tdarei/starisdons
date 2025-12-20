@@ -1,0 +1,6 @@
+<SYNC Start=1000>
+<P Class=ENUSCC>Teutonic_Lithuania_Converts_1
+<SYNC Stop=5900>
+<SYNC Start=6000>
+<P Class=ENUSCC>Teutonic_Lithuania_Converts_2
+<SYNC Stop=18000>

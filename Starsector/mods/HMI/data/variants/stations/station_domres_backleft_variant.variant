@@ -1,0 +1,54 @@
+{
+  "displayName": "Standard",
+  "fluxCapacitors": 0,
+  "fluxVents": 0,
+  "goalVariant": true,
+  "hullId": "station_domres_backleft",
+  "hullMods": [],
+  "permaMods": [],
+  "quality": 0,
+  "variantId": "station_domres_backleft_variant",
+  "weaponGroups": [
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0012": "dick_cannon"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0001": "seth_sml",
+        "WS0002": "seth_sml",
+        "WS0003": "seth_sml"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0004": "vulcan",
+        "WS0005": "vulcan",
+        "WS0006": "dualflak",
+        "WS0007": "vulcan",
+        "WS0008": "flak",
+        "WS0009": "flak",
+        "WS0010": "vulcan",
+        "WS0011": "vulcan",
+        "WS0016": "vulcan"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {}
+    }
+  ],
+  "wings": [
+    "domres_warthog_wing",
+    "domres_broadsword_wing",
+    "domres_talon_wing"
+  ]
+}

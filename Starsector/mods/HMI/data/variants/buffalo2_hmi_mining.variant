@@ -1,0 +1,52 @@
+{
+  "displayName": "Mining",
+  "fluxCapacitors": 6,
+  "fluxVents": 0,
+  "goalVariant": false,
+  "hullId": "buffalo2",
+  "hullMods": [
+    "missleracks",
+    "comp_structure",
+    "degraded_engines",
+    "glitched_sensors",
+    "insulatedengine"
+  ],
+  "permaMods": [],
+  "quality": 0,
+  "variantId": "buffalo2_hmi_mining",
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 007": "mcg_ml"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 004": "hammer",
+        "WS 005": "hammer",
+        "WS 006": "hammer"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 008": "seth_med"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 001": "burst_ml",
+        "WS 002": "retro_ml",
+        "WS 003": "retro_ml"
+      }
+    }
+  ],
+  "wings": []
+}

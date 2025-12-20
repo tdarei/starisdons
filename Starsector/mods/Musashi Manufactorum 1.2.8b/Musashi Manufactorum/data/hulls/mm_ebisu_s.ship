@@ -1,0 +1,183 @@
+{
+  "hullName": "Ebisu S",
+  "hullId": "mm_ebisu_s",
+  "hullSize": "DESTROYER",
+  "spriteName": "graphics/mm/ships/mm_ebisu_s.png",
+  "style": "HIGH_TECH",
+  "height": 258,
+  "width": 136,
+  "center": [68, 126.5],
+  "collisionRadius": 141.5,
+  "shieldCenter": [0.5, -0.5],
+  "shieldRadius": 148,
+  "viewOffset": 0,
+  "builtInMods": [
+    "pointdefenseai",
+    "mmadvancetargetingcore"
+  ],
+  "weaponSlots": [
+    {
+      "id": "WS0007",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 240,
+      "angle": 90,
+      "locations": [-27.5, 60]
+    },
+    {
+      "id": "WS0008",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 240,
+      "angle": -90,
+      "locations": [-27.5, -60]
+    },
+    {
+      "id": "WS0009",
+      "size": "MEDIUM",
+      "type": "HYBRID",
+      "mount": "TURRET",
+      "arc": 240,
+      "angle": 0,
+      "locations": [97, -0]
+    },
+    {
+      "id": "LB 3",
+      "size": "LARGE",
+      "type": "LAUNCH_BAY",
+      "mount": "HIDDEN",
+      "arc": 360,
+      "angle": 0,
+      "locations": [
+        11.5, -33,
+        45.5, -33
+      ]
+    },
+    {
+      "id": "LB 4",
+      "size": "LARGE",
+      "type": "LAUNCH_BAY",
+      "mount": "HIDDEN",
+      "arc": 360,
+      "angle": 0,
+      "locations": [
+        12, 33,
+        45.5, 33
+      ]
+    },
+    {
+      "id": "LB 5",
+      "size": "LARGE",
+      "type": "LAUNCH_BAY",
+      "mount": "HIDDEN",
+      "arc": 360,
+      "angle": 0,
+      "locations": [
+        239.5, -41,
+        209.5, -41.5
+      ]
+    },
+    {
+      "id": "LB 6",
+      "size": "LARGE",
+      "type": "LAUNCH_BAY",
+      "mount": "HIDDEN",
+      "arc": 360,
+      "angle": 0,
+      "locations": [
+        209.5, 29,
+        240, 29
+      ]
+    },
+    {
+      "id": "WS0010",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 240,
+      "angle": 90,
+      "locations": [-58, 60]
+    },
+    {
+      "id": "WS0011",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 240,
+      "angle": -90,
+      "locations": [-58, -60]
+    },
+    {
+      "id": "WS0012",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 240,
+      "angle": 90,
+      "locations": [71, 53]
+    },
+    {
+      "id": "WS0013",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 240,
+      "angle": -90,
+      "locations": [71, -53]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-120.5, 34],
+      "length": 113.53508,
+      "width": 23.814796,
+      "angle": 176,
+      "contrailSize": 23.814796,
+      "style": "HIGH_TECH"
+    },
+    {
+      "location": [-120.5, -46],
+      "length": 113.53508,
+      "width": 23.814796,
+      "angle": -176,
+      "contrailSize": 23.814796,
+      "style": "HIGH_TECH"
+    },
+    {
+      "location": [-123, 16],
+      "length": 169.446381,
+      "width": 27.707457,
+      "angle": 177,
+      "contrailSize": 27.707457,
+      "style": "HIGH_TECH"
+    },
+    {
+      "location": [-123, -28],
+      "length": 169.446381,
+      "width": 27.707457,
+      "angle": -177,
+      "contrailSize": 27.707457,
+      "style": "HIGH_TECH"
+    },
+    {
+      "location": [-124.5, -4],
+      "length": 263,
+      "width": 49,
+      "angle": 180,
+      "contrailSize": 49,
+      "style": "HIGH_TECH"
+    }
+  ],
+  "bounds": [
+    130, -10,
+    105.5, -43,
+    -39, -57.5,
+    -120.5, -45.5,
+    -120.5, 45.5,
+    -39, 57.5,
+    105.5, 43,
+    130, 10
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "animationType": "MUZZLE_FLASH",
+  "barrelMode": "ALTERNATING",
+  "fireSoundTwo": "needler_fire",
+  "hardpointAngleOffsets": [
+    0
+  ],
+  "hardpointGunSprite": "graphics/weapons/clyde_mg_hardpoint_recoil.png",
+  "hardpointOffsets": [
+    28.5,
+    0
+  ],
+  "hardpointSprite": "graphics/weapons/clyde_mg_hardpoint_gun.png",
+  "hardpointUnderSprite": "graphics/weapons/clyde_mg_hardpoint_base.png",
+  "id": "clyde_mg",
+  "muzzleFlashSpec": {
+    "length": 30,
+    "particleColor": [
+      255,
+      255,
+      255,
+      175
+    ],
+    "particleCount": 12,
+    "particleDuration": 0.2,
+    "particleSizeMin": 7,
+    "particleSizeRange": 7,
+    "spread": 0
+  },
+  "projectileSpecId": "lightneedler_shot",
+  "renderHints": [
+    "RENDER_BARREL_BELOW"
+  ],
+  "size": "MEDIUM",
+  "specClass": "projectile",
+  "textureType": ROUGH,
+  "turretAngleOffsets": [
+    0
+  ],
+  "turretGunSprite": "graphics/weapons/clyde_mg_turret_recoil.png",
+  "turretOffsets": [
+    20,
+    0
+  ],
+  "turretSprite": "graphics/weapons/clyde_mg_turret_gun.png",
+  "turretUnderSprite": "graphics/weapons/clyde_mg_turret_base.png",
+  "type": "BALLISTIC",
+  "visualRecoil": 3
+}

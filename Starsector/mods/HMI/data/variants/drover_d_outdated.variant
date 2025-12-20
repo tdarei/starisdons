@@ -1,0 +1,39 @@
+{
+  "displayName": "Outdated",
+  "fluxCapacitors": 20,
+  "fluxVents": 3,
+  "goalVariant": false,
+  "hullId": "drover",
+  "hullMods": [
+    "heavyarmor",
+    "degraded_engines",
+    "faulty_grid"
+  ],
+  "permaMods": [],
+  "quality": 0,
+  "variantId": "drover_d_outdated",
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 002": "mbeke_sml",
+        "WS 003": "mbeke_sml",
+        "WS 004": "mbeke_sml",
+        "WS 005": "mbeke_sml"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 000": "vulcan",
+        "WS 001": "vulcan"
+      }
+    }
+  ],
+  "wings": [
+    "support_bombardment_drone_wing",
+    "support_bombardment_drone_wing"
+  ]
+}

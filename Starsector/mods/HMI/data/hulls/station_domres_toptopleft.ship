@@ -1,0 +1,112 @@
+{
+  "bounds": [
+    30,
+    -49,
+    32.5,
+    21,
+    21,
+    51,
+    -12,
+    50.5,
+    -26.5,
+    14.5,
+    -36.5,
+    -0.5,
+    -23.5,
+    -46.5
+  ],
+  "builtInWings": [],
+  "center": [
+    51.5,
+    40
+  ],
+  "collisionRadius": 77,
+  "engineSlots": [],
+  "height": 80,
+  "hullId": "station_domres_toptopleft",
+  "hullName": "Gun Section, Heavy",
+  "hullSize": "FRIGATE",
+  "shieldCenter": [
+    0,
+    0
+  ],
+  "shieldRadius": 74.5,
+  "spriteName": "graphics/ships/domain_resurgent/hmidr_platform_toptopleft.png",
+  "style": "LOW_TECH",
+  "viewOffset": 0,
+  "weaponSlots": [
+    {
+      "angle": 0,
+      "arc": 10,
+      "id": "WS0001",
+      "locations": [
+        17.5,
+        29.5
+      ],
+      "mount": "HARDPOINT",
+      "size": "MEDIUM",
+      "type": "MISSILE"
+    },
+    {
+      "angle": 0,
+      "arc": 100,
+      "id": "WS0002",
+      "locations": [
+        -4,
+        1.5
+      ],
+      "mount": "TURRET",
+      "size": "MEDIUM",
+      "type": "BALLISTIC"
+    },
+    {
+      "angle": 0,
+      "arc": 100,
+      "id": "WS0003",
+      "locations": [
+        -4,
+        -23.5
+      ],
+      "mount": "TURRET",
+      "size": "MEDIUM",
+      "type": "BALLISTIC"
+    },
+    {
+      "angle": 0,
+      "arc": 70,
+      "id": "WS0004",
+      "locations": [
+        20,
+        -10.5
+      ],
+      "mount": "TURRET",
+      "size": "SMALL",
+      "type": "BALLISTIC"
+    },
+    {
+      "angle": 0,
+      "arc": 71,
+      "id": "WS0005",
+      "locations": [
+        20,
+        10.5
+      ],
+      "mount": "TURRET",
+      "size": "SMALL",
+      "type": "BALLISTIC"
+    },
+    {
+      "angle": 0,
+      "arc": 70,
+      "id": "WS0006",
+      "locations": [
+        20,
+        -31.5
+      ],
+      "mount": "TURRET",
+      "size": "SMALL",
+      "type": "BALLISTIC"
+    }
+  ],
+  "width": 103
+}

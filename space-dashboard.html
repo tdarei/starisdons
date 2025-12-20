@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space API Dashboard - Adriano To The Star</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Raleway:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="pages-styles.css">
+    <link rel="stylesheet" href="space-api-dashboard-styles.css">
+    <link rel="stylesheet" href="theme-styles.css">
+    <link rel="stylesheet" href="accessibility-styles.css">
+    <link rel="stylesheet" href="i18n-styles.css">
+    <script src="loader.js"></script>
+    <script src="navigation.js" defer></script>
+    <script src="theme-toggle.js" defer></script>
+</head>
+<body>
+    <!-- Menu Toggle Button -->
+    <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">
+        <span class="menu-icon"></span>
+        <span class="menu-icon"></span>
+        <span class="menu-icon"></span>
+    </button>
+    <main>
+        <section class="page-hero" data-entrance="fadeIn">
+            <h1 class="page-title">🚀 Space API Dashboard</h1>
+            <p class="page-subtitle">Real-time space data from NASA and other sources</p>
+        </section>
+
+        <section class="content-section" data-entrance="slideUp">
+            <div class="content-container">
+                <div id="space-api-dashboard-container">
+                    <!-- Space API Dashboard will be initialized here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2025 ADRIANO TO THE STAR</p>
+        <p><a href="database.html">Back to Database</a> | <a href="index.html">Home</a></p>
+    </footer>
+
+    <script src="nasa-api-config.js" defer></script>
+    <script src="space-api-integrations.js" defer></script>
+    <script src="space-api-dashboard.js" defer></script>
+    <script src="universal-graphics.js" defer></script>
+    <script src="i18n.js" defer></script>
+    <script src="cosmic-music-player.js" defer></script>
+    <script src="accessibility.js" defer></script>
+    <script>
+        (function() {
+            function initSpaceDashboard() {
+                const container = document.getElementById('space-api-dashboard-container');
+                if (!container) {
+                    setTimeout(initSpaceDashboard, 500);
+                    return;
+                }
+                
+                try {
+                    const nasaApiKey = window.NASA_API_KEY || 'SLlv60158lAX77nc2wy64WkI8S4mqG1lQvbw3g2Y';
+                    const spaceAPI = new SpaceAPIIntegrations({ nasaApiKey });
+                    const spaceDashboard = new SpaceAPIDashboard(spaceAPI);
+                    spaceDashboard.init(container);
+                    spaceDashboard.show();
+                    console.log('✅ Space API Dashboard initialized');
+                } catch (error) {
+                    console.error('❌ Error initializing Space API Dashboard:', error);
+                }
+            }
+            
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initSpaceDashboard);
+            } else {
+                initSpaceDashboard();
+            }
+        })();
+    </script>
+</body>
+</html>
+

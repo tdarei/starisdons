@@ -1,0 +1,1567 @@
+;
+; Campaign script
+;
+script
+
+	restrict_strat_radar false
+	
+	;WELSH SCRIPT COUNTERS
+	;level the welsh uprising has reached (determines amount of reinforcements spawned)
+	declare_counter welsh_uprising
+	;monitor which uprising target has been taken
+	declare_counter cardiff_taken
+	declare_counter gloucester_taken
+	declare_counter shrewsbury_taken
+	declare_counter chester_taken
+	
+	;monitor which welsh starting towns have been lost
+	declare_counter pembroke_lost
+	declare_counter montgomery_lost
+	declare_counter caernarvon_lost
+	
+	;SCOTTISH SCRIPT COUNTERS
+	declare_counter wallace_spawned
+	
+	;ENGLISH SCRIPT COUNTERS
+	declare_counter edward_crusade_offered
+	declare_counter edward_crusading
+	declare_counter	edward_ready_to_return
+	declare_counter henry_dead
+	
+	;BARONS ALLIANCE SCRIPT COUNTERS
+	declare_counter	ba_first_emergence
+	
+	;------------------- WELSH UPRISING -------------------;
+	;Welsh reinforcements spawn as Wales takes nearby English lands
+	
+	monitor_event GeneralCaptureSettlement FactionType wales
+		and I_TurnNumber < 20
+		and I_NumberOfSettlements wales < 10
+		and I_CharacterExists llywelyn1
+		and SettlementName Cardiff
+		inc_counter welsh_uprising 1
+		terminate_monitor
+	end_monitor
+	
+	monitor_event GeneralCaptureSettlement FactionType wales
+		and I_TurnNumber < 20
+		and I_NumberOfSettlements wales < 10
+		and SettlementName Gloucester
+		and I_CharacterExists llywelyn1
+		inc_counter welsh_uprising 1
+		terminate_monitor
+	end_monitor
+	
+	monitor_event GeneralCaptureSettlement FactionType wales
+		and I_TurnNumber < 20
+		and I_NumberOfSettlements wales < 10
+		and I_CharacterExists llywelyn1
+		and SettlementName Shrewsbury
+		inc_counter welsh_uprising 1
+		terminate_monitor
+	end_monitor
+	
+	monitor_event GeneralCaptureSettlement FactionType wales
+		and I_TurnNumber < 20
+		and I_NumberOfSettlements wales < 10
+		and I_CharacterExists llywelyn1
+		and SettlementName Chester
+		inc_counter welsh_uprising 1
+		terminate_monitor
+	end_monitor
+	
+	
+	monitor_event FactionTurnStart FactionType wales
+		and I_CompareCounter welsh_uprising >= 1
+	
+		spawn_army 
+			faction wales
+			character	Ionafal, general, age 32, x 72, y 45, direction E
+			unit		Meirionnydd Spearmen 	exp 0 armour 0 weapon_lvl 0
+			unit		Welsh Militiamen	exp 0 armour 0 weapon_lvl 0
+			unit		Helwyr	exp 0 armour 0 weapon_lvl 0
+			unit		Welsh Skirmishers	exp 0 armour 0 weapon_lvl 0
+		end
+		
+		spawn_army 
+			faction wales
+			character	Rhys Madog, general, age 41, x 69, y 59, direction SE
+			unit		Welsh Militiamen	exp 0 armour 0 weapon_lvl 0
+			unit		Welsh Militiamen	exp 0 armour 0 weapon_lvl 0
+			unit		Helwyr			exp 0 armour 0 weapon_lvl 0
+			unit		Helwyr			exp 0 armour 0 weapon_lvl 0
+		end
+		
+		;notifiy wales they have reinforcements
+		historic_event welsh_uprising_1 factions { wales, }
+
+		terminate_monitor
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType wales
+		and I_CompareCounter welsh_uprising >= 2
+	
+		spawn_army 
+			faction wales
+			character	Deykin Hoedlyw, general, age 23, x 75, y 42, direction E
+			unit		Meirionnydd Spearmen 	exp 0 armour 0 weapon_lvl 0
+			unit		Meirionnydd Spearmen 	exp 0 armour 0 weapon_lvl 0
+			unit		Gwent Raiders	exp 0 armour 0 weapon_lvl 0
+			unit		Helwyr	exp 0 armour 0 weapon_lvl 0
+			unit		Helwyr	exp 0 armour 0 weapon_lvl 0
+		end
+		
+		spawn_army 
+			faction wales
+			character	Thomas Cynfyn, general, age 38, x 74, y 58, direction E
+			unit		Welsh Militiamen	exp 0 armour 0 weapon_lvl 0
+			unit		Welsh Militiamen	exp 0 armour 0 weapon_lvl 0
+			unit		Helwyr			exp 0 armour 0 weapon_lvl 0
+			unit		Helwyr			exp 0 armour 0 weapon_lvl 0
+		end
+		
+		;notifiy wales they have reinforcements
+		historic_event welsh_uprising_2 factions { wales, }
+	
+		terminate_monitor
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType wales
+		and I_CompareCounter welsh_uprising >= 3
+	
+		spawn_army 
+			faction wales
+			character	Vortipor Rhiwallon, general, age 36, x 78, y 37, direction SE
+			unit		Rhyfelwyr 	exp 0 armour 0 weapon_lvl 0
+			unit		Rhyfelwyr 	exp 0 armour 0 weapon_lvl 0
+			unit		Gwent Raiders	exp 0 armour 0 weapon_lvl 0
+			unit		Gwent Raiders	exp 0 armour 0 weapon_lvl 0
+			unit		Saethwyr	exp 0 armour 0 weapon_lvl 0
+			unit		Saethwyr	exp 0 armour 0 weapon_lvl 0
+		end
+		
+		spawn_army 
+			faction wales
+			character	Tiernan Bleddyn, general, age 29, x 79, y 53, direction E
+			unit		Rhyfelwyr		exp 0 armour 0 weapon_lvl 0
+			unit		Welsh Militiamen	exp 0 armour 0 weapon_lvl 0
+			unit		Gwent Raiders	exp 0 armour 0 weapon_lvl 0
+			unit		Gwent Raiders	exp 0 armour 0 weapon_lvl 0
+			unit		Helwyr			exp 0 armour 0 weapon_lvl 0
+			unit		Saethwyr	exp 0 armour 0 weapon_lvl 0
+		end
+		
+		;notifiy wales they have reinforcements
+		historic_event welsh_uprising_3 factions { wales, }
+
+		terminate_monitor
+		
+	end_monitor
+	
+	;------------------- WELSH TOWN DEFENSE -------------------;
+	;Welsh reinforcements spawn as England takes Welsh homelands
+	
+	monitor_event GeneralCaptureSettlement SettlementName Pembroke
+		and FactionType england
+		and I_SettlementOwner Pembroke = wales
+		and I_TurnNumber < 20
+		
+		set_counter pembroke_lost 1		
+		
+		terminate_monitor
+	end_monitor
+	
+	monitor_event GeneralCaptureSettlement SettlementName Caernarvon
+		and FactionType england
+		and I_SettlementOwner Caernarvon = wales
+		and I_TurnNumber < 20
+		
+		set_counter caernarvon_lost 1
+		
+		terminate_monitor
+	end_monitor
+	
+	monitor_event GeneralCaptureSettlement SettlementName Montgomery
+		and FactionType england
+		and I_SettlementOwner Montgomery = wales
+		and I_TurnNumber < 20
+		
+		set_counter montgomery_lost 1
+				
+		terminate_monitor
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType wales
+		and I_CompareCounter pembroke_lost = 1
+
+		spawn_army 
+			faction wales
+			character	Robert Owain, general, age 29, x 69, y 38, direction W
+			unit		Welsh Militiamen	exp 0 armour 0 weapon_lvl 0
+			unit		Gwent Raiders	exp 0 armour 0 weapon_lvl 0
+			unit		Helwyr			exp 0 armour 0 weapon_lvl 0
+		end
+		
+		spawn_army 
+			faction wales
+			character	Custennin Maredudd, general, age 21, x 69, y 43, direction SW
+			unit		Welsh Militiamen	exp 0 armour 0 weapon_lvl 0
+			unit		Welsh Militiamen			exp 0 armour 0 weapon_lvl 0
+			unit		Welsh Militiamen			exp 0 armour 0 weapon_lvl 0
+		end
+		
+		spawn_army 
+			faction wales
+			character	Cadwgan Edwin, general, age 17, x 62, y 37, direction E
+			unit		Gwent Raiders	exp 0 armour 0 weapon_lvl 0
+			unit		Welsh Skirmishers			exp 0 armour 0 weapon_lvl 0
+			unit		Welsh Militiamen			exp 0 armour 0 weapon_lvl 0
+		end
+		
+		spawn_army 
+			faction wales
+			character	Adaf Mawr, general, age 22, x 64, y 40, direction SE
+			unit		Helwyr		exp 0 armour 0 weapon_lvl 0
+			unit		Welsh Skirmishers			exp 0 armour 0 weapon_lvl 0
+		end
+		
+		
+		;notify factions that reinforcements are appearing
+		
+		historic_event welsh_lose_pembroke factions { wales, }
+		
+		historic_event english_take_pembroke factions { england, }
+		
+		terminate_monitor
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType wales
+		and I_CompareCounter caernarvon_lost = 1
+
+		spawn_army 
+			faction wales
+			character	Ivor Fuellt, general, age 28, x 70, y 61, direction SW
+			unit		Welsh Militiamen	exp 0 armour 0 weapon_lvl 0
+			unit		Welsh Militiamen			exp 0 armour 0 weapon_lvl 0
+			unit		Helwyr	exp 0 armour 0 weapon_lvl 0
+			unit		Teulu	exp 0 armour 0 weapon_lvl 0
+			unit		Welsh Skirmishers			exp 0 armour 0 weapon_lvl 0
+		end
+		
+		spawn_army 
+			faction wales
+			character	Gronw Elise, general, age 17, x 75, y 55, direction W
+			unit		Gwent Raiders	exp 0 armour 0 weapon_lvl 0
+			unit		Welsh Militiamen	exp 0 armour 0 weapon_lvl 0
+			unit		Welsh Militiamen			exp 0 armour 0 weapon_lvl 0
+			unit		Saethwyr				exp 0 armour 0 weapon_lvl 0
+		end
+		
+		spawn_army 
+			faction wales
+			character	Iago Idwal, general, age 33, x 73, y 60, direction SW
+			unit		Rhyfelwyr	exp 0 armour 0 weapon_lvl 0
+			unit		Rhyfelwyr	exp 0 armour 0 weapon_lvl 0
+			unit		Helwyr	exp 0 armour 0 weapon_lvl 0
+			unit		Helwyr	exp 0 armour 0 weapon_lvl 0
+		end
+		
+		
+		;notify factions that reinforcements are appearing
+		
+		historic_event welsh_lose_caernarvon factions { wales, }
+		
+		historic_event english_take_caernarvon factions { england, }
+		
+		terminate_monitor
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType wales
+		and I_CompareCounter montgomery_lost = 1
+
+		spawn_army 
+			faction wales
+			character	Rhys Maredudd, general, age 31, x 73, y 44, direction NE
+			unit		Welsh Militiamen	exp 0 armour 0 weapon_lvl 0
+			unit		Welsh Militiamen			exp 0 armour 0 weapon_lvl 0
+			unit		Gwent Raiders	exp 0 armour 0 weapon_lvl 0
+			unit		Gwent Raiders	exp 0 armour 0 weapon_lvl 0
+			unit		Welsh Skirmishers			exp 0 armour 0 weapon_lvl 0
+		end
+		
+		spawn_army 
+			faction wales
+			character	Meilir Gollwyn, general, age 37, x 76, y 51, direction SE
+			unit		Gwent Raiders	exp 0 armour 0 weapon_lvl 0
+			unit		Welsh Militiamen			exp 0 armour 0 weapon_lvl 0
+			unit		Saethwyr				exp 0 armour 0 weapon_lvl 0
+			unit		Mathrafal Horsemen 		exp 0 armour 0 weapon_lvl 0
+		end
+		
+		
+		;notify factions that reinforcements are appearing
+		
+		historic_event welsh_lose_montgomery factions { wales, }
+		
+		historic_event english_take_montgomery factions { england, }
+
+		terminate_monitor
+		
+	end_monitor
+	
+	;------------------- NORWEGIAN REINFORCEMENTS -------------------;
+	monitor_event FactionTurnStart I_TurnNumber = 1
+		
+		;incremement kings purse to support these reinforcements
+		increment_kings_purse Norway 2500
+		
+		;notifiy player reinforcements have arrived
+		historic_event first_norwegian_fleet factions { norway, }
+		
+		;spawn first Norwegian reinforcement fleet
+		
+		spawn_army
+			faction		norway
+			character	Birger Ironside, admiral, age 32, x 60, y 145, direction SW
+			unit		longboat				exp 0 armour 0 weapon_lvl 0
+		end
+		
+		spawn_army
+			faction		norway
+			character	Henrik Ericsson, admiral, age 42, x 62, y 146, direction SW
+			unit		longboat				exp 0 armour 0 weapon_lvl 0
+		end
+		
+		
+		;spawn armies onto spawned boats
+		
+		spawn_army 
+			faction norway
+			character	Gellir Hvass, named character, age 26, x 60, y 145
+			traits GoodRiskyAttacker 1 , GoodCommander 1 , BattleDread 2 , StrategyDread 2, LoyaltyStarter 5, ManagementStarter 1
+			unit		NE Bodyguard				exp 0 armour 0 weapon_lvl 0
+			unit		Dismounted Huscarls			exp 0 armour 0 weapon_lvl 0
+			unit		Viking Raiders				exp 0 armour 0 weapon_lvl 0
+			unit		Viking Raiders				exp 0 armour 0 weapon_lvl 0
+			unit		Norse Archers				exp 0 armour 0 weapon_lvl 0
+		end
+		
+		spawn_army 
+			faction norway
+			character	Sweyn Assenbjerg, general, age 33, x 62, y 146
+			unit		Sami Axemen					exp 0 armour 0 weapon_lvl 0
+			unit		Viking Raiders				exp 0 armour 0 weapon_lvl 0
+			unit		Viking Raiders				exp 0 armour 0 weapon_lvl 0
+			unit		Norse Archers				exp 0 armour 0 weapon_lvl 0
+			unit		Norse Archers				exp 0 armour 0 weapon_lvl 0
+		end
+
+		terminate_monitor
+		
+	end_monitor
+	
+	;monitor_event FactionTurnStart I_TurnNumber = 6
+	
+		;incremement kings purse to support these reinforcements
+		;increment_kings_purse Norway 2700
+		
+		;notifiy player reinforcements have arrived
+		;if I_LocalFaction norway
+		;	historic_event second_norwegian_fleet
+		;end_if
+		
+		;spawn second Norwegian reinforcement fleet
+		
+		;spawn_army
+		;	faction		norway
+		;	character	Gellir Hunthjofson, admiral, age 45, x 105, y 120, direction W
+		;	unit		dragon boat				exp 0 armour 0 weapon_lvl 0
+		;end
+		
+		;spawn_army
+		;	faction		norway
+		;	character	Skapti Hviid, admiral, age 42, x 106, y 117, direction W
+		;	unit		longboat				exp 0 armour 0 weapon_lvl 0
+		;end
+		
+		;spawn_army
+		;	faction		norway
+		;	character	Skapti Hviid, admiral, age 42, x 105, y 114, direction W
+		;	unit		longboat				exp 0 armour 0 weapon_lvl 0
+		;	unit		longboat				exp 0 armour 0 weapon_lvl 0
+		;end
+		
+		;spawn_army 
+		;	faction norway
+		;	character	Erik Lehtonen, named character, age 27, x 106, y 117
+		;	traits NaturalMilitarySkill 1 , GoodCommander 1 , LoyaltyStarter 6, ManagementStarter 5
+		;	unit		NE Bodyguard				exp 0 armour 0 weapon_lvl 0
+		;	unit		Sami Axemen					exp 0 armour 0 weapon_lvl 0
+		;	unit		Dismounted Huscarls			exp 0 armour 0 weapon_lvl 0
+		;	unit		Dismounted Huscarls			exp 0 armour 0 weapon_lvl 0
+		;	unit		Norse Archers				exp 0 armour 0 weapon_lvl 0
+		;	unit		Norse Archers				exp 0 armour 0 weapon_lvl 0
+		;	unit		Norse Archers				exp 0 armour 0 weapon_lvl 0
+		;end		
+		
+		;spawn_army 
+		;	faction norway
+		;	character	Sweyn Assenbjerg, general, age 38, x 105, y 120
+		;	unit		Sami Axemen					exp 0 armour 0 weapon_lvl 0
+		;	unit		Viking Raiders				exp 0 armour 0 weapon_lvl 0
+		;	unit		Viking Raiders				exp 0 armour 0 weapon_lvl 0
+		;	unit		Viking Raiders				exp 0 armour 0 weapon_lvl 0
+		;	unit		Norse Archers				exp 0 armour 0 weapon_lvl 0
+		;end
+		
+		;spawn_army 
+		;	faction norway
+		;	character	Knut Hunmark, general, age 38, x 105, y 114
+		;	unit		Sami Axemen					exp 0 armour 0 weapon_lvl 0
+		;	unit		Dismounted Huscarls			exp 0 armour 0 weapon_lvl 0
+		;	unit		Viking Raiders				exp 0 armour 0 weapon_lvl 0
+		;	unit		Viking Raiders				exp 0 armour 0 weapon_lvl 0
+		;end
+
+		;terminate_monitor
+		
+	;end_monitor
+	
+	monitor_event FactionTurnStart I_TurnNumber = 10
+	
+		;incremement kings purse to support these reinforcements
+		increment_kings_purse Norway 5000
+		
+		;notifiy player king have arrived
+
+		;norway specific event
+		historic_event norwegian_king_arrives factions { norway, }
+
+		;event for rival factions
+		historic_event norwegian_king_arrives_foreign factions { england, scotland, wales, ireland, }
+
+		;final Norwegian reinforcement fleet - Haakon arrives
+		
+		spawn_army
+			faction		norway
+			character	Sighvat Moesgaard, admiral, age 45, x 96, y 146, direction SW
+			unit		dragon boat				exp 0 armour 0 weapon_lvl 0
+		end
+		
+		spawn_army
+			faction		norway
+			character	Magnus Hunger, admiral, age 48, x 97, y 150, direction SW
+			unit		longboat				exp 0 armour 0 weapon_lvl 0
+		end
+		
+		spawn_army
+			faction		norway
+			character	Emund Hunger, admiral, age 19, x 96, y 148, direction SW
+			unit		longboat				exp 0 armour 0 weapon_lvl 0
+		end
+		
+		spawn_army
+			faction		norway
+			character	Christoffer Raefillsson, admiral, age 22, x 98, y 146, direction SW
+			unit		longboat				exp 0 armour 0 weapon_lvl 0
+		end
+		
+		spawn_army
+			faction		norway
+			character	Godfred Hildetand, admiral, age 34, x 100, y 147, direction SW
+			unit		longboat				exp 0 armour 0 weapon_lvl 0
+		end
+		
+		spawn_army
+			faction		norway
+			character	Gellir Loftsson, admiral, age 43, x 98, y 148, direction SW
+			unit		dragon boat				exp 0 armour 0 weapon_lvl 0
+			unit		dragon boat				exp 0 armour 0 weapon_lvl 0
+		end
+		
+		;spawn troops on boats
+		;the norwegian king and his army
+		spawn_army 
+			faction norway
+			character	Haakon Haakonsson, named character, x 98, y 148, battle_model Haakon_General
+			traits NorwayHero 1, LoyaltyStarter 1, GoodCommander 2, ManagementStarter 1
+			unit		NE Bodyguard				exp 2 armour 0 weapon_lvl 0
+			unit		Huscarls					exp 2 armour 0 weapon_lvl 0
+			unit		Svenner						exp 1 armour 0 weapon_lvl 0
+			unit		Svenner						exp 1 armour 0 weapon_lvl 0
+			unit 		Gotland Footmen				exp 0 armour 0 weapon_lvl 0
+			unit 		Gotland Footmen				exp 0 armour 0 weapon_lvl 0
+			unit		Viking Raiders				exp 0 armour 0 weapon_lvl 0
+			unit		Viking Raiders				exp 0 armour 0 weapon_lvl 0
+			unit		Crossbowmen					exp 0 armour 0 weapon_lvl 0
+			unit		Crossbowmen					exp 0 armour 0 weapon_lvl 0
+		end
+		
+		
+		spawn_army 
+			faction norway
+			character	Grim Horby, general, age 29, x 97, y 150
+			unit		Viking Raiders				exp 0 armour 0 weapon_lvl 0
+			unit		Viking Raiders				exp 0 armour 0 weapon_lvl 0
+		end
+		
+		spawn_army 
+			faction norway
+			character	Karl Willadsen, general, age 37, x 96, y 148
+			unit		Sami Axemen					exp 0 armour 0 weapon_lvl 0
+			unit		Crossbowmen					exp 0 armour 0 weapon_lvl 0
+		end
+		
+		spawn_army 
+			faction norway
+			character	Gustav Loftsson, general, age 37, x 96, y 146
+			unit 		Gotland Footmen				exp 0 armour 0 weapon_lvl 0
+			unit 		Norse Archers				exp 0 armour 0 weapon_lvl 0
+		end
+		
+		spawn_army 
+			faction norway
+			character	Yngwie Thodberg, general, age 37, x 98, y 146
+			unit		Svenner						exp 1 armour 0 weapon_lvl 0
+			unit		Crossbowmen					exp 0 armour 0 weapon_lvl 0
+		end
+		
+		spawn_army 
+			faction norway
+			character	Inge Tarnovius, general, age 37, x 100, y 147
+			unit		Viking Raiders				exp 0 armour 0 weapon_lvl 0
+		end
+
+
+		terminate_monitor
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart I_TurnNumber = 15
+		and FactionType Norway
+	
+		;begin reducing the kings purse to original level
+		increment_kings_purse Norway -2500
+		
+		;notifiy player kings purse is being reduced
+		historic_event kings_purse_reduced_1 factions { norway, }
+		
+		terminate_monitor
+	
+	end_monitor
+	
+	monitor_event FactionTurnStart I_TurnNumber = 20
+		and FactionType Norway
+	
+		;reduce kings purse back to original level
+		increment_kings_purse Norway -5000
+		
+		;notifiy player kings purse is being reduced
+		historic_event kings_purse_reduced_2 factions { norway, }
+		
+		terminate_monitor
+	
+	end_monitor
+	
+	;------------------- SCOTLAND WILLIAM WALLACE -------------------;
+	
+	;setup related event counters
+	monitor_event FactionTurnStart FactionType scotland
+		
+		add_events
+			event	counter wallace_spawn_timer
+	 		date	0
+	 	end_add_events
+		
+		generate_random_counter	wallace_spawn_timer 0 12
+	
+		terminate_monitor
+		
+	end_monitor
+	
+	;increment the wallace spawn timer
+	monitor_event FactionTurnStart FactionType scotland
+	
+		inc_event_counter wallace_spawn_timer 1
+	
+	end_monitor
+	
+	;trigger Wallace when England attacks
+	monitor_event GeneralCaptureSettlement I_TurnNumber >= 15
+		and FactionType england
+		and TargetFactionType scotland
+		
+		set_counter wallace_spawned 1
+		
+		terminate_monitor
+		
+	end_monitor
+	
+	;trigger Wallace when Scotland is weakened
+	monitor_event FactionTurnStart FactionType scotland
+		and I_TurnNumber >= 10
+		and I_NumberOfSettlements scotland < 5
+		
+		set_counter wallace_spawned 1
+		
+		terminate_monitor
+		
+	end_monitor
+	
+	;trigger Wallace after a set amounted of time has passed
+	monitor_event FactionTurnStart FactionType scotland
+		and I_EventCounter wallace_spawn_timer >= 30
+		
+		set_counter wallace_spawned 1
+		
+		terminate_monitor
+		
+	end_monitor
+	
+	;spawn wallace if his spawn conditions have been met
+	monitor_event FactionTurnStart FactionType scotland
+		and I_CompareCounter wallace_spawned = 1
+	
+		spawn_army 
+			faction scotland
+			character	William Wallace, named character, age 20, x 69, y 136, direction S, battle_model Wallace_General, portrait wallace
+			traits ScotlandHero 1, LoyaltyStarter 1, ManagementStarter 1, BattleChivalry 2, NaturalMilitarySkill 2, GoodRiskyAttacker 2, Loyal 2, Just 2
+			unit		Highland Nobles				exp 3 armour 0 weapon_lvl 1
+			unit		Highland Nobles				exp 2 armour 0 weapon_lvl 1
+			unit		Highlanders					exp 3 armour 1 weapon_lvl 1
+			unit		Highlanders					exp 3 armour 1 weapon_lvl 1
+			unit		Highlanders					exp 3 armour 1 weapon_lvl 1
+			unit		Highland Pikemen			exp 3 armour 1 weapon_lvl 0
+			unit		Highland Pikemen			exp 3 armour 1 weapon_lvl 0
+			unit		Highland Pikemen			exp 3 armour 1 weapon_lvl 0
+			unit		Highland Pikemen			exp 3 armour 1 weapon_lvl 0
+			unit		Highland Nobles				exp 3 armour 0 weapon_lvl 1
+			unit		Highland Nobles				exp 3 armour 0 weapon_lvl 1
+			unit		Noble Highland Archers				exp 1 armour 1 weapon_lvl 0
+			unit		Noble Highland Archers				exp 1 armour 1 weapon_lvl 0
+			unit		Noble Highland Archers				exp 1 armour 1 weapon_lvl 0
+			unit		Highland Rabble				exp 3 armour 0 weapon_lvl 0
+			unit		Highland Rabble				exp 3 armour 0 weapon_lvl 0
+			unit		Highland Rabble				exp 3 armour 0 weapon_lvl 0
+			unit		Highland Rabble				exp 3 armour 0 weapon_lvl 0
+		end
+		
+		historic_event scotland_wallace event/william_wallace.bik
+		
+		terminate_monitor
+	
+	end_monitor
+	
+	;------------------- ENGLAND EDWARD GOES ON CRUSADE -------------------;
+	
+	;ask the player if Edward can go on Crusade if he is not besieged and player has not already had the offer
+	monitor_event CharacterTurnStart Trait EdwardCrusade = 1
+		and I_TurnNumber >= 15
+		and I_CompareCounter edward_crusade_offered = 0
+		and not IsUnderSiege	
+		
+		;setup related event counters
+		
+		add_events
+			event	counter	edward_crusade_invite_accepted
+			event	counter	edward_crusade_invite_declined
+			event	counter	edward_time_crusading
+			event	counter edward_death_chance
+	 		date	0
+	 	end_add_events
+		
+		historic_event edward_crusade_invite true factions { england, }
+		
+		set_counter edward_crusade_offered 1
+		
+		;if not a player controlled faction - set edward_crusade_invite_accepted to 1
+		if I_IsFactionAIControlled england
+			set_event_counter edward_crusade_invite_accepted 1
+		end_if
+		
+		terminate_monitor
+		
+	end_monitor
+	
+	;player has agreed to allow Edward to go on Crusade
+	monitor_conditions I_EventCounter edward_crusade_invite_accepted = 1
+		
+		;send edward offmap
+
+		send_character_off_map edward1
+				
+		set_counter edward_crusading 1
+		
+		;generate a random value that will determine how long Edward is away for
+		generate_random_counter	edward_time_crusading 0 10
+		
+		;notify all factions that Edward has gone on Crusade
+		historic_event edward_leaves_for_crusade
+		
+		terminate_monitor
+	
+	end_monitor
+	
+	;increment the time edward has been away (if he has left yet)
+	monitor_event FactionTurnStart FactionType england
+		and	I_CompareCounter edward_crusading = 1
+		
+		;increase time edward has been away for
+		inc_event_counter edward_time_crusading 1
+		
+		;is edward ready to return based on time away
+		if I_EventCounter edward_time_crusading >= 20
+			set_counter edward_ready_to_return 1
+			terminate_monitor
+		end_if
+		
+		;is edward ready to return based on the strength of england
+		if I_NumberOfSettlements england < 6
+			and I_EventCounter edward_time_crusading >= 10
+			set_counter edward_ready_to_return 1
+			terminate_monitor
+		end_if
+		
+		
+	end_monitor
+	
+	;monitor if Henry ceases being faction leader while edward is crusading
+	monitor_event CeasedFactionLeader FactionType england
+		and I_CompareCounter edward_crusading = 1
+	
+		set_counter henry_dead 1
+	
+		terminate_monitor
+	
+	end_monitor
+	
+	;edward returns from or dies on crusade
+	monitor_conditions I_CompareCounter edward_ready_to_return = 1
+		
+		;random counter number will determine whether edward returns
+		generate_random_counter	edward_time_crusading 0 9
+		
+		if I_EventCounter edward_death_chance < 8
+			historic_event edward_returns_from_crusade event/english_crusaders_return.bik
+			
+			if I_CompareCounter henry_dead = 1
+				spawn_army 
+					faction england
+					character	Edward, named character, x 108, y 32, label edward1, battle_model Edward_General
+					traits GoodCommander 4, GoodAttacker 4, GoodDefender 2, BattleChivalry 3, StrategyChivalry 3, LoyaltyStarter 1, ManagementStarter 1, 		CrusaderHistory 1, VictorVirtue 2, Factionheir 0, Factionleader 1
+					unit		NE Bodyguard			exp 0 armour 0 weapon_lvl 0
+					unit		Knights Templar			exp 0 armour 0 weapon_lvl 0
+					unit		Knights Templar			exp 0 armour 0 weapon_lvl 0
+					unit		Knights Templar			exp 0 armour 0 weapon_lvl 0
+					unit		Armored Swordsmen		exp 0 armour 0 weapon_lvl 0
+					unit		Armored Swordsmen		exp 0 armour 0 weapon_lvl 0
+					unit		Templar Sergeant		exp 0 armour 0 weapon_lvl 0
+					unit		Templar Sergeant		exp 0 armour 0 weapon_lvl 0
+					unit		Templar Sergeant		exp 0 armour 0 weapon_lvl 0
+					unit		Templar Crossbowmen		exp 0 armour 0 weapon_lvl 0
+					unit		Templar Crossbowmen		exp 0 armour 0 weapon_lvl 0
+					unit		Templar Crossbowmen		exp 0 armour 0 weapon_lvl 0
+					unit		Longbowmen				exp 0 armour 0 weapon_lvl 0
+					unit		Longbowmen				exp 0 armour 0 weapon_lvl 0
+				end
+			end_if
+			
+			if I_CompareCounter henry_dead = 0
+				spawn_army 
+					faction england
+					character	Edward, named character, x 108, y 32, label edward1, battle_model Edward_General
+					traits GoodCommander 4, GoodAttacker 4, GoodDefender 2, BattleChivalry 3, StrategyChivalry 3, LoyaltyStarter 1, ManagementStarter 1, CrusaderHistory 1, VictorVirtue 2
+					unit		NE Bodyguard			exp 0 armour 0 weapon_lvl 0
+					unit		Knights Templar			exp 0 armour 0 weapon_lvl 0
+					unit		Knights Templar			exp 0 armour 0 weapon_lvl 0
+					unit		Knights Templar			exp 0 armour 0 weapon_lvl 0
+					unit		Armored Swordsmen		exp 0 armour 0 weapon_lvl 0
+					unit		Armored Swordsmen		exp 0 armour 0 weapon_lvl 0
+					unit		Templar Sergeant		exp 0 armour 0 weapon_lvl 0
+					unit		Templar Sergeant		exp 0 armour 0 weapon_lvl 0
+					unit		Templar Sergeant		exp 0 armour 0 weapon_lvl 0
+					unit		Templar Crossbowmen		exp 0 armour 0 weapon_lvl 0
+					unit		Templar Crossbowmen		exp 0 armour 0 weapon_lvl 0
+					unit		Templar Crossbowmen		exp 0 armour 0 weapon_lvl 0
+					unit		Longbowmen				exp 0 armour 0 weapon_lvl 0
+					unit		Longbowmen				exp 0 armour 0 weapon_lvl 0
+				end
+			end_if
+		end_if
+		
+		if I_EventCounter edward_death_chance >= 8
+			historic_event edward_dies_on_crusade
+			
+			spawn_army 
+				faction england
+				character	Brian le_Jay, named character, x 108, y 32
+				traits GoodCommander 2, GoodAttacker 3, GoodDefender 1, BattleChivalry 2, StrategyChivalry 2, LoyaltyStarter 4, ManagementStarter 1, CrusaderHistory 1
+				unit		NE Bodyguard			exp 0 armour 0 weapon_lvl 0
+				unit		Knights Templar			exp 0 armour 0 weapon_lvl 0
+				unit		Knights Templar			exp 0 armour 0 weapon_lvl 0
+				unit		Armored Swordsmen		exp 0 armour 0 weapon_lvl 0
+				unit		Armored Swordsmen		exp 0 armour 0 weapon_lvl 0
+				unit		Templar Sergeant		exp 0 armour 0 weapon_lvl 0
+				unit		Templar Sergeant		exp 0 armour 0 weapon_lvl 0
+				unit		Templar Crossbowmen		exp 0 armour 0 weapon_lvl 0
+				unit		Longbowmen				exp 0 armour 0 weapon_lvl 0
+				unit		Longbowmen				exp 0 armour 0 weapon_lvl 0
+			end
+			
+		end_if
+		
+		set_counter edward_crusading 0
+	
+		terminate_monitor
+	
+	end_monitor
+	
+	;------------------- BARONS ALLIANCE -------------------;
+	
+	;setup related event counters
+	monitor_event FactionTurnStart FactionType england
+		
+		add_events
+			event	counter ba_last_spawn_timer
+	 		date	0
+	 	end_add_events
+	
+		terminate_monitor
+		
+	end_monitor
+	
+	;inc time since the barons alliance last spawned timer
+	monitor_event FactionTurnStart FactionType england
+	
+		inc_event_counter ba_last_spawn_timer 1
+	
+	end_monitor
+	
+	;initial spawning
+	
+	;first first spawn opportunity (lead by de_Montfort if spawned at this point in time)
+	monitor_event FactionTurnEnd FactionType england
+		and I_CompareCounter ba_first_emergence = 0
+		and I_TurnNumber > 8
+		and I_TurnNumber < 35
+		
+		;randomise to determine if this check should be made this turn
+		
+		faction_emerge barons_alliance england 6 60.0 155.0 0.9 town false simon1 Simon de_Montfort 42
+		
+		if I_NumberOfSettlements barons_alliance > 0
+			set_counter ba_first_emergence 1
+			set_event_counter ba_last_spawn_timer 0
+			historic_event barons_emerge_montfort
+		end_if	
+		
+	end_monitor
+	
+	;second first spawn opportunity
+	monitor_event FactionTurnEnd FactionType england
+		and I_CompareCounter ba_first_emergence = 0
+		and I_TurnNumber > 50
+		and I_TurnNumber < 70
+		
+		faction_emerge barons_alliance england 6 60.0 140.0 0.9 town false
+		
+		if I_NumberOfSettlements barons_alliance > 0
+			set_counter ba_first_emergence 1
+			set_event_counter ba_last_spawn_timer 0
+			historic_event barons_emerge_generic
+		end_if	
+		
+	end_monitor
+	
+	;third first spawn opportunity
+	monitor_event FactionTurnEnd FactionType england
+		and I_CompareCounter ba_first_emergence = 0
+		and I_TurnNumber > 90
+		and I_TurnNumber < 110
+		
+		faction_emerge barons_alliance england 6 60.0 140.0 0.9 town false
+		
+		if I_NumberOfSettlements barons_alliance > 0
+			set_counter ba_first_emergence 1
+			set_event_counter ba_last_spawn_timer 0
+			historic_event barons_emerge_generic
+		end_if	
+		
+	end_monitor
+	
+	;final first spawn opportunity
+	monitor_event FactionTurnEnd I_CompareCounter ba_first_emergence = 0
+		and I_TurnNumber > 130
+		and I_TurnNumber < 150
+		
+		faction_emerge barons_alliance england 6 60.0 140.0 0.9 town false
+		
+		if I_NumberOfSettlements barons_alliance > 0
+			set_counter ba_first_emergence 1
+			set_event_counter ba_last_spawn_timer 0
+			historic_event barons_emerge_generic
+		end_if	
+		
+	end_monitor
+	
+	;subsequent spawn conditions
+	
+	;check when England gets a new faction leader
+	monitor_event BecomesFactionLeader FactionType england
+		and I_NumberOfSettlements england > 15
+		and I_CompareCounter ba_first_emergence = 1
+		and I_NumberOfSettlements barons_alliance = 0
+		and I_EventCounter ba_last_spawn_timer > 10
+		
+		faction_emerge barons_alliance england 6 70.0 140.0 0.85 town false
+		
+		if I_NumberOfSettlements barons_alliance > 0
+			set_event_counter ba_last_spawn_timer 0
+			historic_event barons_reemerge_new_king
+			add_money barons_alliance 10000
+		end_if	
+		
+	end_monitor
+	
+	;check when English leaders authority is low
+	monitor_event FactionTurnEnd FactionType england
+		and I_NumberOfSettlements england > 15
+		and I_CompareCounter ba_first_emergence = 1
+		and I_NumberOfSettlements barons_alliance = 0
+		and I_EventCounter ba_last_spawn_timer > 10
+		
+		generate_random_counter	authority_value 1 100
+		
+		
+		;the lower the faction leaders authority, the greater the chance of the barons_alliance appearing
+		if I_FactionLeaderAttribute england Authority = 0
+		
+			if I_EventCounter authority_value <= 33
+				faction_emerge barons_alliance england 5 50.0 145.0 0.9 town false
+			end_if
+		
+		end_if
+		
+		if I_FactionLeaderAttribute england Authority = 1
+		
+			if I_EventCounter authority_value <= 25
+				faction_emerge barons_alliance england 6 60.0 135.0 0.9 town false
+			end_if
+		
+		end_if
+		
+		if I_FactionLeaderAttribute england Authority = 2
+		
+			if I_EventCounter authority_value <= 20
+				faction_emerge barons_alliance england 6 65.0 130.0 0.85 town false
+			end_if
+		
+		end_if
+		
+		if I_FactionLeaderAttribute england Authority = 3
+		
+			if I_EventCounter authority_value <= 15
+				faction_emerge barons_alliance england 6 70.0 120.0 0.85 town false
+			end_if
+		
+		end_if
+		
+		if I_FactionLeaderAttribute england Authority = 4
+		
+			if I_EventCounter authority_value <= 10
+				faction_emerge barons_alliance england 6 80.0 120.0 0.85 town false
+			end_if
+		
+		end_if
+		
+		if I_FactionLeaderAttribute england Authority = 5
+		
+			if I_EventCounter authority_value <= 5
+				faction_emerge barons_alliance england 6 85.0 120.0 0.85 town false
+			end_if
+		
+		end_if	
+		
+		if I_NumberOfSettlements barons_alliance > 0
+			set_event_counter ba_last_spawn_timer 0
+			historic_event barons_reemerge_poor_king
+			add_money barons_alliance 10000
+		end_if	
+		
+	end_monitor
+	
+	;------------------- IRELAND KINGS PURSE-------------------;
+	
+	;boost Irelands kings purse in the early game to assist their fight against the English
+	monitor_event FactionTurnStart I_TurnNumber = 0
+		and FactionType Ireland
+		and IsFactionAIControlled
+	
+		increment_kings_purse Ireland 1000
+		
+		terminate_monitor
+	
+	end_monitor
+	
+	monitor_event FactionTurnStart I_TurnNumber = 15
+		and FactionType Ireland
+		and IsFactionAIControlled
+	
+		increment_kings_purse Ireland -500
+		
+		terminate_monitor
+	
+	end_monitor
+	
+	monitor_event FactionTurnStart I_TurnNumber = 20
+		and FactionType Ireland
+		and IsFactionAIControlled
+	
+		increment_kings_purse Ireland -500
+		
+		terminate_monitor
+	
+	end_monitor
+	
+	;------------------- WALES KINGS PURSE-------------------;
+	
+	;chieftains boost Wales kings purse
+	monitor_event FactionTurnStart I_TurnNumber = 0
+		and FactionType Wales
+		and IsFactionAIControlled
+		and not I_IsFactionAIControlled england
+	
+		increment_kings_purse Wales 1000
+		
+		terminate_monitor
+	
+	end_monitor
+	
+	monitor_event FactionTurnStart I_TurnNumber = 15
+		and FactionType Wales
+		and IsFactionAIControlled
+		and not I_IsFactionAIControlled england
+	
+		increment_kings_purse Wales -500
+		
+		terminate_monitor
+	
+	end_monitor
+	
+	monitor_event FactionTurnStart I_TurnNumber = 20
+		and FactionType Wales
+		and IsFactionAIControlled
+		and not I_IsFactionAIControlled england
+	
+		increment_kings_purse Wales -500
+		
+		terminate_monitor
+	
+	end_monitor
+	
+	;end_monitor
+	
+	;chieftains cut their funding when Ireland is reclaimed or when they run out of cash (turn 20)
+	;monitor_event FactionTurnStart FactionType Ireland
+	;	if I_SettlementOwner Derry ireland
+	;		and I_SettlementOwner Lifford ireland
+	;		and I_SettlementOwner Downpatrick ireland
+	;		and I_SettlementOwner Athenry ireland
+	;		and I_SettlementOwner Trim ireland
+	;		and I_SettlementOwner Dublin ireland
+	;		and I_SettlementOwner Tipperary ireland
+	;		and I_SettlementOwner Cork ireland
+			
+	;		historic_event ireland_purse_reduced_2 factions { ireland, }
+			
+	;		increment_kings_purse Ireland -1000
+			
+	;		terminate_monitor
+			
+	;	end_if
+		
+	;	if I_TurnNumber = 20
+		
+	;		historic_event ireland_purse_reduced_1 factions { ireland, }
+			
+	;		increment_kings_purse Ireland -1000
+			
+	;		terminate_monitor
+			
+	;	end_if
+	;end_monitor
+
+	;------------------- AI -------------------;
+
+	;kings purse bonus for AI factions to compensate for lack of mission income
+	monitor_event FactionTurnStart
+		
+		if I_IsFactionAIControlled england
+			increment_kings_purse England 200
+		end_if
+		
+		if I_IsFactionAIControlled ireland
+			increment_kings_purse Ireland 200
+		end_if
+		
+		if I_IsFactionAIControlled wales
+			increment_kings_purse Wales 200
+		end_if
+		
+		if I_IsFactionAIControlled scotland
+			increment_kings_purse Scotland 200
+		end_if
+		
+		if I_IsFactionAIControlled norway
+			increment_kings_purse Norway 200
+		end_if
+		
+		terminate_monitor
+		
+	end_monitor	
+	
+	;------------------- AI KINGS PURSE BONUS -------------------;
+	;money granted to AI as they do not carry out missions
+	
+	monitor_event FactionTurnStart I_TurnNumber >= 0
+		and CampaignDifficulty = easy
+		
+			if I_IsFactionAIControlled england
+				increment_kings_purse england 1000
+			end_if
+			
+			if I_IsFactionAIControlled wales
+				increment_kings_purse wales 1000
+			end_if
+			
+			if I_IsFactionAIControlled ireland
+				increment_kings_purse ireland 1000
+			end_if
+			
+			if I_IsFactionAIControlled scotland
+				increment_kings_purse scotland 1000
+			end_if
+			
+			if I_IsFactionAIControlled norway
+				increment_kings_purse norway 1000
+			end_if
+			
+			increment_kings_purse barons_alliance 1000
+			
+		terminate_monitor
+	end_monitor
+
+	
+	monitor_event FactionTurnStart I_TurnNumber >= 0
+		and CampaignDifficulty = medium
+		
+			if I_IsFactionAIControlled england
+				increment_kings_purse england 2000
+			end_if
+			
+			if I_IsFactionAIControlled wales
+				increment_kings_purse wales 2000
+			end_if
+			
+			if I_IsFactionAIControlled ireland
+				increment_kings_purse ireland 2000
+			end_if
+			
+			if I_IsFactionAIControlled scotland
+				increment_kings_purse scotland 2000
+			end_if
+			
+			if I_IsFactionAIControlled norway
+				increment_kings_purse norway 2000
+			end_if
+			
+			increment_kings_purse barons_alliance 2000
+			
+		terminate_monitor
+	end_monitor
+	
+	monitor_event FactionTurnStart I_TurnNumber >= 0
+		and CampaignDifficulty = hard
+		
+			if I_IsFactionAIControlled england
+				increment_kings_purse england 4000
+			end_if
+			
+			if I_IsFactionAIControlled wales
+				increment_kings_purse wales 4000
+			end_if
+			
+			if I_IsFactionAIControlled ireland
+				increment_kings_purse ireland 4000
+			end_if
+			
+			if I_IsFactionAIControlled scotland
+				increment_kings_purse scotland 4000
+			end_if
+			
+			if I_IsFactionAIControlled norway
+				increment_kings_purse norway 4000
+			end_if
+			
+			increment_kings_purse barons_alliance 4000
+			
+		terminate_monitor
+	end_monitor
+	
+	monitor_event FactionTurnStart I_TurnNumber >= 0
+		and CampaignDifficulty = very_hard
+		
+			if I_IsFactionAIControlled england
+				increment_kings_purse england 7000
+			end_if
+			
+			if I_IsFactionAIControlled wales
+				increment_kings_purse wales 7000
+			end_if
+			
+			if I_IsFactionAIControlled ireland
+				increment_kings_purse ireland 7000
+			end_if
+			
+			if I_IsFactionAIControlled scotland
+				increment_kings_purse scotland 7000
+			end_if
+			
+			if I_IsFactionAIControlled norway
+				increment_kings_purse norway 7000
+			end_if
+			
+			increment_kings_purse barons_alliance 7000
+			
+		terminate_monitor
+	end_monitor
+	
+	;------------------- AI LAST STAND BONUS -------------------;
+	; allow each AI faction to make a last stand when they near destruction
+	
+	monitor_event FactionTurnStart FactionType england
+		and I_TurnNumber > 15
+		and I_NumberOfSettlements england < 4
+		and IsFactionAIControlled
+		
+			add_money england 10000
+
+		terminate_monitor	
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType wales
+		and I_TurnNumber > 15
+		and I_NumberOfSettlements wales < 4
+		and IsFactionAIControlled
+		
+			add_money wales 10000
+	
+		terminate_monitor	
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType ireland
+		and I_TurnNumber > 15
+		and I_NumberOfSettlements ireland < 4
+		and IsFactionAIControlled
+
+			add_money ireland 10000
+
+		terminate_monitor	
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType scotland
+		and I_TurnNumber > 15
+		and I_NumberOfSettlements scotland < 4
+		and IsFactionAIControlled
+		
+			add_money scotland 10000
+		
+		terminate_monitor	
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType norway
+		and I_TurnNumber > 15
+		and I_NumberOfSettlements norway < 4
+		and IsFactionAIControlled
+		
+			add_money norway 10000
+
+		terminate_monitor	
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType barons_alliance
+		and I_TurnNumber > 15
+		and I_NumberOfSettlements barons_alliance < 2
+		
+			add_money barons_alliance 10000
+
+		terminate_monitor	
+		
+	end_monitor
+	
+	;------------------- AI DEBT -------------------;
+	
+	monitor_event FactionTurnStart FactionType england
+		and IsFactionAIControlled
+		and Treasury < -5000
+		
+			add_money england 10000
+	
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType scotland
+		and IsFactionAIControlled
+		and Treasury < -5000
+		
+			add_money scotland 10000
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType ireland
+		and IsFactionAIControlled
+		and Treasury < -5000
+		
+			add_money ireland 10000
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType wales
+		and IsFactionAIControlled
+		and Treasury < -5000
+		
+			add_money wales 10000
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType norway
+		and IsFactionAIControlled
+		and Treasury < -5000
+		
+			add_money norway 10000
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType barons_alliance
+		and IsFactionAIControlled
+		and Treasury < -5000
+		
+			add_money barons_alliance 10000
+		
+	end_monitor
+	
+	;------------------- AI ATTACK POWERFUL PLAYER -------------------;
+	; All AI factions turn on the players faction when they nearing their victory conditions
+	
+	declare_counter	AI_attack_player_level 0
+	declare_counter target_human_active 0
+	
+	monitor_event FactionTurnStart FactionType england
+		and not I_HotseatEnabled
+		and CampaignDifficulty > easy
+		and not IsFactionAIControlled
+		and I_NumberOfSettlements england >= 30
+		
+		set_counter AI_attack_player_level 2
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType england
+		and not I_HotseatEnabled
+		and CampaignDifficulty > easy
+		and not IsFactionAIControlled
+		and I_NumberOfSettlements england >= 25
+		and I_NumberOfSettlements england < 30
+		
+		set_counter AI_attack_player_level 1
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType england
+		and not I_HotseatEnabled
+		and CampaignDifficulty > easy
+		and not IsFactionAIControlled
+		and I_NumberOfSettlements england < 20
+		
+		set_counter AI_attack_player_level 0
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType wales
+		and not I_HotseatEnabled
+		and CampaignDifficulty > easy
+		and not IsFactionAIControlled
+		and I_NumberOfSettlements wales >= 30
+		
+		set_counter AI_attack_player_level 2
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType wales
+		and not I_HotseatEnabled
+		and CampaignDifficulty > easy
+		and not IsFactionAIControlled
+		and I_NumberOfSettlements wales >= 25
+		and I_NumberOfSettlements wales < 30
+
+		set_counter AI_attack_player_level 1
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType wales
+		and not I_HotseatEnabled
+		and CampaignDifficulty > easy
+		and not IsFactionAIControlled
+		and I_NumberOfSettlements wales < 20
+		
+		set_counter AI_attack_player_level 0
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType ireland
+		and not I_HotseatEnabled
+		and CampaignDifficulty > easy
+		and not IsFactionAIControlled
+		and I_NumberOfSettlements ireland >= 30
+		
+		set_counter AI_attack_player_level 2
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType ireland
+		and not I_HotseatEnabled
+		and CampaignDifficulty > easy
+		and not IsFactionAIControlled
+		and I_NumberOfSettlements ireland >= 25
+		and I_NumberOfSettlements ireland < 30
+
+		set_counter AI_attack_player_level 1
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType ireland
+		and not I_HotseatEnabled
+		and CampaignDifficulty > easy
+		and not IsFactionAIControlled
+		and I_NumberOfSettlements ireland < 20
+		
+		set_counter AI_attack_player_level 0
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType scotland
+		and not I_HotseatEnabled
+		and CampaignDifficulty > easy
+		and not IsFactionAIControlled
+		and I_NumberOfSettlements scotland >= 30
+		
+		set_counter AI_attack_player_level 2
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType scotland
+		and not I_HotseatEnabled
+		and CampaignDifficulty > easy
+		and not IsFactionAIControlled
+		and I_NumberOfSettlements scotland >= 25
+		and I_NumberOfSettlements scotland < 30
+
+		set_counter AI_attack_player_level 1
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType scotland
+		and not I_HotseatEnabled
+		and CampaignDifficulty > easy
+		and not IsFactionAIControlled
+		and I_NumberOfSettlements scotland < 20
+		
+		set_counter AI_attack_player_level 0
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType norway
+		and not I_HotseatEnabled
+		and CampaignDifficulty > easy
+		and not IsFactionAIControlled
+		and I_NumberOfSettlements norway >= 30
+		
+		set_counter AI_attack_player_level 2
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType norway
+		and not I_HotseatEnabled
+		and CampaignDifficulty > easy
+		and not IsFactionAIControlled
+		and I_NumberOfSettlements norway >= 25
+		and I_NumberOfSettlements norway < 30
+
+		set_counter AI_attack_player_level 1
+		
+	end_monitor
+	
+	monitor_event FactionTurnStart FactionType norway
+		and not I_HotseatEnabled
+		and CampaignDifficulty > easy
+		and not IsFactionAIControlled
+		and I_NumberOfSettlements norway < 20
+		
+		set_counter AI_attack_player_level 0
+		
+	end_monitor
+	
+	monitor_conditions I_CompareCounter AI_attack_player_level = 0
+		and I_CompareCounter target_human_active = 1
+	
+		link_faction_ai england england
+		link_faction_ai wales wales
+		link_faction_ai ireland default
+		link_faction_ai scotland default
+		link_faction_ai norway defeault
+		
+		set_counter target_human_active 0
+	
+	end_monitor
+	
+	;Stage 1 attack label
+	monitor_conditions I_CompareCounter AI_attack_player_level >= 1
+		and I_CompareCounter target_human_active = 0
+		
+		if I_CompareCounter AI_attack_player_level = 1
+		
+			link_faction_ai england target_human_stage1
+			link_faction_ai scotland target_human_stage1
+			link_faction_ai wales target_human_stage1
+			link_faction_ai ireland target_human_stage1
+			link_faction_ai norway target_human_stage1
+			
+		end_if
+		
+		if I_CompareCounter AI_attack_player_level = 2
+		
+			link_faction_ai england target_human_stage2
+			link_faction_ai scotland target_human_stage2
+			link_faction_ai wales target_human_stage2
+			link_faction_ai ireland target_human_stage2
+			link_faction_ai norway target_human_stage2
+		
+		end_if
+		
+		set_counter target_human_active 1
+	
+	end_monitor
+	
+	wait_monitors
+
+end_script
+

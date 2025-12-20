@@ -1,0 +1,23 @@
+{
+  "variantId": "domres_sifter_drone_std",
+  "hullId": "domres_sifter_drone",
+  "displayName": "Auxiliary",
+  "goalVariant": true,
+  "fluxCapacitors": 0,
+  "fluxVents": 0,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0001": "lightthump_sifter",
+        "WS0002": "lightthump_sifter"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

@@ -1,0 +1,34 @@
+{
+  "variantId": "domres_sentry_strike",
+  "hullId": "domres_sentry",
+  "displayName": "Strike",
+  "goalVariant": true,
+  "fluxCapacitors": 10,
+  "fluxVents": 4,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "eccm",
+    "auxiliarythrusters",
+    "insulatedengine"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 001": "harpoonpod"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 002": "sabot",
+        "WS 003": "sabot"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

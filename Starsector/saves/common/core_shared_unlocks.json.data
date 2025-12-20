@@ -1,0 +1,83 @@
+{
+    "abilities": [
+        "generate_slipsurge",
+        "reverse_polarity"
+    ],
+    "commodities": [
+        "alpha_core",
+        "beta_core"
+    ],
+    "hullmods": [
+        "fragment_swarm",
+        "shrouded_lens"
+    ],
+    "illustrations": [
+        "cache_large",
+        "cargo_pod_drift",
+        "coronal_tap2",
+        "dead_gate",
+        "eochu_bres",
+        "hegemony_bar",
+        "hound_hangar",
+        "jangala_station",
+        "jump_point_hyper",
+        "jump_point_normal",
+        "orbital_construction",
+        "pirate_bar",
+        "pirate_station",
+        "quartermaster",
+        "raid_disrupt_result",
+        "raid_prepare",
+        "raid_valuables_result",
+        "salvor_explore_hull",
+        "sensor_array_makeshift",
+        "space_bar",
+        "space_wreckage",
+        "stellar_shade",
+        "survey",
+        "urban03"
+    ],
+    "industries": ["planetaryshield"],
+    "items": [
+        "LP_package",
+        "biofactory_embryo",
+        "catalytic_core",
+        "coronal_portal",
+        "cryoarithmetic_engine",
+        "dealmaker_holosuite",
+        "drone_replicator",
+        "fullerene_spool",
+        "heg_aux_package",
+        "high_tech_package",
+        "low_tech_package",
+        "mantle_bore",
+        "midline_package",
+        "missile_package",
+        "orbital_fusion_lamp",
+        "pirate_package",
+        "plasma_dynamo",
+        "pristine_nanoforge",
+        "soil_nanites",
+        "synchrotron",
+        "topographic_data"
+    ],
+    "ships": [
+        "apex",
+        "brilliant",
+        "defender",
+        "fulgent",
+        "glimmer",
+        "lumen",
+        "nova",
+        "picket",
+        "scintilla",
+        "sentry"
+    ],
+    "skills": ["hypercognition"],
+    "weapons": [
+        "minipulser",
+        "realitydisruptor",
+        "rifttorpedo",
+        "vpdriver"
+    ]
+}

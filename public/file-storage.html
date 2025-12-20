@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Storage - Adriano To The Star</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="loader-minimal.css">
+    <link rel="stylesheet" href="theme-styles.css">
+    <link rel="stylesheet" href="accessibility-styles.css">
+    <link rel="stylesheet" href="i18n-styles.css">
+    <link rel="stylesheet" href="file-storage-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="loader.js"></script>
+    <script src="i18n.js" defer></script>
+    <script src="navigation.js" defer></script>
+    <script src="universal-graphics.js" defer></script>
+    <script src="cosmic-music-player.js" defer></script>
+    <script src="theme-toggle.js" defer></script>
+    <script src="accessibility.js" defer></script>
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <!-- Menu Toggle Button -->
+    <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">
+        <span class="menu-icon"></span>
+        <span class="menu-icon"></span>
+        <span class="menu-icon"></span>
+    </button>
+    <!-- Navigation will be injected by navigation.js -->
+    
+    <main class="storage-page">
+        <!-- Header -->
+        <header class="storage-header">
+            <div class="container">
+                <h1>📁 Cloud Storage</h1>
+                <p class="subtitle">1GB Free Storage Per Account</p>
+            </div>
+        </header>
+
+        <!-- Login Required View -->
+        <div id="login-required-view" class="login-required-view" style="display: none;">
+            <div class="container">
+                <div class="login-card">
+                    <div class="login-icon">🔐</div>
+                    <h2>Login Required</h2>
+                    <p>Please log in to access your cloud storage.</p>
+                    <button onclick="showModal('login-modal'); return false;" class="cta-button">Log In</button>
+                    <p style="margin-top: 1rem; opacity: 0.7;">
+                        Don't have an account? 
+                        <a href="#" onclick="showModal('register-modal'); return false;" style="color: #ba944f; text-decoration: underline;">Create one</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Storage Dashboard -->
+        <div id="storage-dashboard" class="storage-dashboard" style="display: none;">
+            <div class="container">
+                <!-- Storage Stats -->
+                <div class="storage-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">💾</div>
+                        <div class="stat-info">
+                            <div class="stat-label">Storage Used</div>
+                            <div class="stat-value" id="storage-used">0 MB</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📊</div>
+                        <div class="stat-info">
+                            <div class="stat-label">Storage Limit</div>
+                            <div class="stat-value" id="storage-limit">1 GB</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📁</div>
+                        <div class="stat-info">
+                            <div class="stat-label">Files</div>
+                            <div class="stat-value" id="file-count">0</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📈</div>
+                        <div class="stat-info">
+                            <div class="stat-label">Usage</div>
+                            <div class="stat-value" id="storage-percentage">0%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Storage Progress Bar -->
+                <div class="storage-progress-container">
+                    <div class="progress-label">
+                        <span>Storage Usage</span>
+                        <span id="progress-text">0 MB / 1 GB</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <!-- Upload Section -->
+                <div class="upload-section">
+                    <h2>📤 Upload Files</h2>
+                    <div class="upload-area" id="upload-area">
+                        <div class="upload-icon">📎</div>
+                        <p class="upload-text">Drag and drop files here or click to browse</p>
+                        <input type="file" id="file-input" multiple style="display: none;">
+                        <button id="browse-btn" class="browse-button">Browse Files</button>
+                        <p class="upload-hint">Maximum file size: 100MB per file</p>
+                    </div>
+                    <div id="upload-progress" class="upload-progress" style="display: none;">
+                        <div class="progress-item" id="progress-item-template" style="display: none;">
+                            <div class="progress-file-info">
+                                <span class="progress-file-name"></span>
+                                <span class="progress-file-size"></span>
+                            </div>
+                            <div class="progress-bar-small">
+                                <div class="progress-fill-small"></div>
+                            </div>
+                            <div class="progress-status"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- File List -->
+                <div class="files-section">
+                    <div class="section-header">
+                        <h2>📂 Your Files</h2>
+                        <div class="file-actions">
+                            <input type="text" id="search-files" placeholder="🔍 Search files..." class="search-input">
+                            <select id="sort-files" class="sort-select">
+                                <option value="name-asc">Name (A-Z)</option>
+                                <option value="name-desc">Name (Z-A)</option>
+                                <option value="date-desc">Newest First</option>
+                                <option value="date-asc">Oldest First</option>
+                                <option value="size-desc">Largest First</option>
+                                <option value="size-asc">Smallest First</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="files-list" class="files-list">
+                        <div class="loading-state">
+                            <div class="loading-spinner"></div>
+                            <p>Loading your files...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>🔐 Member Login</h2>
+                <button class="close-modal" onclick="hideModal('login-modal'); return false;">×</button>
+            </div>
+            <form id="login-form" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label>Username or Email</label>
+                    <input type="text" id="login-username" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <button type="submit" class="submit-btn">Login</button>
+            </form>
+            <p class="form-footer">
+                Don't have an account? <a href="#" onclick="hideModal('login-modal'); showModal('register-modal'); return false;">Register</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="register-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>✨ Create Account</h2>
+                <button class="close-modal" onclick="hideModal('register-modal'); return false;">×</button>
+            </div>
+            <form id="register-form" onsubmit="handleRegister(event)">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="register-username" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="register-email" required>
+                </div>
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="register-fullname">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="register-password" required minlength="8">
+                </div>
+                <button type="submit" class="submit-btn">Create Account</button>
+            </form>
+            <p class="form-footer">
+                Already have an account? <a href="#" onclick="hideModal('register-modal'); showModal('login-modal'); return false;">Login</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="supabase-config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="auth-supabase.js" defer></script>
+    <script src="csrf-protection.js" defer></script>
+    <script src="security-audit-logging.js" defer></script>
+    <script>
+        // Ensure showModal and hideModal functions are available
+        function showModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('active');
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+                console.log('Modal shown:', modalId);
+            } else {
+                console.error('Modal not found:', modalId);
+            }
+        }
+        
+        function hideModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('active');
+                modal.style.display = 'none';
+                document.body.style.overflow = '';
+                console.log('Modal hidden:', modalId);
+            }
+        }
+        
+        // Close modals when clicking outside
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal')) {
+                hideModal(e.target.id);
+            }
+        });
+        
+        // Login handler
+        async function handleLogin(event) {
+            event.preventDefault();
+            const username = document.getElementById('login-username').value.trim();
+            const password = document.getElementById('login-password').value;
+            
+            if (!username || !password) {
+                alert('Please enter both username/email and password.');
+                return;
+            }
+            
+            if (!authManager) {
+                alert('Authentication system not loaded. Please refresh the page.');
+                return;
+            }
+            
+            try {
+                const result = await authManager.login(username, password);
+                if (result.success) {
+                    hideModal('login-modal');
+                    // Reload to show storage dashboard
+                    setTimeout(() => {
+                        location.reload();
+                    }, 500);
+                } else {
+                    alert(result.error || 'Login failed. Please check your credentials.');
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                alert('An error occurred during login. Please try again.');
+            }
+        }
+        
+        // Register handler
+        async function handleRegister(event) {
+            event.preventDefault();
+            const usernameEl = document.getElementById('register-username');
+            const emailEl = document.getElementById('register-email');
+            const fullNameEl = document.getElementById('register-fullname');
+            const passwordEl = document.getElementById('register-password');
+            
+            if (!usernameEl || !emailEl || !passwordEl) {
+                alert('Registration form elements not found. Please refresh the page.');
+                return;
+            }
+            
+            const username = usernameEl.value.trim();
+            const email = emailEl.value.trim();
+            const fullName = fullNameEl ? fullNameEl.value.trim() : '';
+            const password = passwordEl.value;
+            
+            if (!username || !email || !password) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            if (!authManager) {
+                alert('Authentication system not loaded. Please refresh the page.');
+                return;
+            }
+            
+            try {
+                const result = await authManager.register(username, email, password, fullName);
+                if (result.success) {
+                    hideModal('register-modal');
+                    // Reload to show storage dashboard
+                    setTimeout(() => {
+                        location.reload();
+                    }, 500);
+                } else {
+                    alert(result.error || 'Registration failed. Please try again.');
+                }
+            } catch (error) {
+                console.error('Registration error:', error);
+                alert('An error occurred during registration. Please try again.');
+            }
+        }
+        
+        // Initialize file storage after DOM and auth are ready
+        document.addEventListener('DOMContentLoaded', () => {
+            // Wait for auth manager to initialize
+            let initAttempts = 0;
+            const initFileStorage = () => {
+                if (typeof authManager !== 'undefined' && typeof FileStorageManager !== 'undefined') {
+                    new FileStorageManager();
+                } else if (initAttempts < 50) {
+                    initAttempts++;
+                    setTimeout(initFileStorage, 100);
+                } else {
+                    console.error('Failed to initialize file storage');
+                }
+            };
+            initFileStorage();
+        });
+    </script>
+    <script src="file-storage.js" defer></script>
+    <script src="pwa-loader.js"></script>
+</body>
+</html>
+
+

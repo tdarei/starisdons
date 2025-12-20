@@ -1,0 +1,11 @@
+{
+  "id": "omegaslaught",
+  "name": "OMEGAslaught",
+  "author": "anonymous",
+  "utility": "true",
+  "version": "1.1",
+  "description": ".",
+  "gameVersion": "0.98a-RC8",
+  "jars":["jars/omegaslaught.jar"],
+  "modPlugin": "data.scripts.omegaplugin"
+} 

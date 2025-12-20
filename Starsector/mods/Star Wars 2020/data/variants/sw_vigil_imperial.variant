@@ -1,0 +1,37 @@
+{
+  "variantId": "sw_vigil_imperial",
+  "hullId": "sw_vigil",
+  "displayName": "Imperial",
+  "goalVariant": true,
+  "fluxCapacitors": 10,
+  "fluxVents": 10,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "targetingunit"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0001": "sw_xx9_turbolaser_heavy",
+        "WS0002": "sw_xx9_turbolaser_heavy",
+        "WS0003": "sw_xx9_turbolaser_heavy"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0004": "sw_laser_cannon",
+        "WS0005": "sw_laser_cannon",
+        "WS0006": "sw_laser_cannon",
+        "WS0007": "sw_laser_cannon",
+        "WS0008": "sw_laser_cannon"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

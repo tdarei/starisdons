@@ -1,0 +1,46 @@
+{
+  "variantId": "domres_rampart_bombardment",
+  "hullId": "domres_rampart",
+  "displayName": "Bombardment",
+  "goalVariant": true,
+  "fluxCapacitors": 5,
+  "fluxVents": 10,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "targetingunit",
+    "missleracks",
+    "magazines",
+    "frontshield",
+    "advancedshieldemitter",
+    "hardenedshieldemitter",
+    "stabilizedshieldemitter"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 000": "hellbore",
+        "WS 001": "hellbore"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 003": "mbeke_med",
+        "WS 004": "mbeke_med"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 002": "devastator"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

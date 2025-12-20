@@ -1,0 +1,18 @@
+{
+	"baseHullId":"hammerhead_hmi",
+	"skinHullId":"hammerhead_hmi_mm",
+	"hullName":"Hammerhead (MM)",
+	"descriptionId":"hammerhead",
+	"spriteName":"graphics/ships/hammerhead_hmi/hammerhead_hmi_mm.png",
+	"descriptionPrefix":"This ship has been overhauled for fleet use by the Rimward Venture Trading Company. This change reinforces the ships systems, enabling it to last longer on the battlefield and be repaired quicker out of combat when compared to the original ship.",
+	"hints":["HIDE_IN_CODEX"],
+	"tags":["mercantile"],
+	"tech":"Merchant Marine",
+	"removeWeaponSlots":[], 		# ids
+	"removeEngineSlots":[], 		# indices, as engine slots have no id in the .ship file
+	"removeBuiltInMods":["HMI_techminedhull"], 		# hullmod ids
+	"removeBuiltInWeapons":[], 		# weapon slot ids
+	"builtInMods":[],
+	"builtInWeapons":{
+    },
+}

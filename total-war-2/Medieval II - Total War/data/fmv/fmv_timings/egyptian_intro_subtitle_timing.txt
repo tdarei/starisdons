@@ -1,0 +1,6 @@
+<SYNC Start=7700>
+<P Class=ENUSCC>Egyptian_Intro_14
+<SYNC Stop=25300>
+<SYNC Start=55200>
+<P Class=ENUSCC>Egyptian_Intro_15
+<SYNC Stop=66200>

@@ -1,0 +1,64 @@
+{
+  "variantId": "hmi_locomotive_front_cs",
+  "hullId": "hmi_locomotive_front",
+  "displayName": "Surveyer",
+  "goalVariant": true,
+  "fluxCapacitors": 20,
+  "fluxVents": 24,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "missleracks",
+    "eccm"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0015": "gauss"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0001": "locust",
+        "WS0002": "locust"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0013": "dick_cannon",
+        "WS0014": "dick_cannon"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0007": "heavymauler",
+        "WS0008": "heavymauler"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0003": "vulcan",
+        "WS0004": "vulcan",
+        "WS0005": "vulcan",
+        "WS0006": "vulcan",
+        "WS0009": "dualflak",
+        "WS0010": "dualflak",
+        "WS0011": "vulcan",
+        "WS0012": "vulcan",
+        "WS0016": "dualflak"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

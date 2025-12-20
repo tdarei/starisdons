@@ -1,0 +1,98 @@
+
+; historical events and when they occur
+;
+; Events are followed by a category, and a label
+; labels are used as lookups into historic_events.txt for title and body strings,
+; and also as image names for the event picture
+;
+; Currently supported categories are:
+; counter  - just increase a counter
+; historic - Just generates a message and increase a counter
+; volcano  - triggers a volcano if there is one on the map at the position specified
+; plague   - triggers a plague in settlements at the specified positions
+; emergent_faction - triggers the emergence of the given faction.  This faction must be marked
+;	as emergent in descr_strat.txt
+;
+; event descriptions are followed by a date (year as offset from starting date) or a date range
+; and either a list of positions, or list of regions.  Each position/region specification must appear on
+; a seperate line below the date
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;  EVENT LIST  ;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; ------------ CRUSADES HISTORIC EVENTS -----
+
+event	historic	3rd_crusade
+date	12 16
+
+event	historic	hre_crusade
+date	14
+
+event	historic	barbarossa_death
+date	18
+
+event	historic	4th_crusade
+date	22
+
+event	historic	zara_sacked
+date	26
+
+event	historic	childrens_crusade
+date	40
+
+; event	historic	mamluk_warn
+; date	70
+
+event	historic	mongols_invasion_warn
+date	78 82
+
+; event	historic	osman_warn
+; date	106
+
+event	historic	gunpowder_discovered
+date	118 128
+movie	event/gunpowder_invented.bik
+
+event	earthquake
+date	130
+position	46, 24
+
+event	historic	earthquake_in_alexandria
+date	130
+
+event	historic	friday_13th
+date	134
+
+event	earthquake
+date	140
+position	46, 24
+
+event	historic	earthquake_in_alexandria_2
+date	140
+
+; ------------ BLACK DEATH IN MIDDLE EAST --------------
+
+;1347	Alexandria
+event	plague 		black_death_hits
+date	174
+position	46, 24
+movie	event/black_death.bik
+
+;1348	Gaza, Lebanon, Syria, Palestine (Asqalan, Acre, Jerusalem, Sidon, Damascus, Homs, Aleppo)
+event	plague		black_death_2
+date 	178
+position	85, 31	;Ascalon
+position	91, 33	;Jerusalem
+position	91, 47	;Acre
+position	103, 55	;Damascus
+position	106, 68	;Homs
+position	107, 83	;Aleppo
+
+;1349	Antioch, Mecca, Mosul, Baghdad
+event	plague 		black_death_3
+date	182
+position	98, 83	;Antioch
+position	156, 84	;Mosul
+position	169, 56	;Baghdad

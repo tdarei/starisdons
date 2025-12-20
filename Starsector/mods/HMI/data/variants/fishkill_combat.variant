@@ -1,0 +1,79 @@
+{
+  "displayName": "Combat",
+  "fluxCapacitors": 19,
+  "fluxVents": 40,
+  "goalVariant": true,
+  "hullId": "fishkill",
+  "hullMods": [
+    "blast_doors",
+    "glitched_sensors",
+    "junk1"
+  ],
+  "permaMods": [],
+  "quality": 0,
+  "variantId": "fishkill_combat",
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0021": "hellbore"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0010": "harpoonpod",
+        "WS0011": "harpoonpod",
+        "WS0012": "harpoonpod",
+        "WS0030": "sabotpod"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0007": "squall",
+        "WS0020": "swarmer_fighter"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0001": "vulcan",
+        "WS0002": "vulcan",
+        "WS0003": "lightdualmg",
+        "WS0004": "dualflak",
+        "WS0005": "vulcan",
+        "WS0006": "vulcan",
+        "WS0008": "lightdualmg",
+        "WS0009": "flak",
+        "WS0019": "vulcan"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0013": "sml_shotgrun",
+        "WS0014": "mark9",
+        "WS0015": "taclaser",
+        "WS0016": "gravitonbeam",
+        "WS0017": "sml_shotgrun",
+        "WS0018": "sml_shotgrun",
+        "WS0022": "vulcan",
+        "WS0023": "vulcan"
+      }
+    }
+  ],
+  "wings": [
+    "broadsword_wing",
+    "broadsword_wing",
+    "broadsword_wing",
+    "piranha_wing",
+    "piranha_wing",
+    "broadsword_wing"
+  ]
+}

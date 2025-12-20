@@ -1,0 +1,25 @@
+{
+	"shipNameSources":{
+		"HAZARD":2,
+	},
+	"illegalCommodities":[
+		"red_water",
+	],
+		"hullFrequency":{
+		"tags":{
+			"hmi_bp":0.5,
+		},
+	},
+		"shipsWhenImporting":{
+		"tags":["hmi_bp"],
+	},
+	"knownShips":{
+		"tags":["hmi_bp"],
+	},
+	"knownFighters":{
+		"tags":["hmi_bp"],
+	},		
+	"knownWeapons":{
+		"tags":["hmi_bp"],
+	},	
+},

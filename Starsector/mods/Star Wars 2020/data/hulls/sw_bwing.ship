@@ -1,0 +1,120 @@
+{
+  "hullName": "A/SF-01 B-wing Starfighter",
+  "hullId": "sw_bwing",
+  "hullSize": "FIGHTER",
+  "spriteName": "graphics/ships/fighters/sw_bwing.png",
+  "style": "HIGH_TECH",
+  "height": 27,
+  "width": 66,
+  "center": [33, 13.5],
+  "collisionRadius": 34.5,
+  "shieldCenter": [0, 0],
+  "shieldRadius": 35,
+  "viewOffset": 0,
+  "builtInMods": [
+    "sw_deflector_shield"
+  ],
+  "weaponSlots": [
+    {
+      "id": "WS0001",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": 0,
+      "locations": [13, -8.5]
+    },
+    {
+      "id": "WS0002",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": 0,
+      "locations": [12, -8.5]
+    },
+    {
+      "id": "WS0003",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": 0,
+      "locations": [8, -28.5]
+    },
+    {
+      "id": "WS0004",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": 0,
+      "locations": [10, 32.5]
+    },
+    {
+      "id": "WS0005",
+      "size": "SMALL",
+      "type": "MISSILE",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": 0,
+      "locations": [8, -18.5]
+    },
+    {
+      "id": "WS0006",
+      "size": "SMALL",
+      "type": "MISSILE",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": 0,
+      "locations": [8, -19.5]
+    },
+    {
+      "id": "WS0007",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": 0,
+      "locations": [-3, 9.5]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-12, -11],
+      "length": 5,
+      "width": 5,
+      "angle": 180,
+      "contrailSize": 10,
+      "style": "CUSTOM",
+      "styleId": "COBRA_BOMBER"
+    },
+    {
+      "location": [-12, -17],
+      "length": 5,
+      "width": 5,
+      "angle": 180,
+      "contrailSize": 10,
+      "style": "CUSTOM",
+      "styleId": "COBRA_BOMBER"
+    }
+  ],
+  "bounds": [
+    -8, -31.5,
+    -10, -30.5,
+    -10, -28.5,
+    -6.5, -26.5,
+    -12, -19.5,
+    -12, -5.5,
+    -6, 32.5,
+    10, 32.5,
+    -1, 28.5,
+    1, -1.5,
+    9, -7.5,
+    9, -19.5,
+    2, -26.5,
+    8, -28.5,
+    8, -30.5,
+    3, -31.5
+  ]
+}

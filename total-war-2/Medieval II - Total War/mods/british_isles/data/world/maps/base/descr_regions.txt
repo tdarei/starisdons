@@ -1,0 +1,419 @@
+;
+; regions list
+;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+Orkney_Region
+	Kirkwall
+	norway
+	Scots_Rebels
+	220 225 255
+	fish, wool, explorers_guild
+	5
+	4
+	religions { catholic 0 welsh 0 scottish 25 irish 0 norwegian 75 heretic 0 }
+Caithness_and_Sutherland_Regions
+	Wick
+	scotland
+	Scots_Rebels
+	255 63 0
+	atlantic, explorers_guild
+	5
+	3
+	religions { catholic 0 welsh 0 scottish 45 irish 0 norwegian 55 heretic 0 }
+Isle_of_Skye_Region
+	Skye
+	norway
+	Scots_Rebels
+	244 132 0
+	atlantic, explorers_guild
+	5
+	3
+	religions { catholic 0 welsh 0 scottish 85 irish 0 norwegian 15 heretic 0 }
+Highlands_Region
+	Inverness
+	scotland
+	Scots_Rebels
+	20 25 225
+	wool, atlantic, explorers_guild
+	5
+	5
+	religions { catholic 0 welsh 0 scottish 85 irish 0 norwegian 15 heretic 0 }
+Aberdeen_Region
+	Aberdeen
+	scotland
+	Scots_Rebels
+	99 63 0
+	fish, iron, wool
+	5
+	4
+	religions { catholic 10 welsh 0 scottish 90 irish 0 norwegian 0 heretic 0 }
+Perth_Region
+	Perth
+	scotland
+	Scots_Rebels
+	126 255 225
+	none
+	5
+	6
+	religions { catholic 5 welsh 0 scottish 95 irish 0 norwegian 0 heretic 0 }
+Stirling_Region
+	Stirling
+	scotland
+	Scots_Rebels
+	118 41 23
+	grain
+	5
+	5
+	religions { catholic 5 welsh 0 scottish 95 irish 0 norwegian 0 heretic 0 }
+Lanark_Region
+	Glasgow
+	scotland
+	Scots_Rebels
+	0 255 94
+	fish, grain
+	5
+	3
+	religions { catholic 5 welsh 0 scottish 95 irish 0 norwegian 0 heretic 0 }
+Isle_of_Islay_Region
+	Isle_of_Islay
+	norway
+	Scots_Rebels
+	170 0 0
+	none
+	5
+	3
+	religions { catholic 0 welsh 0 scottish 40 irish 30 norwegian 30 heretic 0 }
+Lothian_Region
+	Edinburgh
+	scotland
+	Scots_Rebels
+	122 41 198
+	atlantic, explorers_guild
+	5
+	5
+	religions { catholic 18 welsh 0 scottish 82 irish 0 norwegian 0 heretic 0 }
+Tyrconnel_Region
+	Lifford
+	ireland
+	Irish_Rebels
+	37 174 84
+	textiles, atlantic, explorers_guild  
+	5
+	3
+	religions { catholic 20 welsh 0 scottish 0 irish 80 norwegian 0 heretic 0 }
+Ulster_Province
+	Derry
+	ireland
+	Irish_Rebels
+	255 0 160
+	textiles, atlantic, explorers_guild
+	5
+	4
+	religions { catholic 20 welsh 0 scottish 0 irish 80 norwegian 0 heretic 0 }
+Dumfries_Region
+	Dumfries
+	scotland
+	Scots_Rebels
+	31 132 198
+	wool, atlantic, explorers_guild 
+	5
+	3
+	religions { catholic 15 welsh 0 scottish 80 irish 5 norwegian 0 heretic 0 }
+Northumberland
+	Newcastle_Upon_Tyne
+	scotland
+	Scots_Rebels
+	227 255 94
+	timber, coal, atlantic, explorers_guild
+	5
+	5
+	religions { catholic 85 welsh 0 scottish 15 irish 0 norwegian 0 heretic 0 }
+Cumberland_Region
+	Carlisle
+	scotland
+	Scots_Rebels
+	232 41 198
+	textiles, atlantic, explorers_guild, woodsmens_guild
+	5
+	3
+	religions { catholic 90 welsh 0 scottish 10 irish 0 norwegian 0 heretic 0 }
+Connaught_Region
+	Athenry
+	ireland
+	Irish_Rebels
+	145 0 0
+	coal, atlantic, explorers_guild, woodsmens_guild
+	5
+	4
+	religions { catholic 15 welsh 0 scottish 0 irish 85 norwegian 0 heretic 0 }
+Down_Region
+	Downpatrick
+	ireland
+	Irish_Rebels
+	223 0 0
+	none
+	5
+	4
+	religions { catholic 25 welsh 0 scottish 0 irish 75 norwegian 0 heretic 0 }
+Yorkshire
+	York
+	england
+	English_Rebels
+	230 30 35
+	atlantic, explorers_guild, woodsmens_guild
+	5
+	5
+	religions { catholic 90 welsh 0 scottish 0 irish 0 norwegian 10 heretic 0 }
+Isle_of_Man
+	Castle_Town
+	norway
+	Welsh_Rebels
+	69 107 0
+	fish, atlantic, explorers_guild, woodsmens_guild 
+	5
+	4
+	religions { catholic 0 welsh 0 scottish 15 irish 5 norwegian 80 heretic 0 }
+Lancashire
+	Lancaster
+	england
+	English_Rebels
+	208 250 200
+	fish, atlantic, explorers_guild 
+	5
+	4
+	religions { catholic 95 welsh 5 scottish 0 irish 0 norwegian 0 heretic 0 }
+Meath_Region
+	Trim
+	ireland
+	Irish_Rebels
+	255 255 0
+	atlantic, explorers_guild, woodsmens_guild
+	5
+	4
+	religions { catholic 25 welsh 0 scottish 0 irish 75 norwegian 0 heretic 0 }
+Leinster_Region
+	Dublin
+	ireland
+	Irish_Rebels
+	10 232 10
+	wool, atlantic, explorers_guild, woodsmens_guild
+	5
+	6
+	religions { catholic 30 welsh 0 scottish 0 irish 70 norwegian 0 heretic 0 }
+Thomond_Region
+	Tipperary
+	ireland
+	Irish_Rebels
+	0 0 132
+	atlantic, explorers_guild, woodsmens_guild
+	5
+	3
+	religions { catholic 5 welsh 0 scottish 0 irish 95 norwegian 0 heretic 0 }
+Gwynedd_Principality
+	Caernarvon
+	wales
+	Welsh_Rebels
+	115 30 35
+	atlantic, explorers_guild, woodsmens_guild
+	5
+	5
+	religions { catholic 10 welsh 90 scottish 0 irish 0 norwegian 0 heretic 0 }
+Cheshire_Region
+	Chester
+	england
+	English_Rebels
+	27 206 200
+	grain, atlantic, explorers_guild, woodsmens_guild 
+	5
+	3
+	religions { catholic 50 welsh 50 scottish 0 irish 0 norwegian 0 heretic 0 }
+Lincolnshire
+	Lincoln
+	england
+	English_Rebels
+	118 30 35
+	timber, atlantic, explorers_guild
+	5
+	3
+	religions { catholic 100 welsh 0 scottish 0 irish 0 norwegian 0 heretic 0 }
+Nottinghamshire
+	Nottingham
+	england
+	English_Rebels
+	67 145 65
+	coal, atlantic, explorers_guild
+	5
+	4
+	religions { catholic 98 welsh 2 scottish 0 irish 0 norwegian 0 heretic 0 }
+Powys_Principality
+	Montgomery
+	wales
+	English_Rebels
+	69 30 35
+	atlantic, explorers_guild
+	5
+	5
+	religions { catholic 10 welsh 90 scottish 0 irish 0 norwegian 0 heretic 0 }
+Shropshire_Region
+	Shrewsbury
+	wales
+	English_Rebels
+	227 181 200
+	timber, coal, atlantic, explorers_guild
+	5
+	4
+	religions { catholic 60 welsh 40 scottish 0 irish 0 norwegian 0 heretic 0 }
+Munster_Region
+	Cork
+	ireland
+	Irish_Rebels
+	212 107 0
+	silver, atlantic, explorers_guild, woodsmens_guild 
+	5
+	4
+	religions { catholic 5 welsh 0 scottish 0 irish 95 norwegian 0 heretic 0 }
+East_Anglia
+	Norwich
+	england
+	English_Rebels
+	206 255 35
+	atlantic, explorers_guild, woodsmens_guild
+	5
+	4
+	religions { catholic 95 welsh 0 scottish 0 irish 0 norwegian 5 heretic 0 }
+Deheubarth_Principality
+	Pembroke
+	wales
+	English_Rebels
+	227 30 35
+	gold, atlantic, explorers_guild, woodsmens_guild
+	5
+	4
+	religions { catholic 5 welsh 95 scottish 0 irish 0 norwegian 0 heretic 0 }
+Oxford_Region
+	Oxford
+	england
+	English_Rebels
+	193 145 65
+	atlantic, explorers_guild, woodsmens_guild
+	5
+	5
+	religions { catholic 100 welsh 0 scottish 0 irish 0 norwegian 0 heretic 0 }
+West_Country
+	Gloucester
+	england
+	English_Rebels
+	73 255 65
+	atlantic, explorers_guild, woodsmens_guild 
+	5
+	4
+	religions { catholic 70 welsh 30 scottish 0 irish 0 norwegian 0 heretic 0 }
+London_Region
+	London
+	england
+	English_Rebels
+	232 41 46
+	atlantic, explorers_guild, woodsmens_guild 
+	5
+	6
+	religions { catholic 100 welsh 0 scottish 0 irish 0 norwegian 0 heretic 0 }
+Morgannwg_Principality
+	Cardiff
+	wales
+	English_Rebels
+	208 240 35
+	coal, atlantic, explorers_guild, woodsmens_guild
+	5
+	5
+	religions { catholic 10 welsh 90 scottish 0 irish 0 norwegian 0 heretic 0 }
+Hampshire_Region
+	Winchester
+	england
+	English_Rebels
+	4 25 225
+	fish, grain, timber, atlantic, explorers_guild, woodsmens_guild 
+	5
+	4
+	religions { catholic 85 welsh 15 scottish 0 irish 0 norwegian 0 heretic 0 }
+Kent_Region
+	Canterbury
+	england
+	English_Rebels
+	65 41 46
+	iron, textiles, atlantic, explorers_guild, woodsmens_guild
+	5
+	3
+	religions { catholic 95 welsh 0 scottish 0 irish 0 norwegian 5 heretic 0 }
+Surry_and_Sussex_Regions
+	Arundel
+	england
+	English_Rebels
+	151 25 225
+	fish, iron, atlantic, explorers_guild, woodsmens_guild
+	5
+	4
+	religions { catholic 100 welsh 0 scottish 0 irish 0 norwegian 0 heretic 0 }
+Cornwall_Region
+	Launceston
+	england
+	English_Rebels
+	166 255 46
+	fish, grain, tin, atlantic, explorers_guild, woodsmens_guild
+	5
+	5
+	religions { catholic 90 welsh 10 scottish 0 irish 0 norwegian 0 heretic 0 }
+Dorsetshire_Region
+	Shaftsbury
+	england
+	English_Rebels
+	229 250 225
+	timber, atlantic, explorers_guild, woodsmens_guild
+	5
+	4
+	religions { catholic 90 welsh 10 scottish 0 irish 0 norwegian 0 heretic 0 }
+Outer_Hebrides
+	Lewis
+	norway
+	Scots_Rebels
+	139 0 0
+	none
+	5
+	4
+	religions { catholic 0 welsh 0 scottish 15 irish 0 norwegian 85 heretic 0 }
+Isle_of_Mull
+	Mull
+	norway
+	Scots_Rebels
+	255 0 0
+	none
+	5
+	2
+	religions { catholic 0 welsh 0 scottish 35 irish 0 norwegian 65 heretic 0 }
+Isle_of_Arran
+	Arran
+	norway
+	Scots_Rebels
+	75 0 147
+	none
+	5
+	3
+	religions { catholic 0 welsh 0 scottish 40 irish 0 norwegian 60 heretic 0 }
+West_Highlands
+	Inverlochly
+	scotland
+	Scots_Rebels
+	187 25 225
+	none
+	5
+	3
+	religions { catholic 0 welsh 0 scottish 70 irish 0 norwegian 30 heretic 0 }
+Argyle_and_Bute
+	Dunstaffnage
+	scotland
+	Scots_Rebels
+	67 206 225
+	none
+	5
+	4
+	religions { catholic 0 welsh 0 scottish 80 irish 0 norwegian 20 heretic 0 }

@@ -1,0 +1,124 @@
+{
+  "hullName": "TIE/D Defender",
+  "hullId": "sw_tie_defender",
+  "hullSize": "FIGHTER",
+  "spriteName": "graphics/ships/fighters/sw_tie_defender.png",
+  "style": "SW_IMPERIAL",
+  "height": 47,
+  "width": 56,
+  "center": [28, 18.5],
+  "collisionRadius": 29,
+  "shieldCenter": [0, -0],
+  "shieldRadius": 29.5,
+  "viewOffset": 0,
+  "builtInMods": [
+    "sw_deflector_shield"
+  ],
+  "weaponSlots": [
+    {
+      "id": "WS0001",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": 0,
+      "locations": [22, 15.5]
+    },
+    {
+      "id": "WS0002",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": -0,
+      "locations": [22, -15.5]
+    },
+    {
+      "id": "WS0003",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": 0,
+      "locations": [21, 10.5]
+    },
+    {
+      "id": "WS0004",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": -0,
+      "locations": [21, -10.5]
+    },
+    {
+      "id": "WS0005",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": 0,
+      "locations": [26, 5.5]
+    },
+    {
+      "id": "WS0006",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": -0,
+      "locations": [26, -5.5]
+    },
+    {
+      "id": "WS0007",
+      "size": "SMALL",
+      "type": "MISSILE",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": 0,
+      "locations": [7, 4.5]
+    },
+    {
+      "id": "WS0008",
+      "size": "SMALL",
+      "type": "MISSILE",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": -0,
+      "locations": [7, -4.5]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-12, -0],
+      "length": 30,
+      "width": 10,
+      "angle": 180,
+      "contrailSize": 128,
+      "style": "CUSTOM",
+      "styleId": "COBRA_BOMBER"
+    }
+  ],
+  "bounds": [
+    9, -5.5,
+    26, -5.5,
+    10, -15.5,
+    23, -15.5,
+    6, -26.5,
+    -10, -26.5,
+    -15, -14.5,
+    -14, -14.5,
+    -18, -4.5,
+    -12, -4.5,
+    -12, 4.5,
+    -18, 4.5,
+    -14, 14.5,
+    -15, 14.5,
+    -10, 26.5,
+    6, 26.5,
+    23, 15.5,
+    10, 15.5,
+    26, 5.5,
+    9, 5.5
+  ]
+}

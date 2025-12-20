@@ -1,0 +1,27 @@
+{
+  "hullName": "Dragon Slayer",
+  "hullId": "berserksword",
+  "hullSize": "CAPITAL_SHIP",
+  "spriteName": "graphics/ships/berserksword2.png",
+  "style": "LOW_TECH",
+  "height": 1030,
+  "width": 171,
+  "center": [87, 211.5],
+  "collisionRadius": 803.5,
+  "shieldCenter": [328.5, -873],
+  "shieldRadius": 0,
+  "viewOffset": 0,
+  "weaponSlots": [],
+  "engineSlots": [],
+  "bounds": [
+    805.5, 2,
+    742.5, 41,
+    -4.5, 77,
+    -13, 7.5,
+    -206, 12,
+    -205.5, -9.5,
+    -13, -6.5,
+    -5.5, -71.5,
+    736.5, -36.5
+  ]
+}

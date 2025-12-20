@@ -1,0 +1,21 @@
+{
+  "displayName": "Converted Combat Drone",
+  "fluxCapacitors": 0,
+  "fluxVents": 0,
+  "goalVariant": true,
+  "hullId": "hmi_shell",
+  "hullMods": [],
+  "permaMods": [],
+  "quality": 0,
+  "variantId": "hmi_shell_standard",
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0001": "lightmg"
+      }
+    }
+  ],
+  "wings": []
+}

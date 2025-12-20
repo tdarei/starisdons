@@ -1,0 +1,9 @@
+<SYNC Start=14000>
+<P Class=ENUSCC>Hre_Outro_Win_1
+<SYNC Stop=28000>
+<SYNC Start=0>
+<P Class=ENUSCC>Hre_Outro_Win_1alt
+<SYNC Stop=0>
+<SYNC Start=35100>
+<P Class=ENUSCC>Hre_Outro_Win_2
+<SYNC Stop=52700>

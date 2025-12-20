@@ -1,0 +1,32 @@
+{
+  "variantId": "hmi_charlie_attack",
+  "hullId": "hmi_charlie",
+  "displayName": "Attack",
+  "goalVariant": true,
+  "fluxCapacitors": 0,
+  "fluxVents": 8,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "safetyoverrides"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0001": "heavymortar"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0002": "lightdualmg",
+        "WS0003": "lightdualmg"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

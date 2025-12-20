@@ -1,0 +1,509 @@
+;
+; regions list
+;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+Tongva_Region
+	Tongva
+	apachean
+	Native_Rebels
+	160 244 131
+	no_pirates
+	0
+	0
+	religions { catholic 0 orthodox 0 islam 95 pagan 5 heretic 0 }
+Apache_r
+	Apache_Camp
+	apachean
+	Native_Rebels
+	33 59 131
+	silver, atlantic, no_pirates
+	5
+	3
+	religions { catholic 0 orthodox 0 islam 100 pagan 0 heretic 0 }
+Comanche_r
+	Comanche
+	apachean
+	Native_Rebels
+	99 255 17
+	atlantic, no_pirates
+	0
+	3
+	religions { catholic 0 orthodox 0 islam 93 pagan 7 heretic 0 }
+Caddo_r
+	Caddo
+	apachean
+	Native_Rebels
+	202 156 17
+	tobacco, cotton, atlantic, no_pirates
+	5
+	4
+	religions { catholic 0 orthodox 0 islam 91 pagan 9 heretic 0 }
+Chickasaw_Region
+	Chickasaw
+	apachean
+	Native_Rebels
+	189 244 131
+	cotton, atlantic, no_pirates
+	0
+	0
+	religions { catholic 0 orthodox 0 islam 100 pagan 0 heretic 0 }
+Alibamu_Region
+	Alibamu
+	apachean
+	Native_Rebels
+	52 54 131
+	tobacco, cotton, atlantic, no_pirates
+	0
+	0
+	religions { catholic 0 orthodox 0 islam 100 pagan 0 heretic 0 }
+Miccosoukee_r
+	Miccosoukee
+	apachean
+	Native_Rebels
+	131 33 77
+	tobacco, cotton, atlantic, no_pirates
+	5
+	6
+	religions { catholic 0 orthodox 0 islam 86 pagan 14 heretic 0 }
+Yamacraws_Region
+	Yamacraws
+	apachean
+	Native_Rebels
+	250 244 131
+	cotton, atlantic, no_pirates
+	0
+	0
+	religions { catholic 0 orthodox 0 islam 100 pagan 0 heretic 0 }
+Pitic_r
+	Pitic
+	apachean
+	Native_Rebels
+	118 131 33
+	silver, atlantic, no_pirates, no_brigands
+	5
+	4
+	religions { catholic 0 orthodox 0 islam 80 pagan 20 heretic 0 }
+Choctaw_r
+	Choctaw
+	apachean
+	Native_Rebels
+	199 31 143
+	atlantic, no_pirates
+	5
+	5
+	religions { catholic 0 orthodox 0 islam 92 pagan 8 heretic 0 }
+Calusa_r
+	Calusa
+	apachean
+	Native_Rebels
+	255 165 202
+	atlantic, no_pirates
+	0
+	7
+	religions { catholic 0 orthodox 0 islam 82 pagan 18 heretic 0 }
+Chihuahua_r
+	Chihuahua
+	apachean
+	Native_Rebels
+	177 58 148
+	atlantic, no_pirates
+	5
+	4
+	religions { catholic 0 orthodox 0 islam 80 pagan 20 heretic 0 }
+Coahulia_r
+	Coahulia
+	apachean
+	Native_Rebels
+	212 18 214
+	america, atlantic, no_pirates
+	0
+	4
+	religions { catholic 0 orthodox 0 islam 70 pagan 30 heretic 0 }
+Navojoa_Region
+	Navojoa
+	apachean
+	Native_Rebels
+	172 27 27
+	atlantic, no_pirates
+	0
+	0
+	religions { catholic 0 orthodox 0 islam 62 pagan 38 heretic 0 }
+Aguapalam_r
+	Aguapalam
+	apachean
+	Native_Rebels
+	0 238 255
+	silver, atlantic, no_pirates
+	0
+	5
+	religions { catholic 0 orthodox 0 islam 43 pagan 57 heretic 0 }
+Cochimi_r
+	Cochimi
+	apachean
+	Native_Rebels
+	61 177 58
+	america, atlantic, no_pirates
+	5
+	4
+	religions { catholic 0 orthodox 0 islam 93 pagan 7 heretic 0 }
+Culiacan_r
+	Culiacan
+	apachean
+	Native_Rebels
+	17 165 202
+	gold, atlantic, no_pirates
+	5
+	5
+	religions { catholic 0 orthodox 0 islam 48 pagan 52 heretic 0 }
+Tequesta_Region
+	Tequesta
+	apachean
+	Native_Rebels
+	52 244 131
+	sugar, america, atlantic, no_pirates, no_brigands
+	0
+	0
+	religions { catholic 0 orthodox 0 islam 100 pagan 0 heretic 0 }
+Zacatecas_r
+	Zacatecas
+	chichimeca
+	Native_Rebels
+	174 151 80
+	silver, america, atlantic, no_pirates
+	0
+	5
+	religions { catholic 0 orthodox 0 islam 23 pagan 77 heretic 0 }
+Colotan_r
+	Colotan
+	chichimeca
+	Native_Rebels
+	202 61 17
+	gold, grain, atlantic, no_pirates
+	5
+	5
+	religions { catholic 0 orthodox 0 islam 19 pagan 81 heretic 0 }
+Cuahtemoc_r
+	Cuahtemoc
+	chichimeca
+	Native_Rebels
+	255 212 255
+	gold, dyes, atlantic, no_pirates
+	0
+	6
+	religions { catholic 0 orthodox 0 islam 29 pagan 71 heretic 0 }
+Ahuacatlan_r
+	Ahuacatlan
+	chichimeca
+	Native_Rebels
+	132 10 185
+	gold, silver, grain, chocolate, dyes, tobacco, america, atlantic, no_pirates, no_brigands
+	0
+	6
+	religions { catholic 0 orthodox 0 islam 23 pagan 77 heretic 0 }
+Cuba
+	Havana
+	spain
+	Native_Rebels
+	193 162 206
+	sugar, america, atlantic, no_pirates, no_brigands
+	5
+	8
+	religions { catholic 78 orthodox 0 islam 0 pagan 15 heretic 7 }
+Ocotlan_r
+	Ocotlan
+	tarascans
+	Native_Rebels
+	17 202 52
+	fish, grain, tobacco, atlantic, no_pirates
+	5
+	7
+	religions { catholic 0 orthodox 0 islam 26 pagan 74 heretic 0 }
+Chichen_Itza_r
+	Chichen_Itza
+	mayans
+	Native_Rebels
+	244 122 13
+	timber, textiles, dyes, atlantic, no_pirates, no_brigands
+	5
+	6
+	religions { catholic 0 orthodox 0 islam 9 pagan 91 heretic 0 }
+Tula_r
+	Tula
+	aztecs
+	Mexican_Rebels
+	94 65 48
+	chocolate, spices, atlantic, no_pirates
+	0
+	6
+	religions { catholic 0 orthodox 0 islam 7 pagan 93 heretic 0 }
+Tuxpan_r
+	Tuxpan
+	aztecs
+	Mexican_Rebels
+	255 217 29
+	silver, fish, chocolate, tobacco, atlantic, no_pirates
+	0
+	6
+	religions { catholic 0 orthodox 0 islam 9 pagan 91 heretic 0 }
+Uxmal_r
+	Uxmal
+	mayans
+	Native_Rebels
+	219 61 189
+	timber, atlantic, no_pirates
+	0
+	7
+	religions { catholic 0 orthodox 0 islam 6 pagan 94 heretic 0 }
+Zacapu_r
+	Zacapu
+	tarascans
+	Native_Rebels
+	221 56 185
+	gold, silver, grain, timber, atlantic, no_pirates
+	0
+	6
+	religions { catholic 0 orthodox 0 islam 13 pagan 87 heretic 0 }
+Canpech_r
+	Canpech
+	mayans
+	Native_Rebels
+	40 122 103
+	dyes, tobacco, atlantic, no_pirates
+	0
+	7
+	religions { catholic 0 orthodox 0 islam 21 pagan 79 heretic 0 }
+Tecoman_r
+	Tecoman
+	tarascans
+	Native_Rebels
+	84 0 52
+	silver, timber, dyes, tobacco, atlantic, no_pirates
+	0
+	5
+	religions { catholic 0 orthodox 0 islam 17 pagan 83 heretic 0 }
+Chetumal_r
+	Chetumal
+	mayans
+	Native_Rebels
+	155 33 153
+	gold, atlantic, no_pirates
+	0
+	6
+	religions { catholic 0 orthodox 0 islam 19 pagan 81 heretic 0 }
+Apatzignan_r
+	Apatzignan
+	tarascans
+	Native_Rebels
+	227 202 52
+	gold, fish, chocolate, dyes, tobacco, atlantic, no_pirates
+	0
+	7
+	religions { catholic 0 orthodox 0 islam 12 pagan 88 heretic 0 }
+Xicalango_r
+	Xicalango
+	mayans
+	Native_Rebels
+	48 246 210
+	fish, timber, textiles, atlantic, no_pirates
+	0
+	6
+	religions { catholic 0 orthodox 0 islam 29 pagan 71 heretic 0 }
+Toluca_r
+	Toluca
+	aztecs
+	Native_Rebels
+	13 80 165
+	gold, silver, grain, chocolate, tobacco, spices, atlantic, no_pirates
+	0
+	7
+	religions { catholic 0 orthodox 0 islam 13 pagan 87 heretic 0 }
+Tlaxcala_r
+	Tlaxcala
+	tlaxcalans
+	Mexican_Rebels
+	238 217 96
+	silver, chocolate, textiles, tobacco, atlantic, no_pirates
+	0
+	7
+	religions { catholic 0 orthodox 0 islam 6 pagan 94 heretic 0 }
+Tenochtitlan_r
+	Tenochtitlan
+	aztecs
+	Mexican_Rebels
+	13 244 165
+	gold, chocolate, textiles, atlantic, no_pirates
+	5
+	9
+	religions { catholic 0 orthodox 0 islam 2 pagan 98 heretic 0 }
+VeraCruz_r
+	Vera_Cruz
+	aztecs
+	Mexican_Rebels
+	210 122 212
+	tobacco, atlantic, no_pirates
+	0
+	6
+	religions { catholic 63 orthodox 0 islam 13 pagan 24 heretic 0 }
+Potochan_r
+	Potochan
+	aztecs
+	Native_Rebels
+	136 126 71
+	fish, timber, chocolate, dyes, atlantic, no_pirates
+	0
+	5
+	religions { catholic 0 orthodox 0 islam 11 pagan 89 heretic 0 }
+Cholula_r
+	Cholula
+	aztecs
+	Mexican_Rebels
+	225 23 0
+	silver, grain, chocolate, atlantic, no_pirates
+	0
+	5
+	religions { catholic 0 orthodox 0 islam 3 pagan 97 heretic 0 }
+Tehuacan_r
+	Tehuacan
+	aztecs
+	Mexican_Rebels
+	37 151 255
+	silver, atlantic, no_pirates
+	0
+	5
+	religions { catholic 0 orthodox 0 islam 21 pagan 79 heretic 0 }
+Huaxtepec_r
+	Huaxtepec
+	aztecs
+	Mexican_Rebels
+	4 143 0
+	gold, silver, atlantic, no_pirates
+	0
+	6
+	religions { catholic 0 orthodox 0 islam 16 pagan 84 heretic 0 }
+Tikal_r
+	Tikal
+	mayans
+	Native_Rebels
+	244 0 35
+	gold, timber, tobacco, atlantic, no_pirates
+	0
+	5
+	religions { catholic 0 orthodox 0 islam 16 pagan 84 heretic 0 }
+Tixta_r
+	Tixtla
+	aztecs
+	Mexican_Rebels
+	225 80 147
+	grain, tobacco, atlantic, no_pirates
+	0
+	5
+	religions { catholic 0 orthodox 0 islam 5 pagan 95 heretic 0 }
+Coatzalcoalcos_r
+	Coatzalcoalcos
+	aztecs
+	Mexican_Rebels
+	126 255 111
+	gold, fish, timber, chocolate, atlantic, no_pirates
+	0
+	6
+	religions { catholic 0 orthodox 0 islam 7 pagan 93 heretic 0 }
+Althun_Ha_r
+	Althun_Ha
+	mayans
+	Native_Rebels
+	155 187 35
+	fish, timber, tobacco, atlantic, no_pirates, no_brigands
+	0
+	7
+	religions { catholic 0 orthodox 0 islam 11 pagan 89 heretic 0 }
+Yaxchilan_r
+	Yaxchilan
+	mayans
+	Native_Rebels
+	175 171 244
+	gold, atlantic, no_pirates
+	5
+	4
+	religions { catholic 0 orthodox 0 islam 8 pagan 92 heretic 0 }
+Danipaguache_r
+	Danipaguache
+	aztecs
+	Mexican_Rebels
+	195 195 210
+	atlantic, no_pirates
+	0
+	4
+	religions { catholic 0 orthodox 0 islam 17 pagan 83 heretic 0 }
+Mitla_r
+	Mitla
+	aztecs
+	Mexican_Rebels
+	126 126 111
+	silver, grain, tobacco, spices, atlantic, no_pirates
+	0
+	5
+	religions { catholic 0 orthodox 0 islam 9 pagan 91 heretic 0 }
+Tehuantepec_r
+	Tehuantepec
+	aztecs
+	Mexican_Rebels
+	126 0 111
+	chocolate, tobacco, atlantic, no_pirates
+	0
+	7
+	religions { catholic 0 orthodox 0 islam 13 pagan 87 heretic 0 }
+Tuxtla_r
+	Tuxtla
+	aztecs
+	Mexican_Rebels
+	175 171 37
+	gold, atlantic, no_pirates
+	0
+	6
+	religions { catholic 0 orthodox 0 islam 7 pagan 93 heretic 0 }
+Trujillo_r
+	Trujillo
+	mayans
+	Native_Rebels
+	177 58 167
+	gold, fish, timber, dyes, atlantic, no_pirates, no_brigands
+	5
+	5
+	religions { catholic 0 orthodox 0 islam 23 pagan 77 heretic 0 }
+Tututepec_r
+	Tututepec
+	aztecs
+	Mexican_Rebels
+	0 88 255
+	grain, timber, atlantic, no_pirates
+	0
+	6
+	religions { catholic 0 orthodox 0 islam 29 pagan 71 heretic 0 }
+Tegucigalpa_r
+	Tegucigalpa
+	mayans
+	Native_Rebels
+	0 225 200
+	silver, fish, timber, atlantic, no_pirates
+	0
+	5
+	religions { catholic 0 orthodox 0 islam 11 pagan 89 heretic 0 }
+Quirigua_r
+	Quirigua
+	mayans
+	Native_Rebels
+	0 58 167
+	gold, dyes, atlantic, no_pirates
+	0
+	6
+	religions { catholic 0 orthodox 0 islam 21 pagan 79 heretic 0 }
+Quezaltenango_r
+	Quezaltenango
+	aztecs
+	Native_Rebels
+	41 232 225
+	silver, tobacco, atlantic, no_pirates
+	5
+	5
+	religions { catholic 0 orthodox 0 islam 13 pagan 87 heretic 0 }

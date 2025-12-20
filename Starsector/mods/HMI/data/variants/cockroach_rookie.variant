@@ -1,0 +1,63 @@
+{
+  "displayName": "Rookie",
+  "fluxCapacitors": 20,
+  "fluxVents": 17,
+  "goalVariant": true,
+  "hullId": "cockroach",
+  "hullMods": [
+    "junk1",
+    "hardenedshieldemitter",
+    "frontshield",
+    "stabilizedshieldemitter"
+  ],
+  "permaMods": [],
+  "quality": 0,
+  "variantId": "cockroach_rookie",
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0001": "lightac",
+        "WS0004": "lightac",
+        "WS0010": "lightac"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0005": "harpoonpod",
+        "WS0016": "harpoon",
+        "WS0017": "harpoon"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0002": "arbalest",
+        "WS0007": "arbalest"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0006": "double_ir"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0003": "vulcan",
+        "WS0008": "flak",
+        "WS0011": "vulcan",
+        "WS0013": "vulcan",
+        "WS0014": "vulcan"
+      }
+    }
+  ],
+  "wings": []
+}

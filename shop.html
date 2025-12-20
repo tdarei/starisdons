@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - Adriano To The Star</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Raleway:wght@200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#ba944f">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="pages-styles.css">
+    <link rel="stylesheet" href="theme-styles.css">
+    <link rel="stylesheet" href="accessibility-styles.css">
+    <link rel="stylesheet" href="i18n-styles.css">
+    <script src="pwa-loader.js" defer></script>
+    <script src="i18n.js" defer></script>
+    <script src="animations.js" defer></script>
+    <script src="navigation.js" defer></script>
+    <script src="universal-graphics.js" defer></script>
+    <script src="cosmic-music-player.js" defer></script>
+    <script src="theme-toggle.js" defer></script>
+    <script src="accessibility.js" defer></script>
+    <script src="shop.js" defer></script>
+    <style>
+        .product-card {
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .buy-button,
+        .download-button {
+            width: 100%;
+            margin-top: 1rem;
+            padding: 0.75rem;
+            background: var(--gold-accent, #d4af37);
+            color: black;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .buy-button:hover {
+            background: #f4d03f;
+            transform: scale(1.02);
+        }
+
+        .download-button {
+            background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);
+            color: white;
+        }
+
+        .download-button:hover {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            transform: scale(1.02);
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOutRight {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+
+            to {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+        }
+
+        .notification-content h3 {
+            margin: 0 0 0.5rem 0;
+            color: var(--gold-accent, #d4af37);
+        }
+
+        .notification-content p {
+            margin: 0.5rem 0;
+            color: rgba(255, 255, 255, 0.9);
+        }
+    </style>
+    <link rel="stylesheet" href="loader-minimal.css">
+    <script src="loader.js"></script>
+</head>
+
+<body>
+    <!-- Menu Toggle Button -->
+    <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">
+        <span class="menu-icon"></span>
+        <span class="menu-icon"></span>
+        <span class="menu-icon"></span>
+    </button>
+
+    <!-- Header with portrait -->
+    <header class="site-header">
+        <div class="site-logo">
+            <a href="index.html" style="text-decoration: none; color: inherit;">
+                <h1
+                    style="font-family: 'Raleway', sans-serif; font-size: 1.2rem; font-weight: 300; letter-spacing: 3px; text-transform: uppercase;">
+                    ADRIANO TO THE STAR</h1>
+            </a>
+        </div>
+        <!-- Navigation -->
+        <nav class="site-nav">
+            <ul style="display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0;">
+                <li><a href="index.html"
+                        style="color: white; text-decoration: none; font-family: 'Raleway', sans-serif;">HOME</a>
+                </li>
+                <li><a href="database.html"
+                        style="color: white; text-decoration: none; font-family: 'Raleway', sans-serif;">DATABASE</a>
+                </li>
+                <li><a href="games.html"
+                        style="color: white; text-decoration: none; font-family: 'Raleway', sans-serif;">GAMES</a>
+                </li>
+                <li><a href="shop.html"
+                        style="color: #ba944f; text-decoration: none; font-family: 'Raleway', sans-serif;">SHOP</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="page-hero" data-entrance="fadeIn">
+            <h1 class="page-title" data-scroll-animate>Shop</h1>
+            <p class="page-subtitle">Acquire Your Cosmic Property</p>
+        </section>
+
+        <section class="content-section" data-entrance="slideUp">
+            <div class="content-container">
+                <h2>All Products</h2>
+                <p>This is your category description. It's a great place to tell customers what this category is about,
+                    connect with your audience and draw attention to your products.</p>
+
+                <p style="margin-bottom: 2rem; opacity: 0.8;">1 product</p>
+
+                <div class="product-card"
+                    style="border: 1px solid rgba(255, 255, 255, 0.1); padding: 2rem; border-radius: 8px; max-width: 400px;">
+                    <img src="https://static.wixstatic.com/media/22e53e_ef2ebbf33af24b7fba34e44589f3dc38~mv2.jpg"
+                        alt="Pirate of Andromeda" style="width: 100%; border-radius: 4px; margin-bottom: 1.5rem;">
+
+                    <h3 style="margin-bottom: 0.5rem;">Andromedian Free Pirate</h3>
+                    <p style="font-size: 1.5rem; color: var(--gold-accent); font-weight: 600; margin-bottom: 0.5rem;">
+                        Price £0.00</p>
+                    <p style="opacity: 0.8; font-size: 0.9rem; margin-bottom: 1rem;">Free digital product - Download
+                        instantly after purchase</p>
+
+                    <button class="buy-button" data-product-id="andromedian-free-pirate">
+                        🛒 Get Free
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2025 ADRIANO TO THE STAR</p>
+        <p><a href="index.html">Back to Home</a></p>
+    </footer>
+</body>
+
+</html>

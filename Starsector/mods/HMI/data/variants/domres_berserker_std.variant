@@ -1,0 +1,44 @@
+{
+  "variantId": "domres_berserker_std",
+  "hullId": "domres_berserker",
+  "displayName": "Standard",
+  "goalVariant": true,
+  "fluxCapacitors": 4,
+  "fluxVents": 0,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "turretgyros",
+    "targetingunit",
+    "reinforcedhull"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 007": "hellbore"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 001": "lightag",
+        "WS 002": "lightag",
+        "WS 006": "lightac",
+        "WS 008": "lightac"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 003": "heavyac",
+        "WS 005": "heavyac"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

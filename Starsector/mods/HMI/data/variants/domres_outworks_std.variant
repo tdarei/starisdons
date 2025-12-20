@@ -1,0 +1,52 @@
+{
+  "variantId": "domres_outworks_std",
+  "hullId": "domres_outworks",
+  "displayName": "Bombardment",
+  "goalVariant": true,
+  "fluxCapacitors": 10,
+  "fluxVents": 7,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "missleracks"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0011": "locust"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0001": "harpoon",
+        "WS0002": "harpoon",
+        "WS0003": "harpoon",
+        "WS0004": "harpoon",
+        "WS0005": "harpoon",
+        "WS0006": "harpoon"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0007": "hveldriver",
+        "WS0008": "hveldriver",
+        "WS0009": "hveldriver"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0010": "dualflak"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

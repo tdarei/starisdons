@@ -1,0 +1,66 @@
+{
+  "variantId": "hmi_locomotive_armoured",
+  "hullId": "hmi_locomotive",
+  "displayName": "Cowcatcher",
+  "goalVariant": true,
+  "fluxCapacitors": 27,
+  "fluxVents": 20,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "blast_doors"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0001": "pumm_cannon"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0008": "swarmer",
+        "WS0009": "swarmer"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0003": "pumm_mg",
+        "WS0004": "dualflak",
+        "WS0005": "pumm_mg"
+      }
+    }
+  ],
+  "modules": [
+    {
+      "MODULE_GUN_LEFT": "hmi_locomotive_gun_left_armoured"
+    },
+    {
+      "MODULE_GUN_RIGHT": "hmi_locomotive_gun_right_armoured"
+    },
+    {
+      "MODULE_FRONT": "hmi_locomotive_front_armour"
+    },
+    {
+      "MODULE_FIGHTER_LEFT": "hmi_locomotive_fighter_left_armoured"
+    },
+    {
+      "MODULE_FIGHTER_RIGHT": "hmi_locomotive_fighter_right_armoured"
+    },
+    {
+      "MODULE_ENGINES": "hmi_locomotive_rear_std"
+    },
+    {
+      "MODULE_UNDER": "hmi_locomotive_base_variant"
+    }
+  ],
+  "wings": [
+    "hmi_scale",
+    "hmi_scale"
+  ]
+}

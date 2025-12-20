@@ -1,0 +1,50 @@
+<CameraGroup>
+    <Camera>data/world/maps/battle/norman_prologue/battle_of_hastings/hastings_intro.cam</Camera>
+    <Camera>data/world/maps/battle/norman_prologue/battle_of_hastings/cam2.cam</Camera>
+    <Time>113.7</Time>
+    <ActiveTracks>
+        <ActiveCam>
+            <Time>1.8205806e-003</Time>
+            <Index>0</Index>
+        </ActiveCam>
+        <ActiveCam>
+            <Time>6.1554797e-002</Time>
+            <Index>1</Index>
+        </ActiveCam>
+        <ActiveCam>
+            <Time>0.14081697</Time>
+            <Index>0</Index>
+        </ActiveCam>
+        <ActiveCam>
+            <Time>0.25601047</Time>
+            <Index>1</Index>
+        </ActiveCam>
+        <ActiveCam>
+            <Time>0.33801734</Time>
+            <Index>0</Index>
+        </ActiveCam>
+        <ActiveCam>
+            <Time>0.62947118</Time>
+            <Index>1</Index>
+        </ActiveCam>
+        <ActiveCam>
+            <Time>0.6918382</Time>
+            <Index>0</Index>
+        </ActiveCam>
+        <ActiveCam>
+            <Time>0.78127909</Time>
+            <Index>1</Index>
+        </ActiveCam>
+        <ActiveCam>
+            <Time>0.80351847</Time>
+            <Index>0</Index>
+        </ActiveCam>
+        <ActiveCam>
+            <Time>0.81261563</Time>
+            <Index>0</Index>
+        </ActiveCam>
+    </ActiveTracks>
+    <Range>0.20700002 96.620003</Range>
+    <Scale>8.7950742e-003</Scale>
+    <Events />
+</CameraGroup>

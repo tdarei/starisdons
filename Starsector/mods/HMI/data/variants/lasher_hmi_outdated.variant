@@ -1,0 +1,35 @@
+{
+  "variantId": "lasher_hmi_outdated",
+  "hullId": "lasher_hmi",
+  "displayName": "Outdated",
+  "goalVariant": false,
+  "fluxCapacitors": 10,
+  "fluxVents": 5,
+  "quality": 0,
+  "permaMods": [],
+  "hullMods": [
+    "blast_doors",
+    "unstable_injector"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0001": "mbeke_sml",
+        "WS0002": "mbeke_sml",
+        "WS0005": "hmi_drill"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0003": "sml_fragrifle",
+        "WS0004": "sml_fragrifle"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

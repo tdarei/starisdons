@@ -1,0 +1,43 @@
+{
+  "id": "sw_ion_cannon_heavy",
+  "specClass": "projectile",
+  "projectileSpecId": "sw_laser_ion_shot",
+  "type": "ENERGY",
+  "size": "MEDIUM",
+  "displayArcRadius": 500,
+  "turretSprite": "graphics/weapons/sw_heavy_ion_cannon_turret_base.png",
+  "hardpointSprite": "graphics/weapons/sw_heavy_ion_cannon_turret_base.png",
+  "renderAboveAllWeapons": 0,
+  "visualRecoil": 3,
+  "renderHints": [
+    RENDER_BARREL_BELOW
+  ],
+  "turretOffsets": [
+    2.5,
+    0
+  ],
+  "turretAngleOffsets": [
+    0
+  ],
+  "hardpointOffsets": [
+    5.5,
+    0
+  ],
+  "hardpointAngleOffsets": [
+    0
+  ],
+  "barrelMode": "ALTERNATING",
+  "animationType": "MUZZLE_FLASH",
+  "autocharge": true,
+  "muzzleFlashSpec": {
+    "length": 5,
+    "spread": 3,
+    "particleSizeMin": 5,
+    "particleSizeRange": 5,
+    "particleDuration": 0.12,
+    "particleCount": 5,
+    "particleColor": [255,204,255,255]
+  },
+  "textureType": ROUGH,
+  "fireSoundTwo": "sw_sound_ion_cannon"
+}

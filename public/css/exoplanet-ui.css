@@ -1,0 +1,319 @@
+/* Exoplanet Pioneer - Version 2.0 Design System (The Quantum Leap) */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --ep-glass-bg: rgba(10, 10, 20, 0.65);
+    --ep-glass-border: rgba(56, 189, 248, 0.3);
+    --ep-glass-highlight: rgba(255, 255, 255, 0.05);
+    --ep-primary-glow: 0 0 15px rgba(56, 189, 248, 0.4);
+    --ep-accent-glow: 0 0 15px rgba(168, 85, 247, 0.4);
+    --ep-danger-glow: 0 0 15px rgba(239, 68, 68, 0.4);
+
+    --ep-font-header: 'Orbitron', monospace;
+    --ep-font-body: 'Rajdhani', sans-serif;
+
+    --ep-color-primary: #38bdf8;
+    --ep-color-accent: #a855f7;
+    --ep-color-success: #4ade80;
+    --ep-color-warning: #facc15;
+    --ep-color-danger: #ef4444;
+}
+
+/* Base UI Container */
+#ep-ui {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-family: var(--ep-font-body);
+    color: #e2e8f0;
+    pointer-events: none;
+    /* Allow click-through to canvas */
+    user-select: none;
+    z-index: 10;
+}
+
+/* Glassmorphism Panel Base */
+.ep-panel {
+    background: var(--ep-glass-bg);
+    backdrop-filter: blur(12px) saturate(140%);
+    -webkit-backdrop-filter: blur(12px) saturate(140%);
+    border: 1px solid var(--ep-glass-border);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    border-radius: 12px;
+    pointer-events: auto;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ep-panel:hover {
+    border-color: rgba(56, 189, 248, 0.6);
+    box-shadow: var(--ep-primary-glow);
+}
+
+/* Top Bar Styling */
+.ep-top-bar {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    overflow-x: auto;
+    /* Allow scroll on small screens */
+    white-space: nowrap;
+    background: linear-gradient(90deg, rgba(2, 6, 23, 0.9) 0%, rgba(2, 6, 23, 0.4) 50%, rgba(2, 6, 23, 0.9) 100%);
+    border-bottom: 1px solid var(--ep-glass-border);
+    clip-path: polygon(0 0, 100% 0, 100% 70%, 98% 100%, 2% 100%, 0 70%);
+    pointer-events: auto;
+    gap: 8px;
+    /* Replace margin-left on buttons */
+}
+
+/* Resource Items */
+.ep-res-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 4px;
+    margin-right: 8px;
+    border: 1px solid transparent;
+    transition: border-color 0.2s;
+}
+
+.ep-res-item:hover {
+    border-color: var(--ep-color-primary);
+    background: rgba(56, 189, 248, 0.1);
+}
+
+.ep-res-val {
+    font-family: var(--ep-font-header);
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* System Buttons */
+.ep-sys-btn {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--ep-glass-border);
+    color: var(--ep-color-primary);
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: var(--ep-font-header);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+}
+
+.ep-sys-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.ep-sys-btn:hover {
+    background: rgba(56, 189, 248, 0.1);
+    box-shadow: var(--ep-primary-glow);
+    text-shadow: 0 0 5px var(--ep-color-primary);
+    transform: translateY(-1px);
+}
+
+.ep-sys-btn:hover::before {
+    left: 100%;
+}
+
+.ep-sys-btn:active {
+    transform: translateY(1px);
+}
+
+/* Building Menu fixed at bottom */
+.ep-bottom-bar {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    padding: 10px 20px;
+    background: var(--ep-glass-bg);
+    backdrop-filter: blur(15px);
+    border-radius: 16px;
+    border: 1px solid var(--ep-glass-border);
+    transition: bottom 0.3s;
+    max-width: 90vw;
+    overflow-x: auto;
+    justify-content: flex-start;
+    /* Ensure start alignment if overflow */
+    scrollbar-width: thin;
+    /* Firefox */
+    scrollbar-color: var(--ep-color-primary) transparent;
+}
+
+.ep-bottom-bar::-webkit-scrollbar {
+    height: 4px;
+}
+
+.ep-bottom-bar::-webkit-scrollbar-thumb {
+    background: var(--ep-color-primary);
+    border-radius: 4px;
+}
+
+.ep-bottom-bar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.ep-build-btn {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.ep-build-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.05);
+    border-color: var(--ep-color-primary);
+}
+
+.ep-build-btn.active {
+    background: rgba(56, 189, 248, 0.2);
+    border-color: var(--ep-color-primary);
+    box-shadow: var(--ep-primary-glow);
+}
+
+.ep-build-icon {
+    font-size: 1.5rem;
+    margin-bottom: 2px;
+}
+
+.ep-build-cost {
+    font-size: 0.6rem;
+    color: #94a3b8;
+}
+
+/* Modals */
+.ep-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    opacity: 0;
+    animation: fadeIn 0.2s forwards;
+    pointer-events: auto;
+}
+
+.ep-modal {
+    background: #0f1729;
+    /* Darker opaque bg for readability */
+    border: 1px solid var(--ep-glass-border);
+    border-radius: 12px;
+    width: 600px;
+    max-width: 90vw;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.8), var(--ep-primary-glow);
+    transform: scale(0.95);
+    animation: scaleIn 0.2s forwards;
+}
+
+.ep-modal-header {
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(56, 189, 248, 0.05);
+}
+
+.ep-modal-header h2 {
+    font-family: var(--ep-font-header);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.ep-modal-body {
+    padding: 20px;
+    overflow-y: auto;
+}
+
+/* Tooltip */
+.ep-tooltip {
+    position: absolute;
+    background: rgba(15, 23, 42, 0.95);
+    border: 1px solid var(--ep-color-primary);
+    color: #fff;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    pointer-events: none;
+    z-index: 9999;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    max-width: 250px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes scaleIn {
+    to {
+        transform: scale(1);
+    }
+}
+
+/* Notification */
+.ep-notification {
+    background: rgba(15, 23, 42, 0.9);
+    border-left: 4px solid var(--ep-color-primary);
+    padding: 12px 20px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    animation: slideIn 0.3s ease-out;
+    display: flex;
+    align-items: center;
+    font-family: var(--ep-font-body);
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Me - Adriano To The Star</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Raleway:wght@200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="pages-styles.css" />
+    <link rel="stylesheet" href="loader-minimal.css" />
+    <link rel="stylesheet" href="theme-styles.css" />
+    <link rel="stylesheet" href="accessibility-styles.css" />
+    <link rel="stylesheet" href="i18n-styles.css" />
+    <script src="loader.js"></script>
+    <script src="i18n.js" defer></script>
+    <script src="animations.js" defer></script>
+    <script src="universal-graphics.js" defer></script>
+    <script src="navigation.js" defer></script>
+    <script src="cosmic-music-player.js" defer></script>
+    <script src="theme-toggle.js" defer></script>
+    <script src="accessibility.js" defer></script>
+</head>
+
+<body>
+    <!-- Menu Toggle Button -->
+    <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">
+        <span class="menu-icon"></span>
+        <span class="menu-icon"></span>
+        <span class="menu-icon"></span>
+    </button>
+    <!-- Cosmic Music Player (Manual Injection) -->
+    <div id="cosmic-music-player"
+        style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; background: linear-gradient(135deg, rgba(0, 0, 0, 0.95), rgba(20, 20, 30, 0.98)); border: 2px solid rgba(186, 148, 79, 0.5); border-radius: 15px; padding: 1rem; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(186, 148, 79, 0.2); backdrop-filter: blur(10px); width: 320px; transition: all 0.3s ease;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <span style="font-size: 1.5rem; animation: pulse-glow 2s infinite;">🎵</span>
+                <h4
+                    style="margin: 0; color: #ba944f; font-size: 0.9rem; font-family: 'Raleway', sans-serif; font-weight: 600;">
+                    Cosmic Playlist</h4>
+            </div>
+            <button id="minimize-player"
+                style="background: none; border: none; color: #ba944f; cursor: pointer; font-size: 1.2rem; padding: 0.25rem; transition: transform 0.2s;">−</button>
+        </div>
+
+        <div id="player-content">
+            <div id="current-track"
+                style="color: rgba(255, 255, 255, 0.9); font-size: 0.85rem; margin-bottom: 0.5rem; font-weight: 500; text-align: center;">
+                Track 1: Cosmic Journey</div>
+            <div id="track-info"
+                style="color: rgba(255, 255, 255, 0.5); font-size: 0.7rem; margin-bottom: 0.75rem; text-align: center;">
+                Track 1 of 18</div>
+
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+                <span id="current-time"
+                    style="font-size: 0.75rem; color: rgba(255, 255, 255, 0.6); font-family: monospace;">0:00</span>
+                <div id="progress-bar"
+                    style="flex: 1; height: 6px; background: rgba(255, 255, 255, 0.2); border-radius: 3px; cursor: pointer; position: relative; overflow: hidden;">
+                    <div id="progress-fill"
+                        style="height: 100%; width: 0%; background: linear-gradient(90deg, #ba944f, #ffd700); border-radius: 3px; transition: width 0.1s linear; box-shadow: 0 0 10px rgba(186, 148, 79, 0.5);">
+                    </div>
+                </div>
+                <span id="duration"
+                    style="font-size: 0.75rem; color: rgba(255, 255, 255, 0.6); font-family: monospace;">0:00</span>
+            </div>
+
+            <div
+                style="display: flex; justify-content: center; align-items: center; gap: 1rem; margin-bottom: 0.75rem;">
+                <button id="prev-track"
+                    style="background: rgba(186, 148, 79, 0.2); border: 2px solid rgba(186, 148, 79, 0.5); border-radius: 50%; width: 35px; height: 35px; cursor: pointer; color: #ba944f; font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;">⏮</button>
+                <button id="play-pause"
+                    style="background: rgba(186, 148, 79, 0.3); border: 2px solid #ba944f; border-radius: 50%; width: 45px; height: 45px; cursor: pointer; color: #ba944f; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; box-shadow: 0 0 15px rgba(186, 148, 79, 0.3);">▶</button>
+                <button id="next-track"
+                    style="background: rgba(186, 148, 79, 0.2); border: 2px solid rgba(186, 148, 79, 0.5); border-radius: 50%; width: 35px; height: 35px; cursor: pointer; color: #ba944f; font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;">⏭</button>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                <span style="font-size: 1rem;">🔊</span>
+                <input type="range" id="volume-control" min="0" max="100" value="70"
+                    style="flex: 1; accent-color: #ba944f; cursor: pointer;">
+                <span id="volume-display"
+                    style="font-size: 0.75rem; color: rgba(255, 255, 255, 0.6); min-width: 35px; font-family: monospace;">70%</span>
+            </div>
+
+            <div style="margin-top: 0.75rem; font-size: 0.75rem; color: rgba(255, 255, 255, 0.5); text-align: center;">
+                <label
+                    style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; cursor: pointer; margin-bottom: 0.5rem;">
+                    <input type="checkbox" id="loop-toggle" style="accent-color: #ba944f; cursor: pointer;">
+                    <span>Loop Playlist</span>
+                </label>
+                <button id="download-track"
+                    style="background: rgba(186, 148, 79, 0.2); border: 1px solid rgba(186, 148, 79, 0.5); border-radius: 8px; padding: 0.4rem 0.8rem; color: #ba944f; cursor: pointer; font-size: 0.75rem; transition: all 0.3s ease; display: flex; align-items: center; gap: 0.4rem; margin: 0 auto;">
+                    <span>Download</span>
+                    <span>Download Track</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        @keyframes pulse-glow {
+
+            0%,
+            100% {
+                transform: scale(1);
+                filter: brightness(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+                filter: brightness(1.3);
+            }
+        }
+
+        #cosmic-music-player button:hover {
+            transform: scale(1.1) !important;
+            box-shadow: 0 5px 15px rgba(186, 148, 79, 0.4) !important;
+        }
+
+        #cosmic-music-player button:active {
+            transform: scale(0.95) !important;
+            box-shadow: none !important;
+        }
+
+        #progress-bar:hover #progress-fill {
+            box-shadow: 0 0 15px rgba(186, 148, 79, 0.8);
+        }
+
+        @media (max-width: 768px) {
+            #cosmic-music-player {
+                width: 280px !important;
+                bottom: 10px !important;
+                right: 10px !important;
+                padding: 0.75rem !important;
+            }
+        }
+    </style>
+    <!-- Navigation -->
+    <header class="site-header">
+        <div class="site-logo">
+            <a href="index.html" style="text-decoration: none; color: inherit;">
+                <h1
+                    style="font-family: 'Raleway', sans-serif; font-size: 1.2rem; font-weight: 300; letter-spacing: 3px; text-transform: uppercase;">
+                    ADRIANO TO THE STAR</h1>
+            </a>
+        </div>
+        <nav class="site-nav">
+            <ul style="display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0;">
+                <li><a href="index.html"
+                        style="color: white; text-decoration: none; font-family: 'Raleway', sans-serif;">HOME</a></li>
+                <li><a href="database.html"
+                        style="color: white; text-decoration: none; font-family: 'Raleway', sans-serif;">DATABASE</a>
+                </li>
+                <li><a href="games.html"
+                        style="color: white; text-decoration: none; font-family: 'Raleway', sans-serif;">GAMES</a></li>
+                <li><a href="shop.html"
+                        style="color: white; text-decoration: none; font-family: 'Raleway', sans-serif;">SHOP</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-hero" data-entrance="fadeIn">
+            <h1 class="page-title" data-scroll-animate>ABOUT ME</h1>
+            <p class="page-subtitle">The Explorer Behind the Mission</p>
+        </section>
+
+        <section class="content-section" data-entrance="slideUp">
+            <div class="content-container">
+                <h3>My Story</h3>
+                <p>
+                    Britain. To take advantage of the educational system in the UK you must, 1.
+                    Have over 4 A-levels accredited and then 2. Every year finish an
+                    undergraduate at a different university across the United Kingdom or if you
+                    are at Oxford University or Cambridge University ask to change undergraduate
+                    course to a different programme of study so that you can prolong your
+                    studies for as long as possible and exploit your student membership at
+                    prestigious universities and the debt pays for itself because of the current
+                    prime minister he has made it that every programme of study that is as long
+                    as or longer than medicine which is a 5-year accreditation programme must
+                    have an affordable student tuition so that all the Junior Doctors can earn
+                    more than other people therefore if your major is in arts or music find
+                    something super similar and switch to it or be insane like me and switch
+                    entire disciplines for fun. I went from Biomedical Sciences integrated
+                    biological sciences taught master's at a Russel group university to a
+                    Chemistry Bachelor of Science programme at a physical sciences and
+                    mathematics facility.
+                </p>
+
+                <p>
+                    My vocation is to seek the truth behind the scenes and know what is
+                    happening and why it is occurring. I accidentally landed myself in some
+                    mischief and tomfoolery however I have no criminal record and I have the
+                    full database access and accreditation of the entire Metropolitan Police of
+                    the UNITED KINGDOM, I AM EQUIPPED WITH EVERY secret at EVERY MAJOR BRANCH OF
+                    THE BRITISH SECRET SERVICE, I HAVE FULL ACCESS AND IMPARTIAL VIEW OF EVERY
+                    INTELLIGENCE HEADQUARTERS IN THE UK. MI6, MI5, AND MI4. There are some newer
+                    branches of these secret services however they are just derivatives of the
+                    major Cold War secret intelligence of the British Empire.
+                </p>
+
+                <h3>Contact</h3>
+                <p>
+                    If you do want to get in touch I do not auction the secrets at this time of
+                    year, normally I sell them during summer time.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2025 ADRIANO TO THE STAR - I.T.A (Interstellar Travel Agency)</p>
+        <p><a href="index.html">Back to Home</a></p>
+    </footer>
+
+    <script src="pwa-loader.js"></script>
+</body>
+
+</html>

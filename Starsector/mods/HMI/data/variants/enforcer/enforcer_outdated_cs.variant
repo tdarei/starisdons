@@ -1,0 +1,45 @@
+{
+  "displayName": "Outdated",
+  "fluxCapacitors": 10,
+  "fluxVents": 6,
+  "goalVariant": false,
+  "hullId": "enforcer_d_pirates",
+  "hullMods": [
+    "targetingunit",
+    "heavyarmor",
+    "missleracks"
+  ],
+  "permaMods": [],
+  "quality": 0,
+  "variantId": "enforcer_outdated_cs",
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 002": "med_frag_mg",
+        "WS 003": "med_frag_mg",
+        "WS 004": "med_frag_mg"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 006": "mbeke_sml",
+        "WS 007": "mbeke_sml",
+        "WS 008": "mbeke_sml",
+        "WS 009": "mbeke_sml"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 001": "heavymg",
+        "WS 005": "heavymg"
+      }
+    }
+  ],
+  "wings": []
+}

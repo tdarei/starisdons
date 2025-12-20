@@ -1,0 +1,25 @@
+
+; historical events and when they occur
+;
+; Events are followed by a category, and a label
+; labels are used as lookups into historic_events.txt for title and body strings,
+; and also as image names for the event picture
+;
+; Currently supported categories are:
+; counter  - just increase a counter
+; historic - Just generates a message and increase a counter
+; volcano  - triggers a volcano if there is one on the map at the position specified
+; plague   - triggers a plague in settlements at the specified positions
+; emergent_faction - triggers the emergence of the given faction.  This faction must be marked
+;	as emergent in descr_strat.txt
+;
+; event descriptions are followed by a date (year as offset from starting date) or a date range
+; and either a list of positions, or list of regions.  Each position/region specification must appear on
+; a seperate line below the date
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;  EVENT LIST  ;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+

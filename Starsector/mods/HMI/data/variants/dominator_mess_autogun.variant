@@ -1,0 +1,43 @@
+{
+  "displayName": "Autogun",
+  "fluxCapacitors": 30,
+  "fluxVents": 30,
+  "goalVariant": true,
+  "hullId": "mess_dominator",
+  "hullMods": [
+    "targetingunit"
+  ],
+  "permaMods": [],
+  "quality": 0,
+  "variantId": "dominator_mess_autogun",
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0001": "mark9",
+        "WS0002": "mark9",
+        "WS0003": "heavyac",
+        "WS0004": "heavyac",
+        "WS0005": "heavyac",
+        "WS0006": "lightdualac",
+        "WS0007": "lightdualac",
+        "WS0008": "lightdualac",
+        "WS0009": "annihilatorpod",
+        "WS0010": "lightdualac",
+        "WS0011": "lightdualac"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {}
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {}
+    }
+  ],
+  "wings": []
+}

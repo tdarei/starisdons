@@ -1,0 +1,61 @@
+{
+  "variantId": "sulemain_cs",
+  "hullId": "sulemain",
+  "displayName": "Glorious",
+  "goalVariant": true,
+  "fluxCapacitors": 3,
+  "fluxVents": 12,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "dedicated_targeting_core",
+    "hardened_subsystems"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0012": "tpc_hmi"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0001": "annihilatorpod",
+        "WS0002": "annihilatorpod"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0003": "heatseeker",
+        "WS0004": "heatseeker"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0009": "lightdualmg",
+        "WS0010": "lightdualmg"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0005": "railgun",
+        "WS0006": "railgun",
+        "WS0007": "ionbeam",
+        "WS0008": "ionbeam"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": [
+    "broadsword_wing"
+  ]
+}

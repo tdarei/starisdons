@@ -1,0 +1,58 @@
+{
+  "animationType": "MUZZLE_FLASH",
+  "barrelMode": "ALTERNATING",
+  "displayArcRadius": 600,
+  "fireSoundTwo": "hellbore_fire",
+  "hardpointAngleOffsets": [
+    0,
+    0
+  ],
+  "hardpointGunSprite": "graphics/weapons/domres_megahellbore_recoil.png",
+  "hardpointOffsets": [
+    68.5,
+    -11.5,
+    68.5,
+    9.5
+  ],
+  "hardpointSprite": "graphics/weapons/domres_megahellbore_turret.png",
+  "id": "domres_hellbore",
+  "muzzleFlashSpec": {
+    "length": 65,
+    "particleColor": [
+      255,
+      120,
+      50,
+      245
+    ],
+    "particleCount": 50,
+    "particleDuration": 0.75,
+    "particleSizeMin": 10,
+    "particleSizeRange": 35,
+    "spread": 15
+  },
+  "noImpactSounds": false,
+  "noNonShieldImpactSounds": false,
+  "noShieldImpactSounds": false,
+  "projectileSpecId": "hellbore_shot",
+  "renderAboveAllWeapons": 0,
+  "renderHints": [
+    "RENDER_BARREL_BELOW"
+  ],
+  "size": "LARGE",
+  "specClass": "projectile",
+  "textureType": ROUGH,
+  "turretAngleOffsets": [
+    0,
+    0
+  ],
+  "turretGunSprite": "graphics/weapons/domres_megahellbore_recoil.png",
+  "turretOffsets": [
+    41,
+    -11.5,
+    41,
+    9.5
+  ],
+  "turretSprite": "graphics/weapons/domres_megahellbore_turret.png",
+  "type": "BALLISTIC",
+  "visualRecoil": 10
+}

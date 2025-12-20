@@ -1,0 +1,27 @@
+{
+  "displayName": "Assault Drone Fighter",
+  "fluxCapacitors": 0,
+  "fluxVents": 0,
+  "goalVariant": true,
+  "hullId": "domres_warthog",
+  "hullMods": [],
+  "permaMods": [],
+  "quality": 0.5,
+  "variantId": "domres_warthog_standard",
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 001": "burstlightag",
+        "WS 002": "burstlightag"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {}
+    }
+  ],
+  "wings": []
+}

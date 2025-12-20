@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="critical-debug-banner.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exoplanet Database - Adriano To The Star</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Raleway:wght@200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="pages-styles.css">
+    <link rel="stylesheet" href="loader-minimal.css">
+    <link rel="stylesheet" href="space-api-dashboard-styles.css">
+    <link rel="stylesheet" href="theme-styles.css">
+    <link rel="stylesheet" href="keyboard-shortcuts-styles.css">
+    <link rel="stylesheet" href="accessibility-styles.css">
+    <link rel="stylesheet" href="i18n-styles.css">
+    <link rel="stylesheet" href="database-styles.css">
+
+    <!-- Loading Screen -->
+    <script src="safe-loader.js" defer></script>
+    <script src="loader-core-minimal.js"></script>
+
+    <!-- Notification System -->
+    <link rel="stylesheet" href="notifications.css">
+    <script src="notifications.js" defer></script>
+    <script src="global-error-handler.js" defer></script>
+
+    <script src="i18n.js" defer></script>
+    <script src="rate-limiting.js" defer></script>
+    <script src="rate-limiting-ui.js" defer></script>
+    <script src="code-splitting.js" defer></script>
+    <script src="animations.js" defer></script>
+    <script src="navigation.js" defer></script>
+    <script src="universal-graphics.js" defer></script>
+    <script src="cosmic-music-player.js" defer></script>
+    <script src="theme-toggle.js" defer></script>
+    <script src="keyboard-shortcuts.js" defer></script>
+    <script src="accessibility.js" defer></script>
+    <script src="color-schemes.js" defer></script>
+    <link rel="manifest" href="manifest.json">
+</head>
+
+<body class="database-page">
+    <!-- Menu Toggle Button -->
+    <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">
+        <span class="menu-icon"></span>
+        <span class="menu-icon"></span>
+        <span class="menu-icon"></span>
+    </button>
+    <main>
+        <!-- Page Hero -->
+        <section class="page-hero" data-entrance="fadeIn">
+            <h1 class="page-title" data-scroll-animate data-i18n="database.title">EXOPLANET DATABASE</h1>
+            <p class="page-subtitle" data-i18n="database.subtitle">Explore 9,564+ Celestial Bodies from the Kepler
+                Archive</p>
+        </section>
+
+        <!-- NASA Data Container -->
+        <section class="content-section" data-entrance="slideUp">
+            <div class="content-container database-console">
+                <div id="database-debug-status"
+                    style="font-size:0.75rem;color:rgba(255,255,255,0.7);margin-bottom:0.5rem;"></div>
+
+                <!-- Galactic Events Ticker -->
+                <div id="galactic-events-container" style="margin-bottom: 1.5rem;"></div>
+
+                <!-- Quest Log -->
+                <h3
+                    style="color: #ba944f; margin-top: 1.5rem; border-bottom: 1px solid rgba(186, 148, 79, 0.3); padding-bottom: 0.5rem;">
+                    🤖 AI Game Master Quests
+                </h3>
+                <div id="quest-log-container"
+                    style="min-height: 100px; max-height: 300px; overflow-y: auto; margin-top: 0.5rem;"></div>
+
+                <div id="data-visualization" style="margin-top: 2rem;"></div>
+
+                <div id="nasa-data-container">
+                    <!-- Data will be populated by database-optimized.js -->
+                </div>
+
+                <div id="planet-of-day-container" style="margin-top: 2rem;"></div>
+                <div id="my-universe-container" style="margin-top: 2rem;"></div>
+
+                <!-- Additional Features -->
+                <div id="wishlist-container" style="margin-top: 2rem;"></div>
+                <div id="bookmarks-container" style="margin-top: 2rem;"></div>
+                <div id="rarity-calculator-container" style="margin-top: 2rem;"></div>
+                <div id="comparison-tool-container" style="margin-top: 2rem;"></div>
+                <div id="discovery-timeline-container" style="margin-top: 2rem;"></div>
+                <div id="search-history-container" style="margin-top: 2rem;"></div>
+                <div id="discovery-feed-container" style="margin-top: 2rem;"></div>
+                <div id="discovery-statistics-container" style="margin-top: 2rem;"></div>
+                <div id="discovery-map-container" style="margin-top: 2rem;"></div>
+                <div id="discovery-notifications-container" style="margin-top: 2rem;"></div>
+                <div id="discovery-calendar-container" style="margin-top: 2rem;"></div>
+                <div id="discovery-comparison-methods-container" style="margin-top: 2rem;"></div>
+
+                <!-- Video Tutorials -->
+                <div id="video-tutorials-container" style="margin-top: 2rem;">
+                    <h2 style="text-align: center; margin-bottom: 2rem; color: #ba944f;">🎥 Video Tutorials</h2>
+                </div>
+
+                <!-- Podcast Integration -->
+                <div id="podcast-integration-container" style="margin-top: 2rem;">
+                    <h2 style="text-align: center; margin-bottom: 2rem; color: #ba944f;">🎙️ Podcasts</h2>
+                </div>
+
+                <!-- Quiz Game -->
+                <div id="quiz-container" style="margin-top: 2rem;"></div>
+
+                <!-- Voice Commands -->
+                <div id="voice-commands-container" style="margin-top: 2rem;"></div>
+
+                <!-- Mobile Notifications -->
+                <div id="mobile-notifications-container" style="margin-top: 2rem;"></div>
+
+                <!-- AR Filters -->
+                <div id="ar-filters-container" style="margin-top: 2rem;"></div>
+
+                <!-- VR Tours -->
+                <div id="vr-tours-container" style="margin-top: 2rem;"></div>
+
+                <!-- Educational Courses -->
+                <div id="educational-courses-container" style="margin-top: 2rem;"></div>
+                <div id="visualization-features-container" class="glass-panel"
+                    style="margin-top: 2rem; padding: 1.5rem; display: none;">
+                    <h3
+                        style="color: var(--accent-gold); margin-top: 0; margin-bottom: 1rem; border-bottom: 1px solid rgba(186, 148, 79, 0.3); padding-bottom: 0.5rem;">
+                        Galactic Systems</h3>
+
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <button id="senate-btn" class="secondary-btn" onclick="window.galacticSenate.showUI()">
+                            🏛️ Galactic Senate
+                        </button>
+                        <button id="comms-btn" class="secondary-btn"
+                            onclick="if(window.liveKitVoiceManager.isConnected) window.liveKitVoiceManager.disconnect(); else window.liveKitVoiceManager.connect();"
+                            style="border-color: #4caf50; color: #4caf50;">
+                            📡 Open Comms
+                        </button>
+                        <!-- Other features injected by JS -->
+                    </div>
+                </div>
+
+                <!-- Live Streaming -->
+                <div id="live-streaming-container" style="margin-top: 2rem;"></div>
+
+                <!-- Community Forums -->
+                <div id="community-forums-container" style="margin-top: 2rem;"></div>
+
+                <!-- Mentorship Program -->
+                <div id="mentorship-container" style="margin-top: 2rem;"></div>
+
+                <!-- Research Grants -->
+                <div id="research-grants-container" style="margin-top: 2rem;"></div>
+
+                <!-- Certification Program -->
+                <div id="certification-container" style="margin-top: 2rem;"></div>
+
+                <!-- Internship Opportunities -->
+                <div id="internships-container" style="margin-top: 2rem;"></div>
+
+                <!-- Job Board -->
+                <div id="job-board-container" style="margin-top: 2rem;"></div>
+
+                <!-- Scholarship Program -->
+                <div id="scholarships-container" style="margin-top: 2rem;"></div>
+
+                <!-- Conferences -->
+                <div id="conferences-container" style="margin-top: 2rem;"></div>
+
+                <!-- Webinars -->
+                <div id="webinars-container" style="margin-top: 2rem;"></div>
+
+                <!-- Research Papers -->
+                <div id="research-papers-container" style="margin-top: 2rem;"></div>
+
+                <!-- Citation Manager -->
+                <div id="citation-manager-container" style="margin-top: 2rem;"></div>
+
+                <!-- Collaboration Tools -->
+                <div id="collaboration-container" style="margin-top: 2rem;"></div>
+
+                <!-- Data Visualization Library -->
+                <div id="data-visualization-container" style="margin-top: 2rem;"></div>
+
+                <!-- API Rate Limiting Status -->
+                <div id="api-rate-limit-status" style="margin-top: 2rem;"></div>
+
+                <!-- 3D Printing Models -->
+                <div id="3d-printing-container" style="margin-top: 2rem;"></div>
+
+                <!-- Webhooks -->
+                <div id="webhooks-container" style="margin-top: 2rem;"></div>
+
+                <!-- SDK Documentation -->
+                <div id="sdk-docs-container" style="margin-top: 2rem;"></div>
+
+                <!-- GraphQL Explorer -->
+                <div id="graphql-explorer-container" style="margin-top: 2rem;"></div>
+
+                <!-- Real-Time Sync Status -->
+                <div id="realtime-sync-status" style="margin-top: 2rem;"></div>
+
+                <!-- Backup & Restore -->
+                <div id="backup-restore-container" style="margin-top: 2rem;"></div>
+
+                <!-- AI Chat -->
+                <div id="ai-chat-container" style="margin-top: 2rem;"></div>
+
+                <!-- News Aggregator -->
+                <div id="news-aggregator-container" style="margin-top: 2rem;"></div>
+
+                <!-- Event Calendar -->
+                <div id="event-calendar-container" style="margin-top: 2rem;"></div>
+
+                <!-- User Profiles -->
+                <div id="user-profiles-container" style="margin-top: 2rem;"></div>
+
+                <!-- Direct Messaging -->
+                <div id="direct-messaging-container" style="margin-top: 2rem;"></div>
+
+                <!-- Social Feed -->
+                <div id="social-feed-container" style="margin-top: 2rem;"></div>
+
+                <!-- Image Gallery -->
+                <div id="image-gallery-container" style="margin-top: 2rem;"></div>
+            </div>
+        </section>
+
+        <!-- Links to Separate Pages for Heavy Features -->
+        <section class="content-section" data-entrance="slideUp">
+            <div class="content-container">
+                <h2 style="color: #ba944f; margin-bottom: 1.5rem;">🔗 Additional Features</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                    <a href="space-dashboard.html" class="feature-card"
+                        style="display: block; padding: 2rem; background: rgba(186, 148, 79, 0.1); border: 2px solid rgba(186, 148, 79, 0.3); border-radius: 12px; text-decoration: none; transition: all 0.3s ease;">
+                        <h3 style="color: #ba944f; margin-bottom: 0.5rem;">🚀 Space API Dashboard</h3>
+                        <p style="color: rgba(255, 255, 255, 0.7); margin: 0;">Real-time space data from NASA and other
+                            sources</p>
+                    </a>
+                    <a href="ai-predictions.html" class="feature-card"
+                        style="display: block; padding: 2rem; background: rgba(186, 148, 79, 0.1); border: 2px solid rgba(186, 148, 79, 0.3); border-radius: 12px; text-decoration: none; transition: all 0.3s ease;">
+                        <h3 style="color: #ba944f; margin-bottom: 0.5rem;">🤖 AI Predictions</h3>
+                        <p style="color: rgba(255, 255, 255, 0.7); margin: 0;">Machine learning predictions for future
+                            discoveries</p>
+                    </a>
+                    <a href="star-maps.html" class="feature-card"
+                        style="display: block; padding: 2rem; background: rgba(186, 148, 79, 0.1); border: 2px solid rgba(186, 148, 79, 0.3); border-radius: 12px; text-decoration: none; transition: all 0.3s ease;">
+                        <h3 style="color: #ba944f; margin-bottom: 0.5rem;">🌟 Star Maps</h3>
+                        <p style="color: rgba(255, 255, 255, 0.7); margin: 0;">Interactive star map exploration</p>
+                    </a>
+                    <a href="database-analytics.html" class="feature-card"
+                        style="display: block; padding: 2rem; background: rgba(186, 148, 79, 0.1); border: 2px solid rgba(186, 148, 79, 0.3); border-radius: 12px; text-decoration: none; transition: all 0.3s ease;">
+                        <h3 style="color: #ba944f; margin-bottom: 0.5rem;">📊 Analytics</h3>
+                        <p style="color: rgba(255, 255, 255, 0.7); margin: 0;">Planet claim statistics and trends</p>
+                    </a>
+                </div>
+                <style>
+                    .feature-card:hover {
+                        transform: translateY(-5px);
+                        box-shadow: 0 10px 30px rgba(186, 148, 79, 0.3);
+                        border-color: #ba944f;
+                    }
+                </style>
+            </div>
+        </section>
+
+        <!-- User Data Management -->
+        <section class="content-section" data-entrance="slideUp">
+            <div class="content-container">
+                <h2 style="color: #ba944f; margin-bottom: 1rem;">📊 User Data Management</h2>
+                <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 1.5rem;">Export your data for backup or import
+                    it to restore your settings and favorites.</p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <button class="cta-button" data-export-user-data
+                        style="display: inline-block; text-decoration: none; padding: 0.75rem 1.5rem; border: 2px solid rgba(186, 148, 79, 0.5); border-radius: 8px; background: rgba(186, 148, 79, 0.1); color: #ba944f; cursor: pointer; font-family: 'Raleway', sans-serif;">
+                        📥 Export User Data
+                    </button>
+                    <button class="cta-button" data-import-user-data
+                        style="display: inline-block; text-decoration: none; padding: 0.75rem 1.5rem; border: 2px solid rgba(186, 148, 79, 0.5); border-radius: 8px; background: rgba(186, 148, 79, 0.1); color: #ba944f; cursor: pointer; font-family: 'Raleway', sans-serif;">
+                        📤 Import User Data
+                    </button>
+                    <button class="cta-button"
+                        onclick="if(window.socialSharing){window.socialSharing().showShareWidget({title: 'Exoplanet Database', text: 'Check out this amazing exoplanet database!', url: window.location.href})}"
+                        style="display: inline-block; text-decoration: none; padding: 0.75rem 1.5rem; border: 2px solid rgba(186, 148, 79, 0.5); border-radius: 8px; background: rgba(186, 148, 79, 0.1); color: #ba944f; cursor: pointer; font-family: 'Raleway', sans-serif;">
+                        🔗 Share This Page
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Database Section -->
+        <section class="content-section" data-entrance="slideUp">
+            <div class="content-container"
+                style="background: rgba(0, 0, 0, 0.3); padding: 2rem; border-radius: 15px; border: 2px solid rgba(186, 148, 79, 0.2);">
+                <h2>About the Database</h2>
+
+                <div style="margin: 1.5rem 0;">
+                    <p style="margin-bottom: 1rem;"><strong>Data Source:</strong> <a href="https://api.nasa.gov/"
+                            target="_blank" rel="noopener" style="color: #ba944f;">NASA Exoplanet Archive API</a>
+                    </p>
+                    <p style="margin-bottom: 1rem;">The database of Kepler confirmed objects from api.nasa.gov</p>
+                    <p style="margin-bottom: 1rem;">Furthermore, I will construct an esoteric quantum information
+                        repository and name the database ITASTARADRIANO.</p>
+                    <p>For any updates regarding the Andromeda Galaxy M31.</p>
+                </div>
+
+                <div class="coming-soon-notice"
+                    style="margin-top: 2rem; padding: 1.5rem; background: rgba(186, 148, 79, 0.1); border-radius: 12px; border: 2px solid rgba(186, 148, 79, 0.3);">
+                    <h3 style="color: #ba944f; margin-bottom: 1rem;">📡 Cryptographic Keys Coming Q1 2025</h3>
+                    <p style="opacity: 0.9;">The cryptographic keys that I will work on and calculate from the
+                        chosen
+                        object disposition from the database have been scheduled for release later in Q1 2025.</p>
+                    <p style="margin-top: 1rem; opacity: 0.8;"><strong>Features:</strong> Unique ownership
+                        certificates,
+                        3D visualization, and galactic title deeds.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cosmic Music Player Callout -->
+        <section class="content-section" data-entrance="slideUp" data-entrance-delay="150">
+            <div class="content-container cosmic-player-card">
+                <div class="cosmic-player-card__meta">
+                    <p class="cosmic-player-card__eyebrow">Mission Control Audio Suite</p>
+                    <h2>🎧 Cosmic Music Player</h2>
+                    <p class="cosmic-player-card__highlight">
+                        Immerse yourself in ambient deep-space tracks while cross-referencing Kepler objects.
+                        The floating player follows you around the site, preserving playback between pages.
+                    </p>
+                </div>
+                <div class="cosmic-player-card__actions">
+                    <button type="button" class="cta-button" data-hover="lift" id="cosmic-player-open">
+                        Launch Floating Player
+                    </button>
+                    <button type="button" class="outline-btn" id="cosmic-player-toggle">
+                        Play / Pause Current Track
+                    </button>
+                </div>
+                <p class="cosmic-player-card__note">
+                    Tip: The playlist is sourced from <code>/audio/manifest.json</code>. Drop new MP3s in the folder
+                    and update the manifest to curate fresh observation vibes.
+                </p>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section" data-entrance="fadeIn">
+            <h2>Get Notified When Database Launches</h2>
+            <p>Be the first to claim your celestial property</p>
+            <a href="index.html#follow" class="cta-button" data-hover="lift">Join Mailing List</a>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <p>&copy; 2025 ADRIANO TO THE STAR - I.T.A (Interstellar Travel Agency)</p>
+        <p><a href="index.html">Back to Home</a></p>
+    </footer>
+
+    <!-- Database Scripts - Load critical dependencies first, then defer large data files -->
+    <!-- Removed duplicate Three.js v0.160.0 to prevent conflicts with r128 used by visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+    <script src="supabase-config.js" defer></script>
+    <script src="auth-supabase.js" defer></script>
+    <script src="reputation-system.js" defer></script>
+    <script src="community-ui.js" defer></script>
+    <script src="nft-certificate-generator.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.umd.min.js" defer></script>
+    <script src="blockchain-verification-system.js" defer></script>
+    <script src="exoplanet-xr-experience.js" defer></script>
+    <script src="exoplanet-api.js" defer></script>
+    <script src="interstellar-news.js" defer></script>
+    <script src="user-history.js" defer></script>
+
+    <!-- 3D Visualization Engine -->
+    <!-- 3D Visualization Engine -->
+    <!-- Module script removed to prevent 'three' resolution error. Using global scripts below. -->
+    <!-- OrbitControls for UMD/Global is trickier with newer Three.js versions which favor modules. 
+         Let's stick to the CDN that provides a global THREE.OrbitControls if possible, or use a compatible UMD build.
+         Unpkg/JSDelivr often serve ES modules by default for newer versions.
+         Let's try to keep the old OrbitControls but remove the duplicate Three.js for now, 
+         or better, use a known working UMD bundle for OrbitControls if available.
+         Safest bet: Use the one that was there but remove the PRECEDING three.js 
+         Wait, line 334 is v0.160.0. Line 349 is r128.
+         Line 350 is OrbitControls 0.128.0.
+         If I keep 0.128.0 OrbitControls, it might conflict with 0.160.0 core.
+         I will replace line 349 and 350 with a comment or just remove 349. 
+         Actually, let's remove 349. And update 350 to a newer OrbitControls if possible, or leave it and hope for backward compat (unlikely for 30 versions).
+         Let's look for a UMD/global version of OrbitControls 0.160.0.
+         https://cdn.jsdelivr.net/npm/three@0.160.0/examples/js/controls/OrbitControls.js might exist? 
+         Three.js moved to jsm (modules) primarily. 
+         Let's check if there is a 'js' folder in 0.160.0. Usually it was removed in r152+.
+         So we need to use type="module" or an adapter.
+         Current code uses `new THREE.OrbitControls`.
+         If I use type="module", it won't be on `THREE` global.
+         Key constraint: existing code expects `THREE.OrbitControls`.
+         
+         Decision: Downgrade the MAIN three.js to r128 (line 334) to match the controls and existing viz code, 
+         OR find a compat script.
+         Downgrading logic: Line 334 was added presumably for upgrades.
+         But line 349 was likely the "working" on.
+         Let's remove line 334 (v0.160.0) instead? 
+         Wait, line 334 is "Critical dependencies".
+         If I remove 334, I rely on 349 (deferred).
+         But `planet-3d-viewer.js` is deferred too.
+         
+         Let's remove line 334 and let line 349 be the source of truth for now, 
+         OR update line 334 to r128 and remove 349.
+         Consolidating to r128 is safer for "checking visualizations work" quickly without refactoring to ES modules.
+     -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js" defer></script>
+    <script src="planet-3d-viewer.js" defer></script>
+
+    <!-- Large data file - load asynchronously to prevent blocking -->
+    <script src="kepler_data_parsed.js" defer></script>
+    <script src="large-exoplanet-loader-core-minimal.js" defer></script>
+    <!-- Main database system - depends on kepler_data_parsed.js -->
+    <script src="database-optimized.js" defer></script>
+    <script src="gemini-live-helper.js" defer></script>
+    <script src="database-ai-search-suggestions-enhanced.js" defer></script>
+    <script src="database-advanced-features.js" defer></script>
+    <!-- nft-certificate-generator.js removed (duplicate) -->
+    <!-- blockchain-verification-system.js removed (duplicate) -->
+    <script src="planet-ownership-transfer.js" defer></script>
+    <script src="telescope-data-feeds.js" defer></script>
+    <script src="nasa-api-integration.js" defer></script>
+    <script src="ai-planet-discovery-predictions.js" defer></script>
+    <script src="ai-habitability-analysis.js" defer></script>
+    <script src="esa-api-integration.js" defer></script>
+    <script src="space-news-aggregator.js" defer></script>
+    <script src="user-behavior-analytics.js" defer></script>
+    <script src="interactive-star-maps.js" defer></script>
+    <script src="orbital-mechanics-simulation-enhanced.js" defer></script>
+    <script src="spacex-api-integration.js" defer></script>
+    <script src="computer-vision-capabilities.js" defer></script>
+    <script src="planet-comparison-tool.js" defer></script>
+    <script src="planet-discovery-timeline.js" defer></script>
+    <script src="planet-favorites-system.js" defer></script>
+    <script src="realtime-notifications.js" defer></script>
+    <script src="database-visualization-features.js" defer></script>
+    <!-- planet-3d-viewer.js removed (duplicate) -->
+    <script src="user-analytics.js" defer></script>
+    <script src="two-factor-auth.js" defer></script>
+    <script src="planet-shaders.js" defer></script>
+    <script src="galactic-events.js?v=20251215" defer></script>
+    <script src="anomaly-research.js" defer></script>
+    <script src="colony-governance.js" defer></script>
+    <script src="economy-system.js" defer></script>
+    <script src="tactical-combat-system.js" defer></script>
+    <script src="ground-warfare-system.js" defer></script>
+    <script src="diplomacy-system.js" defer></script>
+    <script src="megastructures-system.js" defer></script>
+    <script src="ascension-system.js" defer></script>
+    <script src="galactic-council.js" defer></script>
+    <script src="planet-weather-simulation.js" defer></script>
+    <script src="atmospheric-simulation.js" defer></script>
+    <script src="planet-surface-visualization.js" defer></script>
+    <script src="orbital-mechanics-simulation.js" defer></script>
+    <script src="webgpu-renderer.js" defer></script>
+    <script src="ai-game-master.js" defer></script>
+    <script src="soul-engine.js" defer></script>
+    <script src="galactic-senate.js" defer></script>
+    <script src="galactic-history-system.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/livekit-client/dist/livekit-client.umd.min.js"></script>
+    <script src="livekit-voice-manager.js" defer></script>
+    <script src="voxel-terrain-system.js" defer></script>
+    <script src="fluid-dynamics-system.js" defer></script>
+    <script src="alien-biosphere-system.js" defer></script>
+    <script src="diplomatic-ai-system.js" defer></script>
+    <script src="supply-chain-system.js" defer></script>
+    <script src="haptic-feedback-system.js" defer></script>
+    <script src="server-meshing-system.js" defer></script>
+    <script src="persistence-manager.js" defer></script>
+    <script src="doomsday-weapon-system.js" defer></script>
+    <script src="megastructure-system.js" defer></script>
+    <script src="ai-voice-system.js" defer></script>
+    <script src="multiverse-physics.js" defer></script>
+    <script src="mirror-universe-system.js" defer></script>
+    <script src="time-dilation-system.js" defer></script>
+    <script src="entropy-manager.js" defer></script>
+    <script src="bci-system.js" defer></script>
+    <script src="ar-planet-viewing.js" defer></script>
+    <script src="blockchain-nft-integration.js" defer></script>
+    <script src="planet-trading-marketplace.js" defer></script>
+    <script src="astronomy-courses.js" defer></script>
+    <script src="nasa-mission-simulations.js" defer></script>
+    <script src="pwa-enhancements.js" defer></script>
+    <script src="virtual-scrolling.js" defer></script>
+    <script src="lazy-loading-manager.js" defer></script>
+    <script src="code-splitting-optimizer.js" defer></script>
+    <script src="accessibility-enhancements.js" defer></script>
+    <script src="comprehensive-error-handling.js" defer></script>
+    <script src="responsive-layout-optimizer.js" defer></script>
+    <script src="marketplace-payment-integration.js" defer></script>
+    <script src="api-cache-system.js" defer></script>
+    <script src="database-performance-optimizer.js" defer></script>
+    <script src="pwa-loader-core-minimal.js" defer></script>
+
+    <!-- API Configuration - Load before features -->
+    <script src="gemini-config.js"></script>
+    <script src="stripe-config.js"></script>
+    <script src="ai-planet-descriptions.js" defer></script>
+    <script src="natural-language-queries.js" defer></script>
+    <script src="text-classification.js?v=20251214" defer></script>
+    <script src="ai-usage-logger.js" defer></script>
+    <script src="social-sharing.js" defer></script>
+    <script src="user-data-export-import.js" defer></script>
+
+    <!-- New Planet Features -->
+    <script src="planet-wishlist-system.js" defer></script>
+    <script src="planet-bookmark-system.js" defer></script>
+    <script src="planet-rarity-calculator.js?v=20251214" defer></script>
+    <script src="planet-comparison-matrix.js" defer></script>
+    <script src="planet-discovery-search-history.js" defer></script>
+    <script src="planet-discovery-feed.js" defer></script>
+    <script src="planet-discovery-statistics-widget.js" defer></script>
+    <script src="planet-social-sharing.js" defer></script>
+    <script src="planet-discovery-export.js" defer></script>
+    <script src="planet-discovery-map-visualization.js" defer></script>
+    <script src="planet-discovery-notifications.js?v=20251214" defer></script>
+    <script src="custom-dashboard-widgets.js" defer></script>
+    <script src="planet-claim-statistics.js" defer></script>
+    <script src="popular-planet-trends.js" defer></script>
+    <script src="discovery-rate-tracking.js" defer></script>
+    <script src="advanced-planet-search-filters.js" defer></script>
+    <script src="planet-comparison-enhancements.js" defer></script>
+    <script src="ai-planet-habitability-analysis.js" defer></script>
+    <script src="real-time-space-news-feed.js" defer></script>
+    <script src="student-dashboard.js" defer></script>
+    <script src="interactive-astronomy-courses.js?v=20251214" defer></script>
+    <script src="planet-discovery-tutorials.js" defer></script>
+    <script src="educational-games.js" defer></script>
+    <script src="community-marketplace.js" defer></script>
+    <script src="planet-investment-portfolios.js" defer></script>
+    <script src="crowdfunding-space-missions.js" defer></script>
+    <script src="planet-rental-leasing.js" defer></script>
+    <script src="3d-planet-visualization.js" defer></script>
+    <script src="two-factor-authentication.js" defer></script>
+    <script src="planet-discovery-calendar.js" defer></script>
+    <script src="planet-discovery-comparison-tool.js" defer></script>
+    <script src="planet-discovery-video-tutorials.js?v=20251214" defer></script>
+    <script src="planet-discovery-podcast-integration.js" defer></script>
+    <script src="planet-trivia-quiz.js" defer></script>
+    <script src="planet-discovery-voice-commands.js?v=20251214" defer></script>
+    <script src="planet-discovery-mobile-notifications.js" defer></script>
+    <script src="planet-discovery-ar-filters.js" defer></script>
+    <script src="planet-discovery-vr-tours.js" defer></script>
+    <script src="planet-discovery-educational-courses.js" defer></script>
+    <script src="planet-discovery-live-streaming.js" defer></script>
+
+    <script src="planet-discovery-community-forums.js" defer></script>
+    <script src="planet-discovery-mentorship.js" defer></script>
+    <script src="planet-discovery-research-grants.js" defer></script>
+    <script src="planet-discovery-certification.js" defer></script>
+    <script src="planet-discovery-internships.js" defer></script>
+    <script src="planet-discovery-job-board.js" defer></script>
+    <script src="planet-discovery-scholarships.js" defer></script>
+    <script src="planet-discovery-conferences.js" defer></script>
+    <script src="planet-discovery-webinars.js" defer></script>
+    <script src="planet-discovery-research-papers.js" defer></script>
+    <script src="planet-discovery-citation-manager.js" defer></script>
+    <script src="planet-discovery-collaboration.js" defer></script>
+    <script src="planet-discovery-data-visualization.js" defer></script>
+    <script src="planet-discovery-api-rate-limiting.js" defer></script>
+    <script src="planet-discovery-3d-printing.js" defer></script>
+    <script src="planet-discovery-webhooks.js" defer></script>
+    <script src="planet-discovery-sdk.js" defer></script>
+    <script src="planet-discovery-graphql.js" defer></script>
+    <script src="planet-discovery-realtime-sync.js" defer></script>
+    <script src="planet-discovery-backup-restore.js" defer></script>
+    <script src="planet-discovery-ai-chat.js" defer></script>
+    <script src="planet-discovery-news-aggregator-enhanced.js" defer></script>
+    <script src="planet-discovery-event-calendar.js" defer></script>
+    <script src="planet-discovery-user-profiles.js" defer></script>
+    <script src="planet-discovery-direct-messaging.js" defer></script>
+    <script src="planet-discovery-social-feed.js" defer></script>
+    <script src="planet-discovery-image-gallery.js" defer></script>
+
+    <!-- Foundation Scripts for Future Features (Optional) -->
+    <script src="blockchain-foundation.js" defer></script>
+
+    <!-- Core Web Vitals & Performance Budgets -->
+    <script src="core-web-vitals-monitoring.js" defer></script>
+    <script src="core-web-vitals-dashboard.js" defer></script>
+    <script src="core-web-vitals-alerts.js" defer></script>
+    <script src="performance-budgets-system.js" defer></script>
+    <script>
+        (function () {
+            window.databaseDebug = function (msg) {
+                try {
+                    var el = document.getElementById('database-debug-status');
+                    if (!el) { return; }
+                    var now = new Date().toLocaleTimeString();
+                    el.textContent = '[' + now + '] ' + String(msg || '');
+                } catch (e) { }
+            };
+        })();
+    </script>
+    <script>
+        (function () {
+            function renderMyUniverseOverview() {
+                var container = document.getElementById('my-universe-container');
+                if (!container) { return; }
+                var wishlistCount = 0;
+                var bookmarksCount = 0;
+                var historyCount = 0;
+                var feedCount = 0;
+                try {
+                    if (window.planetWishlistSystem && Array.isArray(window.planetWishlistSystem.wishlist)) {
+                        wishlistCount = window.planetWishlistSystem.wishlist.length;
+                    }
+                    if (window.planetBookmarkSystem && Array.isArray(window.planetBookmarkSystem.bookmarks)) {
+                        bookmarksCount = window.planetBookmarkSystem.bookmarks.length;
+                    }
+                    if (window.planetDiscoverySearchHistory && Array.isArray(window.planetDiscoverySearchHistory.history)) {
+                        historyCount = window.planetDiscoverySearchHistory.history.length;
+                    }
+                    if (window.planetDiscoveryFeed && Array.isArray(window.planetDiscoveryFeed.feed)) {
+                        feedCount = window.planetDiscoveryFeed.feed.length;
+                    }
+                } catch (e) { }
+
+                container.innerHTML = `
+                    <div style="background: rgba(0, 0, 0, 0.6); border: 2px solid rgba(186, 148, 79, 0.4); border-radius: 15px; padding: 1.5rem; margin: 1rem 0;">
+                        <h2 style="color: #ba944f; margin: 0 0 1rem 0; font-size: 1.4rem;">My Universe</h2>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.75rem; font-size: 0.9rem;">
+                            <div style="padding: 0.75rem; border-radius: 10px; background: rgba(24, 24, 35, 0.9); border: 1px solid rgba(236, 72, 153, 0.5);">
+                                <div style="opacity: 0.7;">Wishlist</div>
+                                <div style="color: #ec4899; font-weight: 600; font-size: 1.2rem;">
+                                    ${String(wishlistCount)}
+                                </div>
+                            </div>
+                            <div style="padding: 0.75rem; border-radius: 10px; background: rgba(24, 24, 35, 0.9); border: 1px solid rgba(59, 130, 246, 0.5);">
+                                <div style="opacity: 0.7;">Bookmarks</div>
+                                <div style="color: #3b82f6; font-weight: 600; font-size: 1.2rem;">
+                                    ${String(bookmarksCount)}
+                                </div>
+                            </div>
+                            <div style="padding: 0.75rem; border-radius: 10px; background: rgba(24, 24, 35, 0.9); border: 1px solid rgba(234, 179, 8, 0.5);">
+                                <div style="opacity: 0.7;">Searches</div>
+                                <div style="color: #eab308; font-weight: 600; font-size: 1.2rem;">
+                                    ${String(historyCount)}
+                                </div>
+                            </div>
+                            <div style="padding: 0.75rem; border-radius: 10px; background: rgba(24, 24, 35, 0.9); border: 1px solid rgba(34, 197, 94, 0.5);">
+                                <div style="opacity: 0.7;">Discoveries</div>
+                                <div style="color: #22c55e; font-weight: 600; font-size: 1.2rem;">
+                                    ${String(feedCount)}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            if (typeof window !== 'undefined') {
+                window.renderMyUniverseOverview = renderMyUniverseOverview;
+            }
+
+            // Ensure music player is visible on database page
+            function ensurePlayerVisible() {
+                const playerEl = document.getElementById('cosmic-music-player');
+                if (playerEl) {
+                    playerEl.style.display = 'block';
+                    playerEl.style.opacity = '1';
+                    playerEl.style.pointerEvents = 'auto';
+                    playerEl.style.visibility = 'visible';
+                    console.log('✅ Music player element found and made visible');
+                } else {
+                    console.log('⏳ Waiting for music player to initialize...');
+                    setTimeout(ensurePlayerVisible, 500);
+                }
+            }
+
+            // Initialize database features
+            function initializeDatabaseFeatures() {
+                // Initialize wishlist
+                if (window.planetWishlistSystem) {
+                    const wishlistContainer = document.getElementById('wishlist-container');
+                    if (wishlistContainer) {
+                        window.planetWishlistSystem.renderWishlist('wishlist-container');
+                    }
+                }
+
+                // Initialize bookmarks
+                if (window.planetBookmarkSystem) {
+                    const bookmarksContainer = document.getElementById('bookmarks-container');
+                    if (bookmarksContainer) {
+                        window.planetBookmarkSystem.renderBookmarks('bookmarks-container');
+                    }
+                }
+
+                const getWidgetPlanet = () => {
+                    try {
+                        const db = window.databaseInstance;
+                        if (!db || !Array.isArray(db.allData) || db.allData.length === 0) {
+                            return null;
+                        }
+                        if (db.selectedPlanetKepid && typeof db.compareKepid === 'function') {
+                            const match = db.allData.find(p => db.compareKepid(p.kepid, db.selectedPlanetKepid));
+                            if (match) {
+                                return match;
+                            }
+                        }
+                        return db.allData[0];
+                    } catch (e) {
+                        return null;
+                    }
+                };
+
+                if (window.planetRarityCalculator) {
+                    const rarityContainer = document.getElementById('rarity-calculator-container');
+                    if (rarityContainer) {
+                        const renderRarity = () => {
+                            const planet = getWidgetPlanet();
+                            if (planet) {
+                                window.planetRarityCalculator.renderRarity('rarity-calculator-container', planet);
+                                return true;
+                            }
+                            return false;
+                        };
+
+                        if (!renderRarity()) {
+                            rarityContainer.innerHTML = '<div style="background: rgba(0, 0, 0, 0.6); border: 2px solid rgba(186, 148, 79, 0.3); border-radius: 15px; padding: 2rem; text-align: center; color: rgba(255,255,255,0.75);">Loading rarity calculator…</div>';
+                            setTimeout(renderRarity, 2000);
+                        }
+                    }
+                }
+
+                if (window.planetComparisonTool) {
+                    const comparisonContainer = document.getElementById('comparison-tool-container');
+                    if (comparisonContainer) {
+                        window.planetComparisonTool.displayComparison(comparisonContainer);
+                    }
+                }
+
+                if (window.planetDiscoveryTimeline) {
+                    const timelineContainer = document.getElementById('discovery-timeline-container');
+                    if (timelineContainer) {
+                        window.planetDiscoveryTimeline.displayTimeline(timelineContainer);
+                    }
+                }
+
+                // Initialize discovery feed
+                if (window.planetDiscoveryFeed) {
+                    const feedContainer = document.getElementById('discovery-feed-container');
+                    if (feedContainer) {
+                        window.planetDiscoveryFeed.renderFeed('discovery-feed-container');
+                    }
+                }
+
+                // Initialize search history
+                if (window.planetDiscoverySearchHistory) {
+                    const historyContainer = document.getElementById('search-history-container');
+                    if (historyContainer) {
+                        window.planetDiscoverySearchHistory.renderHistory('search-history-container');
+                    }
+                }
+
+                // Initialize statistics widget
+                if (window.planetDiscoveryStatisticsWidget) {
+                    const statsContainer = document.getElementById('discovery-statistics-container');
+                    if (statsContainer) {
+                        window.planetDiscoveryStatisticsWidget.renderWidget('discovery-statistics-container');
+                    }
+                }
+
+                // Initialize discovery map
+                if (window.planetDiscoveryMapVisualization) {
+                    const mapContainer = document.getElementById('discovery-map-container');
+                    if (mapContainer) {
+                        window.planetDiscoveryMapVisualization.renderMap('discovery-map-container');
+                    }
+                }
+
+                // Initialize discovery notifications
+                if (window.planetDiscoveryNotifications &&
+                    typeof window.planetDiscoveryNotifications.renderNotifications === 'function') {
+                    const notificationsContainer = document.getElementById('discovery-notifications-container');
+                    if (notificationsContainer) {
+                        window.planetDiscoveryNotifications.renderNotifications('discovery-notifications-container');
+                        if (typeof window.planetDiscoveryNotifications.requestPermission === 'function') {
+                            window.planetDiscoveryNotifications.requestPermission();
+                        }
+                    }
+                }
+
+                // Initialize discovery calendar
+                if (window.planetDiscoveryCalendar) {
+                    const calendarContainer = document.getElementById('discovery-calendar-container');
+                    if (calendarContainer) {
+                        window.planetDiscoveryCalendar.renderCalendar('discovery-calendar-container');
+                    }
+                }
+
+                // Initialize discovery comparison tool for methods
+                if (window.planetDiscoveryComparisonTool) {
+                    const comparisonContainer = document.getElementById('discovery-comparison-methods-container');
+                    if (comparisonContainer) {
+                        window.planetDiscoveryComparisonTool.renderComparison('discovery-comparison-methods-container');
+                    }
+                }
+
+                // Initialize video tutorials
+                if (window.planetDiscoveryVideoTutorials) {
+                    const tutorialsContainer = document.getElementById('video-tutorials-container');
+                    if (tutorialsContainer) {
+                        window.planetDiscoveryVideoTutorials.renderTutorials('video-tutorials-container');
+                    }
+                }
+
+                // Initialize podcast integration
+                if (window.planetDiscoveryPodcastIntegration) {
+                    const podcastContainer = document.getElementById('podcast-integration-container');
+                    if (podcastContainer) {
+                        window.planetDiscoveryPodcastIntegration.renderPodcasts('podcast-integration-container');
+                    }
+                }
+
+                // Initialize quiz game
+                if (window.planetTriviaQuiz) {
+                    const quizContainer = document.getElementById('quiz-container');
+                    if (quizContainer) {
+                        window.planetTriviaQuiz.renderQuiz('quiz-container');
+                    }
+                }
+
+                // Initialize voice commands
+                if (window.planetDiscoveryVoiceCommands) {
+                    const voiceContainer = document.getElementById('voice-commands-container');
+                    if (voiceContainer) {
+                        window.planetDiscoveryVoiceCommands.renderVoiceControl('voice-commands-container');
+                    }
+                }
+
+                // Initialize mobile notifications
+                if (window.planetDiscoveryMobileNotifications) {
+                    const notificationsContainer = document.getElementById('mobile-notifications-container');
+                    if (notificationsContainer) {
+                        window.planetDiscoveryMobileNotifications.renderNotificationSettings('mobile-notifications-container');
+                    }
+                }
+
+                // Initialize AR filters
+                if (window.planetDiscoveryARFilters) {
+                    const arContainer = document.getElementById('ar-filters-container');
+                    if (arContainer) {
+                        window.planetDiscoveryARFilters.renderFilters('ar-filters-container');
+                    }
+                }
+
+                // Initialize VR tours
+                if (window.planetDiscoveryVRTours) {
+                    const vrContainer = document.getElementById('vr-tours-container');
+                    if (vrContainer) {
+                        window.planetDiscoveryVRTours.renderTours('vr-tours-container');
+                    }
+                }
+
+                // Initialize educational courses
+                if (window.planetDiscoveryEducationalCourses) {
+                    const coursesContainer = document.getElementById('educational-courses-container');
+                    if (coursesContainer) {
+                        window.planetDiscoveryEducationalCourses.renderCourses('educational-courses-container');
+                    }
+                }
+
+                // Initialize live streaming
+                if (window.planetDiscoveryLiveStreaming) {
+                    const streamingContainer = document.getElementById('live-streaming-container');
+                    if (streamingContainer) {
+                        window.planetDiscoveryLiveStreaming.renderStreams('live-streaming-container');
+                    }
+                }
+
+                // Initialize community forums
+                if (window.planetDiscoveryCommunityForums) {
+                    const forumsContainer = document.getElementById('community-forums-container');
+                    if (forumsContainer) {
+                        window.planetDiscoveryCommunityForums.renderForums('community-forums-container');
+                    }
+                }
+
+                // Initialize mentorship program
+                if (window.planetDiscoveryMentorship) {
+                    const mentorshipContainer = document.getElementById('mentorship-container');
+                    if (mentorshipContainer) {
+                        window.planetDiscoveryMentorship.renderMentorship('mentorship-container');
+                    }
+                }
+
+                // Initialize research grants
+                if (window.planetDiscoveryResearchGrants) {
+                    const grantsContainer = document.getElementById('research-grants-container');
+                    if (grantsContainer) {
+                        window.planetDiscoveryResearchGrants.renderGrants('research-grants-container');
+                    }
+                }
+
+                // Initialize certification program
+                if (window.planetDiscoveryCertification) {
+                    const certContainer = document.getElementById('certification-container');
+                    if (certContainer) {
+                        window.planetDiscoveryCertification.renderCertifications('certification-container');
+                    }
+                }
+
+                // Initialize internships
+                if (window.planetDiscoveryInternships) {
+                    const internshipsContainer = document.getElementById('internships-container');
+                    if (internshipsContainer) {
+                        window.planetDiscoveryInternships.renderInternships('internships-container');
+                    }
+                }
+
+                // Initialize job board
+                if (window.planetDiscoveryJobBoard) {
+                    const jobBoardContainer = document.getElementById('job-board-container');
+                    if (jobBoardContainer) {
+                        window.planetDiscoveryJobBoard.renderJobBoard('job-board-container');
+                    }
+                }
+
+                // Initialize scholarships
+                if (window.planetDiscoveryScholarships) {
+                    const scholarshipsContainer = document.getElementById('scholarships-container');
+                    if (scholarshipsContainer) {
+                        window.planetDiscoveryScholarships.renderScholarships('scholarships-container');
+                    }
+                }
+
+                // Initialize conferences
+                if (window.planetDiscoveryConferences) {
+                    const conferencesContainer = document.getElementById('conferences-container');
+                    if (conferencesContainer) {
+                        window.planetDiscoveryConferences.renderConferences('conferences-container');
+                    }
+                }
+
+                // Initialize webinars
+                if (window.planetDiscoveryWebinars) {
+                    const webinarsContainer = document.getElementById('webinars-container');
+                    if (webinarsContainer) {
+                        window.planetDiscoveryWebinars.renderWebinars('webinars-container');
+                    }
+                }
+
+                // Initialize research papers
+                if (window.planetDiscoveryResearchPapers) {
+                    const papersContainer = document.getElementById('research-papers-container');
+                    if (papersContainer) {
+                        window.planetDiscoveryResearchPapers.renderPapers('research-papers-container');
+                    }
+                }
+
+                // Initialize citation manager
+                if (window.planetDiscoveryCitationManager) {
+                    const citationContainer = document.getElementById('citation-manager-container');
+                    if (citationContainer) {
+                        window.planetDiscoveryCitationManager.renderCitationManager('citation-manager-container');
+                    }
+                }
+
+                // Initialize collaboration tools
+                if (window.planetDiscoveryCollaboration) {
+                    const collaborationContainer = document.getElementById('collaboration-container');
+                    if (collaborationContainer) {
+                        window.planetDiscoveryCollaboration.renderCollaboration('collaboration-container');
+                    }
+                }
+
+                // Initialize data visualization library
+                if (window.planetDiscoveryDataVisualization) {
+                    const vizContainer = document.getElementById('data-visualization-container');
+                    if (vizContainer) {
+                        window.planetDiscoveryDataVisualization.renderVisualizationLibrary('data-visualization-container');
+                    }
+                }
+
+                // Initialize API rate limiting status
+                if (window.planetDiscoveryAPIRateLimiting) {
+                    const rateLimitContainer = document.getElementById('api-rate-limit-status');
+                    if (rateLimitContainer) {
+                        window.planetDiscoveryAPIRateLimiting.renderRateLimitStatus('api-rate-limit-status');
+                    }
+                }
+
+                // Initialize 3D printing
+                if (window.planetDiscovery3DPrinting) {
+                    const printingContainer = document.getElementById('3d-printing-container');
+                    if (printingContainer) {
+                        window.planetDiscovery3DPrinting.render3DPrinting('3d-printing-container');
+                    }
+                }
+
+                // Initialize webhooks
+                if (window.planetDiscoveryWebhooks) {
+                    const webhooksContainer = document.getElementById('webhooks-container');
+                    if (webhooksContainer) {
+                        window.planetDiscoveryWebhooks.renderWebhooks('webhooks-container');
+                    }
+                }
+
+                // Initialize SDK docs
+                if (window.planetDiscoverySDK) {
+                    const sdkContainer = document.getElementById('sdk-docs-container');
+                    if (sdkContainer) {
+                        window.planetDiscoverySDK.renderSDKDocs('sdk-docs-container');
+                    }
+                }
+
+                // Initialize GraphQL explorer
+                if (window.planetDiscoveryGraphQL) {
+                    const graphqlContainer = document.getElementById('graphql-explorer-container');
+                    if (graphqlContainer) {
+                        window.planetDiscoveryGraphQL.renderGraphQLExplorer('graphql-explorer-container');
+                    }
+                }
+
+                // Initialize real-time sync
+                if (window.planetDiscoveryRealTimeSync) {
+                    const syncContainer = document.getElementById('realtime-sync-status');
+                    if (syncContainer) {
+                        window.planetDiscoveryRealTimeSync.renderSyncStatus('realtime-sync-status');
+                    }
+                }
+
+                // Initialize backup & restore
+                if (window.planetDiscoveryBackupRestore) {
+                    const backupContainer = document.getElementById('backup-restore-container');
+                    if (backupContainer) {
+                        window.planetDiscoveryBackupRestore.renderBackupRestore('backup-restore-container');
+                    }
+                }
+
+                if (window.planetDiscoveryAIChat) {
+                    const aiChatContainer = document.getElementById('ai-chat-container');
+                    if (aiChatContainer) {
+                        window.planetDiscoveryAIChat.renderChatWidget('ai-chat-container');
+                    }
+                }
+
+                // Initialize news aggregator
+                if (window.planetDiscoveryNewsAggregator) {
+                    const newsContainer = document.getElementById('news-aggregator-container');
+                    if (newsContainer) {
+                        window.planetDiscoveryNewsAggregator.renderNewsAggregator('news-aggregator-container');
+                    }
+                }
+
+                // Initialize event calendar
+                if (window.planetDiscoveryEventCalendar) {
+                    const calendarContainer = document.getElementById('event-calendar-container');
+                    if (calendarContainer) {
+                        window.planetDiscoveryEventCalendar.renderEventCalendar('event-calendar-container');
+                    }
+                }
+
+                // Initialize user profiles
+                if (window.planetDiscoveryUserProfiles) {
+                    const profilesContainer = document.getElementById('user-profiles-container');
+                    if (profilesContainer) {
+                        window.planetDiscoveryUserProfiles.renderUserProfiles('user-profiles-container');
+                    }
+                }
+
+                // Initialize direct messaging
+                if (window.planetDiscoveryDirectMessaging) {
+                    const messagingContainer = document.getElementById('direct-messaging-container');
+                    if (messagingContainer) {
+                        window.planetDiscoveryDirectMessaging.renderMessaging('direct-messaging-container');
+                    }
+                }
+
+                // Initialize social feed
+                if (window.planetDiscoverySocialFeed) {
+                    const feedContainer = document.getElementById('social-feed-container');
+                    if (feedContainer) {
+                        window.planetDiscoverySocialFeed.renderSocialFeed('social-feed-container');
+                    }
+                }
+
+                // Initialize image gallery
+                if (window.planetDiscoveryImageGallery) {
+                    const galleryContainer = document.getElementById('image-gallery-container');
+                    if (galleryContainer) {
+                        window.planetDiscoveryImageGallery.renderImageGallery('image-gallery-container');
+                    }
+                }
+
+                renderMyUniverseOverview();
+            }
+
+            // Check after DOM is ready
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', () => {
+                    setTimeout(ensurePlayerVisible, 1000);
+                    setTimeout(initializeDatabaseFeatures, 2000);
+                });
+            } else {
+                setTimeout(ensurePlayerVisible, 1000);
+                setTimeout(initializeDatabaseFeatures, 2000);
+            }
+
+            const openBtn = document.getElementById('cosmic-player-open');
+            const toggleBtn = document.getElementById('cosmic-player-toggle');
+
+            if (!openBtn && !toggleBtn) {
+                return;
+            }
+
+            function expandPlayer() {
+                const playerEl = document.getElementById('cosmic-music-player');
+                if (!playerEl) {
+                    console.warn('⚠️ Music player element not found');
+                    return;
+                }
+
+                playerEl.style.display = 'block';
+                playerEl.style.opacity = '1';
+                playerEl.style.pointerEvents = 'auto';
+                playerEl.style.visibility = 'visible';
+
+                const content = playerEl.querySelector('#player-content');
+                const minimizeBtn = document.getElementById('minimize-player');
+                if (content && content.style.display === 'none') {
+                    content.style.display = 'block';
+                    if (minimizeBtn) {
+                        minimizeBtn.textContent = '−';
+                    }
+                }
+
+                playerEl.scrollIntoView({ behavior: 'smooth', block: 'end' });
+            }
+
+            function withPlayer(callback) {
+                const invoke = () => {
+                    if (typeof window.cosmicMusicPlayer === 'function') {
+                        const player = window.cosmicMusicPlayer();
+                        if (player) {
+                            callback(player);
+                            return true;
+                        }
+                    }
+                    return false;
+                };
+
+                if (invoke()) {
+                    return;
+                }
+
+                const observer = new MutationObserver(() => {
+                    if (invoke()) {
+                        observer.disconnect();
+                    }
+                });
+                observer.observe(document.body, { childList: true, subtree: true });
+            }
+
+            if (openBtn) {
+                openBtn.addEventListener('click', function () {
+                    withPlayer(function (player) {
+                        expandPlayer();
+                        if (!player.isPlaying) {
+                            player.play().catch(function () { /* autoplay guard handled inside player */ });
+                        }
+                    });
+                });
+            }
+
+            if (toggleBtn) {
+                toggleBtn.addEventListener('click', function () {
+                    withPlayer(function (player) {
+                        expandPlayer();
+                        player.togglePlay();
+                    });
+                });
+            }
+        })();
+    </script>
+</body>
+
+</html>

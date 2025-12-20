@@ -1,0 +1,29 @@
+{
+    "id":"niko_morePlanetaryConditions", # For the convenience of troubleshooters, include your name and the mod name, not just an acronym.
+	"name":"What we left behind", # Displayed to the player
+	"author":"Niko, Khepht (Spriter)",
+    "utility":"false",
+	"version":"5.0.0BETAa",
+	"description":"Adds a variety of planetary conditions to the sector, as well as a smattering of mysteries and awe-inspiring vistas.",
+    "gameVersion": "0.97a-RC11",
+  	"jars":["jars/niko_morePlanetaryConditions.jar"],
+  	"modPlugin":"data.niko_MPC_modPlugin",
+	  	"dependencies": [
+        {
+			"id": "lw_lazylib",
+            "name": "LazyLib",
+			"version": "2.7b"
+        },
+		{
+			"id": "lunalib",
+			"name": "LunaLib",
+			"version": "1.8.4"
+		},
+		{
+			"id": "MagicLib",
+			"name": "MagicLib",
+			"version": "1.4.4"
+
+		},
+    ],
+}

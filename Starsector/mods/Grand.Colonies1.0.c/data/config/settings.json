@@ -1,0 +1,17 @@
+{
+
+  "GrandColonies_TogglePageButton": "q", #which button is used to toggle between pages
+
+  "GrandColonies_AddPenalty": TRUE, #is there a penalty for having too many buildings on a colony?
+  "GrandColonies_PenaltyThreshold": 12, #how many buildings are permitted before the penalty kicks in
+  "GrandColonies_UpkeepPenaltyPerBuilding": 1.1f, #how much does the colony upkeep increase per building over the threshold (compounding - 1.1 is 10%)
+
+  "graphics": {
+      "GrandColonies": {
+          "01": "graphics/conditions/page01.png",
+          "02": "graphics/conditions/page02.png",
+          "warn": "graphics/conditions/pageWarning.png",
+          "warn_low": "graphics/conditions/pageWarning_low.png"
+      },
+  },
+}

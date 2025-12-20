@@ -1,0 +1,23 @@
+{
+  "displayName": "Standard",
+  "fluxCapacitors": 0,
+  "fluxVents": 0,
+  "goalVariant": true,
+  "hullId": "station_domres_right",
+  "hullMods": [],
+  "modules": [],
+  "permaMods": [],
+  "quality": 0,
+  "variantId": "station_domres_right_variant",
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS0001": "sabotpod",
+        "WS0002": "sabotpod"
+      }
+    }
+  ],
+  "wings": []
+}

@@ -1,0 +1,12 @@
+.git
+node_modules
+Dockerfile
+.dockerignore
+README.md
+*.log
+swf
+total-war-2
+games
+gta-6-videos
+*.pack
+

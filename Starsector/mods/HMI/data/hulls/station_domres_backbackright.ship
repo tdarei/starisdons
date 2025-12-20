@@ -1,0 +1,78 @@
+{
+  "bounds": [
+    28,
+    -9,
+    27.5,
+    7.5,
+    6.5,
+    32,
+    -18.5,
+    31,
+    -32,
+    9.5,
+    -20.5,
+    -4.5,
+    -21,
+    -31,
+    19.5,
+    -30.5
+  ],
+  "builtInWings": [],
+  "center": [
+    40,
+    35
+  ],
+  "collisionRadius": 63.5,
+  "engineSlots": [],
+  "height": 70,
+  "hullId": "station_domres_backbackright",
+  "hullName": "Gun Section, Small",
+  "hullSize": "FRIGATE",
+  "shieldCenter": [
+    0,
+    0
+  ],
+  "shieldRadius": 61,
+  "spriteName": "graphics/ships/domain_resurgent/hmidr_platform_backbackright.png",
+  "style": "LOW_TECH",
+  "viewOffset": 0,
+  "weaponSlots": [
+    {
+      "angle": -127,
+      "arc": 190,
+      "id": "WS0001",
+      "locations": [
+        -8,
+        16
+      ],
+      "mount": "TURRET",
+      "size": "LARGE",
+      "type": "BALLISTIC"
+    },
+    {
+      "angle": -90,
+      "arc": 125,
+      "id": "WS0002",
+      "locations": [
+        -8,
+        -18.5
+      ],
+      "mount": "TURRET",
+      "size": "MEDIUM",
+      "type": "BALLISTIC"
+    },
+    {
+      "angle": -56.5,
+      "arc": 123,
+      "id": "WS0003",
+      "locations": [
+        11,
+        -9.5
+      ],
+      "mount": "TURRET",
+      "size": "SMALL",
+      "type": "BALLISTIC"
+    }
+  ],
+  "width": 80
+}

@@ -1,0 +1,27 @@
+{	
+	"hullFrequency":{
+
+		"hulls":{			
+			"remora":10,
+			"shepherd":5,
+		},
+	},
+		"knownShips":{
+		"hulls":[		
+			"tempest_7",
+			"tempest_8",
+			"wolf_assault",
+			"aurora_s",
+			"shrike_prototype",
+			"scarab_prototype",
+			"hmi_ionos",
+			"fury_s",
+			"hammerhead_tt",
+			"hmi_appeasement",
+			"hmi_pardon",
+			"hmi_forgiveness",
+			],
+    },		
+},
+
+

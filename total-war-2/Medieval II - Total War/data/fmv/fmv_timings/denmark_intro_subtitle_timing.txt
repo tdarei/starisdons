@@ -1,0 +1,6 @@
+<SYNC Start=9100>
+<P Class=ENUSCC>Denmark_Intro_14
+<SYNC Stop=25300>
+<SYNC Start=51100>
+<P Class=ENUSCC>Denmark_Intro_15
+<SYNC Stop=66100>

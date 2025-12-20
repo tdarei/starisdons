@@ -1,0 +1,935 @@
++script
+
+; *********************************************************************************************
+;	The Battle or Arsuf
+; *********************************************************************************************
+		
+		
+					prepare_for_battle		; This must be *BEFORE* defining labels
+		
+		
+					;	label_unit ALLIANCE ARMY UNIT	blah_blah_blah
+		
+					;	 ALLIANCE 0	CRUSADERS
+
+
+					label_unit 0 0 0	King_Richard
+					label_unit 0 0 1	Knights_Hospitaller_1
+					label_unit 0 0 2	Knights_Hospitaller_2
+					label_unit 0 0 3	Knights_Hospitaller_3
+					label_unit 0 0 4	Knights_Templar_1
+					label_unit 0 0 5	Knights_Templar_2
+					label_unit 0 0 6	Knights_Templar_3
+					label_unit 0 0 7	Yeoman_Archers_1
+					label_unit 0 0 8	Yeoman_Archers_2
+					label_unit 0 0 9	Crusader_Knights
+					label_unit 0 0 10	Armored_Sergeants_1
+					label_unit 0 0 11	Armored_Sergeants_2
+					label_unit 0 0 12	Spear_Militia_1
+					label_unit 0 0 13	Spear_Militia_2
+					label_unit 0 0 14	Balkan_Archers_1
+					label_unit 0 0 15	Balkan_Archers_2
+					label_unit 0 0 16	Mercenary_Crossbowmen				
+					label_unit 0 0 17	Spear_Militia_3
+					label_unit 0 0 18	Spear_Militia_4
+
+
+			
+					;	ALLIANCE 1	SARACENS
+
+
+					label_unit 1 0 0	Saladin
+					label_unit 1 0 1	Arab_Cavalry_1
+					label_unit 1 0 2	Arab_Cavalry_2
+					label_unit 1 0 3	Saracen_Militia_1
+					label_unit 1 0 4	Saracen_Militia_2
+					label_unit 1 0 5	Saracen_Militia_3
+					label_unit 1 0 6    Desert_Cavalry_1
+					label_unit 1 0 7    Desert_Cavalry_2
+					label_unit 1 0 8    Nubian_Spearmen_1
+					label_unit 1 0 9    Nubian_Spearmen_2
+					label_unit 1 0 10   Nubian_Spearmen_3
+					label_unit 1 0 11   Nubian_Spearmen_4
+					label_unit 1 0 12   Saracen_Militia_4
+					label_unit 1 0 13   Saracen_Militia_5
+					label_unit 1 0 14   Saracen_Militia_6
+					label_unit 1 0 15   Arab_Cavalry_3
+					label_unit 1 0 16   Arab_Cavalry_4
+					label_unit 1 0 17   Desert_Archers_1
+					label_unit 1 0 18   Desert_Archers_2 
+					label_unit 1 0 19   Naffatun
+
+; *********************************************************************************************
+;	Counters and Positions
+; *********************************************************************************************
+		
+					declare_counter battle_phase
+					declare_counter percentage_of_enemy_killed_by_missile
+					declare_counter melee_action_threshold		
+					declare_counter second_phase
+					declare_counter enemy_not_in_melee
+					declare_counter	unit_in_melee
+					declare_counter crusader_reached_hattin
+					declare_counter monitor_loop_test				
+					declare_counter unit_in_or_out_of_melee_test
+					declare_counter escape_handler
+					declare_counter outflanking_cav
+					declare_counter after_first_release
+					declare_counter Richard_died
+					
+					declare_counter unit_initiate_attack
+					declare_counter ai_control_for_evasive_action
+					declare_counter evasive_action_consequences
+					
+					declare_counter is_Saladin_in_melee
+					declare_counter is_Arab_Cavalry_1_in_melee
+					declare_counter is_Arab_Cavalry_2_in_melee
+					declare_counter is_Saracen_Militia_1_in_melee
+					declare_counter is_Saracen_Militia_2_in_melee
+					declare_counter is_Saracen_Militia_3_in_melee
+					declare_counter is_Desert_Cavalry_1_in_melee
+					declare_counter is_Desert_Cavalry_2_in_melee
+					declare_counter is_Nubian_Spearmen_1_in_melee
+					declare_counter is_Nubian_Spearmen_2_in_melee
+					declare_counter is_Nubian_Spearmen_3_in_melee
+					declare_counter is_Nubian_Spearmen_4_in_melee
+					declare_counter is_Saracen_Militia_4_in_melee
+					declare_counter is_Saracen_Militia_5_in_melee
+					declare_counter is_Saracen_Militia_6_in_melee
+					declare_counter is_Arab_Cavalry_3_in_melee
+					declare_counter is_Arab_Cavalry_4_in_melee
+					declare_counter is_Arab_Cavalry_5_in_melee
+					declare_counter is_Desert_Archers_1_in_melee
+					declare_counter is_Desert_Archers_2_in_melee
+										
+					declare_timer ai_takeover
+										
+					label_location -313, 335 saladinroutelinestart
+					label_location -159, -474 saladinroutelineend
+
+
+
+
+
+
+
+
+
+
+
+;**********************************************************************************************
+;******************************* ESCAPE KEY HANDLER *******************************************
+;**********************************************************************************************
+
+					steal_esc_key
+		
+					;Allows user to skip intro and jump straight to the battle by pressing the ESC key.
+
+				monitor_event EscPressed TrueCondition
+					stop_sound_event ARSUF_NARRATOR_1
+					stop_sound_event ARSUF_NARRATOR_2
+					stop_sound_event ARSUF_NARRATOR_3
+					stop_sound_event ARSUF_NARRATOR_4
+					stop_sound_event ARSUF_NARRATOR_5
+					stop_sound_event ARSUF_NARRATOR_6
+					stop_sound_event ARSUF_NARRATOR_7
+					stop_sound_event ARSUF_NARRATOR_8
+					stop_sound_event ARSUF_NARRATOR_9
+					stop_sound_event ARSUF_NARRATOR_10
+					set_counter battle_phase 1
+					set_counter escape_handler 1
+					terminate_monitor
+				end_monitor
+			
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;	Disable AI, UI 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+				;	disable_cursor
+					suspend_unscripted_advice true
+				;	disable_shortcuts true
+				;	disable_entire_ui
+				;	inhibit_camera_input true
+				;	camera_restrictions_set off
+					camera_default_mode_set tw
+				;	hide_ui
+				;	ai_active_set off
+
+					
+;;;;;;;;;;;;;;;;VVVVVVVV-OZ INTRO SETTINGS-VVVVVVVVVV										
+     battle_default_camera
+     camera_restrictions_set off
+     disable_cursor      ;prevent the player clicking
+     disable_entire_ui
+     disable_shortcuts true
+     disable_shortcuts toggle_pause_button false  ;toggle_pause_button PAUSE P
+     enable_ui toggle_pause_button
+     inhibit_camera_input true
+     hide_ui
+;;;;;;;;;;;;;;;;;
+					while ! I_BattleStarted
+					end_while
+					
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;					
+;	Setting unit morale
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;					unit_set_morale King_Richard high
+;					unit_set_morale Knights_Hospitaller_1 high					
+;					unit_set_morale Knights_Hospitaller_2 high
+;					unit_set_morale Knights_Hospitaller_3 high
+;					unit_set_morale Knights_Templar_1 high
+;					unit_set_morale Knights_Templar_2 high
+;					unit_set_morale Knights_Templar_3 high
+;				;	unit_set_morale Peasant_Archers_1 high
+;				;	unit_set_morale Peasant_Archers_2 high
+;					unit_set_morale Yeoman_Archers_1 high
+;					unit_set_morale Yeoman_Archers_2 high
+;					unit_set_morale Crusader_Knights high
+;					unit_set_morale Armored_Sergeants_1 high
+;					unit_set_morale Armored_Sergeants_2 high
+;					unit_set_morale Spear_Militia_1 high
+;					unit_set_morale Spear_Militia_2 high
+;					unit_set_morale Balkan_Archers_1 high
+;					unit_set_morale Balkan_Archers_2 high
+;					unit_set_morale Mercenary_Crossbowmen high
+					
+	
+					;unit_set_fire_at_will_mode Peasant_Archers_1 off
+					;unit_set_fire_at_will_mode Peasant_Archers_2 off
+					;unit_set_fire_at_will_mode Yeoman_Archers_1 off
+					;unit_set_fire_at_will_mode Yeoman_Archers_2 off
+					;unit_set_fire_at_will_mode Balkan_Archers_1 off
+					;unit_set_fire_at_will_mode Balkan_Archers_2 off
+					;unit_set_fire_at_will_mode Mercenary_Crossbowmen off			
+					
+					;unit_set_skirmish_mode Peasant_Archers_1 off
+					;unit_set_skirmish_mode Peasant_Archers_2 off
+					;unit_set_skirmish_mode Yeoman_Archers_1 off
+					;unit_set_skirmish_mode Yeoman_Archers_2 off
+					;unit_set_skirmish_mode Balkan_Archers_1 off
+					;unit_set_skirmish_mode Balkan_Archers_2 off
+					;unit_set_skirmish_mode Mercenary_Crossbowmen off			
+					
+																				
+
+	
+; *********************************************************************************************
+; *********************************************************************************************
+;			Intro sequence - INTRO MONITOR
+;			Intro sequence - INTRO MONITOR
+; *********************************************************************************************
+; *********************************************************************************************
+		
+					set_music_state custom Arabic_Tension
+
+				monitor_conditions I_CompareCounter battle_phase 0
+
+;pause_battle
+
+
+define_unit_group crusaders1 King_Richard Knights_Hospitaller_1 Knights_Hospitaller_2 Knights_Hospitaller_3 Knights_Templar_1 Knights_Templar_2	Knights_Templar_3 Yeoman_Archers_1 Yeoman_Archers_2 Crusader_Knights Armored_Sergeants_1 Armored_Sergeants_2 Spear_Militia_1 Spear_Militia_2 Balkan_Archers_1 Balkan_Archers_2 Mercenary_Crossbowmen Spear_Militia_3 Spear_Militia_4
+
+define_unit_group saladin1 Saladin Arab_Cavalry_1 Arab_Cavalry_2 Saracen_Militia_1 Saracen_Militia_2 Saracen_Militia_3 Desert_Cavalry_1 Desert_Cavalry_2 Nubian_Spearmen_1 Nubian_Spearmen_2 Nubian_Spearmen_3 Nubian_Spearmen_4 Saracen_Militia_4 Saracen_Militia_5 Saracen_Militia_6 Desert_Archers_1 Desert_Archers_2 Naffatun
+
+
+
+
+unit_group_order_relative_move_formed crusaders1 0 200
+
+
+
+set_camera_bookmark 1 -426.825, 86.9509, -109.295 -430.12, 85.3611, -118.545
+set_camera_bookmark 2 -497.238, 64.048, 96.0171 -506.822, 61.7441, 95.9702
+set_camera_bookmark 3 -571.16, 41.6066, 42.7593 -580.8, 41.9503, 45.4106
+
+
+set_camera_bookmark 4 -525.971, 76.986, 172.002 -530.277, 74.2749, 163.242
+
+set_camera_bookmark 5 -563.738, 43.8851, 95.6973 -567.337, 42.7777, 86.5164
+
+set_camera_bookmark 6 -605.468, 43.4458, -20.1296 -598.871, 43.3804, -27.5616
+
+set_camera_bookmark 7 -337.069, 66.5061, 44.5402 -346.268, 63.8553, 41.0867
+
+set_camera_bookmark 8 -397.076, 49.8204, -30.2941 -392.488, 49.9114, -21.4534
+
+set_camera_bookmark 9 -399.825, 50.2807, -36.4573 -408.634, 51.5194, -32.1805
+set_camera_bookmark 10 -484.275, 88.9043, -26.7752 -494.057, 86.2496, -27.7344
+
+set_camera_bookmark 11 -424.783, 75.0906, -168.353 -433.65, 72.3669, -172.401
+
+set_camera_bookmark 12 -599.95, 52.0992, 32.5717 -598.73, 49.4445, 22.8189
+set_camera_bookmark 13 -620.165, 41.9472, -118.225 -611.336, 41.3985, -113.722
+set_camera_bookmark 14 -586.617, 55.3528, -103.86 -579.985, 53.2106, -96.4962
+
+
+
+
+
+
+
+
+
+
+
+
+camera_position_at_bookmark 1
+
+
+
+
+
+
+
+
+					play_sound_event ARSUF_NARRATOR_1 tag = ARSUF_NARRATOR_1
+battle_wait 3
+
+while I_CompareCounter battle_phase = 1		; ESC DUMP
+	end_while					; ESC DUMP
+
+camera_zoom_to_bookmark 2 15
+battle_wait 8
+
+while I_CompareCounter battle_phase = 1		; ESC DUMP
+	end_while					; ESC DUMP
+
+					play_sound_event ARSUF_NARRATOR_2 tag = ARSUF_NARRATOR_2
+battle_wait 8
+
+while I_CompareCounter battle_phase = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+camera_position_at_bookmark 3
+
+battle_wait 5
+
+while I_CompareCounter battle_phase = 1		; ESC DUMP
+	end_while					; ESC DUMP
+
+camera_position_at_bookmark 4
+battle_wait 4
+
+while I_CompareCounter battle_phase = 1		; ESC DUMP
+	end_while					; ESC DUMP
+
+camera_position_at_bookmark 5
+battle_wait 3
+
+while I_CompareCounter battle_phase = 1		; ESC DUMP
+	end_while					; ESC DUMP
+
+					play_sound_event ARSUF_NARRATOR_3 tag = ARSUF_NARRATOR_3
+
+camera_position_at_bookmark 6
+battle_wait 3
+
+while I_CompareCounter battle_phase = 1		; ESC DUMP
+	end_while					; ESC DUMP
+
+unit_group_order_relative_move_unformed saladin1 0 200 run
+unit_order_move_relative Arab_Cavalry_3 0 30
+unit_order_move_relative Arab_Cavalry_4 0 30
+
+battle_wait 5
+
+while I_CompareCounter battle_phase = 1		; ESC DUMP
+	end_while					; ESC DUMP
+
+
+			
+					play_sound_event ARSUF_NARRATOR_4 tag = ARSUF_NARRATOR_4
+camera_position_at_bookmark 7
+
+
+battle_wait 4
+
+while I_CompareCounter battle_phase = 1		; ESC DUMP
+	end_while					; ESC DUMP
+
+camera_position_at_bookmark 8
+battle_wait 3
+
+while I_CompareCounter battle_phase = 1		; ESC DUMP
+	end_while					; ESC DUMP
+
+
+camera_position_at_bookmark 10
+
+
+
+
+
+undefine_unit_group saladin1
+	
+					unit_immediate_place Saladin -423.661, -170.864, -127, 37.496
+					unit_immediate_place Arab_Cavalry_1 -388.530, 63.410, -95, 27.889
+					unit_immediate_place Arab_Cavalry_2 -664.208, -214.021, 98, 38.231
+					unit_immediate_place Saracen_Militia_1 -464.967, -417.936, -85, 17.888
+					unit_immediate_place Saracen_Militia_2 -478.150, -109.345, -87, 34.977
+					unit_immediate_place Saracen_Militia_3 -449.482, -275.102, -102, 12.687
+					unit_immediate_place Desert_Cavalry_1 -734.889, 49.122, 155, 33.389
+					unit_immediate_place Desert_Cavalry_2 -738.067, 22.038, 128, 40.354
+					unit_immediate_place Nubian_Spearmen_1 -426.945, -198.132, -133, 30.981
+					unit_immediate_place Nubian_Spearmen_2 -636.774, 17.408, -148,  13.474
+					unit_immediate_place Nubian_Spearmen_3 -437.154, -144.199, -41, 24.432
+					unit_immediate_place Nubian_Spearmen_4 -473.956, -82.984, -102, 22.324
+					unit_immediate_place Saracen_Militia_4 -454.109, -418.623, -85, 16.396
+					unit_immediate_place Saracen_Militia_5 -468.036, -277.298, -99, 10.400
+					unit_immediate_place Saracen_Militia_6 -452.211, -432.673, -85, 13.200
+					unit_immediate_place Arab_Cavalry_3 -387.186, 16.566, -88, 28.073
+					unit_immediate_place Arab_Cavalry_4 -387.349, 41.662, -93, 25.441
+					unit_immediate_place Desert_Archers_1 -476.495, -193.976, -93, 51.553
+					unit_immediate_place Desert_Archers_2 -445.955, -241.506, -94, 51.114
+					unit_immediate_place Naffatun -495.125, -204.611, -93, 38.000
+				
+define_unit_group saladin1 Arab_Cavalry_1 Arab_Cavalry_2 Saracen_Militia_1 Saracen_Militia_2 Saracen_Militia_3 Desert_Cavalry_1 Desert_Cavalry_2 Nubian_Spearmen_1 Nubian_Spearmen_2 Nubian_Spearmen_3 Nubian_Spearmen_4 Saracen_Militia_4 Saracen_Militia_5 Saracen_Militia_6 Desert_Archers_1 Desert_Archers_2 Naffatun
+
+unit_order_move Saladin -433.661, -180.864, -127, 37.496 run
+
+unit_group_order_relative_move_unformed saladin1 0 20 
+
+battle_wait 2
+
+while I_CompareCounter battle_phase = 1		; ESC DUMP
+	end_while					; ESC DUMP
+
+
+camera_zoom_to_bookmark 11 16
+battle_wait 3
+
+while I_CompareCounter battle_phase = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+				
+					play_sound_event ARSUF_NARRATOR_5 tag = ARSUF_NARRATOR_5
+battle_wait 10
+
+while I_CompareCounter battle_phase = 1		; ESC DUMP
+	end_while					; ESC DUMP
+		
+				
+					play_sound_event ARSUF_NARRATOR_7 tag = ARSUF_NARRATOR_7
+
+camera_position_at_bookmark 12
+battle_wait 8
+
+while I_CompareCounter battle_phase = 1		; ESC DUMP
+	end_while					; ESC DUMP
+
+					play_sound_event ARSUF_NARRATOR_8 tag = ARSUF_NARRATOR_8
+
+camera_position_at_bookmark 13
+battle_wait 2
+
+while I_CompareCounter battle_phase = 1		; ESC DUMP
+	end_while					; ESC DUMP
+
+camera_zoom_to_bookmark 14 5
+
+battle_wait 8
+
+while I_CompareCounter battle_phase = 1		; ESC DUMP
+	end_while					; ESC DUMP
+	
+
+	
+				
+					while I_CompareCounter escape_handler = 1
+					end_while				
+
+					set_counter battle_phase 1					
+					
+					terminate_monitor
+				end_monitor			
+
+; *********************************************************************************************
+;	Start of battle - BATTLESTART MONITOR	(Transfer control to player)
+;	Start of battle - BATTLESTART MONITOR	(Transfer control to player)
+; *********************************************************************************************
+
+				monitor_conditions I_CompareCounter battle_phase 1
+				steal_esc_key off
+
+ai_gta_plan_set 1 ATTACK_ALL
+
+undefine_unit_group crusaders1
+
+					set_camera_bookmark 1 -527.134, 44.6371, -202.75 -517.232, 46.6207, -203.491
+					set_camera_bookmark 2 -609.658, 71.4746, -228.741 -600.245, 68.9298, -228.416
+
+					camera_position_at_bookmark 1
+
+
+					play_sound_event ARSUF_NARRATOR_9 tag = ARSUF_NARRATOR_9
+					
+
+
+					unit_immediate_place King_Richard -540.620, -207.955, 173 10
+					unit_immediate_place Knights_Hospitaller_1 -550.089, -135.009, 174 10
+					unit_immediate_place Knights_Hospitaller_2 -549.150, -159.646, 173 10
+					unit_immediate_place Knights_Hospitaller_3 -556.114, -110.959, 173 10
+					unit_immediate_place Knights_Templar_1 -528.939, -297.620, 176 10
+					unit_immediate_place Knights_Templar_2 -534.278, -255.887, 176 10
+					unit_immediate_place Knights_Templar_3 -536.796, -232.400, 174 10
+					unit_immediate_place Yeoman_Archers_1 -565.755, -194.635, 173 3.301
+					unit_immediate_place Yeoman_Archers_2 -553.472, -285.488, 174 7.998
+					unit_immediate_place Crusader_Knights -544.630, -184.586, 175, 10
+					unit_immediate_place Armored_Sergeants_1 -562.457, -87.283, -180, 14.143
+					unit_immediate_place Armored_Sergeants_2 -533.194, -168.470, 171, 2.700
+					unit_immediate_place Spear_Militia_1 -522.800, -248.915, 175, 4.640
+					unit_immediate_place Spear_Militia_2 -519.022, -311.117, 179, 5.729
+					unit_immediate_place Balkan_Archers_1 -560.190, -242.639, 174, 7.152
+					unit_immediate_place Balkan_Archers_2 -571.980, -160.840, 172, 10.389
+					unit_immediate_place Mercenary_Crossbowmen -532.445, -271.301, 173, 13.459
+					unit_immediate_place Spear_Militia_3 -540.847, -106.509, 174, 5.092
+					unit_immediate_place Spear_Militia_4 -527.815, -201.983, 173, 5.755
+
+
+
+					unit_immediate_place Saladin -433.661, -180.864, -127, 37.496
+					unit_immediate_place Arab_Cavalry_1 -408.530, 63.410, -95, 27.889
+					unit_immediate_place Arab_Cavalry_2 -684.208, -214.021, 98, 38.231
+					unit_immediate_place Saracen_Militia_1 -484.967, -417.936, -85, 17.888
+					unit_immediate_place Saracen_Militia_2 -498.150, -109.345, -87, 34.977
+					unit_immediate_place Saracen_Militia_3 -469.482, -275.102, -102, 12.687
+					unit_immediate_place Desert_Cavalry_1 -754.889, 49.122, 155, 33.389
+					unit_immediate_place Desert_Cavalry_2 -758.067, 22.038, 128, 40.354
+					unit_immediate_place Nubian_Spearmen_1 -446.945, -198.132, -133, 30.981
+					unit_immediate_place Nubian_Spearmen_2 -656.774, 17.408, -148,  13.474
+					unit_immediate_place Nubian_Spearmen_3 -457.154, -144.199, -41, 24.432
+					unit_immediate_place Nubian_Spearmen_4 -493.956, -82.984, -102, 22.324
+					unit_immediate_place Saracen_Militia_4 -474.109, -418.623, -85, 16.396
+					unit_immediate_place Saracen_Militia_5 -488.036, -277.298, -99, 10.400
+					unit_immediate_place Saracen_Militia_6 -472.211, -432.673, -85, 13.200
+					unit_immediate_place Arab_Cavalry_3 -407.186, 16.566, -88, 28.073
+					unit_immediate_place Arab_Cavalry_4 -407.349, 41.662, -93, 25.441
+					unit_immediate_place Desert_Archers_1 -486.495, -193.976, -93, 51.553
+					unit_immediate_place Desert_Archers_2 -465.955, -241.506, -94, 51.114
+					unit_immediate_place Naffatun -495.125, -224.611, -93, 38.000
+
+					steal_esc_key off
+
+					;;;;; release player's units
+					release_unit King_Richard
+					release_unit Knights_Hospitaller_1
+					release_unit Knights_Hospitaller_2
+					release_unit Knights_Hospitaller_3
+					release_unit Knights_Templar_1
+					release_unit Knights_Templar_2
+					release_unit Knights_Templar_3
+					release_unit Yeoman_Archers_1
+					release_unit Yeoman_Archers_2
+					release_unit Crusader_Knights
+					release_unit Armored_Sergeants_1
+					release_unit Armored_Sergeants_2
+					release_unit Spear_Militia_1
+					release_unit Spear_Militia_2
+					release_unit Balkan_Archers_1
+					release_unit Balkan_Archers_2
+					release_unit Mercenary_Crossbowmen				
+					release_unit Spear_Militia_3
+					release_unit Spear_Militia_4
+
+										
+					battle_wait 1
+;					unit_order_attack_closest_unit Saracen_Militia_3 20 run
+;					unit_order_attack_closest_unit Saracen_Militia_4 10 run
+;					unit_order_attack_closest_unit Saracen_Militia_5 10 run
+;					unit_order_attack_closest_unit Saracen_Militia_6 10 run
+;					unit_order_attack_closest_unit Desert_Archers_1 10
+;					unit_order_attack_closest_unit Desert_Archers_2 10
+;					
+
+
+		
+
+					camera_zoom_to_bookmark 2 30
+
+					battle_wait 5
+
+
+					show_ui
+					enable_cursor							;enable player to click
+					disable_shortcuts false	
+					inhibit_camera_input false				;Permit user to move camera.
+					enable_entire_ui
+					camera_restrictions_set on
+					camera_default_mode_set user_pref
+					;suspend_unscripted_advice false
+					set_music_state tension
+
+			;		pause_battle	
+					
+
+					release_unit Desert_Cavalry_1
+					release_unit Desert_Cavalry_2
+
+					release_unit Arab_Cavalry_2
+
+					unit_set_fire_at_will_mode Naffatun on
+
+
+					unit_use_special_ability Desert_Archers_1
+					unit_use_special_ability Desert_Archers_2
+
+					unit_set_fire_at_will_mode Desert_Archers_1 on
+					unit_set_fire_at_will_mode Desert_Archers_2 on
+
+
+
+					unit_order_attack_unit Saracen_Militia_5 Mercenary_Crossbowmen run
+
+					unit_order_attack_closest_unit Saracen_Militia_3 30 run
+
+					
+
+;					unit_order_move Saracen_Militia_2 -512.539 -278.334 run
+
+
+					unit_order_attack_closest_unit Nubian_Spearmen_2 180
+
+
+					unit_order_move_to_orientation Saracen_Militia_1 -559.648 -380.002 20 0 run
+
+					unit_order_move_to_orientation Saracen_Militia_4 -538.831 -381.468 20 0 run
+
+					unit_order_move_to_orientation Saracen_Militia_6 -512.805 -370.642 20 0 run
+
+
+
+					battle_wait 15
+
+					release_unit Saracen_Militia_5
+					release_unit Nubian_Spearmen_2
+
+
+					release_unit Arab_Cavalry_1
+					release_unit Arab_Cavalry_3
+					release_unit Arab_Cavalry_4
+
+
+					unit_order_attack_closest_unit Saracen_Militia_1 180 run
+
+					unit_order_attack_closest_unit Saracen_Militia_4 180 run
+
+					unit_order_attack_closest_unit Saracen_Militia_6 180 run
+
+			
+
+;					label_unit 0 0 0	King_Richard
+;					label_unit 0 0 1	Knights_Hospitaller_1
+;					label_unit 0 0 2	Knights_Hospitaller_2
+;					label_unit 0 0 3	Knights_Hospitaller_3
+;					label_unit 0 0 4	Knights_Templar_1
+;					label_unit 0 0 5	Knights_Templar_2
+;					label_unit 0 0 6	Knights_Templar_3
+;					label_unit 0 0 7	Yeoman_Archers_1
+;					label_unit 0 0 8	Yeoman_Archers_2
+;					label_unit 0 0 9	Crusader_Knights
+;					label_unit 0 0 10	Armored_Sergeants_1
+;					label_unit 0 0 11	Armored_Sergeants_2
+;					label_unit 0 0 12	Spear_Militia_1
+;					label_unit 0 0 13	Spear_Militia_2
+;					label_unit 0 0 14	Balkan_Archers_1
+;					label_unit 0 0 15	Balkan_Archers_2
+;					label_unit 0 0 16	Mercenary_Crossbowmen				
+;					label_unit 0 0 17	Spear_Militia_3
+;					label_unit 0 0 18	Spear_Militia_4
+;			
+;					;	ALLIANCE 1	SARACENS
+;
+;					label_unit 1 0 0	Saladin
+;					label_unit 1 0 1	Arab_Cavalry_1
+;					label_unit 1 0 2	Arab_Cavalry_2
+;					label_unit 1 0 3	Saracen_Militia_1
+;					label_unit 1 0 4	Saracen_Militia_2
+;					label_unit 1 0 5	Saracen_Militia_3
+;					label_unit 1 0 6    
+;					label_unit 1 0 7    Desert_Cavalry_2
+;					label_unit 1 0 8    Nubian_Spearmen_1
+;					label_unit 1 0 9    Nubian_Spearmen_2
+;					label_unit 1 0 10   Nubian_Spearmen_3
+;					label_unit 1 0 11   Nubian_Spearmen_4
+;					label_unit 1 0 12   Saracen_Militia_4
+;					label_unit 1 0 13   Saracen_Militia_5
+;					label_unit 1 0 14   Saracen_Militia_6
+;					label_unit 1 0 15   Arab_Cavalry_3
+;					label_unit 1 0 16   Arab_Cavalry_4
+;					label_unit 1 0 17   Desert_Archers_1
+;					label_unit 1 0 18   Desert_Archers_2 
+;					label_unit 1 0 19   Desert_Archers_3
+
+
+
+
+
+
+
+
+
+				battle_wait 20
+
+				release_unit Saracen_Militia_1
+				release_unit Saracen_Militia_4
+				release_unit Saracen_Militia_6
+
+
+				battle_wait 180
+
+
+				release_unit Saladin
+				release_unit Arab_Cavalry_1
+				release_unit Arab_Cavalry_2
+				release_unit Saracen_Militia_1
+				release_unit Saracen_Militia_2
+				release_unit Saracen_Militia_3
+				release_unit Desert_Cavalry_1
+				release_unit Desert_Cavalry_2
+				release_unit Nubian_Spearmen_1
+				release_unit Nubian_Spearmen_2
+				release_unit Nubian_Spearmen_3
+				release_unit Nubian_Spearmen_4
+				release_unit Saracen_Militia_4
+				release_unit Saracen_Militia_5
+				release_unit Saracen_Militia_6
+				release_unit Arab_Cavalry_3
+				release_unit Arab_Cavalry_4
+				release_unit Desert_Archers_1
+				release_unit Desert_Archers_2
+				release_unit Naffatun
+
+
+
+
+					
+					while ! I_BattleStarted
+					end_while
+					
+					terminate_monitor
+				end_monitor	
+
+;*************************************************************************************************************************************
+;***************************************************** BATTLE MONITORS ***************************************************************
+;*************************************************************************************************************************************
+
+		;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+		;;release infantry when enemy within range					  ;;
+		;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;				
+
+
+
+				monitor_conditions I_UnitEnemyUnitInRadius Nubian_Spearmen_1 30
+
+					release_unit Nubian_Spearmen_1
+				terminate_monitor
+				end_monitor
+
+
+				monitor_conditions I_UnitEnemyUnitInRadius Nubian_Spearmen_3 30
+					release_unit Nubian_Spearmen_3
+				terminate_monitor
+				end_monitor
+
+
+				monitor_conditions I_UnitEnemyUnitInRadius Nubian_Spearmen_4 10
+					release_unit Nubian_Spearmen_4
+				terminate_monitor
+				end_monitor
+
+
+				monitor_conditions I_UnitEnemyUnitInRadius Saracen_Militia_2 10
+					release_unit Saracen_Militia_2
+
+				terminate_monitor
+				end_monitor
+
+
+				monitor_conditions I_UnitEnemyUnitInRadius Saladin 50
+					release_unit Saladin
+				terminate_monitor
+				end_monitor
+
+
+				monitor_conditions I_UnitEnemyUnitInRadius Desert_Archers_1 30
+					release_unit Desert_Archers_1
+				terminate_monitor
+				end_monitor
+
+
+				monitor_conditions I_UnitEnemyUnitInRadius Desert_Archers_2 30
+					release_unit Desert_Archers_2
+				terminate_monitor
+				end_monitor
+
+
+				monitor_conditions I_UnitEnemyUnitInRadius Naffatun 30
+					release_unit Naffatun
+				terminate_monitor
+				end_monitor
+
+
+
+		;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+		;;release units when engaged					  ;;
+		;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;				
+
+
+
+
+				monitor_conditions I_IsUnitEngaged Saracen_Militia_1
+					battle_wait 10
+					release_unit Saracen_Militia_1
+				terminate_monitor
+				end_monitor
+
+				monitor_conditions I_IsUnitEngaged Saracen_Militia_4
+					battle_wait 10
+					release_unit Saracen_Militia_4
+				terminate_monitor
+				end_monitor
+
+				monitor_conditions I_IsUnitEngaged Saracen_Militia_6
+					battle_wait 10
+					release_unit Saracen_Militia_6
+				terminate_monitor
+				end_monitor
+
+
+
+
+;					label_unit 1 0 0	Saladin
+;					label_unit 1 0 1	Arab_Cavalry_1
+;					label_unit 1 0 2	Arab_Cavalry_2
+;					label_unit 1 0 3	Saracen_Militia_1
+;					label_unit 1 0 4	Saracen_Militia_2
+;					label_unit 1 0 5	Saracen_Militia_3
+;					label_unit 1 0 6    Desert_Cavalry_1
+;					label_unit 1 0 7    Desert_Cavalry_2
+;					label_unit 1 0 8    Nubian_Spearmen_1
+;					label_unit 1 0 9    Nubian_Spearmen_2
+;					label_unit 1 0 10   Nubian_Spearmen_3
+;					label_unit 1 0 11   Nubian_Spearmen_4
+;					label_unit 1 0 12   Saracen_Militia_4
+;					label_unit 1 0 13   Saracen_Militia_5
+;					label_unit 1 0 14   Saracen_Militia_6
+;					label_unit 1 0 15   Arab_Cavalry_3
+;					label_unit 1 0 16   Arab_Cavalry_4
+;					label_unit 1 0 17   Desert_Archers_1
+;					label_unit 1 0 18   Desert_Archers_2 
+;					label_unit 1 0 19   Desert_Archers_3
+
+
+
+
+
+				monitor_conditions I_IsUnitEngaged Saracen_Militia_2
+					battle_wait 10
+					release_unit Saracen_Militia_2
+				terminate_monitor
+				end_monitor
+
+
+
+				monitor_conditions I_IsUnitEngaged Saracen_Militia_3
+					battle_wait 10
+					release_unit Saracen_Militia_3
+				terminate_monitor
+				end_monitor
+
+
+
+
+				monitor_conditions I_IsUnitEngaged Saracen_Militia_5
+					battle_wait 10
+					release_unit Saracen_Militia_5
+				terminate_monitor
+				end_monitor
+
+
+
+				monitor_conditions I_IsUnitEngaged Nubian_Spearmen_1
+					battle_wait 10
+					release_unit Nubian_Spearmen_1
+				terminate_monitor
+				end_monitor
+
+
+
+				monitor_conditions I_IsUnitEngaged Nubian_Spearmen_2
+					battle_wait 10
+					release_unit Nubian_Spearmen_2
+				terminate_monitor
+				end_monitor
+
+
+
+
+				monitor_conditions I_IsUnitEngaged Nubian_Spearmen_3
+					battle_wait 10
+					release_unit Nubian_Spearmen_3
+				terminate_monitor
+				end_monitor
+
+
+
+				monitor_conditions I_IsUnitEngaged Nubian_Spearmen_4
+					battle_wait 10
+					release_unit Nubian_Spearmen_4
+				terminate_monitor
+				end_monitor
+
+
+
+
+
+
+
+
+		;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+		;;what happens if richard routs or dies					  ;;
+		;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;				
+				
+				monitor_conditions I_IsUnitRouting King_Richard
+					inc_counter Richard_died 1
+					unit_set_morale King_Richard routing
+					terminate_monitor
+				end_monitor
+	
+				monitor_conditions ! I_CharacterExists Richard
+					inc_counter Richard_died 1
+					unit_set_morale King_Richard routing
+					terminate_monitor
+				end_monitor
+				
+				monitor_conditions I_CompareCounter Richard_died > 0
+					unit_set_morale Knights_Hospitaller_2 routing
+					unit_set_morale Knights_Templar_3 routing
+					unit_set_morale Mercenary_Crossbowmen routing
+					unit_set_morale Spear_Militia_2 routing
+					unit_set_morale Spear_Militia_3 routing
+					unit_set_morale Balkan_Archers_2 routing
+					unit_set_morale Knights_Hospitaller_3 routing
+					unit_set_morale Knights_Hospitaller_1 routing
+					unit_set_morale Knights_Templar_1 routing
+					unit_set_morale Crusader_Knights routing
+					unit_set_morale Knights_Templar_2 routing
+					unit_set_morale Spear_Militia_4 routing
+					unit_set_morale Balkan_Archers_1 routing
+					unit_set_morale Yeoman_Archers_1 routing
+					unit_set_morale Armored_Sergeants_2 routing
+					unit_set_morale Yeoman_Archers_2 routing
+					unit_set_morale Armored_Sergeants_1 routing
+					unit_set_morale Spear_Militia_1 routing
+					inc_counter Richard_died 1
+					terminate_monitor
+				end_monitor
+				
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;								
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;END OF THE SCRIPT;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	while I_InBattle
+	end_while
+
+end_script

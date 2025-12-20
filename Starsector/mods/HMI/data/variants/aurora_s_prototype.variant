@@ -1,0 +1,61 @@
+{
+  "variantId": "aurora_s_prototype",
+  "hullId": "aurora_s",
+  "displayName": "Prototype",
+  "goalVariant": true,
+  "fluxCapacitors": 11,
+  "fluxVents": 30,
+  "quality": 0,
+  "permaMods": [],
+  "hullMods": [
+    "hardened_subsystems",
+    "eccm"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 009": "heavyblaster"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 010": "amblaster",
+        "WS 012": "amblaster"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 011": "sabot",
+        "WS 013": "sabot"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 003": "ioncannon",
+        "WS 004": "ioncannon",
+        "WS 005": "ioncannon",
+        "WS 006": "hil",
+        "WS 007": "pulselaser",
+        "WS 008": "pulselaser"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 001": "pdlaser",
+        "WS 002": "pdlaser"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

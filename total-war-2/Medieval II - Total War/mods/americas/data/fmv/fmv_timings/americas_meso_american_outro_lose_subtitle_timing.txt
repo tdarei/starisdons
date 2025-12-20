@@ -1,0 +1,3 @@
+<SYNC Start=16500>
+<P Class=ENUSCC>Americas_Meso_American_Outro_Lose_1
+<SYNC Stop=44500>

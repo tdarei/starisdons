@@ -1,0 +1,42 @@
+{
+  "variantId": "hmi_wobbie_attack",
+  "hullId": "hmi_wobbie",
+  "displayName": "Attack",
+  "goalVariant": true,
+  "fluxCapacitors": 0,
+  "fluxVents": 15,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "heavyarmor"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0001": "chaingun",
+        "WS0002": "chaingun"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0003": "lightdualac",
+        "WS0004": "lightdualac"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0005": "lightdualmg",
+        "WS0006": "lightdualmg",
+        "WS0007": "lightdualmg"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

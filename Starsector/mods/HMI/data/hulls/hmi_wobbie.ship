@@ -1,0 +1,163 @@
+{
+  "hullName": "Wobbie",
+  "hullId": "hmi_wobbie",
+  "hullSize": "DESTROYER",
+  "spriteName": "graphics/ships/wobbie/wobbie.png",
+  "style": "LOW_TECH",
+  "height": 124,
+  "width": 136,
+  "center": [68, 56.5],
+  "collisionRadius": 81,
+  "shieldCenter": [0, -0],
+  "shieldRadius": 78.5,
+  "viewOffset": 0,
+  "builtInMods": [
+    "delicate",
+    "phasefield"
+  ],
+  "weaponSlots": [
+    {
+      "id": "WS0001",
+      "size": "MEDIUM",
+      "type": "BALLISTIC",
+      "mount": "HARDPOINT",
+      "arc": 10,
+      "angle": 0,
+      "locations": [48.5, 33]
+    },
+    {
+      "id": "WS0002",
+      "size": "MEDIUM",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 10,
+      "angle": 0,
+      "locations": [48.5, -33]
+    },
+    {
+      "id": "WS0003",
+      "size": "SMALL",
+      "type": "COMPOSITE",
+      "mount": "TURRET",
+      "arc": 145,
+      "angle": 49.5,
+      "locations": [16.5, 49]
+    },
+    {
+      "id": "WS0004",
+      "size": "SMALL",
+      "type": "COMPOSITE",
+      "mount": "TURRET",
+      "arc": 145,
+      "angle": -49.5,
+      "locations": [16.5, -49]
+    },
+    {
+      "id": "WS0005",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 216,
+      "angle": 88.5,
+      "locations": [-3.5, 39.5]
+    },
+    {
+      "id": "WS0006",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 216,
+      "angle": -88.5,
+      "locations": [-3.5, -39.5]
+    },
+    {
+      "id": "WS0007",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 122,
+      "angle": 0,
+      "locations": [42, -0]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-54.5, 37.5],
+      "length": 14.5,
+      "width": 12,
+      "angle": 180,
+      "contrailSize": 12,
+      "style": "LOW_TECH"
+    },
+    {
+      "location": [-54.5, -37.5],
+      "length": 14.5,
+      "width": 12,
+      "angle": -180,
+      "contrailSize": 12,
+      "style": "LOW_TECH"
+    },
+    {
+      "location": [-53.5, 29],
+      "length": 14,
+      "width": 11,
+      "angle": 180,
+      "contrailSize": 11,
+      "style": "LOW_TECH"
+    },
+    {
+      "location": [-53.5, -29],
+      "length": 14,
+      "width": 11,
+      "angle": -180,
+      "contrailSize": 11,
+      "style": "LOW_TECH"
+    },
+    {
+      "location": [-53, 20],
+      "length": 12,
+      "width": 11,
+      "angle": 180,
+      "contrailSize": 11,
+      "style": "LOW_TECH"
+    },
+    {
+      "location": [-53, -20],
+      "length": 12,
+      "width": 11,
+      "angle": -180,
+      "contrailSize": 11,
+      "style": "LOW_TECH"
+    }
+  ],
+  "bounds": [
+    -42, -15,
+    -54, -18,
+    -54.5, -40,
+    -47.5, -49,
+    -28.5, -50.5,
+    -11, -66.5,
+    5.5, -65.5,
+    13.5, -60.5,
+    37.5, -61,
+    38, -44.5,
+    54.5, -45,
+    57.5, -22,
+    66, -8,
+    62, -5.5,
+    62, 5.5,
+    66, 8,
+    57.5, 22,
+    54.5, 45,
+    38, 44.5,
+    37.5, 61,
+    13.5, 60.5,
+    5.5, 65.5,
+    -11, 66.5,
+    -28.5, 50.5,
+    -47.5, 49,
+    -54.5, 40,
+    -54, 18,
+    -42, 15
+  ]
+}

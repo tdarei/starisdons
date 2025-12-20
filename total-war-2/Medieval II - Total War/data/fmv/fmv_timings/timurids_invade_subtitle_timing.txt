@@ -1,0 +1,6 @@
+<SYNC Start=900>
+<P Class=ENUSCC>Timurids_Invade_1
+<SYNC Stop=22700>
+<SYNC Start=22700>
+<P Class=ENUSCC>Timurids_Invade_2
+<SYNC Stop=36900>

@@ -1,0 +1,75 @@
+{
+  "variantId": "junk_mining",
+  "hullId": "junk",
+  "displayName": "Mining",
+  "goalVariant": true,
+  "fluxCapacitors": 14,
+  "fluxVents": 20,
+  "quality": 0,
+  "permaMods": [],
+  "hullMods": [
+    "blast_doors"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0014": "pumm_cannon",
+        "WS0018": "hellbore"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0017": "pilum",
+        "WS0021": "hammerrack",
+        "WS0022": "swarmer"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0001": "mining_gen",
+        "WS0002": "mining_gen",
+        "WS0003": "mining_gen",
+        "WS0004": "mining_gen"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0005": "retro_ml",
+        "WS0006": "retro_ml",
+        "WS0012": "retro_ml",
+        "WS0013": "launcher_cannon",
+        "WS0020": "retro_ml",
+        "WS0023": "retro_ml",
+        "WS0024": "retro_ml",
+        "WS0025": "retro_mb"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS0007": "rock_launcher",
+        "WS0008": "rock_launcher",
+        "WS0009": "rock_launcher",
+        "WS0010": "rock_launcher",
+        "WS0011": "rock_launcher",
+        "WS0015": "rock_launcher",
+        "WS0016": "launcher_cannon",
+        "WS0019": "rock_launcher"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": [
+    "mining_drone_wing",
+    "mining_drone_wing"
+  ]
+}
